@@ -21,6 +21,7 @@ Current Phase 2 invariant candidates:
 3. a safely constructed repaired pathway has a repair record
 4. a safely constructed suspended pathway preserves review or return conditions
 5. a safely constructed returning pathway does not allow automatic continuation
+6. a safely constructed closed pathway preserves evidence and reopening-condition records
 
 These are represented by:
 
@@ -43,14 +44,19 @@ These are represented by:
 - `HasReviewOrReturnCondition`
 - `IsReturningPathway`
 - `AllowsAutomaticContinuation`
+- `IsClosedPathway`
+- `HasEvidenceRecord`
+- `HasReopeningCondition`
 - `AIReturnPointBoundary`
 - `RepairRecordBoundary`
 - `SuspensionReviewReturnBoundary`
 - `ReturningNoAutomaticContinuationBoundary`
+- `ClosureEvidenceReopeningBoundary`
 - `safe_ai_assisted_pathway_has_return_point`
 - `repaired_pathway_has_repair_record`
 - `suspended_pathway_preserves_review_or_return_condition`
 - `returning_pathway_does_not_allow_automatic_continuation`
+- `closed_pathway_preserves_evidence_and_reopening_condition`
 
 ## Boundary
 
@@ -69,6 +75,8 @@ The repair-record invariant does not mean real-world repair is complete, harm is
 The suspension review/return invariant does not mean suspension is justified, safe, compliant, fair, legally valid, morally resolved, or operationally complete. It only states that a pathway declared suspended in the minimal model must preserve a review-or-return condition.
 
 The returning no-automatic-continuation invariant does not mean return is justified, authorized, safe, compliant, fair, legally valid, morally resolved, or operationally complete. It only states that a pathway declared returning in the minimal model must not be treated as automatically continuing.
+
+The closure evidence/reopening invariant does not mean closure is justified, legally valid, morally resolved, safe, compliant, fair, permanent, or operationally complete. It only states that a pathway declared closed in the minimal model must preserve evidence records and reopening-condition records.
 
 The current invariants do not make legal or moral claims. They state structural properties inside the minimal model.
 
