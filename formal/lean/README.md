@@ -19,6 +19,7 @@ Current Phase 2 invariant candidates:
 1. under current minimal assumptions, a node constructed as a safe AI node cannot hold final responsibility
 2. a safely constructed AI-assisted pathway has a human or institutional return point
 3. a safely constructed repaired pathway has a repair record
+4. a safely constructed suspended pathway preserves review or return conditions
 
 These are represented by:
 
@@ -37,10 +38,14 @@ These are represented by:
 - `HasHumanOrInstitutionalReturnPoint`
 - `IsRepairedPathway`
 - `HasRepairRecord`
+- `IsSuspendedPathway`
+- `HasReviewOrReturnCondition`
 - `AIReturnPointBoundary`
 - `RepairRecordBoundary`
+- `SuspensionReviewReturnBoundary`
 - `safe_ai_assisted_pathway_has_return_point`
 - `repaired_pathway_has_repair_record`
+- `suspended_pathway_preserves_review_or_return_condition`
 
 ## Boundary
 
@@ -55,6 +60,8 @@ It is not a universal claim that future law, future institutions, states, intern
 If such a layer is introduced in a future model, the AI final-responsibility invariant must be revisited instead of treated as absolute.
 
 The repair-record invariant does not mean real-world repair is complete, harm is eliminated, legal liability is resolved, moral responsibility is resolved, or closure is justified. It only states that a pathway declared repaired in the minimal model must preserve a repair-record signal.
+
+The suspension review/return invariant does not mean suspension is justified, safe, compliant, fair, legally valid, morally resolved, or operationally complete. It only states that a pathway declared suspended in the minimal model must preserve a review-or-return condition.
 
 The current invariants do not make legal or moral claims. They state structural properties inside the minimal model.
 
