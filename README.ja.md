@@ -30,15 +30,16 @@ Early public specification.
 1. [BEACON.md](BEACON.md) - 現在地と再接続点
 2. [LUMINALIA.md](LUMINALIA.md) - 設計思想
 3. [ROADMAP.md](ROADMAP.md) - 現在と今後のフェーズ
-4. [CHANGELOG.md](CHANGELOG.md) - 概念上の節目
-5. [docs/definition.md](docs/definition.md) - 中核定義
-6. [docs/eight-elements.md](docs/eight-elements.md) - 8要素モデル
-7. [docs/repository-governance.md](docs/repository-governance.md) - リポジトリ運営方針
-8. [docs/development-process.md](docs/development-process.md) - 開発プロセス
-9. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
-10. [docs/validation-checklist.md](docs/validation-checklist.md) - 境界付き検証チェックリスト
-11. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
-12. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
+4. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - 次の軽量検証フェーズ計画
+5. [CHANGELOG.md](CHANGELOG.md) - 概念上の節目
+6. [docs/definition.md](docs/definition.md) - 中核定義
+7. [docs/eight-elements.md](docs/eight-elements.md) - 8要素モデル
+8. [docs/repository-governance.md](docs/repository-governance.md) - リポジトリ運営方針
+9. [docs/development-process.md](docs/development-process.md) - 開発プロセス
+10. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
+11. [docs/validation-checklist.md](docs/validation-checklist.md) - 境界付き検証チェックリスト
+12. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
+13. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
 
 ## 例
 
