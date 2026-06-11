@@ -1,0 +1,325 @@
+# Minimal closed pathway example
+#
+# This example illustrates a Responsibility Pathway that is closed after
+# explicit human review, evidence preservation, and boundary recording.
+#
+# Closure is not erasure, immunity, certification, compliance, safety,
+# fairness, legal validity, moral resolution, or production readiness.
+# It records that this example pathway has reached a declared end state
+# under explicit responsibility boundaries.
+#
+# 日本語メモ:
+# これは責任経路を閉鎖する最小例です。
+# closure は責任の消滅ではありません。
+# 閉鎖条件、証拠、判断主体、残存境界を記録したうえで、
+# この例の経路を終了状態として扱います。
+# AI支援ノードは閉鎖候補を整理できますが、閉鎖判断主体にも最終責任主体にもなりません。
+
+id: closed_pathway_example_001
+version: 0.1.0
+lifecycle_state: closed
+
+nodes:
+  - id: human_decision_owner_001
+    type: Human
+    capabilities:
+      - receive
+      - explain
+      - review
+      - decide
+      - close
+      - reopen
+      - escalate
+    authority_scope:
+      can_decide: true
+      can_approve: true
+      can_execute: false
+      can_stop: true
+      can_repair: true
+      can_close: true
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: true
+
+  - id: ai_support_node_001
+    type: AIAgent
+    capabilities:
+      - receive
+      - preserve
+      - summarize
+      - explain
+      - compare_closure_conditions
+      - recommend_review
+      - return
+    authority_scope:
+      can_decide: false
+      can_approve: false
+      can_execute: false
+      can_stop: false
+      can_repair: false
+      can_close: false
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: false
+    ai_participation:
+      may_generate: true
+      may_recommend: true
+      may_classify: true
+      may_summarize_evidence: true
+      may_compare_closure_conditions: true
+      may_execute_under_authority: false
+      assumes_final_responsibility: false
+
+  - id: closure_reviewer_001
+    type: Human
+    capabilities:
+      - receive
+      - explain
+      - review
+      - approve_closure
+      - reject_closure
+      - request_repair
+      - request_reopen
+    authority_scope:
+      can_decide: false
+      can_approve: true
+      can_execute: false
+      can_stop: true
+      can_repair: false
+      can_close: false
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: true
+
+edges:
+  - from: human_decision_owner_001
+    to: ai_support_node_001
+    relation_type: closure_summary_support_request
+    condition: decision_owner_requests_closure_summary
+    evidence_reference: evidence_log_001
+
+  - from: ai_support_node_001
+    to: human_decision_owner_001
+    relation_type: closure_summary_return
+    condition: AI_summary_requires_human_review
+    evidence_reference: evidence_log_001
+
+  - from: human_decision_owner_001
+    to: closure_reviewer_001
+    relation_type: closure_review_request
+    condition: closure_requires_independent_review_signal
+    evidence_reference: evidence_log_001
+
+  - from: closure_reviewer_001
+    to: human_decision_owner_001
+    relation_type: closure_review_return
+    condition: closure_review_completed_with_recorded_boundaries
+    evidence_reference: evidence_log_001
+
+roles:
+  decision_owner: human_decision_owner_001
+  approval_gate: closure_reviewer_001
+  execution_actor: null
+  stop_authority: closure_reviewer_001
+  evidence_log: evidence_log_001
+  repair_owner: human_decision_owner_001
+  return_point: return_point_001
+  human_return_point: return_point_001
+  affected_party: null
+
+closure:
+  id: closure_001
+  pathway_id: closed_pathway_example_001
+  closure_owner: human_decision_owner_001
+  closure_reviewer: closure_reviewer_001
+  previous_lifecycle_state: returning
+  closure_state: recorded
+  closure_basis:
+    - evidence_log_reviewed
+    - authority_state_reviewed
+    - uncertainty_recorded
+    - next_state_not_required_within_example_scope
+    - reopening_condition_recorded
+  closure_does_not_mean:
+    - no_responsibility
+    - no_future_question
+    - legal_resolution
+    - moral_resolution
+    - safety_certification
+    - compliance_certification
+    - fairness_certification
+    - production_readiness
+  residual_obligations:
+    - preserve_evidence_log
+    - preserve_authorship_boundary
+    - preserve_reopening_conditions
+    - preserve_excluded_claims
+  reopening_conditions:
+    - material_error_found
+    - missing_evidence_discovered
+    - authority_boundary_disputed
+    - affected_party_visibility_required_in_future_scope
+  allowed_next_states:
+    - closed
+    - returning
+    - repaired
+    - suspended
+  automatic_reopening_allowed: false
+  automatic_closure_allowed: false
+  AI_closure_authority_allowed: false
+
+action_class:
+  id: class_2_recorded_closure
+  name: Recorded Closure
+  level: 2
+  description: Review state where a pathway is closed under recorded human responsibility and explicit excluded claims.
+  responsibility_requirements:
+    decision_owner_required: true
+    approval_gate_required: true
+    stop_authority_required: true
+    evidence_log_required: true
+    return_point_required: true
+    repair_owner_required: false
+    affected_party_visibility_required: false
+  reversibility: reopenable_if_conditions_met
+  external_impact: internal
+  automation_boundary:
+    may_be_automated: false
+    requires_human_review: true
+    requires_human_authorization: true
+    prohibited_without_explicit_authority: true
+
+evidence_logs:
+  - id: evidence_log_001
+    pathway_id: closed_pathway_example_001
+    evidence_categories:
+      - actor_identity_or_role
+      - decision_owner
+      - closure_reviewer
+      - prior_lifecycle_state
+      - closure_basis
+      - input
+      - output
+      - prompt_or_instruction
+      - timestamp
+      - authority_state
+      - uncertainty
+      - reopening_condition
+      - excluded_claims
+    integrity_state: partial
+    ordering: timestamped
+    reconstruction_support:
+      can_reconstruct_action: true
+      can_reconstruct_authority: true
+      can_reconstruct_context: true
+      can_reconstruct_uncertainty: true
+      can_reconstruct_stop_point: true
+      can_reconstruct_return_point: true
+      can_reconstruct_repair_action: false
+      can_reconstruct_closure_basis: true
+    quality:
+      completeness: partial
+      readability: human_readable
+      availability: local_example
+      scope_clarity: example_only
+      retention_period: not_specified
+      privacy_constraints: avoid_sensitive_data
+      safety_constraints: no_production_use
+    access_boundary:
+      readable_by:
+        - human_decision_owner_001
+        - closure_reviewer_001
+      writable_by:
+        - human_decision_owner_001
+        - closure_reviewer_001
+      redaction_required: false
+      retention_owner: human_decision_owner_001
+      repair_owner_access: true
+
+return_points:
+  - id: return_point_001
+    type: HumanReturnPoint
+    source_node: closure_reviewer_001
+    target_node: human_decision_owner_001
+    returnability_conditions:
+      meaning_visible: true
+      authority_visible: true
+      time_available: true
+      information_quality_sufficient: partial
+      trust_calibrated: true
+      reversibility_or_compensation_visible: reopenable_if_conditions_met
+      value_visible: partial
+      cost_visible: partial
+    supported_actions:
+      - explain
+      - accept_closure
+      - reject_closure
+      - request_repair
+      - reopen_if_conditions_met
+      - escalate
+    evidence_requirements:
+      evidence_log_required: true
+      minimum_evidence_categories:
+        - prior_lifecycle_state
+        - authority_state
+        - closure_basis
+        - uncertainty
+        - reopening_condition
+      reconstruction_required: true
+      access_boundary: local_review
+    human_conditions:
+      understandable_information: true
+      meaningful_choice: true
+      refusal_available: true
+      stop_authority_available: true
+      repair_path_available: true
+      adequate_review_time: true
+      no_coercive_pressure: true
+
+repairs: []
+
+responsibility_boundary:
+  human_author_required: true
+  ai_final_responsibility_allowed: false
+  institutional_authority_required_when_applicable: false
+  legal_or_moral_claims_out_of_scope: true
+  closure_does_not_remove_responsibility_history: true
+  closure_requires_human_or_institutional_review: true
+  reopening_conditions_preserved: true
+
+formalization_scope:
+  assumptions:
+    - The example models closure of an illustrative internal pathway.
+    - Closure records an end state within the example scope; it does not erase responsibility history.
+    - The AI support node may summarize evidence and compare closure conditions but cannot decide closure or assume final responsibility.
+    - The human decision owner remains responsible for the closure decision within this example.
+    - Reopening conditions remain recorded after closure.
+  modeled_entities:
+    - human_decision_owner_001
+    - ai_support_node_001
+    - closure_reviewer_001
+    - evidence_log_001
+    - return_point_001
+    - closure_001
+  excluded_claims:
+    - legal_liability
+    - moral_blame
+    - compliance
+    - production_safety
+    - fairness
+    - certification
+    - harm_elimination
+    - real_world_accountability_resolution
+    - closure_as_erasure
+    - closure_as_immunity
+    - closure_as_repair_completion
+  theorem_status: not_formalized
