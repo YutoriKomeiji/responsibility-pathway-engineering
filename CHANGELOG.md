@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 1.6 status alignment established
+
+- `docs/phase-1-6-plan.md` updated from planned work to current status, established work items, completion condition, and restart point
+- `ROADMAP.md` updated to mark Phase 1.5 as established and Phase 1.6 as substantially established
+- `BEACON.md` updated with current Phase 1.6 position, lifecycle-example coverage, checker boundary, read-first order, and Phase 2 restart point
+
 ### Phase 1.6 minimal core rationale established
 
 - `docs/minimal-core-rationale.md` added to explain why the repository is intentionally small and specification-first
