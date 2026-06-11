@@ -49,6 +49,7 @@ Minimal examples are available under `examples/`.
 - [examples/minimal-pathway.yaml](examples/minimal-pathway.yaml) - a minimal pathway where an AI support node returns responsibility to a human decision owner
 - [examples/repair-flow.yaml](examples/repair-flow.yaml) - a minimal repair flow after ambiguity or incomplete evidence is detected
 - [examples/suspended-pathway.yaml](examples/suspended-pathway.yaml) - a minimal suspended lifecycle-state example
+- [examples/returning-pathway.yaml](examples/returning-pathway.yaml) - a minimal returning lifecycle-state example
 
 See [docs/example-index.md](docs/example-index.md) for example purposes, boundaries, and future example candidates.
 
