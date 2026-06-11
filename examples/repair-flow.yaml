@@ -4,6 +4,14 @@
 # after ambiguity, incomplete evidence, or failed returnability is detected.
 # It is not a certification, compliance claim, safety guarantee,
 # legal assessment, moral accountability judgment, or production-ready model.
+#
+# 日本語メモ:
+# これは修復を含む責任経路の最小例です。
+# 曖昧さ、証拠不足、または返却可能性の不明確さが見つかった場合、
+# 経路は repair_owner_001 に接続され、説明・記録・修復状態の保存へ進みます。
+# 修復は「被害が消えた」ことや「責任が解決した」ことを意味しません。
+# この例では、修復は説明と閉鎖に進める程度まで経路を回復するものとして扱います。
+# AI支援ノードは最終責任主体ではありません。
 
 id: repair_flow_example_001
 version: 0.1.0
