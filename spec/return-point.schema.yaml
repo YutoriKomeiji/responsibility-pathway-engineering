@@ -1,0 +1,103 @@
+version: 0.1.0
+kind: ReturnPointSchema
+
+purpose: >
+  Defines the minimum machine-readable structure for a Return Point,
+  including Human Return Point conditions.
+
+return_point:
+  required_fields:
+    - id
+    - type
+    - target_node
+    - returnability_conditions
+    - supported_actions
+
+  fields:
+    id:
+      type: string
+      description: Stable identifier for the return point.
+
+    type:
+      type: enum
+      allowed_values:
+        - ReturnPoint
+        - HumanReturnPoint
+        - OrganizationalReturnPoint
+        - InstitutionalReturnPoint
+        - ProcessReturnPoint
+
+    source_node:
+      type: string
+      description: Node from which responsibility-related state returns.
+
+    target_node:
+      type: string
+      description: Node to which responsibility-related state returns.
+
+    returnability_conditions:
+      type: object
+      required_suggested_fields:
+        - meaning_visible
+        - authority_visible
+        - time_available
+        - information_quality_sufficient
+        - trust_calibrated
+        - reversibility_or_compensation_visible
+        - value_visible
+        - cost_visible
+
+    supported_actions:
+      type: list
+      allowed_values:
+        - explain
+        - reject
+        - escalate
+        - suspend
+        - rollback
+        - repair
+        - compensate
+        - continue
+        - close
+
+    evidence_requirements:
+      type: object
+      suggested_fields:
+        - evidence_log_required
+        - minimum_evidence_categories
+        - reconstruction_required
+        - access_boundary
+
+    human_conditions:
+      type: object
+      description: Conditions required when type is HumanReturnPoint.
+      suggested_fields:
+        - understandable_information
+        - meaningful_choice
+        - refusal_available
+        - stop_authority_available
+        - repair_path_available
+        - adequate_review_time
+        - no_coercive_pressure
+
+validation_rules:
+  - id: human_return_requires_human_conditions
+    rule: >
+      If type is HumanReturnPoint, human_conditions should be present.
+
+  - id: return_requires_authority_visibility
+    rule: >
+      returnability_conditions.authority_visible should be true or explicitly justified.
+
+  - id: repair_action_requires_repair_path
+    rule: >
+      If supported_actions includes repair, human_conditions.repair_path_available or an equivalent repair route should be present.
+
+  - id: rollback_requires_reversibility
+    rule: >
+      If supported_actions includes rollback, returnability_conditions.reversibility_or_compensation_visible should be true.
+
+boundary:
+  - A return point does not prove legal responsibility.
+  - A human being present is not sufficient for Human Return Point validity.
+  - Returnability depends on information, authority, time, and repair capacity.
