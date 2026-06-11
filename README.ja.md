@@ -8,6 +8,19 @@
 
 Early public specification.
 
+## はじめに読むもの
+
+初めて読む人、未来の保守者、AIによる継続作業では、次の順番で読むことを推奨します。
+
+1. [BEACON.md](BEACON.md) - 現在地と再接続点
+2. [LUMINALIA.md](LUMINALIA.md) - 設計思想
+3. [ROADMAP.md](ROADMAP.md) - 現在と今後のフェーズ
+4. [CHANGELOG.md](CHANGELOG.md) - 概念上の節目
+5. [docs/definition.md](docs/definition.md) - 中核定義
+6. [docs/eight-elements.md](docs/eight-elements.md) - 8要素モデル
+7. [docs/repository-governance.md](docs/repository-governance.md) - リポジトリ運営方針
+8. [docs/development-process.md](docs/development-process.md) - 開発プロセス
+
 ## 範囲
 
 - 定義
@@ -15,6 +28,12 @@ Early public specification.
 - YAML仕様
 - Lean形式化候補
 - 実装例
+
+## リポジトリ原則
+
+本リポジトリ自体を、一つの責任経路として運用します。
+
+読者は、主張から定義へ、定義から仕様へ、仕様から形式化へ、形式化から前提へと戻れる必要があります。
 
 ## 境界
 
