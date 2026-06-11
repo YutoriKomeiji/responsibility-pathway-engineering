@@ -78,7 +78,7 @@ pathway_requirements:
   stop_authority: required_when_continuation_may_increase_irreversibility_or_harm
   evidence_log: required_for_reconstruction_and_repair
   return_point: required_when_responsibility_must_return_to_authorized_entity
-  repair_owner: required_when_failure_or_ambiguity_may_need restoration
+  repair_owner: required_when_failure_or_ambiguity_may_need_restoration
 
 returnability:
   required_conditions:
