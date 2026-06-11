@@ -161,8 +161,9 @@ A minimal pathway model for early structural invariants.
 
 This is intentionally not a complete graph model. It records only whether
 AI participates, whether a human or institutional return point is present,
-whether the pathway is declared repaired, and whether a repair record is
-present.
+whether the pathway is declared repaired, whether a repair record is present,
+whether the pathway is declared suspended, and whether review or return
+conditions are preserved.
 -/
 structure Pathway where
   id : String
@@ -170,6 +171,8 @@ structure Pathway where
   hasHumanOrInstitutionalReturnPoint : Bool
   lifecycleRepaired : Bool
   hasRepairRecord : Bool
+  lifecycleSuspended : Bool
+  hasReviewOrReturnCondition : Bool
   deriving Repr
 
 /--
@@ -198,6 +201,19 @@ def HasRepairRecord (pathway : Pathway) : Prop :=
   pathway.hasRepairRecord = true
 
 /--
+Predicate: the pathway is declared as suspended inside the minimal model.
+-/
+def IsSuspendedPathway (pathway : Pathway) : Prop :=
+  pathway.lifecycleSuspended = true
+
+/--
+Predicate: the pathway preserves at least one review or return condition inside
+the minimal model.
+-/
+def HasReviewOrReturnCondition (pathway : Pathway) : Prop :=
+  pathway.hasReviewOrReturnCondition = true
+
+/--
 Structural invariant: if AI participates, the pathway must preserve a
 human or institutional return point.
 
@@ -222,6 +238,17 @@ def RepairRecordBoundary (pathway : Pathway) : Prop :=
   IsRepairedPathway pathway -> HasRepairRecord pathway
 
 /--
+Structural invariant: if a pathway is declared suspended, the minimal model
+requires preserved review or return conditions.
+
+This does not mean suspension is justified, safe, compliant, fair, legally
+valid, morally resolved, or operationally complete. It only requires that a
+suspended state does not erase the path back to review or return.
+-/
+def SuspensionReviewReturnBoundary (pathway : Pathway) : Prop :=
+  IsSuspendedPathway pathway -> HasReviewOrReturnCondition pathway
+
+/--
 A constructor-level safe AI-assisted pathway includes a human or institutional
 return point.
 -/
@@ -231,7 +258,9 @@ def safeAIAssistedPathway (id : String) : Pathway :=
     aiParticipates := true,
     hasHumanOrInstitutionalReturnPoint := true,
     lifecycleRepaired := false,
-    hasRepairRecord := false
+    hasRepairRecord := false,
+    lifecycleSuspended := false,
+    hasReviewOrReturnCondition := false
   }
 
 /--
@@ -256,7 +285,9 @@ def nonAIPathway (id : String) : Pathway :=
     aiParticipates := false,
     hasHumanOrInstitutionalReturnPoint := false,
     lifecycleRepaired := false,
-    hasRepairRecord := false
+    hasRepairRecord := false,
+    lifecycleSuspended := false,
+    hasReviewOrReturnCondition := false
   }
 
 theorem non_ai_pathway_satisfies_ai_return_point_boundary
@@ -275,7 +306,9 @@ def repairedPathwayWithRecord (id : String) : Pathway :=
     aiParticipates := true,
     hasHumanOrInstitutionalReturnPoint := true,
     lifecycleRepaired := true,
-    hasRepairRecord := true
+    hasRepairRecord := true,
+    lifecycleSuspended := false,
+    hasReviewOrReturnCondition := false
   }
 
 /--
@@ -300,5 +333,44 @@ theorem non_repaired_pathway_satisfies_repair_record_boundary
   intro hRepaired
   unfold IsRepairedPathway at hRepaired
   simp [safeAIAssistedPathway] at hRepaired
+
+/--
+A constructor-level suspended pathway preserves review or return conditions.
+-/
+def suspendedPathwayWithReviewOrReturn (id : String) : Pathway :=
+  {
+    id := id,
+    aiParticipates := true,
+    hasHumanOrInstitutionalReturnPoint := true,
+    lifecycleRepaired := false,
+    hasRepairRecord := false,
+    lifecycleSuspended := true,
+    hasReviewOrReturnCondition := true
+  }
+
+/--
+The fourth Phase 2 invariant candidate:
+a safely constructed suspended pathway satisfies the suspension review/return
+boundary.
+-/
+theorem suspended_pathway_preserves_review_or_return_condition
+    (id : String) :
+    SuspensionReviewReturnBoundary (suspendedPathwayWithReviewOrReturn id) := by
+  intro hSuspended
+  unfold HasReviewOrReturnCondition
+  simp [suspendedPathwayWithReviewOrReturn]
+
+/--
+A pathway that is not declared suspended does not require review or return
+conditions under this suspension-specific boundary. This theorem only states
+the implication form is satisfied vacuously in the constructor-level
+non-suspended case.
+-/
+theorem non_suspended_pathway_satisfies_suspension_boundary
+    (id : String) :
+    SuspensionReviewReturnBoundary (safeAIAssistedPathway id) := by
+  intro hSuspended
+  unfold IsSuspendedPathway at hSuspended
+  simp [safeAIAssistedPathway] at hSuspended
 
 end ResponsibilityPathway
