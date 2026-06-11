@@ -4,6 +4,8 @@ Responsibility Pathway Engineering, as presented in this repository, is authored
 
 - Akihisa Ono (小野昭久)
 
+Affiliation for this repository: Independent
+
 ## Authorship boundary
 
 AI tools may assist with drafting, structuring, editing, implementation, review, and continuity work.
@@ -20,6 +22,7 @@ Akihisa Ono (小野昭久), Responsibility Pathway Engineering.
 
 See also:
 
+- [AUTHORSHIP.md](AUTHORSHIP.md)
 - [NOTICE.md](NOTICE.md)
 - [LICENSE](LICENSE)
 - [CITATION.cff](CITATION.cff)
