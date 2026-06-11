@@ -2,6 +2,8 @@
 
 Author: Akihisa Ono (小野昭久)
 
+Affiliation for this repository: Independent
+
 Responsibility Pathway Engineering is a design framework for preserving the pathways through which responsibility, meaning, authority, value, cost, and repair can return across humans, AI agents, organizations, and systems.
 
 It is not a blame assignment mechanism.
@@ -12,10 +14,11 @@ Early public specification.
 
 ## Authorship and citation
 
-This repository is authored and maintained by Akihisa Ono (小野昭久).
+This repository is authored and maintained by Akihisa Ono (小野昭久) as an independent public specification and design framework.
 
-For authorship, attribution, and citation metadata, see:
+For authorship, attribution, affiliation clarification, and citation metadata, see:
 
+- [AUTHORSHIP.md](AUTHORSHIP.md)
 - [AUTHORS.md](AUTHORS.md)
 - [CITATION.cff](CITATION.cff)
 - [NOTICE.md](NOTICE.md)
