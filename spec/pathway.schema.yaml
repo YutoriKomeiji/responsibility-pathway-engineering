@@ -1,0 +1,122 @@
+version: 0.1.0
+kind: ResponsibilityPathwaySchema
+
+purpose: >
+  Defines the minimum machine-readable structure for a Responsibility Pathway
+  instance composed of nodes, roles, lifecycle state, evidence, return points,
+  and repair processes.
+
+pathway:
+  required_fields:
+    - id
+    - version
+    - lifecycle_state
+    - nodes
+    - edges
+    - roles
+    - evidence_logs
+    - responsibility_boundary
+
+  fields:
+    id:
+      type: string
+      description: Stable identifier for the Responsibility Pathway instance.
+
+    version:
+      type: string
+      description: Schema or pathway version.
+
+    lifecycle_state:
+      type: enum
+      allowed_values:
+        - originating
+        - propagating
+        - suspended
+        - returning
+        - repaired
+        - closed
+
+    nodes:
+      type: list
+      item_schema: spec/node.schema.yaml
+
+    edges:
+      type: list
+      description: Directed relations between nodes.
+      suggested_fields:
+        - from
+        - to
+        - relation_type
+        - condition
+        - evidence_reference
+
+    roles:
+      type: object
+      suggested_fields:
+        - decision_owner
+        - approval_gate
+        - execution_actor
+        - stop_authority
+        - evidence_log
+        - repair_owner
+        - return_point
+        - human_return_point
+        - affected_party
+
+    action_class:
+      type: object
+      schema_reference: spec/action-class.schema.yaml
+
+    evidence_logs:
+      type: list
+      item_schema: spec/evidence-log.schema.yaml
+
+    return_points:
+      type: list
+      item_schema: spec/return-point.schema.yaml
+
+    repairs:
+      type: list
+      item_schema: spec/repair.schema.yaml
+
+    responsibility_boundary:
+      type: object
+      required_suggested_fields:
+        - human_author_required
+        - ai_final_responsibility_allowed
+        - institutional_authority_required_when_applicable
+        - legal_or_moral_claims_out_of_scope
+
+    formalization_scope:
+      type: object
+      suggested_fields:
+        - assumptions
+        - modeled_entities
+        - excluded_claims
+        - theorem_status
+
+validation_rules:
+  - id: pathway_requires_human_author
+    rule: >
+      responsibility_boundary.human_author_required should be true.
+
+  - id: ai_final_responsibility_not_allowed
+    rule: >
+      responsibility_boundary.ai_final_responsibility_allowed should be false.
+
+  - id: suspended_requires_stop_or_return_reference
+    rule: >
+      If lifecycle_state is suspended, roles.stop_authority or return_points should be present.
+
+  - id: repaired_requires_repair_record
+    rule: >
+      If lifecycle_state is repaired, repairs should contain at least one repair record.
+
+  - id: closed_requires_explanation_or_boundary
+    rule: >
+      If lifecycle_state is closed, evidence_logs or responsibility_boundary should preserve why the pathway was closed.
+
+boundary:
+  - This schema models responsibility pathways, not legal liability.
+  - This schema does not make real-world safety, fairness, compliance, or moral accountability claims.
+  - Formal claims must be limited to explicitly modeled entities, assumptions, and transitions.
