@@ -14,6 +14,8 @@ Early public specification.
 
 This repository is intentionally small and specification-first. See [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) for why the current core prioritizes definitions, examples, lifecycle boundaries, checker boundaries, and excluded claims before larger implementation layers.
 
+Phase 2 has started. The current Lean formalization contains a minimal node/pathway model and a scoped lifecycle-invariant set in [formal/lean/ResponsibilityPathway/Core.lean](formal/lean/ResponsibilityPathway/Core.lean). These invariants are structural, assumption-bound, and non-certifying.
+
 ## Authorship and citation
 
 This repository is authored and maintained by Akihisa Ono (小野昭久) as an independent public specification and design framework.
@@ -32,19 +34,20 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 1. [BEACON.md](BEACON.md) - current position and reconnection point
 2. [LUMINALIA.md](LUMINALIA.md) - design philosophy
 3. [ROADMAP.md](ROADMAP.md) - current and future phases
-4. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - next lightweight validation phase plan
-5. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
-6. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - why the current repository remains intentionally small
-7. [docs/definition.md](docs/definition.md) - core definition
-8. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
-9. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
-10. [docs/development-process.md](docs/development-process.md) - development process
-11. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
-12. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
-13. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
-14. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
-15. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
-16. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
+4. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
+5. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - why the current repository remains intentionally small
+6. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - lightweight validation and lifecycle-example status
+7. [formal/lean/README.md](formal/lean/README.md) - Lean formalization boundary and current invariant candidates
+8. [docs/definition.md](docs/definition.md) - core definition
+9. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
+10. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
+11. [docs/development-process.md](docs/development-process.md) - development process
+12. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
+13. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
+14. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
+15. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
+16. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
+17. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
 
 ## Examples
 
@@ -76,6 +79,23 @@ The same bounded structural check also runs in GitHub Actions via [.github/workf
 It checks only limited structural signals and explicit responsibility-boundary fields. A passing result does not mean certified, safe, compliant, fair, legally valid, morally resolved, or production ready.
 
 See [docs/validator-boundary.md](docs/validator-boundary.md) for the checker boundary and [docs/checker-coverage.md](docs/checker-coverage.md) for the current checker coverage map.
+
+## Lean formalization
+
+The current Phase 2 Lean work is intentionally minimal.
+
+It currently contains six scoped invariant candidates:
+
+1. AI final-responsibility boundary under current minimal assumptions
+2. AI return-point boundary
+3. repair-record boundary
+4. suspension review/return boundary
+5. returning no-automatic-continuation boundary
+6. closure evidence/reopening boundary
+
+The AI final-responsibility boundary is not an absolute claim that AI can never hold responsibility under every possible future legal or institutional framework. In the current minimal RPE model, no artificial legal-personhood layer is assumed, so an AI node is not treated as a final responsibility holder. Future legal, institutional, national, international, or user/provider-agreement layers must be modeled explicitly if introduced.
+
+The Lean formalization does not establish legal validity, safety, compliance, fairness, moral accountability resolution, institutional certification, or production readiness.
 
 ## Initial scope
 
