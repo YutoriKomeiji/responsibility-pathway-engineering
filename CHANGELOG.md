@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 returning no-automatic-continuation invariant established
+
+- `formal/lean/ResponsibilityPathway/Core.lean` updated with returning-pathway structural fields
+- `IsReturningPathway`, `AllowsAutomaticContinuation`, and `ReturningNoAutomaticContinuationBoundary` predicates added
+- Fifth invariant candidate added: a safely constructed returning pathway does not allow automatic continuation
+- Non-returning pathway implication case added to show the returning-specific boundary is not over-applied
+- `formal/lean/README.md` updated with the current returning no-automatic-continuation invariant candidate and boundary note
+
 ### Phase 2 suspension review-return invariant established
 
 - `formal/lean/ResponsibilityPathway/Core.lean` updated with suspended-pathway structural fields
