@@ -2,6 +2,8 @@
 
 著作者: Akihisa Ono (小野昭久)
 
+このリポジトリにおける所属表記: Independent
+
 責任経路工学（Responsibility Pathway Engineering）は、人間・AI・組織・制度・業務システムのあいだで、責任がどのように発生し、移動し、停止し、修復され、戻るのかを扱う設計思想です。
 
 本リポジトリは責任追及のためではなく、責任が戻る経路を設計・記述・形式化することを目的とします。
@@ -12,10 +14,11 @@ Early public specification.
 
 ## 著作者と引用
 
-本リポジトリは Akihisa Ono (小野昭久) によって著作・保守されています。
+本リポジトリは Akihisa Ono (小野昭久) によって、独立した公開仕様および設計フレームワークとして著作・保守されています。
 
-著作者表示、帰属、引用メタデータについては次を参照してください。
+著作者表示、帰属、所属表記の明確化、引用メタデータについては次を参照してください。
 
+- [AUTHORSHIP.md](AUTHORSHIP.md)
 - [AUTHORS.md](AUTHORS.md)
 - [CITATION.cff](CITATION.cff)
 - [NOTICE.md](NOTICE.md)
