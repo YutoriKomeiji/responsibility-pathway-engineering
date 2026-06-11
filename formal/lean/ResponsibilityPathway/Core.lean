@@ -16,7 +16,8 @@ namespace ResponsibilityPathway
 A minimal node kind for early structural invariants.
 
 This is intentionally small. It is not a complete ontology of humans,
-institutions, AI systems, organizations, or workflows.
+institutions, AI systems, organizations, workflows, or future artificial legal
+personhood regimes.
 -/
 inductive NodeKind where
   | human
@@ -25,10 +26,33 @@ inductive NodeKind where
   deriving DecidableEq, Repr
 
 /--
+Explicit model assumptions for early Phase 2 invariants.
+
+`artificialLegalPersonhoodEnabled = false` means this minimal RPE model does
+not include a future legal or institutional layer that grants AI systems
+personhood, legal capacity, assets, representation, enforceable duties, or
+final responsibility capacity comparable to a legal person.
+
+If such a layer is introduced in a future model, the invariants below must be
+revisited rather than treated as universal claims.
+-/
+structure ModelAssumptions where
+  artificialLegalPersonhoodEnabled : Bool
+  deriving Repr
+
+/--
+Predicate: the current minimal model does not assume artificial legal
+personhood for AI systems.
+-/
+def NoArtificialLegalPersonhood (assumptions : ModelAssumptions) : Prop :=
+  assumptions.artificialLegalPersonhoodEnabled = false
+
+/--
 A node may participate in a pathway.
 
 `canHoldFinalResponsibility` is modeled as an explicit structural field.
-The first invariant below constrains this field for AI nodes.
+In the current minimal model, AI nodes are constrained only when artificial
+legal personhood is not enabled.
 -/
 structure Node where
   id : String
@@ -55,13 +79,27 @@ def CanHoldFinalResponsibility (node : Node) : Prop :=
   node.canHoldFinalResponsibility = true
 
 /--
-Structural invariant: AI nodes cannot hold final responsibility.
+Structural invariant under current minimal-model assumptions:
+if no artificial legal personhood layer is assumed, AI nodes cannot hold final
+responsibility in this model.
 
-This is a model assumption for Responsibility Pathway Engineering.
-It does not make a legal, moral, safety, compliance, or production claim.
+This is not a universal claim about future law, future institutions, or future
+international agreements. It is a scoped model boundary.
 -/
-def AIResponsibilityBoundary (node : Node) : Prop :=
-  IsAI node -> ¬ CanHoldFinalResponsibility node
+def AIResponsibilityBoundary
+    (assumptions : ModelAssumptions)
+    (node : Node) : Prop :=
+  NoArtificialLegalPersonhood assumptions ->
+    IsAI node ->
+      ¬ CanHoldFinalResponsibility node
+
+/--
+A constructor-level current minimal assumption set.
+-/
+def currentMinimalAssumptions : ModelAssumptions :=
+  {
+    artificialLegalPersonhoodEnabled := false
+  }
 
 /--
 A constructor-level safe AI node sets `canHoldFinalResponsibility` to false.
@@ -74,12 +112,14 @@ def safeAINode (id : String) : Node :=
   }
 
 /--
-The first Phase 2 invariant candidate:
-a node constructed as a safe AI node satisfies the AI responsibility boundary.
+The first Phase 2 invariant candidate, now explicitly scoped:
+under current minimal assumptions, a node constructed as a safe AI node
+satisfies the AI responsibility boundary.
 -/
-theorem safe_ai_node_cannot_hold_final_responsibility
+theorem safe_ai_node_cannot_hold_final_responsibility_under_current_assumptions
     (id : String) :
-    AIResponsibilityBoundary (safeAINode id) := by
+    AIResponsibilityBoundary currentMinimalAssumptions (safeAINode id) := by
+  intro hNoPersonhood
   intro hAI
   unfold CanHoldFinalResponsibility
   simp [safeAINode]
@@ -144,8 +184,11 @@ def HasHumanOrInstitutionalReturnPoint (pathway : Pathway) : Prop :=
 Structural invariant: if AI participates, the pathway must preserve a
 human or institutional return point.
 
-This is a structural returnability boundary, not a claim that the pathway is
-safe, compliant, fair, legally valid, morally resolved, or operationally complete.
+This remains useful even if future legal-personhood layers are modeled,
+because returnability and auditability are separate from personhood status.
+It is still only a structural returnability boundary, not a claim that the
+pathway is safe, compliant, fair, legally valid, morally resolved, or
+operationally complete.
 -/
 def AIReturnPointBoundary (pathway : Pathway) : Prop :=
   HasAIParticipation pathway -> HasHumanOrInstitutionalReturnPoint pathway
