@@ -12,6 +12,8 @@
 
 Early public specification.
 
+本リポジトリは、意図的に小さく、仕様優先で維持されています。現在の核が大規模実装よりも定義、例、ライフサイクル境界、チェッカー境界、除外される主張を優先する理由は [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) を参照してください。
+
 ## 著作者と引用
 
 本リポジトリは Akihisa Ono (小野昭久) によって、独立した公開仕様および設計フレームワークとして著作・保守されています。
@@ -32,16 +34,17 @@ Early public specification.
 3. [ROADMAP.md](ROADMAP.md) - 現在と今後のフェーズ
 4. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - 次の軽量検証フェーズ計画
 5. [CHANGELOG.md](CHANGELOG.md) - 概念上の節目
-6. [docs/definition.md](docs/definition.md) - 中核定義
-7. [docs/eight-elements.md](docs/eight-elements.md) - 8要素モデル
-8. [docs/repository-governance.md](docs/repository-governance.md) - リポジトリ運営方針
-9. [docs/development-process.md](docs/development-process.md) - 開発プロセス
-10. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
-11. [docs/validation-checklist.md](docs/validation-checklist.md) - 境界付き検証チェックリスト
-12. [docs/validator-boundary.md](docs/validator-boundary.md) - 軽量検証ツールの境界
-13. [docs/checker-coverage.md](docs/checker-coverage.md) - 現在のライフサイクル対応チェッカー範囲
-14. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
-15. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
+6. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - 現在のリポジトリを意図的に小さく保つ理由
+7. [docs/definition.md](docs/definition.md) - 中核定義
+8. [docs/eight-elements.md](docs/eight-elements.md) - 8要素モデル
+9. [docs/repository-governance.md](docs/repository-governance.md) - リポジトリ運営方針
+10. [docs/development-process.md](docs/development-process.md) - 開発プロセス
+11. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
+12. [docs/validation-checklist.md](docs/validation-checklist.md) - 境界付き検証チェックリスト
+13. [docs/validator-boundary.md](docs/validator-boundary.md) - 軽量検証ツールの境界
+14. [docs/checker-coverage.md](docs/checker-coverage.md) - 現在のライフサイクル対応チェッカー範囲
+15. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
+16. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
 
 ## 例
 
