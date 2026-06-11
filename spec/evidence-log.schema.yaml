@@ -1,0 +1,115 @@
+version: 0.1.0
+kind: EvidenceLogSchema
+
+purpose: >
+  Defines the minimum machine-readable structure for evidence records that
+  support reconstruction, explanation, stopping, return, and repair of a
+  Responsibility Pathway.
+
+evidence_log:
+  required_fields:
+    - id
+    - pathway_id
+    - evidence_categories
+    - integrity_state
+    - access_boundary
+
+  fields:
+    id:
+      type: string
+      description: Stable identifier for the evidence log.
+
+    pathway_id:
+      type: string
+      description: Responsibility Pathway instance this evidence log supports.
+
+    evidence_categories:
+      type: list
+      allowed_values:
+        - actor_identity_or_role
+        - decision_owner
+        - approval_state
+        - input
+        - output
+        - model_or_system_version
+        - prompt_or_instruction
+        - tool_call
+        - execution_result
+        - timestamp
+        - authority_state
+        - stop_condition
+        - refusal_or_override
+        - uncertainty
+        - affected_party
+        - repair_action
+        - post_event_explanation
+
+    integrity_state:
+      type: enum
+      allowed_values:
+        - unverified
+        - partial
+        - verified
+        - tamper_evident
+        - unavailable
+
+    ordering:
+      type: enum
+      allowed_values:
+        - unordered
+        - timestamped
+        - causally_ordered
+        - sequence_numbered
+
+    reconstruction_support:
+      type: object
+      suggested_fields:
+        - can_reconstruct_action
+        - can_reconstruct_authority
+        - can_reconstruct_context
+        - can_reconstruct_uncertainty
+        - can_reconstruct_stop_point
+        - can_reconstruct_return_point
+        - can_reconstruct_repair_action
+
+    quality:
+      type: object
+      suggested_fields:
+        - completeness
+        - readability
+        - availability
+        - scope_clarity
+        - retention_period
+        - privacy_constraints
+        - safety_constraints
+
+    access_boundary:
+      type: object
+      suggested_fields:
+        - readable_by
+        - writable_by
+        - redaction_required
+        - retention_owner
+        - repair_owner_access
+
+validation_rules:
+  - id: external_impact_requires_actor_and_authority
+    rule: >
+      Evidence for external impact actions should include actor_identity_or_role and authority_state.
+
+  - id: repair_requires_repair_evidence
+    rule: >
+      If the pathway entered repair, evidence_categories should include repair_action or post_event_explanation.
+
+  - id: stopping_requires_stop_condition
+    rule: >
+      If the pathway was suspended or stopped, evidence_categories should include stop_condition or refusal_or_override.
+
+  - id: evidence_is_not_complete_truth
+    rule: >
+      Evidence logs record captured information under a design; they must not be treated as complete truth records by default.
+
+boundary:
+  - Evidence supports responsibility return but does not constitute responsibility by itself.
+  - Evidence may be incomplete, scoped, redacted, or unavailable.
+  - Evidence logging is necessary but not sufficient for responsibility pathway validity.
