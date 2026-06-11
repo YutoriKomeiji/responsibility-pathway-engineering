@@ -30,15 +30,16 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 1. [BEACON.md](BEACON.md) - current position and reconnection point
 2. [LUMINALIA.md](LUMINALIA.md) - design philosophy
 3. [ROADMAP.md](ROADMAP.md) - current and future phases
-4. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
-5. [docs/definition.md](docs/definition.md) - core definition
-6. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
-7. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
-8. [docs/development-process.md](docs/development-process.md) - development process
-9. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
-10. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
-11. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
-12. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
+4. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - next lightweight validation phase plan
+5. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
+6. [docs/definition.md](docs/definition.md) - core definition
+7. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
+8. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
+9. [docs/development-process.md](docs/development-process.md) - development process
+10. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
+11. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
+12. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
+13. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
 
 ## Examples
 
