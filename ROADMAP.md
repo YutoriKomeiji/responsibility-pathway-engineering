@@ -80,7 +80,7 @@ Remaining Phase 1.6 tasks:
 - keep examples small and manually readable
 - avoid adding higher-impact examples until lifecycle boundaries remain stable
 
-## Phase 2 - Formalization (Started)
+## Phase 2 - Formalization (Started; minimal lifecycle invariant set reached)
 
 - Lean invariants
 - State transitions
@@ -93,12 +93,12 @@ Remaining Phase 1.6 tasks:
 - Returning boundary invariants
 - Closure and reopening-condition invariants
 
-Current Phase 2 start:
+Current Phase 2 status:
 
-- `formal/lean/ResponsibilityPathway/Core.lean` added
-- minimal `NodeKind` and `Node` model added
-- first invariant candidate added: a safely constructed AI node cannot hold final responsibility
-- Lean README updated with formalization boundary and current invariant candidate
+- `formal/lean/ResponsibilityPathway/Core.lean` contains a minimal node/pathway model
+- six scoped lifecycle-invariant candidates have been introduced
+- `formal/lean/README.md` records the formalization boundary and current invariant set
+- README and README.ja summarize the current Phase 2 Lean status
 
 Formalization rule:
 
@@ -106,12 +106,22 @@ Formal proofs must remain bounded to explicit definitions, assumptions, and mode
 
 Current invariant candidates:
 
-- an AI node cannot be final responsibility holder - started
-- an AI-assisted pathway must preserve a human or institutional return point
-- a repaired pathway must reference a repair record
-- a suspended pathway must preserve review or return conditions
-- a returning pathway must not imply automatic continuation
-- a closed pathway must preserve evidence and reopening-condition records
+- AI final-responsibility boundary under current minimal assumptions
+- AI-assisted pathway preserves a human or institutional return point
+- repaired pathway references a repair record
+- suspended pathway preserves review or return conditions
+- returning pathway does not imply automatic continuation
+- closed pathway preserves evidence and reopening-condition records
+
+AI final-responsibility boundary note:
+
+The current AI final-responsibility invariant is assumption-scoped. In the current minimal RPE model, no artificial legal-personhood layer is assumed, so an AI node is not treated as a final responsibility holder. Future legal, institutional, national, international, or user/provider-agreement layers must be modeled explicitly if introduced.
+
+Next low-risk Phase 2 work:
+
+- consider splitting `formal/lean/ResponsibilityPathway/Core.lean` before adding many more invariants
+- keep formalization incremental and assumption-explicit
+- maintain traceability among examples, schemas, checker boundaries, Lean definitions, and excluded claims
 
 ## Phase 3 - Reference Implementations
 
