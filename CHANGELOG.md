@@ -4,6 +4,15 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 1.6 lifecycle-aware checker established
+
+- `scripts/check_examples.py` updated with lifecycle-aware bounded structural checks
+- The checker now inspects declared lifecycle-specific blocks for `suspended`, `returning`, and `closed` examples
+- Suspended examples are checked for suspension records, continuation and closure boundary signals, and disallowed-interpretation signals
+- Returning examples are checked for returning records, prior lifecycle-state signal, automatic-continuation boundary signals, and disallowed-interpretation signals
+- Closed examples are checked for closure records, closure basis, residual obligations, reopening conditions, automatic-closure boundary signals, and closure-specific excluded claims
+- `docs/validator-boundary.md` updated to clarify that lifecycle-aware checks remain structural maintenance checks, not lifecycle correctness, legal, moral, safety, compliance, certification, or production-readiness judgments
+
 ### Phase 1.6 closed lifecycle example established
 
 - `examples/closed-pathway.yaml` added as a minimal closed lifecycle-state example
