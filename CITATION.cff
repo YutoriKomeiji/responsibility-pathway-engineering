@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use or refer to this repository, please cite it as below."
+title: "Responsibility Pathway Engineering"
+type: software
+authors:
+  - family-names: "Ono"
+    given-names: "Akihisa"
+    name-particle: "小野昭久"
+    affiliation: "Independent"
+repository-code: "https://github.com/YutoriKomeiji/responsibility-pathway-engineering"
+url: "https://github.com/YutoriKomeiji/responsibility-pathway-engineering"
+abstract: "Responsibility Pathway Engineering is a design framework for preserving the pathways through which responsibility, meaning, authority, value, cost, and repair can return across humans, AI agents, organizations, and systems."
+keywords:
+  - responsibility pathway engineering
+  - responsibility pathway
+  - AI governance
+  - human responsibility
+  - responsibility boundary
+  - repair flow
+  - return point
+license: MIT
+copyright: "Copyright (c) 2026 Akihisa Ono (小野昭久)"
