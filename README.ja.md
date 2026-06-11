@@ -20,6 +20,17 @@ Early public specification.
 6. [docs/eight-elements.md](docs/eight-elements.md) - 8要素モデル
 7. [docs/repository-governance.md](docs/repository-governance.md) - リポジトリ運営方針
 8. [docs/development-process.md](docs/development-process.md) - 開発プロセス
+9. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
+10. [docs/validation-checklist.md](docs/validation-checklist.md) - 境界付き検証チェックリスト
+
+## 例
+
+最小例は `examples/` にあります。
+
+- [examples/minimal-pathway.yaml](examples/minimal-pathway.yaml) - AI支援ノードから人間の判断主体へ責任を戻す最小例
+- [examples/repair-flow.yaml](examples/repair-flow.yaml) - 証拠不足や曖昧さを検知した後、修復経路へ接続する最小例
+
+これらは説明用の例であり、法的責任、道徳的責任、安全性、公平性、遵法性、本番利用可能性を主張するものではありません。
 
 ## 範囲
 
