@@ -11,8 +11,9 @@ This changelog records conceptual milestones rather than individual code edits.
 - `examples/minimal-pathway.yaml` added as the first minimal Responsibility Pathway example
 - `examples/repair-flow.yaml` added as the first minimal repair-flow example
 - Japanese comments added to examples to support Japanese readers without changing schema keys
+- `docs/example-index.md` added as an index and reading guide for current and future examples
 - `docs/example-review-notes.md` added as initial bounded review notes for examples
-- `README.md` and `README.ja.md` updated with schema-document, example, and example-review links
+- `README.md` and `README.ja.md` updated with schema-document, example, example-index, and example-review links
 - `LICENSE` added under the MIT License
 - Copyright notice standardized as `Akihisa Ono (小野昭久)`
 - `NOTICE.md` added to clarify authorship, attribution, AI-assistance, derivative-use responsibility, and responsibility boundaries
