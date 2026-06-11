@@ -56,6 +56,6 @@ The human author remains responsible for all definitions and claims. AI tools as
 
 This repository is released under the [MIT License](LICENSE).
 
-Copyright (c) 2026 Akihisa Ono.
+Copyright (c) 2026 Akihisa Ono (小野昭久).
 
 Reuse, modification, distribution, and sublicensing are permitted under the license terms, provided that the copyright notice and license notice are preserved.
