@@ -14,6 +14,7 @@ Reviewed examples:
 - `examples/repair-flow.yaml`
 - `examples/suspended-pathway.yaml`
 - `examples/returning-pathway.yaml`
+- `examples/closed-pathway.yaml`
 
 Reference documents:
 
@@ -41,6 +42,7 @@ The examples should visibly preserve:
 6. a clear distinction between illustrative modeling and real-world claims
 7. excluded claims for legal liability, moral blame, compliance, production safety, fairness, or real-world accountability resolution
 8. lifecycle-state distinctions between originating, suspended, returning, repaired, and closed pathways
+9. residual boundaries after closure when closure is modeled
 
 ## `examples/minimal-pathway.yaml`
 
@@ -98,7 +100,6 @@ Potential future improvements:
 
 - define a stricter repair-state vocabulary
 - distinguish explanation repair, compensation repair, rollback repair, and governance repair in later examples
-- add closed lifecycle example
 
 ## `examples/suspended-pathway.yaml`
 
@@ -129,7 +130,6 @@ This example is suitable as the first suspended-pathway instance because it show
 Potential future improvements:
 
 - define stricter lifecycle transition vocabulary for `suspended`, `returning`, `repaired`, and `closed`
-- add a closed example to distinguish responsible closure from premature closure
 - extend the lightweight checker to inspect lifecycle-specific fields after more examples exist
 
 ## `examples/returning-pathway.yaml`
@@ -160,8 +160,42 @@ This example is suitable as the first returning-pathway instance because it show
 Potential future improvements:
 
 - define stricter lifecycle transition vocabulary for returning-state values
-- add a closed example to distinguish responsible closure from premature closure
 - refine the lightweight checker to detect required lifecycle-specific records such as `returning`, `suspension`, and `repairs`
+
+## `examples/closed-pathway.yaml`
+
+Initial review status: acceptable as a minimal illustrative closed-pathway example.
+
+Observed structure:
+
+- human decision owner is modeled as `human_decision_owner_001`
+- AI support node is modeled as `ai_support_node_001`
+- closure reviewer is modeled as `closure_reviewer_001`
+- AI participation is explicitly bounded
+- `assumes_final_responsibility` is set to `false`
+- AI may summarize evidence and compare closure conditions, but cannot decide closure or assume final responsibility
+- previous lifecycle state is recorded as `returning`
+- closure state is `recorded`
+- closure basis is explicitly listed
+- closure does not mean no responsibility, legal resolution, moral resolution, certification, or production readiness
+- residual obligations include preserving the evidence log, authorship boundary, reopening conditions, and excluded claims
+- reopening conditions are explicitly listed
+- automatic reopening, automatic closure, and AI closure authority are explicitly disallowed
+- evidence log includes closure basis, reopening condition, and excluded-claim categories
+- Human Return Point is present from closure reviewer to human decision owner
+- `repairs` is intentionally empty because closure is not repair completion
+- formalization scope states that closure records an end state within the example scope and does not erase responsibility history
+- excluded claims include closure as erasure, closure as immunity, and closure as repair completion
+
+Review note:
+
+This example is suitable as the first closed-pathway instance because it treats closure as a recorded lifecycle state with evidence, residual boundaries, and reopening conditions. It does not treat closure as erasure, immunity, certification, repair completion, legal resolution, or moral resolution.
+
+Potential future improvements:
+
+- define stricter closure-state vocabulary
+- extend the lightweight checker to detect lifecycle-specific records such as `closure`, `returning`, and `suspension`
+- add higher-impact examples only after closure and reopening boundaries remain stable
 
 ## Boundary notes
 
@@ -173,4 +207,4 @@ Any current or future validator should check structure and declared assumptions 
 
 ## Next review step
 
-The next low-risk review step is to add a closed lifecycle example or to refine the lightweight checker so it can warn about lifecycle-specific fields without claiming semantic completeness.
+The next low-risk review step is to refine the lightweight checker so it can warn about lifecycle-specific fields without claiming semantic completeness.
