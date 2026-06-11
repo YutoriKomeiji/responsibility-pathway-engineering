@@ -51,3 +51,11 @@ Readers should be able to return from claims to definitions, from definitions to
 ## Boundary
 
 The human author remains responsible for all definitions and claims. AI tools assist drafting and implementation but do not assume responsibility.
+
+## License
+
+This repository is released under the [MIT License](LICENSE).
+
+Copyright (c) 2026 Akihisa Ono.
+
+Reuse, modification, distribution, and sublicensing are permitted under the license terms, provided that the copyright notice and license notice are preserved.
