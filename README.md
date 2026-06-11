@@ -12,6 +12,8 @@ It is not a blame assignment mechanism.
 
 Early public specification.
 
+This repository is intentionally small and specification-first. See [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) for why the current core prioritizes definitions, examples, lifecycle boundaries, checker boundaries, and excluded claims before larger implementation layers.
+
 ## Authorship and citation
 
 This repository is authored and maintained by Akihisa Ono (小野昭久) as an independent public specification and design framework.
@@ -32,16 +34,17 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 3. [ROADMAP.md](ROADMAP.md) - current and future phases
 4. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - next lightweight validation phase plan
 5. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
-6. [docs/definition.md](docs/definition.md) - core definition
-7. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
-8. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
-9. [docs/development-process.md](docs/development-process.md) - development process
-10. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
-11. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
-12. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
-13. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
-14. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
-15. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
+6. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - why the current repository remains intentionally small
+7. [docs/definition.md](docs/definition.md) - core definition
+8. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
+9. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
+10. [docs/development-process.md](docs/development-process.md) - development process
+11. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
+12. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
+13. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
+14. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
+15. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
+16. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
 
 ## Examples
 
