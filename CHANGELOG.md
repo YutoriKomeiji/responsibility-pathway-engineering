@@ -4,6 +4,15 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 minimal Lean lifecycle invariant set introduced
+
+- `formal/lean/ResponsibilityPathway/Core.lean` now contains a minimal node/pathway model and six scoped lifecycle-invariant candidates
+- The current invariant set covers AI final-responsibility boundary, AI return-point boundary, repair-record boundary, suspension review/return boundary, returning no-automatic-continuation boundary, and closure evidence/reopening boundary
+- The AI final-responsibility boundary is explicitly assumption-scoped to the current minimal model where no artificial legal-personhood layer is assumed
+- Future legal, institutional, national, international, or user/provider-agreement personhood layers remain open for explicit modeling rather than silent assumption
+- README, README.ja, ROADMAP, and BEACON updated to reflect the current Phase 2 Lean status
+- The formalization remains structural, assumption-bound, and non-certifying; it does not claim legal validity, safety, compliance, fairness, moral accountability resolution, institutional certification, or production readiness
+
 ### Phase 2 closure evidence-reopening invariant established
 
 - `formal/lean/ResponsibilityPathway/Core.lean` updated with closed-pathway structural fields
