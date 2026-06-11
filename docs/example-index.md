@@ -95,6 +95,29 @@ Use this example when introducing:
 - human decision owner review after return
 - excluded claims for automatic continuation, repair completion, closure, certification, and production readiness
 
+### `examples/closed-pathway.yaml`
+
+Purpose:
+
+- show a minimal pathway that reaches a recorded closed lifecycle state
+- model closure as an explicit human-reviewed end state within the example scope
+- connect human decision owner, AI support, closure reviewer, evidence log, return point, and closure record
+- show that closure records boundaries and evidence rather than erasing responsibility history
+
+Key boundary:
+
+Closure is not erasure, immunity, certification, compliance, safety, fairness, legal validity, moral resolution, production readiness, or AI decision authority. It records a declared end state within the example scope while preserving evidence, reopening conditions, and excluded claims.
+
+Use this example when introducing:
+
+- lifecycle state `closed`
+- closure owner
+- closure reviewer
+- closure basis
+- residual obligations
+- reopening conditions
+- distinction between closure, repair completion, certification, and responsibility erasure
+
 ## Reading order for examples
 
 Recommended reading order:
@@ -106,7 +129,8 @@ Recommended reading order:
 5. `examples/repair-flow.yaml`
 6. `examples/suspended-pathway.yaml`
 7. `examples/returning-pathway.yaml`
-8. `docs/example-review-notes.md`
+8. `examples/closed-pathway.yaml`
+9. `docs/example-review-notes.md`
 
 ## Naming convention
 
@@ -116,12 +140,12 @@ Current examples use descriptive filenames:
 - `repair-flow.yaml`
 - `suspended-pathway.yaml`
 - `returning-pathway.yaml`
+- `closed-pathway.yaml`
 
 Future examples should prefer short names that describe the responsibility-pathway pattern rather than implementation details.
 
 Possible future names:
 
-- `closed-pathway.yaml`
 - `approval-gate-flow.yaml`
 - `high-impact-action-flow.yaml`
 - `evidence-redaction-flow.yaml`
@@ -136,14 +160,14 @@ New examples should:
 - include a return point when human review or authority return is relevant
 - state assumptions and excluded claims
 - avoid implying certification, compliance, safety, fairness, legal resolution, or moral resolution
-- distinguish suspension, return, repair, continuation, and closure when lifecycle state matters
+- distinguish suspension, return, repair, continuation, closure, and reopening conditions when lifecycle state matters
 - remain small enough to be read without tooling
 
 ## Future work
 
 Low-risk next steps:
 
-- add an example for the `closed` lifecycle state
-- refine lightweight checker rules after more lifecycle examples exist
+- refine lightweight checker rules after lifecycle examples exist
 - add diagrams only after example structures stabilize
 - add machine-readable fixtures only after schema validation rules are explicit
+- add higher-impact flow examples only after lifecycle boundaries remain stable
