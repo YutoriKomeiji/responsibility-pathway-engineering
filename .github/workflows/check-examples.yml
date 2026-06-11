@@ -1,0 +1,35 @@
+name: Check examples
+
+on:
+  push:
+    paths:
+      - "examples/**/*.yaml"
+      - "scripts/check_examples.py"
+      - "requirements.txt"
+      - ".github/workflows/check-examples.yml"
+  pull_request:
+    paths:
+      - "examples/**/*.yaml"
+      - "scripts/check_examples.py"
+      - "requirements.txt"
+      - ".github/workflows/check-examples.yml"
+
+jobs:
+  check-examples:
+    name: Bounded structural example checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Run bounded example checker
+        run: python scripts/check_examples.py
