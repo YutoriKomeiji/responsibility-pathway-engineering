@@ -80,7 +80,7 @@ Remaining Phase 1.6 tasks:
 - keep examples small and manually readable
 - avoid adding higher-impact examples until lifecycle boundaries remain stable
 
-## Phase 2 - Formalization
+## Phase 2 - Formalization (Started)
 
 - Lean invariants
 - State transitions
@@ -93,13 +93,20 @@ Remaining Phase 1.6 tasks:
 - Returning boundary invariants
 - Closure and reopening-condition invariants
 
+Current Phase 2 start:
+
+- `formal/lean/ResponsibilityPathway/Core.lean` added
+- minimal `NodeKind` and `Node` model added
+- first invariant candidate added: a safely constructed AI node cannot hold final responsibility
+- Lean README updated with formalization boundary and current invariant candidate
+
 Formalization rule:
 
 Formal proofs must remain bounded to explicit definitions, assumptions, and modeled scope.
 
-Candidate first invariants:
+Current invariant candidates:
 
-- an AI node cannot be final responsibility holder
+- an AI node cannot be final responsibility holder - started
 - an AI-assisted pathway must preserve a human or institutional return point
 - a repaired pathway must reference a repair record
 - a suspended pathway must preserve review or return conditions
