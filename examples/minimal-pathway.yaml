@@ -3,6 +3,12 @@
 # This example is intentionally small and illustrative.
 # It is not a certification, compliance claim, safety guarantee,
 # legal assessment, moral accountability judgment, or production-ready model.
+#
+# 日本語メモ:
+# これは最小構成の責任経路例です。
+# AI支援ノードは提案・整理・説明を行えますが、最終責任主体にはなりません。
+# 判断権限と停止権限は human_decision_owner_001 に戻ります。
+# この例は説明用であり、法的責任・道徳的責任・安全性・公平性・本番利用可能性を主張しません。
 
 id: minimal_pathway_example_001
 version: 0.1.0
