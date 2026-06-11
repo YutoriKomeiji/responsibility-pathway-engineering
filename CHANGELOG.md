@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 suspension review-return invariant established
+
+- `formal/lean/ResponsibilityPathway/Core.lean` updated with suspended-pathway structural fields
+- `IsSuspendedPathway`, `HasReviewOrReturnCondition`, and `SuspensionReviewReturnBoundary` predicates added
+- Fourth invariant candidate added: a safely constructed suspended pathway preserves review or return conditions
+- Non-suspended pathway implication case added to show the suspension-specific boundary is not over-applied
+- `formal/lean/README.md` updated with the current suspension review/return invariant candidate and boundary note
+
 ### Phase 2 repair-record invariant established
 
 - `formal/lean/ResponsibilityPathway/Core.lean` updated with repaired-pathway structural fields
