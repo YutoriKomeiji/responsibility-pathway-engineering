@@ -39,8 +39,9 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 10. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
 11. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
 12. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
-13. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
-14. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
+13. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
+14. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
+15. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
 
 ## Examples
 
@@ -71,7 +72,7 @@ The same bounded structural check also runs in GitHub Actions via [.github/workf
 
 It checks only limited structural signals and explicit responsibility-boundary fields. A passing result does not mean certified, safe, compliant, fair, legally valid, morally resolved, or production ready.
 
-See [docs/validator-boundary.md](docs/validator-boundary.md) for the checker boundary.
+See [docs/validator-boundary.md](docs/validator-boundary.md) for the checker boundary and [docs/checker-coverage.md](docs/checker-coverage.md) for the current checker coverage map.
 
 ## Initial scope
 
