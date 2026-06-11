@@ -22,7 +22,8 @@ Early public specification.
 8. [docs/development-process.md](docs/development-process.md) - 開発プロセス
 9. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
 10. [docs/validation-checklist.md](docs/validation-checklist.md) - 境界付き検証チェックリスト
-11. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
+11. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
+12. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
 
 ## 例
 
@@ -30,6 +31,8 @@ Early public specification.
 
 - [examples/minimal-pathway.yaml](examples/minimal-pathway.yaml) - AI支援ノードから人間の判断主体へ責任を戻す最小例
 - [examples/repair-flow.yaml](examples/repair-flow.yaml) - 証拠不足や曖昧さを検知した後、修復経路へ接続する最小例
+
+例の目的、境界、今後の追加候補については [docs/example-index.md](docs/example-index.md) を参照してください。
 
 これらは説明用の例であり、法的責任、道徳的責任、安全性、公平性、遵法性、本番利用可能性を主張するものではありません。
 
