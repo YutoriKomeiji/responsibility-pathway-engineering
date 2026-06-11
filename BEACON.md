@@ -10,7 +10,9 @@ Phase 0 foundation is complete.
 
 Phase 1 concept model is substantially established.
 
-The repository is in Phase 1.5: specification binding.
+Phase 1.5 specification binding is established.
+
+Phase 1.6 lightweight validation and lifecycle-example coverage is substantially established.
 
 Core definitions, the eight-element model, runtime model, responsibility node model, return point model, repair model, value/cost flow, stop authority, evidence log, action class matrix, approval gate, and decision owner model have been added.
 
@@ -25,11 +27,24 @@ A minimal schema split has been established under `spec/`:
 - `spec/repair.schema.yaml`
 - `spec/pathway.schema.yaml`
 
+Minimal lifecycle examples now cover:
+
+- `originating`
+- `repaired`
+- `suspended`
+- `returning`
+- `closed`
+
+A bounded lightweight checker exists at `scripts/check_examples.py`.
+
+The checker is lifecycle-aware, but it remains non-certifying. It checks structural signals only and does not claim legal validity, safety, compliance, fairness, moral resolution, production readiness, or real-world responsibility resolution.
+
 ## Development Timeline
 
 Observation
 → Definition
 → Specification
+→ Lightweight structural checking
 → Formalization
 → Claim
 → Application
@@ -40,11 +55,12 @@ Claims precede applications.
 
 ## Current Focus
 
-- Keep concept documents and specification aligned
-- Stabilize the schema split before adding examples
-- Add examples only after definitions and specifications are stable
-- Prepare bounded Lean invariants
+- Preserve the minimal, specification-first core
+- Keep lifecycle examples readable
+- Keep checker output bounded and non-certifying
+- Prepare small Lean invariants
 - Preserve the boundary that AI may participate as a pathway node but does not assume final responsibility
+- Grow only when responsibility can still return from claims to definitions, examples, schemas, checker boundaries, excluded claims, and assumptions
 
 ## Read First
 
@@ -52,10 +68,26 @@ Claims precede applications.
 2. LUMINALIA.md
 3. ROADMAP.md
 4. CHANGELOG.md
-5. docs/source-mapping.md
+5. docs/minimal-core-rationale.md
 6. docs/definition.md
-7. spec/responsibility-pathway-core.yaml
-8. spec/pathway.schema.yaml
+7. docs/eight-elements.md
+8. docs/phase-1-6-plan.md
+9. docs/validator-boundary.md
+10. docs/checker-coverage.md
+11. docs/example-index.md
+12. docs/example-review-notes.md
+13. spec/responsibility-pathway-core.yaml
+14. spec/pathway.schema.yaml
+
+## Restart Point
+
+The next low-risk action is to begin Phase 2 with a very small Lean invariant, such as:
+
+- an AI node cannot be final responsibility holder
+- an AI-assisted pathway must preserve a human or institutional return point
+- a repaired pathway must reference a repair record
+
+Do not begin larger reference implementations until definitions, examples, checker boundaries, and formalization assumptions remain aligned.
 
 ## Purpose
 
