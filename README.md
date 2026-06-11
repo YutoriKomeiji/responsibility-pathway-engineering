@@ -22,6 +22,7 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 8. [docs/development-process.md](docs/development-process.md) - development process
 9. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
 10. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
+11. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
 
 ## Examples
 
