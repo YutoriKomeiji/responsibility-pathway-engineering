@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 Lean formalization started
+
+- `formal/lean/ResponsibilityPathway/Core.lean` added as the first Phase 2 Lean formalization file
+- Minimal `NodeKind` and `Node` structures added for early structural invariants
+- First invariant candidate added: a safely constructed AI node cannot hold final responsibility
+- `formal/lean/README.md` updated with current files, invariant candidates, and formalization boundary
+- `ROADMAP.md` updated to mark Phase 2 as started and to record the current Lean invariant candidate
+
 ### Phase 1.6 status alignment established
 
 - `docs/phase-1-6-plan.md` updated from planned work to current status, established work items, completion condition, and restart point
