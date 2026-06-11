@@ -1,10 +1,10 @@
 # Example Review Notes
 
-These notes record an initial bounded review of the example YAML files during Phase 1.5 - Specification Binding.
+These notes record an initial bounded review of the example YAML files during Phase 1.6 - Lightweight Validation and Lifecycle Coverage.
 
 This is not schema validation, certification, compliance review, legal assessment, safety review, fairness review, production-readiness review, or moral accountability judgment.
 
-The purpose is to check whether the examples preserve the intended responsibility-boundary structure and remain returnable to the current definitions, schemas, and assumptions.
+The purpose is to check whether the examples preserve the intended responsibility-boundary structure and remain returnable to the current definitions, schemas, assumptions, and validator boundaries.
 
 ## Review scope
 
@@ -12,11 +12,14 @@ Reviewed examples:
 
 - `examples/minimal-pathway.yaml`
 - `examples/repair-flow.yaml`
+- `examples/suspended-pathway.yaml`
 
 Reference documents:
 
 - `docs/schema-cross-reference.md`
 - `docs/validation-checklist.md`
+- `docs/validator-boundary.md`
+- `docs/example-index.md`
 - `spec/responsibility-pathway-core.yaml`
 - `spec/node.schema.yaml`
 - `spec/action-class.schema.yaml`
@@ -36,6 +39,7 @@ The examples should visibly preserve:
 5. a stop, suspend, repair, or closure path where applicable
 6. a clear distinction between illustrative modeling and real-world claims
 7. excluded claims for legal liability, moral blame, compliance, production safety, fairness, or real-world accountability resolution
+8. lifecycle-state distinctions between originating, suspended, repaired, returning, and closed pathways
 
 ## `examples/minimal-pathway.yaml`
 
@@ -92,17 +96,50 @@ This example is suitable as the first repair-flow instance because it shows that
 Potential future improvements:
 
 - define a stricter repair-state vocabulary
-- add examples for suspended, returning, and closed lifecycle states
 - distinguish explanation repair, compensation repair, rollback repair, and governance repair in later examples
+- add returning and closed lifecycle examples
+
+## `examples/suspended-pathway.yaml`
+
+Initial review status: acceptable as a minimal illustrative suspended-pathway example.
+
+Observed structure:
+
+- human decision owner is modeled as `human_decision_owner_001`
+- AI support node is modeled as `ai_support_node_001`
+- stop authority is modeled as `stop_authority_001`
+- AI participation is explicitly bounded
+- `assumes_final_responsibility` is set to `false`
+- AI may recommend suspension, but cannot suspend, continue, close, repair, or assume final responsibility
+- uncertainty or insufficient review conditions can trigger suspension
+- suspension owner is modeled as `stop_authority_001`
+- suspension state is `active`
+- continuation and closure are explicitly disallowed while suspended
+- evidence log includes suspension and continuation-condition categories
+- Human Return Point is present
+- `repairs` is intentionally empty because suspension is not repair completion
+- formalization scope states that suspension preserves responsibility-return conditions instead of closing or resolving the pathway
+- excluded claims include certification, harm elimination, suspension as closure, and suspension as repair completion
+
+Review note:
+
+This example is suitable as the first suspended-pathway instance because it shows that a Responsibility Pathway may be paused without being repaired, closed, certified, or resolved. Suspension is modeled as a responsibility-preserving state that keeps return, review, and later repair or closure paths visible.
+
+Potential future improvements:
+
+- define stricter lifecycle transition vocabulary for `suspended`, `returning`, `repaired`, and `closed`
+- add a returning example to show how a suspended pathway can return to authority after review
+- add a closed example to distinguish responsible closure from premature closure
+- extend the lightweight checker to inspect lifecycle-specific fields after more examples exist
 
 ## Boundary notes
 
-These examples currently serve as readable reference instances, not validated fixtures.
+These examples currently serve as readable reference instances and bounded checker targets, not certified fixtures.
 
 They should remain conservative until schema validation and formal invariants are introduced.
 
-Any future validator should check structure and declared assumptions only. It should not imply real-world safety, compliance, fairness, legal validity, or moral resolution.
+Any current or future validator should check structure and declared assumptions only. It should not imply real-world safety, compliance, fairness, legal validity, moral resolution, certification, production readiness, or institutional approval.
 
 ## Next review step
 
-The next low-risk review step is to add a lightweight example index or to introduce a basic validation script that checks for required top-level keys without claiming semantic completeness.
+The next low-risk review step is to add a returning lifecycle example or to refine the lightweight checker so it can warn about lifecycle-specific fields without claiming semantic completeness.
