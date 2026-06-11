@@ -43,6 +43,12 @@ def IsAI (node : Node) : Prop :=
   node.kind = NodeKind.ai
 
 /--
+Predicate: a node is a human or institutional node.
+-/
+def IsHumanOrInstitution (node : Node) : Prop :=
+  node.kind = NodeKind.human ∨ node.kind = NodeKind.institution
+
+/--
 Predicate: a node is structurally allowed to hold final responsibility.
 -/
 def CanHoldFinalResponsibility (node : Node) : Prop :=
@@ -91,6 +97,17 @@ def humanResponsibilityNode (id : String) : Node :=
   }
 
 /--
+An institutional node may be modeled with final-responsibility capacity.
+This is a structural permission inside the model, not a legal finding.
+-/
+def institutionalResponsibilityNode (id : String) : Node :=
+  {
+    id := id,
+    kind := NodeKind.institution,
+    canHoldFinalResponsibility := true
+  }
+
+/--
 A human responsibility node is not an AI node.
 -/
 theorem human_responsibility_node_is_not_ai
@@ -98,5 +115,80 @@ theorem human_responsibility_node_is_not_ai
     ¬ IsAI (humanResponsibilityNode id) := by
   unfold IsAI
   simp [humanResponsibilityNode]
+
+/--
+A minimal pathway model for early structural invariants.
+
+This is intentionally not a complete graph model. It records only whether
+AI participates and whether a human or institutional return point is present.
+-/
+structure Pathway where
+  id : String
+  aiParticipates : Bool
+  hasHumanOrInstitutionalReturnPoint : Bool
+  deriving Repr
+
+/--
+Predicate: AI participates in the pathway.
+-/
+def HasAIParticipation (pathway : Pathway) : Prop :=
+  pathway.aiParticipates = true
+
+/--
+Predicate: the pathway has a human or institutional return point.
+-/
+def HasHumanOrInstitutionalReturnPoint (pathway : Pathway) : Prop :=
+  pathway.hasHumanOrInstitutionalReturnPoint = true
+
+/--
+Structural invariant: if AI participates, the pathway must preserve a
+human or institutional return point.
+
+This is a structural returnability boundary, not a claim that the pathway is
+safe, compliant, fair, legally valid, morally resolved, or operationally complete.
+-/
+def AIReturnPointBoundary (pathway : Pathway) : Prop :=
+  HasAIParticipation pathway -> HasHumanOrInstitutionalReturnPoint pathway
+
+/--
+A constructor-level safe AI-assisted pathway includes a human or institutional
+return point.
+-/
+def safeAIAssistedPathway (id : String) : Pathway :=
+  {
+    id := id,
+    aiParticipates := true,
+    hasHumanOrInstitutionalReturnPoint := true
+  }
+
+/--
+The second Phase 2 invariant candidate:
+a safely constructed AI-assisted pathway satisfies the AI return-point boundary.
+-/
+theorem safe_ai_assisted_pathway_has_return_point
+    (id : String) :
+    AIReturnPointBoundary (safeAIAssistedPathway id) := by
+  intro hAI
+  unfold HasHumanOrInstitutionalReturnPoint
+  simp [safeAIAssistedPathway]
+
+/--
+A pathway without AI participation does not require this AI-specific boundary.
+This theorem only states the implication form of the boundary is satisfied
+vacuously in the constructor-level non-AI case.
+-/
+def nonAIPathway (id : String) : Pathway :=
+  {
+    id := id,
+    aiParticipates := false,
+    hasHumanOrInstitutionalReturnPoint := false
+  }
+
+theorem non_ai_pathway_satisfies_ai_return_point_boundary
+    (id : String) :
+    AIReturnPointBoundary (nonAIPathway id) := by
+  intro hAI
+  unfold HasAIParticipation at hAI
+  simp [nonAIPathway] at hAI
 
 end ResponsibilityPathway
