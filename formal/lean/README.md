@@ -20,6 +20,7 @@ Current Phase 2 invariant candidates:
 2. a safely constructed AI-assisted pathway has a human or institutional return point
 3. a safely constructed repaired pathway has a repair record
 4. a safely constructed suspended pathway preserves review or return conditions
+5. a safely constructed returning pathway does not allow automatic continuation
 
 These are represented by:
 
@@ -40,12 +41,16 @@ These are represented by:
 - `HasRepairRecord`
 - `IsSuspendedPathway`
 - `HasReviewOrReturnCondition`
+- `IsReturningPathway`
+- `AllowsAutomaticContinuation`
 - `AIReturnPointBoundary`
 - `RepairRecordBoundary`
 - `SuspensionReviewReturnBoundary`
+- `ReturningNoAutomaticContinuationBoundary`
 - `safe_ai_assisted_pathway_has_return_point`
 - `repaired_pathway_has_repair_record`
 - `suspended_pathway_preserves_review_or_return_condition`
+- `returning_pathway_does_not_allow_automatic_continuation`
 
 ## Boundary
 
@@ -62,6 +67,8 @@ If such a layer is introduced in a future model, the AI final-responsibility inv
 The repair-record invariant does not mean real-world repair is complete, harm is eliminated, legal liability is resolved, moral responsibility is resolved, or closure is justified. It only states that a pathway declared repaired in the minimal model must preserve a repair-record signal.
 
 The suspension review/return invariant does not mean suspension is justified, safe, compliant, fair, legally valid, morally resolved, or operationally complete. It only states that a pathway declared suspended in the minimal model must preserve a review-or-return condition.
+
+The returning no-automatic-continuation invariant does not mean return is justified, authorized, safe, compliant, fair, legally valid, morally resolved, or operationally complete. It only states that a pathway declared returning in the minimal model must not be treated as automatically continuing.
 
 The current invariants do not make legal or moral claims. They state structural properties inside the minimal model.
 
