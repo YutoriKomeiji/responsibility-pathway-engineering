@@ -48,6 +48,7 @@ Early public specification.
 
 - [examples/minimal-pathway.yaml](examples/minimal-pathway.yaml) - AI支援ノードから人間の判断主体へ責任を戻す最小例
 - [examples/repair-flow.yaml](examples/repair-flow.yaml) - 証拠不足や曖昧さを検知した後、修復経路へ接続する最小例
+- [examples/suspended-pathway.yaml](examples/suspended-pathway.yaml) - 一時停止ライフサイクル状態の最小例
 
 例の目的、境界、今後の追加候補については [docs/example-index.md](docs/example-index.md) を参照してください。
 
