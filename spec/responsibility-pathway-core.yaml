@@ -1,20 +1,51 @@
-version: 0.1.0
+version: 0.2.0
 kind: ResponsibilityPathway
 
 definition:
   name: Responsibility Pathway
   description: >
-    A structural pathway through which responsibility may
-    originate, propagate, suspend, return, and be repaired.
+    A structural pathway through which responsibility-related state may
+    originate, propagate, suspend, return, repair, and close across humans,
+    AI agents, organizations, institutions, business processes, information
+    systems, and artifacts.
 
 scope:
   entities:
     - Human
-    - AI
+    - AIAgent
     - Organization
     - Institution
     - BusinessProcess
     - InformationSystem
+    - Artifact
+    - Document
+    - Interface
+    - DatabaseRecord
+    - ModelOutput
+    - AuditArtifact
+
+responsibility_nodes:
+  capabilities:
+    - receive
+    - preserve
+    - transform
+    - explain
+    - escalate
+    - suspend
+    - return
+    - repair
+    - close
+
+roles:
+  - DecisionOwner
+  - ApprovalGate
+  - ExecutionActor
+  - StopAuthority
+  - EvidenceLog
+  - RepairOwner
+  - ReturnPoint
+  - HumanReturnPoint
+  - AffectedParty
 
 elements:
   - meaning
@@ -27,25 +58,60 @@ elements:
   - cost
 
 lifecycle:
-  - originate
-  - propagate
-  - suspend
-  - return
-  - repair
+  - originating
+  - propagating
+  - suspended
+  - returning
+  - repaired
+  - closed
+
+action_classes:
+  - class_0_informational
+  - class_1_internal_assistive
+  - class_2_controlled_execution
+  - class_3_external_impact
+  - class_4_irreversible_or_high_risk
+
+pathway_requirements:
+  decision_owner: required_for_controlled_execution_or_higher
+  approval_gate: required_when_authority_or_impact_threshold_is_crossed
+  stop_authority: required_when_continuation_may_increase_irreversibility_or_harm
+  evidence_log: required_for_reconstruction_and_repair
+  return_point: required_when_responsibility_must_return_to_authorized_entity
+  repair_owner: required_when_failure_or_ambiguity_may_need restoration
+
+returnability:
+  required_conditions:
+    - meaning_visible
+    - authority_visible
+    - time_available
+    - information_quality_sufficient
+    - trust_calibrated
+    - reversibility_or_compensation_visible
+    - value_visible
+    - cost_visible
 
 non_goals:
   - blame_assignment
   - legal_doctrine
-  - audit_log
-  - provenance_database
+  - audit_log_only
+  - provenance_database_only
   - workflow_engine
   - complete_governance_framework
+  - moral_agent_model_for_ai
 
 responsibility:
   human_author: required
   ai_author: false
+  ai_may_participate_as_pathway_node: true
+  ai_may_assist_drafting_and_implementation: true
+  ai_does_not_assume_final_responsibility: true
 
 formalization:
   lean: planned
   tla_plus: planned
   theorem_status: partial
+  scope_rule: >
+    Formal claims must refer to explicitly stated definitions, assumptions,
+    and bounded models. Formalization does not by itself establish real-world
+    safety, legality, fairness, compliance, or moral accountability.
