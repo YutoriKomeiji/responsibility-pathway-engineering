@@ -4,6 +4,13 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 1.6 full lifecycle checker coverage established
+
+- `scripts/check_examples.py` updated with bounded lifecycle rules for `originating` and `repaired` examples
+- Originating examples are checked for human decision-owner and stop-authority capacity, empty repair records, and human return-point signals
+- Repaired examples are checked for repair-record presence, repair-owner responsibility capacity, repair trigger, repair state, and repair-boundary signals
+- `docs/validator-boundary.md` updated to clarify that lifecycle-aware checks now cover `originating`, `repaired`, `suspended`, `returning`, and `closed` examples while remaining structural maintenance checks only
+
 ### Phase 1.6 lifecycle-aware checker established
 
 - `scripts/check_examples.py` updated with lifecycle-aware bounded structural checks
