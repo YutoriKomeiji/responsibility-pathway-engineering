@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 AI return-point invariant established
+
+- `formal/lean/ResponsibilityPathway/Core.lean` updated with a minimal `Pathway` model
+- `HasAIParticipation`, `HasHumanOrInstitutionalReturnPoint`, and `AIReturnPointBoundary` predicates added
+- Second invariant candidate added: a safely constructed AI-assisted pathway has a human or institutional return point
+- Non-AI pathway implication case added to show the AI-specific boundary is not over-applied
+- `formal/lean/README.md` updated with the current return-point invariant candidate
+
 ### Phase 2 Lean formalization started
 
 - `formal/lean/ResponsibilityPathway/Core.lean` added as the first Phase 2 Lean formalization file
@@ -67,7 +75,7 @@ This changelog records conceptual milestones rather than individual code edits.
 ### Phase 1.6 suspended lifecycle example established
 
 - `examples/suspended-pathway.yaml` added as a minimal suspended lifecycle-state example
-- The suspended example distinguishes suspension from repair completion, closure, certification, safety, compliance, legal validity, moral resolution, and production readiness
+- The suspended example distinguishes suspension from repair completion, closure, certification, safety, compliance, legal validity, and production readiness
 - `docs/example-index.md` updated with suspended-pathway purpose, boundary, reading order, naming convention, and future lifecycle-example notes
 - `docs/example-review-notes.md` updated with bounded review notes for the suspended example
 - `README.md` and `README.ja.md` updated with suspended example links
