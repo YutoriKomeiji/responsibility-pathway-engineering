@@ -14,6 +14,8 @@ Phase 1.5 specification binding is established.
 
 Phase 1.6 lightweight validation and lifecycle-example coverage is substantially established.
 
+Phase 2 formalization has started, and the first minimal Lean lifecycle-invariant set has been introduced.
+
 Core definitions, the eight-element model, runtime model, responsibility node model, return point model, repair model, value/cost flow, stop authority, evidence log, action class matrix, approval gate, and decision owner model have been added.
 
 The core YAML specification has been expanded to version 0.2.0.
@@ -39,6 +41,19 @@ A bounded lightweight checker exists at `scripts/check_examples.py`.
 
 The checker is lifecycle-aware, but it remains non-certifying. It checks structural signals only and does not claim legal validity, safety, compliance, fairness, moral resolution, production readiness, or real-world responsibility resolution.
 
+Lean formalization currently lives in `formal/lean/ResponsibilityPathway/Core.lean`.
+
+The current minimal Lean lifecycle-invariant set covers:
+
+1. AI final-responsibility boundary under current minimal assumptions
+2. AI return-point boundary
+3. repair-record boundary
+4. suspension review/return boundary
+5. returning no-automatic-continuation boundary
+6. closure evidence/reopening boundary
+
+The AI final-responsibility boundary is assumption-scoped. In the current minimal model, no artificial legal-personhood layer is assumed, so an AI node is not treated as a final responsibility holder. Future legal, institutional, national, international, or user/provider-agreement layers must be modeled explicitly if introduced.
+
 ## Development Timeline
 
 Observation
@@ -58,9 +73,10 @@ Claims precede applications.
 - Preserve the minimal, specification-first core
 - Keep lifecycle examples readable
 - Keep checker output bounded and non-certifying
-- Prepare small Lean invariants
-- Preserve the boundary that AI may participate as a pathway node but does not assume final responsibility
-- Grow only when responsibility can still return from claims to definitions, examples, schemas, checker boundaries, excluded claims, and assumptions
+- Keep Lean invariants small, explicit, and assumption-scoped
+- Preserve the boundary that AI may participate as a pathway node but does not assume final responsibility under the current minimal model
+- Keep future artificial legal-personhood or institutional-personhood layers explicit if modeled later
+- Grow only when responsibility can still return from claims to definitions, examples, schemas, checker boundaries, excluded claims, Lean definitions, and assumptions
 
 ## Read First
 
@@ -69,25 +85,28 @@ Claims precede applications.
 3. ROADMAP.md
 4. CHANGELOG.md
 5. docs/minimal-core-rationale.md
-6. docs/definition.md
-7. docs/eight-elements.md
-8. docs/phase-1-6-plan.md
-9. docs/validator-boundary.md
-10. docs/checker-coverage.md
-11. docs/example-index.md
-12. docs/example-review-notes.md
-13. spec/responsibility-pathway-core.yaml
-14. spec/pathway.schema.yaml
+6. docs/phase-1-6-plan.md
+7. formal/lean/README.md
+8. docs/definition.md
+9. docs/eight-elements.md
+10. docs/validator-boundary.md
+11. docs/checker-coverage.md
+12. docs/example-index.md
+13. docs/example-review-notes.md
+14. spec/responsibility-pathway-core.yaml
+15. spec/pathway.schema.yaml
 
 ## Restart Point
 
-The next low-risk action is to begin Phase 2 with a very small Lean invariant, such as:
+The next low-risk action is not to expand into larger reference implementations yet.
 
-- an AI node cannot be final responsibility holder
-- an AI-assisted pathway must preserve a human or institutional return point
-- a repaired pathway must reference a repair record
+Continue Phase 2 by either:
 
-Do not begin larger reference implementations until definitions, examples, checker boundaries, and formalization assumptions remain aligned.
+- reviewing whether `formal/lean/ResponsibilityPathway/Core.lean` should be split before adding more invariants
+- adding only very small additional invariant candidates after the current assumptions remain clear
+- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, and `formal/lean/README.md`
+
+Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, and excluded claims remain aligned.
 
 ## Purpose
 
