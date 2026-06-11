@@ -32,13 +32,16 @@
 - Decision Owner
 - Source Mapping from public articles to canonical repository definitions
 
-## Phase 1.5 - Specification Binding (Current)
+## Phase 1.5 - Specification Binding (Established)
 
 - Core YAML specification expanded to v0.2.0
 - Concept documents aligned with initial machine-readable specification
 - Minimal schema split established under `spec/`
 - Validation-oriented fields defined for nodes, roles, lifecycle, action classes, evidence, return points, repair, and pathway composition
-- Minimal examples should be added only after definitions and specifications remain stable
+- Schema cross-reference notes added
+- Validation checklist documentation added
+- Initial minimal examples added
+- README, README.ja, CHANGELOG, and BEACON maintained at milestones
 
 Established schema files:
 
@@ -49,12 +52,33 @@ Established schema files:
 - spec/repair.schema.yaml
 - spec/pathway.schema.yaml
 
-Next Phase 1.5 tasks:
+## Phase 1.6 - Lightweight Validation and Lifecycle Examples (Substantially Established)
 
-- Add small schema examples after reviewing boundaries
-- Add schema cross-reference notes
-- Add validation checklist documentation
-- Keep CHANGELOG, BEACON, and ROADMAP updated only at milestones
+- Lightweight checker added at `scripts/check_examples.py`
+- GitHub Actions workflow added for bounded example checks
+- Validator boundary documented in `docs/validator-boundary.md`
+- Checker coverage documented in `docs/checker-coverage.md`
+- Minimal core rationale documented in `docs/minimal-core-rationale.md`
+- Lifecycle example coverage established for:
+  - `originating`
+  - `repaired`
+  - `suspended`
+  - `returning`
+  - `closed`
+- Example index updated
+- Example review notes updated
+- README and README.ja reader paths updated
+- CHANGELOG milestones recorded
+
+Phase 1.6 rule:
+
+Lifecycle-aware checks remain bounded structural maintenance checks. They do not certify examples, systems, legal validity, safety, compliance, fairness, moral resolution, production readiness, or real-world responsibility resolution.
+
+Remaining Phase 1.6 tasks:
+
+- run and stabilize checker output if execution environment is available
+- keep examples small and manually readable
+- avoid adding higher-impact examples until lifecycle boundaries remain stable
 
 ## Phase 2 - Formalization
 
@@ -65,10 +89,22 @@ Next Phase 1.5 tasks:
 - Stop authority invariants
 - Evidence sufficiency boundaries
 - Repair preconditions
+- Suspension boundary invariants
+- Returning boundary invariants
+- Closure and reopening-condition invariants
 
 Formalization rule:
 
 Formal proofs must remain bounded to explicit definitions, assumptions, and modeled scope.
+
+Candidate first invariants:
+
+- an AI node cannot be final responsibility holder
+- an AI-assisted pathway must preserve a human or institutional return point
+- a repaired pathway must reference a repair record
+- a suspended pathway must preserve review or return conditions
+- a returning pathway must not imply automatic continuation
+- a closed pathway must preserve evidence and reopening-condition records
 
 ## Phase 3 - Reference Implementations
 
@@ -79,6 +115,13 @@ Formal proofs must remain bounded to explicit definitions, assumptions, and mode
 - Evidence Log example
 - Approval Gate example
 - Repair flow example
+- Suspension flow example
+- Returning flow example
+- Closure and reopening flow example
+
+Implementation rule:
+
+Reference implementations must not outrun definitions, examples, checker boundaries, or formalization assumptions.
 
 ## Guiding Principle
 
