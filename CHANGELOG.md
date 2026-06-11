@@ -4,6 +4,15 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 1.6 closed lifecycle example established
+
+- `examples/closed-pathway.yaml` added as a minimal closed lifecycle-state example
+- The closed example distinguishes closure from erasure, immunity, repair completion, certification, safety, compliance, legal validity, moral resolution, and production readiness
+- Closure records evidence, closure basis, residual obligations, reopening conditions, and excluded claims rather than removing responsibility history
+- `docs/example-index.md` updated with closed-pathway purpose, boundary, reading order, naming convention, and future lifecycle-example notes
+- `docs/example-review-notes.md` updated with bounded review notes for the closed example
+- `README.md` and `README.ja.md` updated with closed example links
+
 ### Phase 1.6 returning lifecycle example established
 
 - `examples/returning-pathway.yaml` added as a minimal returning lifecycle-state example
