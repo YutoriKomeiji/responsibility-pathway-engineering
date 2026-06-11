@@ -50,6 +50,7 @@ Early public specification.
 - [examples/repair-flow.yaml](examples/repair-flow.yaml) - 証拠不足や曖昧さを検知した後、修復経路へ接続する最小例
 - [examples/suspended-pathway.yaml](examples/suspended-pathway.yaml) - 一時停止ライフサイクル状態の最小例
 - [examples/returning-pathway.yaml](examples/returning-pathway.yaml) - 復帰ライフサイクル状態の最小例
+- [examples/closed-pathway.yaml](examples/closed-pathway.yaml) - 閉鎖ライフサイクル状態の最小例
 
 例の目的、境界、今後の追加候補については [docs/example-index.md](docs/example-index.md) を参照してください。
 
