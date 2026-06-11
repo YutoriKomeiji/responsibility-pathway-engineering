@@ -1,0 +1,308 @@
+# Minimal suspended pathway example
+#
+# This example illustrates a Responsibility Pathway that is suspended
+# because uncertainty, authority ambiguity, or insufficient review conditions
+# prevent responsible continuation.
+#
+# Suspension is not closure, repair completion, certification, compliance,
+# safety, fairness, legal validity, moral resolution, or production readiness.
+# It preserves the pathway until human or institutional authority can review,
+# continue, repair, return, or close it under explicit responsibility.
+#
+# 日本語メモ:
+# これは責任経路が一時停止される最小例です。
+# 不確実性、権限の曖昧さ、レビュー条件の不足があるため、
+# 経路を勝手に継続・閉鎖・修復済みにしません。
+# 停止は責任の消滅ではなく、責任を戻すための保全状態です。
+# AI支援ノードは停止を提案できますが、最終責任主体にも最終判断主体にもなりません。
+
+id: suspended_pathway_example_001
+version: 0.1.0
+lifecycle_state: suspended
+
+nodes:
+  - id: human_decision_owner_001
+    type: Human
+    capabilities:
+      - receive
+      - explain
+      - suspend
+      - return
+      - repair
+      - continue
+      - close
+    authority_scope:
+      can_decide: true
+      can_approve: true
+      can_execute: false
+      can_stop: true
+      can_repair: true
+      can_close: true
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: true
+
+  - id: ai_support_node_001
+    type: AIAgent
+    capabilities:
+      - receive
+      - preserve
+      - transform
+      - explain
+      - flag_uncertainty
+      - recommend_suspension
+      - return
+    authority_scope:
+      can_decide: false
+      can_approve: false
+      can_execute: false
+      can_stop: false
+      can_repair: false
+      can_close: false
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: false
+    ai_participation:
+      may_generate: true
+      may_recommend: true
+      may_classify: true
+      may_flag_uncertainty: true
+      may_recommend_suspension: true
+      may_execute_under_authority: false
+      assumes_final_responsibility: false
+
+  - id: stop_authority_001
+    type: Human
+    capabilities:
+      - receive
+      - explain
+      - suspend
+      - return
+      - continue
+      - escalate
+      - close
+    authority_scope:
+      can_decide: false
+      can_approve: false
+      can_execute: false
+      can_stop: true
+      can_repair: false
+      can_close: false
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: true
+
+edges:
+  - from: human_decision_owner_001
+    to: ai_support_node_001
+    relation_type: delegated_support
+    condition: human_requests_uncertainty_review
+    evidence_reference: evidence_log_001
+
+  - from: ai_support_node_001
+    to: human_decision_owner_001
+    relation_type: return_to_authority
+    condition: uncertainty_requires_human_judgment
+    evidence_reference: evidence_log_001
+
+  - from: human_decision_owner_001
+    to: stop_authority_001
+    relation_type: suspension_request
+    condition: responsible_continuation_not_yet_available
+    evidence_reference: evidence_log_001
+
+  - from: stop_authority_001
+    to: human_decision_owner_001
+    relation_type: suspended_return
+    condition: pathway_suspended_pending_review
+    evidence_reference: evidence_log_001
+
+roles:
+  decision_owner: human_decision_owner_001
+  approval_gate: human_decision_owner_001
+  execution_actor: null
+  stop_authority: stop_authority_001
+  evidence_log: evidence_log_001
+  repair_owner: null
+  return_point: return_point_001
+  human_return_point: return_point_001
+  affected_party: null
+
+suspension:
+  id: suspension_001
+  pathway_id: suspended_pathway_example_001
+  suspension_owner: stop_authority_001
+  suspension_trigger: uncertainty_requires_human_review
+  suspension_state: active
+  suspended_at: example_timestamp_not_specified
+  continuation_allowed: false
+  closure_allowed: false
+  repair_started: false
+  required_before_continuation:
+    - human_review
+    - authority_confirmation
+    - evidence_quality_review
+    - explicit_continue_or_repair_decision
+  allowed_next_states:
+    - returning
+    - repaired
+    - closed
+  disallowed_interpretations:
+    - suspension_as_closure
+    - suspension_as_repair_completion
+    - suspension_as_liability_resolution
+    - suspension_as_safety_certification
+    - suspension_as_ai_decision
+
+action_class:
+  id: class_2_suspended_assistive_review
+  name: Suspended Assistive Review
+  level: 2
+  description: AI-assisted uncertainty review where responsible continuation is suspended pending human or institutional review.
+  responsibility_requirements:
+    decision_owner_required: true
+    approval_gate_required: true
+    stop_authority_required: true
+    evidence_log_required: true
+    return_point_required: true
+    repair_owner_required: false
+    affected_party_visibility_required: false
+  reversibility: pending_review
+  external_impact: internal
+  automation_boundary:
+    may_be_automated: false
+    requires_human_review: true
+    requires_human_authorization: true
+    prohibited_without_explicit_authority: true
+
+evidence_logs:
+  - id: evidence_log_001
+    pathway_id: suspended_pathway_example_001
+    evidence_categories:
+      - actor_identity_or_role
+      - decision_owner
+      - stop_authority
+      - input
+      - output
+      - prompt_or_instruction
+      - timestamp
+      - authority_state
+      - uncertainty
+      - suspension_trigger
+      - continuation_condition
+    integrity_state: partial
+    ordering: timestamped
+    reconstruction_support:
+      can_reconstruct_action: true
+      can_reconstruct_authority: true
+      can_reconstruct_context: true
+      can_reconstruct_uncertainty: true
+      can_reconstruct_stop_point: true
+      can_reconstruct_return_point: true
+      can_reconstruct_repair_action: false
+      can_reconstruct_suspension_reason: true
+    quality:
+      completeness: partial
+      readability: human_readable
+      availability: local_example
+      scope_clarity: example_only
+      retention_period: not_specified
+      privacy_constraints: avoid_sensitive_data
+      safety_constraints: no_production_use
+    access_boundary:
+      readable_by:
+        - human_decision_owner_001
+        - stop_authority_001
+      writable_by:
+        - human_decision_owner_001
+        - stop_authority_001
+      redaction_required: false
+      retention_owner: human_decision_owner_001
+      repair_owner_access: not_applicable
+
+return_points:
+  - id: return_point_001
+    type: HumanReturnPoint
+    source_node: ai_support_node_001
+    target_node: human_decision_owner_001
+    returnability_conditions:
+      meaning_visible: true
+      authority_visible: true
+      time_available: true
+      information_quality_sufficient: partial
+      trust_calibrated: true
+      reversibility_or_compensation_visible: pending_review
+      value_visible: partial
+      cost_visible: partial
+    supported_actions:
+      - explain
+      - reject
+      - escalate
+      - suspend
+      - continue_after_review
+      - repair_after_review
+      - close_after_review
+    evidence_requirements:
+      evidence_log_required: true
+      minimum_evidence_categories:
+        - input
+        - output
+        - authority_state
+        - uncertainty
+        - suspension_trigger
+      reconstruction_required: true
+      access_boundary: local_review
+    human_conditions:
+      understandable_information: true
+      meaningful_choice: true
+      refusal_available: true
+      stop_authority_available: true
+      repair_path_available: true
+      adequate_review_time: pending_review
+      no_coercive_pressure: true
+
+repairs: []
+
+responsibility_boundary:
+  human_author_required: true
+  ai_final_responsibility_allowed: false
+  institutional_authority_required_when_applicable: false
+  legal_or_moral_claims_out_of_scope: true
+  suspension_does_not_remove_responsibility: true
+  suspension_requires_human_or_institutional_review: true
+
+formalization_scope:
+  assumptions:
+    - The example models internal AI-assisted uncertainty review.
+    - The pathway is suspended because responsible continuation is not yet available.
+    - Suspension preserves responsibility-return conditions rather than closing or resolving the pathway.
+    - The AI support node may recommend suspension but cannot suspend, continue, close, repair, or assume final responsibility.
+    - The human decision owner and stop authority remain the responsibility-bearing human roles.
+  modeled_entities:
+    - human_decision_owner_001
+    - ai_support_node_001
+    - stop_authority_001
+    - evidence_log_001
+    - return_point_001
+    - suspension_001
+  excluded_claims:
+    - legal_liability
+    - moral_blame
+    - compliance
+    - production_safety
+    - fairness
+    - certification
+    - harm_elimination
+    - real_world_accountability_resolution
+    - suspension_as_closure
+    - suspension_as_repair_completion
+  theorem_status: not_formalized
