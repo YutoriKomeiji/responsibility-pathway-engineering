@@ -38,8 +38,9 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 9. [docs/development-process.md](docs/development-process.md) - development process
 10. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
 11. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
-12. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
-13. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
+12. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
+13. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
+14. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
 
 ## Examples
 
@@ -51,6 +52,14 @@ Minimal examples are available under `examples/`.
 See [docs/example-index.md](docs/example-index.md) for example purposes, boundaries, and future example candidates.
 
 These examples are illustrative only. They do not claim legal liability resolution, moral accountability, safety, fairness, compliance, or production readiness.
+
+## Lightweight checks
+
+A bounded structural checker is available at [scripts/check_examples.py](scripts/check_examples.py).
+
+It checks only limited structural signals and explicit responsibility-boundary fields. A passing result does not mean certified, safe, compliant, fair, legally valid, morally resolved, or production ready.
+
+See [docs/validator-boundary.md](docs/validator-boundary.md) for the checker boundary.
 
 ## Initial scope
 
