@@ -64,6 +64,8 @@ python -m pip install -r requirements.txt
 python scripts/check_examples.py
 ```
 
+同じ境界付き構造チェックは、examples、チェッカー、requirements、またはworkflowが変更された場合に、GitHub Actions の [.github/workflows/check-examples.yml](.github/workflows/check-examples.yml) でも実行されます。
+
 このチェッカーは、限定された構造シグナルと明示された責任境界フィールドだけを確認します。通過結果は、認証済み、安全、遵法、公平、法的に有効、道徳的に解決済み、本番利用可能であることを意味しません。
 
 チェッカーの境界については [docs/validator-boundary.md](docs/validator-boundary.md) を参照してください。
