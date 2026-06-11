@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 1.6 checker coverage documentation established
+
+- `docs/checker-coverage.md` added to summarize current `scripts/check_examples.py` coverage
+- Coverage documentation lists general checks, lifecycle-aware checks, current example coverage map, and interpretation boundary
+- `README.md` and `README.ja.md` updated to link to checker coverage from the reader path and lightweight-checks section
+
 ### Phase 1.6 full lifecycle checker coverage established
 
 - `scripts/check_examples.py` updated with bounded lifecycle rules for `originating` and `repaired` examples
