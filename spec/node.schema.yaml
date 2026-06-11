@@ -1,0 +1,99 @@
+version: 0.1.0
+kind: ResponsibilityNodeSchema
+
+purpose: >
+  Defines the minimum machine-readable structure for a Responsibility Node.
+
+node:
+  required_fields:
+    - id
+    - type
+    - capabilities
+    - authority_scope
+    - evidence_binding
+
+  fields:
+    id:
+      type: string
+      description: Stable identifier for the node within a pathway.
+
+    type:
+      type: enum
+      allowed_values:
+        - Human
+        - AIAgent
+        - Organization
+        - Institution
+        - BusinessProcess
+        - InformationSystem
+        - Artifact
+        - Document
+        - Interface
+        - DatabaseRecord
+        - ModelOutput
+        - AuditArtifact
+
+    capabilities:
+      type: list
+      allowed_values:
+        - receive
+        - preserve
+        - transform
+        - explain
+        - escalate
+        - suspend
+        - return
+        - repair
+        - close
+
+    authority_scope:
+      type: object
+      description: What the node is authorized to do within the pathway.
+      suggested_fields:
+        - can_decide
+        - can_approve
+        - can_execute
+        - can_stop
+        - can_repair
+        - can_close
+
+    evidence_binding:
+      type: object
+      description: Evidence records or evidence requirements attached to this node.
+      suggested_fields:
+        - required
+        - log_reference
+        - retention_scope
+        - access_boundary
+
+    human_responsibility_capacity:
+      type: boolean
+      description: Whether the node can hold human or institutionally authorized responsibility.
+
+    ai_participation:
+      type: object
+      description: AI participation is pathway-node participation, not final responsibility authorship.
+      suggested_fields:
+        - may_generate
+        - may_recommend
+        - may_classify
+        - may_execute_under_authority
+        - assumes_final_responsibility
+
+validation_rules:
+  - id: ai_final_responsibility_false
+    rule: >
+      If type is AIAgent, ai_participation.assumes_final_responsibility must be false.
+
+  - id: stop_requires_authority_scope
+    rule: >
+      If capabilities includes stop, authority_scope.can_stop should be true or explicitly justified.
+
+  - id: repair_requires_evidence_binding
+    rule: >
+      If capabilities includes repair, evidence_binding should be present.
+
+boundary:
+  - This schema does not establish legal liability.
+  - This schema does not define moral agency.
+  - This schema only describes modeled participation in a Responsibility Pathway.
