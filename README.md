@@ -57,6 +57,13 @@ These examples are illustrative only. They do not claim legal liability resoluti
 
 A bounded structural checker is available at [scripts/check_examples.py](scripts/check_examples.py).
 
+Install the minimal Python dependency and run:
+
+```bash
+python -m pip install -r requirements.txt
+python scripts/check_examples.py
+```
+
 It checks only limited structural signals and explicit responsibility-boundary fields. A passing result does not mean certified, safe, compliant, fair, legally valid, morally resolved, or production ready.
 
 See [docs/validator-boundary.md](docs/validator-boundary.md) for the checker boundary.
