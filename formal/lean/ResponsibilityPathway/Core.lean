@@ -163,8 +163,9 @@ This is intentionally not a complete graph model. It records only whether
 AI participates, whether a human or institutional return point is present,
 whether the pathway is declared repaired, whether a repair record is present,
 whether the pathway is declared suspended, whether review or return conditions
-are preserved, whether the pathway is declared returning, and whether automatic
-continuation is allowed.
+are preserved, whether the pathway is declared returning, whether automatic
+continuation is allowed, whether the pathway is declared closed, whether
+evidence is preserved, and whether reopening conditions are preserved.
 -/
 structure Pathway where
   id : String
@@ -176,6 +177,9 @@ structure Pathway where
   hasReviewOrReturnCondition : Bool
   lifecycleReturning : Bool
   automaticContinuationAllowed : Bool
+  lifecycleClosed : Bool
+  hasEvidenceRecord : Bool
+  hasReopeningCondition : Bool
   deriving Repr
 
 /--
@@ -229,6 +233,24 @@ def AllowsAutomaticContinuation (pathway : Pathway) : Prop :=
   pathway.automaticContinuationAllowed = true
 
 /--
+Predicate: the pathway is declared as closed inside the minimal model.
+-/
+def IsClosedPathway (pathway : Pathway) : Prop :=
+  pathway.lifecycleClosed = true
+
+/--
+Predicate: the pathway preserves evidence records inside the minimal model.
+-/
+def HasEvidenceRecord (pathway : Pathway) : Prop :=
+  pathway.hasEvidenceRecord = true
+
+/--
+Predicate: the pathway preserves reopening conditions inside the minimal model.
+-/
+def HasReopeningCondition (pathway : Pathway) : Prop :=
+  pathway.hasReopeningCondition = true
+
+/--
 Structural invariant: if AI participates, the pathway must preserve a
 human or institutional return point.
 
@@ -275,6 +297,19 @@ def ReturningNoAutomaticContinuationBoundary (pathway : Pathway) : Prop :=
   IsReturningPathway pathway -> ¬ AllowsAutomaticContinuation pathway
 
 /--
+Structural invariant: if a pathway is declared closed, the minimal model must
+preserve evidence records and reopening conditions.
+
+This does not mean closure is justified, legally valid, morally resolved, safe,
+compliant, fair, permanent, or operationally complete. It only states that
+closure must not erase evidence or the conditions under which reopening may be
+considered.
+-/
+def ClosureEvidenceReopeningBoundary (pathway : Pathway) : Prop :=
+  IsClosedPathway pathway ->
+    HasEvidenceRecord pathway ∧ HasReopeningCondition pathway
+
+/--
 A constructor-level safe AI-assisted pathway includes a human or institutional
 return point.
 -/
@@ -288,7 +323,10 @@ def safeAIAssistedPathway (id : String) : Pathway :=
     lifecycleSuspended := false,
     hasReviewOrReturnCondition := false,
     lifecycleReturning := false,
-    automaticContinuationAllowed := false
+    automaticContinuationAllowed := false,
+    lifecycleClosed := false,
+    hasEvidenceRecord := false,
+    hasReopeningCondition := false
   }
 
 /--
@@ -317,7 +355,10 @@ def nonAIPathway (id : String) : Pathway :=
     lifecycleSuspended := false,
     hasReviewOrReturnCondition := false,
     lifecycleReturning := false,
-    automaticContinuationAllowed := false
+    automaticContinuationAllowed := false,
+    lifecycleClosed := false,
+    hasEvidenceRecord := false,
+    hasReopeningCondition := false
   }
 
 theorem non_ai_pathway_satisfies_ai_return_point_boundary
@@ -340,7 +381,10 @@ def repairedPathwayWithRecord (id : String) : Pathway :=
     lifecycleSuspended := false,
     hasReviewOrReturnCondition := false,
     lifecycleReturning := false,
-    automaticContinuationAllowed := false
+    automaticContinuationAllowed := false,
+    lifecycleClosed := false,
+    hasEvidenceRecord := false,
+    hasReopeningCondition := false
   }
 
 /--
@@ -379,7 +423,10 @@ def suspendedPathwayWithReviewOrReturn (id : String) : Pathway :=
     lifecycleSuspended := true,
     hasReviewOrReturnCondition := true,
     lifecycleReturning := false,
-    automaticContinuationAllowed := false
+    automaticContinuationAllowed := false,
+    lifecycleClosed := false,
+    hasEvidenceRecord := false,
+    hasReopeningCondition := false
   }
 
 /--
@@ -420,7 +467,10 @@ def returningPathwayWithoutAutomaticContinuation (id : String) : Pathway :=
     lifecycleSuspended := false,
     hasReviewOrReturnCondition := true,
     lifecycleReturning := true,
-    automaticContinuationAllowed := false
+    automaticContinuationAllowed := false,
+    lifecycleClosed := false,
+    hasEvidenceRecord := false,
+    hasReopeningCondition := false
   }
 
 /--
@@ -447,5 +497,53 @@ theorem non_returning_pathway_satisfies_returning_boundary
   intro hReturning
   unfold IsReturningPathway at hReturning
   simp [safeAIAssistedPathway] at hReturning
+
+/--
+A constructor-level closed pathway preserves evidence records and reopening
+conditions.
+-/
+def closedPathwayWithEvidenceAndReopening (id : String) : Pathway :=
+  {
+    id := id,
+    aiParticipates := true,
+    hasHumanOrInstitutionalReturnPoint := true,
+    lifecycleRepaired := false,
+    hasRepairRecord := false,
+    lifecycleSuspended := false,
+    hasReviewOrReturnCondition := false,
+    lifecycleReturning := false,
+    automaticContinuationAllowed := false,
+    lifecycleClosed := true,
+    hasEvidenceRecord := true,
+    hasReopeningCondition := true
+  }
+
+/--
+The sixth Phase 2 invariant candidate:
+a safely constructed closed pathway satisfies the closure evidence/reopening
+boundary.
+-/
+theorem closed_pathway_preserves_evidence_and_reopening_condition
+    (id : String) :
+    ClosureEvidenceReopeningBoundary
+      (closedPathwayWithEvidenceAndReopening id) := by
+  intro hClosed
+  constructor
+  · unfold HasEvidenceRecord
+    simp [closedPathwayWithEvidenceAndReopening]
+  · unfold HasReopeningCondition
+    simp [closedPathwayWithEvidenceAndReopening]
+
+/--
+A pathway that is not declared closed does not trigger this closure-specific
+boundary. This theorem only states the implication form is satisfied vacuously
+in the constructor-level non-closed case.
+-/
+theorem non_closed_pathway_satisfies_closure_boundary
+    (id : String) :
+    ClosureEvidenceReopeningBoundary (safeAIAssistedPathway id) := by
+  intro hClosed
+  unfold IsClosedPathway at hClosed
+  simp [safeAIAssistedPathway] at hClosed
 
 end ResponsibilityPathway
