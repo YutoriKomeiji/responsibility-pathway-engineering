@@ -38,8 +38,9 @@ Early public specification.
 9. [docs/development-process.md](docs/development-process.md) - 開発プロセス
 10. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
 11. [docs/validation-checklist.md](docs/validation-checklist.md) - 境界付き検証チェックリスト
-12. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
-13. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
+12. [docs/validator-boundary.md](docs/validator-boundary.md) - 軽量検証ツールの境界
+13. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
+14. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
 
 ## 例
 
@@ -51,6 +52,14 @@ Early public specification.
 例の目的、境界、今後の追加候補については [docs/example-index.md](docs/example-index.md) を参照してください。
 
 これらは説明用の例であり、法的責任、道徳的責任、安全性、公平性、遵法性、本番利用可能性を主張するものではありません。
+
+## 軽量チェック
+
+境界付きの構造チェッカーは [scripts/check_examples.py](scripts/check_examples.py) にあります。
+
+このチェッカーは、限定された構造シグナルと明示された責任境界フィールドだけを確認します。通過結果は、認証済み、安全、遵法、公平、法的に有効、道徳的に解決済み、本番利用可能であることを意味しません。
+
+チェッカーの境界については [docs/validator-boundary.md](docs/validator-boundary.md) を参照してください。
 
 ## 範囲
 
