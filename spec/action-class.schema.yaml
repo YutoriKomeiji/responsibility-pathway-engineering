@@ -1,0 +1,125 @@
+version: 0.1.0
+kind: ActionClassSchema
+
+purpose: >
+  Defines the minimum machine-readable structure for classifying actions
+  by responsibility impact.
+
+action_class:
+  required_fields:
+    - id
+    - name
+    - level
+    - responsibility_requirements
+
+  fields:
+    id:
+      type: string
+      description: Stable identifier for the action class.
+
+    name:
+      type: string
+      description: Human-readable name of the action class.
+
+    level:
+      type: integer
+      allowed_values:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+
+    description:
+      type: string
+      description: Description of action type and expected responsibility impact.
+
+    examples:
+      type: list
+      item_type: string
+
+    responsibility_requirements:
+      type: object
+      suggested_fields:
+        - decision_owner_required
+        - approval_gate_required
+        - stop_authority_required
+        - evidence_log_required
+        - return_point_required
+        - repair_owner_required
+        - affected_party_visibility_required
+
+    reversibility:
+      type: enum
+      allowed_values:
+        - reversible
+        - partially_reversible
+        - hard_to_reverse
+        - irreversible
+        - unknown
+
+    external_impact:
+      type: enum
+      allowed_values:
+        - none
+        - internal
+        - external
+        - public
+        - high_risk
+
+    automation_boundary:
+      type: object
+      suggested_fields:
+        - may_be_automated
+        - requires_human_review
+        - requires_human_authorization
+        - prohibited_without_explicit_authority
+
+classes:
+  - id: class_0_informational
+    level: 0
+    name: Informational
+    reversibility: reversible
+    external_impact: none
+
+  - id: class_1_internal_assistive
+    level: 1
+    name: Internal Assistive
+    reversibility: reversible
+    external_impact: internal
+
+  - id: class_2_controlled_execution
+    level: 2
+    name: Controlled Execution
+    reversibility: partially_reversible
+    external_impact: internal
+
+  - id: class_3_external_impact
+    level: 3
+    name: External Impact
+    reversibility: hard_to_reverse
+    external_impact: external
+
+  - id: class_4_irreversible_or_high_risk
+    level: 4
+    name: Irreversible or High Risk
+    reversibility: irreversible
+    external_impact: high_risk
+
+validation_rules:
+  - id: high_impact_requires_human_authorization
+    rule: >
+      If level is 3 or 4, requires_human_authorization should be true.
+
+  - id: irreversible_requires_repair_owner
+    rule: >
+      If reversibility is irreversible or hard_to_reverse, repair_owner_required should be true.
+
+  - id: external_impact_requires_evidence
+    rule: >
+      If external_impact is external, public, or high_risk, evidence_log_required should be true.
+
+boundary:
+  - This schema does not determine legal classification.
+  - This schema does not determine moral blame.
+  - This schema only classifies actions for Responsibility Pathway design.
