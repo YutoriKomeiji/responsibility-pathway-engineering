@@ -54,6 +54,6 @@ Early public specification.
 
 本リポジトリは [MIT License](LICENSE) の下で公開されています。
 
-Copyright (c) 2026 Akihisa Ono.
+Copyright (c) 2026 Akihisa Ono (小野昭久).
 
 利用、改変、再配布、サブライセンスはライセンス条件に従って許可されます。ただし、著作権表示およびライセンス表示を保持してください。
