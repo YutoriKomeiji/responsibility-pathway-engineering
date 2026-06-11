@@ -4,6 +4,13 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 1.6 minimal core rationale established
+
+- `docs/minimal-core-rationale.md` added to explain why the repository is intentionally small and specification-first
+- The rationale distinguishes a minimal responsibility-preserving core from production applications, governance automation platforms, legal decision systems, certification tools, and moral accountability engines
+- The rationale states that growth should preserve returnability from claims to definitions, examples, schemas, checker boundaries, excluded claims, and assumptions
+- `README.md` and `README.ja.md` updated with minimal-core rationale links in the status section and reader path
+
 ### Phase 1.6 checker coverage documentation established
 
 - `docs/checker-coverage.md` added to summarize current `scripts/check_examples.py` coverage
