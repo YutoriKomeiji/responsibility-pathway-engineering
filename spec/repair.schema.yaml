@@ -1,0 +1,116 @@
+version: 0.1.0
+kind: RepairSchema
+
+purpose: >
+  Defines the minimum machine-readable structure for restoring a broken,
+  unclear, suspended, or damaged Responsibility Pathway to an actionable state.
+
+repair:
+  required_fields:
+    - id
+    - pathway_id
+    - trigger
+    - repair_owner
+    - repair_state
+    - evidence_reference
+
+  fields:
+    id:
+      type: string
+      description: Stable identifier for the repair process.
+
+    pathway_id:
+      type: string
+      description: Responsibility Pathway instance being repaired.
+
+    trigger:
+      type: enum
+      allowed_values:
+        - context_lost
+        - authority_unclear
+        - evidence_incomplete
+        - stop_point_failed
+        - return_failed
+        - cost_displaced
+        - affected_party_discovered_late
+        - assumption_failed
+        - automation_exceeded_scope
+        - suspended_without_return_point
+        - other
+
+    repair_state:
+      type: enum
+      allowed_values:
+        - detected
+        - evidence_preserved
+        - last_reliable_node_identified
+        - damaged_segment_identified
+        - returned_to_authorized_entity
+        - corrective_action_selected
+        - corrective_action_applied
+        - documented
+        - closed
+        - unresolved
+
+    repair_owner:
+      type: string
+      description: Node or role authorized to coordinate repair.
+
+    affected_parties:
+      type: list
+      item_type: string
+
+    evidence_reference:
+      type: object
+      suggested_fields:
+        - evidence_log_id
+        - minimum_evidence_available
+        - missing_evidence
+        - evidence_access_boundary
+
+    corrective_action:
+      type: enum
+      allowed_values:
+        - explain
+        - correct
+        - rollback
+        - compensate
+        - escalate
+        - redesign
+        - preserve_unresolved
+        - close_without_action
+
+    outcome:
+      type: enum
+      allowed_values:
+        - explanation_provided
+        - correction_applied
+        - rollback_completed
+        - compensation_initiated
+        - escalated
+        - pathway_redesigned
+        - evidence_improved
+        - formally_closed
+        - unresolved_with_reason
+
+validation_rules:
+  - id: repair_requires_owner
+    rule: >
+      repair_owner must be present before corrective_action is applied.
+
+  - id: repair_requires_evidence_reference
+    rule: >
+      evidence_reference should identify available and missing evidence.
+
+  - id: unresolved_requires_reason
+    rule: >
+      If repair_state is unresolved, outcome should be unresolved_with_reason or an equivalent reason should be recorded.
+
+  - id: compensation_requires_affected_party_visibility
+    rule: >
+      If corrective_action is compensate, affected_parties should be present.
+
+boundary:
+  - Repair does not mean harm disappears.
+  - Repair does not resolve blame by itself.
+  - Repair restores the pathway enough for action, explanation, correction, or closure.
