@@ -1,0 +1,211 @@
+# Minimal Responsibility Pathway example
+#
+# This example is intentionally small and illustrative.
+# It is not a certification, compliance claim, safety guarantee,
+# legal assessment, moral accountability judgment, or production-ready model.
+
+id: minimal_pathway_example_001
+version: 0.1.0
+lifecycle_state: originating
+
+nodes:
+  - id: human_decision_owner_001
+    type: Human
+    capabilities:
+      - receive
+      - explain
+      - suspend
+      - return
+      - close
+    authority_scope:
+      can_decide: true
+      can_approve: true
+      can_execute: false
+      can_stop: true
+      can_repair: false
+      can_close: true
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: true
+
+  - id: ai_support_node_001
+    type: AIAgent
+    capabilities:
+      - receive
+      - preserve
+      - transform
+      - explain
+      - escalate
+      - return
+    authority_scope:
+      can_decide: false
+      can_approve: false
+      can_execute: false
+      can_stop: false
+      can_repair: false
+      can_close: false
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: false
+    ai_participation:
+      may_generate: true
+      may_recommend: true
+      may_classify: true
+      may_execute_under_authority: false
+      assumes_final_responsibility: false
+
+edges:
+  - from: human_decision_owner_001
+    to: ai_support_node_001
+    relation_type: delegated_support
+    condition: human_requests_structuring_support
+    evidence_reference: evidence_log_001
+
+  - from: ai_support_node_001
+    to: human_decision_owner_001
+    relation_type: return_to_authority
+    condition: recommendation_requires_human_judgment
+    evidence_reference: evidence_log_001
+
+roles:
+  decision_owner: human_decision_owner_001
+  approval_gate: human_decision_owner_001
+  execution_actor: null
+  stop_authority: human_decision_owner_001
+  evidence_log: evidence_log_001
+  repair_owner: null
+  return_point: return_point_001
+  human_return_point: return_point_001
+  affected_party: null
+
+action_class:
+  id: class_1_internal_assistive
+  name: Internal Assistive
+  level: 1
+  description: AI-assisted internal structuring support with no autonomous execution.
+  responsibility_requirements:
+    decision_owner_required: true
+    approval_gate_required: false
+    stop_authority_required: true
+    evidence_log_required: true
+    return_point_required: true
+    repair_owner_required: false
+    affected_party_visibility_required: false
+  reversibility: reversible
+  external_impact: internal
+  automation_boundary:
+    may_be_automated: false
+    requires_human_review: true
+    requires_human_authorization: true
+    prohibited_without_explicit_authority: true
+
+evidence_logs:
+  - id: evidence_log_001
+    pathway_id: minimal_pathway_example_001
+    evidence_categories:
+      - actor_identity_or_role
+      - decision_owner
+      - input
+      - output
+      - prompt_or_instruction
+      - timestamp
+      - authority_state
+      - uncertainty
+    integrity_state: partial
+    ordering: timestamped
+    reconstruction_support:
+      can_reconstruct_action: true
+      can_reconstruct_authority: true
+      can_reconstruct_context: true
+      can_reconstruct_uncertainty: true
+      can_reconstruct_stop_point: false
+      can_reconstruct_return_point: true
+      can_reconstruct_repair_action: false
+    quality:
+      completeness: partial
+      readability: human_readable
+      availability: local_example
+      scope_clarity: example_only
+      retention_period: not_specified
+      privacy_constraints: avoid_sensitive_data
+      safety_constraints: no_production_use
+    access_boundary:
+      readable_by:
+        - human_decision_owner_001
+      writable_by:
+        - human_decision_owner_001
+      redaction_required: false
+      retention_owner: human_decision_owner_001
+      repair_owner_access: not_applicable
+
+return_points:
+  - id: return_point_001
+    type: HumanReturnPoint
+    source_node: ai_support_node_001
+    target_node: human_decision_owner_001
+    returnability_conditions:
+      meaning_visible: true
+      authority_visible: true
+      time_available: true
+      information_quality_sufficient: partial
+      trust_calibrated: true
+      reversibility_or_compensation_visible: true
+      value_visible: true
+      cost_visible: true
+    supported_actions:
+      - explain
+      - reject
+      - escalate
+      - suspend
+      - continue
+      - close
+    evidence_requirements:
+      evidence_log_required: true
+      minimum_evidence_categories:
+        - input
+        - output
+        - authority_state
+        - uncertainty
+      reconstruction_required: true
+      access_boundary: local_review
+    human_conditions:
+      understandable_information: true
+      meaningful_choice: true
+      refusal_available: true
+      stop_authority_available: true
+      repair_path_available: false
+      adequate_review_time: true
+      no_coercive_pressure: true
+
+repairs: []
+
+responsibility_boundary:
+  human_author_required: true
+  ai_final_responsibility_allowed: false
+  institutional_authority_required_when_applicable: false
+  legal_or_moral_claims_out_of_scope: true
+
+formalization_scope:
+  assumptions:
+    - The example models internal AI-assisted structuring only.
+    - No autonomous execution occurs.
+    - The human decision owner remains the final responsibility holder.
+  modeled_entities:
+    - human_decision_owner_001
+    - ai_support_node_001
+    - evidence_log_001
+    - return_point_001
+  excluded_claims:
+    - legal_liability
+    - moral_blame
+    - compliance
+    - production_safety
+    - fairness
+    - real_world_accountability_resolution
+  theorem_status: not_formalized
