@@ -64,6 +64,8 @@ python -m pip install -r requirements.txt
 python scripts/check_examples.py
 ```
 
+The same bounded structural check also runs in GitHub Actions via [.github/workflows/check-examples.yml](.github/workflows/check-examples.yml) when examples, the checker, requirements, or the workflow change.
+
 It checks only limited structural signals and explicit responsibility-boundary fields. A passing result does not mean certified, safe, compliant, fair, legally valid, morally resolved, or production ready.
 
 See [docs/validator-boundary.md](docs/validator-boundary.md) for the checker boundary.
