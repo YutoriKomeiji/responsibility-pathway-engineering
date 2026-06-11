@@ -13,6 +13,7 @@ Reviewed examples:
 - `examples/minimal-pathway.yaml`
 - `examples/repair-flow.yaml`
 - `examples/suspended-pathway.yaml`
+- `examples/returning-pathway.yaml`
 
 Reference documents:
 
@@ -36,10 +37,10 @@ The examples should visibly preserve:
 2. explicit AI participation boundaries
 3. evidence logging sufficient for reconstruction within the example scope
 4. a return point to an authorized human or institutional node
-5. a stop, suspend, repair, or closure path where applicable
+5. a stop, suspend, return, repair, or closure path where applicable
 6. a clear distinction between illustrative modeling and real-world claims
 7. excluded claims for legal liability, moral blame, compliance, production safety, fairness, or real-world accountability resolution
-8. lifecycle-state distinctions between originating, suspended, repaired, returning, and closed pathways
+8. lifecycle-state distinctions between originating, suspended, returning, repaired, and closed pathways
 
 ## `examples/minimal-pathway.yaml`
 
@@ -97,7 +98,7 @@ Potential future improvements:
 
 - define a stricter repair-state vocabulary
 - distinguish explanation repair, compensation repair, rollback repair, and governance repair in later examples
-- add returning and closed lifecycle examples
+- add closed lifecycle example
 
 ## `examples/suspended-pathway.yaml`
 
@@ -128,9 +129,39 @@ This example is suitable as the first suspended-pathway instance because it show
 Potential future improvements:
 
 - define stricter lifecycle transition vocabulary for `suspended`, `returning`, `repaired`, and `closed`
-- add a returning example to show how a suspended pathway can return to authority after review
 - add a closed example to distinguish responsible closure from premature closure
 - extend the lightweight checker to inspect lifecycle-specific fields after more examples exist
+
+## `examples/returning-pathway.yaml`
+
+Initial review status: acceptable as a minimal illustrative returning-pathway example.
+
+Observed structure:
+
+- human decision owner is modeled as `human_decision_owner_001`
+- AI support node is modeled as `ai_support_node_001`
+- stop authority is modeled as `stop_authority_001`
+- AI participation is explicitly bounded
+- `assumes_final_responsibility` is set to `false`
+- AI may summarize evidence and compare return conditions, but cannot decide the next lifecycle state
+- previous lifecycle state is recorded as `suspended`
+- returning state is `under_human_review`
+- automatic continuation, closure, and repair completion are explicitly disallowed
+- evidence log includes prior lifecycle state, return condition, and next-state options
+- Human Return Point is present from stop authority to human decision owner
+- `repairs` is intentionally empty because returning is not repair completion
+- formalization scope states that returning makes the pathway available for human review without automatically continuing, repairing, or closing it
+- excluded claims include automatic continuation, repair completion, closure, certification, and real-world accountability resolution
+
+Review note:
+
+This example is suitable as the first returning-pathway instance because it shows how a suspended pathway can be returned to a human decision owner without treating return as automatic continuation, repair completion, closure, certification, or final resolution.
+
+Potential future improvements:
+
+- define stricter lifecycle transition vocabulary for returning-state values
+- add a closed example to distinguish responsible closure from premature closure
+- refine the lightweight checker to detect required lifecycle-specific records such as `returning`, `suspension`, and `repairs`
 
 ## Boundary notes
 
@@ -142,4 +173,4 @@ Any current or future validator should check structure and declared assumptions 
 
 ## Next review step
 
-The next low-risk review step is to add a returning lifecycle example or to refine the lightweight checker so it can warn about lifecycle-specific fields without claiming semantic completeness.
+The next low-risk review step is to add a closed lifecycle example or to refine the lightweight checker so it can warn about lifecycle-specific fields without claiming semantic completeness.
