@@ -73,6 +73,28 @@ Use this example when introducing:
 - distinction between suspension, repair, and closure
 - excluded claims for certification, safety, legal validity, moral resolution, and production readiness
 
+### `examples/returning-pathway.yaml`
+
+Purpose:
+
+- show a minimal pathway that returns from a suspended lifecycle state to an authorized human decision owner
+- model returning as a review state rather than automatic continuation, repair completion, or closure
+- connect stop authority, AI support, human decision owner, evidence log, return point, and return-condition record
+- show that returning restores the pathway to human review while keeping next-state choice explicit
+
+Key boundary:
+
+Returning is not automatic continuation, repair completion, closure, certification, compliance, safety, fairness, legal validity, moral resolution, production readiness, or AI decision authority. It makes the pathway available for human or institutional review and next-state decision.
+
+Use this example when introducing:
+
+- lifecycle state `returning`
+- return from suspension
+- return-condition review
+- distinction between returning, continuation, repair, suspension, and closure
+- human decision owner review after return
+- excluded claims for automatic continuation, repair completion, closure, certification, and production readiness
+
 ## Reading order for examples
 
 Recommended reading order:
@@ -83,7 +105,8 @@ Recommended reading order:
 4. `examples/minimal-pathway.yaml`
 5. `examples/repair-flow.yaml`
 6. `examples/suspended-pathway.yaml`
-7. `docs/example-review-notes.md`
+7. `examples/returning-pathway.yaml`
+8. `docs/example-review-notes.md`
 
 ## Naming convention
 
@@ -92,12 +115,12 @@ Current examples use descriptive filenames:
 - `minimal-pathway.yaml`
 - `repair-flow.yaml`
 - `suspended-pathway.yaml`
+- `returning-pathway.yaml`
 
 Future examples should prefer short names that describe the responsibility-pathway pattern rather than implementation details.
 
 Possible future names:
 
-- `returning-pathway.yaml`
 - `closed-pathway.yaml`
 - `approval-gate-flow.yaml`
 - `high-impact-action-flow.yaml`
@@ -113,14 +136,14 @@ New examples should:
 - include a return point when human review or authority return is relevant
 - state assumptions and excluded claims
 - avoid implying certification, compliance, safety, fairness, legal resolution, or moral resolution
-- distinguish suspension, repair, return, and closure when lifecycle state matters
+- distinguish suspension, return, repair, continuation, and closure when lifecycle state matters
 - remain small enough to be read without tooling
 
 ## Future work
 
 Low-risk next steps:
 
-- add examples for `returning` and `closed` lifecycle states
+- add an example for the `closed` lifecycle state
 - refine lightweight checker rules after more lifecycle examples exist
 - add diagrams only after example structures stabilize
 - add machine-readable fixtures only after schema validation rules are explicit
