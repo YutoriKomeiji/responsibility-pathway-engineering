@@ -18,6 +18,7 @@ Current Phase 2 invariant candidates:
 
 1. under current minimal assumptions, a node constructed as a safe AI node cannot hold final responsibility
 2. a safely constructed AI-assisted pathway has a human or institutional return point
+3. a safely constructed repaired pathway has a repair record
 
 These are represented by:
 
@@ -34,8 +35,12 @@ These are represented by:
 - `Pathway`
 - `HasAIParticipation`
 - `HasHumanOrInstitutionalReturnPoint`
+- `IsRepairedPathway`
+- `HasRepairRecord`
 - `AIReturnPointBoundary`
+- `RepairRecordBoundary`
 - `safe_ai_assisted_pathway_has_return_point`
+- `repaired_pathway_has_repair_record`
 
 ## Boundary
 
@@ -48,6 +53,8 @@ The current AI final-responsibility invariant is scoped to the current minimal m
 It is not a universal claim that future law, future institutions, states, international agreements, or users could never grant some form of legal or institutional personhood to AI systems.
 
 If such a layer is introduced in a future model, the AI final-responsibility invariant must be revisited instead of treated as absolute.
+
+The repair-record invariant does not mean real-world repair is complete, harm is eliminated, legal liability is resolved, moral responsibility is resolved, or closure is justified. It only states that a pathway declared repaired in the minimal model must preserve a repair-record signal.
 
 The current invariants do not make legal or moral claims. They state structural properties inside the minimal model.
 
