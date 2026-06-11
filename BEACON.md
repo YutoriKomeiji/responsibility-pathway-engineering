@@ -10,11 +10,20 @@ Phase 0 foundation is complete.
 
 Phase 1 concept model is substantially established.
 
-The repository has entered Phase 1.5: specification binding.
+The repository is in Phase 1.5: specification binding.
 
 Core definitions, the eight-element model, runtime model, responsibility node model, return point model, repair model, value/cost flow, stop authority, evidence log, action class matrix, approval gate, and decision owner model have been added.
 
 The core YAML specification has been expanded to version 0.2.0.
+
+A minimal schema split has been established under `spec/`:
+
+- `spec/node.schema.yaml`
+- `spec/action-class.schema.yaml`
+- `spec/return-point.schema.yaml`
+- `spec/evidence-log.schema.yaml`
+- `spec/repair.schema.yaml`
+- `spec/pathway.schema.yaml`
 
 ## Development Timeline
 
@@ -32,7 +41,7 @@ Claims precede applications.
 ## Current Focus
 
 - Keep concept documents and specification aligned
-- Split the core YAML into smaller schema files
+- Stabilize the schema split before adding examples
 - Add examples only after definitions and specifications are stable
 - Prepare bounded Lean invariants
 - Preserve the boundary that AI may participate as a pathway node but does not assume final responsibility
@@ -46,6 +55,7 @@ Claims precede applications.
 5. docs/source-mapping.md
 6. docs/definition.md
 7. spec/responsibility-pathway-core.yaml
+8. spec/pathway.schema.yaml
 
 ## Purpose
 
