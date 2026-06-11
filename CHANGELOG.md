@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 AI responsibility invariant assumption boundary clarified
+
+- `formal/lean/ResponsibilityPathway/Core.lean` updated with `ModelAssumptions` and `NoArtificialLegalPersonhood`
+- The AI final-responsibility invariant is now scoped to the current minimal model where no artificial legal-personhood layer is assumed
+- The theorem name was updated to `safe_ai_node_cannot_hold_final_responsibility_under_current_assumptions`
+- The formalization now explicitly leaves room for future legal, institutional, national, international, or user/provider-agreement models that may introduce artificial legal-personhood layers
+- `formal/lean/README.md` updated to clarify that the invariant is not a universal claim about all possible future legal or institutional regimes
+
 ### Phase 2 AI return-point invariant established
 
 - `formal/lean/ResponsibilityPathway/Core.lean` updated with a minimal `Pathway` model
