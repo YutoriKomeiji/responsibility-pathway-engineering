@@ -4,6 +4,19 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 1.5 examples, attribution, and reader path established
+
+- `docs/schema-cross-reference.md` added to explain how the split schema files relate to each other
+- `docs/validation-checklist.md` added as a bounded review guide for schema instances
+- `examples/minimal-pathway.yaml` added as the first minimal Responsibility Pathway example
+- `examples/repair-flow.yaml` added as the first minimal repair-flow example
+- Japanese comments added to examples to support Japanese readers without changing schema keys
+- `README.md` and `README.ja.md` updated with schema-document and example links
+- `LICENSE` added under the MIT License
+- Copyright notice standardized as `Akihisa Ono (小野昭久)`
+- `NOTICE.md` added to clarify authorship, attribution, AI-assistance, derivative-use responsibility, and responsibility boundaries
+- README license sections now link to `NOTICE.md`
+
 ### Phase 1.5 minimal schema split established
 
 - Initial schema split completed under `spec/`
