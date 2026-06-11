@@ -22,7 +22,8 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 8. [docs/development-process.md](docs/development-process.md) - development process
 9. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
 10. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
-11. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
+11. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
+12. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
 
 ## Examples
 
@@ -30,6 +31,8 @@ Minimal examples are available under `examples/`.
 
 - [examples/minimal-pathway.yaml](examples/minimal-pathway.yaml) - a minimal pathway where an AI support node returns responsibility to a human decision owner
 - [examples/repair-flow.yaml](examples/repair-flow.yaml) - a minimal repair flow after ambiguity or incomplete evidence is detected
+
+See [docs/example-index.md](docs/example-index.md) for example purposes, boundaries, and future example candidates.
 
 These examples are illustrative only. They do not claim legal liability resolution, moral accountability, safety, fairness, compliance, or production readiness.
 
