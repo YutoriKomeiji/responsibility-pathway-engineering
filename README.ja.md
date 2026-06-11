@@ -22,6 +22,7 @@ Early public specification.
 8. [docs/development-process.md](docs/development-process.md) - 開発プロセス
 9. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
 10. [docs/validation-checklist.md](docs/validation-checklist.md) - 境界付き検証チェックリスト
+11. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
 
 ## 例
 
