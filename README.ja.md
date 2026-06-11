@@ -39,8 +39,9 @@ Early public specification.
 10. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
 11. [docs/validation-checklist.md](docs/validation-checklist.md) - 境界付き検証チェックリスト
 12. [docs/validator-boundary.md](docs/validator-boundary.md) - 軽量検証ツールの境界
-13. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
-14. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
+13. [docs/checker-coverage.md](docs/checker-coverage.md) - 現在のライフサイクル対応チェッカー範囲
+14. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
+15. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
 
 ## 例
 
@@ -71,7 +72,7 @@ python scripts/check_examples.py
 
 このチェッカーは、限定された構造シグナルと明示された責任境界フィールドだけを確認します。通過結果は、認証済み、安全、遵法、公平、法的に有効、道徳的に解決済み、本番利用可能であることを意味しません。
 
-チェッカーの境界については [docs/validator-boundary.md](docs/validator-boundary.md) を参照してください。
+チェッカーの境界については [docs/validator-boundary.md](docs/validator-boundary.md)、現在のチェック範囲については [docs/checker-coverage.md](docs/checker-coverage.md) を参照してください。
 
 ## 範囲
 
