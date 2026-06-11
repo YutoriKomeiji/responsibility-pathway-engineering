@@ -160,12 +160,16 @@ theorem human_responsibility_node_is_not_ai
 A minimal pathway model for early structural invariants.
 
 This is intentionally not a complete graph model. It records only whether
-AI participates and whether a human or institutional return point is present.
+AI participates, whether a human or institutional return point is present,
+whether the pathway is declared repaired, and whether a repair record is
+present.
 -/
 structure Pathway where
   id : String
   aiParticipates : Bool
   hasHumanOrInstitutionalReturnPoint : Bool
+  lifecycleRepaired : Bool
+  hasRepairRecord : Bool
   deriving Repr
 
 /--
@@ -181,6 +185,19 @@ def HasHumanOrInstitutionalReturnPoint (pathway : Pathway) : Prop :=
   pathway.hasHumanOrInstitutionalReturnPoint = true
 
 /--
+Predicate: the pathway is declared as repaired inside the minimal model.
+-/
+def IsRepairedPathway (pathway : Pathway) : Prop :=
+  pathway.lifecycleRepaired = true
+
+/--
+Predicate: the pathway references at least one repair record inside the
+minimal model.
+-/
+def HasRepairRecord (pathway : Pathway) : Prop :=
+  pathway.hasRepairRecord = true
+
+/--
 Structural invariant: if AI participates, the pathway must preserve a
 human or institutional return point.
 
@@ -194,6 +211,17 @@ def AIReturnPointBoundary (pathway : Pathway) : Prop :=
   HasAIParticipation pathway -> HasHumanOrInstitutionalReturnPoint pathway
 
 /--
+Structural invariant: if a pathway is declared repaired, the minimal model
+requires a repair record.
+
+This does not mean real-world repair is complete, harm is eliminated,
+legal liability is resolved, moral responsibility is resolved, or closure is
+justified. It only requires structural traceability for the repaired state.
+-/
+def RepairRecordBoundary (pathway : Pathway) : Prop :=
+  IsRepairedPathway pathway -> HasRepairRecord pathway
+
+/--
 A constructor-level safe AI-assisted pathway includes a human or institutional
 return point.
 -/
@@ -201,7 +229,9 @@ def safeAIAssistedPathway (id : String) : Pathway :=
   {
     id := id,
     aiParticipates := true,
-    hasHumanOrInstitutionalReturnPoint := true
+    hasHumanOrInstitutionalReturnPoint := true,
+    lifecycleRepaired := false,
+    hasRepairRecord := false
   }
 
 /--
@@ -224,7 +254,9 @@ def nonAIPathway (id : String) : Pathway :=
   {
     id := id,
     aiParticipates := false,
-    hasHumanOrInstitutionalReturnPoint := false
+    hasHumanOrInstitutionalReturnPoint := false,
+    lifecycleRepaired := false,
+    hasRepairRecord := false
   }
 
 theorem non_ai_pathway_satisfies_ai_return_point_boundary
@@ -233,5 +265,40 @@ theorem non_ai_pathway_satisfies_ai_return_point_boundary
   intro hAI
   unfold HasAIParticipation at hAI
   simp [nonAIPathway] at hAI
+
+/--
+A constructor-level repaired pathway includes a repair record.
+-/
+def repairedPathwayWithRecord (id : String) : Pathway :=
+  {
+    id := id,
+    aiParticipates := true,
+    hasHumanOrInstitutionalReturnPoint := true,
+    lifecycleRepaired := true,
+    hasRepairRecord := true
+  }
+
+/--
+The third Phase 2 invariant candidate:
+a safely constructed repaired pathway satisfies the repair-record boundary.
+-/
+theorem repaired_pathway_has_repair_record
+    (id : String) :
+    RepairRecordBoundary (repairedPathwayWithRecord id) := by
+  intro hRepaired
+  unfold HasRepairRecord
+  simp [repairedPathwayWithRecord]
+
+/--
+A pathway that is not declared repaired does not require a repair record under
+this repair-specific boundary. This theorem only states the implication form
+is satisfied vacuously in the constructor-level non-repaired case.
+-/
+theorem non_repaired_pathway_satisfies_repair_record_boundary
+    (id : String) :
+    RepairRecordBoundary (safeAIAssistedPathway id) := by
+  intro hRepaired
+  unfold IsRepairedPathway at hRepaired
+  simp [safeAIAssistedPathway] at hRepaired
 
 end ResponsibilityPathway
