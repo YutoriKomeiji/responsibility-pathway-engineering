@@ -10,7 +10,8 @@ This changelog records conceptual milestones rather than individual code edits.
 - Checker output explicitly avoids certification, safety, compliance, fairness, legal, moral, and production-readiness claims
 - `docs/validator-boundary.md` added to define what lightweight validation tools may and may not claim
 - `requirements.txt` added with the minimal Python dependency for the example checker
-- `README.md` and `README.ja.md` updated with lightweight checker, setup command, run command, and validator-boundary links
+- `.github/workflows/check-examples.yml` added to run bounded structural example checks on relevant changes
+- `README.md` and `README.ja.md` updated with lightweight checker, setup command, run command, GitHub Actions workflow, and validator-boundary links
 
 ### Authorship clarification and Phase 1.6 entry established
 
