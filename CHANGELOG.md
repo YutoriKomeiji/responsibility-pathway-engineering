@@ -4,6 +4,15 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Authorship clarification and Phase 1.6 entry established
+
+- `AUTHORSHIP.md` added to clarify independent authorship, attribution, and repository-primary authorship information
+- `AUTHORS.md` updated with independent affiliation signal and authorship clarification link
+- `CITATION.cff` added as machine-readable citation metadata
+- `README.md` and `README.ja.md` updated with author, independent repository affiliation, and authorship/citation links
+- `docs/phase-1-6-plan.md` added as the next lightweight validation phase plan
+- `README.md` and `README.ja.md` updated with Phase 1.6 plan links in the reader path
+
 ### Phase 1.5 examples, attribution, and reader path established
 
 - `docs/schema-cross-reference.md` added to explain how the split schema files relate to each other
