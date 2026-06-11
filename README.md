@@ -20,6 +20,17 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 6. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
 7. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
 8. [docs/development-process.md](docs/development-process.md) - development process
+9. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
+10. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
+
+## Examples
+
+Minimal examples are available under `examples/`.
+
+- [examples/minimal-pathway.yaml](examples/minimal-pathway.yaml) - a minimal pathway where an AI support node returns responsibility to a human decision owner
+- [examples/repair-flow.yaml](examples/repair-flow.yaml) - a minimal repair flow after ambiguity or incomplete evidence is detected
+
+These examples are illustrative only. They do not claim legal liability resolution, moral accountability, safety, fairness, compliance, or production readiness.
 
 ## Initial scope
 
@@ -29,6 +40,7 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 - Return point model
 - Formalization candidates (Lean)
 - Reference specifications
+- Examples
 
 ## Repository principle
 
