@@ -1,0 +1,51 @@
+version: 0.1.0
+kind: ResponsibilityPathway
+
+definition:
+  name: Responsibility Pathway
+  description: >
+    A structural pathway through which responsibility may
+    originate, propagate, suspend, return, and be repaired.
+
+scope:
+  entities:
+    - Human
+    - AI
+    - Organization
+    - Institution
+    - BusinessProcess
+    - InformationSystem
+
+elements:
+  - meaning
+  - authority
+  - time
+  - quality
+  - trust
+  - reversibility
+  - value
+  - cost
+
+lifecycle:
+  - originate
+  - propagate
+  - suspend
+  - return
+  - repair
+
+non_goals:
+  - blame_assignment
+  - legal_doctrine
+  - audit_log
+  - provenance_database
+  - workflow_engine
+  - complete_governance_framework
+
+responsibility:
+  human_author: required
+  ai_author: false
+
+formalization:
+  lean: planned
+  tla_plus: planned
+  theorem_status: partial
