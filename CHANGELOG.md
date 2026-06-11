@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 1.6 returning lifecycle example established
+
+- `examples/returning-pathway.yaml` added as a minimal returning lifecycle-state example
+- The returning example distinguishes return from automatic continuation, repair completion, closure, certification, safety, compliance, legal validity, moral resolution, and production readiness
+- `docs/example-index.md` updated with returning-pathway purpose, boundary, reading order, naming convention, and future lifecycle-example notes
+- `docs/example-review-notes.md` updated with bounded review notes for the returning example
+- `README.md` and `README.ja.md` updated with returning example links
+
 ### Phase 1.6 suspended lifecycle example established
 
 - `examples/suspended-pathway.yaml` added as a minimal suspended lifecycle-state example
