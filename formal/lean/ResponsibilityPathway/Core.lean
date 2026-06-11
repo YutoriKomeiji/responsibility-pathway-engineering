@@ -162,8 +162,9 @@ A minimal pathway model for early structural invariants.
 This is intentionally not a complete graph model. It records only whether
 AI participates, whether a human or institutional return point is present,
 whether the pathway is declared repaired, whether a repair record is present,
-whether the pathway is declared suspended, and whether review or return
-conditions are preserved.
+whether the pathway is declared suspended, whether review or return conditions
+are preserved, whether the pathway is declared returning, and whether automatic
+continuation is allowed.
 -/
 structure Pathway where
   id : String
@@ -173,6 +174,8 @@ structure Pathway where
   hasRepairRecord : Bool
   lifecycleSuspended : Bool
   hasReviewOrReturnCondition : Bool
+  lifecycleReturning : Bool
+  automaticContinuationAllowed : Bool
   deriving Repr
 
 /--
@@ -214,6 +217,18 @@ def HasReviewOrReturnCondition (pathway : Pathway) : Prop :=
   pathway.hasReviewOrReturnCondition = true
 
 /--
+Predicate: the pathway is declared as returning inside the minimal model.
+-/
+def IsReturningPathway (pathway : Pathway) : Prop :=
+  pathway.lifecycleReturning = true
+
+/--
+Predicate: the pathway allows automatic continuation inside the minimal model.
+-/
+def AllowsAutomaticContinuation (pathway : Pathway) : Prop :=
+  pathway.automaticContinuationAllowed = true
+
+/--
 Structural invariant: if AI participates, the pathway must preserve a
 human or institutional return point.
 
@@ -249,6 +264,17 @@ def SuspensionReviewReturnBoundary (pathway : Pathway) : Prop :=
   IsSuspendedPathway pathway -> HasReviewOrReturnCondition pathway
 
 /--
+Structural invariant: if a pathway is declared returning, the minimal model
+must not treat it as automatically continuing.
+
+This does not mean return is justified, authorized, safe, compliant, fair,
+legally valid, morally resolved, or operationally complete. It only states that
+returning is not automatic continuation.
+-/
+def ReturningNoAutomaticContinuationBoundary (pathway : Pathway) : Prop :=
+  IsReturningPathway pathway -> ¬ AllowsAutomaticContinuation pathway
+
+/--
 A constructor-level safe AI-assisted pathway includes a human or institutional
 return point.
 -/
@@ -260,7 +286,9 @@ def safeAIAssistedPathway (id : String) : Pathway :=
     lifecycleRepaired := false,
     hasRepairRecord := false,
     lifecycleSuspended := false,
-    hasReviewOrReturnCondition := false
+    hasReviewOrReturnCondition := false,
+    lifecycleReturning := false,
+    automaticContinuationAllowed := false
   }
 
 /--
@@ -287,7 +315,9 @@ def nonAIPathway (id : String) : Pathway :=
     lifecycleRepaired := false,
     hasRepairRecord := false,
     lifecycleSuspended := false,
-    hasReviewOrReturnCondition := false
+    hasReviewOrReturnCondition := false,
+    lifecycleReturning := false,
+    automaticContinuationAllowed := false
   }
 
 theorem non_ai_pathway_satisfies_ai_return_point_boundary
@@ -308,7 +338,9 @@ def repairedPathwayWithRecord (id : String) : Pathway :=
     lifecycleRepaired := true,
     hasRepairRecord := true,
     lifecycleSuspended := false,
-    hasReviewOrReturnCondition := false
+    hasReviewOrReturnCondition := false,
+    lifecycleReturning := false,
+    automaticContinuationAllowed := false
   }
 
 /--
@@ -345,7 +377,9 @@ def suspendedPathwayWithReviewOrReturn (id : String) : Pathway :=
     lifecycleRepaired := false,
     hasRepairRecord := false,
     lifecycleSuspended := true,
-    hasReviewOrReturnCondition := true
+    hasReviewOrReturnCondition := true,
+    lifecycleReturning := false,
+    automaticContinuationAllowed := false
   }
 
 /--
@@ -372,5 +406,46 @@ theorem non_suspended_pathway_satisfies_suspension_boundary
   intro hSuspended
   unfold IsSuspendedPathway at hSuspended
   simp [safeAIAssistedPathway] at hSuspended
+
+/--
+A constructor-level returning pathway does not allow automatic continuation.
+-/
+def returningPathwayWithoutAutomaticContinuation (id : String) : Pathway :=
+  {
+    id := id,
+    aiParticipates := true,
+    hasHumanOrInstitutionalReturnPoint := true,
+    lifecycleRepaired := false,
+    hasRepairRecord := false,
+    lifecycleSuspended := false,
+    hasReviewOrReturnCondition := true,
+    lifecycleReturning := true,
+    automaticContinuationAllowed := false
+  }
+
+/--
+The fifth Phase 2 invariant candidate:
+a safely constructed returning pathway satisfies the no-automatic-continuation
+boundary.
+-/
+theorem returning_pathway_does_not_allow_automatic_continuation
+    (id : String) :
+    ReturningNoAutomaticContinuationBoundary
+      (returningPathwayWithoutAutomaticContinuation id) := by
+  intro hReturning
+  unfold AllowsAutomaticContinuation
+  simp [returningPathwayWithoutAutomaticContinuation]
+
+/--
+A pathway that is not declared returning does not trigger this returning-specific
+boundary. This theorem only states the implication form is satisfied vacuously
+in the constructor-level non-returning case.
+-/
+theorem non_returning_pathway_satisfies_returning_boundary
+    (id : String) :
+    ReturningNoAutomaticContinuationBoundary (safeAIAssistedPathway id) := by
+  intro hReturning
+  unfold IsReturningPathway at hReturning
+  simp [safeAIAssistedPathway] at hReturning
 
 end ResponsibilityPathway
