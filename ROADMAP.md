@@ -35,12 +35,12 @@
 ## Phase 1.5 - Specification Binding (Current)
 
 - Core YAML specification expanded to v0.2.0
-- Align concept documents with machine-readable specification
-- Split core YAML into focused schema files
-- Define validation-oriented fields for nodes, roles, lifecycle, action classes, evidence, return points, and repair
-- Add minimal examples only after definitions and specifications are stable
+- Concept documents aligned with initial machine-readable specification
+- Minimal schema split established under `spec/`
+- Validation-oriented fields defined for nodes, roles, lifecycle, action classes, evidence, return points, repair, and pathway composition
+- Minimal examples should be added only after definitions and specifications remain stable
 
-Candidate schema files:
+Established schema files:
 
 - spec/node.schema.yaml
 - spec/action-class.schema.yaml
@@ -48,6 +48,13 @@ Candidate schema files:
 - spec/evidence-log.schema.yaml
 - spec/repair.schema.yaml
 - spec/pathway.schema.yaml
+
+Next Phase 1.5 tasks:
+
+- Add small schema examples after reviewing boundaries
+- Add schema cross-reference notes
+- Add validation checklist documentation
+- Keep CHANGELOG, BEACON, and ROADMAP updated only at milestones
 
 ## Phase 2 - Formalization
 
