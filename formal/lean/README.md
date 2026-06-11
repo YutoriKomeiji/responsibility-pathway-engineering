@@ -10,22 +10,29 @@ Formalization is incremental and scope-limited.
 
 ## Current files
 
-- `ResponsibilityPathway/Core.lean` - minimal node model and first responsibility-boundary invariant candidates
+- `ResponsibilityPathway/Core.lean` - minimal node and pathway model with early responsibility-boundary invariant candidates
 
 ## Current invariant candidates
 
-The first Phase 2 invariant candidate is:
+Current Phase 2 invariant candidates:
 
-- a node constructed as a safe AI node cannot hold final responsibility
+1. a node constructed as a safe AI node cannot hold final responsibility
+2. a safely constructed AI-assisted pathway has a human or institutional return point
 
-This is represented by:
+These are represented by:
 
 - `NodeKind`
 - `Node`
 - `IsAI`
+- `IsHumanOrInstitution`
 - `CanHoldFinalResponsibility`
 - `AIResponsibilityBoundary`
 - `safe_ai_node_cannot_hold_final_responsibility`
+- `Pathway`
+- `HasAIParticipation`
+- `HasHumanOrInstitutionalReturnPoint`
+- `AIReturnPointBoundary`
+- `safe_ai_assisted_pathway_has_return_point`
 
 ## Boundary
 
@@ -33,7 +40,7 @@ A Lean proof in this repository proves only the explicitly stated theorem under 
 
 It does not prove that any real-world AI system, organization, workflow, institution, or legal framework is safe, accountable, fair, lawful, compliant, morally resolved, complete, or production ready.
 
-The first invariant does not make a legal or moral claim. It only states a structural property inside the minimal model.
+The current invariants do not make legal or moral claims. They state structural properties inside the minimal model.
 
 ## Strategy
 
