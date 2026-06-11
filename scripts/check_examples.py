@@ -176,6 +176,96 @@ def contains_all_keywords(value: Any, keywords: list[str]) -> list[str]:
     return [keyword for keyword in keywords if keyword not in joined]
 
 
+def find_node_by_id(data: dict[str, Any], node_id: Any) -> dict[str, Any] | None:
+    nodes = data.get("nodes")
+    if not isinstance(nodes, list):
+        return None
+    for node in nodes:
+        if isinstance(node, dict) and node.get("id") == node_id:
+            return node
+    return None
+
+
+def check_role_points_to_human_capacity(
+    result: CheckResult,
+    data: dict[str, Any],
+    role_name: str,
+) -> None:
+    roles = data.get("roles")
+    if not isinstance(roles, dict):
+        result.warn(f"roles mapping missing while checking {role_name}")
+        return
+
+    node_id = roles.get(role_name)
+    if node_id in (None, ""):
+        result.warn(f"roles.{role_name} should point to a responsibility-bearing node")
+        return
+
+    node = find_node_by_id(data, node_id)
+    if node is None:
+        result.warn(f"roles.{role_name} points to missing node: {node_id}")
+        return
+
+    if node.get("human_responsibility_capacity") is True:
+        result.pass_(f"roles.{role_name} points to human responsibility capacity")
+    else:
+        result.warn(f"roles.{role_name} should point to human responsibility capacity")
+
+
+def check_originating_lifecycle(result: CheckResult, data: dict[str, Any]) -> None:
+    result.pass_("originating lifecycle rule applied")
+
+    check_role_points_to_human_capacity(result, data, "decision_owner")
+    check_role_points_to_human_capacity(result, data, "stop_authority")
+
+    repairs = data.get("repairs")
+    if isinstance(repairs, list) and not repairs:
+        result.pass_("originating example has no repair records")
+    elif isinstance(repairs, list):
+        result.warn("originating example usually should not include repair records")
+    else:
+        result.warn("repairs should be present as a list, even if empty")
+
+    if has_human_return_point(data):
+        result.pass_("originating example preserves human return point")
+    else:
+        result.warn("originating example should preserve a human return point")
+
+
+def check_repaired_lifecycle(result: CheckResult, data: dict[str, Any]) -> None:
+    result.pass_("repaired lifecycle rule applied")
+
+    check_role_points_to_human_capacity(result, data, "decision_owner")
+    check_role_points_to_human_capacity(result, data, "repair_owner")
+
+    repairs = data.get("repairs")
+    if isinstance(repairs, list) and repairs:
+        result.pass_("repaired example includes at least one repair record")
+    else:
+        result.fail("lifecycle_state repaired requires at least one repair record")
+        return
+
+    repair_text = joined_strings(repairs)
+    for keyword in ["trigger", "repair_owner", "repair_state"]:
+        if keyword in repair_text:
+            result.pass_(f"repair record includes {keyword} signal")
+        else:
+            result.warn(f"repair record may be missing {keyword} signal")
+
+    formalization_scope = data.get("formalization_scope")
+    missing = contains_all_keywords(
+        formalization_scope,
+        ["legal", "moral", "harm", "real_world"],
+    )
+    if missing:
+        result.warn(
+            "repaired formalization_scope may be missing repair-boundary signals: "
+            + ", ".join(missing)
+        )
+    else:
+        result.pass_("repaired formalization_scope includes repair-boundary signals")
+
+
 def check_suspension_block(result: CheckResult, data: dict[str, Any]) -> None:
     suspension = data.get("suspension")
     if not isinstance(suspension, dict):
@@ -307,6 +397,14 @@ def check_lifecycle_specific_fields(result: CheckResult, data: dict[str, Any]) -
         return
 
     result.pass_(f"lifecycle_state is declared: {lifecycle_state}")
+
+    if lifecycle_state == "originating":
+        check_originating_lifecycle(result, data)
+        return
+
+    if lifecycle_state == "repaired":
+        check_repaired_lifecycle(result, data)
+        return
 
     required_block = LIFECYCLE_REQUIRED_BLOCKS.get(lifecycle_state)
     if required_block is None:
