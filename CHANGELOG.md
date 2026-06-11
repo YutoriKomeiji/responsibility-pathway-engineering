@@ -4,6 +4,13 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 1.6 lightweight validation boundary established
+
+- `scripts/check_examples.py` added as a bounded structural checker for example YAML files
+- Checker output explicitly avoids certification, safety, compliance, fairness, legal, moral, and production-readiness claims
+- `docs/validator-boundary.md` added to define what lightweight validation tools may and may not claim
+- `README.md` and `README.ja.md` updated with lightweight checker and validator-boundary links
+
 ### Authorship clarification and Phase 1.6 entry established
 
 - `AUTHORSHIP.md` added to clarify independent authorship, attribution, and repository-primary authorship information
