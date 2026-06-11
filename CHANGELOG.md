@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 closure evidence-reopening invariant established
+
+- `formal/lean/ResponsibilityPathway/Core.lean` updated with closed-pathway structural fields
+- `IsClosedPathway`, `HasEvidenceRecord`, `HasReopeningCondition`, and `ClosureEvidenceReopeningBoundary` predicates added
+- Sixth invariant candidate added: a safely constructed closed pathway preserves evidence and reopening-condition records
+- Non-closed pathway implication case added to show the closure-specific boundary is not over-applied
+- `formal/lean/README.md` updated with the current closure evidence/reopening invariant candidate and boundary note
+
 ### Phase 2 returning no-automatic-continuation invariant established
 
 - `formal/lean/ResponsibilityPathway/Core.lean` updated with returning-pathway structural fields
