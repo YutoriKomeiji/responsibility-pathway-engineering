@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 repair-record invariant established
+
+- `formal/lean/ResponsibilityPathway/Core.lean` updated with repaired-pathway structural fields
+- `IsRepairedPathway`, `HasRepairRecord`, and `RepairRecordBoundary` predicates added
+- Third invariant candidate added: a safely constructed repaired pathway has a repair record
+- Non-repaired pathway implication case added to show the repair-specific boundary is not over-applied
+- `formal/lean/README.md` updated with the current repair-record invariant candidate and boundary note
+
 ### Phase 2 AI responsibility invariant assumption boundary clarified
 
 - `formal/lean/ResponsibilityPathway/Core.lean` updated with `ModelAssumptions` and `NoArtificialLegalPersonhood`
