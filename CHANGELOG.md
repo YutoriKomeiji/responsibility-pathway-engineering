@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### ROADMAP phase status wording aligned
+
+- Phase 1.6 remaining tasks were updated to maintenance wording for bounded checker stability and small readable examples
+- Phase 2 heading now reflects the current snapshot and theorem index alongside the Lean core split and build path
+- This is a documentation alignment only and adds no new formal claims
+
 ### Lean README synchronized with Phase 2 current snapshot
 
 - `formal/lean/README.md` now links to `docs/phase-2-current-snapshot.md`
