@@ -30,6 +30,8 @@ A bounded review-result checker is available at [scripts/check_review_results.py
 
 The `Check review-result fixtures` GitHub Actions workflow has been observed green for run `#1` on commit `aaaece3` on `main`. This observed green status means only that the bounded review-result fixture checker passed for that repository state; it is not certification.
 
+Phase 3 has an entry boundary at [docs/reference-implementation-boundary.md](docs/reference-implementation-boundary.md). Read it before adding reference implementations.
+
 ## Authorship and citation
 
 This repository is authored and maintained by Akihisa Ono (小野昭久) as an independent public specification and design framework.
@@ -53,22 +55,23 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 6. [docs/enterprise-implementation-profile.md](docs/enterprise-implementation-profile.md) - minimal enterprise adoption profile and layer separation
 7. [docs/responsibility-pathway-record-review.md](docs/responsibility-pathway-record-review.md) - plain-language review process for responsibility pathway records
 8. [docs/phase-2-5-current-snapshot.md](docs/phase-2-5-current-snapshot.md) - current Phase 2.5 enterprise and record-review snapshot
-9. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - lightweight validation and lifecycle-example status
-10. [formal/lean/README.md](formal/lean/README.md) - Lean formalization boundary and current invariant candidates
-11. [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md) - current Phase 2 Lean snapshot and restart point
-12. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - current Phase 2 Lean split plan and non-goals
-13. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - current Phase 2 Lean theorem role index
-14. [docs/definition.md](docs/definition.md) - core definition
-15. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
-16. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
-17. [docs/development-process.md](docs/development-process.md) - development process
-18. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
-19. [spec/review-result.schema.yaml](spec/review-result.schema.yaml) - bounded review-result output schema
-20. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
-21. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
-22. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
-23. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
-24. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
+9. [docs/reference-implementation-boundary.md](docs/reference-implementation-boundary.md) - boundary before Phase 3 reference implementations
+10. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - lightweight validation and lifecycle-example status
+11. [formal/lean/README.md](formal/lean/README.md) - Lean formalization boundary and current invariant candidates
+12. [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md) - current Phase 2 Lean snapshot and restart point
+13. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - current Phase 2 Lean split plan and non-goals
+14. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - current Phase 2 Lean theorem role index
+15. [docs/definition.md](docs/definition.md) - core definition
+16. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
+17. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
+18. [docs/development-process.md](docs/development-process.md) - development process
+19. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
+20. [spec/review-result.schema.yaml](spec/review-result.schema.yaml) - bounded review-result output schema
+21. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
+22. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
+23. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
+24. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
+25. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
 
 ## Examples
 
