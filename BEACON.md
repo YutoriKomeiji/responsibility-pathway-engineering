@@ -16,6 +16,8 @@ Phase 1.6 lightweight validation and lifecycle-example coverage is substantially
 
 Phase 2 formalization has started, the first minimal Lean lifecycle-invariant set has been introduced, the Lean core has been split into small modules, and a minimal Lean build path has been added.
 
+Phase 2.5 enterprise implementation guidance has started. `docs/enterprise-implementation-profile.md` connects the minimal formal core to workflow, evidence, checker, and governance layers. `docs/responsibility-pathway-record-review.md` describes a plain-language review and recheck process for Responsibility Pathway records.
+
 Core definitions, the eight-element model, runtime model, responsibility node model, return point model, repair model, value/cost flow, stop authority, evidence log, action class matrix, approval gate, and decision owner model have been added.
 
 The core YAML specification has been expanded to version 0.2.0.
@@ -74,6 +76,8 @@ The index groups Basic constructor sanity theorems, Example lifecycle sanity the
 
 The AI final-responsibility boundary is assumption-scoped. In the current minimal model, no artificial legal-personhood layer is assumed, so an AI node is not treated as a final responsibility holder. Future legal, institutional, national, international, or user/provider-agreement layers must be modeled explicitly if introduced.
 
+Enterprise guidance and record review guidance remain non-certifying. They help organizations preserve readable responsibility pathways, evidence records, review conditions, and excluded claims. They do not claim legal validity, safety, compliance, fairness, moral resolution, institutional certification, production readiness, or replacement of accountable humans and institutions.
+
 ## Development Timeline
 
 Observation
@@ -81,6 +85,8 @@ Observation
 → Specification
 → Lightweight structural checking
 → Formalization
+→ Enterprise guidance
+→ Record review
 → Claim
 → Application
 
@@ -96,9 +102,11 @@ Claims precede applications.
 - Keep Lean invariants small, explicit, and assumption-scoped
 - Preserve the split Lean spine before adding more theorem families
 - Use the current snapshot and theorem-role index before adding or renaming Lean theorem candidates
+- Keep enterprise guidance readable and non-certifying
+- Keep Responsibility Pathway record review plain, recheckable, and bounded to structure
 - Preserve the boundary that AI may participate as a pathway node but does not assume final responsibility under the current minimal model
 - Keep future artificial legal-personhood or institutional-personhood layers explicit if modeled later
-- Grow only when responsibility can still return from claims to definitions, examples, schemas, checker boundaries, excluded claims, Lean definitions, theorem roles, snapshots, and assumptions
+- Grow only when responsibility can still return from claims to definitions, examples, schemas, checker boundaries, excluded claims, Lean definitions, theorem roles, snapshots, assumptions, enterprise guidance, and record review boundaries
 
 ## Read First
 
@@ -107,31 +115,34 @@ Claims precede applications.
 3. ROADMAP.md
 4. CHANGELOG.md
 5. docs/minimal-core-rationale.md
-6. docs/phase-1-6-plan.md
-7. formal/lean/README.md
-8. docs/phase-2-current-snapshot.md
-9. docs/phase-2-lean-split-plan.md
-10. docs/phase-2-lean-theorem-index.md
-11. docs/definition.md
-12. docs/eight-elements.md
-13. docs/validator-boundary.md
-14. docs/checker-coverage.md
-15. docs/example-index.md
-16. docs/example-review-notes.md
-17. spec/responsibility-pathway-core.yaml
-18. spec/pathway.schema.yaml
+6. docs/enterprise-implementation-profile.md
+7. docs/responsibility-pathway-record-review.md
+8. docs/phase-1-6-plan.md
+9. formal/lean/README.md
+10. docs/phase-2-current-snapshot.md
+11. docs/phase-2-lean-split-plan.md
+12. docs/phase-2-lean-theorem-index.md
+13. docs/definition.md
+14. docs/eight-elements.md
+15. docs/validator-boundary.md
+16. docs/checker-coverage.md
+17. docs/example-index.md
+18. docs/example-review-notes.md
+19. spec/responsibility-pathway-core.yaml
+20. spec/pathway.schema.yaml
 
 ## Restart Point
 
 The next low-risk action is not to expand into larger reference implementations yet.
 
-Continue Phase 2 by either:
+Continue by either:
 
-- observing the next Lean workflow result and adjusting only if the minimal build path fails
+- observing the next Lean workflow result and adjusting only if the minimal build path fails after Lean-file changes
 - adding only very small theorem candidates after the current assumptions, theorem roles, split modules, and current snapshot remain stable
-- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, and the theorem-role index
+- checking schema and checker alignment with the enterprise implementation profile and Responsibility Pathway record review guide
+- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, theorem-role index, enterprise implementation profile, and record review guide
 
-Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshot, and excluded claims remain aligned.
+Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshot, enterprise guidance, record review boundaries, and excluded claims remain aligned.
 
 ## Purpose
 
