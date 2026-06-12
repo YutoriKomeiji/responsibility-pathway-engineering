@@ -18,6 +18,8 @@ The Phase 2 Lean spine is split into small modules:
 - `ResponsibilityPathway/Invariants.lean` - scoped boundary predicates and current theorem candidates
 - `ResponsibilityPathway/Core.lean` - stable entry point that imports the split modules
 
+The current Phase 2 snapshot is recorded in `../../docs/phase-2-current-snapshot.md`.
+
 The split plan is recorded in `../../docs/phase-2-lean-split-plan.md`.
 
 The theorem-role index is recorded in `../../docs/phase-2-lean-theorem-index.md`.
