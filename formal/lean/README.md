@@ -20,6 +20,24 @@ The Phase 2 Lean spine is split into small modules:
 
 The split plan is recorded in `../../docs/phase-2-lean-split-plan.md`.
 
+## Build path
+
+The repository now includes a minimal Lean build path:
+
+- `../../lean-toolchain`
+- `../../lakefile.lean`
+- `../../.github/workflows/check-lean.yml`
+
+From the repository root, run:
+
+```bash
+lake build
+```
+
+The GitHub Actions workflow uses `leanprover/lean-action@v1` to run the minimal Lean package build.
+
+A passing build only checks the Lean package. It does not certify legal validity, safety, compliance, fairness, moral accountability resolution, institutional certification, or production readiness.
+
 ## Current invariant candidates
 
 Current Phase 2 invariant candidates:
