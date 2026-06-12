@@ -150,6 +150,10 @@ not_claimed:
   - production readiness
 ```
 
+A minimal YAML fixture is available at `fixtures/review-results/record-review-result-minimal.yaml`.
+
+That fixture is an output example only. It is not a pathway example, legal decision, safety decision, compliance decision, fairness decision, moral-resolution decision, certification, or production approval.
+
 The review result should avoid broad wording.
 
 Use:
