@@ -31,6 +31,24 @@ The example preserves the following boundaries:
 
 `docs/example-index.md` now includes the new example in the current example list, reading order, and naming convention.
 
+## Observed bounded check
+
+Master provided a GitHub Actions screenshot showing the bounded example checker run succeeded after this example was added.
+
+Observed run:
+
+- workflow run: `Check examples #9`
+- branch: `main`
+- observed commit: `d4e467a`
+- total duration: about 9 seconds
+- job: `Bounded structural example checks`
+- job duration: about 6 seconds
+- job result: success
+
+This observation means the example passed the repository's bounded structural example checks for that repository state.
+
+It does not mean the example is legally valid, safe, compliant, fair, morally resolved, institutionally certified, production ready, real-world validated, or eligible to transfer final responsibility to an AI node.
+
 ## Non-certifying interpretation
 
 This milestone remains structural and non-certifying.
