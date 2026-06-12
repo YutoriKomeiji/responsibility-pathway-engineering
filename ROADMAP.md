@@ -80,7 +80,7 @@ Remaining Phase 1.6 tasks:
 - keep examples small and manually readable
 - avoid adding higher-impact examples until lifecycle boundaries remain stable
 
-## Phase 2 - Formalization (Started; minimal lifecycle invariant set reached; Lean core split completed)
+## Phase 2 - Formalization (Started; minimal lifecycle invariant set reached; Lean core split and minimal build path added)
 
 - Lean invariants
 - State transitions
@@ -98,10 +98,12 @@ Current Phase 2 status:
 - `formal/lean/ResponsibilityPathway/Core.lean` is now a stable import entry point
 - the Lean spine has been split into `Basic.lean`, `Lifecycle.lean`, `Examples.lean`, and `Invariants.lean`
 - six scoped lifecycle-invariant candidates have been preserved after the split
+- `lean-toolchain` pins the minimal Lean toolchain
+- `lakefile.lean` defines a minimal Lake package using `formal/lean` as the source directory
+- `.github/workflows/check-lean.yml` defines a minimal Lean build workflow using `lake build`
 - `formal/lean/README.md` records the formalization boundary, current invariant set, and module layout
 - `docs/phase-2-lean-split-plan.md` records the split rationale, order, stop conditions, and non-goals
 - README and README.ja summarize the current Phase 2 Lean status
-- Lean CI or local Lean build verification is not yet established; the current GitHub Actions workflow covers only the bounded Python example checker
 
 Formalization rule:
 
@@ -122,7 +124,7 @@ The current AI final-responsibility invariant is assumption-scoped. In the curre
 
 Next low-risk Phase 2 work:
 
-- establish a minimal Lean toolchain and build/check path before adding more theorem families
+- observe the first Lean workflow result and adjust only if the minimal build path fails
 - keep formalization incremental and assumption-explicit
 - maintain traceability among examples, schemas, checker boundaries, Lean definitions, and excluded claims
 
