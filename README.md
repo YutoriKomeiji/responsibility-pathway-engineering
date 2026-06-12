@@ -16,7 +16,7 @@ This repository is intentionally small and specification-first. See [docs/minima
 
 Phase 2 has started. The current Lean formalization contains a minimal node/pathway model and a scoped lifecycle-invariant set in [formal/lean/ResponsibilityPathway/Core.lean](formal/lean/ResponsibilityPathway/Core.lean). These invariants are structural, assumption-bound, and non-certifying.
 
-The Phase 2 Lean spine has now been split into small modules while preserving `Core.lean` as the stable entry point. See [formal/lean/README.md](formal/lean/README.md), [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md), and [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md).
+The Phase 2 Lean spine has now been split into small modules while preserving `Core.lean` as the stable entry point. See [formal/lean/README.md](formal/lean/README.md), [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md), [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md), and [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md).
 
 ## Authorship and citation
 
@@ -40,18 +40,19 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 5. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - why the current repository remains intentionally small
 6. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - lightweight validation and lifecycle-example status
 7. [formal/lean/README.md](formal/lean/README.md) - Lean formalization boundary and current invariant candidates
-8. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - current Phase 2 Lean split plan and non-goals
-9. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - current Phase 2 Lean theorem role index
-10. [docs/definition.md](docs/definition.md) - core definition
-11. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
-12. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
-13. [docs/development-process.md](docs/development-process.md) - development process
-14. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
-15. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
-16. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
-17. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
-18. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
-19. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
+8. [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md) - current Phase 2 Lean snapshot and restart point
+9. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - current Phase 2 Lean split plan and non-goals
+10. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - current Phase 2 Lean theorem role index
+11. [docs/definition.md](docs/definition.md) - core definition
+12. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
+13. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
+14. [docs/development-process.md](docs/development-process.md) - development process
+15. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
+16. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
+17. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
+18. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
+19. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
+20. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
 
 ## Examples
 
@@ -97,6 +98,8 @@ The Lean spine is split into:
 - `formal/lean/ResponsibilityPathway/Core.lean`
 
 `Core.lean` remains the stable import entry point.
+
+The current Phase 2 snapshot is available at [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md).
 
 The theorem-role index is available at [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md).
 
