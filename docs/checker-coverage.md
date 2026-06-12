@@ -98,6 +98,8 @@ They remain bounded structural checks. A pass does not certify the record, the w
 
 `fixtures/review-results/record-review-result-minimal.yaml` provides a small readable review-result output fixture.
 
+`docs/review-result-schema-fixture-alignment.md` records a documentation-only alignment check between the current schema and fixture.
+
 The current checker does not read `fixtures/review-results/*.yaml`.
 
 The current checker also does not validate `spec/review-result.schema.yaml`.
@@ -108,6 +110,7 @@ This separation is intentional for now:
 - review-result output fixtures remain under `fixtures/review-results/*.yaml`
 - `scripts/check_examples.py` remains focused on pathway examples
 - review-result validation is not yet implemented
+- the schema/fixture alignment note is not an automated checker result
 
 Future review-result checking should be added separately, for example by a future `scripts/check_review_results.py`, only after the review-result schema and fixture boundaries remain stable.
 
@@ -139,6 +142,8 @@ A future review-result checker must remain bounded and structural. It must not t
 
 `fixtures/review-results/record-review-result-minimal.yaml` provides a review-result output fixture that is not currently consumed by the checker.
 
+`docs/review-result-schema-fixture-alignment.md` documents that the current fixture includes the current schema's required fields and boundary lists, but this remains a manual documentation check.
+
 The current checker has been minimally expanded to inspect optional `review_metadata` structure when present. It still does not fully validate every record-review field, and it does not validate review-result fixtures.
 
 Future checker work should remain bounded to structural signals and must not treat a review pass as legal validity, safety, compliance, fairness, moral resolution, certification, or production readiness.
@@ -156,9 +161,9 @@ Future checker work should remain bounded to structural signals and must not tre
 
 ## Review-result fixture coverage map
 
-| Fixture | Schema reference | Current checker coverage |
-| --- | --- | --- |
-| `fixtures/review-results/record-review-result-minimal.yaml` | `spec/review-result.schema.yaml` | not yet checked |
+| Fixture | Schema reference | Alignment note | Current checker coverage |
+| --- | --- | --- | --- |
+| `fixtures/review-results/record-review-result-minimal.yaml` | `spec/review-result.schema.yaml` | `docs/review-result-schema-fixture-alignment.md` | not yet checked |
 
 ## Interpretation boundary
 
