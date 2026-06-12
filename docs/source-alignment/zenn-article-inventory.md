@@ -45,7 +45,7 @@ These files have descriptive filenames and should be reviewed first.
 | P1 | `articles/ai-responsibility-node.md` | aligned | AI node / AI responsibility boundary candidate. Reviewed in `docs/source-alignment/zenn-ai-responsibility-node.md`. |
 | P1 | `articles/human-return-point.md` | aligned | Human Return Point source material candidate. Reviewed in `docs/source-alignment/zenn-human-return-point.md`. |
 | P1 | `articles/evidence-log-design.md` | aligned | Evidence Log source material candidate. Reviewed in `docs/source-alignment/zenn-evidence-log-design.md`. |
-| P1 | `articles/stop-authority-design.md` | pending | Stop Authority source material candidate. |
+| P1 | `articles/stop-authority-design.md` | aligned | Stop Authority source material candidate. Reviewed in `docs/source-alignment/zenn-stop-authority-design.md`. |
 | P1 | `articles/enterprise-agent-checklist.md` | pending | Enterprise and agent checklist source material candidate. |
 | P1 | `articles/sap-ai-responsibility-pathway.md` | pending | SAP / enterprise AI responsibility-pathway application candidate. |
 | P1 | `articles/iso42001-responsibility-pathway.md` | pending | ISO 42001 alignment candidate. |
