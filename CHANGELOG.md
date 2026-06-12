@@ -4,6 +4,13 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 current snapshot added
+
+- `docs/phase-2-current-snapshot.md` added as a stable reconnection document for the current Phase 2 Lean position
+- README and README.ja now link to the current snapshot in the Phase 2 reader path
+- BEACON now records the current snapshot as part of the Phase 2 Lean reconnection path
+- The snapshot records module layout, build path, theorem categories, current invariant candidates, non-certifying boundaries, next allowed work, and stop conditions
+
 ### Invariants Lean file aligned with theorem-role index
 
 - `formal/lean/ResponsibilityPathway/Invariants.lean` now includes section comments for boundary predicates, positive invariant theorem candidates, and vacuity/non-trigger theorem candidates
