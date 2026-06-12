@@ -16,7 +16,7 @@ Phase 1.6 lightweight validation and lifecycle-example coverage is substantially
 
 Phase 2 formalization has started, the first minimal Lean lifecycle-invariant set has been introduced, the Lean core has been split into small modules, and a minimal Lean build path has been added.
 
-Phase 2.5 enterprise implementation guidance has started. `docs/enterprise-implementation-profile.md` connects the minimal formal core to workflow, evidence, checker, and governance layers. `docs/responsibility-pathway-record-review.md` describes a plain-language review and recheck process for Responsibility Pathway records. `docs/phase-2-5-current-snapshot.md` records the current Phase 2.5 restart point. `spec/review-result.schema.yaml` defines a bounded review-result output schema, while current review-result fixtures remain outside the current checker.
+Phase 2.5 enterprise implementation guidance has started. `docs/enterprise-implementation-profile.md` connects the minimal formal core to workflow, evidence, checker, and governance layers. `docs/responsibility-pathway-record-review.md` describes a plain-language review and recheck process for Responsibility Pathway records. `docs/phase-2-5-current-snapshot.md` records the current Phase 2.5 restart point. `spec/review-result.schema.yaml` defines a bounded review-result output schema. `scripts/check_review_results.py` performs bounded structural checks on review-result fixtures while remaining non-certifying.
 
 Core definitions, the eight-element model, runtime model, responsibility node model, return point model, repair model, value/cost flow, stop authority, evidence log, action class matrix, approval gate, and decision owner model have been added.
 
@@ -44,7 +44,9 @@ A bounded lightweight checker exists at `scripts/check_examples.py`.
 
 The checker is lifecycle-aware and now includes optional `review_metadata` checks when that block is present, but it remains non-certifying. It checks structural signals only and does not claim legal validity, safety, compliance, fairness, moral resolution, production readiness, or real-world responsibility resolution.
 
-The checker does not currently read `fixtures/review-results/*.yaml` and does not currently validate `spec/review-result.schema.yaml`.
+A separate bounded review-result checker exists at `scripts/check_review_results.py`.
+
+The review-result checker reads `fixtures/review-results/*.yaml` and `spec/review-result.schema.yaml`. It checks required fields, allowed review scope/status values, expected not-checked and not-claimed boundary items, and responsibility-boundary flags. It remains non-certifying and is not legal validation, safety certification, compliance certification, fairness certification, moral resolution, institutional certification, production approval, or AI final-responsibility transfer.
 
 Lean formalization currently uses `formal/lean/ResponsibilityPathway/Core.lean` as a stable import entry point.
 
@@ -79,11 +81,13 @@ A Phase 2.5 enterprise and record-review current snapshot exists at `docs/phase-
 
 The review-result output schema exists at `spec/review-result.schema.yaml`.
 
+The bounded review-result checker exists at `scripts/check_review_results.py`.
+
 The index groups Basic constructor sanity theorems, Example lifecycle sanity theorems, boundary predicates, positive invariant theorem candidates, and vacuity/non-trigger theorem candidates.
 
 The AI final-responsibility boundary is assumption-scoped. In the current minimal model, no artificial legal-personhood layer is assumed, so an AI node is not treated as a final responsibility holder. Future legal, institutional, national, international, or user/provider-agreement layers must be modeled explicitly if introduced.
 
-Enterprise guidance, record review guidance, and review-result schema remain non-certifying. They help organizations preserve readable responsibility pathways, evidence records, review conditions, review results, and excluded claims. They do not claim legal validity, safety, compliance, fairness, moral resolution, institutional certification, production readiness, or replacement of accountable humans and institutions.
+Enterprise guidance, record review guidance, review-result schema, and review-result checking remain non-certifying. They help organizations preserve readable responsibility pathways, evidence records, review conditions, review results, and excluded claims. They do not claim legal validity, safety, compliance, fairness, moral resolution, institutional certification, production readiness, or replacement of accountable humans and institutions.
 
 ## Development Timeline
 
@@ -108,7 +112,7 @@ Claims precede applications.
 - Keep lifecycle examples readable
 - Keep checker output bounded and non-certifying
 - Keep review-result fixtures separate from pathway examples unless deliberately migrated
-- Keep review-result schema validation separate unless deliberately integrated
+- Keep review-result checker scope bounded to fixture structure and responsibility-boundary preservation
 - Keep Lean invariants small, explicit, and assumption-scoped
 - Preserve the split Lean spine before adding more theorem families
 - Use the current snapshot and theorem-role index before adding or renaming Lean theorem candidates
@@ -144,6 +148,7 @@ Claims precede applications.
 21. spec/responsibility-pathway-core.yaml
 22. spec/pathway.schema.yaml
 23. spec/review-result.schema.yaml
+24. scripts/check_review_results.py
 
 ## Restart Point
 
@@ -153,11 +158,12 @@ Continue by either:
 
 - observing the next Lean workflow result and adjusting only if the minimal build path fails after Lean-file changes
 - adding only very small theorem candidates after the current assumptions, theorem roles, split modules, and current snapshot remain stable
-- checking schema and checker alignment with the enterprise implementation profile, Responsibility Pathway record review guide, Phase 2.5 current snapshot, and review-result schema
+- checking schema and checker alignment with the enterprise implementation profile, Responsibility Pathway record review guide, Phase 2.5 current snapshot, review-result schema, and review-result checker
+- running or wiring `scripts/check_review_results.py` into CI after the current manual checker path remains stable
 - adding only narrowly scoped record-review fixtures or checker checks while keeping them optional unless existing examples are deliberately migrated
-- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, theorem-role index, enterprise implementation profile, record review guide, Phase 2.5 snapshot, and review-result schema
+- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, theorem-role index, enterprise implementation profile, record review guide, Phase 2.5 snapshot, review-result schema, and review-result checker
 
-Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshot, enterprise guidance, record review boundaries, Phase 2.5 snapshot, review-result schema, and excluded claims remain aligned.
+Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshot, enterprise guidance, record review boundaries, Phase 2.5 snapshot, review-result schema, review-result checker, and excluded claims remain aligned.
 
 ## Purpose
 
