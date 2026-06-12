@@ -96,7 +96,9 @@ This does not mean closure erases responsibility history, grants immunity, compl
 - `excluded_claims`
 - `review_tool_version`
 
-The current checker has not yet been expanded to fully validate all record-review fields. This section records schema/document alignment only.
+`examples/record-review-minimal.yaml` provides a small readable record-review example that follows the existing originating lifecycle checker path.
+
+The current checker has not yet been expanded to fully validate all record-review fields. This section records schema/document/example alignment only.
 
 Future checker work should remain bounded to structural signals and must not treat a review pass as legal validity, safety, compliance, fairness, moral resolution, certification, or production readiness.
 
@@ -105,6 +107,7 @@ Future checker work should remain bounded to structural signals and must not tre
 | Example | Declared lifecycle state | Lifecycle-specific checker rule |
 | --- | --- | --- |
 | `examples/minimal-pathway.yaml` | `originating` | yes |
+| `examples/record-review-minimal.yaml` | `originating` | yes |
 | `examples/repair-flow.yaml` | `repaired` | yes |
 | `examples/suspended-pathway.yaml` | `suspended` | yes |
 | `examples/returning-pathway.yaml` | `returning` | yes |
