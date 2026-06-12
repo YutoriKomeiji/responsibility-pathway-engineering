@@ -21,10 +21,12 @@ pathway:
     id:
       type: string
       description: Stable identifier for the Responsibility Pathway instance.
+      review_alias: pathway_id
 
     version:
       type: string
       description: Schema or pathway version.
+      review_alias: schema_version
 
     lifecycle_state:
       type: enum
@@ -39,6 +41,9 @@ pathway:
     nodes:
       type: list
       item_schema: spec/node.schema.yaml
+      review_note: >
+        Review tools may classify nodes by role, including AI support nodes and
+        human or institutional responsibility nodes.
 
     edges:
       type: list
@@ -54,6 +59,7 @@ pathway:
       type: object
       suggested_fields:
         - decision_owner
+        - responsibility_owner
         - approval_gate
         - execution_actor
         - stop_authority
@@ -61,6 +67,8 @@ pathway:
         - repair_owner
         - return_point
         - human_return_point
+        - institutional_return_point
+        - human_or_institutional_return_point
         - affected_party
 
     action_class:
@@ -70,6 +78,7 @@ pathway:
     evidence_logs:
       type: list
       item_schema: spec/evidence-log.schema.yaml
+      review_alias: evidence_records
 
     return_points:
       type: list
@@ -78,6 +87,23 @@ pathway:
     repairs:
       type: list
       item_schema: spec/repair.schema.yaml
+      review_alias: repair_record
+
+    suspension_condition:
+      type: object
+      description: Review or return condition for suspended pathways when applicable.
+
+    return_condition:
+      type: object
+      description: Condition for returning pathways when applicable.
+
+    closure_record:
+      type: object
+      description: Structural record of pathway closure when applicable.
+
+    reopening_condition:
+      type: object
+      description: Condition under which a closed pathway may be reopened when applicable.
 
     responsibility_boundary:
       type: object
@@ -95,6 +121,48 @@ pathway:
         - excluded_claims
         - theorem_status
 
+    review_metadata:
+      type: object
+      suggested_fields:
+        - created_at
+        - updated_at
+        - review_tool_version
+        - checked_items
+        - unchecked_items
+        - review_result
+      description: >
+        Optional metadata used by Responsibility Pathway record review tools.
+        A review result remains structural and non-certifying.
+
+record_review_alignment:
+  guide: docs/responsibility-pathway-record-review.md
+  note: >
+    The review guide uses plain-language field names for after-the-fact review.
+    This schema may use existing schema names while providing aliases or suggested
+    fields for review tools. The alignment is structural only and does not create
+    legal, safety, compliance, fairness, moral-resolution, certification, or
+    production-readiness claims.
+  minimum_review_concepts:
+    - pathway_id
+    - schema_version
+    - lifecycle_state
+    - participating_nodes
+    - ai_support_nodes
+    - human_or_institutional_return_point
+    - stop_authority
+    - approval_gate
+    - responsibility_owner
+    - evidence_records
+    - repair_record
+    - suspension_condition
+    - return_condition
+    - closure_record
+    - reopening_condition
+    - excluded_claims
+    - created_at
+    - updated_at
+    - review_tool_version
+
 validation_rules:
   - id: pathway_requires_human_author
     rule: >
@@ -104,6 +172,10 @@ validation_rules:
     rule: >
       responsibility_boundary.ai_final_responsibility_allowed should be false.
 
+  - id: ai_support_requires_return_point
+    rule: >
+      If AI support nodes are present, a human or institutional return point should be present.
+
   - id: suspended_requires_stop_or_return_reference
     rule: >
       If lifecycle_state is suspended, roles.stop_authority or return_points should be present.
@@ -112,11 +184,22 @@ validation_rules:
     rule: >
       If lifecycle_state is repaired, repairs should contain at least one repair record.
 
-  - id: closed_requires_explanation_or_boundary
+  - id: returning_must_not_imply_automatic_continuation
     rule: >
-      If lifecycle_state is closed, evidence_logs or responsibility_boundary should preserve why the pathway was closed.
+      If lifecycle_state is returning, the record should not imply automatic continuation without human or institutional review.
+
+  - id: closed_requires_evidence_and_reopening_condition
+    rule: >
+      If lifecycle_state is closed, evidence_logs and reopening_condition should preserve why and how the pathway may be reviewed or reopened.
+
+  - id: review_result_is_non_certifying
+    rule: >
+      Any review result should remain structural and must not claim legal validity,
+      safety, compliance, fairness, moral resolution, institutional certification,
+      or production readiness.
 
 boundary:
   - This schema models responsibility pathways, not legal liability.
   - This schema does not make real-world safety, fairness, compliance, or moral accountability claims.
+  - Record review results are structural and non-certifying.
   - Formal claims must be limited to explicitly modeled entities, assumptions, and transitions.
