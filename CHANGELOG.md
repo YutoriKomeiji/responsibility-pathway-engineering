@@ -4,6 +4,13 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Reader path updated for review-result schema
+
+- README and README.ja now link to `spec/review-result.schema.yaml` in the reader path
+- README and README.ja clarify that review-result fixtures are not currently validated by `scripts/check_examples.py`
+- BEACON now records the review-result schema in the current position, schema list, read-first path, current focus, and restart point
+- The update keeps review-result schema work structural and non-certifying
+
 ### Review-result checker coverage boundary documented
 
 - `docs/checker-coverage.md` now records that `fixtures/review-results/*.yaml` are not currently read by `scripts/check_examples.py`
