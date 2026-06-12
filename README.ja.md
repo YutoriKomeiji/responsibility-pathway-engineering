@@ -16,6 +16,8 @@ Early public specification.
 
 Phase 2 は開始済みです。現在の Lean 形式化には、[formal/lean/ResponsibilityPathway/Core.lean](formal/lean/ResponsibilityPathway/Core.lean) に最小 node/pathway model と scoped lifecycle-invariant set が含まれています。これらの invariant は構造的・前提依存・非認証のものです。
 
+Phase 2 の Lean spine は小さな module に分割済みで、`Core.lean` は安定した入口として維持されています。詳細は [formal/lean/README.md](formal/lean/README.md) と [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) を参照してください。
+
 ## 著作者と引用
 
 本リポジトリは Akihisa Ono (小野昭久) によって、独立した公開仕様および設計フレームワークとして著作・保守されています。
@@ -38,16 +40,17 @@ Phase 2 は開始済みです。現在の Lean 形式化には、[formal/lean/Re
 5. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - 現在のリポジトリを意図的に小さく保つ理由
 6. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - 軽量検証とライフサイクル例の現在地
 7. [formal/lean/README.md](formal/lean/README.md) - Lean形式化の境界と現在の invariant candidates
-8. [docs/definition.md](docs/definition.md) - 中核定義
-9. [docs/eight-elements.md](docs/eight-elements.md) - 8要素モデル
-10. [docs/repository-governance.md](docs/repository-governance.md) - リポジトリ運営方針
-11. [docs/development-process.md](docs/development-process.md) - 開発プロセス
-12. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
-13. [docs/validation-checklist.md](docs/validation-checklist.md) - 境界付き検証チェックリスト
-14. [docs/validator-boundary.md](docs/validator-boundary.md) - 軽量検証ツールの境界
-15. [docs/checker-coverage.md](docs/checker-coverage.md) - 現在のライフサイクル対応チェッカー範囲
-16. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
-17. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
+8. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - Phase 2 Lean split plan と non-goals
+9. [docs/definition.md](docs/definition.md) - 中核定義
+10. [docs/eight-elements.md](docs/eight-elements.md) - 8要素モデル
+11. [docs/repository-governance.md](docs/repository-governance.md) - リポジトリ運営方針
+12. [docs/development-process.md](docs/development-process.md) - 開発プロセス
+13. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
+14. [docs/validation-checklist.md](docs/validation-checklist.md) - 境界付き検証チェックリスト
+15. [docs/validator-boundary.md](docs/validator-boundary.md) - 軽量検証ツールの境界
+16. [docs/checker-coverage.md](docs/checker-coverage.md) - 現在のライフサイクル対応チェッカー範囲
+17. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
+18. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
 
 ## 例
 
@@ -84,6 +87,16 @@ python scripts/check_examples.py
 
 現在の Phase 2 Lean work は意図的に最小です。
 
+Lean spine は次に分割されています。
+
+- `formal/lean/ResponsibilityPathway/Basic.lean`
+- `formal/lean/ResponsibilityPathway/Lifecycle.lean`
+- `formal/lean/ResponsibilityPathway/Examples.lean`
+- `formal/lean/ResponsibilityPathway/Invariants.lean`
+- `formal/lean/ResponsibilityPathway/Core.lean`
+
+`Core.lean` は安定した import entry point として維持されています。
+
 現在、次の6本の scoped invariant candidates が含まれています。
 
 1. 現行最小前提における AI final-responsibility boundary
@@ -96,6 +109,8 @@ python scripts/check_examples.py
 AI final-responsibility boundary は、AI があらゆる将来の法制度・制度設計の下で責任を持ちえないという絶対命題ではありません。現行の最小 RPE model では artificial legal-personhood layer を仮定していないため、AI node を final responsibility holder として扱わない、という前提付きの境界です。将来、法的・制度的・国家的・国際的・利用者/提供者契約上の層を導入する場合は、その層を明示的にモデル化する必要があります。
 
 Lean 形式化は、法的有効性、安全性、遵法性、公平性、道徳的責任の解決、制度的認証、本番利用可能性を示すものではありません。
+
+Lean CI またはローカル Lean build 検証は、まだ本リポジトリでは確立していません。現在の GitHub Actions 自動化は、境界付き Python example checker のみを対象にしています。
 
 ## 範囲
 
