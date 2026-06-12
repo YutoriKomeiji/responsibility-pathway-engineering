@@ -76,6 +76,30 @@ The checker inspects whether the example includes:
 
 This does not mean closure erases responsibility history, grants immunity, completes repair, certifies safety, or resolves legal or moral responsibility.
 
+## Responsibility Pathway record review alignment
+
+`docs/responsibility-pathway-record-review.md` defines a plain-language review and recheck guide for Responsibility Pathway records.
+
+`spec/pathway.schema.yaml` now includes review aliases, review metadata, and record-review alignment notes for concepts such as:
+
+- `pathway_id`
+- `schema_version`
+- `ai_support_nodes`
+- `human_or_institutional_return_point`
+- `stop_authority`
+- `evidence_records`
+- `repair_record`
+- `suspension_condition`
+- `return_condition`
+- `closure_record`
+- `reopening_condition`
+- `excluded_claims`
+- `review_tool_version`
+
+The current checker has not yet been expanded to fully validate all record-review fields. This section records schema/document alignment only.
+
+Future checker work should remain bounded to structural signals and must not treat a review pass as legal validity, safety, compliance, fairness, moral resolution, certification, or production readiness.
+
 ## Current example coverage map
 
 | Example | Declared lifecycle state | Lifecycle-specific checker rule |
