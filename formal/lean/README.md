@@ -34,9 +34,21 @@ From the repository root, run:
 lake build
 ```
 
-The GitHub Actions workflow uses `leanprover/lean-action@v1` to run the minimal Lean package build.
+The GitHub Actions workflow installs Elan, runs `lake update`, and then runs `lake build` for the minimal Lean package.
 
 A passing build only checks the Lean package. It does not certify legal validity, safety, compliance, fairness, moral accountability resolution, institutional certification, or production readiness.
+
+## Basic sanity theorems
+
+Current constructor-level sanity theorems in `ResponsibilityPathway/Basic.lean`:
+
+- `safe_ai_node_is_ai`
+- `safe_ai_node_cannot_hold_final_responsibility`
+- `human_responsibility_node_can_hold_final_responsibility`
+- `institutional_responsibility_node_can_hold_final_responsibility`
+- `human_responsibility_node_is_not_ai`
+
+These theorems check the current constructor definitions only. They are not real-world certification claims.
 
 ## Current invariant candidates
 
