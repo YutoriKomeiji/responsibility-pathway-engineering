@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Japanese README and BEACON synchronized with enterprise review guides
+
+- README.ja now links to the enterprise implementation profile and Responsibility Pathway record review guide
+- BEACON now records Phase 2.5 enterprise guidance and the plain-language record review guide in the current position, read-first path, current focus, and restart point
+- The synchronization keeps enterprise guidance and record review bounded, structural, and non-certifying
+
 ### Responsibility Pathway record review added
 
 - `docs/responsibility-pathway-record-review.md` added as a plain-language review and recheck guide for Responsibility Pathway records
