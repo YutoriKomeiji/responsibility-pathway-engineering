@@ -41,7 +41,7 @@ These files have descriptive filenames and should be reviewed first.
 | P0 | `articles/responsibility-pathway-engineering.md` | aligned | Direct Responsibility Pathway Engineering article. Reviewed in `docs/source-alignment/zenn-responsibility-pathway-engineering.md`. |
 | P0 | `articles/why-responsibility-pathway-engineering.md` | aligned | Motivation and scope for Responsibility Pathway Engineering. Reviewed in `docs/source-alignment/zenn-why-responsibility-pathway-engineering.md`. |
 | P0 | `articles/responsible-ai-to-responsibility-pathway.md` | aligned | Bridge from Responsible AI language to responsibility pathway framing. Reviewed in `docs/source-alignment/zenn-responsible-ai-to-responsibility-pathway.md`. |
-| P0 | `articles/fixed-responsibility-to-pathway.md` | pending | Likely explains shift from fixed responsibility to pathway structure. |
+| P0 | `articles/fixed-responsibility-to-pathway.md` | aligned | Likely explains shift from fixed responsibility to pathway structure. Reviewed in `docs/source-alignment/zenn-fixed-responsibility-to-pathway.md`. |
 | P1 | `articles/ai-responsibility-node.md` | pending | AI node / AI responsibility boundary candidate. |
 | P1 | `articles/human-return-point.md` | pending | Human Return Point source material candidate. |
 | P1 | `articles/evidence-log-design.md` | pending | Evidence Log source material candidate. |
