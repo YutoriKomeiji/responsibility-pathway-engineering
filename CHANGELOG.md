@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### ROADMAP updated with review-result workflow status
+
+- ROADMAP now records the review-result schema/fixture alignment note, bounded review-result checker, review-result workflow, observed green workflow status, and validator-boundary update in Phase 2.5
+- ROADMAP now removes the outdated note that review-result fixtures are not yet checked
+- ROADMAP keeps the observed green workflow status structural and non-certifying
+
 ### Validator boundary updated for review-result checker
 
 - `docs/validator-boundary.md` now records both `scripts/check_examples.py` and `scripts/check_review_results.py` as bounded repository-maintenance checkers
