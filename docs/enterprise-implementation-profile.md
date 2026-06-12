@@ -123,6 +123,8 @@ A low-risk enterprise adoption path is:
 13. Review the result with responsible humans or institutions.
 14. Only then consider automation or integration.
 
+For a plain-language after-the-fact review process, see `docs/responsibility-pathway-record-review.md`.
+
 ## What enterprises can implement first
 
 Enterprises can start with small structures:
@@ -210,6 +212,16 @@ Pause implementation if:
 - closure lacks evidence or reopening conditions
 - checker output is treated as certification
 - workflow automation outruns governance review
+
+## Relationship to responsibility pathway record review
+
+A Responsibility Pathway record should be reviewable after it is created.
+
+The record review process checks whether the record preserves required responsibility-pathway structure, version information, evidence references, lifecycle-specific records, and excluded claims.
+
+It does not certify the real-world organization, workflow, system, decision, legal conclusion, safety level, fairness level, compliance status, moral resolution, or production readiness.
+
+See `docs/responsibility-pathway-record-review.md` for the plain-language review process.
 
 ## Relationship to future production systems
 
