@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 minimal Lean build path added
+
+- `lean-toolchain` added and pinned to `leanprover/lean4:v4.30.0`
+- `lakefile.lean` added as a minimal Lake package using `formal/lean` as the Lean source directory
+- `.github/workflows/check-lean.yml` added as a minimal Lean build workflow using `leanprover/lean-action@v1`
+- README, README.ja, ROADMAP, and BEACON updated to reflect the minimal Lean build path
+- The workflow checks only the Lean package build; it does not certify legal validity, safety, compliance, fairness, moral accountability resolution, institutional certification, or production readiness
+
 ### Phase 2 Lean core split documented across entry files
 
 - README and README.ja now state that the Phase 2 Lean spine is split into small modules while `Core.lean` remains the stable entry point
