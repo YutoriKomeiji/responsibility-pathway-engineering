@@ -12,6 +12,16 @@ import ResponsibilityPathway.Examples
 
 namespace ResponsibilityPathway
 
+/-!
+## Boundary predicates
+
+This section defines the named structural boundaries used by the current
+Phase 2 invariant candidates.
+
+These predicates are model boundaries only. They are not legal, moral,
+operational, compliance, fairness, safety, or certification standards.
+-/
+
 /--
 Structural invariant under current minimal-model assumptions:
 if no artificial legal personhood layer is assumed, AI nodes cannot hold final
@@ -26,19 +36,6 @@ def AIResponsibilityBoundary
   NoArtificialLegalPersonhood assumptions ->
     IsAI node ->
       ¬ CanHoldFinalResponsibility node
-
-/--
-The first Phase 2 invariant candidate, now explicitly scoped:
-under current minimal assumptions, a node constructed as a safe AI node
-satisfies the AI responsibility boundary.
--/
-theorem safe_ai_node_cannot_hold_final_responsibility_under_current_assumptions
-    (id : String) :
-    AIResponsibilityBoundary currentMinimalAssumptions (safeAINode id) := by
-  intro hNoPersonhood
-  intro hAI
-  unfold CanHoldFinalResponsibility
-  simp [safeAINode]
 
 /--
 Structural invariant: if AI participates, the pathway must preserve a
@@ -99,6 +96,30 @@ def ClosureEvidenceReopeningBoundary (pathway : Pathway) : Prop :=
   IsClosedPathway pathway ->
     HasEvidenceRecord pathway ∧ HasReopeningCondition pathway
 
+/-!
+## Positive invariant theorem candidates
+
+This section contains constructor-level theorem candidates showing that the
+current example constructors satisfy the named boundary predicates.
+
+These theorem candidates remain scoped to the current minimal model and do not
+certify real-world systems, workflows, institutions, legal validity, safety,
+compliance, fairness, moral accountability resolution, or production readiness.
+-/
+
+/--
+The first Phase 2 invariant candidate, now explicitly scoped:
+under current minimal assumptions, a node constructed as a safe AI node
+satisfies the AI responsibility boundary.
+-/
+theorem safe_ai_node_cannot_hold_final_responsibility_under_current_assumptions
+    (id : String) :
+    AIResponsibilityBoundary currentMinimalAssumptions (safeAINode id) := by
+  intro hNoPersonhood
+  intro hAI
+  unfold CanHoldFinalResponsibility
+  simp [safeAINode]
+
 /--
 The second Phase 2 invariant candidate:
 a safely constructed AI-assisted pathway satisfies the AI return-point boundary.
@@ -111,18 +132,6 @@ theorem safe_ai_assisted_pathway_has_return_point
   simp [safeAIAssistedPathway]
 
 /--
-A pathway without AI participation does not require this AI-specific boundary.
-This theorem only states the implication form of the boundary is satisfied
-vacuously in the constructor-level non-AI case.
--/
-theorem non_ai_pathway_satisfies_ai_return_point_boundary
-    (id : String) :
-    AIReturnPointBoundary (nonAIPathway id) := by
-  intro hAI
-  unfold HasAIParticipation at hAI
-  simp [nonAIPathway] at hAI
-
-/--
 The third Phase 2 invariant candidate:
 a safely constructed repaired pathway satisfies the repair-record boundary.
 -/
@@ -132,18 +141,6 @@ theorem repaired_pathway_has_repair_record
   intro hRepaired
   unfold HasRepairRecord
   simp [repairedPathwayWithRecord]
-
-/--
-A pathway that is not declared repaired does not require a repair record under
-this repair-specific boundary. This theorem only states the implication form
-is satisfied vacuously in the constructor-level non-repaired case.
--/
-theorem non_repaired_pathway_satisfies_repair_record_boundary
-    (id : String) :
-    RepairRecordBoundary (safeAIAssistedPathway id) := by
-  intro hRepaired
-  unfold IsRepairedPathway at hRepaired
-  simp [safeAIAssistedPathway] at hRepaired
 
 /--
 The fourth Phase 2 invariant candidate:
@@ -158,19 +155,6 @@ theorem suspended_pathway_preserves_review_or_return_condition
   simp [suspendedPathwayWithReviewOrReturn]
 
 /--
-A pathway that is not declared suspended does not require review or return
-conditions under this suspension-specific boundary. This theorem only states
-the implication form is satisfied vacuously in the constructor-level
-non-suspended case.
--/
-theorem non_suspended_pathway_satisfies_suspension_boundary
-    (id : String) :
-    SuspensionReviewReturnBoundary (safeAIAssistedPathway id) := by
-  intro hSuspended
-  unfold IsSuspendedPathway at hSuspended
-  simp [safeAIAssistedPathway] at hSuspended
-
-/--
 The fifth Phase 2 invariant candidate:
 a safely constructed returning pathway satisfies the no-automatic-continuation
 boundary.
@@ -182,18 +166,6 @@ theorem returning_pathway_does_not_allow_automatic_continuation
   intro hReturning
   unfold AllowsAutomaticContinuation
   simp [returningPathwayWithoutAutomaticContinuation]
-
-/--
-A pathway that is not declared returning does not trigger this returning-specific
-boundary. This theorem only states the implication form is satisfied vacuously
-in the constructor-level non-returning case.
--/
-theorem non_returning_pathway_satisfies_returning_boundary
-    (id : String) :
-    ReturningNoAutomaticContinuationBoundary (safeAIAssistedPathway id) := by
-  intro hReturning
-  unfold IsReturningPathway at hReturning
-  simp [safeAIAssistedPathway] at hReturning
 
 /--
 The sixth Phase 2 invariant candidate:
@@ -210,6 +182,65 @@ theorem closed_pathway_preserves_evidence_and_reopening_condition
     simp [closedPathwayWithEvidenceAndReopening]
   · unfold HasReopeningCondition
     simp [closedPathwayWithEvidenceAndReopening]
+
+/-!
+## Vacuity / non-trigger theorem candidates
+
+This section contains implication-shape checks showing that a boundary is not
+over-applied when its trigger condition is absent.
+
+These theorem candidates do not say the non-trigger examples are complete, safe,
+compliant, fair, legally valid, morally resolved, certified, or production ready.
+-/
+
+/--
+A pathway without AI participation does not require this AI-specific boundary.
+This theorem only states the implication form of the boundary is satisfied
+vacuously in the constructor-level non-AI case.
+-/
+theorem non_ai_pathway_satisfies_ai_return_point_boundary
+    (id : String) :
+    AIReturnPointBoundary (nonAIPathway id) := by
+  intro hAI
+  unfold HasAIParticipation at hAI
+  simp [nonAIPathway] at hAI
+
+/--
+A pathway that is not declared repaired does not require a repair record under
+this repair-specific boundary. This theorem only states the implication form
+is satisfied vacuously in the constructor-level non-repaired case.
+-/
+theorem non_repaired_pathway_satisfies_repair_record_boundary
+    (id : String) :
+    RepairRecordBoundary (safeAIAssistedPathway id) := by
+  intro hRepaired
+  unfold IsRepairedPathway at hRepaired
+  simp [safeAIAssistedPathway] at hRepaired
+
+/--
+A pathway that is not declared suspended does not require review or return
+conditions under this suspension-specific boundary. This theorem only states
+the implication form is satisfied vacuously in the constructor-level
+non-suspended case.
+-/
+theorem non_suspended_pathway_satisfies_suspension_boundary
+    (id : String) :
+    SuspensionReviewReturnBoundary (safeAIAssistedPathway id) := by
+  intro hSuspended
+  unfold IsSuspendedPathway at hSuspended
+  simp [safeAIAssistedPathway] at hSuspended
+
+/--
+A pathway that is not declared returning does not trigger this returning-specific
+boundary. This theorem only states the implication form is satisfied vacuously
+in the constructor-level non-returning case.
+-/
+theorem non_returning_pathway_satisfies_returning_boundary
+    (id : String) :
+    ReturningNoAutomaticContinuationBoundary (safeAIAssistedPathway id) := by
+  intro hReturning
+  unfold IsReturningPathway at hReturning
+  simp [safeAIAssistedPathway] at hReturning
 
 /--
 A pathway that is not declared closed does not trigger this closure-specific
