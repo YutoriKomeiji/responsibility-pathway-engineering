@@ -16,6 +16,7 @@ The current bridge consists of:
 - a minimal record-review example
 - a minimal review-result fixture
 - a review-result schema
+- a review-result schema/fixture alignment note
 - optional bounded checker support for review metadata
 
 This bridge remains structural and non-certifying.
@@ -31,6 +32,7 @@ Primary Phase 2.5 files:
 - `examples/record-review-minimal.yaml`
 - `fixtures/review-results/record-review-result-minimal.yaml`
 - `spec/review-result.schema.yaml`
+- `docs/review-result-schema-fixture-alignment.md`
 
 Supporting files currently aligned with Phase 2.5:
 
@@ -161,6 +163,14 @@ It defines what a bounded review result should preserve:
 
 The schema does not define legal, safety, compliance, fairness, moral-resolution, institutional-certification, production-approval, or AI-final-responsibility transfer formats.
 
+## Review-result schema/fixture alignment
+
+`docs/review-result-schema-fixture-alignment.md` records how the current minimal review-result fixture aligns with `spec/review-result.schema.yaml`.
+
+It records that the fixture includes all currently required schema fields and preserves the expected not-checked, not-claimed, and responsibility-boundary signals.
+
+This is a documentation check only. It is not an automated checker result and does not certify the fixture.
+
 ## Optional checker support
 
 `scripts/check_examples.py` now checks optional `review_metadata` structure when it is present.
@@ -231,9 +241,10 @@ Restart Phase 2.5 from this file, then read:
 4. `fixtures/review-results/record-review-result-minimal.yaml`
 5. `spec/pathway.schema.yaml`
 6. `spec/review-result.schema.yaml`
-7. `scripts/check_examples.py`
-8. `docs/checker-coverage.md`
-9. `docs/schema-cross-reference.md`
-10. `docs/example-index.md`
+7. `docs/review-result-schema-fixture-alignment.md`
+8. `scripts/check_examples.py`
+9. `docs/checker-coverage.md`
+10. `docs/schema-cross-reference.md`
+11. `docs/example-index.md`
 
 Do not proceed to larger reference implementations until this set remains aligned and the bounded checks remain green.
