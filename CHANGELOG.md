@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Minimal review result fixture added
+
+- `fixtures/review-results/record-review-result-minimal.yaml` added as a small output fixture for a bounded Responsibility Pathway review result
+- `docs/responsibility-pathway-record-review.md` now links to the fixture and clarifies that it is an output example only
+- `docs/phase-2-5-current-snapshot.md` now records the review-result fixture as part of the current Phase 2.5 set
+- The fixture is not a pathway example and is not currently part of the bounded example checker workflow
+- The fixture remains structural and non-certifying, and adds no legal, safety, compliance, fairness, moral-resolution, certification, or production-readiness claims
+
 ### Phase 2.5 current snapshot added
 
 - `docs/phase-2-5-current-snapshot.md` added as a reconnection note for enterprise implementation guidance and Responsibility Pathway record review
