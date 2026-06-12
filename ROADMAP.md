@@ -139,6 +139,8 @@ Next low-risk Phase 2 work:
 - Phase 2.5 current snapshot added at `docs/phase-2-5-current-snapshot.md`
 - Minimal record-review example added at `examples/record-review-minimal.yaml`
 - Minimal review-result fixture added at `fixtures/review-results/record-review-result-minimal.yaml`
+- Review-result schema added at `spec/review-result.schema.yaml`
+- Checker coverage now records that review-result fixtures are not yet checked
 - Optional review metadata checks added to `scripts/check_examples.py`
 - Layer separation documented for formal core, specification layer, checker layer, workflow layer, evidence layer, and governance layer
 - Plain-language review and recheck process documented for Responsibility Pathway records
@@ -154,6 +156,7 @@ Next low-risk Phase 2.5 work:
 - use `docs/phase-2-5-current-snapshot.md` before expanding record-review examples, fixtures, or checker coverage
 - keep review-result fixtures separate from pathway examples unless deliberately migrated
 - keep checker additions optional unless existing examples are deliberately migrated
+- keep review-result schema validation separate unless deliberately integrated
 - keep review results structural and non-certifying
 
 ## Phase 3 - Reference Implementations
