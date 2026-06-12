@@ -10,7 +10,15 @@ Formalization is incremental and scope-limited.
 
 ## Current files
 
-- `ResponsibilityPathway/Core.lean` - minimal node and pathway model with early responsibility-boundary invariant candidates
+The Phase 2 Lean spine is split into small modules:
+
+- `ResponsibilityPathway/Basic.lean` - minimal node kinds, model assumptions, node predicates, and constructor-level responsibility nodes
+- `ResponsibilityPathway/Lifecycle.lean` - minimal pathway structure and lifecycle predicates
+- `ResponsibilityPathway/Examples.lean` - constructor-level example pathways used as model witnesses
+- `ResponsibilityPathway/Invariants.lean` - scoped boundary predicates and current theorem candidates
+- `ResponsibilityPathway/Core.lean` - stable entry point that imports the split modules
+
+The split plan is recorded in `../../docs/phase-2-lean-split-plan.md`.
 
 ## Current invariant candidates
 
