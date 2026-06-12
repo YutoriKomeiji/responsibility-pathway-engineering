@@ -1,6 +1,6 @@
 # Schema Cross-Reference
 
-This note explains how the current Responsibility Pathway Engineering schema files relate to each other during Phase 1.5 - Specification Binding.
+This note explains how the current Responsibility Pathway Engineering schema files relate to each other during Phase 1.5 - Specification Binding and Phase 2.5 - record-review alignment.
 
 It is explanatory only. It does not claim complete validation, legal liability, production readiness, compliance, safety, fairness, or moral accountability.
 
@@ -134,6 +134,7 @@ Key concerns:
 - repairs
 - responsibility boundary
 - formalization scope
+- review metadata where applicable
 
 This file composes the split schema files:
 
@@ -144,8 +145,35 @@ This file composes the split schema files:
 | `evidence_logs` | `spec/evidence-log.schema.yaml` |
 | `return_points` | `spec/return-point.schema.yaml` |
 | `repairs` | `spec/repair.schema.yaml` |
+| `review_metadata` | optional bounded record-review metadata |
 | `responsibility_boundary` | AI and human/institutional responsibility boundary from the core vocabulary |
 | `formalization_scope` | bounded assumptions, modeled entities, excluded claims, and theorem status |
+
+### `spec/review-result.schema.yaml`
+
+Defines the minimum structure for a bounded Responsibility Pathway review result.
+
+Use this schema to record the output of a structural record review.
+
+Key concerns:
+
+- review result identity
+- reviewed pathway identifier
+- review scope
+- review status
+- schema and review tool versions
+- checked items
+- warnings and failures
+- not-checked items
+- not-claimed boundaries
+- plain-language summary
+- responsibility boundary flags
+
+A review result records what was checked, what was not checked, and what is not claimed. It is not a legal decision, safety decision, compliance decision, fairness decision, moral-resolution decision, institutional certification, or production approval.
+
+Related fixture:
+
+- `fixtures/review-results/record-review-result-minimal.yaml`
 
 ## Reading order
 
@@ -158,8 +186,9 @@ Recommended reading order:
 5. `spec/evidence-log.schema.yaml`
 6. `spec/repair.schema.yaml`
 7. `spec/pathway.schema.yaml`
+8. `spec/review-result.schema.yaml`
 
-This order moves from concept vocabulary to specialized schema files and then to composed pathway instances.
+This order moves from concept vocabulary to specialized schema files, composed pathway instances, and then bounded review-result outputs.
 
 ## Validation boundary
 
