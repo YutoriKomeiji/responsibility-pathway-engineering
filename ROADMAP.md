@@ -132,6 +132,17 @@ Next low-risk Phase 2 work:
 - keep formalization incremental and assumption-explicit
 - maintain traceability among examples, schemas, checker boundaries, Lean definitions, theorem roles, current snapshot, and excluded claims
 
+## Phase 2.5 - Enterprise Implementation Profile (Initial bridge added)
+
+- Enterprise implementation profile added at `docs/enterprise-implementation-profile.md`
+- Layer separation documented for formal core, specification layer, checker layer, workflow layer, evidence layer, and governance layer
+- Minimal enterprise adoption path documented before larger reference implementations
+- Initial enterprise implementation candidates identified without claiming certification, legal validity, compliance, fairness, safety, moral resolution, or production readiness
+
+Phase 2.5 rule:
+
+Enterprise adoption guidance must connect the minimal formal core to implementable workflow, evidence, checker, and governance layers without treating RPE as a production verifier, legal decision system, compliance engine, safety certification tool, fairness certification tool, or replacement for accountable humans and institutions.
+
 ## Phase 3 - Reference Implementations
 
 - YAML extensions
@@ -147,7 +158,7 @@ Next low-risk Phase 2 work:
 
 Implementation rule:
 
-Reference implementations must not outrun definitions, examples, checker boundaries, or formalization assumptions.
+Reference implementations must not outrun definitions, examples, checker boundaries, formalization assumptions, or enterprise governance boundaries.
 
 ## Guiding Principle
 
