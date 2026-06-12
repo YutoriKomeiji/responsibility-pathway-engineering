@@ -66,6 +66,8 @@ The current minimal Lean lifecycle-invariant set covers:
 5. returning no-automatic-continuation boundary
 6. closure evidence/reopening boundary
 
+A Phase 2 Lean current snapshot exists at `docs/phase-2-current-snapshot.md`.
+
 A Phase 2 Lean theorem-role index exists at `docs/phase-2-lean-theorem-index.md`.
 
 The index groups Basic constructor sanity theorems, Example lifecycle sanity theorems, boundary predicates, positive invariant theorem candidates, and vacuity/non-trigger theorem candidates.
@@ -93,10 +95,10 @@ Claims precede applications.
 - Keep checker output bounded and non-certifying
 - Keep Lean invariants small, explicit, and assumption-scoped
 - Preserve the split Lean spine before adding more theorem families
-- Use the theorem-role index before adding or renaming Lean theorem candidates
+- Use the current snapshot and theorem-role index before adding or renaming Lean theorem candidates
 - Preserve the boundary that AI may participate as a pathway node but does not assume final responsibility under the current minimal model
 - Keep future artificial legal-personhood or institutional-personhood layers explicit if modeled later
-- Grow only when responsibility can still return from claims to definitions, examples, schemas, checker boundaries, excluded claims, Lean definitions, theorem roles, and assumptions
+- Grow only when responsibility can still return from claims to definitions, examples, schemas, checker boundaries, excluded claims, Lean definitions, theorem roles, snapshots, and assumptions
 
 ## Read First
 
@@ -107,16 +109,17 @@ Claims precede applications.
 5. docs/minimal-core-rationale.md
 6. docs/phase-1-6-plan.md
 7. formal/lean/README.md
-8. docs/phase-2-lean-split-plan.md
-9. docs/phase-2-lean-theorem-index.md
-10. docs/definition.md
-11. docs/eight-elements.md
-12. docs/validator-boundary.md
-13. docs/checker-coverage.md
-14. docs/example-index.md
-15. docs/example-review-notes.md
-16. spec/responsibility-pathway-core.yaml
-17. spec/pathway.schema.yaml
+8. docs/phase-2-current-snapshot.md
+9. docs/phase-2-lean-split-plan.md
+10. docs/phase-2-lean-theorem-index.md
+11. docs/definition.md
+12. docs/eight-elements.md
+13. docs/validator-boundary.md
+14. docs/checker-coverage.md
+15. docs/example-index.md
+16. docs/example-review-notes.md
+17. spec/responsibility-pathway-core.yaml
+18. spec/pathway.schema.yaml
 
 ## Restart Point
 
@@ -125,10 +128,10 @@ The next low-risk action is not to expand into larger reference implementations 
 Continue Phase 2 by either:
 
 - observing the next Lean workflow result and adjusting only if the minimal build path fails
-- adding only very small theorem candidates after the current assumptions, theorem roles, and split modules remain stable
-- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, and the theorem-role index
+- adding only very small theorem candidates after the current assumptions, theorem roles, split modules, and current snapshot remain stable
+- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, and the theorem-role index
 
-Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, theorem roles, and excluded claims remain aligned.
+Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshot, and excluded claims remain aligned.
 
 ## Purpose
 
