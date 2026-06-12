@@ -28,6 +28,28 @@ Use this example when introducing:
 - Human Return Point
 - formalization-scope exclusions
 
+### `examples/record-review-minimal.yaml`
+
+Purpose:
+
+- show a small Responsibility Pathway record with review metadata
+- demonstrate how a record can be reviewed or rechecked without becoming certified
+- preserve AI support as support only, with responsibility returning to a human reviewer
+- connect record version, lifecycle state, node roles, evidence records, excluded claims, and review result
+
+Key boundary:
+
+Record review checks structure only. It does not certify legal validity, safety, compliance, fairness, moral accountability resolution, institutional approval, or production readiness.
+
+Use this example when introducing:
+
+- Responsibility Pathway record review
+- review metadata
+- review result boundaries
+- evidence records for recheckability
+- excluded claims in review outputs
+- human review after AI support
+
 ### `examples/repair-flow.yaml`
 
 Purpose:
@@ -125,18 +147,21 @@ Recommended reading order:
 1. `docs/schema-cross-reference.md`
 2. `docs/validation-checklist.md`
 3. `docs/validator-boundary.md`
-4. `examples/minimal-pathway.yaml`
-5. `examples/repair-flow.yaml`
-6. `examples/suspended-pathway.yaml`
-7. `examples/returning-pathway.yaml`
-8. `examples/closed-pathway.yaml`
-9. `docs/example-review-notes.md`
+4. `docs/responsibility-pathway-record-review.md`
+5. `examples/minimal-pathway.yaml`
+6. `examples/record-review-minimal.yaml`
+7. `examples/repair-flow.yaml`
+8. `examples/suspended-pathway.yaml`
+9. `examples/returning-pathway.yaml`
+10. `examples/closed-pathway.yaml`
+11. `docs/example-review-notes.md`
 
 ## Naming convention
 
 Current examples use descriptive filenames:
 
 - `minimal-pathway.yaml`
+- `record-review-minimal.yaml`
 - `repair-flow.yaml`
 - `suspended-pathway.yaml`
 - `returning-pathway.yaml`
