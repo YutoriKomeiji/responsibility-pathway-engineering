@@ -24,6 +24,8 @@ A plain-language record review guide is available at [docs/responsibility-pathwa
 
 The current Phase 2.5 enterprise and record-review snapshot is available at [docs/phase-2-5-current-snapshot.md](docs/phase-2-5-current-snapshot.md).
 
+A bounded review-result schema is available at [spec/review-result.schema.yaml](spec/review-result.schema.yaml). It defines a public structure for recording what a review checked, what it did not check, and what it does not claim. Current review-result fixtures are not yet validated by the checker.
+
 ## Authorship and citation
 
 This repository is authored and maintained by Akihisa Ono (小野昭久) as an independent public specification and design framework.
@@ -57,11 +59,12 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 16. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
 17. [docs/development-process.md](docs/development-process.md) - development process
 18. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
-19. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
-20. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
-21. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
-22. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
-23. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
+19. [spec/review-result.schema.yaml](spec/review-result.schema.yaml) - bounded review-result output schema
+20. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
+21. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
+22. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
+23. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
+24. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
 
 ## Examples
 
@@ -77,6 +80,8 @@ Minimal examples are available under `examples/`.
 See [docs/example-index.md](docs/example-index.md) for example purposes, boundaries, and future example candidates.
 
 These examples are illustrative only. They do not claim legal liability resolution, moral accountability, safety, fairness, compliance, or production readiness.
+
+Review-result output fixtures are kept separate from pathway examples under `fixtures/review-results/`. They are illustrative output fixtures and are not currently validated by `scripts/check_examples.py`.
 
 ## Lightweight checks
 
@@ -94,6 +99,8 @@ The same bounded structural check also runs in GitHub Actions via [.github/workf
 It checks only limited structural signals and explicit responsibility-boundary fields. A passing result does not mean certified, safe, compliant, fair, legally valid, morally resolved, or production ready.
 
 When an example includes `review_metadata`, the checker also performs optional bounded checks on review metadata structure and non-certifying review-result boundaries.
+
+Review-result fixtures under `fixtures/review-results/` are not currently read by this checker. `spec/review-result.schema.yaml` is a public schema boundary, not a completed checker integration.
 
 See [docs/validator-boundary.md](docs/validator-boundary.md) for the checker boundary and [docs/checker-coverage.md](docs/checker-coverage.md) for the current checker coverage map.
 
