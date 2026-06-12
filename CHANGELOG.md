@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Lean README synchronized with Phase 2 current snapshot
+
+- `formal/lean/README.md` now links to `docs/phase-2-current-snapshot.md`
+- The Lean README now points to the current snapshot, split plan, and theorem-role index together
+- This completes the current snapshot reader path across README, README.ja, BEACON, ROADMAP, CHANGELOG, and `formal/lean/README.md`
+
 ### ROADMAP synchronized with Phase 2 current snapshot
 
 - ROADMAP now references `docs/phase-2-current-snapshot.md` in the current Phase 2 status
