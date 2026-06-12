@@ -40,6 +40,7 @@ Supporting files currently aligned with Phase 2.5:
 - `spec/pathway.schema.yaml`
 - `scripts/check_examples.py`
 - `scripts/check_review_results.py`
+- `.github/workflows/check-review-results.yml`
 - `docs/checker-coverage.md`
 - `docs/example-index.md`
 - `docs/schema-cross-reference.md`
@@ -183,6 +184,16 @@ A pass means only that the current review-result fixture preserves the bounded s
 
 It does not mean legal validation, safety certification, compliance certification, fairness certification, moral resolution, institutional certification, production approval, or AI final-responsibility transfer.
 
+## Current green checks
+
+The bounded structural example-check workflow has been observed green after the optional review metadata checker update.
+
+The `Check review-result fixtures` workflow has been observed green for run `#1` on commit `aaaece3` on `main`. The workflow completed successfully in about 12 seconds, and the `Check review-result fixtures` job completed successfully in about 8 seconds.
+
+These results mean only that the current examples and review-result fixtures pass the bounded repository-maintenance checks.
+
+They do not certify any real-world system, workflow, decision, organization, deployment, legal status, safety status, compliance status, fairness status, moral resolution, production readiness, or AI final-responsibility transfer.
+
 ## Optional checker support
 
 `scripts/check_examples.py` now checks optional `review_metadata` structure when it is present.
@@ -204,14 +215,6 @@ The checker remains bounded and structural.
 
 A checker pass does not mean certification, legal validity, safety, compliance, fairness, moral resolution, institutional approval, production readiness, or real-world responsibility resolution.
 
-## Current green check
-
-The bounded structural example-check workflow has been observed green after the optional review metadata checker update.
-
-This means only that the current examples pass the bounded repository-maintenance checks.
-
-It does not certify any real-world system or workflow.
-
 ## Current boundary
 
 Phase 2.5 should not be described as a production verifier.
@@ -226,11 +229,10 @@ It does not remove the need for accountable humans and institutions.
 
 Next low-risk work may include:
 
-1. Run or wire `scripts/check_review_results.py` into CI after its first manual result is observed.
-2. Keep review-result fixture checks separate from pathway example checks unless deliberately integrated.
-3. Keep checker additions optional unless existing examples are deliberately migrated.
-4. Keep documentation synchronized after each checker, fixture, schema, or example change.
-5. Avoid larger reference implementations until Phase 2.5 boundaries remain stable.
+1. Keep review-result fixture checks separate from pathway example checks unless deliberately integrated.
+2. Keep checker additions optional unless existing examples are deliberately migrated.
+3. Keep documentation synchronized after each checker, fixture, schema, or example change.
+4. Avoid larger reference implementations until Phase 2.5 boundaries remain stable.
 
 ## Stop conditions
 
@@ -255,9 +257,10 @@ Restart Phase 2.5 from this file, then read:
 6. `spec/review-result.schema.yaml`
 7. `docs/review-result-schema-fixture-alignment.md`
 8. `scripts/check_review_results.py`
-9. `scripts/check_examples.py`
-10. `docs/checker-coverage.md`
-11. `docs/schema-cross-reference.md`
-12. `docs/example-index.md`
+9. `.github/workflows/check-review-results.yml`
+10. `scripts/check_examples.py`
+11. `docs/checker-coverage.md`
+12. `docs/schema-cross-reference.md`
+13. `docs/example-index.md`
 
 Do not proceed to larger reference implementations until this set remains aligned and the bounded checks remain green.
