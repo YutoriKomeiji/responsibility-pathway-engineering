@@ -1,6 +1,6 @@
 # Example Index
 
-This index lists the current example files and explains how they should be read during Phase 1.6 - Lightweight Validation and Lifecycle Coverage.
+This index lists the current example files and explains how they should be read during Phase 1.6 and Phase 3 reference-example work.
 
 Examples are illustrative reference instances. They are not schema validation results, certifications, compliance determinations, safety guarantees, fairness guarantees, legal assessments, moral accountability judgments, or production-ready patterns.
 
@@ -49,6 +49,28 @@ Use this example when introducing:
 - evidence records for recheckability
 - excluded claims in review outputs
 - human review after AI support
+
+### `examples/human-ai-review-workflow-minimal.yaml`
+
+Purpose:
+
+- show the first small Phase 3 reference example
+- model a human-led review workflow supported by an AI summary assistant
+- preserve a return path from AI support back to a human reviewer
+- record evidence, uncertainty notes, missing-context notes, checked items, unchecked items, and excluded claims
+
+Key boundary:
+
+The AI node may summarize evidence and explain uncertainty, but it does not decide, approve, execute, close, or assume final responsibility. The human reviewer remains the decision owner, approval gate, stop authority, and responsibility owner.
+
+Use this example when introducing:
+
+- Phase 3 reference examples
+- human-led AI-supported review workflows
+- AI summary support without final responsibility transfer
+- evidence records for human acceptance or rejection
+- review-result boundaries in a reference workflow
+- reference implementation boundaries
 
 ### `examples/repair-flow.yaml`
 
@@ -148,13 +170,15 @@ Recommended reading order:
 2. `docs/validation-checklist.md`
 3. `docs/validator-boundary.md`
 4. `docs/responsibility-pathway-record-review.md`
-5. `examples/minimal-pathway.yaml`
-6. `examples/record-review-minimal.yaml`
-7. `examples/repair-flow.yaml`
-8. `examples/suspended-pathway.yaml`
-9. `examples/returning-pathway.yaml`
-10. `examples/closed-pathway.yaml`
-11. `docs/example-review-notes.md`
+5. `docs/reference-implementation-boundary.md`
+6. `examples/minimal-pathway.yaml`
+7. `examples/record-review-minimal.yaml`
+8. `examples/human-ai-review-workflow-minimal.yaml`
+9. `examples/repair-flow.yaml`
+10. `examples/suspended-pathway.yaml`
+11. `examples/returning-pathway.yaml`
+12. `examples/closed-pathway.yaml`
+13. `docs/example-review-notes.md`
 
 ## Naming convention
 
@@ -162,6 +186,7 @@ Current examples use descriptive filenames:
 
 - `minimal-pathway.yaml`
 - `record-review-minimal.yaml`
+- `human-ai-review-workflow-minimal.yaml`
 - `repair-flow.yaml`
 - `suspended-pathway.yaml`
 - `returning-pathway.yaml`
