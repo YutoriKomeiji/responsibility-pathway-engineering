@@ -4,6 +4,15 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Bounded review-result checker added
+
+- `scripts/check_review_results.py` added as a bounded structural checker for review-result fixtures under `fixtures/review-results/*.yaml`
+- The checker reads `spec/review-result.schema.yaml` and checks required fields, allowed review scope/status values, expected `not_checked` and `not_claimed` boundary items, and responsibility-boundary flags
+- README now documents manual execution of the checker
+- `docs/checker-coverage.md` now records the checker separately from `scripts/check_examples.py`
+- `docs/phase-2-5-current-snapshot.md` now records the checker and keeps CI wiring as a later low-risk step
+- The checker remains structural and non-certifying
+
 ### Review-result schema fixture alignment note added
 
 - `docs/review-result-schema-fixture-alignment.md` added as a documentation-only alignment note for the current review-result schema and minimal review-result fixture
