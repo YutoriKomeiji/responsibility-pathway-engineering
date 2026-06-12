@@ -1,0 +1,64 @@
+# Minimal Responsibility Pathway review result fixture
+#
+# This fixture shows a small example of a review result produced after a
+# Responsibility Pathway record is checked.
+#
+# It is an output fixture, not a pathway example and not a certification.
+
+review_result_id: record_review_result_minimal_001
+pathway_id: record_review_minimal_example_001
+review_scope: structural_responsibility_pathway_review
+review_status: passed
+schema_version: 0.1.0
+review_tool_version: example-checker-0.1
+
+checked_items:
+  - lifecycle_state_present
+  - nodes_present
+  - ai_support_node_marked
+  - human_return_point_present
+  - stop_authority_present
+  - evidence_records_present
+  - excluded_claims_present
+  - ai_final_responsibility_disallowed
+  - review_metadata_present
+
+warnings: []
+failures: []
+
+not_checked:
+  - legal_validity
+  - safety
+  - compliance
+  - fairness
+  - moral_accountability_resolution
+  - institutional_certification
+  - production_readiness
+  - real_world_responsibility_resolution
+
+not_claimed:
+  - legal_validity
+  - safety_certification
+  - compliance_certification
+  - fairness_certification
+  - moral_accountability_resolution
+  - institutional_certification
+  - production_readiness
+  - real_world_responsibility_resolution
+
+plain_language_summary: >
+  The reviewed record preserves the required responsibility-pathway structure
+  under the current bounded review rules. This result does not certify the
+  workflow, organization, system, decision, legal status, safety, compliance,
+  fairness, moral resolution, or production readiness.
+
+responsibility_boundary:
+  human_or_institutional_responsibility_required: true
+  ai_final_responsibility_allowed: false
+  review_result_is_certification: false
+  review_result_is_legal_decision: false
+  review_result_is_safety_decision: false
+  review_result_is_compliance_decision: false
+  review_result_is_fairness_decision: false
+  review_result_is_moral_resolution: false
+  review_result_is_production_approval: false
