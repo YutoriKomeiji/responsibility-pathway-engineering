@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Optional review metadata checks added
+
+- `scripts/check_examples.py` now checks optional `review_metadata` structure when it is present
+- The checker requires `review_tool_version`, non-empty `checked_items`, non-empty `unchecked_items`, `review_result`, and non-empty `review_result.not_claimed` only for examples that include `review_metadata`
+- `docs/checker-coverage.md` now documents the optional review metadata checks and keeps their interpretation bounded and non-certifying
+- Existing examples without `review_metadata` are not required to add it
+- This remains a bounded structural check and adds no legal, safety, compliance, fairness, moral-resolution, certification, or production-readiness claims
+
 ### Minimal record review example added
 
 - `examples/record-review-minimal.yaml` added as a small readable example for Responsibility Pathway record review
