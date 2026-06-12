@@ -17,6 +17,7 @@ The current bridge consists of:
 - a minimal review-result fixture
 - a review-result schema
 - a review-result schema/fixture alignment note
+- bounded review-result fixture checking
 - optional bounded checker support for review metadata
 
 This bridge remains structural and non-certifying.
@@ -38,6 +39,7 @@ Supporting files currently aligned with Phase 2.5:
 
 - `spec/pathway.schema.yaml`
 - `scripts/check_examples.py`
+- `scripts/check_review_results.py`
 - `docs/checker-coverage.md`
 - `docs/example-index.md`
 - `docs/schema-cross-reference.md`
@@ -139,7 +141,7 @@ It shows:
 - plain-language summary
 - responsibility-boundary flags
 
-The fixture is not a pathway example and is not currently part of the bounded example checker workflow.
+The fixture is not a pathway example.
 
 It is a readable output example only.
 
@@ -170,6 +172,16 @@ The schema does not define legal, safety, compliance, fairness, moral-resolution
 It records that the fixture includes all currently required schema fields and preserves the expected not-checked, not-claimed, and responsibility-boundary signals.
 
 This is a documentation check only. It is not an automated checker result and does not certify the fixture.
+
+## Review-result checker support
+
+`scripts/check_review_results.py` performs bounded structural checks on review-result fixtures under `fixtures/review-results/*.yaml` against `spec/review-result.schema.yaml`.
+
+It checks YAML parseability, required fields, allowed review scope/status values, expected `not_checked` and `not_claimed` boundary items, and responsibility-boundary flags.
+
+A pass means only that the current review-result fixture preserves the bounded structure and responsibility-boundary fields required by the current review-result schema.
+
+It does not mean legal validation, safety certification, compliance certification, fairness certification, moral resolution, institutional certification, production approval, or AI final-responsibility transfer.
 
 ## Optional checker support
 
@@ -214,7 +226,7 @@ It does not remove the need for accountable humans and institutions.
 
 Next low-risk work may include:
 
-1. Decide whether to add a separate `scripts/check_review_results.py` later.
+1. Run or wire `scripts/check_review_results.py` into CI after its first manual result is observed.
 2. Keep review-result fixture checks separate from pathway example checks unless deliberately integrated.
 3. Keep checker additions optional unless existing examples are deliberately migrated.
 4. Keep documentation synchronized after each checker, fixture, schema, or example change.
@@ -242,9 +254,10 @@ Restart Phase 2.5 from this file, then read:
 5. `spec/pathway.schema.yaml`
 6. `spec/review-result.schema.yaml`
 7. `docs/review-result-schema-fixture-alignment.md`
-8. `scripts/check_examples.py`
-9. `docs/checker-coverage.md`
-10. `docs/schema-cross-reference.md`
-11. `docs/example-index.md`
+8. `scripts/check_review_results.py`
+9. `scripts/check_examples.py`
+10. `docs/checker-coverage.md`
+11. `docs/schema-cross-reference.md`
+12. `docs/example-index.md`
 
 Do not proceed to larger reference implementations until this set remains aligned and the bounded checks remain green.
