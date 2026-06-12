@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Review result schema added
+
+- `spec/review-result.schema.yaml` added as the bounded public schema for Responsibility Pathway review-result outputs
+- `docs/schema-cross-reference.md` now includes the review-result schema and places it after composed pathway instances in the reading order
+- `docs/phase-2-5-current-snapshot.md` now records the review-result schema as part of the current Phase 2.5 set
+- The schema records checked items, not-checked items, not-claimed boundaries, review status, review scope, tool version, and responsibility-boundary flags
+- The schema remains structural and non-certifying, and adds no legal, safety, compliance, fairness, moral-resolution, certification, production-approval, or AI-final-responsibility-transfer claims
+
 ### ROADMAP Phase 2.5 status synchronized
 
 - ROADMAP now records the Phase 2.5 current snapshot, minimal record-review example, minimal review-result fixture, and optional review metadata checks
