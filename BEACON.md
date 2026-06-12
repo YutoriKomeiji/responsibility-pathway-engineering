@@ -14,7 +14,7 @@ Phase 1.5 specification binding is established.
 
 Phase 1.6 lightweight validation and lifecycle-example coverage is substantially established.
 
-Phase 2 formalization has started, the first minimal Lean lifecycle-invariant set has been introduced, and the Lean core has been split into small modules.
+Phase 2 formalization has started, the first minimal Lean lifecycle-invariant set has been introduced, the Lean core has been split into small modules, and a minimal Lean build path has been added.
 
 Core definitions, the eight-element model, runtime model, responsibility node model, return point model, repair model, value/cost flow, stop authority, evidence log, action class matrix, approval gate, and decision owner model have been added.
 
@@ -51,7 +51,11 @@ The Lean spine is split into:
 - `formal/lean/ResponsibilityPathway/Invariants.lean`
 - `formal/lean/ResponsibilityPathway/Core.lean`
 
-Lean CI or local Lean build verification is not yet established in this repository. The current GitHub Actions workflow covers only the bounded Python example checker.
+Minimal Lean build files now exist:
+
+- `lean-toolchain`
+- `lakefile.lean`
+- `.github/workflows/check-lean.yml`
 
 The current minimal Lean lifecycle-invariant set covers:
 
@@ -85,7 +89,7 @@ Claims precede applications.
 - Keep checker output bounded and non-certifying
 - Keep Lean invariants small, explicit, and assumption-scoped
 - Preserve the split Lean spine before adding more theorem families
-- Establish a minimal Lean check path before treating the split formalization as build-verified
+- Observe the first minimal Lean workflow result before expanding theorem families
 - Preserve the boundary that AI may participate as a pathway node but does not assume final responsibility under the current minimal model
 - Keep future artificial legal-personhood or institutional-personhood layers explicit if modeled later
 - Grow only when responsibility can still return from claims to definitions, examples, schemas, checker boundaries, excluded claims, Lean definitions, and assumptions
@@ -115,7 +119,7 @@ The next low-risk action is not to expand into larger reference implementations 
 
 Continue Phase 2 by either:
 
-- establishing a minimal Lean toolchain and build/check path
+- observing the first Lean workflow result and adjusting only if the minimal build path fails
 - adding only very small additional invariant candidates after the current assumptions remain clear and the split modules remain stable
 - maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, and `formal/lean/README.md`
 
