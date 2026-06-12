@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Review-result checker coverage boundary documented
+
+- `docs/checker-coverage.md` now records that `fixtures/review-results/*.yaml` are not currently read by `scripts/check_examples.py`
+- `docs/checker-coverage.md` now records that `spec/review-result.schema.yaml` is not currently validated by the checker
+- ROADMAP now notes the review-result schema and the current unchecked status of review-result fixtures
+- This keeps pathway example checks separate from review-result fixture validation until a future deliberate checker is added
+- The update remains structural and non-certifying
+
 ### Review result schema added
 
 - `spec/review-result.schema.yaml` added as the bounded public schema for Responsibility Pathway review-result outputs
@@ -100,7 +108,7 @@ This changelog records conceptual milestones rather than individual code edits.
 ### Phase 2 current snapshot added
 
 - `docs/phase-2-current-snapshot.md` added as a stable reconnection document for the current Phase 2 Lean position
-- README and README.ja now link to the current snapshot in the Phase 2 reader path
+- README and README.ja now link to the current snapshot in the Phase 2 Lean reader path
 - BEACON now records the current snapshot as part of the Phase 2 Lean reconnection path
 - The snapshot records module layout, build path, theorem categories, current invariant candidates, non-certifying boundaries, next allowed work, and stop conditions
 
