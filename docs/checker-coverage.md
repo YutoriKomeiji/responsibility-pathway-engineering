@@ -1,10 +1,14 @@
 # Checker Coverage
 
-This document summarizes the current coverage of `scripts/check_examples.py`.
+This document summarizes the current coverage of bounded repository-maintenance checkers.
 
-The checker is a bounded repository-maintenance tool. It is not schema validation, certification, compliance review, legal review, safety review, fairness review, moral accountability judgment, or production-readiness assessment.
+The checkers are bounded repository-maintenance tools. They are not schema validation systems, certification processes, compliance reviews, legal reviews, safety reviews, fairness reviews, moral accountability judgments, or production-readiness assessments.
 
-## General checks
+## `scripts/check_examples.py`
+
+`scripts/check_examples.py` checks pathway examples under `examples/*.yaml`.
+
+### General checks
 
 For each YAML example, the checker currently inspects:
 
@@ -17,9 +21,9 @@ For each YAML example, the checker currently inspects:
 - formalization-scope excluded-claim signals
 - optional `review_metadata` structure when present
 
-## Lifecycle-aware checks
+### Lifecycle-aware checks
 
-### `originating`
+#### `originating`
 
 The checker inspects whether the example includes:
 
@@ -30,7 +34,7 @@ The checker inspects whether the example includes:
 
 This does not mean the originating pathway is complete, safe, compliant, legally valid, morally resolved, or production ready.
 
-### `repaired`
+#### `repaired`
 
 The checker inspects whether the example includes:
 
@@ -41,7 +45,7 @@ The checker inspects whether the example includes:
 
 This does not mean repair is complete in the real world, harm is eliminated, legal responsibility is resolved, or moral responsibility is resolved.
 
-### `suspended`
+#### `suspended`
 
 The checker inspects whether the example includes:
 
@@ -52,7 +56,7 @@ The checker inspects whether the example includes:
 
 This does not mean suspension is justified in a real-world setting.
 
-### `returning`
+#### `returning`
 
 The checker inspects whether the example includes:
 
@@ -64,7 +68,7 @@ The checker inspects whether the example includes:
 
 This does not mean return is equivalent to continuation, repair completion, closure, or approval.
 
-### `closed`
+#### `closed`
 
 The checker inspects whether the example includes:
 
@@ -77,7 +81,7 @@ The checker inspects whether the example includes:
 
 This does not mean closure erases responsibility history, grants immunity, completes repair, certifies safety, or resolves legal or moral responsibility.
 
-## Optional record-review metadata checks
+### Optional record-review metadata checks
 
 When an example includes `review_metadata`, the checker now inspects whether:
 
@@ -92,29 +96,25 @@ These checks are optional and apply only when `review_metadata` is present.
 
 They remain bounded structural checks. A pass does not certify the record, the workflow, the system, the organization, or the real-world decision.
 
-## Review-result schema and fixture coverage
+## `scripts/check_review_results.py`
 
-`spec/review-result.schema.yaml` defines the minimum structure for bounded review-result outputs.
+`scripts/check_review_results.py` checks review-result fixtures under `fixtures/review-results/*.yaml` against `spec/review-result.schema.yaml`.
 
-`fixtures/review-results/record-review-result-minimal.yaml` provides a small readable review-result output fixture.
+The checker currently inspects:
 
-`docs/review-result-schema-fixture-alignment.md` records a documentation-only alignment check between the current schema and fixture.
+- YAML parseability
+- top-level mapping structure
+- schema-defined required fields
+- allowed `review_scope` values
+- allowed `review_status` values
+- non-empty `checked_items`
+- expected `not_checked` boundary items
+- expected `not_claimed` boundary items
+- expected `responsibility_boundary` flags
 
-The current checker does not read `fixtures/review-results/*.yaml`.
+This checker does not check pathway examples. It does not decide whether the reviewed workflow, organization, system, decision, or deployment is valid, safe, compliant, fair, morally resolved, certified, approved, production ready, or complete.
 
-The current checker also does not validate `spec/review-result.schema.yaml`.
-
-This separation is intentional for now:
-
-- pathway examples remain under `examples/*.yaml`
-- review-result output fixtures remain under `fixtures/review-results/*.yaml`
-- `scripts/check_examples.py` remains focused on pathway examples
-- review-result validation is not yet implemented
-- the schema/fixture alignment note is not an automated checker result
-
-Future review-result checking should be added separately, for example by a future `scripts/check_review_results.py`, only after the review-result schema and fixture boundaries remain stable.
-
-A future review-result checker must remain bounded and structural. It must not turn a review result into legal validation, safety certification, compliance certification, fairness certification, moral resolution, institutional certification, production approval, or AI final-responsibility transfer.
+A pass means only that the current review-result fixture preserves the bounded structure and responsibility-boundary fields required by the current review-result schema.
 
 ## Responsibility Pathway record review alignment
 
@@ -140,11 +140,9 @@ A future review-result checker must remain bounded and structural. It must not t
 
 `examples/record-review-minimal.yaml` provides a small readable record-review example that follows the existing originating lifecycle checker path.
 
-`fixtures/review-results/record-review-result-minimal.yaml` provides a review-result output fixture that is not currently consumed by the checker.
+`fixtures/review-results/record-review-result-minimal.yaml` provides a review-result output fixture checked by `scripts/check_review_results.py`.
 
-`docs/review-result-schema-fixture-alignment.md` documents that the current fixture includes the current schema's required fields and boundary lists, but this remains a manual documentation check.
-
-The current checker has been minimally expanded to inspect optional `review_metadata` structure when present. It still does not fully validate every record-review field, and it does not validate review-result fixtures.
+`docs/review-result-schema-fixture-alignment.md` documents that the current fixture includes the current schema's required fields and boundary lists.
 
 Future checker work should remain bounded to structural signals and must not treat a review pass as legal validity, safety, compliance, fairness, moral resolution, certification, or production readiness.
 
@@ -163,12 +161,12 @@ Future checker work should remain bounded to structural signals and must not tre
 
 | Fixture | Schema reference | Alignment note | Current checker coverage |
 | --- | --- | --- | --- |
-| `fixtures/review-results/record-review-result-minimal.yaml` | `spec/review-result.schema.yaml` | `docs/review-result-schema-fixture-alignment.md` | not yet checked |
+| `fixtures/review-results/record-review-result-minimal.yaml` | `spec/review-result.schema.yaml` | `docs/review-result-schema-fixture-alignment.md` | checked by `scripts/check_review_results.py` |
 
 ## Interpretation boundary
 
-A checker pass means only that the example satisfies the bounded structural rules implemented by the current checker version.
+A checker pass means only that the checked file satisfies the bounded structural rules implemented by the current checker version.
 
-A checker pass does not mean that the example is correct in all contexts, semantically complete, legally valid, ethically valid, safe, fair, compliant, certified, approved, or ready for production use.
+A checker pass does not mean that the example or fixture is correct in all contexts, semantically complete, legally valid, ethically valid, safe, fair, compliant, certified, approved, or ready for production use.
 
-The human author or maintainer remains responsible for deciding whether an example, schema, document, or public claim should be changed, published, or relied upon.
+The human author or maintainer remains responsible for deciding whether an example, fixture, schema, document, or public claim should be changed, published, or relied upon.
