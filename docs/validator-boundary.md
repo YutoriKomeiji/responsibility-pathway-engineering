@@ -2,19 +2,24 @@
 
 This document defines the boundary for lightweight validation tools in this repository.
 
-The current checker is:
+The current bounded checkers are:
 
 - `scripts/check_examples.py`
+- `scripts/check_review_results.py`
 
 ## Purpose
 
-The checker is intended to help maintain example files during Phase 1.6 by detecting missing structural fields, lifecycle-specific structural signals, and responsibility-boundary signals.
+The checkers are intended to help maintain repository examples and fixtures by detecting missing structural fields, lifecycle-specific structural signals, review-result structural fields, and responsibility-boundary signals.
 
-It supports repository maintenance. It does not certify examples or systems.
+They support repository maintenance. They do not certify examples, fixtures, records, review results, systems, organizations, workflows, decisions, deployments, or real-world responsibility outcomes.
 
-## What the checker may check
+## Checker scopes
 
-The checker may inspect whether example YAML files contain:
+### `scripts/check_examples.py`
+
+`scripts/check_examples.py` checks pathway examples under `examples/*.yaml`.
+
+It may inspect whether example YAML files contain:
 
 - required top-level keys
 - non-empty node lists
@@ -25,10 +30,41 @@ The checker may inspect whether example YAML files contain:
 - lifecycle-specific structural signals for `originating`, `repaired`, `suspended`, `returning`, and `closed`
 - lifecycle-specific structural blocks such as `suspension`, `returning`, and `closure`
 - lifecycle-specific boundary signals such as human decision-owner capacity, repair-record presence, automatic-continuation disallowance, reopening-condition records, closure-basis records, and disallowed-interpretation lists
+- optional `review_metadata` structure when present
 
-## What the checker does not check
+### `scripts/check_review_results.py`
 
-The checker does not determine:
+`scripts/check_review_results.py` checks review-result fixtures under `fixtures/review-results/*.yaml` against `spec/review-result.schema.yaml`.
+
+It may inspect whether review-result fixture YAML files contain:
+
+- YAML parseable structure
+- top-level mapping structure
+- schema-defined required fields
+- allowed `review_scope` values
+- allowed `review_status` values
+- non-empty `checked_items`
+- expected `not_checked` boundary items
+- expected `not_claimed` boundary items
+- expected `responsibility_boundary` flags
+
+A passing review-result checker result means only that the fixture preserves the bounded structure and responsibility-boundary fields required by the current review-result schema.
+
+It does not mean that the reviewed workflow, organization, system, decision, deployment, record, or real-world responsibility outcome is valid, safe, compliant, fair, complete, morally resolved, certified, approved, or ready for production use.
+
+## GitHub Actions boundary
+
+The repository currently includes bounded GitHub Actions workflows for repository-maintenance checks.
+
+Observed green workflow status means only that the relevant bounded checker completed successfully for the files in that run.
+
+For example, the `Check review-result fixtures` workflow was observed green for run `#1` on commit `aaaece3` on `main`. That observed green status means only that the bounded review-result fixture checker passed for that repository state.
+
+It does not certify legal validity, safety, compliance, fairness, moral accountability resolution, institutional approval, production readiness, real-world responsibility resolution, or AI final-responsibility transfer.
+
+## What the checkers do not check
+
+The checkers do not determine:
 
 - legal validity
 - regulatory compliance
@@ -42,6 +78,7 @@ The checker does not determine:
 - semantic completeness
 - operational correctness
 - whether a lifecycle transition is appropriate in a real-world setting
+- whether a review result is a legal, safety, compliance, fairness, moral, institutional, or production approval result
 - whether closure, repair, suspension, return, continuation, or originating state is justified outside the declared example scope
 
 ## Output language
@@ -53,9 +90,11 @@ Allowed terms include:
 - `PASS: required key present`
 - `PASS: lifecycle block present`
 - `PASS: lifecycle rule applied`
+- `PASS: bounded review-result checks completed without failures`
 - `WARN: optional or weak signal missing`
 - `FAIL: required boundary missing`
 - `bounded structural checks`
+- `bounded repository-maintenance checks`
 
 Avoid terms such as:
 
@@ -67,6 +106,7 @@ Avoid terms such as:
 - `morally resolved`
 - `production ready`
 - `approved for use`
+- `verified as correct in the real world`
 
 ## Interpretation
 
@@ -74,13 +114,15 @@ A passing checker result only means that the checked file satisfied the limited 
 
 For lifecycle-aware checks, a passing result only means that the declared lifecycle state has the expected structural signals in the example file. It does not mean that originating, suspension, return, repair, closure, reopening, or continuation would be correct or justified in any real-world context.
 
-A passing result does not mean that the example is complete, correct in all contexts, ethically valid, legally valid, safe, fair, compliant, or ready for production use.
+For review-result fixture checks, a passing result only means that the fixture preserves the current required review-result structure, not-checked boundaries, not-claimed boundaries, and responsibility-boundary flags.
+
+A passing result does not mean that the example, fixture, record, review result, workflow, system, organization, decision, or deployment is complete, correct in all contexts, ethically valid, legally valid, safe, fair, compliant, certified, approved, or ready for production use.
 
 ## Responsibility boundary
 
-The checker is a maintenance aid.
+The checkers are maintenance aids.
 
-The human author or maintainer remains responsible for deciding whether an example, schema, document, or public claim should be changed, published, or relied upon.
+The human author or maintainer remains responsible for deciding whether an example, fixture, schema, document, checker result, workflow result, or public claim should be changed, published, or relied upon.
 
 AI tools may assist with checker implementation and review, but they are not authors, responsibility holders, legal actors, moral agents, or final decision-makers.
 
@@ -92,5 +134,6 @@ Future validators may become stricter, but each validator should continue to sta
 - what it does not check
 - what assumptions it uses
 - what claims are excluded
+- whether the validator is manually run, CI-run, or both
 
-No validator in this repository should imply legal, moral, safety, fairness, compliance, or production-readiness conclusions unless that scope is explicitly defined and justified in a future phase.
+No validator in this repository should imply legal, moral, safety, fairness, compliance, certification, approval, or production-readiness conclusions unless that scope is explicitly defined and justified in a future phase.
