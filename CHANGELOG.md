@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 Lean theorem index added
+
+- `docs/phase-2-lean-theorem-index.md` added as a navigation aid for current Lean theorem roles
+- The index groups Basic constructor sanity theorems, Example lifecycle sanity theorems, boundary predicates, positive invariant theorem candidates, and vacuity/non-trigger theorem candidates
+- The index adds no new formal claims and remains non-certifying
+
 ### Phase 2 example lifecycle sanity theorems added
 
 - `formal/lean/ResponsibilityPathway/Examples.lean` updated with constructor-level sanity theorems for lifecycle examples
