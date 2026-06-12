@@ -4,6 +4,13 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Validator boundary updated for review-result checker
+
+- `docs/validator-boundary.md` now records both `scripts/check_examples.py` and `scripts/check_review_results.py` as bounded repository-maintenance checkers
+- The validator boundary now documents what the review-result checker may check and what it must not claim
+- The validator boundary now records that observed green GitHub Actions status is a bounded repository-maintenance signal, not certification
+- The update keeps checker and workflow interpretation structural and non-certifying
+
 ### Review-result fixture workflow observed green
 
 - `Check review-result fixtures` GitHub Actions workflow observed green for run `#1` on commit `aaaece3` on `main`
