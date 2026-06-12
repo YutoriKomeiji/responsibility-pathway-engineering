@@ -15,6 +15,7 @@ The current bridge consists of:
 - schema alignment for record-review concepts
 - a minimal record-review example
 - a minimal review-result fixture
+- a review-result schema
 - optional bounded checker support for review metadata
 
 This bridge remains structural and non-certifying.
@@ -29,6 +30,7 @@ Primary Phase 2.5 files:
 - `docs/responsibility-pathway-record-review.md`
 - `examples/record-review-minimal.yaml`
 - `fixtures/review-results/record-review-result-minimal.yaml`
+- `spec/review-result.schema.yaml`
 
 Supporting files currently aligned with Phase 2.5:
 
@@ -36,6 +38,7 @@ Supporting files currently aligned with Phase 2.5:
 - `scripts/check_examples.py`
 - `docs/checker-coverage.md`
 - `docs/example-index.md`
+- `docs/schema-cross-reference.md`
 - `README.md`
 - `README.ja.md`
 - `BEACON.md`
@@ -94,6 +97,8 @@ A successful review does not mean the underlying workflow, system, decision, org
 - `excluded_claims`
 - `review_tool_version`
 
+`spec/review-result.schema.yaml` defines the minimum structure for bounded review-result outputs, including checked items, not-checked items, not-claimed boundaries, review status, review scope, tool version, and responsibility-boundary flags.
+
 This is schema/document alignment only.
 
 It does not mean every record-review concept is fully validated by the checker.
@@ -135,6 +140,26 @@ It shows:
 The fixture is not a pathway example and is not currently part of the bounded example checker workflow.
 
 It is a readable output example only.
+
+## Review-result schema
+
+`spec/review-result.schema.yaml` gives the review-result fixture a public specification boundary.
+
+It defines what a bounded review result should preserve:
+
+- review result identity
+- reviewed pathway identifier
+- review scope
+- review status
+- schema and review tool versions
+- checked items
+- warnings and failures
+- not-checked items
+- not-claimed boundaries
+- plain-language summary
+- responsibility-boundary flags
+
+The schema does not define legal, safety, compliance, fairness, moral-resolution, institutional-certification, production-approval, or AI-final-responsibility transfer formats.
 
 ## Optional checker support
 
@@ -179,10 +204,11 @@ It does not remove the need for accountable humans and institutions.
 
 Next low-risk work may include:
 
-1. Add narrowly scoped checker checks for one record-review concept at a time.
-2. Keep all checker additions optional unless existing examples are migrated deliberately.
-3. Keep documentation synchronized after each checker, fixture, or example change.
-4. Avoid larger reference implementations until Phase 2.5 boundaries remain stable.
+1. Decide whether to add a separate `scripts/check_review_results.py` later.
+2. Keep review-result fixture checks separate from pathway example checks unless deliberately integrated.
+3. Keep checker additions optional unless existing examples are deliberately migrated.
+4. Keep documentation synchronized after each checker, fixture, schema, or example change.
+5. Avoid larger reference implementations until Phase 2.5 boundaries remain stable.
 
 ## Stop conditions
 
@@ -204,8 +230,10 @@ Restart Phase 2.5 from this file, then read:
 3. `examples/record-review-minimal.yaml`
 4. `fixtures/review-results/record-review-result-minimal.yaml`
 5. `spec/pathway.schema.yaml`
-6. `scripts/check_examples.py`
-7. `docs/checker-coverage.md`
-8. `docs/example-index.md`
+6. `spec/review-result.schema.yaml`
+7. `scripts/check_examples.py`
+8. `docs/checker-coverage.md`
+9. `docs/schema-cross-reference.md`
+10. `docs/example-index.md`
 
 Do not proceed to larger reference implementations until this set remains aligned and the bounded checks remain green.
