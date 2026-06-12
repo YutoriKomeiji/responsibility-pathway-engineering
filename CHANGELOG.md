@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Review-result fixture workflow added
+
+- `.github/workflows/check-review-results.yml` added to run `scripts/check_review_results.py` on review-result fixture, review-result schema, checker, requirements, or workflow changes
+- The workflow installs the minimal Python dependencies and runs the bounded review-result checker
+- The workflow remains structural and non-certifying
+
 ### Reader path synchronized for bounded review-result checker
 
 - README.ja now documents manual execution of `scripts/check_review_results.py`
