@@ -92,6 +92,27 @@ These checks are optional and apply only when `review_metadata` is present.
 
 They remain bounded structural checks. A pass does not certify the record, the workflow, the system, the organization, or the real-world decision.
 
+## Review-result schema and fixture coverage
+
+`spec/review-result.schema.yaml` defines the minimum structure for bounded review-result outputs.
+
+`fixtures/review-results/record-review-result-minimal.yaml` provides a small readable review-result output fixture.
+
+The current checker does not read `fixtures/review-results/*.yaml`.
+
+The current checker also does not validate `spec/review-result.schema.yaml`.
+
+This separation is intentional for now:
+
+- pathway examples remain under `examples/*.yaml`
+- review-result output fixtures remain under `fixtures/review-results/*.yaml`
+- `scripts/check_examples.py` remains focused on pathway examples
+- review-result validation is not yet implemented
+
+Future review-result checking should be added separately, for example by a future `scripts/check_review_results.py`, only after the review-result schema and fixture boundaries remain stable.
+
+A future review-result checker must remain bounded and structural. It must not turn a review result into legal validation, safety certification, compliance certification, fairness certification, moral resolution, institutional certification, production approval, or AI final-responsibility transfer.
+
 ## Responsibility Pathway record review alignment
 
 `docs/responsibility-pathway-record-review.md` defines a plain-language review and recheck guide for Responsibility Pathway records.
@@ -112,9 +133,13 @@ They remain bounded structural checks. A pass does not certify the record, the w
 - `excluded_claims`
 - `review_tool_version`
 
+`spec/review-result.schema.yaml` defines the bounded review-result output structure.
+
 `examples/record-review-minimal.yaml` provides a small readable record-review example that follows the existing originating lifecycle checker path.
 
-The current checker has been minimally expanded to inspect optional `review_metadata` structure when present. It still does not fully validate every record-review field.
+`fixtures/review-results/record-review-result-minimal.yaml` provides a review-result output fixture that is not currently consumed by the checker.
+
+The current checker has been minimally expanded to inspect optional `review_metadata` structure when present. It still does not fully validate every record-review field, and it does not validate review-result fixtures.
 
 Future checker work should remain bounded to structural signals and must not treat a review pass as legal validity, safety, compliance, fairness, moral resolution, certification, or production readiness.
 
@@ -128,6 +153,12 @@ Future checker work should remain bounded to structural signals and must not tre
 | `examples/suspended-pathway.yaml` | `suspended` | yes | no |
 | `examples/returning-pathway.yaml` | `returning` | yes | no |
 | `examples/closed-pathway.yaml` | `closed` | yes | no |
+
+## Review-result fixture coverage map
+
+| Fixture | Schema reference | Current checker coverage |
+| --- | --- | --- |
+| `fixtures/review-results/record-review-result-minimal.yaml` | `spec/review-result.schema.yaml` | not yet checked |
 
 ## Interpretation boundary
 
