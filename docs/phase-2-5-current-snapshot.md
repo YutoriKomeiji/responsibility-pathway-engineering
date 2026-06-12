@@ -194,6 +194,28 @@ These results mean only that the current examples and review-result fixtures pas
 
 They do not certify any real-world system, workflow, decision, organization, deployment, legal status, safety status, compliance status, fairness status, moral resolution, production readiness, or AI final-responsibility transfer.
 
+## Stable checkpoint
+
+Phase 2.5 has reached a stable checkpoint for the current enterprise implementation and record-review bridge.
+
+At this checkpoint, the repository has:
+
+- a plain-language enterprise implementation profile
+- a plain-language Responsibility Pathway record review guide
+- a minimal record-review example
+- a minimal review-result fixture
+- a public review-result schema
+- a schema/fixture alignment note
+- a bounded review-result checker
+- a GitHub Actions workflow for the review-result checker
+- an observed green review-result workflow run
+- validator-boundary documentation covering both pathway-example and review-result checks
+- README, README.ja, ROADMAP, BEACON, and CHANGELOG synchronization
+
+This stable checkpoint means only that the current Phase 2.5 files, fixture, checker, workflow, and documentation are aligned within the repository's bounded structural-maintenance scope.
+
+It does not mean that RPE is complete, legally valid, safe, compliant, fair, morally resolved, institutionally certified, production ready, or validated as a real-world responsibility-resolution system.
+
 ## Optional checker support
 
 `scripts/check_examples.py` now checks optional `review_metadata` structure when it is present.
