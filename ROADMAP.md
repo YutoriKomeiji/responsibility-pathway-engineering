@@ -140,7 +140,11 @@ Next low-risk Phase 2 work:
 - Minimal record-review example added at `examples/record-review-minimal.yaml`
 - Minimal review-result fixture added at `fixtures/review-results/record-review-result-minimal.yaml`
 - Review-result schema added at `spec/review-result.schema.yaml`
-- Checker coverage now records that review-result fixtures are not yet checked
+- Review-result schema/fixture alignment note added at `docs/review-result-schema-fixture-alignment.md`
+- Bounded review-result checker added at `scripts/check_review_results.py`
+- GitHub Actions workflow added at `.github/workflows/check-review-results.yml`
+- `Check review-result fixtures` workflow observed green for run `#1` on commit `aaaece3` on `main`
+- Validator boundary updated to include both pathway-example checks and review-result fixture checks
 - Optional review metadata checks added to `scripts/check_examples.py`
 - Layer separation documented for formal core, specification layer, checker layer, workflow layer, evidence layer, and governance layer
 - Plain-language review and recheck process documented for Responsibility Pathway records
@@ -149,14 +153,14 @@ Next low-risk Phase 2 work:
 
 Phase 2.5 rule:
 
-Enterprise adoption guidance and record review guidance must connect the minimal formal core to implementable workflow, evidence, checker, and governance layers without treating RPE as a production verifier, legal decision system, compliance engine, safety certification tool, fairness certification tool, moral-resolution engine, or replacement for accountable humans and institutions.
+Enterprise adoption guidance, record review guidance, review-result schema, review-result fixtures, bounded checkers, and observed green workflow status must remain structural and non-certifying. They must not treat RPE as a production verifier, legal decision system, compliance engine, safety certification tool, fairness certification tool, moral-resolution engine, or replacement for accountable humans and institutions.
 
 Next low-risk Phase 2.5 work:
 
 - use `docs/phase-2-5-current-snapshot.md` before expanding record-review examples, fixtures, or checker coverage
-- keep review-result fixtures separate from pathway examples unless deliberately migrated
+- keep review-result fixture checks separate from pathway example checks unless deliberately integrated
 - keep checker additions optional unless existing examples are deliberately migrated
-- keep review-result schema validation separate unless deliberately integrated
+- keep review-result schema validation and fixture checking bounded to structural responsibility-boundary preservation
 - keep review results structural and non-certifying
 
 ## Phase 3 - Reference Implementations
