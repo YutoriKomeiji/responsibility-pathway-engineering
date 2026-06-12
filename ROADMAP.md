@@ -136,6 +136,10 @@ Next low-risk Phase 2 work:
 
 - Enterprise implementation profile added at `docs/enterprise-implementation-profile.md`
 - Responsibility Pathway record review guide added at `docs/responsibility-pathway-record-review.md`
+- Phase 2.5 current snapshot added at `docs/phase-2-5-current-snapshot.md`
+- Minimal record-review example added at `examples/record-review-minimal.yaml`
+- Minimal review-result fixture added at `fixtures/review-results/record-review-result-minimal.yaml`
+- Optional review metadata checks added to `scripts/check_examples.py`
 - Layer separation documented for formal core, specification layer, checker layer, workflow layer, evidence layer, and governance layer
 - Plain-language review and recheck process documented for Responsibility Pathway records
 - Minimal enterprise adoption path documented before larger reference implementations
@@ -144,6 +148,13 @@ Next low-risk Phase 2 work:
 Phase 2.5 rule:
 
 Enterprise adoption guidance and record review guidance must connect the minimal formal core to implementable workflow, evidence, checker, and governance layers without treating RPE as a production verifier, legal decision system, compliance engine, safety certification tool, fairness certification tool, moral-resolution engine, or replacement for accountable humans and institutions.
+
+Next low-risk Phase 2.5 work:
+
+- use `docs/phase-2-5-current-snapshot.md` before expanding record-review examples, fixtures, or checker coverage
+- keep review-result fixtures separate from pathway examples unless deliberately migrated
+- keep checker additions optional unless existing examples are deliberately migrated
+- keep review results structural and non-certifying
 
 ## Phase 3 - Reference Implementations
 
