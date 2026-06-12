@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Enterprise implementation profile added
+
+- `docs/enterprise-implementation-profile.md` added as a minimal enterprise adoption bridge
+- The profile distinguishes the minimal formal core from production verifiers, legal certification systems, compliance engines, fairness certification tools, and safety certification tools
+- The profile documents layer separation across formal core, specification layer, checker layer, workflow layer, evidence layer, and governance layer
+- ROADMAP now includes Phase 2.5 as an enterprise implementation bridge before larger reference implementations
+- README now links to the enterprise implementation profile in the reader path
+
 ### ROADMAP phase status wording aligned
 
 - Phase 1.6 remaining tasks were updated to maintenance wording for bounded checker stability and small readable examples
