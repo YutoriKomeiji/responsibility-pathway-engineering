@@ -74,13 +74,13 @@ Phase 1.6 rule:
 
 Lifecycle-aware checks remain bounded structural maintenance checks. They do not certify examples, systems, legal validity, safety, compliance, fairness, moral resolution, production readiness, or real-world responsibility resolution.
 
-Remaining Phase 1.6 tasks:
+Remaining Phase 1.6 maintenance tasks:
 
-- run and stabilize checker output if execution environment is available
+- maintain bounded checker stability
 - keep examples small and manually readable
 - avoid adding higher-impact examples until lifecycle boundaries remain stable
 
-## Phase 2 - Formalization (Started; minimal lifecycle invariant set reached; Lean core split and minimal build path added)
+## Phase 2 - Formalization (Started; minimal lifecycle invariant set reached; Lean core split, build path, theorem index, and current snapshot added)
 
 - Lean invariants
 - State transitions
