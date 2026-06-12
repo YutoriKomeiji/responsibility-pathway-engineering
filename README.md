@@ -24,7 +24,9 @@ A plain-language record review guide is available at [docs/responsibility-pathwa
 
 The current Phase 2.5 enterprise and record-review snapshot is available at [docs/phase-2-5-current-snapshot.md](docs/phase-2-5-current-snapshot.md).
 
-A bounded review-result schema is available at [spec/review-result.schema.yaml](spec/review-result.schema.yaml). It defines a public structure for recording what a review checked, what it did not check, and what it does not claim. Current review-result fixtures are not yet validated by the checker.
+A bounded review-result schema is available at [spec/review-result.schema.yaml](spec/review-result.schema.yaml). It defines a public structure for recording what a review checked, what it did not check, and what it does not claim.
+
+A bounded review-result checker is available at [scripts/check_review_results.py](scripts/check_review_results.py). It checks review-result fixtures for required fields, allowed review scope/status values, expected not-checked and not-claimed boundaries, and responsibility-boundary flags. It remains structural and non-certifying.
 
 ## Authorship and citation
 
@@ -81,7 +83,7 @@ See [docs/example-index.md](docs/example-index.md) for example purposes, boundar
 
 These examples are illustrative only. They do not claim legal liability resolution, moral accountability, safety, fairness, compliance, or production readiness.
 
-Review-result output fixtures are kept separate from pathway examples under `fixtures/review-results/`. They are illustrative output fixtures and are not currently validated by `scripts/check_examples.py`.
+Review-result output fixtures are kept separate from pathway examples under `fixtures/review-results/`.
 
 ## Lightweight checks
 
@@ -100,7 +102,13 @@ It checks only limited structural signals and explicit responsibility-boundary f
 
 When an example includes `review_metadata`, the checker also performs optional bounded checks on review metadata structure and non-certifying review-result boundaries.
 
-Review-result fixtures under `fixtures/review-results/` are not currently read by this checker. `spec/review-result.schema.yaml` is a public schema boundary, not a completed checker integration.
+A separate bounded review-result checker is available at [scripts/check_review_results.py](scripts/check_review_results.py).
+
+```bash
+python scripts/check_review_results.py
+```
+
+It checks only review-result fixture structure and boundary-preservation signals. A passing result does not mean legal validation, safety certification, compliance certification, fairness certification, moral resolution, institutional certification, production approval, or AI final-responsibility transfer.
 
 See [docs/validator-boundary.md](docs/validator-boundary.md) for the checker boundary and [docs/checker-coverage.md](docs/checker-coverage.md) for the current checker coverage map.
 
