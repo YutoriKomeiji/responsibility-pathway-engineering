@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Minimal record review example added
+
+- `examples/record-review-minimal.yaml` added as a small readable example for Responsibility Pathway record review
+- `docs/example-index.md` now describes the record-review example and places it in the recommended example reading order
+- `docs/checker-coverage.md` now lists the record-review example in the current example coverage map
+- The example follows the existing originating lifecycle checker path and does not expand checker semantics
+- The example remains structural and non-certifying, and adds no legal, safety, compliance, fairness, moral-resolution, certification, or production-readiness claims
+
 ### Pathway schema aligned with record review concepts
 
 - `spec/pathway.schema.yaml` now includes review aliases, review metadata, record-review alignment notes, and additional lifecycle review concepts
