@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Responsibility Pathway record review added
+
+- `docs/responsibility-pathway-record-review.md` added as a plain-language review and recheck guide for Responsibility Pathway records
+- The guide uses accessible terms such as record, review, recheck, review result, review tool, evidence record, repair record, and reopening condition
+- The guide defines what can be structurally checked and what must not be claimed from a successful review
+- README, ROADMAP, and the enterprise implementation profile now link to the record review guide
+- The guide adds no legal, safety, compliance, fairness, moral-resolution, certification, or production-readiness claims
+
 ### Enterprise implementation profile added
 
 - `docs/enterprise-implementation-profile.md` added as a minimal enterprise adoption bridge
