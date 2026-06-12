@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Reader path synchronized for bounded review-result checker
+
+- README.ja now documents manual execution of `scripts/check_review_results.py`
+- BEACON now records the bounded review-result checker in the current position, read-first path, current focus, and restart point
+- The synchronization keeps review-result checking structural and non-certifying
+
 ### Bounded review-result checker added
 
 - `scripts/check_review_results.py` added as a bounded structural checker for review-result fixtures under `fixtures/review-results/*.yaml`
