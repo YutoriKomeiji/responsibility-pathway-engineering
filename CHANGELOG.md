@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### ROADMAP synchronized with Lean theorem index
+
+- ROADMAP now records constructor-level sanity theorem coverage for Basic and Examples modules
+- ROADMAP now references `docs/phase-2-lean-theorem-index.md` as the theorem-role guide before further theorem expansion
+- Next low-risk Phase 2 work now includes using the theorem-role index before adding or renaming Lean theorem candidates
+
 ### BEACON synchronized with Lean theorem index
 
 - BEACON now records `docs/phase-2-lean-theorem-index.md` as part of the Phase 2 Lean reconnection path
