@@ -4,6 +4,13 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Lean workflow inputs made explicit
+
+- `.github/workflows/check-lean.yml` updated to use explicit `leanprover/lean-action@v1` inputs
+- `auto-config` is set to `false`
+- `build`, `test`, `lint`, and `use-mathlib-cache` are set explicitly as string inputs
+- This keeps the minimal Lean CI focused on `lake build` only
+
 ### Phase 2 minimal Lean build path added
 
 - `lean-toolchain` added and pinned to `leanprover/lean4:v4.30.0`
