@@ -4,6 +4,11 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### README files updated with review-result workflow status
+
+- README and README.ja now record that the `Check review-result fixtures` GitHub Actions workflow was observed green for run `#1` on commit `aaaece3` on `main`
+- README and README.ja keep the observed green workflow status bounded to repository-maintenance checks and non-certifying interpretation
+
 ### ROADMAP updated with review-result workflow status
 
 - ROADMAP now records the review-result schema/fixture alignment note, bounded review-result checker, review-result workflow, observed green workflow status, and validator-boundary update in Phase 2.5
