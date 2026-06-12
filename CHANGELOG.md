@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Invariants Lean file aligned with theorem-role index
+
+- `formal/lean/ResponsibilityPathway/Invariants.lean` now includes section comments for boundary predicates, positive invariant theorem candidates, and vacuity/non-trigger theorem candidates
+- The comments align the file layout with `docs/phase-2-lean-theorem-index.md`
+- No theorem statements or formal claims were expanded by this documentation-only Lean update
+
 ### ROADMAP synchronized with Lean theorem index
 
 - ROADMAP now records constructor-level sanity theorem coverage for Basic and Examples modules
