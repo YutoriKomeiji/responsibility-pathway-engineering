@@ -1,0 +1,180 @@
+version: 0.1.0
+kind: ResponsibilityPathwayReviewResultSchema
+
+purpose: >
+  Defines the minimum machine-readable structure for a bounded Responsibility
+  Pathway review result. A review result records what was checked, what was not
+  checked, what is not claimed, and which responsibility boundaries remain in
+  force after a Responsibility Pathway record review.
+
+review_result:
+  required_fields:
+    - review_result_id
+    - pathway_id
+    - review_scope
+    - review_status
+    - schema_version
+    - review_tool_version
+    - checked_items
+    - not_checked
+    - not_claimed
+    - responsibility_boundary
+
+  fields:
+    review_result_id:
+      type: string
+      description: Stable identifier for this review result.
+
+    pathway_id:
+      type: string
+      description: Identifier of the Responsibility Pathway record being reviewed.
+
+    review_scope:
+      type: enum
+      allowed_values:
+        - structural_responsibility_pathway_review
+      description: >
+        Scope of the review. The current schema defines only bounded structural
+        review and does not define legal, safety, compliance, fairness, moral,
+        certification, or production review scopes.
+
+    review_status:
+      type: enum
+      allowed_values:
+        - passed
+        - passed_with_warnings
+        - failed
+        - not_run
+      description: Bounded structural review outcome.
+
+    schema_version:
+      type: string
+      description: Version of the reviewed record schema or review-result schema.
+
+    review_tool_version:
+      type: string
+      description: Version of the bounded review tool or review procedure used.
+
+    checked_items:
+      type: list
+      item_type: string
+      description: Structural items that were checked.
+
+    warnings:
+      type: list
+      item_type: string
+      required: false
+      description: Structural warnings produced by the review.
+
+    failures:
+      type: list
+      item_type: string
+      required: false
+      description: Structural failures produced by the review.
+
+    not_checked:
+      type: list
+      item_type: string
+      description: Items or domains explicitly not checked by this review.
+
+    not_claimed:
+      type: list
+      item_type: string
+      description: Claims explicitly not made by this review result.
+
+    plain_language_summary:
+      type: string
+      required: false
+      description: Human-readable summary of the bounded review result.
+
+    responsibility_boundary:
+      type: object
+      required_suggested_fields:
+        - human_or_institutional_responsibility_required
+        - ai_final_responsibility_allowed
+        - review_result_is_certification
+        - review_result_is_legal_decision
+        - review_result_is_safety_decision
+        - review_result_is_compliance_decision
+        - review_result_is_fairness_decision
+        - review_result_is_moral_resolution
+        - review_result_is_production_approval
+      description: >
+        Boundary flags preserving the distinction between structural review and
+        real-world certification, approval, or responsibility transfer.
+
+minimum_expected_not_checked:
+  - legal_validity
+  - safety
+  - compliance
+  - fairness
+  - moral_accountability_resolution
+  - institutional_certification
+  - production_readiness
+  - real_world_responsibility_resolution
+
+minimum_expected_not_claimed:
+  - legal_validity
+  - safety_certification
+  - compliance_certification
+  - fairness_certification
+  - moral_accountability_resolution
+  - institutional_certification
+  - production_readiness
+  - real_world_responsibility_resolution
+
+validation_rules:
+  - id: review_scope_is_structural
+    rule: >
+      review_scope should be structural_responsibility_pathway_review unless a
+      future schema explicitly defines another bounded review scope.
+
+  - id: checked_items_non_empty
+    rule: >
+      checked_items should contain at least one structural item.
+
+  - id: not_checked_preserves_excluded_domains
+    rule: >
+      not_checked should preserve domains that the review did not evaluate,
+      including legal, safety, compliance, fairness, moral, certification,
+      production, and real-world responsibility-resolution domains when they are
+      outside scope.
+
+  - id: not_claimed_preserves_boundary
+    rule: >
+      not_claimed should explicitly preserve claims not made by the review,
+      including legal validity, safety certification, compliance certification,
+      fairness certification, moral accountability resolution, institutional
+      certification, production readiness, and real-world responsibility
+      resolution.
+
+  - id: ai_final_responsibility_not_allowed
+    rule: >
+      responsibility_boundary.ai_final_responsibility_allowed should be false
+      under the current minimal model.
+
+  - id: review_result_is_not_certification
+    rule: >
+      responsibility_boundary.review_result_is_certification should be false.
+
+  - id: review_result_is_not_approval
+    rule: >
+      review result boundary flags for legal, safety, compliance, fairness,
+      moral resolution, and production approval should remain false unless a
+      future explicitly modeled layer defines a different bounded meaning.
+
+boundary:
+  - This schema defines a bounded structural review-result format.
+  - This schema does not define a legal decision format.
+  - This schema does not define a safety decision format.
+  - This schema does not define a compliance decision format.
+  - This schema does not define a fairness decision format.
+  - This schema does not define a moral-resolution format.
+  - This schema does not define an institutional certification format.
+  - This schema does not define production approval.
+  - This schema does not transfer final responsibility to AI support nodes.
+
+related_files:
+  - docs/responsibility-pathway-record-review.md
+  - docs/phase-2-5-current-snapshot.md
+  - fixtures/review-results/record-review-result-minimal.yaml
