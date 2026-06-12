@@ -4,6 +4,13 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 basic node sanity theorems added
+
+- `formal/lean/ResponsibilityPathway/Basic.lean` updated with constructor-level sanity theorems for basic node definitions
+- Added theorem candidates showing that a safe AI node is an AI node and cannot hold final responsibility by construction
+- Added theorem candidates showing that human and institutional responsibility nodes can hold final responsibility by construction
+- These are structural model facts only; they do not certify legal validity, safety, compliance, fairness, moral accountability resolution, institutional certification, or production readiness
+
 ### Lean workflow generates Lake manifest before build
 
 - `.github/workflows/check-lean.yml` updated after the first workflow attempt reported `No lake-manifest.json found`
