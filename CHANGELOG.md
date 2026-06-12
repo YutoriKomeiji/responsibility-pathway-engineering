@@ -4,6 +4,13 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### ROADMAP Phase 2.5 status synchronized
+
+- ROADMAP now records the Phase 2.5 current snapshot, minimal record-review example, minimal review-result fixture, and optional review metadata checks
+- ROADMAP now includes short next low-risk Phase 2.5 work items
+- This resolves the earlier deferred ROADMAP synchronization with a smaller update
+- The update remains structural and non-certifying
+
 ### Minimal review result fixture added
 
 - `fixtures/review-results/record-review-result-minimal.yaml` added as a small output fixture for a bounded Responsibility Pathway review result
@@ -18,7 +25,7 @@ This changelog records conceptual milestones rather than individual code edits.
 - README, README.ja, and BEACON now link to the Phase 2.5 current snapshot
 - The snapshot records current Phase 2.5 files, schema alignment, the minimal record-review example, optional review metadata checker support, current green check status, boundaries, next low-risk work, stop conditions, and restart point
 - The snapshot remains structural and non-certifying
-- ROADMAP synchronization is deferred after the first full-file update attempt was blocked; the current ROADMAP already contains the main Phase 2.5 bridge entry
+- ROADMAP synchronization is now completed with a smaller follow-up update
 
 ### Optional review metadata checks added
 
