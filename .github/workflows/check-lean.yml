@@ -27,7 +27,8 @@ jobs:
       - name: Run Lean build
         uses: leanprover/lean-action@v1
         with:
-          build: true
-          test: false
-          lint: false
-          use-mathlib-cache: false
+          auto-config: "false"
+          build: "true"
+          test: "false"
+          lint: "false"
+          use-mathlib-cache: "false"
