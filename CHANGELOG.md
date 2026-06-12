@@ -9,7 +9,7 @@ This changelog records conceptual milestones rather than individual code edits.
 - `lean-toolchain` added and pinned to `leanprover/lean4:v4.30.0`
 - `lakefile.lean` added as a minimal Lake package using `formal/lean` as the Lean source directory
 - `.github/workflows/check-lean.yml` added as a minimal Lean build workflow using `leanprover/lean-action@v1`
-- README, README.ja, ROADMAP, and BEACON updated to reflect the minimal Lean build path
+- README, README.ja, ROADMAP, BEACON, and `formal/lean/README.md` updated to reflect the minimal Lean build path
 - The workflow checks only the Lean package build; it does not certify legal validity, safety, compliance, fairness, moral accountability resolution, institutional certification, or production readiness
 
 ### Phase 2 Lean core split documented across entry files
