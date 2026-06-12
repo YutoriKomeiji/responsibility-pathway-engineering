@@ -24,11 +24,18 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Run Lean build
-        uses: leanprover/lean-action@v1
-        with:
-          auto-config: "false"
-          build: "true"
-          test: "false"
-          lint: "false"
-          use-mathlib-cache: "false"
+      - name: Install Elan
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --no-modify-path
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Show Lean versions
+        run: |
+          lean --version
+          lake --version
+
+      - name: Generate Lake manifest
+        run: lake update
+
+      - name: Build Lean package
+        run: lake build
