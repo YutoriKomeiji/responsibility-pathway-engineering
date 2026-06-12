@@ -16,7 +16,7 @@ Phase 1.6 lightweight validation and lifecycle-example coverage is substantially
 
 Phase 2 formalization has started, the first minimal Lean lifecycle-invariant set has been introduced, the Lean core has been split into small modules, and a minimal Lean build path has been added.
 
-Phase 2.5 enterprise implementation guidance has started. `docs/enterprise-implementation-profile.md` connects the minimal formal core to workflow, evidence, checker, and governance layers. `docs/responsibility-pathway-record-review.md` describes a plain-language review and recheck process for Responsibility Pathway records. `docs/phase-2-5-current-snapshot.md` records the current Phase 2.5 restart point.
+Phase 2.5 enterprise implementation guidance has started. `docs/enterprise-implementation-profile.md` connects the minimal formal core to workflow, evidence, checker, and governance layers. `docs/responsibility-pathway-record-review.md` describes a plain-language review and recheck process for Responsibility Pathway records. `docs/phase-2-5-current-snapshot.md` records the current Phase 2.5 restart point. `spec/review-result.schema.yaml` defines a bounded review-result output schema, while current review-result fixtures remain outside the current checker.
 
 Core definitions, the eight-element model, runtime model, responsibility node model, return point model, repair model, value/cost flow, stop authority, evidence log, action class matrix, approval gate, and decision owner model have been added.
 
@@ -30,6 +30,7 @@ A minimal schema split has been established under `spec/`:
 - `spec/evidence-log.schema.yaml`
 - `spec/repair.schema.yaml`
 - `spec/pathway.schema.yaml`
+- `spec/review-result.schema.yaml`
 
 Minimal lifecycle examples now cover:
 
@@ -42,6 +43,8 @@ Minimal lifecycle examples now cover:
 A bounded lightweight checker exists at `scripts/check_examples.py`.
 
 The checker is lifecycle-aware and now includes optional `review_metadata` checks when that block is present, but it remains non-certifying. It checks structural signals only and does not claim legal validity, safety, compliance, fairness, moral resolution, production readiness, or real-world responsibility resolution.
+
+The checker does not currently read `fixtures/review-results/*.yaml` and does not currently validate `spec/review-result.schema.yaml`.
 
 Lean formalization currently uses `formal/lean/ResponsibilityPathway/Core.lean` as a stable import entry point.
 
@@ -74,11 +77,13 @@ A Phase 2 Lean theorem-role index exists at `docs/phase-2-lean-theorem-index.md`
 
 A Phase 2.5 enterprise and record-review current snapshot exists at `docs/phase-2-5-current-snapshot.md`.
 
+The review-result output schema exists at `spec/review-result.schema.yaml`.
+
 The index groups Basic constructor sanity theorems, Example lifecycle sanity theorems, boundary predicates, positive invariant theorem candidates, and vacuity/non-trigger theorem candidates.
 
 The AI final-responsibility boundary is assumption-scoped. In the current minimal model, no artificial legal-personhood layer is assumed, so an AI node is not treated as a final responsibility holder. Future legal, institutional, national, international, or user/provider-agreement layers must be modeled explicitly if introduced.
 
-Enterprise guidance and record review guidance remain non-certifying. They help organizations preserve readable responsibility pathways, evidence records, review conditions, and excluded claims. They do not claim legal validity, safety, compliance, fairness, moral resolution, institutional certification, production readiness, or replacement of accountable humans and institutions.
+Enterprise guidance, record review guidance, and review-result schema remain non-certifying. They help organizations preserve readable responsibility pathways, evidence records, review conditions, review results, and excluded claims. They do not claim legal validity, safety, compliance, fairness, moral resolution, institutional certification, production readiness, or replacement of accountable humans and institutions.
 
 ## Development Timeline
 
@@ -89,6 +94,7 @@ Observation
 → Formalization
 → Enterprise guidance
 → Record review
+→ Review result
 → Claim
 → Application
 
@@ -101,12 +107,14 @@ Claims precede applications.
 - Preserve the minimal, specification-first core
 - Keep lifecycle examples readable
 - Keep checker output bounded and non-certifying
+- Keep review-result fixtures separate from pathway examples unless deliberately migrated
+- Keep review-result schema validation separate unless deliberately integrated
 - Keep Lean invariants small, explicit, and assumption-scoped
 - Preserve the split Lean spine before adding more theorem families
 - Use the current snapshot and theorem-role index before adding or renaming Lean theorem candidates
 - Keep enterprise guidance readable and non-certifying
 - Keep Responsibility Pathway record review plain, recheckable, and bounded to structure
-- Use the Phase 2.5 current snapshot before expanding record-review examples or checker coverage
+- Use the Phase 2.5 current snapshot before expanding record-review examples, review-result fixtures, or checker coverage
 - Preserve the boundary that AI may participate as a pathway node but does not assume final responsibility under the current minimal model
 - Keep future artificial legal-personhood or institutional-personhood layers explicit if modeled later
 - Grow only when responsibility can still return from claims to definitions, examples, schemas, checker boundaries, excluded claims, Lean definitions, theorem roles, snapshots, assumptions, enterprise guidance, and record review boundaries
@@ -130,10 +138,12 @@ Claims precede applications.
 15. docs/eight-elements.md
 16. docs/validator-boundary.md
 17. docs/checker-coverage.md
-18. docs/example-index.md
-19. docs/example-review-notes.md
-20. spec/responsibility-pathway-core.yaml
-21. spec/pathway.schema.yaml
+18. docs/schema-cross-reference.md
+19. docs/example-index.md
+20. docs/example-review-notes.md
+21. spec/responsibility-pathway-core.yaml
+22. spec/pathway.schema.yaml
+23. spec/review-result.schema.yaml
 
 ## Restart Point
 
@@ -143,11 +153,11 @@ Continue by either:
 
 - observing the next Lean workflow result and adjusting only if the minimal build path fails after Lean-file changes
 - adding only very small theorem candidates after the current assumptions, theorem roles, split modules, and current snapshot remain stable
-- checking schema and checker alignment with the enterprise implementation profile, Responsibility Pathway record review guide, and Phase 2.5 current snapshot
+- checking schema and checker alignment with the enterprise implementation profile, Responsibility Pathway record review guide, Phase 2.5 current snapshot, and review-result schema
 - adding only narrowly scoped record-review fixtures or checker checks while keeping them optional unless existing examples are deliberately migrated
-- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, theorem-role index, enterprise implementation profile, record review guide, and Phase 2.5 snapshot
+- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, theorem-role index, enterprise implementation profile, record review guide, Phase 2.5 snapshot, and review-result schema
 
-Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshot, enterprise guidance, record review boundaries, Phase 2.5 snapshot, and excluded claims remain aligned.
+Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshot, enterprise guidance, record review boundaries, Phase 2.5 snapshot, review-result schema, and excluded claims remain aligned.
 
 ## Purpose
 
