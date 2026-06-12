@@ -18,6 +18,8 @@ Phase 2 has started. The current Lean formalization contains a minimal node/path
 
 The Phase 2 Lean spine has now been split into small modules while preserving `Core.lean` as the stable entry point. See [formal/lean/README.md](formal/lean/README.md), [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md), [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md), and [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md).
 
+An initial enterprise adoption guide is available at [docs/enterprise-implementation-profile.md](docs/enterprise-implementation-profile.md). It describes how organizations can connect the minimal formal core to workflow, evidence, checker, and governance layers without treating RPE as a production verifier, compliance engine, safety certification tool, or legal decision system.
+
 ## Authorship and citation
 
 This repository is authored and maintained by Akihisa Ono (小野昭久) as an independent public specification and design framework.
@@ -38,21 +40,22 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 3. [ROADMAP.md](ROADMAP.md) - current and future phases
 4. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
 5. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - why the current repository remains intentionally small
-6. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - lightweight validation and lifecycle-example status
-7. [formal/lean/README.md](formal/lean/README.md) - Lean formalization boundary and current invariant candidates
-8. [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md) - current Phase 2 Lean snapshot and restart point
-9. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - current Phase 2 Lean split plan and non-goals
-10. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - current Phase 2 Lean theorem role index
-11. [docs/definition.md](docs/definition.md) - core definition
-12. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
-13. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
-14. [docs/development-process.md](docs/development-process.md) - development process
-15. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
-16. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
-17. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
-18. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
-19. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
-20. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
+6. [docs/enterprise-implementation-profile.md](docs/enterprise-implementation-profile.md) - minimal enterprise adoption profile and layer separation
+7. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - lightweight validation and lifecycle-example status
+8. [formal/lean/README.md](formal/lean/README.md) - Lean formalization boundary and current invariant candidates
+9. [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md) - current Phase 2 Lean snapshot and restart point
+10. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - current Phase 2 Lean split plan and non-goals
+11. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - current Phase 2 Lean theorem role index
+12. [docs/definition.md](docs/definition.md) - core definition
+13. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
+14. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
+15. [docs/development-process.md](docs/development-process.md) - development process
+16. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
+17. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
+18. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
+19. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
+20. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
+21. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
 
 ## Examples
 
