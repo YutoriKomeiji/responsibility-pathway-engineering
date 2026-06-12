@@ -8,7 +8,7 @@ safety review, fairness review, moral accountability judgment, or a
 production-readiness assessment.
 
 It checks only declared structure, lifecycle-specific structural signals,
-and explicit responsibility-boundary fields.
+explicit responsibility-boundary fields, and optional review-metadata structure.
 """
 
 from __future__ import annotations
@@ -43,6 +43,22 @@ EXCLUDED_CLAIM_KEYWORDS = [
     "compliance",
     "safety",
     "fairness",
+    "production",
+]
+
+REVIEW_METADATA_REQUIRED_KEYS = [
+    "review_tool_version",
+    "checked_items",
+    "unchecked_items",
+    "review_result",
+]
+
+REVIEW_RESULT_NOT_CLAIMED_KEYWORDS = [
+    "legal",
+    "safety",
+    "compliance",
+    "fairness",
+    "moral",
     "production",
 ]
 
@@ -210,6 +226,77 @@ def check_role_points_to_human_capacity(
         result.pass_(f"roles.{role_name} points to human responsibility capacity")
     else:
         result.warn(f"roles.{role_name} should point to human responsibility capacity")
+
+
+def check_review_metadata(result: CheckResult, data: dict[str, Any]) -> None:
+    """Check optional review metadata without requiring it for every example."""
+    review_metadata = data.get("review_metadata")
+    if review_metadata is None:
+        return
+
+    if not isinstance(review_metadata, dict):
+        result.fail("review_metadata must be a mapping when present")
+        return
+
+    result.pass_("review_metadata block present")
+
+    for key in REVIEW_METADATA_REQUIRED_KEYS:
+        if key in review_metadata:
+            result.pass_(f"review_metadata.{key} present")
+        else:
+            result.fail(f"review_metadata.{key} is required when review_metadata is present")
+
+    checked_items = review_metadata.get("checked_items")
+    if isinstance(checked_items, list) and checked_items:
+        result.pass_("review_metadata.checked_items is a non-empty list")
+    elif "checked_items" in review_metadata:
+        result.fail("review_metadata.checked_items must be a non-empty list")
+
+    unchecked_items = review_metadata.get("unchecked_items")
+    if isinstance(unchecked_items, list) and unchecked_items:
+        result.pass_("review_metadata.unchecked_items is a non-empty list")
+    elif "unchecked_items" in review_metadata:
+        result.fail("review_metadata.unchecked_items must be a non-empty list")
+
+    missing_unchecked = contains_all_keywords(
+        unchecked_items,
+        REVIEW_RESULT_NOT_CLAIMED_KEYWORDS,
+    )
+    if missing_unchecked:
+        result.warn(
+            "review_metadata.unchecked_items may be missing non-certifying signals: "
+            + ", ".join(missing_unchecked)
+        )
+    else:
+        result.pass_("review_metadata.unchecked_items includes non-certifying signals")
+
+    review_result = review_metadata.get("review_result")
+    if isinstance(review_result, dict):
+        result.pass_("review_metadata.review_result is a mapping")
+    elif "review_result" in review_metadata:
+        result.fail("review_metadata.review_result must be a mapping")
+        return
+    else:
+        return
+
+    not_claimed = review_result.get("not_claimed")
+    if isinstance(not_claimed, list) and not_claimed:
+        result.pass_("review_metadata.review_result.not_claimed is a non-empty list")
+    else:
+        result.fail("review_metadata.review_result.not_claimed must be a non-empty list")
+        return
+
+    missing_not_claimed = contains_all_keywords(
+        not_claimed,
+        REVIEW_RESULT_NOT_CLAIMED_KEYWORDS,
+    )
+    if missing_not_claimed:
+        result.warn(
+            "review_metadata.review_result.not_claimed may be missing signals: "
+            + ", ".join(missing_not_claimed)
+        )
+    else:
+        result.pass_("review_metadata.review_result.not_claimed includes expected signals")
 
 
 def check_originating_lifecycle(result: CheckResult, data: dict[str, Any]) -> None:
@@ -489,6 +576,7 @@ def check_example(path: Path) -> CheckResult:
     else:
         result.pass_("formalization_scope includes expected excluded-claim signals")
 
+    check_review_metadata(result, data)
     check_lifecycle_specific_fields(result, data)
 
     return result
