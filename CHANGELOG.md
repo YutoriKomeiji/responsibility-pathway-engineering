@@ -4,6 +4,13 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 Lean core split documented across entry files
+
+- README and README.ja now state that the Phase 2 Lean spine is split into small modules while `Core.lean` remains the stable entry point
+- ROADMAP now records the Lean core split as completed and lists minimal Lean toolchain/build verification as the next low-risk Phase 2 work
+- BEACON now records the split module layout, the current restart point, and the fact that Lean build verification is not yet established
+- Current GitHub Actions automation remains limited to the bounded Python example checker
+
 ### Phase 2 Lean core split into small modules
 
 - `formal/lean/ResponsibilityPathway/Core.lean` reduced to a stable import entry point
