@@ -132,11 +132,12 @@ Next low-risk Phase 2 work:
 - keep formalization incremental and assumption-explicit
 - maintain traceability among examples, schemas, checker boundaries, Lean definitions, theorem roles, current snapshot, and excluded claims
 
-## Phase 2.5 - Enterprise Implementation Profile (Initial bridge added)
+## Phase 2.5 - Enterprise Implementation Profile (Stable bridge checkpoint reached)
 
 - Enterprise implementation profile added at `docs/enterprise-implementation-profile.md`
 - Responsibility Pathway record review guide added at `docs/responsibility-pathway-record-review.md`
 - Phase 2.5 current snapshot added at `docs/phase-2-5-current-snapshot.md`
+- Phase 2.5 stable checkpoint recorded in `docs/phase-2-5-current-snapshot.md`
 - Minimal record-review example added at `examples/record-review-minimal.yaml`
 - Minimal review-result fixture added at `fixtures/review-results/record-review-result-minimal.yaml`
 - Review-result schema added at `spec/review-result.schema.yaml`
@@ -157,14 +158,15 @@ Enterprise adoption guidance, record review guidance, review-result schema, revi
 
 Next low-risk Phase 2.5 work:
 
-- use `docs/phase-2-5-current-snapshot.md` before expanding record-review examples, fixtures, or checker coverage
+- maintain the stable checkpoint without expanding claims
 - keep review-result fixture checks separate from pathway example checks unless deliberately integrated
 - keep checker additions optional unless existing examples are deliberately migrated
 - keep review-result schema validation and fixture checking bounded to structural responsibility-boundary preservation
 - keep review results structural and non-certifying
 
-## Phase 3 - Reference Implementations
+## Phase 3 - Reference Implementations (Entry boundary added)
 
+- Reference implementation boundary added at `docs/reference-implementation-boundary.md`
 - YAML extensions
 - Example workflows
 - Multi-agent examples
@@ -178,7 +180,11 @@ Next low-risk Phase 2.5 work:
 
 Implementation rule:
 
-Reference implementations must not outrun definitions, examples, checker boundaries, formalization assumptions, enterprise governance boundaries, or Responsibility Pathway record review boundaries.
+Reference implementations must not outrun definitions, examples, checker boundaries, formalization assumptions, enterprise governance boundaries, Responsibility Pathway record review boundaries, validator boundaries, review-result boundaries, or excluded claims.
+
+First recommended Phase 3 step:
+
+- add a small human-AI review workflow example only after the reference implementation boundary is linked from ROADMAP, BEACON, README, and README.ja
 
 ## Guiding Principle
 
