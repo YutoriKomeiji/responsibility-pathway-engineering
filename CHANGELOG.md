@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### BEACON synchronized with Lean theorem index
+
+- BEACON now records `docs/phase-2-lean-theorem-index.md` as part of the Phase 2 Lean reconnection path
+- Current Focus now says to use the theorem-role index before adding or renaming Lean theorem candidates
+- Restart Point now includes theorem-role stability as a condition before adding further theorem candidates
+
 ### Lean theorem index linked from README files
 
 - README and README.ja now include `docs/phase-2-lean-theorem-index.md` in the Phase 2 Lean reader path
