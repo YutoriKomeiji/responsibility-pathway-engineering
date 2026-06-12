@@ -14,6 +14,7 @@ The current bridge consists of:
 - plain-language Responsibility Pathway record review guidance
 - schema alignment for record-review concepts
 - a minimal record-review example
+- a minimal review-result fixture
 - optional bounded checker support for review metadata
 
 This bridge remains structural and non-certifying.
@@ -27,6 +28,7 @@ Primary Phase 2.5 files:
 - `docs/enterprise-implementation-profile.md`
 - `docs/responsibility-pathway-record-review.md`
 - `examples/record-review-minimal.yaml`
+- `fixtures/review-results/record-review-result-minimal.yaml`
 
 Supporting files currently aligned with Phase 2.5:
 
@@ -115,6 +117,25 @@ The example follows the existing `originating` lifecycle checker path.
 
 It is illustrative and non-certifying.
 
+## Minimal review-result fixture
+
+`fixtures/review-results/record-review-result-minimal.yaml` is a small output fixture for a bounded record review result.
+
+It shows:
+
+- review status
+- review scope
+- checked items
+- warnings and failures
+- not-checked items
+- not-claimed boundaries
+- plain-language summary
+- responsibility-boundary flags
+
+The fixture is not a pathway example and is not currently part of the bounded example checker workflow.
+
+It is a readable output example only.
+
 ## Optional checker support
 
 `scripts/check_examples.py` now checks optional `review_metadata` structure when it is present.
@@ -158,11 +179,10 @@ It does not remove the need for accountable humans and institutions.
 
 Next low-risk work may include:
 
-1. Add a small record-review fixture or sample output only if the current checker path remains green.
-2. Add narrowly scoped checker checks for one record-review concept at a time.
-3. Keep all checker additions optional unless existing examples are migrated deliberately.
-4. Keep documentation synchronized after each checker or example change.
-5. Avoid larger reference implementations until Phase 2.5 boundaries remain stable.
+1. Add narrowly scoped checker checks for one record-review concept at a time.
+2. Keep all checker additions optional unless existing examples are migrated deliberately.
+3. Keep documentation synchronized after each checker, fixture, or example change.
+4. Avoid larger reference implementations until Phase 2.5 boundaries remain stable.
 
 ## Stop conditions
 
@@ -173,7 +193,7 @@ Pause Phase 2.5 expansion if:
 - AI support is treated as final responsibility holder under the current minimal model
 - record review is confused with complete schema validation
 - checker changes force unrelated examples to grow prematurely
-- larger reference implementation work outruns definitions, schemas, examples, checker boundaries, Lean assumptions, enterprise guidance, or record-review boundaries
+- larger reference implementation work outruns definitions, schemas, examples, fixtures, checker boundaries, Lean assumptions, enterprise guidance, or record-review boundaries
 
 ## Restart point
 
@@ -182,9 +202,10 @@ Restart Phase 2.5 from this file, then read:
 1. `docs/enterprise-implementation-profile.md`
 2. `docs/responsibility-pathway-record-review.md`
 3. `examples/record-review-minimal.yaml`
-4. `spec/pathway.schema.yaml`
-5. `scripts/check_examples.py`
-6. `docs/checker-coverage.md`
-7. `docs/example-index.md`
+4. `fixtures/review-results/record-review-result-minimal.yaml`
+5. `spec/pathway.schema.yaml`
+6. `scripts/check_examples.py`
+7. `docs/checker-coverage.md`
+8. `docs/example-index.md`
 
 Do not proceed to larger reference implementations until this set remains aligned and the bounded checks remain green.
