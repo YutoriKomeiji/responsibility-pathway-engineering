@@ -28,6 +28,8 @@ A bounded review-result schema is available at [spec/review-result.schema.yaml](
 
 A bounded review-result checker is available at [scripts/check_review_results.py](scripts/check_review_results.py). It checks review-result fixtures for required fields, allowed review scope/status values, expected not-checked and not-claimed boundaries, and responsibility-boundary flags. It remains structural and non-certifying.
 
+The `Check review-result fixtures` GitHub Actions workflow has been observed green for run `#1` on commit `aaaece3` on `main`. This observed green status means only that the bounded review-result fixture checker passed for that repository state; it is not certification.
+
 ## Authorship and citation
 
 This repository is authored and maintained by Akihisa Ono (小野昭久) as an independent public specification and design framework.
@@ -109,6 +111,8 @@ python scripts/check_review_results.py
 ```
 
 It checks only review-result fixture structure and boundary-preservation signals. A passing result does not mean legal validation, safety certification, compliance certification, fairness certification, moral resolution, institutional certification, production approval, or AI final-responsibility transfer.
+
+The review-result checker also runs in GitHub Actions via [.github/workflows/check-review-results.yml](.github/workflows/check-review-results.yml). The `Check review-result fixtures` workflow has been observed green for run `#1` on commit `aaaece3` on `main`; this means only that bounded repository-maintenance checks passed for that repository state.
 
 See [docs/validator-boundary.md](docs/validator-boundary.md) for the checker boundary and [docs/checker-coverage.md](docs/checker-coverage.md) for the current checker coverage map.
 
