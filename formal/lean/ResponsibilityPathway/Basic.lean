@@ -117,6 +117,46 @@ def institutionalResponsibilityNode (id : String) : Node :=
   }
 
 /--
+A safe AI node is structurally an AI node.
+-/
+theorem safe_ai_node_is_ai
+    (id : String) :
+    IsAI (safeAINode id) := by
+  unfold IsAI
+  simp [safeAINode]
+
+/--
+A safe AI node cannot hold final responsibility by construction.
+This is a constructor-level sanity theorem, not a real-world legal claim.
+-/
+theorem safe_ai_node_cannot_hold_final_responsibility
+    (id : String) :
+    ¬ CanHoldFinalResponsibility (safeAINode id) := by
+  unfold CanHoldFinalResponsibility
+  simp [safeAINode]
+
+/--
+A human responsibility node has final-responsibility capacity by construction.
+This is a structural model fact, not a finding that responsibility was actually
+accepted in a real-world case.
+-/
+theorem human_responsibility_node_can_hold_final_responsibility
+    (id : String) :
+    CanHoldFinalResponsibility (humanResponsibilityNode id) := by
+  unfold CanHoldFinalResponsibility
+  simp [humanResponsibilityNode]
+
+/--
+An institutional responsibility node has final-responsibility capacity by
+construction. This is a structural model fact, not a legal finding.
+-/
+theorem institutional_responsibility_node_can_hold_final_responsibility
+    (id : String) :
+    CanHoldFinalResponsibility (institutionalResponsibilityNode id) := by
+  unfold CanHoldFinalResponsibility
+  simp [institutionalResponsibilityNode]
+
+/--
 A human responsibility node is not an AI node.
 -/
 theorem human_responsibility_node_is_not_ai
