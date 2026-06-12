@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Review-result schema fixture alignment note added
+
+- `docs/review-result-schema-fixture-alignment.md` added as a documentation-only alignment note for the current review-result schema and minimal review-result fixture
+- `docs/phase-2-5-current-snapshot.md` now records the alignment note as part of the current Phase 2.5 set
+- `docs/checker-coverage.md` now links the alignment note and clarifies that it is not an automated checker result
+- The alignment note records that the fixture includes the current schema's required fields, not-checked list, not-claimed list, and responsibility-boundary flags
+- The update remains structural and non-certifying
+
 ### Reader path updated for review-result schema
 
 - README and README.ja now link to `spec/review-result.schema.yaml` in the reader path
