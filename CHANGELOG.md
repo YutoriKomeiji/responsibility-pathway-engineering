@@ -4,6 +4,13 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Review-result fixture workflow observed green
+
+- `Check review-result fixtures` GitHub Actions workflow observed green for run `#1` on commit `aaaece3` on `main`
+- The workflow completed successfully in about 12 seconds, and the `Check review-result fixtures` job completed successfully in about 8 seconds
+- `docs/phase-2-5-current-snapshot.md` and BEACON now record the observed green workflow status
+- The observed green status remains a bounded repository-maintenance check and is not certification
+
 ### Review-result fixture workflow added
 
 - `.github/workflows/check-review-results.yml` added to run `scripts/check_review_results.py` on review-result fixture, review-result schema, checker, requirements, or workflow changes
