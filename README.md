@@ -110,7 +110,13 @@ The AI final-responsibility boundary is not an absolute claim that AI can never 
 
 The Lean formalization does not establish legal validity, safety, compliance, fairness, moral accountability resolution, institutional certification, or production readiness.
 
-Lean CI or local Lean build verification is not yet established in this repository. The current automated GitHub Actions workflow covers only the bounded Python example checker.
+A minimal Lean toolchain, Lake package, and GitHub Actions workflow have been added:
+
+```bash
+lake build
+```
+
+The workflow is defined in [.github/workflows/check-lean.yml](.github/workflows/check-lean.yml). It is intended only to check the current Lean package build. A passing Lean build does not certify legal validity, safety, compliance, fairness, moral accountability resolution, institutional certification, or production readiness.
 
 ## Initial scope
 
