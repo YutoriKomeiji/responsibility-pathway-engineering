@@ -135,13 +135,15 @@ Next low-risk Phase 2 work:
 ## Phase 2.5 - Enterprise Implementation Profile (Initial bridge added)
 
 - Enterprise implementation profile added at `docs/enterprise-implementation-profile.md`
+- Responsibility Pathway record review guide added at `docs/responsibility-pathway-record-review.md`
 - Layer separation documented for formal core, specification layer, checker layer, workflow layer, evidence layer, and governance layer
+- Plain-language review and recheck process documented for Responsibility Pathway records
 - Minimal enterprise adoption path documented before larger reference implementations
 - Initial enterprise implementation candidates identified without claiming certification, legal validity, compliance, fairness, safety, moral resolution, or production readiness
 
 Phase 2.5 rule:
 
-Enterprise adoption guidance must connect the minimal formal core to implementable workflow, evidence, checker, and governance layers without treating RPE as a production verifier, legal decision system, compliance engine, safety certification tool, fairness certification tool, or replacement for accountable humans and institutions.
+Enterprise adoption guidance and record review guidance must connect the minimal formal core to implementable workflow, evidence, checker, and governance layers without treating RPE as a production verifier, legal decision system, compliance engine, safety certification tool, fairness certification tool, moral-resolution engine, or replacement for accountable humans and institutions.
 
 ## Phase 3 - Reference Implementations
 
@@ -158,7 +160,7 @@ Enterprise adoption guidance must connect the minimal formal core to implementab
 
 Implementation rule:
 
-Reference implementations must not outrun definitions, examples, checker boundaries, formalization assumptions, or enterprise governance boundaries.
+Reference implementations must not outrun definitions, examples, checker boundaries, formalization assumptions, enterprise governance boundaries, or Responsibility Pathway record review boundaries.
 
 ## Guiding Principle
 
