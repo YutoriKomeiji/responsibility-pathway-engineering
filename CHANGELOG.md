@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Lean theorem index linked from README files
+
+- README and README.ja now include `docs/phase-2-lean-theorem-index.md` in the Phase 2 Lean reader path
+- `formal/lean/README.md` now links to the theorem-role index near the split-plan link
+- This completes the previously deferred README synchronization for the theorem index
+
 ### Phase 2 Lean theorem index added
 
 - `docs/phase-2-lean-theorem-index.md` added as a navigation aid for current Lean theorem roles
