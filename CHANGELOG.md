@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### ROADMAP synchronized with Phase 2 current snapshot
+
+- ROADMAP now references `docs/phase-2-current-snapshot.md` in the current Phase 2 status
+- Next low-risk Phase 2 work now says to use the current snapshot and theorem-role index before adding or renaming Lean theorem candidates
+- Traceability wording now includes the current snapshot alongside examples, schemas, checker boundaries, Lean definitions, theorem roles, and excluded claims
+
 ### Phase 2 current snapshot added
 
 - `docs/phase-2-current-snapshot.md` added as a stable reconnection document for the current Phase 2 Lean position
