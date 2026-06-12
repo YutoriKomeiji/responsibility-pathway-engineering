@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Lean workflow generates Lake manifest before build
+
+- `.github/workflows/check-lean.yml` updated after the first workflow attempt reported `No lake-manifest.json found`
+- The workflow now installs Elan directly, prints Lean/Lake versions, runs `lake update`, and then runs `lake build`
+- This avoids requiring a precommitted `lake-manifest.json` for the current dependency-free minimal Lean package
+
 ### Lean workflow inputs made explicit
 
 - `.github/workflows/check-lean.yml` updated to use explicit `leanprover/lean-action@v1` inputs
