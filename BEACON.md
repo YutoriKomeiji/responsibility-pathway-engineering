@@ -16,7 +16,7 @@ Phase 1.6 lightweight validation and lifecycle-example coverage is substantially
 
 Phase 2 formalization has started, the first minimal Lean lifecycle-invariant set has been introduced, the Lean core has been split into small modules, and a minimal Lean build path has been added.
 
-Phase 2.5 enterprise implementation guidance has started. `docs/enterprise-implementation-profile.md` connects the minimal formal core to workflow, evidence, checker, and governance layers. `docs/responsibility-pathway-record-review.md` describes a plain-language review and recheck process for Responsibility Pathway records.
+Phase 2.5 enterprise implementation guidance has started. `docs/enterprise-implementation-profile.md` connects the minimal formal core to workflow, evidence, checker, and governance layers. `docs/responsibility-pathway-record-review.md` describes a plain-language review and recheck process for Responsibility Pathway records. `docs/phase-2-5-current-snapshot.md` records the current Phase 2.5 restart point.
 
 Core definitions, the eight-element model, runtime model, responsibility node model, return point model, repair model, value/cost flow, stop authority, evidence log, action class matrix, approval gate, and decision owner model have been added.
 
@@ -41,7 +41,7 @@ Minimal lifecycle examples now cover:
 
 A bounded lightweight checker exists at `scripts/check_examples.py`.
 
-The checker is lifecycle-aware, but it remains non-certifying. It checks structural signals only and does not claim legal validity, safety, compliance, fairness, moral resolution, production readiness, or real-world responsibility resolution.
+The checker is lifecycle-aware and now includes optional `review_metadata` checks when that block is present, but it remains non-certifying. It checks structural signals only and does not claim legal validity, safety, compliance, fairness, moral resolution, production readiness, or real-world responsibility resolution.
 
 Lean formalization currently uses `formal/lean/ResponsibilityPathway/Core.lean` as a stable import entry point.
 
@@ -71,6 +71,8 @@ The current minimal Lean lifecycle-invariant set covers:
 A Phase 2 Lean current snapshot exists at `docs/phase-2-current-snapshot.md`.
 
 A Phase 2 Lean theorem-role index exists at `docs/phase-2-lean-theorem-index.md`.
+
+A Phase 2.5 enterprise and record-review current snapshot exists at `docs/phase-2-5-current-snapshot.md`.
 
 The index groups Basic constructor sanity theorems, Example lifecycle sanity theorems, boundary predicates, positive invariant theorem candidates, and vacuity/non-trigger theorem candidates.
 
@@ -104,6 +106,7 @@ Claims precede applications.
 - Use the current snapshot and theorem-role index before adding or renaming Lean theorem candidates
 - Keep enterprise guidance readable and non-certifying
 - Keep Responsibility Pathway record review plain, recheckable, and bounded to structure
+- Use the Phase 2.5 current snapshot before expanding record-review examples or checker coverage
 - Preserve the boundary that AI may participate as a pathway node but does not assume final responsibility under the current minimal model
 - Keep future artificial legal-personhood or institutional-personhood layers explicit if modeled later
 - Grow only when responsibility can still return from claims to definitions, examples, schemas, checker boundaries, excluded claims, Lean definitions, theorem roles, snapshots, assumptions, enterprise guidance, and record review boundaries
@@ -117,19 +120,20 @@ Claims precede applications.
 5. docs/minimal-core-rationale.md
 6. docs/enterprise-implementation-profile.md
 7. docs/responsibility-pathway-record-review.md
-8. docs/phase-1-6-plan.md
-9. formal/lean/README.md
-10. docs/phase-2-current-snapshot.md
-11. docs/phase-2-lean-split-plan.md
-12. docs/phase-2-lean-theorem-index.md
-13. docs/definition.md
-14. docs/eight-elements.md
-15. docs/validator-boundary.md
-16. docs/checker-coverage.md
-17. docs/example-index.md
-18. docs/example-review-notes.md
-19. spec/responsibility-pathway-core.yaml
-20. spec/pathway.schema.yaml
+8. docs/phase-2-5-current-snapshot.md
+9. docs/phase-1-6-plan.md
+10. formal/lean/README.md
+11. docs/phase-2-current-snapshot.md
+12. docs/phase-2-lean-split-plan.md
+13. docs/phase-2-lean-theorem-index.md
+14. docs/definition.md
+15. docs/eight-elements.md
+16. docs/validator-boundary.md
+17. docs/checker-coverage.md
+18. docs/example-index.md
+19. docs/example-review-notes.md
+20. spec/responsibility-pathway-core.yaml
+21. spec/pathway.schema.yaml
 
 ## Restart Point
 
@@ -139,10 +143,11 @@ Continue by either:
 
 - observing the next Lean workflow result and adjusting only if the minimal build path fails after Lean-file changes
 - adding only very small theorem candidates after the current assumptions, theorem roles, split modules, and current snapshot remain stable
-- checking schema and checker alignment with the enterprise implementation profile and Responsibility Pathway record review guide
-- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, theorem-role index, enterprise implementation profile, and record review guide
+- checking schema and checker alignment with the enterprise implementation profile, Responsibility Pathway record review guide, and Phase 2.5 current snapshot
+- adding only narrowly scoped record-review fixtures or checker checks while keeping them optional unless existing examples are deliberately migrated
+- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, theorem-role index, enterprise implementation profile, record review guide, and Phase 2.5 snapshot
 
-Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshot, enterprise guidance, record review boundaries, and excluded claims remain aligned.
+Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshot, enterprise guidance, record review boundaries, Phase 2.5 snapshot, and excluded claims remain aligned.
 
 ## Purpose
 
