@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Pathway schema aligned with record review concepts
+
+- `spec/pathway.schema.yaml` now includes review aliases, review metadata, record-review alignment notes, and additional lifecycle review concepts
+- `docs/checker-coverage.md` now records that the schema and record-review guide are aligned, while the checker has not yet been expanded to validate every record-review field
+- The alignment remains structural and non-certifying, and does not add legal, safety, compliance, fairness, moral-resolution, certification, or production-readiness claims
+
 ### Japanese README and BEACON synchronized with enterprise review guides
 
 - README.ja now links to the enterprise implementation profile and Responsibility Pathway record review guide
