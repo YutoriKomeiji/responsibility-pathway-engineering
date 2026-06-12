@@ -20,6 +20,8 @@ The Phase 2 Lean spine is split into small modules:
 
 The split plan is recorded in `../../docs/phase-2-lean-split-plan.md`.
 
+The theorem-role index is recorded in `../../docs/phase-2-lean-theorem-index.md`.
+
 ## Build path
 
 The repository now includes a minimal Lean build path:
