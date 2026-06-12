@@ -99,6 +99,7 @@ Current Phase 2 status:
 - the Lean spine has been split into `Basic.lean`, `Lifecycle.lean`, `Examples.lean`, and `Invariants.lean`
 - six scoped lifecycle-invariant candidates have been preserved after the split
 - constructor-level sanity theorems now cover basic node definitions and lifecycle examples
+- `docs/phase-2-current-snapshot.md` records the current stable Phase 2 Lean snapshot and restart point
 - `docs/phase-2-lean-theorem-index.md` groups current theorem roles before further theorem expansion
 - `lean-toolchain` pins the minimal Lean toolchain
 - `lakefile.lean` defines a minimal Lake package using `formal/lean` as the source directory
@@ -127,9 +128,9 @@ The current AI final-responsibility invariant is assumption-scoped. In the curre
 Next low-risk Phase 2 work:
 
 - observe the next Lean workflow result and adjust only if the minimal build path fails
-- use the theorem-role index before adding or renaming Lean theorem candidates
+- use the current snapshot and theorem-role index before adding or renaming Lean theorem candidates
 - keep formalization incremental and assumption-explicit
-- maintain traceability among examples, schemas, checker boundaries, Lean definitions, theorem roles, and excluded claims
+- maintain traceability among examples, schemas, checker boundaries, Lean definitions, theorem roles, current snapshot, and excluded claims
 
 ## Phase 3 - Reference Implementations
 
