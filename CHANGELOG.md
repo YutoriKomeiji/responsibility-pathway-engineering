@@ -4,6 +4,12 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2.5 stable checkpoint added
+
+- `docs/phase-2-5-current-snapshot.md` now records a stable checkpoint for the enterprise implementation and record-review bridge
+- The checkpoint lists the enterprise profile, record-review guide, minimal example, review-result fixture, review-result schema, alignment note, bounded checker, GitHub Actions workflow, observed green run, validator boundary, and synchronized reader files
+- The checkpoint remains structural and non-certifying, and does not claim legal validity, safety, compliance, fairness, moral resolution, institutional certification, production readiness, or real-world responsibility resolution
+
 ### README files updated with review-result workflow status
 
 - README and README.ja now record that the `Check review-result fixtures` GitHub Actions workflow was observed green for run `#1` on commit `aaaece3` on `main`
