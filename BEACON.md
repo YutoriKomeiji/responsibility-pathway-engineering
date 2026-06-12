@@ -18,9 +18,11 @@ Phase 2 formalization has started, the first minimal Lean lifecycle-invariant se
 
 Phase 2.5 enterprise implementation guidance has reached a stable bridge checkpoint. `docs/enterprise-implementation-profile.md` connects the minimal formal core to workflow, evidence, checker, and governance layers. `docs/responsibility-pathway-record-review.md` describes a plain-language review and recheck process for Responsibility Pathway records. `docs/phase-2-5-current-snapshot.md` records the current Phase 2.5 restart point and stable checkpoint. `spec/review-result.schema.yaml` defines a bounded review-result output schema. `scripts/check_review_results.py` performs bounded structural checks on review-result fixtures while remaining non-certifying.
 
-Phase 3 has an entry boundary at `docs/reference-implementation-boundary.md`. This boundary must be read before adding reference implementations.
+Phase 3 has an entry boundary at `docs/reference-implementation-boundary.md`. This boundary must be read before adding reference implementations. The first small Phase 3 reference example now exists at `examples/human-ai-review-workflow-minimal.yaml`.
 
 The `Check review-result fixtures` GitHub Actions workflow has been observed green for run `#1` on commit `aaaece3` on `main`.
+
+The `Check examples` GitHub Actions workflow has been observed green for run `#9` on commit `d4e467a` on `main` after adding the human-AI review workflow example.
 
 Core definitions, the eight-element model, runtime model, responsibility node model, return point model, repair model, value/cost flow, stop authority, evidence log, action class matrix, approval gate, and decision owner model have been added.
 
@@ -89,6 +91,8 @@ The bounded review-result checker exists at `scripts/check_review_results.py`.
 
 The Phase 3 reference-implementation boundary exists at `docs/reference-implementation-boundary.md`.
 
+The first Phase 3 reference example exists at `examples/human-ai-review-workflow-minimal.yaml`.
+
 The index groups Basic constructor sanity theorems, Example lifecycle sanity theorems, boundary predicates, positive invariant theorem candidates, and vacuity/non-trigger theorem candidates.
 
 The AI final-responsibility boundary is assumption-scoped. In the current minimal model, no artificial legal-personhood layer is assumed, so an AI node is not treated as a final responsibility holder. Future legal, institutional, national, international, or user/provider-agreement layers must be modeled explicitly if introduced.
@@ -106,6 +110,8 @@ Observation
 → Record review
 → Review result
 → Reference implementation boundary
+→ Small reference example
+→ Source alignment
 → Claim
 → Application
 
@@ -127,6 +133,8 @@ Claims precede applications.
 - Keep enterprise guidance readable and non-certifying
 - Keep Responsibility Pathway record review plain, recheckable, and bounded to structure
 - Keep Phase 3 reference implementations behind `docs/reference-implementation-boundary.md`
+- Keep the first Phase 3 human-AI review workflow example small, readable, and bounded
+- Read prior Zenn articles before expanding Phase 3 examples beyond the first small workflow
 - Use the Phase 2.5 current snapshot before expanding record-review examples, review-result fixtures, or checker coverage
 - Preserve the boundary that AI may participate as a pathway node but does not assume final responsibility under the current minimal model
 - Keep future artificial legal-personhood or institutional-personhood layers explicit if modeled later
@@ -171,11 +179,13 @@ Continue by either:
 - adding only very small theorem candidates after the current assumptions, theorem roles, split modules, and current snapshot remain stable
 - checking schema and checker alignment with the enterprise implementation profile, Responsibility Pathway record review guide, Phase 2.5 current snapshot, review-result schema, and review-result checker
 - keeping `Check review-result fixtures` green while maintaining its bounded interpretation
-- maintaining the Phase 3 reference-implementation boundary before adding reference examples
+- keeping `Check examples` green while maintaining its bounded interpretation after the first Phase 3 reference example
+- maintaining the Phase 3 reference-implementation boundary before adding more reference examples
+- rereading prior Zenn articles before expanding Phase 3 reference examples beyond the first small workflow
 - adding only narrowly scoped record-review fixtures or checker checks while keeping them optional unless existing examples are deliberately migrated
-- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, theorem-role index, enterprise implementation profile, record review guide, Phase 2.5 snapshot, review-result schema, review-result checker, review-result workflow, and reference implementation boundary
+- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, theorem-role index, enterprise implementation profile, record review guide, Phase 2.5 snapshot, review-result schema, review-result checker, review-result workflow, reference implementation boundary, and first Phase 3 reference example
 
-Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshot, enterprise guidance, record review boundaries, Phase 2.5 snapshot, review-result schema, review-result checker, review-result workflow, reference implementation boundary, and excluded claims remain aligned.
+Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshot, enterprise guidance, record review boundaries, Phase 2.5 snapshot, review-result schema, review-result checker, review-result workflow, reference implementation boundary, first Phase 3 reference example, source-alignment notes, and excluded claims remain aligned.
 
 ## Purpose
 
