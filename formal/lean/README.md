@@ -50,6 +50,20 @@ Current constructor-level sanity theorems in `ResponsibilityPathway/Basic.lean`:
 
 These theorems check the current constructor definitions only. They are not real-world certification claims.
 
+## Example lifecycle sanity theorems
+
+Current constructor-level sanity theorems in `ResponsibilityPathway/Examples.lean`:
+
+- `safe_ai_assisted_pathway_has_ai_participation`
+- `safe_ai_assisted_pathway_has_human_or_institutional_return_point`
+- `non_ai_pathway_has_no_ai_participation`
+- `repaired_pathway_example_is_repaired_and_has_record`
+- `suspended_pathway_example_is_suspended_and_has_review_or_return`
+- `returning_pathway_example_is_returning_without_automatic_continuation`
+- `closed_pathway_example_is_closed_with_evidence_and_reopening`
+
+These theorems check only that the constructor-level examples expose the intended lifecycle predicates. They are not real-world certification claims.
+
 ## Current invariant candidates
 
 Current Phase 2 invariant candidates:
