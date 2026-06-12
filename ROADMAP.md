@@ -164,9 +164,11 @@ Next low-risk Phase 2.5 work:
 - keep review-result schema validation and fixture checking bounded to structural responsibility-boundary preservation
 - keep review results structural and non-certifying
 
-## Phase 3 - Reference Implementations (Entry boundary added)
+## Phase 3 - Reference Implementations (First bounded example reached)
 
 - Reference implementation boundary added at `docs/reference-implementation-boundary.md`
+- First small Phase 3 reference example added at `examples/human-ai-review-workflow-minimal.yaml`
+- `Check examples #9` observed green on commit `d4e467a` on `main` for the bounded structural example checks
 - YAML extensions
 - Example workflows
 - Multi-agent examples
@@ -184,7 +186,14 @@ Reference implementations must not outrun definitions, examples, checker boundar
 
 First recommended Phase 3 step:
 
-- add a small human-AI review workflow example only after the reference implementation boundary is linked from ROADMAP, BEACON, README, and README.ja
+- keep the first human-AI review workflow example small, readable, bounded, and non-certifying before adding additional reference examples
+
+Next low-risk Phase 3 work:
+
+- record source-alignment checkpoints before expanding reference examples
+- reread prior Zenn articles for definition, claim, and boundary alignment
+- add only one small reference example at a time
+- avoid production-service, legal-decision, certification, compliance, fairness, moral-resolution, or AI-final-responsibility interpretations
 
 ## Guiding Principle
 
