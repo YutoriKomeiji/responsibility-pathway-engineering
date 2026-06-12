@@ -4,6 +4,13 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Phase 2 example lifecycle sanity theorems added
+
+- `formal/lean/ResponsibilityPathway/Examples.lean` updated with constructor-level sanity theorems for lifecycle examples
+- Added checks for AI participation and return-point fields in the safe AI-assisted example
+- Added checks for non-AI participation, repaired/record, suspended/review-or-return, returning/no-automatic-continuation, and closed/evidence/reopening constructor examples
+- These are structural model facts only; they do not certify legal validity, safety, compliance, fairness, moral accountability resolution, institutional certification, or production readiness
+
 ### Phase 2 basic node sanity theorems added
 
 - `formal/lean/ResponsibilityPathway/Basic.lean` updated with constructor-level sanity theorems for basic node definitions
