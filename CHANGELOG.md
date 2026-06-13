@@ -14,6 +14,13 @@ This changelog records conceptual milestones rather than individual code edits.
 - `docs/example-index.md`, `docs/checker-coverage.md`, ROADMAP, and BEACON now connect examples, schema, and checker boundaries to Action Class Matrix work
 - The checkpoint remains structural and non-certifying, and does not claim legal validity, safety, compliance, fairness, moral resolution, institutional certification, production readiness, or AI final-responsibility transfer
 
+### Check examples #11 observed green for action-class classification fixture
+
+- `Check examples #11` observed green on commit `b50226d` on `main` after adding `examples/action-class-matrix-minimal.yaml`
+- The workflow completed successfully in about 14 seconds, and the `Bounded structural example checks` job completed successfully in about 10 seconds
+- BEACON and ROADMAP now record the observed green workflow status
+- The observed green status remains a bounded repository-maintenance check and is not certification
+
 ### Core operational roles aligned with eight-element model
 
 - `docs/concepts/core-elements.md` now treats Decision Owner, Approval Gate, Execution Actor, Stop Authority, Evidence Log, Repair Owner, and Human Return Point as operational roles and controls
