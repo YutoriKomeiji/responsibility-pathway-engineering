@@ -20,11 +20,11 @@ Phase 2.5 enterprise implementation guidance has reached a stable bridge checkpo
 
 Phase 3 has an entry boundary at `docs/reference-implementation-boundary.md`. This boundary must be read before adding reference implementations. The first small Phase 3 reference example exists at `examples/human-ai-review-workflow-minimal.yaml`. A classification-only Action Class Matrix baseline now exists at `examples/action-class-matrix-minimal.yaml` and should be used before adding Class C, Class D, Class E, or Class F examples. Class C, Class D, and Class F minimal fixtures now exist while remaining bounded and non-certifying.
 
-Phase 3.1 has started. `docs/adapter-boundary.md` defines the adapter boundary before runtime connectors. `spec/runtime-event.schema.yaml` defines a draft vendor-neutral runtime event schema. `examples/adapter-input-event-minimal.json` provides a synthetic input event fixture. `examples/runtime-event-to-pathway-minimal.yaml` maps that synthetic event into a draft Responsibility Pathway record requiring human review. `docs/phase-3-1-current-snapshot.md` records the current Phase 3.1 restart point, staged update operation, observed check status, and remaining non-certifying boundaries.
+Phase 3.1 has started. `docs/adapter-boundary.md` defines the adapter boundary before runtime connectors. `spec/runtime-event.schema.yaml` defines a draft vendor-neutral runtime event schema. `examples/adapter-input-event-minimal.json` provides a synthetic input event fixture. `examples/runtime-event-to-pathway-minimal.yaml` maps that synthetic event into a draft Responsibility Pathway record requiring human review. `docs/minimal-runtime-candidate-design.md` defines the boundary for a minimal runtime candidate, and `examples/minimal-synthetic-runtime-fixture.json` provides the first synthetic, non-production runtime-like observation fixture for reading and review only. `docs/phase-3-1-current-snapshot.md` records the current Phase 3.1 restart point, staged update operation, observed check status, open-source review intent, and remaining non-certifying boundaries.
 
 Repository operation has been made explicit in `docs/repository-operation-model.md`. It records staged update operation, snapshot roles, sync-log roles, roadmap-note roles, workflow observation policy, checker interpretation policy, long-file update policy, log organization policy, periodic operation review policy, and non-certifying operation boundaries.
 
-`docs/operation-index.md` now provides a short navigation index for operation-related documents, snapshots, sync logs, roadmap notes, checker coverage, example navigation, and periodic operation review.
+`docs/operation-index.md` now provides a short navigation index for operation-related documents, snapshots, sync logs, roadmap notes, checker coverage, example navigation, runtime candidate navigation, and periodic operation review.
 
 Periodic operation review is now part of repository maintenance. Use it when commit granularity, reader paths, operation documents, logs, roadmap notes, checker interpretation, or deferred boundaries no longer seem aligned with actual practice.
 
@@ -52,6 +52,7 @@ The repository now distinguishes:
 - operational roles and controls: Decision Owner, Approval Gate, Execution Actor, Stop Authority, Evidence Log, Repair Owner, and Human Return Point
 - Action Class Matrix Class A-F: Observe-Only, Suggest-Only, Approval-Required, Reversible External Action, Irreversible or High-Impact Action, and Emergency Stop
 - Adapter Boundary and Runtime Event Bridge as a draft, vendor-neutral, review-required bridge from external observations to Responsibility Pathway records
+- Minimal Runtime Candidate Design and Minimal Synthetic Runtime Fixture as non-production, synthetic, review-required runtime-boundary review artifacts
 - Repository Operation Model as the repository-maintenance layer for staged updates, snapshots, sync logs, roadmap notes, checker observation, long-file update policy, periodic operation review, and restart practice
 - Operation Document Index as the navigation layer for operation-related documents
 - Periodic Operation Review as the meta-maintenance practice for reviewing whether repository operation still matches actual work
@@ -89,7 +90,10 @@ Runtime-event bridge coverage has started with:
 
 - `docs/adapter-boundary.md` as the adapter boundary before runtime connectors
 - `docs/phase-3-1-current-snapshot.md` as the current Phase 3.1 restart point
+- `docs/runtime-event-checking-plan.md` as the plan before any runtime-event checker or workflow implementation
+- `docs/minimal-runtime-candidate-design.md` as the boundary for selecting a minimal runtime candidate
 - `examples/adapter-input-event-minimal.json` as a synthetic, vendor-neutral input event fixture
+- `examples/minimal-synthetic-runtime-fixture.json` as a synthetic, non-production runtime-like observation fixture for reading and review only
 - `examples/runtime-event-to-pathway-minimal.yaml` as a draft runtime-event-to-pathway example requiring human review
 
 Repository operation coverage has started with:
@@ -103,7 +107,7 @@ A bounded lightweight checker exists at `scripts/check_examples.py`.
 
 The checker is lifecycle-aware and now includes optional `review_metadata` checks when that block is present, but it remains non-certifying. It checks structural signals only and does not claim legal validity, safety, compliance, fairness, moral resolution, production readiness, or real-world responsibility resolution.
 
-The runtime-event-to-pathway example is currently checked only as a pathway example. The checker does not yet validate `spec/runtime-event.schema.yaml` or JSON fixtures such as `examples/adapter-input-event-minimal.json`.
+The runtime-event-to-pathway example is currently checked only as a pathway example. The checker does not yet validate `spec/runtime-event.schema.yaml` or JSON fixtures such as `examples/adapter-input-event-minimal.json` or `examples/minimal-synthetic-runtime-fixture.json`.
 
 Action-class-specific checker enforcement is not yet active. `docs/checker-coverage.md` records action-class-specific checks as planned future bounded structural checks, not current enforcement.
 
@@ -168,11 +172,13 @@ The Class D reversible external action fixture exists at `examples/reversible-ex
 
 The Phase 3.1 runtime-event-to-pathway draft example exists at `examples/runtime-event-to-pathway-minimal.yaml`.
 
+The minimal synthetic runtime fixture exists at `examples/minimal-synthetic-runtime-fixture.json`.
+
 The index groups Basic constructor sanity theorems, Example lifecycle sanity theorems, boundary predicates, positive invariant theorem candidates, and vacuity/non-trigger theorem candidates.
 
 The AI final-responsibility boundary is assumption-scoped. In the current minimal model, no artificial legal-personhood layer is assumed, so an AI node is not treated as a final responsibility holder. Future legal, institutional, national, international, or user/provider-agreement layers must be modeled explicitly if introduced.
 
-Enterprise guidance, record review guidance, review-result schema, review-result checking, Action Class Matrix classification, reference implementation boundaries, adapter boundary, runtime-event bridge examples, repository operation model, operation index, and periodic operation review remain non-certifying. They help organizations preserve readable responsibility pathways, evidence records, review conditions, review results, action-class boundaries, adapter boundaries, excluded claims, reference-example limits, staged update practice, restartability, operation-document navigation, and operation review. They do not claim legal validity, safety, compliance, fairness, moral resolution, institutional certification, production readiness, production connector readiness, or replacement of accountable humans and institutions.
+Enterprise guidance, record review guidance, review-result schema, review-result checking, Action Class Matrix classification, reference implementation boundaries, adapter boundary, runtime-event bridge examples, minimal runtime fixture, repository operation model, operation index, and periodic operation review remain non-certifying. They help organizations preserve readable responsibility pathways, evidence records, review conditions, review results, action-class boundaries, adapter boundaries, runtime-event boundaries, runtime-fixture boundaries, excluded claims, reference-example limits, staged update practice, restartability, operation-document navigation, and operation review. They do not claim legal validity, safety, compliance, fairness, moral resolution, institutional certification, production readiness, production connector readiness, runtime correctness, or replacement of accountable humans and institutions.
 
 ## Development Timeline
 
@@ -190,6 +196,7 @@ Observation
 → Action-class alignment
 → Adapter boundary
 → Runtime event bridge
+→ Minimal runtime fixture
 → Repository operation model
 → Operation document index
 → Periodic operation review
@@ -197,7 +204,9 @@ Observation
 → Application
 
 Definitions precede proofs.
+
 Proofs precede claims.
+
 Claims precede applications.
 
 ## Current Focus
@@ -206,12 +215,13 @@ Claims precede applications.
 - Keep lifecycle examples readable
 - Keep action-class examples classification-first, small, and bounded
 - Keep Phase 3.1 adapter and runtime-event bridge examples synthetic, vendor-neutral, review-required, and non-certifying
+- Keep the minimal synthetic runtime fixture synthetic, local, non-production, review-required, and non-certifying
 - Keep repository operation staged, small, fetch-confirmed, and non-certifying
 - Keep operation-document navigation short, current, and non-certifying
 - Use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, or deferred boundaries feel misaligned with actual practice
 - Keep checker output bounded and non-certifying
 - Keep action-class-specific checker additions documented as planned future work until examples and schema fields are stable
-- Keep runtime-event schema and JSON fixture validation deferred until the bridge remains readable and reviewable
+- Keep runtime-event schema, JSON fixture, and runtime fixture validation deferred until the bridge remains readable and reviewable
 - Keep review-result fixtures separate from pathway examples unless deliberately migrated
 - Keep review-result checker scope bounded to fixture structure and responsibility-boundary preservation
 - Keep observed green workflow status tied to bounded repository-maintenance checks only
@@ -219,7 +229,7 @@ Claims precede applications.
 - Use `docs/repository-operation-model.md` before broad reader-path or long-file synchronization work
 - Use `docs/operation-index.md` when unsure which operation-related document to read first
 - Keep Lean invariants small, explicit, and assumption-scoped
-- Do not expand Lean around Action Class Matrix or runtime events until Class A-F examples, runtime-event schema, generated-record examples, checker boundary, and validation checklist are stable
+- Do not expand Lean around Action Class Matrix or runtime events until Class A-F examples, runtime-event schema, generated-record examples, runtime fixture, checker boundary, and validation checklist are stable
 - Preserve the split Lean spine before adding more theorem families
 - Use the current snapshot and theorem-role index before adding or renaming Lean theorem candidates
 - Keep enterprise guidance readable and non-certifying
@@ -231,14 +241,14 @@ Claims precede applications.
 - Keep Class D reversible external examples small, correctable, and non-certifying
 - Add Class F emergency-stop / stop-and-await examples before any Class E high-impact example
 - Treat Class E high-impact examples as negative or boundary-only examples until lower classes are stable
-- Keep service-specific connectors deferred until adapter boundary, runtime-event schema, and generated-record examples are stable
+- Keep service-specific connectors deferred until adapter boundary, runtime-event schema, runtime fixture, and generated-record examples are stable
 - Keep production conversion code deferred until local, non-production conversion examples are justified
 - Read prior Zenn articles before expanding Phase 3 examples beyond the first small workflow
 - Use the Phase 2.5 current snapshot before expanding record-review examples, review-result fixtures, or checker coverage
-- Use the Phase 3.1 current snapshot before expanding adapter, runtime-event, connector, or conversion-code work
+- Use the Phase 3.1 current snapshot before expanding adapter, runtime-event, connector, runtime fixture, or conversion-code work
 - Preserve the boundary that AI may participate as a pathway node but does not assume final responsibility under the current minimal model
 - Keep future artificial legal-personhood or institutional-personhood layers explicit if modeled later
-- Grow only when responsibility can still return from claims to definitions, examples, schemas, checker boundaries, excluded claims, Lean definitions, theorem roles, snapshots, assumptions, enterprise guidance, record review boundaries, adapter boundaries, runtime-event boundaries, repository operation model, operation index, periodic operation review, and reference implementation boundaries
+- Grow only when responsibility can still return from claims to definitions, examples, schemas, checker boundaries, excluded claims, Lean definitions, theorem roles, snapshots, assumptions, enterprise guidance, record review boundaries, adapter boundaries, runtime-event boundaries, runtime-fixture boundaries, repository operation model, operation index, periodic operation review, and reference implementation boundaries
 
 ## Read First
 
@@ -255,43 +265,48 @@ Claims precede applications.
 11. examples/reversible-external-action.yaml
 12. docs/adapter-boundary.md
 13. docs/phase-3-1-current-snapshot.md
-14. examples/runtime-event-to-pathway-minimal.yaml
-15. LUMINALIA.md
-16. ROADMAP.md
-17. CHANGELOG.md
-18. docs/minimal-core-rationale.md
-19. docs/enterprise-implementation-profile.md
-20. docs/responsibility-pathway-record-review.md
-21. docs/phase-2-5-current-snapshot.md
-22. docs/reference-implementation-boundary.md
-23. docs/phase-1-6-plan.md
-24. formal/lean/README.md
-25. docs/phase-2-current-snapshot.md
-26. docs/phase-2-lean-split-plan.md
-27. docs/phase-2-lean-theorem-index.md
-28. docs/definition.md
-29. docs/eight-elements.md
-30. docs/validator-boundary.md
-31. docs/checker-coverage.md
-32. docs/schema-cross-reference.md
-33. docs/example-index.md
-34. docs/example-review-notes.md
-35. spec/responsibility-pathway-core.yaml
-36. spec/pathway.schema.yaml
-37. spec/action-class.schema.yaml
-38. spec/review-result.schema.yaml
-39. spec/runtime-event.schema.yaml
-40. scripts/check_review_results.py
-41. .github/workflows/check-review-results.yml
+14. docs/runtime-event-checking-plan.md
+15. docs/minimal-runtime-candidate-design.md
+16. examples/adapter-input-event-minimal.json
+17. examples/minimal-synthetic-runtime-fixture.json
+18. examples/runtime-event-to-pathway-minimal.yaml
+19. LUMINALIA.md
+20. ROADMAP.md
+21. CHANGELOG.md
+22. docs/minimal-core-rationale.md
+23. docs/enterprise-implementation-profile.md
+24. docs/responsibility-pathway-record-review.md
+25. docs/phase-2-5-current-snapshot.md
+26. docs/reference-implementation-boundary.md
+27. docs/phase-1-6-plan.md
+28. formal/lean/README.md
+29. docs/phase-2-current-snapshot.md
+30. docs/phase-2-lean-split-plan.md
+31. docs/phase-2-lean-theorem-index.md
+32. docs/definition.md
+33. docs/eight-elements.md
+34. docs/validator-boundary.md
+35. docs/checker-coverage.md
+36. docs/schema-cross-reference.md
+37. docs/example-index.md
+38. docs/example-review-notes.md
+39. spec/responsibility-pathway-core.yaml
+40. spec/pathway.schema.yaml
+41. spec/action-class.schema.yaml
+42. spec/review-result.schema.yaml
+43. spec/runtime-event.schema.yaml
+44. scripts/check_review_results.py
+45. .github/workflows/check-review-results.yml
 
 ## Restart Point
 
-The next low-risk action is not to expand into service-specific connectors, production conversion code, or larger reference implementations yet.
+The next low-risk action is not to expand into service-specific connectors, production conversion code, production runtime integration, or larger reference implementations yet.
 
 Continue by either:
 
 - keeping `Check examples` green while maintaining its bounded interpretation after the Phase 3.1 runtime-event-to-pathway draft example
 - keeping Phase 3.1 adapter and runtime-event bridge examples synthetic, vendor-neutral, review-required, and non-certifying
+- keeping the minimal synthetic runtime fixture as reading/review only, not checker coverage, workflow implementation, connector work, or production runtime integration
 - keeping repository operation staged, small, fetch-confirmed, and non-certifying
 - reading `docs/repository-operation-model.md` before broad reader-path or long-file synchronization work
 - reading `docs/operation-index.md` when operation-document navigation becomes unclear
@@ -305,9 +320,9 @@ Continue by either:
 - using staged update operation for repository-wide synchronization
 - rereading prior Zenn articles before expanding Phase 3 examples beyond the first small workflow
 - adding only narrowly scoped record-review fixtures or checker checks while keeping them optional unless existing examples are deliberately migrated
-- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, theorem-role index, enterprise implementation profile, record review guide, Phase 2.5 snapshot, Phase 3.1 snapshot, repository operation model, operation index, periodic operation review, review-result schema, runtime-event schema, review-result checker, review-result workflow, reference implementation boundary, adapter boundary, first Phase 3 reference example, runtime-event-to-pathway example, Action Class Matrix docs, action-class schema, action-class fixture, Class C internal document update fixture, Class D reversible external action fixture, Class F emergency stop fixture, and excluded claims
+- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, theorem-role index, enterprise implementation profile, record review guide, Phase 2.5 snapshot, Phase 3.1 snapshot, repository operation model, operation index, periodic operation review, review-result schema, runtime-event schema, review-result checker, review-result workflow, reference implementation boundary, adapter boundary, first Phase 3 reference example, runtime-event-to-pathway example, minimal runtime candidate design, minimal synthetic runtime fixture, Action Class Matrix docs, action-class schema, action-class fixture, Class C internal document update fixture, Class D reversible external action fixture, Class F emergency stop fixture, and excluded claims
 
-Do not begin larger reference implementations, service-specific connectors, production conversion code, or Lean expansion around runtime events until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshots, enterprise guidance, record review boundaries, Phase 2.5 snapshot, Phase 3.1 snapshot, repository operation model, operation index, periodic operation review, review-result schema, runtime-event schema, review-result checker, review-result workflow, reference implementation boundary, adapter boundary, first Phase 3 reference example, runtime-event-to-pathway example, source-alignment notes, action-class notes, and excluded claims remain aligned.
+Do not begin larger reference implementations, service-specific connectors, production conversion code, production runtime integration, runtime fixture checking, runtime-event checker implementation, runtime workflows, or Lean expansion around runtime events until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshots, enterprise guidance, record review boundaries, Phase 2.5 snapshot, Phase 3.1 snapshot, repository operation model, operation index, periodic operation review, review-result schema, runtime-event schema, review-result checker, review-result workflow, reference implementation boundary, adapter boundary, first Phase 3 reference example, runtime-event-to-pathway example, minimal runtime candidate design, minimal synthetic runtime fixture, source-alignment notes, action-class notes, and excluded claims remain aligned.
 
 ## Purpose
 
