@@ -197,6 +197,39 @@ Recommended sequence:
 
 If a long full-file update is blocked or risky, stop the full update and preserve current state in a smaller snapshot, sync log, or roadmap note first.
 
+## Synchronization unit operation
+
+A synchronization unit may be larger than one file when several documents must be aligned around the same repository state.
+
+Use a synchronization unit when one conceptual change needs coordinated updates across navigation, snapshots, roadmap notes, changelog milestones, checker coverage, and example interpretation.
+
+For example, the Phase 3.1 runtime-event checking plan synchronization is one responsibility unit even though it is split across several small commits:
+
+- primary plan document
+- operation index
+- current snapshot
+- roadmap
+- changelog
+- checker coverage
+- example index
+- sync log
+- roadmap note
+
+For a synchronization unit:
+
+1. keep the conceptual purpose stable across all commits
+2. update high-risk or long files in small commits
+3. preserve detailed state in a sync log or snapshot before changing broad reader paths
+4. fetch after every write
+5. report the group as one responsibility unit in summaries
+6. keep deferred boundaries explicit until an implementation boundary is deliberately reopened
+
+A synchronization unit is not a permission to mix unrelated changes.
+
+Do not combine schema behavior changes, checker behavior changes, workflow changes, Lean formalization changes, public-claim changes, and reader-path synchronization in one unit unless they truly share the same reason, risk profile, and review path.
+
+This staged operation is a repository-maintenance practice. It does not certify the repository, examples, schemas, generated records, operation documents, checker plans, or future adapters.
+
 ## Commit granularity policy
 
 Prefer one commit per responsibility unit, not necessarily one commit per file.
