@@ -28,6 +28,28 @@ Use this example when introducing:
 - Human Return Point
 - formalization-scope exclusions
 
+### `examples/action-class-matrix-minimal.yaml`
+
+Purpose:
+
+- show a minimal classification-only Action Class Matrix fixture
+- list the source-aligned Class A-F action classes in a readable example form
+- preserve AI support as classification support only, without execution or approval authority
+- connect action classification to Decision Owner, Stop Authority, Evidence Log, and Human Return Point signals
+
+Key boundary:
+
+This fixture classifies example action types only. It does not execute any action, approve any action, certify any action class, or prove safety, compliance, legality, fairness, moral resolution, or production readiness.
+
+Use this example when introducing:
+
+- Action Class Matrix
+- Class A-F action classification
+- classification-only AI support
+- proposal/adoption separation
+- action-class-specific future example design
+- non-certifying action classification boundaries
+
 ### `examples/record-review-minimal.yaml`
 
 Purpose:
@@ -172,14 +194,15 @@ Recommended reading order:
 4. `docs/responsibility-pathway-record-review.md`
 5. `docs/reference-implementation-boundary.md`
 6. `docs/action-class-matrix.md`
-7. `examples/minimal-pathway.yaml`
-8. `examples/record-review-minimal.yaml`
-9. `examples/human-ai-review-workflow-minimal.yaml`
-10. `examples/repair-flow.yaml`
-11. `examples/suspended-pathway.yaml`
-12. `examples/returning-pathway.yaml`
-13. `examples/closed-pathway.yaml`
-14. `docs/example-review-notes.md`
+7. `examples/action-class-matrix-minimal.yaml`
+8. `examples/minimal-pathway.yaml`
+9. `examples/record-review-minimal.yaml`
+10. `examples/human-ai-review-workflow-minimal.yaml`
+11. `examples/repair-flow.yaml`
+12. `examples/suspended-pathway.yaml`
+13. `examples/returning-pathway.yaml`
+14. `examples/closed-pathway.yaml`
+15. `docs/example-review-notes.md`
 
 ## Relationship to Action Class Matrix
 
@@ -205,6 +228,7 @@ Action Class Matrix classification is not a certification, compliance determinat
 Current examples use descriptive filenames:
 
 - `minimal-pathway.yaml`
+- `action-class-matrix-minimal.yaml`
 - `record-review-minimal.yaml`
 - `human-ai-review-workflow-minimal.yaml`
 - `repair-flow.yaml`
@@ -216,7 +240,6 @@ Future examples should prefer short names that describe the responsibility-pathw
 
 Possible future names:
 
-- `action-class-matrix-minimal.yaml`
 - `internal-document-update.yaml`
 - `reversible-external-action.yaml`
 - `high-impact-negative-boundary.yaml`
@@ -241,7 +264,6 @@ New examples should:
 
 Low-risk next steps:
 
-- add `examples/action-class-matrix-minimal.yaml` as a readable classification-only fixture
 - add a Class C internal document or repository update example after current examples remain stable
 - add a Class F emergency-stop / stop-and-await example before high-impact examples
 - refine lightweight checker rules after action-class example structures exist
