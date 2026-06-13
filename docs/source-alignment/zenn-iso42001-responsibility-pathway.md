@@ -72,6 +72,25 @@ Repository change decision:
 - no immediate example addition
 - supports future explanatory documentation about standard-to-action translation
 
+## Individual / research / development boundary
+
+User context added during review: ISO standards, laws, and treaties are primarily written for enterprises, public institutions, and other organized actors. Directly constraining purely personal AI use with the same structures is difficult, because the balance between freedom and responsibility remains unresolved.
+
+At the same time, AI can allow individuals to exercise capabilities comparable to organizations. Therefore, basic responsibility-pathway thinking may still be valuable as a baseline for personal, research, and development use, especially when AI actions can affect other people, external systems, public information, organizations, or future downstream decisions.
+
+Current repository alignment:
+
+- supports distinguishing organization-facing obligations from personal-practice guidance
+- supports using RPE as a lightweight baseline for individual or research contexts without turning it into a legal duty
+- supports future profiles such as organization-facing, research/development-facing, and personal-use-facing responsibility-pathway guidance
+- supports keeping freedom/responsibility balance as an open design question rather than a settled rule
+
+Repository change decision:
+
+- no individual-use mandate should be added
+- no personal-use compliance claim should be added
+- possible future note: `docs/usage-context-boundary.md`
+
 ## OpenAI principles as responsibility pathway context
 
 The article reads OpenAI's five social-responsibility principles as high-level principles that still require implementation detail. It translates external oversight and adaptability into questions about who monitors, where findings are recorded, who stops, who repairs, how previous judgments are reevaluated, and whether dialogue becomes Evidence Log.
@@ -258,6 +277,7 @@ Compatible claims:
 - ISO-side management concerns can be conceptually mapped to RPE parts
 - AI-agent action granularity matters for preserving responsibility
 - risk management must connect to approval, evidence, stop, and repair pathways
+- organization-facing standards can inform individual, research, or development AI use as a lightweight baseline where AI actions have organization-like external effects
 
 Claims to keep bounded:
 
@@ -268,10 +288,12 @@ Claims to keep bounded:
 - standards conformance
 - safety/audit/production readiness
 - official ISO implementation procedure
+- mandatory constraints on purely personal AI use
+- settled rules for the freedom/responsibility balance in individual AI use
 
 Repository interpretation:
 
-This article is the strongest source so far for explaining why RPE should remain standards-adjacent but non-certifying. It supports future documentation that clarifies the gap between organizational AI management and action-level AI-agent responsibility pathways.
+This article is the strongest source so far for explaining why RPE should remain standards-adjacent but non-certifying. It supports future documentation that clarifies the gap between organizational AI management and action-level AI-agent responsibility pathways. The added user context also highlights that standards and laws are primarily organization-facing, while individual, research, and development contexts need a lighter and still-open responsibility/freedom balance.
 
 ## Repository alignment decision
 
@@ -281,7 +303,7 @@ No immediate change is required to definitions, schemas, checkers, Lean assumpti
 
 This article supports the following future-guidance rule:
 
-> Standards-adjacent RPE material should translate organizational AI management concerns into action-level responsibility-pathway questions without claiming ISO clause mapping, compliance, legal validity, safety certification, audit readiness, or production readiness.
+> Standards-adjacent RPE material should translate organizational AI management concerns into action-level responsibility-pathway questions without claiming ISO clause mapping, compliance, legal validity, safety certification, audit readiness, production readiness, or mandatory personal-use governance.
 
 ## Next action
 
