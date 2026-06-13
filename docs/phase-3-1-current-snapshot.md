@@ -106,6 +106,26 @@ This observed green status means only that the bounded structural example checke
 
 It is not certification.
 
+## Staged update operation
+
+Phase 3.1 uses staged update operation for repository-wide synchronization.
+
+This means large documentation or reader-path updates should be split into small commits instead of replacing several long files at once.
+
+The recommended order is:
+
+1. create or update the primary artifact
+2. observe or verify the bounded checker result when applicable
+3. create a small current snapshot when the change crosses multiple documents
+4. synchronize reader paths in README, README.ja, BEACON, ROADMAP, and CHANGELOG in separate small commits
+5. synchronize example index and checker coverage in separate small commits
+6. fetch the changed files after each commit
+7. record observed green workflow status only after it has been observed
+
+If a large full-file update is blocked or becomes risky, stop the full update and preserve the current state in a smaller snapshot file first.
+
+This staged operation is a repository-maintenance practice. It does not certify the repository, examples, schemas, generated records, or future adapters.
+
 ## Current boundary
 
 The current Phase 3.1 set does not provide:
