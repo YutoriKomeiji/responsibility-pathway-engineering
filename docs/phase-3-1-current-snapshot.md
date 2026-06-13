@@ -151,6 +151,7 @@ Phase 3.1 now has an explicit repository-operation layer.
 - staged update operation
 - synchronization unit operation
 - session load and handoff policy
+- sync-log and roadmap-note separation policy
 - document roles
 - snapshot roles
 - sync-log roles
@@ -179,6 +180,8 @@ The operation index is now connected from:
 
 `docs/operation-index.md` now states that `CHANGELOG.md` is not part of the primary construction-time reconnection path and should be used mainly for archival, investigative, historical, or retrospective milestone review.
 
+`docs/operation-index.md` now separates `docs/phase-3-1-sync-log.md` as the detailed synchronization record from `docs/phase-3-1-roadmap-note.md` as the short current-planning companion.
+
 `CHANGELOG.md` now records the periodic operation review policy as a conceptual milestone.
 
 ## Document usage phases
@@ -200,6 +203,29 @@ Use `CHANGELOG.md` mainly for archival review, serious error investigation, hist
 
 If active construction starts relying on `CHANGELOG.md` as the primary restart path, use periodic operation review to correct the reading path.
 
+## Sync log and roadmap note separation
+
+`docs/phase-3-1-sync-log.md` and `docs/phase-3-1-roadmap-note.md` are complementary but separate.
+
+Use the sync log to understand:
+
+- what changed across several commits
+- which reader paths, coverage maps, or checker interpretations were synchronized
+- what checker status or bounded interpretation was current at the time
+- what work remained deferred after a synchronization unit
+
+Use the roadmap note to understand:
+
+- the current near-term roadmap position
+- the next low-risk work
+- current phase rules and stop conditions
+- what should not be started yet
+- how to avoid changing a long `ROADMAP.md` section too early
+
+Do not use the roadmap note as a second changelog.
+
+Do not use the sync log as a phase plan.
+
 ## Commit granularity, session load, and operation review
 
 The current repository operation rule is responsibility-unit based.
@@ -218,6 +244,7 @@ Use periodic operation review when:
 - commit granularity feels too small or too large
 - reader paths become long or scattered
 - operation documents, snapshots, sync logs, or roadmap notes start multiplying
+- sync logs and roadmap notes start duplicating each other
 - active construction starts relying on `CHANGELOG.md` as the primary restart path
 - checker interpretation and actual practice drift apart
 - deferred boundaries need to be reconsidered
@@ -304,8 +331,8 @@ Next safe synchronization steps:
 5. do not add `scripts/check_runtime_events.py` or a runtime-event workflow until the checking plan preconditions are satisfied
 6. keep Class E positive examples deferred
 7. keep Lean expansion around adapter and runtime events deferred
-8. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, session handoff rules, or document usage phase rules change
-9. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, document usage phase, session load, or deferred boundaries feel misaligned with actual practice
+8. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, session handoff rules, document usage phase rules, or sync-log/roadmap-note role separation changes
+9. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, document usage phase, sync-log/roadmap-note separation, session load, or deferred boundaries feel misaligned with actual practice
 10. add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, or operation document to point to
 
 ## Restart point
