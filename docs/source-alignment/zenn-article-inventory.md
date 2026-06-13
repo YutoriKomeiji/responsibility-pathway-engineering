@@ -60,7 +60,7 @@ These files have non-descriptive filenames but appeared in searches for responsi
 | P1 | `articles/33825ca3f8c0e6.md` | aligned | Responsibility Pathway Layer source material. Reviewed in `docs/source-alignment/zenn-33825ca3f8c0e6-responsibility-pathway-layer.md`. |
 | P1 | `articles/7ee72995004c90.md` | aligned | Action Class Matrix source material. Reviewed in `docs/source-alignment/zenn-7ee72995004c90-action-class-matrix.md`. |
 | P1 | `articles/3829d785b15b60.md` | aligned | RACI / HITL / Guardrails comparison source material. Reviewed in `docs/source-alignment/zenn-3829d785b15b60-raci-hitl-guardrails.md`. |
-| P1 | `articles/fa69352ddd48ae.md` | pending | Appears across searches for responsibility pathway, fixed responsibility, and AI responsibility. |
+| P1 | `articles/fa69352ddd48ae.md` | aligned | Harness Engineering to Responsibility Pathway Design source material. Reviewed in `docs/source-alignment/zenn-fa69352ddd48ae-harness-to-responsibility-pathway.md`. |
 | P2 | `articles/ef12f2db314a58.md` | pending | Appears across searches for responsibility pathway, AI responsibility, and repair. |
 | P2 | `articles/1982703147789e.md` | pending | Appears across searches for responsibility, responsibility pathway, AI responsibility, and repair. |
 | P2 | `articles/3235e5affbb7c9.md` | pending | Appears in broad responsibility / AI responsibility searches. |
