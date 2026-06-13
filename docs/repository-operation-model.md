@@ -13,6 +13,7 @@ The repository should grow through small, reviewable changes.
 Prefer:
 
 - one primary artifact per commit when possible
+- one responsibility unit per commit
 - small synchronization commits after primary artifact commits
 - fetch confirmation after each write
 - observed workflow status recorded only after observation
@@ -180,6 +181,42 @@ Recommended sequence:
 12. add short ROADMAP or CHANGELOG references only after the detailed state has a stable document to point to
 
 If a long full-file update is blocked or risky, stop the full update and preserve current state in a smaller snapshot, sync log, or roadmap note first.
+
+## Commit granularity policy
+
+Prefer one commit per responsibility unit, not necessarily one commit per file.
+
+A responsibility unit is a coherent change whose files share the same reason, risk profile, and review path.
+
+Use one commit when multiple files are changed for the same synchronization purpose, such as:
+
+- README and README.ja receiving the same reader-path update
+- repository-governance and development-process receiving the same operation-model reference
+- example-index and checker-coverage receiving the same example coverage update when the checker interpretation is unchanged
+- snapshot and sync-log updates that record the same observed checkpoint
+
+Use separate commits when changes affect different responsibility layers, such as:
+
+- schema changes
+- example additions
+- checker behavior changes
+- workflow changes
+- Lean formalization changes
+- reader-path synchronization
+- observed workflow status records
+- failure repair commits
+- public-claim or citation changes
+
+Use smaller commits when:
+
+- a file is long or high-risk
+- a checker failure is being repaired
+- the change may alter interpretation of responsibility, authority, approval, execution, stop, repair, or excluded claims
+- the update crosses from documentation into schema, checker, workflow, example, or Lean behavior
+
+Use a larger single commit only when the files are small, the purpose is single, the risk is low, and the change remains easy to review and revert.
+
+Commit granularity is a maintainability practice. It is not certification and does not make a repository state legally valid, safe, compliant, fair, morally resolved, production ready, connector-correct, adapter-correct, or AI-responsibility-transferring.
 
 ## Workflow observation policy
 
