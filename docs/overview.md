@@ -110,7 +110,9 @@ RPE is close to several existing concepts, but it asks a different question.
 
 ## Action Class Matrix
 
-Action Class Matrix classifies AI-agent actions by:
+The source-aligned Action Class Matrix is maintained in [docs/action-class-matrix.md](action-class-matrix.md).
+
+It classifies AI-agent actions by:
 
 - impact
 - reversibility
@@ -119,12 +121,12 @@ Action Class Matrix classifies AI-agent actions by:
 
 Current source-aligned classes:
 
-1. Observe-Only
-2. Suggest-Only
-3. Approval-Required
-4. Reversible External Action
-5. Irreversible or High-Impact Action
-6. Emergency Stop
+1. Class A: Observe-Only
+2. Class B: Suggest-Only
+3. Class C: Approval-Required
+4. Class D: Reversible External Action
+5. Class E: Irreversible or High-Impact Action
+6. Class F: Emergency Stop
 
 Action class should influence:
 
@@ -230,8 +232,8 @@ The repository does not yet contain:
 The source-alignment pass suggests this implementation order:
 
 1. Stabilize README and overview entry points.
-2. Create or update `docs/concepts/core-elements.md` as operational roles/controls aligned with the eight-element model.
-3. Create `docs/concepts/action-class-matrix.md`.
+2. Keep `docs/concepts/core-elements.md` aligned as operational roles/controls connected to the eight-element model.
+3. Keep `docs/action-class-matrix.md` aligned as the Class A-F action-class design aid.
 4. Add negative examples for HITL collapse and rubber-stamp approval.
 5. Draft `docs/proposals/evidence-log-approval-state-extension.md`.
 6. Extend checkers by action class.
