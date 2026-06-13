@@ -32,6 +32,58 @@ Avoid:
 - expanding Lean around unstable examples or schemas
 - introducing Class E positive examples before lower classes and stop boundaries remain stable
 
+## Document purpose and usage phase policy
+
+Different repository documents serve different phases of work.
+
+Do not read or update a document merely because it exists. Read or update it only when its purpose matches the current task.
+
+During active construction, prefer documents that preserve the current working state and restart path:
+
+- `BEACON.md`
+- current phase snapshots
+- `docs/operation-index.md`
+- relevant sync logs
+- relevant roadmap notes
+- `docs/checker-coverage.md`
+- `docs/example-index.md`
+- the primary artifact being changed
+
+Use `CHANGELOG.md` mainly for archival, investigative, or historical purposes.
+
+`CHANGELOG.md` is useful when asking:
+
+- when a conceptual milestone was introduced
+- why a policy or boundary changed
+- what conceptual state existed before an error or inconsistency
+- which durable milestone can be cited in an external or retrospective summary
+
+`CHANGELOG.md` is usually not the primary construction-time restart path.
+
+During active construction, do not update `CHANGELOG.md` for every edit. Update it only after a durable conceptual milestone changes how the repository should be read, operated, investigated, or explained.
+
+Use this phase-oriented reading rule:
+
+| Work phase | Prefer reading | Usually avoid as primary source |
+| --- | --- | --- |
+| Active construction | `BEACON.md`, current snapshot, operation index, sync log, roadmap note, checker coverage, example index, primary artifact | `CHANGELOG.md` unless a milestone or prior decision must be investigated |
+| Restart or handoff | `BEACON.md`, current snapshot, operation index, sync log, roadmap note | `CHANGELOG.md` unless the restart requires historical cause tracing |
+| Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, relevant schema/example files | `CHANGELOG.md` unless checking when a rule changed |
+| Phase planning | `ROADMAP.md`, roadmap note, current snapshot, operation index | `CHANGELOG.md` unless confirming a past milestone |
+| Audit, error investigation, or retrospective explanation | `CHANGELOG.md`, sync logs, snapshots, relevant commits and artifacts | assuming current files alone explain why a past change happened |
+
+If the purpose does not match, change the reading or update path.
+
+Examples:
+
+- If the task is to continue current work, start from `BEACON.md`, the current snapshot, and operation index rather than `CHANGELOG.md`.
+- If the task is to explain why a boundary exists, use `CHANGELOG.md` only after checking the current boundary document and snapshot.
+- If the task is to repair a serious inconsistency, use `CHANGELOG.md` together with sync logs, snapshots, and relevant artifacts.
+- If the task is to decide whether a checker is implemented, use `docs/checker-coverage.md`, not `CHANGELOG.md`.
+- If the task is to know how an example should be read, use `docs/example-index.md`, not `CHANGELOG.md`.
+
+This policy is a repository-maintenance practice only. It does not certify that any document is complete, current, legally valid, safe, compliant, production ready, or AI-responsibility-transferring.
+
 ## Document roles
 
 ### `BEACON.md`
@@ -64,9 +116,16 @@ When a roadmap update would require a large full-file replacement, create a shor
 
 ### `CHANGELOG.md`
 
-`CHANGELOG.md` records conceptual milestones.
+`CHANGELOG.md` records durable conceptual milestones for archival, investigation, and retrospective explanation.
 
-Use it for durable milestones that changed how the repository should be read or operated.
+Use it for:
+
+- durable milestones that changed how the repository should be read or operated
+- serious error investigation
+- historical cause tracing
+- retrospective explanation of when and why a boundary or policy changed
+
+Do not use it as the primary active-construction restart path.
 
 Do not use it for every individual code or documentation edit.
 
