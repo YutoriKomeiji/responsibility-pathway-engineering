@@ -225,6 +225,36 @@ Next low-risk Phase 3 work:
 - add only one small reference example at a time
 - avoid production-service, legal-decision, certification, compliance, fairness, moral-resolution, or AI-final-responsibility interpretations
 
+## Phase 3.1 - Adapter Boundary and Runtime Event Bridge (Planned)
+
+Purpose:
+
+Define the bridge from external logs, API events, workflow results, and runtime observations into Responsibility Pathway records without treating that bridge as a production connector, verifier, certification tool, legal decision system, or AI final-responsibility transfer mechanism.
+
+Planned artifacts:
+
+- `docs/adapter-boundary.md` to define what adapters may do, what they must not claim, human review requirements, evidence logging requirements, missing-context handling, and relationship to the Action Class Matrix
+- `spec/runtime-event.schema.yaml` to define a minimal input event shape before service-specific connectors exist
+- `examples/adapter-input-event-minimal.json` to provide a small synthetic runtime event input
+- `examples/runtime-event-to-pathway-minimal.yaml` to show how a runtime event can be represented as a Responsibility Pathway record pending human or institutional review
+- later, only after the boundary and examples stabilize, a small local conversion script such as `scripts/convert_runtime_event.py`
+
+Adapter rule:
+
+Adapters may extract, normalize, summarize, classify, or transform external event data into Responsibility Pathway records. They must not decide responsibility, approve actions, certify records, prove safety, prove compliance, resolve legal or moral responsibility, or transfer final responsibility to AI.
+
+Runtime-event bridge rule:
+
+A generated pathway record must remain reviewable. It should preserve source event references, uncertainty, missing context, evidence records, human or institutional return points, approval requirements, stop conditions, and repair or correction paths where relevant.
+
+Next low-risk Phase 3.1 work:
+
+- add `docs/adapter-boundary.md` before adding any runtime event schema or conversion code
+- keep the first adapter boundary documentation-only and non-certifying
+- do not add service-specific connectors yet
+- do not add Class E positive examples yet
+- do not expand Lean around adapter or runtime events until the adapter boundary, runtime event schema, and generated-record examples are stable
+
 ## Guiding Principle
 
 Small commits.
