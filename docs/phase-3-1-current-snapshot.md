@@ -14,6 +14,7 @@ Current Phase 3.1 artifacts:
 - `spec/runtime-event.schema.yaml`
 - `examples/adapter-input-event-minimal.json`
 - `examples/runtime-event-to-pathway-minimal.yaml`
+- `docs/repository-operation-model.md`
 
 ## Adapter boundary
 
@@ -110,6 +111,8 @@ It is not certification.
 
 Phase 3.1 uses staged update operation for repository-wide synchronization.
 
+The general repository operation model is documented in `docs/repository-operation-model.md`.
+
 This means large documentation or reader-path updates should be split into small commits instead of replacing several long files at once.
 
 The recommended order is:
@@ -147,18 +150,19 @@ The current Phase 3.1 set does not provide:
 
 Next safe synchronization steps:
 
-1. add this snapshot to README, README.ja, BEACON, ROADMAP, and CHANGELOG
-2. add `examples/runtime-event-to-pathway-minimal.yaml` to `docs/example-index.md`
-3. add `examples/runtime-event-to-pathway-minimal.yaml` to `docs/checker-coverage.md`
-4. keep service-specific connectors deferred
-5. keep conversion code deferred until the event schema and examples remain stable
-6. keep Class E positive examples deferred
-7. keep Lean expansion around adapter and runtime events deferred
+1. add `docs/repository-operation-model.md` to README, README.ja, BEACON, ROADMAP, and CHANGELOG reader paths as small commits
+2. add this snapshot to ROADMAP and CHANGELOG through short references or companion notes
+3. keep service-specific connectors deferred
+4. keep conversion code deferred until the event schema and examples remain stable
+5. keep Class E positive examples deferred
+6. keep Lean expansion around adapter and runtime events deferred
 
 ## Restart point
 
 Restart from this file when continuing Phase 3.1.
 
+Also read `docs/repository-operation-model.md` before broad synchronization work.
+
 The next direct implementation step should not be a production connector.
 
-The next direct documentation step should be reader-path and coverage synchronization for the runtime-event bridge artifacts.
+The next direct documentation step should be reader-path synchronization for the repository operation model and remaining Phase 3.1 roadmap/changelog references.
