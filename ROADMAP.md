@@ -225,19 +225,28 @@ Next low-risk Phase 3 work:
 - add only one small reference example at a time
 - avoid production-service, legal-decision, certification, compliance, fairness, moral-resolution, or AI-final-responsibility interpretations
 
-## Phase 3.1 - Adapter Boundary and Runtime Event Bridge (Planned)
+## Phase 3.1 - Adapter Boundary and Runtime Event Bridge (Started; current snapshot, sync log, roadmap note, and operation model added)
 
 Purpose:
 
 Define the bridge from external logs, API events, workflow results, and runtime observations into Responsibility Pathway records without treating that bridge as a production connector, verifier, certification tool, legal decision system, or AI final-responsibility transfer mechanism.
 
-Planned artifacts:
+Current artifacts and companion notes:
 
-- `docs/adapter-boundary.md` to define what adapters may do, what they must not claim, human review requirements, evidence logging requirements, missing-context handling, and relationship to the Action Class Matrix
-- `spec/runtime-event.schema.yaml` to define a minimal input event shape before service-specific connectors exist
-- `examples/adapter-input-event-minimal.json` to provide a small synthetic runtime event input
-- `examples/runtime-event-to-pathway-minimal.yaml` to show how a runtime event can be represented as a Responsibility Pathway record pending human or institutional review
-- later, only after the boundary and examples stabilize, a small local conversion script such as `scripts/convert_runtime_event.py`
+- `docs/adapter-boundary.md` defines what adapters may do, what they must not claim, human review requirements, evidence logging requirements, missing-context handling, and relationship to the Action Class Matrix
+- `spec/runtime-event.schema.yaml` defines a minimal input event shape before service-specific connectors exist
+- `examples/adapter-input-event-minimal.json` provides a small synthetic runtime event input
+- `examples/runtime-event-to-pathway-minimal.yaml` shows how a runtime event can be represented as a Responsibility Pathway record pending human or institutional review
+- `docs/phase-3-1-current-snapshot.md` records the current Phase 3.1 restart point
+- `docs/phase-3-1-sync-log.md` records the staged synchronization work for Phase 3.1
+- `docs/phase-3-1-roadmap-note.md` records the short roadmap companion for this phase
+- `docs/repository-operation-model.md` records the repository-wide staged update operation, snapshot roles, sync-log roles, roadmap-note roles, workflow observation policy, checker interpretation policy, long-file update policy, log organization policy, and restart rules
+
+Observed status:
+
+- `Check examples #16` observed green on commit `d377be2` on `main` after fixing `examples/runtime-event-to-pathway-minimal.yaml`
+- The GitHub Actions run was `27463999395`
+- This observed green status remains a bounded repository-maintenance check and is not certification
 
 Adapter rule:
 
@@ -247,13 +256,19 @@ Runtime-event bridge rule:
 
 A generated pathway record must remain reviewable. It should preserve source event references, uncertainty, missing context, evidence records, human or institutional return points, approval requirements, stop conditions, and repair or correction paths where relevant.
 
+Repository operation rule:
+
+Broad reader-path synchronization, long-file updates, snapshot updates, and changelog or roadmap synchronization should follow `docs/repository-operation-model.md`.
+
 Next low-risk Phase 3.1 work:
 
-- add `docs/adapter-boundary.md` before adding any runtime event schema or conversion code
-- keep the first adapter boundary documentation-only and non-certifying
-- do not add service-specific connectors yet
-- do not add Class E positive examples yet
-- do not expand Lean around adapter or runtime events until the adapter boundary, runtime event schema, and generated-record examples are stable
+- keep service-specific connectors deferred
+- keep production conversion code deferred
+- keep runtime-event schema checking deferred until the schema and examples remain stable
+- keep JSON fixture checking deferred until the current event-to-pathway bridge remains readable and reviewable
+- keep Class E positive examples deferred
+- keep Lean expansion around adapter or runtime events deferred until the adapter boundary, runtime event schema, generated-record examples, checker boundary, and validation checklist are stable
+- add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, or roadmap note to point to
 
 ## Guiding Principle
 
