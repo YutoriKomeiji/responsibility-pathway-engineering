@@ -182,6 +182,8 @@ The operation index is now connected from:
 
 `docs/operation-index.md` now separates `docs/phase-3-1-sync-log.md` as the detailed synchronization record from `docs/phase-3-1-roadmap-note.md` as the short current-planning companion.
 
+`docs/operation-index.md` now separates `BEACON.md` as the short reconnection entrance from current snapshots as detailed current-state records.
+
 `CHANGELOG.md` now records the periodic operation review policy as a conceptual milestone.
 
 ## Document usage phases
@@ -202,6 +204,36 @@ For active construction and restart, prefer:
 Use `CHANGELOG.md` mainly for archival review, serious error investigation, historical cause tracing, or retrospective explanation of when and why a boundary or policy changed.
 
 If active construction starts relying on `CHANGELOG.md` as the primary restart path, use periodic operation review to correct the reading path.
+
+## BEACON and current snapshot separation
+
+`BEACON.md` is the reconnection entrance.
+
+It should stay compact and focus on:
+
+- current focus
+- read-first order
+- restart pointer
+- short boundary reminders
+- continuity across sessions
+
+This current snapshot is the detailed current-state record.
+
+It should preserve:
+
+- current artifacts
+- current synchronization state
+- observed bounded checks
+- detailed deferred boundaries
+- next low-risk work
+- stop conditions
+- restart details
+
+Do not use `BEACON.md` as a full snapshot or second changelog.
+
+Do not use this snapshot to replace the short reconnection role of `BEACON.md`.
+
+If `BEACON.md` grows too large, move detailed state into this snapshot, a sync log, a roadmap note, checker coverage, or example index, then keep BEACON focused on reconnection.
 
 ## Sync log and roadmap note separation
 
@@ -243,6 +275,7 @@ Use periodic operation review when:
 
 - commit granularity feels too small or too large
 - reader paths become long or scattered
+- BEACON starts carrying detailed snapshot history or changelog-like content
 - operation documents, snapshots, sync logs, or roadmap notes start multiplying
 - sync logs and roadmap notes start duplicating each other
 - active construction starts relying on `CHANGELOG.md` as the primary restart path
@@ -331,9 +364,10 @@ Next safe synchronization steps:
 5. do not add `scripts/check_runtime_events.py` or a runtime-event workflow until the checking plan preconditions are satisfied
 6. keep Class E positive examples deferred
 7. keep Lean expansion around adapter and runtime events deferred
-8. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, session handoff rules, document usage phase rules, or sync-log/roadmap-note role separation changes
-9. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, document usage phase, sync-log/roadmap-note separation, session load, or deferred boundaries feel misaligned with actual practice
+8. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, session handoff rules, document usage phase rules, sync-log/roadmap-note role separation, or BEACON/snapshot role separation changes
+9. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, document usage phase, BEACON/snapshot separation, sync-log/roadmap-note separation, session load, or deferred boundaries feel misaligned with actual practice
 10. add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, or operation document to point to
+11. consider only a minimal, synthetic, non-production runtime fixture or runtime-checking stub after `docs/runtime-event-checking-plan.md` preconditions are satisfied; do not start production runtime integration
 
 ## Restart point
 
@@ -359,5 +393,7 @@ Use `CHANGELOG.md` after these current-state documents only when a milestone, hi
 If continuing after a long or heavy session, use `docs/repository-operation-model.md` and `docs/operation-index.md` to confirm the session load and handoff policy before making broad changes.
 
 The next direct implementation step should not be a production connector.
+
+The next direct runtime step should not be production runtime integration. A minimal synthetic runtime fixture or bounded checker stub may be considered only after the runtime-event checking plan preconditions are satisfied.
 
 The next direct checker step should not begin until `docs/runtime-event-checking-plan.md` preconditions are satisfied.
