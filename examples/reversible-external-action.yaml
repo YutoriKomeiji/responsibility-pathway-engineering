@@ -1,0 +1,296 @@
+# Class D reversible external action example
+#
+# This example models a reversible external action with human approval,
+# external-impact visibility, rollback or correction path, and evidence logging.
+# It is intentionally small and illustrative.
+# It is not a certification, compliance claim, safety guarantee,
+# legal assessment, moral accountability judgment, or production-ready pattern.
+#
+# 日本語メモ:
+# これは Class D Reversible External Action の最小例です。
+# 外部関係者に影響するが、訂正・撤回・ロールバック経路を事前に記録できる行為を扱います。
+# AI は通知案や実行案を作れますが、承認・実行・停止・最終責任は人間側に残ります。
+
+id: reversible_external_action_001
+version: 0.1.0
+lifecycle_state: originating
+
+nodes:
+  - id: human_external_action_owner_001
+    type: Human
+    capabilities:
+      - receive
+      - review
+      - approve
+      - reject
+      - execute
+      - stop
+      - return
+      - repair
+      - close
+    authority_scope:
+      can_decide: true
+      can_approve: true
+      can_execute: true
+      can_stop: true
+      can_repair: true
+      can_close: true
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_reversible_external_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: true
+
+  - id: ai_external_action_support_001
+    type: AIAgent
+    capabilities:
+      - receive
+      - generate
+      - recommend
+      - explain
+      - return
+    authority_scope:
+      can_decide: false
+      can_approve: false
+      can_execute: false
+      can_stop: false
+      can_repair: false
+      can_close: false
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_reversible_external_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: false
+    ai_participation:
+      may_generate: true
+      may_recommend: true
+      may_classify: true
+      may_execute_under_authority: false
+      assumes_final_responsibility: false
+
+  - id: external_notification_channel_001
+    type: ExternalSystem
+    capabilities:
+      - receive
+      - deliver
+      - preserve
+    authority_scope:
+      can_decide: false
+      can_approve: false
+      can_execute: true
+      can_stop: false
+      can_repair: false
+      can_close: false
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_reversible_external_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: false
+
+edges:
+  - from: human_external_action_owner_001
+    to: ai_external_action_support_001
+    relation_type: delegated_drafting_support
+    condition: human_requests_external_notification_draft
+    evidence_reference: evidence_log_reversible_external_001
+
+  - from: ai_external_action_support_001
+    to: human_external_action_owner_001
+    relation_type: return_to_authority
+    condition: external_action_requires_human_review_and_approval
+    evidence_reference: evidence_log_reversible_external_001
+
+  - from: human_external_action_owner_001
+    to: external_notification_channel_001
+    relation_type: approved_reversible_external_action
+    condition: human_owner_approves_correctable_external_notification
+    evidence_reference: evidence_log_reversible_external_001
+
+roles:
+  decision_owner: human_external_action_owner_001
+  approval_gate: human_external_action_owner_001
+  execution_actor: human_external_action_owner_001
+  stop_authority: human_external_action_owner_001
+  evidence_log: evidence_log_reversible_external_001
+  repair_owner: human_external_action_owner_001
+  return_point: return_point_reversible_external_001
+  human_return_point: return_point_reversible_external_001
+  affected_party: external_stakeholder_group_001
+
+action_class:
+  id: class_d_reversible_external_action
+  label: Class D
+  name: Reversible External Action
+  source_aligned_class: D
+  description: Human-approved external notification with a defined correction or retraction path.
+  responsibility_requirements:
+    decision_owner_required: true
+    approval_gate_required: true
+    execution_actor_required: true
+    stop_authority_required: true
+    evidence_log_required: true
+    return_point_required: true
+    repair_owner_required: true
+    affected_party_visibility_required: true
+    rollback_or_correction_path_required: true
+    restart_approval_required: false
+  reversibility: partially_reversible
+  external_impact: external
+  execution_effect: external_state_change
+  automation_boundary:
+    may_be_automated: false
+    requires_human_review: true
+    requires_human_authorization: true
+    prohibited_without_explicit_authority: true
+    autonomous_execution_disallowed: true
+  excluded_interpretations:
+    - not_impact_free
+    - not_harmless_reversibility
+    - not_autonomous_execution
+    - not_certification
+    - not_legal_review
+    - not_safety_review
+    - not_compliance_review
+    - not_production_ready
+
+evidence_logs:
+  - id: evidence_log_reversible_external_001
+    pathway_id: reversible_external_action_001
+    evidence_categories:
+      - request
+      - ai_proposal
+      - external_impact_scope
+      - affected_party_visibility
+      - human_review
+      - approval_decision
+      - execution_actor
+      - rollback_or_correction_path
+      - abnormal_case_contact
+      - timestamp
+      - authority_state
+      - excluded_claims
+    integrity_state: partial
+    ordering: timestamped
+    reconstruction_support:
+      can_reconstruct_action: true
+      can_reconstruct_authority: true
+      can_reconstruct_context: true
+      can_reconstruct_uncertainty: true
+      can_reconstruct_stop_point: true
+      can_reconstruct_return_point: true
+      can_reconstruct_repair_action: true
+    quality:
+      completeness: partial
+      readability: human_readable
+      availability: local_example
+      scope_clarity: reversible_external_action_only
+      retention_period: not_specified
+      privacy_constraints: avoid_sensitive_data
+      safety_constraints: no_production_use
+    access_boundary:
+      readable_by:
+        - human_external_action_owner_001
+      writable_by:
+        - human_external_action_owner_001
+      redaction_required: false
+      retention_owner: human_external_action_owner_001
+      repair_owner_access: human_external_action_owner_001
+
+return_points:
+  - id: return_point_reversible_external_001
+    type: HumanReturnPoint
+    source_node: ai_external_action_support_001
+    target_node: human_external_action_owner_001
+    returnability_conditions:
+      meaning_visible: true
+      authority_visible: true
+      time_available: true
+      information_quality_sufficient: partial
+      trust_calibrated: true
+      reversibility_or_compensation_visible: true
+      value_visible: true
+      cost_visible: true
+    supported_actions:
+      - review
+      - approve
+      - reject
+      - request_revision
+      - execute
+      - stop
+      - rollback_or_correct
+      - repair
+      - close
+    evidence_requirements:
+      evidence_log_required: true
+      minimum_evidence_categories:
+        - request
+        - ai_proposal
+        - external_impact_scope
+        - human_review
+        - approval_decision
+        - rollback_or_correction_path
+        - authority_state
+      reconstruction_required: true
+      access_boundary: local_review
+    human_conditions:
+      understandable_information: true
+      meaningful_choice: true
+      refusal_available: true
+      stop_authority_available: true
+      repair_path_available: true
+      adequate_review_time: true
+      no_coercive_pressure: true
+
+rollback_or_correction:
+  id: rollback_reversible_external_001
+  pathway_id: reversible_external_action_001
+  rollback_owner: human_external_action_owner_001
+  abnormal_case_contact: human_external_action_owner_001
+  affected_parties:
+    - external_stakeholder_group_001
+  available_actions:
+    - retract_notification
+    - send_correction_notice
+    - preserve_original_notice_reference
+    - record_follow_up_review
+  limits:
+    - external_parties_may_have_already_seen_the_notification
+    - rollback_does_not_erase_external_effect_history
+    - correction_does_not_certify_original_action
+  evidence_reference: evidence_log_reversible_external_001
+  state: available_not_triggered
+
+repairs: []
+
+responsibility_boundary:
+  human_author_required: true
+  ai_final_responsibility_allowed: false
+  institutional_authority_required_when_applicable: false
+  legal_or_moral_claims_out_of_scope: true
+
+formalization_scope:
+  assumptions:
+    - The example models a correctable external notification only.
+    - The AI node drafts or recommends content but does not approve, execute, stop, repair, or assume final responsibility.
+    - Human approval is required before any external notification is sent.
+    - Reversibility means a correction or retraction path exists, not that external impact is harmless or erased.
+  modeled_entities:
+    - human_external_action_owner_001
+    - ai_external_action_support_001
+    - external_notification_channel_001
+    - evidence_log_reversible_external_001
+    - return_point_reversible_external_001
+    - rollback_reversible_external_001
+  excluded_claims:
+    - legal_liability
+    - moral_blame
+    - compliance
+    - production_safety
+    - fairness
+    - certification
+    - production_readiness
+    - real_world_accountability_resolution
+  theorem_status: not_formalized
