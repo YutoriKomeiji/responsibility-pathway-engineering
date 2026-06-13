@@ -8,6 +8,20 @@ Responsibility Pathway Engineering is a design framework for preserving the path
 
 It is not a blame assignment mechanism.
 
+## Provenance and first public source
+
+The Japanese term and design concept **責任経路設計** was first publicly introduced by Akihisa Ono in the note article "AI事故は「責任設計」だけでは防げない――最後の砦は「責任経路設計」である", published on 2026-01-18.
+
+First public source:
+
+- https://note.com/dantarg/n/nb7f28afa6882
+
+That article defines responsibility pathway design as designing responsibility not merely as a point of attribution, but as a flow or path that preserves where judgment arises, where it changes, where it can stop, where it returns to humans, and how those pathways remain structurally maintained during operation.
+
+This repository develops that public source into an open specification, examples, schemas, bounded checkers, review notes, and formalization candidates. The repository records provenance to preserve traceability of the term, the concept, and the responsibility path of the project itself.
+
+This provenance note is an attribution and traceability statement. It is not a legal claim, ownership adjudication, plagiarism accusation, certification, or production approval.
+
 ## Current orientation
 
 Responsibility Pathway Engineering focuses on responsibility-flow design, not model performance alone.
