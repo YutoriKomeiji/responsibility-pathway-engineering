@@ -1,6 +1,6 @@
 # Source Alignment: enterprise-agent-checklist.md
 
-This note records a source-alignment review for the Zenn draft on enterprise AI-agent adoption checklists.
+This note records a source-alignment review for the Zenn article on enterprise AI-agent adoption checklists.
 
 It is based on the Markdown source in `YutoriKomeiji/zenn-content`, not on a Web-rendered page.
 
@@ -10,8 +10,9 @@ It is based on the Markdown source in `YutoriKomeiji/zenn-content`, not on a Web
 - Source path: `articles/enterprise-agent-checklist.md`
 - Title: `企業AIエージェント導入チェックリスト――責任経路編`
 - Published flag in frontmatter: `false`
+- Public status: user-confirmed published; the `false` frontmatter value is treated as metadata drift / authoring mistake for this alignment note
 - Review status: reviewed
-- Review purpose: align an unpublished / draft enterprise checklist with the repository's bounded enterprise guidance, implementation-example, and non-certifying boundaries.
+- Review purpose: align an enterprise checklist with the repository's bounded enterprise guidance, implementation-example, and non-certifying boundaries.
 
 ## Article-level role
 
@@ -23,8 +24,8 @@ Current repository alignment:
 
 - strongly aligned with enterprise guidance direction
 - strongly aligned with Phase 3 examples as future practical sources
-- should be treated as draft / unpublished source material because `published` is `false`
-- should not be treated as a public finalized article or certification source
+- should be treated as public article source material, while preserving the observed frontmatter mismatch
+- should not be treated as a certification source
 
 Repository change decision:
 
@@ -291,7 +292,7 @@ Claims to keep bounded:
 
 Repository interpretation:
 
-This draft is valuable enterprise guidance, but because it is unpublished and checklist-oriented, it should support future examples and guidance rather than alter core definitions now.
+This article is valuable enterprise guidance. It should support future examples and guidance rather than alter core definitions now.
 
 ## Repository alignment decision
 
