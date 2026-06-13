@@ -10,7 +10,7 @@ Phase 3.1 has started.
 
 The current Phase 3.1 work establishes a draft, vendor-neutral, review-required bridge from runtime observations to Responsibility Pathway draft records.
 
-The current Phase 3.1 work also establishes a runtime-event checking plan before any runtime-event checker implementation.
+The current Phase 3.1 work also establishes a runtime-event checking plan and a minimal runtime candidate design note before any runtime-event checker, runtime workflow, connector, or production runtime implementation.
 
 Current artifacts:
 
@@ -19,6 +19,7 @@ Current artifacts:
 - `examples/adapter-input-event-minimal.json`
 - `examples/runtime-event-to-pathway-minimal.yaml`
 - `docs/runtime-event-checking-plan.md`
+- `docs/minimal-runtime-candidate-design.md`
 - `docs/phase-3-1-current-snapshot.md`
 - `docs/phase-3-1-sync-log.md`
 - `docs/repository-operation-model.md`
@@ -37,6 +38,7 @@ The following checkpoint has been reached:
 - repository operation layer added through `docs/repository-operation-model.md` and `docs/operation-index.md`
 - periodic operation review policy added for repository-maintenance alignment
 - runtime-event checking plan added before checker implementation
+- minimal runtime candidate design note added before any runtime fixture, runtime checker, runtime workflow, connector, or production runtime implementation
 - `docs/operation-index.md` points runtime-event checker planning to `docs/runtime-event-checking-plan.md`
 - `docs/checker-coverage.md` records that runtime-event schema checking and JSON fixture checking remain unimplemented and deferred
 - `docs/example-index.md` records that `examples/runtime-event-to-pathway-minimal.yaml` is currently checked only as a pathway example
@@ -49,7 +51,7 @@ Phase 3.1 is not yet a connector phase.
 
 Phase 3.1 is also not yet a production runtime phase.
 
-Phase 3.1 may consider a minimal synthetic runtime fixture or bounded runtime-checking stub only after the runtime-event checking plan preconditions are satisfied.
+Phase 3.1 may consider a minimal synthetic runtime fixture or bounded runtime-checking stub only through `docs/minimal-runtime-candidate-design.md` and only after the runtime-event checking plan preconditions are satisfied.
 
 It does not yet include:
 
@@ -73,6 +75,25 @@ Any future passing runtime-event check must remain a bounded repository-maintena
 
 A passing runtime-event check must not be interpreted as certification, legal review, safety review, compliance review, fairness review, production approval, connector correctness proof, adapter correctness proof, schema correctness proof, JSON fixture correctness proof, semantic mapping correctness proof, responsibility assignment proof, or AI final-responsibility transfer.
 
+## Minimal runtime candidate rule
+
+Use `docs/minimal-runtime-candidate-design.md` before adding any runtime candidate.
+
+The currently preferred candidate, if the runtime path is opened, is a minimal synthetic runtime fixture rather than a checker stub.
+
+The candidate must remain:
+
+- non-production
+- synthetic
+- local to the repository
+- review-required
+- non-certifying
+- disconnected from service-specific connectors
+- disconnected from automatic approval or execution
+- explicit about missing context, missing approval evidence, missing execution evidence, and excluded claims
+
+This design note does not unlock production runtime integration, service-specific connectors, runtime workflows, or runtime-event checker implementation.
+
 ## Priority order across remaining work
 
 Use this priority order while continuing from the current repository state.
@@ -92,6 +113,7 @@ Do first when the repository has gained several operation-policy commits or the 
 Do before any runtime checker or runtime fixture work:
 
 - confirm that `docs/runtime-event-checking-plan.md` preconditions remain satisfied or update the plan if they do not
+- confirm that `docs/minimal-runtime-candidate-design.md` still selects the narrowest acceptable runtime candidate
 - keep `examples/runtime-event-to-pathway-minimal.yaml` readable as a pathway example
 - keep `examples/adapter-input-event-minimal.json` synthetic, vendor-neutral, and review-required
 - keep runtime-event schema and JSON fixture checking deferred unless deliberately opened
@@ -100,8 +122,8 @@ Do before any runtime checker or runtime fixture work:
 
 After Priority 1 and Priority 2 are stable, consider one narrow runtime candidate:
 
-- either a minimal synthetic runtime fixture
-- or a bounded runtime-checking stub
+- preferably a minimal synthetic runtime fixture
+- only later, a bounded runtime-checking stub
 
 The candidate must be:
 
@@ -151,13 +173,14 @@ Keep the following deferred until lower-risk layers are stable:
 The next low-risk work is planning and bounded artifact preparation only:
 
 1. keep runtime-event checking deferred until the plan preconditions are explicitly satisfied
-2. prepare a minimal runtime candidate design note or fixture only if it remains synthetic, non-production, review-required, and non-certifying
-3. keep service-specific connectors deferred
-4. keep production conversion code deferred
-5. keep production runtime integration deferred
-6. keep Lean expansion deferred
-7. keep Class E positive examples deferred
-8. use periodic operation review if BEACON, snapshots, sync logs, roadmap notes, CHANGELOG usage, checker interpretation, session load, or deferred boundaries drift from actual practice
+2. keep `docs/minimal-runtime-candidate-design.md` as the boundary for selecting a minimal runtime candidate
+3. prepare a minimal synthetic runtime fixture only if it remains synthetic, non-production, review-required, and non-certifying
+4. keep service-specific connectors deferred
+5. keep production conversion code deferred
+6. keep production runtime integration deferred
+7. keep Lean expansion deferred
+8. keep Class E positive examples deferred
+9. use periodic operation review if BEACON, snapshots, sync logs, roadmap notes, CHANGELOG usage, checker interpretation, session load, or deferred boundaries drift from actual practice
 
 ## Stop conditions
 
@@ -178,6 +201,7 @@ Restart from:
 - `docs/phase-3-1-current-snapshot.md`
 - `docs/phase-3-1-sync-log.md`
 - `docs/runtime-event-checking-plan.md`
+- `docs/minimal-runtime-candidate-design.md`
 - `docs/operation-index.md`
 - this note
 
