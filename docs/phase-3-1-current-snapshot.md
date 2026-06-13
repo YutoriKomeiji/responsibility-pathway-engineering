@@ -1,6 +1,6 @@
 # Phase 3.1 Current Snapshot
 
-This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, runtime-event checking plan, and repository operation layer.
+This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, runtime-event checking plan, minimal runtime candidate planning, and repository operation layer.
 
 Phase 3.1 is the bridge from external logs, API events, workflow results, and runtime observations into draft Responsibility Pathway records.
 
@@ -15,6 +15,7 @@ Current Phase 3.1 artifacts:
 - `examples/adapter-input-event-minimal.json`
 - `examples/runtime-event-to-pathway-minimal.yaml`
 - `docs/runtime-event-checking-plan.md`
+- `docs/minimal-runtime-candidate-design.md`
 - `docs/phase-3-1-current-snapshot.md`
 - `docs/phase-3-1-sync-log.md`
 - `docs/phase-3-1-roadmap-note.md`
@@ -125,6 +126,23 @@ The plan records:
 
 The plan does not implement a checker and does not certify schema correctness, JSON fixture correctness, adapter mapping correctness, service-specific connector behavior, production runtime behavior, legal validity, safety, compliance, fairness, moral resolution, production readiness, or AI final-responsibility transfer.
 
+## Minimal runtime candidate design
+
+`docs/minimal-runtime-candidate-design.md` defines the narrowest acceptable shape for an early runtime candidate.
+
+The design note exists before any runtime fixture, runtime checker, runtime workflow, connector, or production runtime implementation.
+
+It allows only one first candidate:
+
+- a minimal synthetic runtime fixture
+- or a bounded runtime-checking stub
+
+The current preferred first candidate, if the runtime path is opened, is a minimal synthetic runtime fixture rather than a checker stub.
+
+The candidate must remain non-production, synthetic, local to the repository, review-required, non-certifying, disconnected from service-specific connectors, disconnected from automatic approval or execution, and explicit about missing context, missing approval evidence, missing execution evidence, and excluded claims.
+
+The design note does not implement a runtime, connector, checker, workflow, adapter, production integration, approval system, execution system, certification system, legal decision system, safety certification system, compliance engine, fairness certification tool, moral-resolution system, or AI final-responsibility transfer mechanism.
+
 ## Runtime-event checking synchronization
 
 The runtime-event checking plan has been synchronized across the repository-maintenance reader path.
@@ -132,14 +150,15 @@ The runtime-event checking plan has been synchronized across the repository-main
 Current synchronization status:
 
 - `docs/operation-index.md` points runtime-event schema checking, JSON fixture checking, and future runtime-event checker work to `docs/runtime-event-checking-plan.md` first
+- `docs/operation-index.md` points runtime candidate selection to `docs/minimal-runtime-candidate-design.md` before any runtime candidate is added
 - `docs/phase-3-1-sync-log.md` records the runtime-event checking plan synchronization as one responsibility unit split across multiple small commits
-- `docs/phase-3-1-roadmap-note.md` records that Phase 3.1 is not yet a runtime-event checker implementation phase
+- `docs/phase-3-1-roadmap-note.md` records that Phase 3.1 is not yet a runtime-event checker implementation phase or production runtime phase
 - `ROADMAP.md` records the runtime-event checking rule before implementation
 - `CHANGELOG.md` records the runtime-event checking plan as a conceptual milestone before checker implementation
 - `docs/checker-coverage.md` records that current checkers do not validate `spec/runtime-event.schema.yaml` or `examples/adapter-input-event-minimal.json`
 - `docs/example-index.md` records that `examples/runtime-event-to-pathway-minimal.yaml` is currently checked only as a pathway example and that runtime-event checks are not yet implemented
 
-This synchronization does not unlock runtime-event checker implementation.
+This synchronization does not unlock runtime-event checker implementation, runtime workflow implementation, service-specific connectors, or production runtime integration.
 
 ## Repository operation layer
 
@@ -175,6 +194,8 @@ The operation index is now connected from:
 - `BEACON.md`
 
 `docs/runtime-event-checking-plan.md` is now connected from `docs/operation-index.md` as the plan to read before considering runtime-event schema checking, JSON fixture checking, or future runtime-event checker work.
+
+`docs/minimal-runtime-candidate-design.md` is now connected from `docs/operation-index.md` as the design note to read before considering a minimal synthetic runtime fixture or bounded runtime-checking stub.
 
 `docs/operation-index.md` also now points readers to the session load and handoff policy when session load is becoming heavy or a durable restart path is needed.
 
@@ -361,13 +382,15 @@ Next safe synchronization steps:
 2. keep production conversion code deferred
 3. keep runtime-event schema checking deferred until the schema and examples remain stable and `docs/runtime-event-checking-plan.md` preconditions are satisfied
 4. keep JSON fixture checking deferred until the current event-to-pathway bridge remains readable and reviewable and `docs/runtime-event-checking-plan.md` preconditions are satisfied
-5. do not add `scripts/check_runtime_events.py` or a runtime-event workflow until the checking plan preconditions are satisfied
-6. keep Class E positive examples deferred
-7. keep Lean expansion around adapter and runtime events deferred
-8. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, session handoff rules, document usage phase rules, sync-log/roadmap-note role separation, or BEACON/snapshot role separation changes
-9. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, document usage phase, BEACON/snapshot separation, sync-log/roadmap-note separation, session load, or deferred boundaries feel misaligned with actual practice
-10. add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, or operation document to point to
-11. consider only a minimal, synthetic, non-production runtime fixture or runtime-checking stub after `docs/runtime-event-checking-plan.md` preconditions are satisfied; do not start production runtime integration
+5. keep runtime-event checker implementation deferred until `docs/runtime-event-checking-plan.md` preconditions are satisfied
+6. keep runtime workflow implementation deferred until local runtime-checking behavior exists and has been observed
+7. use `docs/minimal-runtime-candidate-design.md` before selecting any runtime candidate
+8. if the runtime path is opened, prefer a minimal synthetic runtime fixture before a checker stub
+9. keep Class E positive examples deferred
+10. keep Lean expansion around adapter and runtime events deferred
+11. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, session handoff rules, document usage phase rules, sync-log/roadmap-note role separation, BEACON/snapshot role separation, or minimal runtime candidate planning changes
+12. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, document usage phase, BEACON/snapshot separation, sync-log/roadmap-note separation, session load, runtime candidate planning, or deferred boundaries feel misaligned with actual practice
+13. add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, runtime candidate note, or operation document to point to
 
 ## Restart point
 
@@ -382,11 +405,12 @@ Also read:
 5. `docs/phase-3-1-roadmap-note.md`
 6. `docs/adapter-boundary.md`
 7. `docs/runtime-event-checking-plan.md`
-8. `docs/checker-coverage.md`
-9. `docs/example-index.md`
-10. `spec/runtime-event.schema.yaml`
-11. `examples/adapter-input-event-minimal.json`
-12. `examples/runtime-event-to-pathway-minimal.yaml`
+8. `docs/minimal-runtime-candidate-design.md`
+9. `docs/checker-coverage.md`
+10. `docs/example-index.md`
+11. `spec/runtime-event.schema.yaml`
+12. `examples/adapter-input-event-minimal.json`
+13. `examples/runtime-event-to-pathway-minimal.yaml`
 
 Use `CHANGELOG.md` after these current-state documents only when a milestone, historical cause, serious inconsistency, or prior boundary decision needs investigation.
 
@@ -394,6 +418,6 @@ If continuing after a long or heavy session, use `docs/repository-operation-mode
 
 The next direct implementation step should not be a production connector.
 
-The next direct runtime step should not be production runtime integration. A minimal synthetic runtime fixture or bounded checker stub may be considered only after the runtime-event checking plan preconditions are satisfied.
+The next direct runtime step should not be production runtime integration. A minimal synthetic runtime fixture may be considered only through `docs/minimal-runtime-candidate-design.md` and only while it remains non-production, synthetic, local, review-required, and non-certifying.
 
 The next direct checker step should not begin until `docs/runtime-event-checking-plan.md` preconditions are satisfied.
