@@ -36,6 +36,8 @@ Source-aligned Action Class Matrix には、Class A-F を読むための classif
 
 Phase 3.1 は adapter boundary と runtime-event bridge から開始しています。[docs/adapter-boundary.md](docs/adapter-boundary.md) と [docs/phase-3-1-current-snapshot.md](docs/phase-3-1-current-snapshot.md) を参照してください。最初の runtime-event-to-pathway 例は [examples/runtime-event-to-pathway-minimal.yaml](examples/runtime-event-to-pathway-minimal.yaml) です。これは synthetic、vendor-neutral、review-required の draft example であり、service-specific connector や production runtime ではありません。
 
+リポジトリ運用モデルは [docs/repository-operation-model.md](docs/repository-operation-model.md) にあります。この文書は、多段階更新運用、snapshot、sync log、roadmap note、checker 観測方針、長文ファイル更新方針、認証ではない運用上の制限事項を記録します。
+
 ## 著作者と引用
 
 本リポジトリは Akihisa Ono (小野昭久) によって、独立した公開仕様および設計フレームワークとして著作・保守されています。
@@ -52,42 +54,43 @@ Phase 3.1 は adapter boundary と runtime-event bridge から開始していま
 初めて読む人、未来の保守者、AIによる継続作業では、次の順番で読むことを推奨します。
 
 1. [BEACON.md](BEACON.md) - 現在地と再接続点
-2. [docs/overview.md](docs/overview.md) - source alignment 後の現在のリポジトリ概観
-3. [docs/source-alignment/zenn-source-alignment-synthesis.md](docs/source-alignment/zenn-source-alignment-synthesis.md) - Zenn資料からの source-alignment synthesis
-4. [docs/concepts/core-elements.md](docs/concepts/core-elements.md) - 8要素モデルに接続された operational roles and controls
-5. [docs/action-class-matrix.md](docs/action-class-matrix.md) - source-aligned Class A-F action classification design aid
-6. [examples/action-class-matrix-minimal.yaml](examples/action-class-matrix-minimal.yaml) - Action Class Matrix の classification-only fixture
-7. [examples/internal-document-update.yaml](examples/internal-document-update.yaml) - Class C Approval-Required 内部文書更新例
-8. [examples/emergency-stop-flow.yaml](examples/emergency-stop-flow.yaml) - Class F Emergency Stop / stop-and-await 例
-9. [examples/reversible-external-action.yaml](examples/reversible-external-action.yaml) - Class D Reversible External Action 例
-10. [docs/adapter-boundary.md](docs/adapter-boundary.md) - runtime connector の前に読む adapter の対象範囲と制限事項
-11. [docs/phase-3-1-current-snapshot.md](docs/phase-3-1-current-snapshot.md) - Phase 3.1 adapter / runtime-event の現在地
-12. [examples/runtime-event-to-pathway-minimal.yaml](examples/runtime-event-to-pathway-minimal.yaml) - synthetic runtime-event-to-pathway draft example
-13. [LUMINALIA.md](LUMINALIA.md) - 設計思想
-14. [ROADMAP.md](ROADMAP.md) - 現在と今後のフェーズ
-15. [CHANGELOG.md](CHANGELOG.md) - 概念上の節目
-16. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - 現在のリポジトリを意図的に小さく保つ理由
-17. [docs/enterprise-implementation-profile.md](docs/enterprise-implementation-profile.md) - 企業向けの最小導入プロファイルと層の分離
-18. [docs/responsibility-pathway-record-review.md](docs/responsibility-pathway-record-review.md) - 責任経路記録を確認・再確認するための平易な手順
-19. [docs/phase-2-5-current-snapshot.md](docs/phase-2-5-current-snapshot.md) - Phase 2.5 企業導入・責任経路記録レビューの現在地
-20. [docs/reference-implementation-boundary.md](docs/reference-implementation-boundary.md) - Phase 3 reference implementation の前に読む制限事項
-21. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - 軽量検証とライフサイクル例の現在地
-22. [formal/lean/README.md](formal/lean/README.md) - Lean形式化の対象範囲と現在の invariant candidates
-23. [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md) - Phase 2 Lean の現在地と再開点
-24. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - Phase 2 Lean split plan と non-goals
-25. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - Phase 2 Lean theorem role index
-26. [docs/definition.md](docs/definition.md) - 中核定義
-27. [docs/eight-elements.md](docs/eight-elements.md) - 8要素モデル
-28. [docs/repository-governance.md](docs/repository-governance.md) - リポジトリ運営方針
-29. [docs/development-process.md](docs/development-process.md) - 開発プロセス
-30. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
-31. [spec/review-result.schema.yaml](spec/review-result.schema.yaml) - 対象範囲を限定した確認結果の出力 schema
-32. [spec/runtime-event.schema.yaml](spec/runtime-event.schema.yaml) - draft vendor-neutral runtime event schema
-33. [docs/validation-checklist.md](docs/validation-checklist.md) - 対象範囲を限定した検証チェックリスト
-34. [docs/validator-boundary.md](docs/validator-boundary.md) - 軽量検証ツールの対象範囲と制限事項
-35. [docs/checker-coverage.md](docs/checker-coverage.md) - 現在のライフサイクル対応チェッカー範囲
-36. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
-37. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
+2. [docs/repository-operation-model.md](docs/repository-operation-model.md) - 多段階更新、snapshot、sync log、長文ファイル更新方針のためのリポジトリ運用モデル
+3. [docs/overview.md](docs/overview.md) - source alignment 後の現在のリポジトリ概観
+4. [docs/source-alignment/zenn-source-alignment-synthesis.md](docs/source-alignment/zenn-source-alignment-synthesis.md) - Zenn資料からの source-alignment synthesis
+5. [docs/concepts/core-elements.md](docs/concepts/core-elements.md) - 8要素モデルに接続された operational roles and controls
+6. [docs/action-class-matrix.md](docs/action-class-matrix.md) - source-aligned Class A-F action classification design aid
+7. [examples/action-class-matrix-minimal.yaml](examples/action-class-matrix-minimal.yaml) - Action Class Matrix の classification-only fixture
+8. [examples/internal-document-update.yaml](examples/internal-document-update.yaml) - Class C Approval-Required 内部文書更新例
+9. [examples/emergency-stop-flow.yaml](examples/emergency-stop-flow.yaml) - Class F Emergency Stop / stop-and-await 例
+10. [examples/reversible-external-action.yaml](examples/reversible-external-action.yaml) - Class D Reversible External Action 例
+11. [docs/adapter-boundary.md](docs/adapter-boundary.md) - runtime connector の前に読む adapter の対象範囲と制限事項
+12. [docs/phase-3-1-current-snapshot.md](docs/phase-3-1-current-snapshot.md) - Phase 3.1 adapter / runtime-event の現在地
+13. [examples/runtime-event-to-pathway-minimal.yaml](examples/runtime-event-to-pathway-minimal.yaml) - synthetic runtime-event-to-pathway draft example
+14. [LUMINALIA.md](LUMINALIA.md) - 設計思想
+15. [ROADMAP.md](ROADMAP.md) - 現在と今後のフェーズ
+16. [CHANGELOG.md](CHANGELOG.md) - 概念上の節目
+17. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - 現在のリポジトリを意図的に小さく保つ理由
+18. [docs/enterprise-implementation-profile.md](docs/enterprise-implementation-profile.md) - 企業向けの最小導入プロファイルと層の分離
+19. [docs/responsibility-pathway-record-review.md](docs/responsibility-pathway-record-review.md) - 責任経路記録を確認・再確認するための平易な手順
+20. [docs/phase-2-5-current-snapshot.md](docs/phase-2-5-current-snapshot.md) - Phase 2.5 企業導入・責任経路記録レビューの現在地
+21. [docs/reference-implementation-boundary.md](docs/reference-implementation-boundary.md) - Phase 3 reference implementation の前に読む制限事項
+22. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - 軽量検証とライフサイクル例の現在地
+23. [formal/lean/README.md](formal/lean/README.md) - Lean形式化の対象範囲と現在の invariant candidates
+24. [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md) - Phase 2 Lean の現在地と再開点
+25. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - Phase 2 Lean split plan と non-goals
+26. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - Phase 2 Lean theorem role index
+27. [docs/definition.md](docs/definition.md) - 中核定義
+28. [docs/eight-elements.md](docs/eight-elements.md) - 8要素モデル
+29. [docs/repository-governance.md](docs/repository-governance.md) - リポジトリ運営方針
+30. [docs/development-process.md](docs/development-process.md) - 開発プロセス
+31. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
+32. [spec/review-result.schema.yaml](spec/review-result.schema.yaml) - 対象範囲を限定した確認結果の出力 schema
+33. [spec/runtime-event.schema.yaml](spec/runtime-event.schema.yaml) - draft vendor-neutral runtime event schema
+34. [docs/validation-checklist.md](docs/validation-checklist.md) - 対象範囲を限定した検証チェックリスト
+35. [docs/validator-boundary.md](docs/validator-boundary.md) - 軽量検証ツールの対象範囲と制限事項
+36. [docs/checker-coverage.md](docs/checker-coverage.md) - 現在のライフサイクル対応チェッカー範囲
+37. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
+38. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
 
 ## 例
 
