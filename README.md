@@ -16,6 +16,15 @@ First public source:
 
 - https://note.com/dantarg/n/nb7f28afa6882
 
+Major public source articles for the Responsibility Pathway Design / Responsibility Pathway Engineering lineage include:
+
+- "AI事故は「責任設計」だけでは防げない――最後の砦は「責任経路設計」である" — https://note.com/dantarg/n/nb7f28afa6882
+- "2026年、AI安全の争点は「ガバナンス」ではない" — https://note.com/dantarg/n/n7e55212b8ac4
+- "責任経路設計とは何か" — https://note.com/dantarg/n/na7a65ee28906
+- "責任あるAI（Responsible AI）が実装できない本当の理由" — https://note.com/dantarg/n/n77367658521c
+
+These articles are treated as the public source lineage for the concept, terminology, motivation, and early framing of responsibility pathway design before and alongside this repository's specification work.
+
 That article defines responsibility pathway design as designing responsibility not merely as a point of attribution, but as a flow or path that preserves where judgment arises, where it changes, where it can stop, where it returns to humans, and how those pathways remain structurally maintained during operation.
 
 This repository develops that public source into an open specification, examples, schemas, bounded checkers, review notes, and formalization candidates. The repository records provenance to preserve traceability of the term, the concept, and the responsibility path of the project itself.
