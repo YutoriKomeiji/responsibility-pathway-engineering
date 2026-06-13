@@ -100,7 +100,7 @@ They remain bounded structural checks. A pass does not certify the record, the w
 
 Current checkers do not yet enforce action-class-specific requirements from [docs/action-class-matrix.md](action-class-matrix.md).
 
-This is intentional for the current repository state because existing examples were created before the source-aligned Class A-F structure was stabilized.
+This is intentional for the current repository state because examples and schema fields are still being stabilized before deliberate action-class-specific checker migration.
 
 Future bounded checker work may inspect structural signals such as:
 
@@ -172,6 +172,7 @@ Future checker work should remain bounded to structural signals and must not tre
 | `examples/action-class-matrix-minimal.yaml` | `originating` | yes | no | not yet |
 | `examples/internal-document-update.yaml` | `originating` | yes | no | not yet |
 | `examples/emergency-stop-flow.yaml` | `suspended` | yes | no | not yet |
+| `examples/reversible-external-action.yaml` | `originating` | yes | no | not yet |
 | `examples/record-review-minimal.yaml` | `originating` | yes | yes | not yet |
 | `examples/repair-flow.yaml` | `repaired` | yes | no | not yet |
 | `examples/suspended-pathway.yaml` | `suspended` | yes | no | not yet |
