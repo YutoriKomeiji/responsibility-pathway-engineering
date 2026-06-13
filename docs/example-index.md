@@ -173,6 +173,10 @@ Key boundary:
 
 This example models a synthetic, vendor-neutral runtime-event bridge only. It does not provide a service-specific connector, production runtime, automatic responsibility decision, automatic approval, legal validation, safety certification, compliance certification, fairness certification, moral resolution, production readiness, or AI final-responsibility transfer.
 
+Current checker boundary:
+
+This example is currently checked only as a pathway example under the existing structural and originating-lifecycle checker rules. `docs/runtime-event-checking-plan.md` describes possible future runtime-event schema checking, JSON fixture checking, and runtime-event workflow checks, but those checks are not implemented yet.
+
 Use this example when introducing:
 
 - Phase 3.1 adapter boundary and runtime event bridge
@@ -181,6 +185,7 @@ Use this example when introducing:
 - missing-context and uncertainty preservation
 - adapter suggestion versus human review
 - generated record review requirements
+- runtime-event checking plan boundaries before checker implementation
 
 ### `examples/repair-flow.yaml`
 
@@ -290,12 +295,13 @@ Recommended reading order:
 12. `examples/record-review-minimal.yaml`
 13. `examples/human-ai-review-workflow-minimal.yaml`
 14. `docs/adapter-boundary.md`
-15. `examples/runtime-event-to-pathway-minimal.yaml`
-16. `examples/repair-flow.yaml`
-17. `examples/suspended-pathway.yaml`
-18. `examples/returning-pathway.yaml`
-19. `examples/closed-pathway.yaml`
-20. `docs/example-review-notes.md`
+15. `docs/runtime-event-checking-plan.md`
+16. `examples/runtime-event-to-pathway-minimal.yaml`
+17. `examples/repair-flow.yaml`
+18. `examples/suspended-pathway.yaml`
+19. `examples/returning-pathway.yaml`
+20. `examples/closed-pathway.yaml`
+21. `docs/example-review-notes.md`
 
 ## Relationship to Action Class Matrix
 
@@ -359,6 +365,7 @@ New examples should:
 Low-risk next steps:
 
 - keep Phase 3.1 runtime-event bridge examples synthetic, vendor-neutral, review-required, and non-certifying
+- read `docs/runtime-event-checking-plan.md` before considering runtime-event schema checking, JSON fixture checking, `scripts/check_runtime_events.py`, or a runtime-event workflow
 - keep service-specific connectors deferred until the runtime event schema and examples remain stable
 - keep conversion code deferred until the event-to-pathway mapping remains readable and reviewable
 - keep Class D reversible external action examples small, correctable, and non-certifying
