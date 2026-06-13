@@ -77,6 +77,7 @@ Established schema files:
 - `docs/example-index.md` connected future examples to Action Class Matrix design rules
 - `docs/checker-coverage.md` documented action-class-specific checks as planned future bounded checks, not current enforcement
 - `Check examples #10` observed green on commit `2af698c` on `main` after minimal-pathway action-class migration
+- `Check examples #11` observed green on commit `b50226d` on `main` after adding `examples/action-class-matrix-minimal.yaml`; the workflow completed successfully in about 14 seconds, and the `Bounded structural example checks` job completed successfully in about 10 seconds
 
 Phase 1.6 rule:
 
@@ -84,8 +85,7 @@ Lifecycle-aware and action-class-aware checks remain bounded structural maintena
 
 Remaining Phase 1.6 maintenance tasks:
 
-- observe the next `Check examples` workflow result after adding `examples/action-class-matrix-minimal.yaml`
-- maintain bounded checker stability
+- maintain bounded checker stability after the Action Class Matrix classification-only fixture
 - keep examples small and manually readable
 - keep action-class-specific checker additions optional until examples are deliberately migrated
 - avoid adding higher-impact examples until lifecycle and action-class boundaries remain stable
@@ -193,6 +193,7 @@ Next low-risk Phase 2.5 work:
 - Returning flow example
 - Closure and reopening flow example
 - Action Class Matrix classification-only baseline added at `examples/action-class-matrix-minimal.yaml`
+- `Check examples #11` observed green on commit `b50226d` on `main` for the Action Class Matrix classification-only fixture
 
 Implementation rule:
 
@@ -205,7 +206,6 @@ First recommended Phase 3 step:
 
 Next low-risk Phase 3 work:
 
-- observe the next `Check examples` workflow after the Action Class Matrix fixture addition
 - add a Class C internal document or repository update example only after the classification-only fixture remains green
 - add a Class F emergency-stop / stop-and-await example before any Class E high-impact example
 - delay Class D reversible external examples until Class C and Class F boundaries are clear
