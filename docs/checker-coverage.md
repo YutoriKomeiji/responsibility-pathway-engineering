@@ -120,7 +120,11 @@ A checker pass must not be interpreted as legal validity, safety, compliance, fa
 
 The current checker does not validate `spec/runtime-event.schema.yaml` or JSON fixtures such as `examples/adapter-input-event-minimal.json`.
 
-A pass for the runtime-event-to-pathway example means only that the generated draft pathway record preserves the currently required structural signals. It does not validate the runtime event schema, certify an adapter, approve a connector, prove the event mapping correct, or make the record production ready.
+`docs/runtime-event-checking-plan.md` now records the planned path, preconditions, exclusions, suggested implementation order, and non-certifying boundary for possible future runtime-event schema checking, JSON fixture checking, `scripts/check_runtime_events.py`, or a runtime-event workflow.
+
+Runtime-event checking remains deferred.
+
+A pass for the runtime-event-to-pathway example means only that the generated draft pathway record preserves the currently required structural signals. It does not validate the runtime event schema, certify an adapter, approve a connector, prove the event mapping correct, prove JSON fixture correctness, prove schema correctness, or make the record production ready.
 
 ## `scripts/check_review_results.py`
 
@@ -193,6 +197,17 @@ Future checker work should remain bounded to structural signals and must not tre
 | Fixture | Schema reference | Alignment note | Current checker coverage |
 | --- | --- | --- | --- |
 | `fixtures/review-results/record-review-result-minimal.yaml` | `spec/review-result.schema.yaml` | `docs/review-result-schema-fixture-alignment.md` | checked by `scripts/check_review_results.py` |
+
+## Planned runtime-event coverage map
+
+This is future work, not current checker behavior.
+
+| Planned area | Possible bounded signal | Boundary |
+| --- | --- | --- |
+| Runtime-event JSON fixture | valid JSON, required top-level runtime-event fields, review requirement, missing-context notes, excluded claims | not JSON semantic correctness, adapter correctness, connector correctness, or production readiness |
+| Runtime-event schema | readable and parseable schema shape aligned with the current minimal fixture | not schema completeness proof or production schema certification |
+| Runtime-event to pathway relation | explicit source reference, missing context, review requirement, and non-certifying excluded claims | not semantic mapping correctness or responsibility assignment proof |
+| Runtime-event workflow | observed checker status after a workflow exists and is actually observed | not certification or deployment approval |
 
 ## Planned action-class coverage map
 
