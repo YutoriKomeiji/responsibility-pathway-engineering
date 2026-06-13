@@ -28,6 +28,13 @@ This changelog records conceptual milestones rather than individual code edits.
 - BEACON and ROADMAP now record the observed green workflow status
 - The observed green status remains a bounded repository-maintenance check and is not certification
 
+### Check examples #13 observed green for Class F emergency stop fixture
+
+- `Check examples #13` observed green on commit `266845b` on `main` after adding `examples/emergency-stop-flow.yaml`
+- The workflow completed successfully in about 10 seconds, and the `Bounded structural example checks` job completed successfully in about 7 seconds
+- BEACON and ROADMAP now record the observed green workflow status
+- The observed green status remains a bounded repository-maintenance check and is not certification
+
 ### Core operational roles aligned with eight-element model
 
 - `docs/concepts/core-elements.md` now treats Decision Owner, Approval Gate, Execution Actor, Stop Authority, Evidence Log, Repair Owner, and Human Return Point as operational roles and controls
