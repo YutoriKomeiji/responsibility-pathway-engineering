@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Session load and handoff policy added
+
+- `docs/repository-operation-model.md` now includes a session load and handoff policy for scaling work size across early, middle, and late AI-assisted repository sessions
+- `docs/operation-index.md` now points readers to the session load and handoff policy when session load becomes heavy or a durable restart path is needed
+- `docs/phase-3-1-current-snapshot.md` now records session load as part of the Phase 3.1 restart and staged update operation
+- The policy recommends larger coherent synchronization units early in a session, smaller responsibility units later, and snapshots, sync logs, roadmap notes, BEACON updates, or handoff notes before session migration when the restart path would otherwise be unclear
+- Session load management remains a repository-maintenance practice only; it is not certification, correctness proof, production approval, connector correctness proof, adapter correctness proof, legal review, safety review, compliance review, fairness review, Lean completeness proof, or AI final-responsibility transfer
+
 ### Runtime-event checking plan added before checker implementation
 
 - `docs/runtime-event-checking-plan.md` added to define the planned path, preconditions, exclusions, implementation order, and non-certifying boundary before adding runtime-event schema checking, JSON fixture checking, `scripts/check_runtime_events.py`, or a runtime-event workflow
