@@ -160,6 +160,28 @@ Use this example when introducing:
 - review-result boundaries in a reference workflow
 - reference implementation boundaries
 
+### `examples/runtime-event-to-pathway-minimal.yaml`
+
+Purpose:
+
+- show the first small Phase 3.1 runtime-event-to-pathway draft example
+- model a synthetic runtime event being represented as a draft Responsibility Pathway record
+- preserve source event reference, missing context, uncertainty notes, evidence log, and Human Return Point signals
+- keep adapter output as review-required draft record, not approval, execution, certification, or production connector output
+
+Key boundary:
+
+This example models a synthetic, vendor-neutral runtime-event bridge only. It does not provide a service-specific connector, production runtime, automatic responsibility decision, automatic approval, legal validation, safety certification, compliance certification, fairness certification, moral resolution, production readiness, or AI final-responsibility transfer.
+
+Use this example when introducing:
+
+- Phase 3.1 adapter boundary and runtime event bridge
+- synthetic runtime event input mapping
+- draft pathway records generated from observed events
+- missing-context and uncertainty preservation
+- adapter suggestion versus human review
+- generated record review requirements
+
 ### `examples/repair-flow.yaml`
 
 Purpose:
@@ -267,11 +289,13 @@ Recommended reading order:
 11. `examples/reversible-external-action.yaml`
 12. `examples/record-review-minimal.yaml`
 13. `examples/human-ai-review-workflow-minimal.yaml`
-14. `examples/repair-flow.yaml`
-15. `examples/suspended-pathway.yaml`
-16. `examples/returning-pathway.yaml`
-17. `examples/closed-pathway.yaml`
-18. `docs/example-review-notes.md`
+14. `docs/adapter-boundary.md`
+15. `examples/runtime-event-to-pathway-minimal.yaml`
+16. `examples/repair-flow.yaml`
+17. `examples/suspended-pathway.yaml`
+18. `examples/returning-pathway.yaml`
+19. `examples/closed-pathway.yaml`
+20. `docs/example-review-notes.md`
 
 ## Relationship to Action Class Matrix
 
@@ -303,6 +327,7 @@ Current examples use descriptive filenames:
 - `reversible-external-action.yaml`
 - `record-review-minimal.yaml`
 - `human-ai-review-workflow-minimal.yaml`
+- `runtime-event-to-pathway-minimal.yaml`
 - `repair-flow.yaml`
 - `suspended-pathway.yaml`
 - `returning-pathway.yaml`
@@ -333,9 +358,12 @@ New examples should:
 
 Low-risk next steps:
 
+- keep Phase 3.1 runtime-event bridge examples synthetic, vendor-neutral, review-required, and non-certifying
+- keep service-specific connectors deferred until the runtime event schema and examples remain stable
+- keep conversion code deferred until the event-to-pathway mapping remains readable and reviewable
 - keep Class D reversible external action examples small, correctable, and non-certifying
 - keep Class E high-impact examples negative or boundary-only until lower classes are stable
-- refine lightweight checker rules after action-class example structures exist
+- refine lightweight checker rules after action-class and runtime-event example structures exist
 - add diagrams only after example structures stabilize
 - add machine-readable fixtures only after schema validation rules are explicit
 - add higher-impact flow examples only after lifecycle and action-class boundaries remain stable
