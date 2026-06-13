@@ -225,7 +225,7 @@ Next low-risk Phase 3 work:
 - add only one small reference example at a time
 - avoid production-service, legal-decision, certification, compliance, fairness, moral-resolution, or AI-final-responsibility interpretations
 
-## Phase 3.1 - Adapter Boundary and Runtime Event Bridge (Started; current snapshot, sync log, roadmap note, and operation model added)
+## Phase 3.1 - Adapter Boundary and Runtime Event Bridge (Started; current snapshot updated with operation layer)
 
 Purpose:
 
@@ -237,10 +237,11 @@ Current artifacts and companion notes:
 - `spec/runtime-event.schema.yaml` defines a minimal input event shape before service-specific connectors exist
 - `examples/adapter-input-event-minimal.json` provides a small synthetic runtime event input
 - `examples/runtime-event-to-pathway-minimal.yaml` shows how a runtime event can be represented as a Responsibility Pathway record pending human or institutional review
-- `docs/phase-3-1-current-snapshot.md` records the current Phase 3.1 restart point
+- `docs/phase-3-1-current-snapshot.md` records the current Phase 3.1 restart point, including adapter boundary, runtime-event bridge, and repository operation layer
 - `docs/phase-3-1-sync-log.md` records the staged synchronization work for Phase 3.1
 - `docs/phase-3-1-roadmap-note.md` records the short roadmap companion for this phase
-- `docs/repository-operation-model.md` records the repository-wide staged update operation, snapshot roles, sync-log roles, roadmap-note roles, workflow observation policy, checker interpretation policy, long-file update policy, log organization policy, and restart rules
+- `docs/repository-operation-model.md` records the repository-wide staged update operation, document roles, commit granularity policy, periodic operation review policy, workflow observation policy, checker interpretation policy, long-file update policy, log organization policy, non-certifying operation boundaries, and restart rules
+- `docs/operation-index.md` records which operation-related document to read for each maintenance situation
 
 Observed status:
 
@@ -258,7 +259,7 @@ A generated pathway record must remain reviewable. It should preserve source eve
 
 Repository operation rule:
 
-Broad reader-path synchronization, long-file updates, snapshot updates, and changelog or roadmap synchronization should follow `docs/repository-operation-model.md`.
+Broad reader-path synchronization, long-file updates, snapshot updates, operation-index updates, changelog or roadmap synchronization, and periodic operation review should follow `docs/repository-operation-model.md`.
 
 Next low-risk Phase 3.1 work:
 
@@ -268,7 +269,9 @@ Next low-risk Phase 3.1 work:
 - keep JSON fixture checking deferred until the current event-to-pathway bridge remains readable and reviewable
 - keep Class E positive examples deferred
 - keep Lean expansion around adapter or runtime events deferred until the adapter boundary, runtime event schema, generated-record examples, checker boundary, and validation checklist are stable
-- add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, or roadmap note to point to
+- maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, or roadmap notes change
+- use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, or deferred boundaries feel misaligned with actual practice
+- add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, or operation document to point to
 
 ## Guiding Principle
 
