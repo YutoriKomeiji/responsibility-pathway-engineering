@@ -100,7 +100,7 @@ Snapshots record current restart positions for phases or subphases.
 | --- | --- |
 | `docs/phase-2-current-snapshot.md` | Current Phase 2 Lean restart point and scoped formalization status. |
 | `docs/phase-2-5-current-snapshot.md` | Current Phase 2.5 enterprise and record-review restart point. |
-| `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, runtime-event checking plan, repository operation, checker coverage, and example-index restart point. |
+| `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate planning, repository operation, checker coverage, and example-index restart point. |
 
 Use snapshots when a change spans multiple documents, when a long-file update becomes risky, when session handoff needs a durable restart path, when BEACON would otherwise need to carry detailed current-state history, or when the next maintainer needs a compact restart point.
 
@@ -111,7 +111,7 @@ Sync logs and roadmap notes are complementary but separate.
 | Document | Current role |
 | --- | --- |
 | `docs/phase-3-1-sync-log.md` | Detailed synchronization record for multi-commit Phase 3.1 reader-path, coverage, checker-interpretation, and boundary synchronization. |
-| `docs/phase-3-1-roadmap-note.md` | Short current-planning companion for Phase 3.1 near-term roadmap position, next low-risk work, phase rules, and stop conditions. |
+| `docs/phase-3-1-roadmap-note.md` | Short current-planning companion for Phase 3.1 near-term roadmap position, minimal runtime candidate planning, next low-risk work, phase rules, and stop conditions. |
 
 Use sync logs to understand what changed across several commits, what was synchronized, what checker status or interpretation was current, and what work remained deferred after a synchronization unit.
 
@@ -121,13 +121,23 @@ Do not use a roadmap note as a second changelog.
 
 Do not use a sync log as a phase plan.
 
+## Runtime candidate navigation
+
+| Document | Use when |
+| --- | --- |
+| `docs/minimal-runtime-candidate-design.md` | You need to decide whether the next runtime artifact may be a minimal synthetic runtime fixture or a bounded runtime-checking stub before any connector, workflow, checker, or production runtime implementation. |
+| `docs/runtime-event-checking-plan.md` | You need to know when runtime-event schema checking, JSON fixture checking, or future runtime-event checker work may be safely considered. |
+
+Use the minimal runtime candidate design note before adding any runtime candidate.
+
+Use the runtime-event checking plan before adding any runtime-event checker, runtime-event workflow, runtime-event schema checking, or JSON fixture checking.
+
 ## Checker and example navigation
 
 | Document | Use when |
 | --- | --- |
 | `docs/example-index.md` | You need to know how examples should be read, what each example is for, and which examples remain future work. |
 | `docs/checker-coverage.md` | You need to know what current checkers actually check, what they do not check, and what is only planned future checker work. |
-| `docs/runtime-event-checking-plan.md` | You need to know when runtime-event schema checking, JSON fixture checking, or future runtime-event checker work may be safely considered. |
 | `docs/validator-boundary.md` | You need the non-certifying boundary for lightweight validation tools. |
 | `docs/schema-cross-reference.md` | You need to understand how schema files relate to each other. |
 
