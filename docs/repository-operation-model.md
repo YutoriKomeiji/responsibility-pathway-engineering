@@ -233,6 +233,50 @@ Use a larger single commit only when the files are small, the purpose is single,
 
 Commit granularity is a maintainability practice. It is not certification and does not make a repository state legally valid, safe, compliant, fair, morally resolved, production ready, connector-correct, adapter-correct, or AI-responsibility-transferring.
 
+## Periodic operation review policy
+
+Operation should be reviewed while operating.
+
+Use periodic operation review when the repository has gained enough new commits, documents, examples, schemas, checker behavior, workflow results, or reader-path changes that the current operation may no longer match actual practice.
+
+A periodic operation review should ask:
+
+- Are commits too small, too large, or still aligned with responsibility units?
+- Are reader paths still readable, or have they become too long or scattered?
+- Are operation documents, snapshots, sync logs, and roadmap notes still easy to find?
+- Are sync logs recording useful synchronization work, or are they becoming a second changelog?
+- Are roadmap notes still temporary companions, or should their content be moved into `ROADMAP.md`?
+- Are long-file updates still being handled safely?
+- Are checker results still described only as bounded repository-maintenance signals?
+- Are deferred items still correctly deferred, or has any boundary become stable enough to revisit?
+- Are Class E positive examples, production connectors, production conversion code, runtime-event schema checks, JSON fixture checks, or Lean expansion still correctly blocked?
+- Are AI-assistance boundaries and human-maintainer responsibility still explicit?
+
+Review cadence should be practical rather than calendar-fixed.
+
+Prefer a review when one of these triggers occurs:
+
+- a new phase or subphase starts
+- a phase snapshot is created or substantially updated
+- several reader-path files are synchronized
+- operation documents gain a new policy
+- commit granularity feels too small or too large
+- logs or roadmap notes start to multiply
+- a checker failure changes future maintenance behavior
+- a workflow result is recorded as observed green
+- a deferred implementation boundary is being reconsidered
+
+A periodic operation review may produce:
+
+- a small operation-model update
+- an operation-index update
+- a current snapshot update
+- a sync-log entry
+- a roadmap note
+- a short CHANGELOG milestone when the operating model changes how the repository should be read or maintained
+
+Do not use periodic operation review to approve production readiness, connector correctness, adapter correctness, legal validity, safety, compliance, fairness, moral resolution, Lean completeness, or AI final-responsibility transfer.
+
 ## Workflow observation policy
 
 Only record a workflow result as observed green after the run has actually been observed.
