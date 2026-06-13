@@ -261,14 +261,14 @@ The required strength of each operational role/control depends on action class.
 
 For example:
 
-- Observe-Only may need low approval strength but still needs boundary clarity.
-- Suggest-Only must distinguish AI proposal from human adoption.
-- Approval-Required must have an explicit Approval Gate and Evidence Log.
-- Reversible External Action should have rollback and stop paths.
-- Irreversible or High-Impact Action should require stronger human return, stop, evidence, and repair design.
-- Emergency Stop is itself a stop-oriented action class.
+- Class A Observe-Only may need low approval strength but still needs boundary clarity.
+- Class B Suggest-Only must distinguish AI proposal from human adoption.
+- Class C Approval-Required must have an explicit Approval Gate and Evidence Log.
+- Class D Reversible External Action should have rollback and stop paths.
+- Class E Irreversible or High-Impact Action should require stronger human return, stop, evidence, and repair design.
+- Class F Emergency Stop is itself a stop-oriented action class.
 
-See `docs/concepts/action-class-matrix.md` when available.
+See [docs/action-class-matrix.md](../action-class-matrix.md).
 
 ## Relationship to try/catch/finally analogy
 
