@@ -72,6 +72,28 @@ Use this example when introducing:
 - execution actor without final responsibility
 - repair owner and correction path for internal updates
 
+### `examples/reversible-external-action.yaml`
+
+Purpose:
+
+- show a minimal Class D Reversible External Action example
+- model a human-approved external notification with rollback or correction path
+- preserve AI support as drafting or recommendation support only, without AI approval, execution, stop authority, repair authority, or final responsibility
+- connect Decision Owner, Approval Gate, Execution Actor, Stop Authority, Evidence Log, Repair Owner, affected-party visibility, rollback/correction path, and Human Return Point signals
+
+Key boundary:
+
+This example models a correctable external notification only. Reversibility means a correction or retraction path exists; it does not mean the external impact is harmless, erased, legally approved, safe, compliant, or production ready.
+
+Use this example when introducing:
+
+- Class D Reversible External Action
+- external impact scope
+- affected-party visibility
+- explicit approval before external action
+- rollback or correction path before action
+- distinction between reversible external impact and internal document update
+
 ### `examples/emergency-stop-flow.yaml`
 
 Purpose:
@@ -242,13 +264,14 @@ Recommended reading order:
 8. `examples/minimal-pathway.yaml`
 9. `examples/internal-document-update.yaml`
 10. `examples/emergency-stop-flow.yaml`
-11. `examples/record-review-minimal.yaml`
-12. `examples/human-ai-review-workflow-minimal.yaml`
-13. `examples/repair-flow.yaml`
-14. `examples/suspended-pathway.yaml`
-15. `examples/returning-pathway.yaml`
-16. `examples/closed-pathway.yaml`
-17. `docs/example-review-notes.md`
+11. `examples/reversible-external-action.yaml`
+12. `examples/record-review-minimal.yaml`
+13. `examples/human-ai-review-workflow-minimal.yaml`
+14. `examples/repair-flow.yaml`
+15. `examples/suspended-pathway.yaml`
+16. `examples/returning-pathway.yaml`
+17. `examples/closed-pathway.yaml`
+18. `docs/example-review-notes.md`
 
 ## Relationship to Action Class Matrix
 
@@ -277,6 +300,7 @@ Current examples use descriptive filenames:
 - `action-class-matrix-minimal.yaml`
 - `internal-document-update.yaml`
 - `emergency-stop-flow.yaml`
+- `reversible-external-action.yaml`
 - `record-review-minimal.yaml`
 - `human-ai-review-workflow-minimal.yaml`
 - `repair-flow.yaml`
@@ -288,7 +312,6 @@ Future examples should prefer short names that describe the responsibility-pathw
 
 Possible future names:
 
-- `reversible-external-action.yaml`
 - `high-impact-negative-boundary.yaml`
 
 ## Example design rules
@@ -310,8 +333,7 @@ New examples should:
 
 Low-risk next steps:
 
-- observe the next `Check examples` workflow result after adding `examples/emergency-stop-flow.yaml`
-- delay Class D reversible external action example until Class C and Class F boundaries remain green
+- keep Class D reversible external action examples small, correctable, and non-certifying
 - keep Class E high-impact examples negative or boundary-only until lower classes are stable
 - refine lightweight checker rules after action-class example structures exist
 - add diagrams only after example structures stabilize
