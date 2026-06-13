@@ -1,0 +1,85 @@
+{
+  "fixture_id": "minimal_synthetic_runtime_fixture_001",
+  "fixture_version": "0.1.0",
+  "fixture_type": "minimal_synthetic_runtime_observation",
+  "non_production": true,
+  "synthetic": true,
+  "vendor_neutral": true,
+  "review_required": true,
+  "certification_claimed": false,
+  "runtime_scope": {
+    "scope_id": "local_synthetic_runtime_scope_001",
+    "description": "A local synthetic runtime observation fixture used to review the boundary between runtime-like observations and draft Responsibility Pathway records.",
+    "production_runtime": false,
+    "service_specific_connector": false,
+    "automatic_approval": false,
+    "automatic_execution": false,
+    "external_side_effects": false
+  },
+  "runtime_observation": {
+    "observation_id": "runtime_observation_001",
+    "observed_at": "2026-06-13T00:00:00Z",
+    "source_reference": "synthetic-runtime://observations/runtime_observation_001",
+    "source_system": {
+      "id": "minimal_synthetic_runtime",
+      "name": "Minimal Synthetic Runtime",
+      "type": "synthetic_runtime_fixture",
+      "vendor_specific": false,
+      "production_system": false
+    },
+    "observed_sequence": [
+      {
+        "step_id": "runtime_step_001",
+        "step_type": "draft_proposal_observed",
+        "actor_id": "ai_support_agent_001",
+        "actor_type": "ai_agent",
+        "actor_final_responsibility_claimed": false,
+        "action_id": "draft_internal_update_001",
+        "action_type": "draft",
+        "description": "AI support agent drafted an internal document update proposal for human review.",
+        "approval_evidence_present": false,
+        "execution_evidence_present": false,
+        "human_review_required": true,
+        "source_event_reference": "examples/adapter-input-event-minimal.json"
+      }
+    ]
+  },
+  "expected_boundary_preservation": {
+    "missing_context_explicit": true,
+    "missing_approval_evidence_explicit": true,
+    "missing_execution_evidence_explicit": true,
+    "excluded_claims_explicit": true,
+    "human_or_institutional_review_required": true,
+    "ai_final_responsibility_claimed": false,
+    "adapter_mapping_correctness_claimed": false,
+    "service_connector_correctness_claimed": false,
+    "schema_correctness_claimed": false,
+    "json_semantic_correctness_claimed": false,
+    "production_readiness_claimed": false
+  },
+  "candidate_status": {
+    "selected_candidate": "minimal_synthetic_runtime_fixture",
+    "checker_stub_included": false,
+    "runtime_workflow_included": false,
+    "production_runtime_included": false,
+    "service_connector_included": false,
+    "automatic_approval_included": false,
+    "automatic_execution_included": false,
+    "intended_next_review": "Review whether this fixture clarifies the runtime boundary before considering any bounded runtime-checking stub."
+  },
+  "excluded_claims": [
+    "legal_validity",
+    "safety_certification",
+    "compliance_certification",
+    "fairness_certification",
+    "moral_resolution",
+    "institutional_approval",
+    "production_readiness",
+    "service_connector_correctness",
+    "adapter_mapping_correctness",
+    "schema_correctness",
+    "json_semantic_correctness",
+    "responsibility_assignment_correctness",
+    "ai_final_responsibility_transfer"
+  ]
+}
