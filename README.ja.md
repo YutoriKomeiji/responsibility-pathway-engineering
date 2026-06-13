@@ -34,6 +34,8 @@ Phase 3 の入口となる制限事項は [docs/reference-implementation-boundar
 
 Source-aligned Action Class Matrix には、Class A-F を読むための classification-only fixture、Class C Approval-Required 内部文書更新例、Class D Reversible External Action 例、Class F Emergency Stop 例が追加済みです。これらの例は構造的な例であり、認証ではありません。
 
+Phase 3.1 は adapter boundary と runtime-event bridge から開始しています。[docs/adapter-boundary.md](docs/adapter-boundary.md) と [docs/phase-3-1-current-snapshot.md](docs/phase-3-1-current-snapshot.md) を参照してください。最初の runtime-event-to-pathway 例は [examples/runtime-event-to-pathway-minimal.yaml](examples/runtime-event-to-pathway-minimal.yaml) です。これは synthetic、vendor-neutral、review-required の draft example であり、service-specific connector や production runtime ではありません。
+
 ## 著作者と引用
 
 本リポジトリは Akihisa Ono (小野昭久) によって、独立した公開仕様および設計フレームワークとして著作・保守されています。
@@ -58,30 +60,34 @@ Source-aligned Action Class Matrix には、Class A-F を読むための classif
 7. [examples/internal-document-update.yaml](examples/internal-document-update.yaml) - Class C Approval-Required 内部文書更新例
 8. [examples/emergency-stop-flow.yaml](examples/emergency-stop-flow.yaml) - Class F Emergency Stop / stop-and-await 例
 9. [examples/reversible-external-action.yaml](examples/reversible-external-action.yaml) - Class D Reversible External Action 例
-10. [LUMINALIA.md](LUMINALIA.md) - 設計思想
-11. [ROADMAP.md](ROADMAP.md) - 現在と今後のフェーズ
-12. [CHANGELOG.md](CHANGELOG.md) - 概念上の節目
-13. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - 現在のリポジトリを意図的に小さく保つ理由
-14. [docs/enterprise-implementation-profile.md](docs/enterprise-implementation-profile.md) - 企業向けの最小導入プロファイルと層の分離
-15. [docs/responsibility-pathway-record-review.md](docs/responsibility-pathway-record-review.md) - 責任経路記録を確認・再確認するための平易な手順
-16. [docs/phase-2-5-current-snapshot.md](docs/phase-2-5-current-snapshot.md) - Phase 2.5 企業導入・責任経路記録レビューの現在地
-17. [docs/reference-implementation-boundary.md](docs/reference-implementation-boundary.md) - Phase 3 reference implementation の前に読む制限事項
-18. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - 軽量検証とライフサイクル例の現在地
-19. [formal/lean/README.md](formal/lean/README.md) - Lean形式化の対象範囲と現在の invariant candidates
-20. [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md) - Phase 2 Lean の現在地と再開点
-21. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - Phase 2 Lean split plan と non-goals
-22. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - Phase 2 Lean theorem role index
-23. [docs/definition.md](docs/definition.md) - 中核定義
-24. [docs/eight-elements.md](docs/eight-elements.md) - 8要素モデル
-25. [docs/repository-governance.md](docs/repository-governance.md) - リポジトリ運営方針
-26. [docs/development-process.md](docs/development-process.md) - 開発プロセス
-27. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
-28. [spec/review-result.schema.yaml](spec/review-result.schema.yaml) - 対象範囲を限定した確認結果の出力 schema
-29. [docs/validation-checklist.md](docs/validation-checklist.md) - 対象範囲を限定した検証チェックリスト
-30. [docs/validator-boundary.md](docs/validator-boundary.md) - 軽量検証ツールの対象範囲と制限事項
-31. [docs/checker-coverage.md](docs/checker-coverage.md) - 現在のライフサイクル対応チェッカー範囲
-32. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
-33. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
+10. [docs/adapter-boundary.md](docs/adapter-boundary.md) - runtime connector の前に読む adapter の対象範囲と制限事項
+11. [docs/phase-3-1-current-snapshot.md](docs/phase-3-1-current-snapshot.md) - Phase 3.1 adapter / runtime-event の現在地
+12. [examples/runtime-event-to-pathway-minimal.yaml](examples/runtime-event-to-pathway-minimal.yaml) - synthetic runtime-event-to-pathway draft example
+13. [LUMINALIA.md](LUMINALIA.md) - 設計思想
+14. [ROADMAP.md](ROADMAP.md) - 現在と今後のフェーズ
+15. [CHANGELOG.md](CHANGELOG.md) - 概念上の節目
+16. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - 現在のリポジトリを意図的に小さく保つ理由
+17. [docs/enterprise-implementation-profile.md](docs/enterprise-implementation-profile.md) - 企業向けの最小導入プロファイルと層の分離
+18. [docs/responsibility-pathway-record-review.md](docs/responsibility-pathway-record-review.md) - 責任経路記録を確認・再確認するための平易な手順
+19. [docs/phase-2-5-current-snapshot.md](docs/phase-2-5-current-snapshot.md) - Phase 2.5 企業導入・責任経路記録レビューの現在地
+20. [docs/reference-implementation-boundary.md](docs/reference-implementation-boundary.md) - Phase 3 reference implementation の前に読む制限事項
+21. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - 軽量検証とライフサイクル例の現在地
+22. [formal/lean/README.md](formal/lean/README.md) - Lean形式化の対象範囲と現在の invariant candidates
+23. [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md) - Phase 2 Lean の現在地と再開点
+24. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - Phase 2 Lean split plan と non-goals
+25. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - Phase 2 Lean theorem role index
+26. [docs/definition.md](docs/definition.md) - 中核定義
+27. [docs/eight-elements.md](docs/eight-elements.md) - 8要素モデル
+28. [docs/repository-governance.md](docs/repository-governance.md) - リポジトリ運営方針
+29. [docs/development-process.md](docs/development-process.md) - 開発プロセス
+30. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - schema間の対応関係
+31. [spec/review-result.schema.yaml](spec/review-result.schema.yaml) - 対象範囲を限定した確認結果の出力 schema
+32. [spec/runtime-event.schema.yaml](spec/runtime-event.schema.yaml) - draft vendor-neutral runtime event schema
+33. [docs/validation-checklist.md](docs/validation-checklist.md) - 対象範囲を限定した検証チェックリスト
+34. [docs/validator-boundary.md](docs/validator-boundary.md) - 軽量検証ツールの対象範囲と制限事項
+35. [docs/checker-coverage.md](docs/checker-coverage.md) - 現在のライフサイクル対応チェッカー範囲
+36. [docs/example-index.md](docs/example-index.md) - 例の索引と読み方
+37. [docs/example-review-notes.md](docs/example-review-notes.md) - 例に対する初期レビュー記録
 
 ## 例
 
@@ -92,6 +98,7 @@ Source-aligned Action Class Matrix には、Class A-F を読むための classif
 - [examples/internal-document-update.yaml](examples/internal-document-update.yaml) - Class C Approval-Required 内部文書更新例
 - [examples/emergency-stop-flow.yaml](examples/emergency-stop-flow.yaml) - Class F Emergency Stop / stop-and-await 例
 - [examples/reversible-external-action.yaml](examples/reversible-external-action.yaml) - rollback / correction path を持つ Class D Reversible External Action 例
+- [examples/runtime-event-to-pathway-minimal.yaml](examples/runtime-event-to-pathway-minimal.yaml) - human review を必要とする synthetic runtime-event-to-pathway draft example
 - [examples/record-review-minimal.yaml](examples/record-review-minimal.yaml) - 任意の review metadata と、確認結果が保証しないことを含む最小の責任経路記録レビュー例
 - [examples/repair-flow.yaml](examples/repair-flow.yaml) - 証拠不足や曖昧さを検知した後、修復経路へ接続する最小例
 - [examples/suspended-pathway.yaml](examples/suspended-pathway.yaml) - 一時停止ライフサイクル状態の最小例
@@ -120,6 +127,8 @@ python scripts/check_examples.py
 このチェッカーは、限定された構造シグナルと明示された責任範囲フィールドだけを確認します。通過結果は、認証済み、安全、遵法、公平、法的に有効、道徳的に解決済み、本番利用可能であることを意味しません。
 
 例に `review_metadata` が含まれる場合、チェッカーは review metadata の構造と、確認結果が保証しないことも任意で確認します。
+
+runtime-event-to-pathway example は、現時点では pathway example としてのみチェックされます。このチェッカーは `spec/runtime-event.schema.yaml` や `examples/adapter-input-event-minimal.json` のような JSON fixture をまだ検証しません。
 
 別の、対象範囲を限定した確認結果チェッカーは [scripts/check_review_results.py](scripts/check_review_results.py) にあります。
 
