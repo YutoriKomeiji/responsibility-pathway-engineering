@@ -8,13 +8,17 @@ Responsibility Pathway Engineering is a design framework for preserving the path
 
 It is not a blame assignment mechanism.
 
-## Provenance and first public source
+## Provenance and public source lineage
 
-The Japanese term and design concept **責任経路設計** was first publicly introduced by Akihisa Ono in the note article "AI事故は「責任設計」だけでは防げない――最後の砦は「責任経路設計」である", published on 2026-01-18.
+According to the author's own development record, Akihisa Ono began thinking about and using the concept of **責任経路 / Responsibility Pathway** from the note article "AI事故は「責任設計」だけでは防げない――最後の砦は「責任経路設計」である", published on 2026-01-18.
 
-First public source:
+Author's first public source for this concept:
 
 - https://note.com/dantarg/n/nb7f28afa6882
+
+At that time, the author checked available search results and dictionaries and did not find **責任経路** or **Responsibility Pathway** as an established ordinary term for this design concept. Therefore, the author defined the concept instead of treating it as a pre-existing standard term.
+
+The initial formulation began from the expression **責任経路を設計する**: designing responsibility not merely as a point of attribution, but as a flow or path that preserves where judgment arises, where it changes, where it can stop, where it returns to humans, and how those pathways remain structurally maintained during operation.
 
 Major public source articles for the Responsibility Pathway Design / Responsibility Pathway Engineering lineage include:
 
@@ -25,9 +29,7 @@ Major public source articles for the Responsibility Pathway Design / Responsibil
 
 These articles are treated as the public source lineage for the concept, terminology, motivation, and early framing of responsibility pathway design before and alongside this repository's specification work.
 
-That article defines responsibility pathway design as designing responsibility not merely as a point of attribution, but as a flow or path that preserves where judgment arises, where it changes, where it can stop, where it returns to humans, and how those pathways remain structurally maintained during operation.
-
-This repository develops that public source into an open specification, examples, schemas, bounded checkers, review notes, and formalization candidates. The repository records provenance to preserve traceability of the term, the concept, and the responsibility path of the project itself.
+This repository develops that public source lineage into an open specification, examples, schemas, bounded checkers, review notes, and formalization candidates. The repository records provenance to preserve traceability of the term, the concept, and the responsibility path of the project itself.
 
 This provenance note is an attribution and traceability statement. It is not a legal claim, ownership adjudication, plagiarism accusation, certification, or production approval.
 
