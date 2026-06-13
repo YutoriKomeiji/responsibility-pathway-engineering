@@ -83,6 +83,43 @@ Completed checking-plan synchronization includes:
 
 This refresh is one responsibility unit split across multiple small commits for reviewability.
 
+## Minimal runtime fixture synchronization completed
+
+A third Phase 3.1 synchronization added a minimal synthetic runtime observation fixture and connected it to the reader path before any runtime checker, workflow, service-specific connector, or production runtime implementation.
+
+The synchronization introduced or connected:
+
+- `docs/minimal-runtime-candidate-design.md` as the boundary document for choosing a minimal synthetic runtime fixture or bounded runtime-checking stub
+- `examples/minimal-synthetic-runtime-fixture.json` as the first minimal synthetic runtime observation fixture
+- `docs/phase-3-1-roadmap-note.md` as the near-term planning companion that prioritizes the runtime candidate after operation and Phase 3.1 stability
+- `docs/operation-index.md` as the navigation entry for runtime candidate planning
+- `docs/example-index.md` as the reading entry for the new runtime fixture
+- `docs/checker-coverage.md` as the checker-boundary record stating the JSON runtime fixture is not currently checked
+- `docs/phase-3-1-current-snapshot.md` as the current-state record for the runtime fixture, open-source review intent, and remaining deferred boundaries
+
+The minimal synthetic runtime fixture is:
+
+- synthetic
+- local to the repository
+- vendor-neutral
+- non-production
+- review-required
+- non-certifying
+- disconnected from service-specific connectors
+- disconnected from automatic approval
+- disconnected from automatic execution
+- explicit about missing approval evidence, missing execution evidence, and excluded claims
+
+The fixture is for reading and review only under the current checker state.
+
+It is not currently checked by `scripts/check_examples.py`.
+
+It is not a production runtime, connector, workflow, adapter correctness proof, runtime correctness proof, legal validation, safety certification, compliance certification, fairness certification, moral resolution, production-readiness claim, or AI final-responsibility transfer.
+
+Open-source review intent has been recorded in the current snapshot so that future reviewers can inspect boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, and deferred implementation choices.
+
+This synchronization does not unlock runtime-event checker implementation, runtime workflow implementation, service-specific connector work, production conversion code, production runtime integration, Class E positive examples, or Lean expansion around runtime events.
+
 ## Current checker interpretation
 
 `examples/runtime-event-to-pathway-minimal.yaml` is checked only as a pathway example under the current structural and originating-lifecycle rules.
@@ -91,13 +128,15 @@ The current checker does not validate:
 
 - `spec/runtime-event.schema.yaml`
 - `examples/adapter-input-event-minimal.json`
+- `examples/minimal-synthetic-runtime-fixture.json`
 - adapter mapping correctness
 - service-specific connector behavior
 - production runtime behavior
 - runtime-event schema correctness
 - JSON fixture correctness
+- runtime fixture correctness
 
-A checker pass for the runtime-event-to-pathway example does not certify an adapter, approve a connector, prove event mapping correctness, prove schema correctness, prove JSON fixture correctness, or make the generated record production ready.
+A checker pass for the runtime-event-to-pathway example does not certify an adapter, approve a connector, prove event mapping correctness, prove schema correctness, prove JSON fixture correctness, prove runtime fixture correctness, or make the generated record production ready.
 
 ## Deferred work
 
@@ -105,8 +144,10 @@ The following work remains deferred:
 
 - service-specific connectors
 - production conversion code
+- production runtime integration
 - runtime-event schema checker
 - JSON fixture checker
+- runtime fixture checker
 - `scripts/check_runtime_events.py`
 - runtime-event workflow
 - action-class-specific checker enforcement
@@ -115,8 +156,8 @@ The following work remains deferred:
 
 ## Next safe synchronization step
 
-The next safe synchronization step is to refresh `docs/phase-3-1-roadmap-note.md` so that the roadmap companion matches the current runtime-event checking plan, checker-coverage note, and example-index reading path.
+The next safe synchronization step is to decide whether `BEACON.md`, `ROADMAP.md`, or `CHANGELOG.md` need only short references to the minimal runtime fixture synchronization.
 
-After that, update `docs/phase-3-1-current-snapshot.md` only if the restart point needs to explicitly say that checker coverage and example index are now connected to the runtime-event checking plan.
+Do not update those long files unless the reference would improve restartability or external review.
 
 If a long full-file update is blocked or risky, preserve the state in this log and continue with smaller reader-path commits.
