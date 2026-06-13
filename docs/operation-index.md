@@ -52,7 +52,7 @@ Snapshots record current restart positions for phases or subphases.
 | --- | --- |
 | `docs/phase-2-current-snapshot.md` | Current Phase 2 Lean restart point and scoped formalization status. |
 | `docs/phase-2-5-current-snapshot.md` | Current Phase 2.5 enterprise and record-review restart point. |
-| `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary and runtime-event bridge restart point. |
+| `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, and repository operation restart point. |
 
 Use snapshots when a change spans multiple documents, when a long-file update becomes risky, or when the next maintainer needs a compact restart point.
 
@@ -77,6 +77,7 @@ Use roadmap notes when the roadmap position should be recorded before changing l
 | --- | --- |
 | `docs/example-index.md` | You need to know how examples should be read, what each example is for, and which examples remain future work. |
 | `docs/checker-coverage.md` | You need to know what current checkers actually check, what they do not check, and what is only planned future checker work. |
+| `docs/runtime-event-checking-plan.md` | You need to know when runtime-event schema checking, JSON fixture checking, or future runtime-event checker work may be safely considered. |
 | `docs/validator-boundary.md` | You need the non-certifying boundary for lightweight validation tools. |
 | `docs/schema-cross-reference.md` | You need to understand how schema files relate to each other. |
 
