@@ -91,10 +91,16 @@ roles:
   affected_party: null
 
 action_class:
-  id: class_1_internal_assistive
-  name: Internal Assistive
-  level: 1
-  description: AI-assisted internal structuring support with no autonomous execution.
+  id: class_b_suggest_only
+  label: Class B
+  name: Suggest-Only
+  source_aligned_class: B
+  legacy_mapping:
+    earlier_class_id: class_1_internal_assistive
+    earlier_class_name: Internal Assistive
+    earlier_level: 1
+    mapping_note: This example was originally classified as internal assistive. Under the source-aligned Action Class Matrix, it is treated as Suggest-Only because the AI node proposes, structures, classifies, and explains without executing.
+  description: AI-assisted internal structuring and suggestion support with no autonomous execution.
   responsibility_requirements:
     decision_owner_required: true
     approval_gate_required: false
@@ -105,11 +111,17 @@ action_class:
     affected_party_visibility_required: false
   reversibility: reversible
   external_impact: internal
+  execution_effect: none
   automation_boundary:
     may_be_automated: false
     requires_human_review: true
     requires_human_authorization: true
     prohibited_without_explicit_authority: true
+  excluded_interpretations:
+    - not_autonomous_execution
+    - not_external_action
+    - not_approval_of_ai_decision
+    - not_production_ready
 
 evidence_logs:
   - id: evidence_log_001
