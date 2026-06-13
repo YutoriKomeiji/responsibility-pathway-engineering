@@ -19,7 +19,7 @@ Use this path when restarting work after a pause or when another maintainer, rev
 
 | Document | Use when |
 | --- | --- |
-| `docs/repository-operation-model.md` | You need the current repository-wide operating model, staged update operation, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, or restart rule. |
+| `docs/repository-operation-model.md` | You need the current repository-wide operating model, staged update operation, synchronization unit operation, session load and handoff policy, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, or restart rule. |
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
 | `BEACON.md` | You need the current reconnection point, read-first order, current focus, and restart point. |
@@ -38,9 +38,10 @@ A periodic operation review is useful when:
 - a workflow result is recorded as observed green
 - a checker failure changes future maintenance behavior
 - a deferred implementation boundary is being reconsidered
+- session load is becoming heavy or a session handoff needs a durable restart path
 - Class E positive examples, production connectors, production conversion code, runtime-event schema checks, JSON fixture checks, or Lean expansion may need to be revisited
 
-A periodic operation review may produce an operation-model update, operation-index update, snapshot update, sync-log entry, roadmap note, or short CHANGELOG milestone.
+A periodic operation review may produce an operation-model update, operation-index update, snapshot update, sync-log entry, roadmap note, BEACON update, or short CHANGELOG milestone.
 
 It must not be used as production approval, connector correctness proof, adapter correctness proof, legal review, safety review, compliance review, fairness review, Lean completeness proof, or AI final-responsibility transfer.
 
@@ -52,9 +53,9 @@ Snapshots record current restart positions for phases or subphases.
 | --- | --- |
 | `docs/phase-2-current-snapshot.md` | Current Phase 2 Lean restart point and scoped formalization status. |
 | `docs/phase-2-5-current-snapshot.md` | Current Phase 2.5 enterprise and record-review restart point. |
-| `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, and repository operation restart point. |
+| `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, runtime-event checking plan, repository operation, checker coverage, and example-index restart point. |
 
-Use snapshots when a change spans multiple documents, when a long-file update becomes risky, or when the next maintainer needs a compact restart point.
+Use snapshots when a change spans multiple documents, when a long-file update becomes risky, when session handoff needs a durable restart path, or when the next maintainer needs a compact restart point.
 
 ## Sync logs and roadmap notes
 
