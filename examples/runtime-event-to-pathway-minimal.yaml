@@ -1,0 +1,265 @@
+# Minimal runtime event to Responsibility Pathway draft example
+#
+# This example shows how a synthetic runtime event can be represented as a
+# draft Responsibility Pathway record pending human review.
+#
+# It is not a production connector output, certification, compliance review,
+# safety review, legal review, fairness review, moral-resolution result,
+# production approval, or AI final-responsibility transfer.
+
+id: runtime_event_to_pathway_minimal_001
+version: 0.1.0
+lifecycle_state: originating
+
+source_runtime_event:
+  event_id: event_minimal_001
+  schema_version: 0.1.0
+  source_fixture: examples/adapter-input-event-minimal.json
+  source_system:
+    id: synthetic_runtime
+    type: synthetic
+    vendor_specific: false
+  observed_at: "2026-06-13T00:00:00Z"
+  observed_actor: ai_support_agent_001
+  observed_action: draft_internal_update_001
+  observed_target: internal_document_update_001
+  interpretation:
+    event_is_observation: true
+    event_is_not_approval: true
+    event_is_not_execution: true
+    event_is_not_certification: true
+    generated_pathway_record_requires_review: true
+
+nodes:
+  - id: human_decision_owner_001
+    type: Human
+    name: Human Decision Owner
+    can_hold_final_responsibility: true
+    can_decide: true
+    can_approve: true
+    can_execute: false
+    can_stop: true
+    can_repair: true
+    can_close: true
+
+  - id: ai_support_agent_001
+    type: AIAgent
+    name: AI Support Agent
+    can_generate: true
+    can_recommend: true
+    can_classify: true
+    can_summarize: true
+    can_decide: false
+    can_approve: false
+    can_execute: false
+    can_stop: false
+    can_repair: false
+    can_close: false
+    can_hold_final_responsibility: false
+    assumes_final_responsibility: false
+
+  - id: internal_document_system_001
+    type: InternalSystem
+    name: Internal Document System
+    can_execute: true
+    can_hold_final_responsibility: false
+
+edges:
+  - from: ai_support_agent_001
+    to: human_decision_owner_001
+    type: return_to_authority
+    description: AI-generated draft is returned to the human decision owner for review.
+
+  - from: human_decision_owner_001
+    to: internal_document_system_001
+    type: possible_future_execution
+    description: Internal update may be executed only after explicit human approval.
+    condition: human_approval_required
+
+roles:
+  decision_owner: human_decision_owner_001
+  approval_gate: human_decision_owner_001
+  execution_actor: internal_document_system_001
+  stop_authority: human_decision_owner_001
+  repair_owner: human_decision_owner_001
+  evidence_log: evidence_log_runtime_event_001
+  human_return_point: return_point_runtime_event_001
+
+input_event_mapping:
+  input_fixture: examples/adapter-input-event-minimal.json
+  mapping_status: draft_mapping
+  mapped_fields:
+    event_id: source_runtime_event.event_id
+    source_system: source_runtime_event.source_system
+    observed_actor: nodes.ai_support_agent_001
+    observed_action: action_class.description
+    observed_target: internal_document_system_001
+    review_requirement: review_requirement
+  missing_source_fields:
+    - human_decision_owner
+    - human_approval_decision
+    - execution_actor_confirmation
+    - post_review_status
+  uncertainty_notes:
+    - The source event records an AI-generated draft only.
+    - The source event does not contain human approval evidence.
+    - The source event does not contain execution evidence.
+    - The proposed action class is an adapter suggestion, not a certification.
+
+runtime_adapter_boundary:
+  adapter_id: synthetic_adapter_example
+  adapter_version: 0.1.0
+  adapter_output_type: draft_pathway_record
+  production_connector: false
+  production_runtime: false
+  service_specific_connector: false
+  certification_system: false
+  legal_decision_system: false
+  safety_certification_tool: false
+  compliance_engine: false
+  ai_final_responsibility_transfer: false
+
+review_requirement:
+  human_or_institutional_review_required: true
+  reason: AI-generated draft proposal lacks human approval and execution evidence.
+  suggested_review_roles:
+    - decision_owner
+    - approval_gate
+    - evidence_reviewer
+  allowed_next_human_actions:
+    - approve
+    - reject
+    - request_revision
+    - stop
+    - repair
+    - close_without_execution
+  automatic_approval_allowed: false
+  automatic_execution_allowed: false
+
+human_return_points:
+  - id: return_point_runtime_event_001
+    from: ai_support_agent_001
+    to: human_decision_owner_001
+    reason: AI-generated draft requires human review before any internal document update.
+    required_before:
+      - approval
+      - execution
+      - closure
+    preserves:
+      - human_authority
+      - review_context
+      - evidence_visibility
+      - uncertainty_visibility
+      - responsibility_capacity
+
+evidence_logs:
+  - id: evidence_log_runtime_event_001
+    source_event_id: event_minimal_001
+    source_reference: synthetic://runtime/events/event_minimal_001
+    source_fixture: examples/adapter-input-event-minimal.json
+    captured_fields:
+      - event_id
+      - source_system
+      - observed_at
+      - observed_actor
+      - observed_action
+      - observed_target
+    missing_fields:
+      - human_decision_owner
+      - human_approval_decision
+      - execution_actor
+      - post_review_status
+    uncertainty_notes:
+      - The event records an AI-generated draft only.
+      - No human approval decision is present in the source event.
+      - No execution event is present in the source event.
+    excluded_claims:
+      - legal_validity
+      - safety_certification
+      - compliance_certification
+      - fairness_certification
+      - moral_resolution
+      - institutional_approval
+      - production_readiness
+      - ai_final_responsibility_transfer
+
+action_class:
+  id: class_c_approval_required
+  label: Class C
+  name: Approval-Required
+  source_aligned_class: C
+  classification_source: adapter_suggestion
+  description: AI-generated internal document update draft requiring explicit human approval before execution.
+  requirements:
+    decision_owner_required: true
+    approval_gate_required: true
+    execution_actor_required: true
+    evidence_log_required: true
+    human_return_point_required: true
+    repair_owner_required: true
+    rollback_or_correction_path_required: false
+    restart_approval_required: false
+  automation_boundary:
+    may_be_automated: false
+    human_review_required: true
+    human_authorization_required: true
+    autonomous_execution_disallowed: true
+  excluded_interpretations:
+    - not_certification
+    - not_approval
+    - not_execution
+    - not_legal_review
+    - not_safety_review
+    - not_compliance_review
+    - not_fairness_review
+    - not_production_ready
+
+repair_or_revision_path:
+  id: repair_or_revision_runtime_event_001
+  repair_owner: human_decision_owner_001
+  available_actions:
+    - request_revision
+    - reject_draft
+    - update_evidence
+    - add_missing_context
+    - stop_without_execution
+  state: available_not_triggered
+
+repairs: []
+
+responsibility_boundary:
+  human_author_required: true
+  ai_final_responsibility_allowed: false
+  institutional_authority_required_when_applicable: false
+  legal_or_moral_claims_out_of_scope: true
+  adapter_may_generate_draft_record: true
+  adapter_may_approve_record: false
+  adapter_may_execute_action: false
+  adapter_may_certify_record: false
+
+formalization_scope:
+  assumptions:
+    - The input event is synthetic and vendor-neutral.
+    - The observed actor is an AI support agent that generated a draft only.
+    - No human approval is present in the source event.
+    - No execution event is present in the source event.
+    - The generated pathway record remains a draft requiring human review.
+  modeled_entities:
+    - synthetic runtime event
+    - AI support agent
+    - human decision owner
+    - internal document system
+    - evidence log
+    - human return point
+    - review requirement
+  excluded_claims:
+    - legal_validity
+    - safety_certification
+    - compliance_certification
+    - fairness_certification
+    - moral_resolution
+    - institutional_approval
+    - production_readiness
+    - ai_final_responsibility_transfer
+    - production_connector_readiness
+  theorem_status: not_formalized
