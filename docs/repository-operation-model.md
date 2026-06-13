@@ -222,6 +222,43 @@ A roadmap note should record:
 - stop conditions
 - restart point
 
+### Sync log and roadmap note separation
+
+Sync logs and roadmap notes must not collapse into the same document role.
+
+A sync log is a detailed synchronization record.
+
+Use a sync log to answer:
+
+- what changed across several commits
+- which reader paths or coverage maps were synchronized
+- what checker status was observed
+- what interpretation was current at the time of synchronization
+- which work remained deferred after synchronization
+- what the next safe synchronization step was
+
+A roadmap note is a short planning companion.
+
+Use a roadmap note to answer:
+
+- what the current near-term roadmap position is
+- what the next low-risk work should be
+- which phase rules or stop conditions matter now
+- what should not be started yet
+- how to avoid replacing a long `ROADMAP.md` section too early
+
+When the two start to duplicate each other:
+
+- keep detailed history in the sync log
+- keep current planning and next-step direction in the roadmap note
+- move durable high-level milestones to `CHANGELOG.md` only after the detailed state is stable
+- keep the current restart position in the current snapshot
+- update `docs/operation-index.md` if the reading path becomes unclear
+
+Do not use a roadmap note as a second changelog.
+
+Do not use a sync log as a phase plan.
+
 ### Example index and checker coverage
 
 `docs/example-index.md` explains how examples should be read.
