@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Runtime-event checking plan added before checker implementation
+
+- `docs/runtime-event-checking-plan.md` added to define the planned path, preconditions, exclusions, implementation order, and non-certifying boundary before adding runtime-event schema checking, JSON fixture checking, `scripts/check_runtime_events.py`, or a runtime-event workflow
+- `docs/operation-index.md` now points readers to the runtime-event checking plan when runtime-event schema checking, JSON fixture checking, or future runtime-event checker work is being considered
+- `docs/phase-3-1-current-snapshot.md` now records the runtime-event checking plan as part of the current Phase 3.1 restart point
+- `ROADMAP.md` now records the runtime-event checking rule: do not add runtime-event checker or workflow work until the plan preconditions are satisfied
+- Runtime-event checking remains deferred, and any future passing runtime-event check must remain a bounded repository-maintenance signal only, not certification, legal review, safety review, compliance review, production approval, connector correctness proof, adapter correctness proof, schema correctness proof, or AI final-responsibility transfer
+
 ### Periodic operation review policy added
 
 - `docs/repository-operation-model.md` now includes a periodic operation review policy for reviewing repository operation while operating
