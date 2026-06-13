@@ -148,6 +148,8 @@ Phase 3.1 now has an explicit repository-operation layer.
 `docs/repository-operation-model.md` records:
 
 - staged update operation
+- synchronization unit operation
+- session load and handoff policy
 - document roles
 - snapshot roles
 - sync-log roles
@@ -172,13 +174,22 @@ The operation index is now connected from:
 
 `docs/runtime-event-checking-plan.md` is now connected from `docs/operation-index.md` as the plan to read before considering runtime-event schema checking, JSON fixture checking, or future runtime-event checker work.
 
+`docs/operation-index.md` also now points readers to the session load and handoff policy when session load is becoming heavy or a durable restart path is needed.
+
 `CHANGELOG.md` now records the periodic operation review policy as a conceptual milestone.
 
-## Commit granularity and operation review
+## Commit granularity, session load, and operation review
 
 The current repository operation rule is responsibility-unit based.
 
 Prefer one commit per responsibility unit, not one commit per file, where the tooling permits. When the GitHub contents API requires per-file updates, treat the synchronized set as one responsibility unit in planning and reporting.
+
+Session load should affect working size:
+
+- early sessions may handle larger but coherent synchronization units
+- middle sessions should use smaller responsibility units and frequent fetch confirmation
+- late sessions should avoid broad edits and prefer snapshots, sync logs, roadmap notes, BEACON updates, or handoff notes
+- before session migration, preserve current state if the restart path would otherwise be unclear
 
 Use periodic operation review when:
 
@@ -188,6 +199,7 @@ Use periodic operation review when:
 - checker interpretation and actual practice drift apart
 - deferred boundaries need to be reconsidered
 - observed workflow results need to remain bounded and non-certifying
+- session load becomes heavy or a session handoff needs a durable restart path
 
 Periodic operation review is a repository-maintenance practice only. It is not production approval, connector correctness proof, adapter correctness proof, legal review, safety review, compliance review, fairness review, Lean completeness proof, or AI final-responsibility transfer.
 
@@ -226,8 +238,11 @@ The recommended order is:
 7. fetch the changed files after each commit
 8. record observed green workflow status only after it has been observed
 9. run periodic operation review when operation no longer matches actual practice
+10. reduce work size and preserve a handoff path when session load becomes heavy
 
 If a large full-file update is blocked or becomes risky, stop the full update and preserve the current state in a smaller snapshot file first.
+
+If session load becomes heavy, avoid broad edits and preserve the current state in a snapshot, sync log, roadmap note, BEACON update, or handoff note before continuing elsewhere.
 
 This staged operation is a repository-maintenance practice. It does not certify the repository, examples, schemas, generated records, operation documents, or future adapters.
 
@@ -266,8 +281,8 @@ Next safe synchronization steps:
 5. do not add `scripts/check_runtime_events.py` or a runtime-event workflow until the checking plan preconditions are satisfied
 6. keep Class E positive examples deferred
 7. keep Lean expansion around adapter and runtime events deferred
-8. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, or checker plans change
-9. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, or deferred boundaries feel misaligned with actual practice
+8. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, or session handoff rules change
+9. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, session load, or deferred boundaries feel misaligned with actual practice
 10. add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, or operation document to point to
 
 ## Restart point
@@ -288,6 +303,8 @@ Also read:
 10. `spec/runtime-event.schema.yaml`
 11. `examples/adapter-input-event-minimal.json`
 12. `examples/runtime-event-to-pathway-minimal.yaml`
+
+If continuing after a long or heavy session, use `docs/repository-operation-model.md` and `docs/operation-index.md` to confirm the session load and handoff policy before making broad changes.
 
 The next direct implementation step should not be a production connector.
 
