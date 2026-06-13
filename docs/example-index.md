@@ -72,6 +72,28 @@ Use this example when introducing:
 - execution actor without final responsibility
 - repair owner and correction path for internal updates
 
+### `examples/emergency-stop-flow.yaml`
+
+Purpose:
+
+- show a minimal Class F Emergency Stop / stop-and-await example
+- model abnormal uncertainty or authority gap as a reason to suspend rather than continue
+- preserve pending responsibility after stop instead of treating stop as approval, repair, or closure
+- connect Stop Authority, Evidence Log, Human Return Point, pending responsibility owner, repair owner, and restart boundary signals
+
+Key boundary:
+
+This example models emergency stop and suspension only. It does not prove safety, complete repair, approve continuation, resolve legal or moral responsibility, certify compliance, or authorize production use.
+
+Use this example when introducing:
+
+- Class F Emergency Stop actions
+- stop trigger and stop reason
+- stop authority separate from execution authority
+- stop-and-await lifecycle boundary
+- restart approval boundary
+- pending responsibility preservation after stop
+
 ### `examples/record-review-minimal.yaml`
 
 Purpose:
@@ -219,13 +241,14 @@ Recommended reading order:
 7. `examples/action-class-matrix-minimal.yaml`
 8. `examples/minimal-pathway.yaml`
 9. `examples/internal-document-update.yaml`
-10. `examples/record-review-minimal.yaml`
-11. `examples/human-ai-review-workflow-minimal.yaml`
-12. `examples/repair-flow.yaml`
-13. `examples/suspended-pathway.yaml`
-14. `examples/returning-pathway.yaml`
-15. `examples/closed-pathway.yaml`
-16. `docs/example-review-notes.md`
+10. `examples/emergency-stop-flow.yaml`
+11. `examples/record-review-minimal.yaml`
+12. `examples/human-ai-review-workflow-minimal.yaml`
+13. `examples/repair-flow.yaml`
+14. `examples/suspended-pathway.yaml`
+15. `examples/returning-pathway.yaml`
+16. `examples/closed-pathway.yaml`
+17. `docs/example-review-notes.md`
 
 ## Relationship to Action Class Matrix
 
@@ -253,6 +276,7 @@ Current examples use descriptive filenames:
 - `minimal-pathway.yaml`
 - `action-class-matrix-minimal.yaml`
 - `internal-document-update.yaml`
+- `emergency-stop-flow.yaml`
 - `record-review-minimal.yaml`
 - `human-ai-review-workflow-minimal.yaml`
 - `repair-flow.yaml`
@@ -266,7 +290,6 @@ Possible future names:
 
 - `reversible-external-action.yaml`
 - `high-impact-negative-boundary.yaml`
-- `emergency-stop-flow.yaml`
 
 ## Example design rules
 
@@ -287,8 +310,9 @@ New examples should:
 
 Low-risk next steps:
 
-- observe the next `Check examples` workflow result after adding `examples/internal-document-update.yaml`
-- add a Class F emergency-stop / stop-and-await example before high-impact examples
+- observe the next `Check examples` workflow result after adding `examples/emergency-stop-flow.yaml`
+- delay Class D reversible external action example until Class C and Class F boundaries remain green
+- keep Class E high-impact examples negative or boundary-only until lower classes are stable
 - refine lightweight checker rules after action-class example structures exist
 - add diagrams only after example structures stabilize
 - add machine-readable fixtures only after schema validation rules are explicit
