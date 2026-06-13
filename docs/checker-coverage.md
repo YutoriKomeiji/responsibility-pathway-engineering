@@ -171,6 +171,7 @@ Future checker work should remain bounded to structural signals and must not tre
 | `examples/minimal-pathway.yaml` | `originating` | yes | no | not yet |
 | `examples/action-class-matrix-minimal.yaml` | `originating` | yes | no | not yet |
 | `examples/internal-document-update.yaml` | `originating` | yes | no | not yet |
+| `examples/emergency-stop-flow.yaml` | `suspended` | yes | no | not yet |
 | `examples/record-review-minimal.yaml` | `originating` | yes | yes | not yet |
 | `examples/repair-flow.yaml` | `repaired` | yes | no | not yet |
 | `examples/suspended-pathway.yaml` | `suspended` | yes | no | not yet |
