@@ -225,7 +225,7 @@ Next low-risk Phase 3 work:
 - add only one small reference example at a time
 - avoid production-service, legal-decision, certification, compliance, fairness, moral-resolution, or AI-final-responsibility interpretations
 
-## Phase 3.1 - Adapter Boundary and Runtime Event Bridge (Started; current snapshot updated with operation layer)
+## Phase 3.1 - Adapter Boundary and Runtime Event Bridge (Started; checking plan added before checker implementation)
 
 Purpose:
 
@@ -237,7 +237,8 @@ Current artifacts and companion notes:
 - `spec/runtime-event.schema.yaml` defines a minimal input event shape before service-specific connectors exist
 - `examples/adapter-input-event-minimal.json` provides a small synthetic runtime event input
 - `examples/runtime-event-to-pathway-minimal.yaml` shows how a runtime event can be represented as a Responsibility Pathway record pending human or institutional review
-- `docs/phase-3-1-current-snapshot.md` records the current Phase 3.1 restart point, including adapter boundary, runtime-event bridge, and repository operation layer
+- `docs/runtime-event-checking-plan.md` defines the planned path, preconditions, exclusions, and non-certifying boundary before adding runtime-event schema checking, JSON fixture checking, `scripts/check_runtime_events.py`, or a runtime-event workflow
+- `docs/phase-3-1-current-snapshot.md` records the current Phase 3.1 restart point, including adapter boundary, runtime-event bridge, runtime-event checking plan, and repository operation layer
 - `docs/phase-3-1-sync-log.md` records the staged synchronization work for Phase 3.1
 - `docs/phase-3-1-roadmap-note.md` records the short roadmap companion for this phase
 - `docs/repository-operation-model.md` records the repository-wide staged update operation, document roles, commit granularity policy, periodic operation review policy, workflow observation policy, checker interpretation policy, long-file update policy, log organization policy, non-certifying operation boundaries, and restart rules
@@ -261,17 +262,22 @@ Repository operation rule:
 
 Broad reader-path synchronization, long-file updates, snapshot updates, operation-index updates, changelog or roadmap synchronization, and periodic operation review should follow `docs/repository-operation-model.md`.
 
+Runtime-event checking rule:
+
+Do not add `scripts/check_runtime_events.py`, a runtime-event workflow, runtime-event schema checking, or JSON fixture checking until `docs/runtime-event-checking-plan.md` preconditions are satisfied. Any future passing runtime-event check must remain a bounded repository-maintenance signal only.
+
 Next low-risk Phase 3.1 work:
 
 - keep service-specific connectors deferred
 - keep production conversion code deferred
 - keep runtime-event schema checking deferred until the schema and examples remain stable
 - keep JSON fixture checking deferred until the current event-to-pathway bridge remains readable and reviewable
+- use `docs/runtime-event-checking-plan.md` before considering `scripts/check_runtime_events.py` or a runtime-event workflow
 - keep Class E positive examples deferred
 - keep Lean expansion around adapter or runtime events deferred until the adapter boundary, runtime event schema, generated-record examples, checker boundary, and validation checklist are stable
-- maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, or roadmap notes change
+- maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, or checker plans change
 - use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, or deferred boundaries feel misaligned with actual practice
-- add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, or operation document to point to
+- add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, or operation document to point to
 
 ## Guiding Principle
 
