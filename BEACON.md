@@ -30,6 +30,8 @@ The `Check examples` GitHub Actions workflow has been observed green for run `#1
 
 The `Check examples` GitHub Actions workflow has been observed green for run `#12` on commit `fdd7bd4` on `main` after adding `examples/internal-document-update.yaml`. The workflow completed successfully in about 9 seconds, and the `Bounded structural example checks` job completed successfully in about 7 seconds. This remains a bounded repository-maintenance check and is not certification.
 
+The `Check examples` GitHub Actions workflow has been observed green for run `#13` on commit `266845b` on `main` after adding `examples/emergency-stop-flow.yaml`. The workflow completed successfully in about 10 seconds, and the `Bounded structural example checks` job completed successfully in about 7 seconds. This remains a bounded repository-maintenance check and is not certification.
+
 Core definitions, the eight-element model, runtime model, responsibility node model, return point model, repair model, value/cost flow, stop authority, evidence log, action class matrix, approval gate, and decision owner model have been added.
 
 The repository now distinguishes:
@@ -63,6 +65,7 @@ Action-class classification coverage has started with:
 - `examples/minimal-pathway.yaml` as source-aligned Class B Suggest-Only with legacy mapping preserved
 - `examples/action-class-matrix-minimal.yaml` as a classification-only fixture for reading Class A-F before higher-impact examples
 - `examples/internal-document-update.yaml` as source-aligned Class C Approval-Required internal document update example
+- `examples/emergency-stop-flow.yaml` as source-aligned Class F Emergency Stop / stop-and-await example
 
 A bounded lightweight checker exists at `scripts/check_examples.py`.
 
@@ -117,6 +120,8 @@ The Action Class Matrix classification-only fixture exists at `examples/action-c
 
 The Class C internal document update fixture exists at `examples/internal-document-update.yaml`.
 
+The Class F emergency stop flow fixture exists at `examples/emergency-stop-flow.yaml`.
+
 The index groups Basic constructor sanity theorems, Example lifecycle sanity theorems, boundary predicates, positive invariant theorem candidates, and vacuity/non-trigger theorem candidates.
 
 The AI final-responsibility boundary is assumption-scoped. In the current minimal model, no artificial legal-personhood layer is assumed, so an AI node is not treated as a final responsibility holder. Future legal, institutional, national, international, or user/provider-agreement layers must be modeled explicitly if introduced.
@@ -164,7 +169,7 @@ Claims precede applications.
 - Keep the first Phase 3 human-AI review workflow example small, readable, and bounded
 - Use `examples/action-class-matrix-minimal.yaml` as the classification baseline before adding Class C, Class D, Class E, or Class F examples
 - Add Class C internal document or repository update examples only while they remain small, internal, approval-required, and non-certifying
-- Add a Class F emergency-stop / stop-and-await example before any Class E high-impact example
+- Add Class F emergency-stop / stop-and-await examples before any Class E high-impact example
 - Delay Class D reversible external examples until Class C and Class F boundaries are clear
 - Treat Class E high-impact examples as negative or boundary-only examples until lower classes are stable
 - Read prior Zenn articles before expanding Phase 3 examples beyond the first small workflow
@@ -182,32 +187,33 @@ Claims precede applications.
 5. docs/action-class-matrix.md
 6. examples/action-class-matrix-minimal.yaml
 7. examples/internal-document-update.yaml
-8. LUMINALIA.md
-9. ROADMAP.md
-10. CHANGELOG.md
-11. docs/minimal-core-rationale.md
-12. docs/enterprise-implementation-profile.md
-13. docs/responsibility-pathway-record-review.md
-14. docs/phase-2-5-current-snapshot.md
-15. docs/reference-implementation-boundary.md
-16. docs/phase-1-6-plan.md
-17. formal/lean/README.md
-18. docs/phase-2-current-snapshot.md
-19. docs/phase-2-lean-split-plan.md
-20. docs/phase-2-lean-theorem-index.md
-21. docs/definition.md
-22. docs/eight-elements.md
-23. docs/validator-boundary.md
-24. docs/checker-coverage.md
-25. docs/schema-cross-reference.md
-26. docs/example-index.md
-27. docs/example-review-notes.md
-28. spec/responsibility-pathway-core.yaml
-29. spec/pathway.schema.yaml
-30. spec/action-class.schema.yaml
-31. spec/review-result.schema.yaml
-32. scripts/check_review_results.py
-33. .github/workflows/check-review-results.yml
+8. examples/emergency-stop-flow.yaml
+9. LUMINALIA.md
+10. ROADMAP.md
+11. CHANGELOG.md
+12. docs/minimal-core-rationale.md
+13. docs/enterprise-implementation-profile.md
+14. docs/responsibility-pathway-record-review.md
+15. docs/phase-2-5-current-snapshot.md
+16. docs/reference-implementation-boundary.md
+17. docs/phase-1-6-plan.md
+18. formal/lean/README.md
+19. docs/phase-2-current-snapshot.md
+20. docs/phase-2-lean-split-plan.md
+21. docs/phase-2-lean-theorem-index.md
+22. docs/definition.md
+23. docs/eight-elements.md
+24. docs/validator-boundary.md
+25. docs/checker-coverage.md
+26. docs/schema-cross-reference.md
+27. docs/example-index.md
+28. docs/example-review-notes.md
+29. spec/responsibility-pathway-core.yaml
+30. spec/pathway.schema.yaml
+31. spec/action-class.schema.yaml
+32. spec/review-result.schema.yaml
+33. scripts/check_review_results.py
+34. .github/workflows/check-review-results.yml
 
 ## Restart Point
 
@@ -215,14 +221,15 @@ The next low-risk action is not to expand into larger reference implementations 
 
 Continue by either:
 
-- updating ROADMAP and CHANGELOG with the `Check examples #12` observed green result
-- adding a Class F emergency-stop / stop-and-await example before any Class E high-impact example
+- updating ROADMAP and CHANGELOG with the `Check examples #13` observed green result
+- delaying Class D reversible external action example until Class C and Class F boundaries remain green
+- keeping Class E high-impact examples negative or boundary-only until lower classes are stable
 - keeping `Check review-result fixtures` green while maintaining its bounded interpretation
-- keeping `Check examples` green while maintaining its bounded interpretation after the first Phase 3 reference example and Action Class Matrix classification fixture
+- keeping `Check examples` green while maintaining its bounded interpretation after Class F emergency stop flow
 - maintaining the Phase 3 reference-implementation boundary before adding more reference examples
 - rereading prior Zenn articles before expanding Phase 3 reference examples beyond the first small workflow
 - adding only narrowly scoped record-review fixtures or checker checks while keeping them optional unless existing examples are deliberately migrated
-- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, theorem-role index, enterprise implementation profile, record review guide, Phase 2.5 snapshot, review-result schema, review-result checker, review-result workflow, reference implementation boundary, first Phase 3 reference example, Action Class Matrix docs, action-class schema, action-class fixture, Class C internal document update fixture, and excluded claims
+- maintaining documentation synchronization across README, README.ja, ROADMAP, BEACON, CHANGELOG, `formal/lean/README.md`, the current snapshot, theorem-role index, enterprise implementation profile, record review guide, Phase 2.5 snapshot, review-result schema, review-result checker, review-result workflow, reference implementation boundary, first Phase 3 reference example, Action Class Matrix docs, action-class schema, action-class fixture, Class C internal document update fixture, Class F emergency stop fixture, and excluded claims
 
 Do not begin larger reference implementations until definitions, examples, checker boundaries, Lean assumptions, theorem roles, current snapshot, enterprise guidance, record review boundaries, Phase 2.5 snapshot, review-result schema, review-result checker, review-result workflow, reference implementation boundary, first Phase 3 reference example, source-alignment notes, action-class notes, and excluded claims remain aligned.
 
