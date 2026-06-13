@@ -171,14 +171,34 @@ Recommended reading order:
 3. `docs/validator-boundary.md`
 4. `docs/responsibility-pathway-record-review.md`
 5. `docs/reference-implementation-boundary.md`
-6. `examples/minimal-pathway.yaml`
-7. `examples/record-review-minimal.yaml`
-8. `examples/human-ai-review-workflow-minimal.yaml`
-9. `examples/repair-flow.yaml`
-10. `examples/suspended-pathway.yaml`
-11. `examples/returning-pathway.yaml`
-12. `examples/closed-pathway.yaml`
-13. `docs/example-review-notes.md`
+6. `docs/action-class-matrix.md`
+7. `examples/minimal-pathway.yaml`
+8. `examples/record-review-minimal.yaml`
+9. `examples/human-ai-review-workflow-minimal.yaml`
+10. `examples/repair-flow.yaml`
+11. `examples/suspended-pathway.yaml`
+12. `examples/returning-pathway.yaml`
+13. `examples/closed-pathway.yaml`
+14. `docs/example-review-notes.md`
+
+## Relationship to Action Class Matrix
+
+`docs/action-class-matrix.md` is the design aid for classifying future AI-agent actions before example design.
+
+Current examples do not need to be retroactively reclassified unless they are updated.
+
+Future examples should state their intended action class before claiming pathway sufficiency.
+
+For example:
+
+- Class A Observe-Only examples should preserve source/context and adoption boundaries.
+- Class B Suggest-Only examples should distinguish AI proposal from human adoption.
+- Class C Approval-Required examples should include Approval Gate, Execution Actor, and Evidence Log signals.
+- Class D Reversible External Action examples should include rollback or repair path signals.
+- Class E Irreversible or High-Impact examples should remain synthetic, bounded, non-production, and explicitly non-autonomous unless future institutional/legal layers are modeled.
+- Class F Emergency Stop examples should include stop trigger, Stop Authority, pending responsibility owner, Human Return Point, and restart/closure boundary.
+
+Action Class Matrix classification is not a certification, compliance determination, safety review, legal review, or production-readiness review.
 
 ## Naming convention
 
@@ -196,9 +216,11 @@ Future examples should prefer short names that describe the responsibility-pathw
 
 Possible future names:
 
-- `approval-gate-flow.yaml`
-- `high-impact-action-flow.yaml`
-- `evidence-redaction-flow.yaml`
+- `action-class-matrix-minimal.yaml`
+- `internal-document-update.yaml`
+- `reversible-external-action.yaml`
+- `high-impact-negative-boundary.yaml`
+- `emergency-stop-flow.yaml`
 
 ## Example design rules
 
@@ -206,8 +228,10 @@ New examples should:
 
 - keep human or institutional responsibility visible
 - keep AI final responsibility explicitly disallowed
+- declare the intended action class when action-class-specific requirements matter
 - include evidence logging when reconstruction is relevant
 - include a return point when human review or authority return is relevant
+- include approval, stop, rollback, or repair paths when required by action class
 - state assumptions and excluded claims
 - avoid implying certification, compliance, safety, fairness, legal resolution, or moral resolution
 - distinguish suspension, return, repair, continuation, closure, and reopening conditions when lifecycle state matters
@@ -217,7 +241,10 @@ New examples should:
 
 Low-risk next steps:
 
-- refine lightweight checker rules after lifecycle examples exist
+- add `examples/action-class-matrix-minimal.yaml` as a readable classification-only fixture
+- add a Class C internal document or repository update example after current examples remain stable
+- add a Class F emergency-stop / stop-and-await example before high-impact examples
+- refine lightweight checker rules after action-class example structures exist
 - add diagrams only after example structures stabilize
 - add machine-readable fixtures only after schema validation rules are explicit
-- add higher-impact flow examples only after lifecycle boundaries remain stable
+- add higher-impact flow examples only after lifecycle and action-class boundaries remain stable
