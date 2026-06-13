@@ -32,7 +32,7 @@
 - Decision Owner
 - Source Mapping from public articles to canonical repository definitions
 
-## Phase 1.5 - Specification Binding (Established)
+## Phase 1.5 - Specification Binding (Established; action-class schema refreshed)
 
 - Core YAML specification expanded to v0.2.0
 - Concept documents aligned with initial machine-readable specification
@@ -42,6 +42,7 @@
 - Validation checklist documentation added
 - Initial minimal examples added
 - README, README.ja, CHANGELOG, and BEACON maintained at milestones
+- `spec/action-class.schema.yaml` updated to v0.2.0 with source-aligned Class A-F structure while retaining earlier Class 0-4 values as historical mapping references
 
 Established schema files:
 
@@ -52,7 +53,7 @@ Established schema files:
 - spec/repair.schema.yaml
 - spec/pathway.schema.yaml
 
-## Phase 1.6 - Lightweight Validation and Lifecycle Examples (Substantially Established)
+## Phase 1.6 - Lightweight Validation and Lifecycle Examples (Substantially Established; action-class alignment in progress)
 
 - Lightweight checker added at `scripts/check_examples.py`
 - GitHub Actions workflow added for bounded example checks
@@ -69,16 +70,25 @@ Established schema files:
 - Example review notes updated
 - README and README.ja reader paths updated
 - CHANGELOG milestones recorded
+- Action Class Matrix source-aligned from earlier Class 0-4 form to Class A-F form in `docs/action-class-matrix.md`
+- `docs/concepts/core-elements.md` clarified as operational roles and controls connected to the eight-element model, not a replacement for the eight-element model
+- `examples/minimal-pathway.yaml` migrated from legacy Class 1 Internal Assistive to source-aligned Class B Suggest-Only with legacy mapping preserved
+- `examples/action-class-matrix-minimal.yaml` added as a classification-only fixture for Class A-F reading before higher-impact examples
+- `docs/example-index.md` connected future examples to Action Class Matrix design rules
+- `docs/checker-coverage.md` documented action-class-specific checks as planned future bounded checks, not current enforcement
+- `Check examples #10` observed green on commit `2af698c` on `main` after minimal-pathway action-class migration
 
 Phase 1.6 rule:
 
-Lifecycle-aware checks remain bounded structural maintenance checks. They do not certify examples, systems, legal validity, safety, compliance, fairness, moral resolution, production readiness, or real-world responsibility resolution.
+Lifecycle-aware and action-class-aware checks remain bounded structural maintenance checks. They do not certify examples, systems, legal validity, safety, compliance, fairness, moral resolution, production readiness, or real-world responsibility resolution.
 
 Remaining Phase 1.6 maintenance tasks:
 
+- observe the next `Check examples` workflow result after adding `examples/action-class-matrix-minimal.yaml`
 - maintain bounded checker stability
 - keep examples small and manually readable
-- avoid adding higher-impact examples until lifecycle boundaries remain stable
+- keep action-class-specific checker additions optional until examples are deliberately migrated
+- avoid adding higher-impact examples until lifecycle and action-class boundaries remain stable
 
 ## Phase 2 - Formalization (Started; minimal lifecycle invariant set reached; Lean core split, build path, theorem index, and current snapshot added)
 
@@ -127,6 +137,7 @@ The current AI final-responsibility invariant is assumption-scoped. In the curre
 
 Next low-risk Phase 2 work:
 
+- do not expand Lean around Action Class Matrix until the source-aligned Class A-F examples, schema, checker boundary, and validation checklist are stable
 - observe the next Lean workflow result and adjust only if the minimal build path fails
 - use the current snapshot and theorem-role index before adding or renaming Lean theorem candidates
 - keep formalization incremental and assumption-explicit
@@ -151,6 +162,7 @@ Next low-risk Phase 2 work:
 - Plain-language review and recheck process documented for Responsibility Pathway records
 - Minimal enterprise adoption path documented before larger reference implementations
 - Initial enterprise implementation candidates identified without claiming certification, legal validity, compliance, fairness, safety, moral resolution, or production readiness
+- Action-class-specific checker additions remain optional and bounded unless deliberately integrated with pathway examples and review-result fixtures
 
 Phase 2.5 rule:
 
@@ -163,8 +175,9 @@ Next low-risk Phase 2.5 work:
 - keep checker additions optional unless existing examples are deliberately migrated
 - keep review-result schema validation and fixture checking bounded to structural responsibility-boundary preservation
 - keep review results structural and non-certifying
+- keep action-class-specific coverage documented as planned future work until examples and schema fields are stable
 
-## Phase 3 - Reference Implementations (First bounded example reached)
+## Phase 3 - Reference Implementations (First bounded example reached; action-class classification baseline added)
 
 - Reference implementation boundary added at `docs/reference-implementation-boundary.md`
 - First small Phase 3 reference example added at `examples/human-ai-review-workflow-minimal.yaml`
@@ -179,17 +192,24 @@ Next low-risk Phase 2.5 work:
 - Suspension flow example
 - Returning flow example
 - Closure and reopening flow example
+- Action Class Matrix classification-only baseline added at `examples/action-class-matrix-minimal.yaml`
 
 Implementation rule:
 
-Reference implementations must not outrun definitions, examples, checker boundaries, formalization assumptions, enterprise governance boundaries, Responsibility Pathway record review boundaries, validator boundaries, review-result boundaries, or excluded claims.
+Reference implementations must not outrun definitions, examples, checker boundaries, formalization assumptions, enterprise governance boundaries, Responsibility Pathway record review boundaries, validator boundaries, review-result boundaries, action-class boundaries, or excluded claims.
 
 First recommended Phase 3 step:
 
 - keep the first human-AI review workflow example small, readable, bounded, and non-certifying before adding additional reference examples
+- use `examples/action-class-matrix-minimal.yaml` as a classification baseline before adding Class C, Class D, Class E, or Class F examples
 
 Next low-risk Phase 3 work:
 
+- observe the next `Check examples` workflow after the Action Class Matrix fixture addition
+- add a Class C internal document or repository update example only after the classification-only fixture remains green
+- add a Class F emergency-stop / stop-and-await example before any Class E high-impact example
+- delay Class D reversible external examples until Class C and Class F boundaries are clear
+- treat Class E high-impact examples as negative or boundary-only examples until lower classes are stable
 - record source-alignment checkpoints before expanding reference examples
 - reread prior Zenn articles for definition, claim, and boundary alignment
 - add only one small reference example at a time
