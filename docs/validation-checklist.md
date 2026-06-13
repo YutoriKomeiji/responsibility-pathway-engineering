@@ -1,6 +1,6 @@
 # Validation Checklist
 
-This checklist provides a bounded review guide for Responsibility Pathway Engineering schema instances during Phase 1.5 - Specification Binding.
+This checklist provides a bounded review guide for Responsibility Pathway Engineering schema instances during Phase 1.5 - Specification Binding and Phase 1.6 - lightweight validation.
 
 It is not a certification process, legal assessment, compliance determination, production-readiness review, safety guarantee, fairness guarantee, or moral accountability judgment.
 
@@ -61,19 +61,33 @@ For the action class, review:
 
 - `id`
 - `name`
-- `level`
+- `source_aligned_class`
+- optional `legacy_mapping` when updating older examples
 - `responsibility_requirements`
 - `reversibility`
 - `external_impact`
+- `execution_effect` where present
 - `automation_boundary`
+- `excluded_interpretations` where present
 
-Escalation expectations:
+Legacy note:
 
-- Level 0 actions may be informational and usually reversible.
-- Level 1 actions may be internally assistive and should remain within internal support boundaries.
-- Level 2 actions may involve controlled execution and should have a decision owner.
-- Level 3 actions may create external impact and should have human authorization and evidence logging.
-- Level 4 actions may be irreversible or high risk and should have strong human authorization, stop authority, evidence logging, return points, and repair ownership.
+- Earlier examples may still include legacy `level: 0-4` or a `legacy_mapping` block.
+- New or deliberately migrated examples should prefer `source_aligned_class: A-F`.
+- Legacy level values should not be treated as the current primary classification.
+
+Source-aligned class expectations:
+
+- Class A Observe-Only actions usually require source/context visibility and an adoption boundary when later used.
+- Class B Suggest-Only actions should distinguish AI proposal, classification, or draft from human adoption.
+- Class C Approval-Required actions should identify Decision Owner, Approval Gate, Execution Actor, Evidence Log, and Human Return Point signals.
+- Class D Reversible External Action should identify external impact scope, rollback or correction path, Evidence Log, and Repair Owner signals.
+- Class E Irreversible or High-Impact Action should include strong human authorization, explicit stop authority, pre-execution evidence, repair/escalation ownership, and non-autonomous or high-impact boundary language.
+- Class F Emergency Stop should include stop trigger, Stop Authority, pending responsibility owner, Evidence Log, Human Return Point, and restart/closure boundary.
+
+Boundary reminder:
+
+Action classification does not certify that an action is safe, legal, compliant, fair, morally resolved, institutionally approved, or production ready.
 
 ## 4. Role binding review
 
@@ -192,6 +206,7 @@ Boundary expectations:
 - The schema may model participation.
 - The schema may model authority and evidence requirements.
 - The schema may support reconstruction and repair.
+- The schema may classify action type for pathway design.
 - The schema does not itself establish legal liability, moral blame, compliance, fairness, safety, or production readiness.
 
 ## 9. Formalization scope review
@@ -223,5 +238,19 @@ A pathway instance is ready for further review when:
 - AI participation boundaries are explicit
 - formal claims are bounded
 - non-goals and excluded claims are preserved
+
+## 11. Action-class checker boundary
+
+Current lightweight checkers do not yet enforce the full Class A-F expectation map.
+
+Future bounded checker additions may inspect structural signals such as:
+
+- declared `source_aligned_class`
+- Class C or higher Approval Gate presence
+- Class D or higher rollback or repair path presence
+- Class E high-impact and non-autonomous boundary language
+- Class F stop trigger, Stop Authority, pending responsibility owner, and restart/return fields
+
+Such checks must remain bounded to repository-maintenance signals. A pass must not be interpreted as certification, legal validity, safety, compliance, fairness, moral resolution, institutional approval, production readiness, or AI final-responsibility transfer.
 
 This checklist is intentionally conservative. When in doubt, preserve uncertainty, document the boundary, and return responsibility to an authorized human or institutional review point.
