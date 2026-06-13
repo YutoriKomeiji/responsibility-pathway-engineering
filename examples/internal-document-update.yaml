@@ -1,0 +1,282 @@
+# Class C internal document update example
+#
+# This example models an internal document update that requires human approval.
+# It is intentionally small and illustrative.
+# It is not a certification, compliance claim, safety guarantee,
+# legal assessment, moral accountability judgment, or production-ready pattern.
+#
+# 日本語メモ:
+# これは Class C Approval-Required の最小例です。
+# AI は内部文書の更新案を作成できますが、承認・実行・最終責任は人間側に残ります。
+# この例は説明用であり、法的責任・安全性・準拠性・公平性・本番利用可能性を主張しません。
+
+id: internal_document_update_001
+version: 0.1.0
+lifecycle_state: originating
+
+nodes:
+  - id: human_document_owner_001
+    type: Human
+    capabilities:
+      - receive
+      - review
+      - approve
+      - reject
+      - stop
+      - return
+      - repair
+      - close
+    authority_scope:
+      can_decide: true
+      can_approve: true
+      can_execute: false
+      can_stop: true
+      can_repair: true
+      can_close: true
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_doc_update_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: true
+
+  - id: ai_draft_support_001
+    type: AIAgent
+    capabilities:
+      - receive
+      - generate
+      - explain
+      - return
+    authority_scope:
+      can_decide: false
+      can_approve: false
+      can_execute: false
+      can_stop: false
+      can_repair: false
+      can_close: false
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_doc_update_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: false
+    ai_participation:
+      may_generate: true
+      may_recommend: true
+      may_classify: false
+      may_execute_under_authority: false
+      assumes_final_responsibility: false
+
+  - id: internal_document_system_001
+    type: InformationSystem
+    capabilities:
+      - preserve
+      - transform
+    authority_scope:
+      can_decide: false
+      can_approve: false
+      can_execute: true
+      can_stop: false
+      can_repair: false
+      can_close: false
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_doc_update_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: false
+
+edges:
+  - from: human_document_owner_001
+    to: ai_draft_support_001
+    relation_type: delegated_drafting_support
+    condition: human_requests_internal_document_update_draft
+    evidence_reference: evidence_log_doc_update_001
+
+  - from: ai_draft_support_001
+    to: human_document_owner_001
+    relation_type: return_to_authority
+    condition: draft_requires_human_review_and_approval
+    evidence_reference: evidence_log_doc_update_001
+
+  - from: human_document_owner_001
+    to: internal_document_system_001
+    relation_type: approved_internal_update
+    condition: human_document_owner_approves_update
+    evidence_reference: evidence_log_doc_update_001
+
+roles:
+  decision_owner: human_document_owner_001
+  approval_gate: human_document_owner_001
+  execution_actor: internal_document_system_001
+  stop_authority: human_document_owner_001
+  evidence_log: evidence_log_doc_update_001
+  repair_owner: human_document_owner_001
+  return_point: return_point_doc_update_001
+  human_return_point: return_point_doc_update_001
+  affected_party: null
+
+action_class:
+  id: class_c_approval_required
+  label: Class C
+  name: Approval-Required
+  source_aligned_class: C
+  description: Internal document update prepared by AI support but executed only after human approval.
+  responsibility_requirements:
+    decision_owner_required: true
+    approval_gate_required: true
+    execution_actor_required: true
+    stop_authority_required: true
+    evidence_log_required: true
+    return_point_required: true
+    repair_owner_required: true
+    affected_party_visibility_required: false
+    rollback_or_correction_path_required: true
+    restart_approval_required: false
+  reversibility: partially_reversible
+  external_impact: internal
+  execution_effect: internal_state_change
+  automation_boundary:
+    may_be_automated: false
+    requires_human_review: true
+    requires_human_authorization: true
+    prohibited_without_explicit_authority: true
+    autonomous_execution_disallowed: true
+  excluded_interpretations:
+    - not_autonomous_execution
+    - not_external_publication
+    - not_certification
+    - not_legal_review
+    - not_safety_review
+    - not_compliance_review
+    - not_production_ready
+
+evidence_logs:
+  - id: evidence_log_doc_update_001
+    pathway_id: internal_document_update_001
+    evidence_categories:
+      - request
+      - draft_content
+      - ai_proposal
+      - human_review
+      - approval_decision
+      - execution_actor
+      - rollback_or_correction_path
+      - timestamp
+      - authority_state
+      - excluded_claims
+    integrity_state: partial
+    ordering: timestamped
+    reconstruction_support:
+      can_reconstruct_action: true
+      can_reconstruct_authority: true
+      can_reconstruct_context: true
+      can_reconstruct_uncertainty: true
+      can_reconstruct_stop_point: true
+      can_reconstruct_return_point: true
+      can_reconstruct_repair_action: true
+    quality:
+      completeness: partial
+      readability: human_readable
+      availability: local_example
+      scope_clarity: internal_document_update_only
+      retention_period: not_specified
+      privacy_constraints: avoid_sensitive_data
+      safety_constraints: no_production_use
+    access_boundary:
+      readable_by:
+        - human_document_owner_001
+      writable_by:
+        - human_document_owner_001
+      redaction_required: false
+      retention_owner: human_document_owner_001
+      repair_owner_access: human_document_owner_001
+
+return_points:
+  - id: return_point_doc_update_001
+    type: HumanReturnPoint
+    source_node: ai_draft_support_001
+    target_node: human_document_owner_001
+    returnability_conditions:
+      meaning_visible: true
+      authority_visible: true
+      time_available: true
+      information_quality_sufficient: partial
+      trust_calibrated: true
+      reversibility_or_compensation_visible: true
+      value_visible: true
+      cost_visible: true
+    supported_actions:
+      - review
+      - approve
+      - reject
+      - request_revision
+      - stop
+      - repair
+      - close
+    evidence_requirements:
+      evidence_log_required: true
+      minimum_evidence_categories:
+        - request
+        - draft_content
+        - ai_proposal
+        - human_review
+        - approval_decision
+        - authority_state
+      reconstruction_required: true
+      access_boundary: local_review
+    human_conditions:
+      understandable_information: true
+      meaningful_choice: true
+      refusal_available: true
+      stop_authority_available: true
+      repair_path_available: true
+      adequate_review_time: true
+      no_coercive_pressure: true
+
+repairs:
+  - id: repair_doc_update_001
+    pathway_id: internal_document_update_001
+    trigger: approved_internal_update_later_found_incomplete_or_misleading
+    repair_owner: human_document_owner_001
+    repair_state: available_not_triggered
+    evidence_reference: evidence_log_doc_update_001
+    affected_parties:
+      - internal_readers
+    corrective_action:
+      - revise_document
+      - add_correction_note
+      - preserve_prior_version_reference
+    outcome:
+      state: not_triggered
+      boundary: example_only
+
+responsibility_boundary:
+  human_author_required: true
+  ai_final_responsibility_allowed: false
+  institutional_authority_required_when_applicable: false
+  legal_or_moral_claims_out_of_scope: true
+
+formalization_scope:
+  assumptions:
+    - The example models an internal document update only.
+    - The AI node drafts or proposes content but does not approve or execute.
+    - Human approval is required before internal document update execution.
+    - The internal document system is an execution actor only, not a final responsibility holder.
+  modeled_entities:
+    - human_document_owner_001
+    - ai_draft_support_001
+    - internal_document_system_001
+    - evidence_log_doc_update_001
+    - return_point_doc_update_001
+    - repair_doc_update_001
+  excluded_claims:
+    - legal_liability
+    - moral_blame
+    - compliance
+    - production_safety
+    - fairness
+    - certification
+    - production_readiness
+    - real_world_accountability_resolution
+  theorem_status: not_formalized
