@@ -34,11 +34,41 @@ The reviewed source material supports the following interpretation:
 - RPE is operation-oriented, but not itself a production runtime.
 - RPE requires explicit boundaries for what examples, schemas, checkers, and Lean files do not claim.
 
-## Minimal element set
+## Two-layer model
 
-The current minimal pathway elements are:
+The repository currently uses two related layers.
 
-| Element | Role |
+| Layer | Purpose | Where to read |
+|---|---|---|
+| Eight-element model | Structural dimensions that preserve responsibility returnability. | [docs/eight-elements.md](eight-elements.md) |
+| Operational roles and controls | Concrete workflow roles/checkpoints for AI-involved operations. | [docs/concepts/core-elements.md](concepts/core-elements.md) |
+
+The eight-element model is the broader structural layer:
+
+- Meaning
+- Authority
+- Time
+- Quality
+- Trust
+- Reversibility
+- Value
+- Cost
+
+The operational role/control set is the current source-aligned implementation-facing layer:
+
+- Decision Owner
+- Approval Gate
+- Execution Actor
+- Stop Authority
+- Evidence Log
+- Repair Owner
+- Human Return Point
+
+These are not competing lists. The seven operational roles/controls are practical pathway checkpoints that help preserve or inspect the eight structural dimensions in AI-involved workflows.
+
+## Operational roles and controls
+
+| Role / control | Role |
 |---|---|
 | Decision Owner | Owns the judgment or decision responsibility. |
 | Approval Gate | Defines where approval is required before action. |
@@ -47,8 +77,6 @@ The current minimal pathway elements are:
 | Evidence Log | Supports reconstruction of the pathway. |
 | Repair Owner | Owns rollback, repair, correction, or reconnection. |
 | Human Return Point | Allows AI-mediated judgment to return to human understanding, authority, time, and responsibility capacity. |
-
-The older eight-element model remains part of the repository history and current docs, but the source-alignment pass highlights these seven as the minimal RPL/RPE operational set.
 
 ## AI participation boundary
 
@@ -202,7 +230,7 @@ The repository does not yet contain:
 The source-alignment pass suggests this implementation order:
 
 1. Stabilize README and overview entry points.
-2. Create or update `docs/concepts/core-elements.md`.
+2. Create or update `docs/concepts/core-elements.md` as operational roles/controls aligned with the eight-element model.
 3. Create `docs/concepts/action-class-matrix.md`.
 4. Add negative examples for HITL collapse and rubber-stamp approval.
 5. Draft `docs/proposals/evidence-log-approval-state-extension.md`.
