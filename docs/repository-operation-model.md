@@ -230,6 +230,45 @@ Do not combine schema behavior changes, checker behavior changes, workflow chang
 
 This staged operation is a repository-maintenance practice. It does not certify the repository, examples, schemas, generated records, operation documents, checker plans, or future adapters.
 
+## Session load and handoff policy
+
+AI-assisted repository work should account for session load.
+
+At the beginning of a fresh session, larger synchronization units may be practical because there is more room to hold repository context, recent commits, file roles, and deferred boundaries together.
+
+As the session grows, work should become smaller and more conservative.
+
+Use this general rhythm:
+
+1. early session: perform larger but coherent synchronization units when the purpose is clear
+2. middle session: continue with smaller responsibility units and frequent fetch confirmation
+3. late session: avoid broad edits, avoid new implementation boundaries, and prefer snapshots, sync logs, roadmap notes, or handoff notes
+4. before session migration: preserve current state in a current snapshot, sync log, roadmap note, or BEACON update if the restart path would otherwise be unclear
+
+Indicators that a session should shift to smaller work include:
+
+- long conversation history
+- many recent commits
+- multiple files updated in one conceptual thread
+- uncertainty about which file contains the latest state
+- repeated need to restate boundaries
+- risk of mixing implementation, documentation, checker behavior, workflow behavior, or public claims
+- user or assistant noticing that context management is becoming heavy
+
+A session handoff should preserve:
+
+- current phase or subphase
+- latest primary artifact
+- latest sync log or snapshot
+- current deferred boundaries
+- next low-risk step
+- files that must be read before continuing
+- whether any workflow result has actually been observed
+
+Session load management is a maintainability practice only.
+
+It does not certify a repository state, prove correctness, approve production use, or transfer final responsibility to AI.
+
 ## Commit granularity policy
 
 Prefer one commit per responsibility unit, not necessarily one commit per file.
