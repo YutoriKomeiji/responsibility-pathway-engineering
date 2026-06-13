@@ -1,18 +1,33 @@
-# Core Elements of Responsibility Pathways
+# Core Operational Roles and Controls
 
-This document describes the current source-aligned minimal element set for Responsibility Pathway Engineering.
+This document describes the current source-aligned operational role/control set for Responsibility Pathway Engineering.
 
-It does not replace the historical eight-element model in this repository. Instead, it records the current minimal operational set that emerged from the Zenn source-alignment pass.
+It does not replace the historical eight-element model in [docs/eight-elements.md](../eight-elements.md). Instead, it explains how the current operational roles and controls relate to that model.
+
+## Relationship to the eight-element model
+
+The repository currently uses two different layers:
+
+| Layer | Purpose | Examples |
+|---|---|---|
+| Eight-element model | Structural dimensions that preserve the possibility of responsibility returning to a human decision context. | Meaning, Authority, Time, Quality, Trust, Reversibility, Value, Cost |
+| Operational roles and controls | Concrete responsibility-pathway roles or checkpoints used to design and review AI-involved operations. | Decision Owner, Approval Gate, Execution Actor, Stop Authority, Evidence Log, Repair Owner, Human Return Point |
+
+The eight-element model describes what dimensions must remain coherent for responsibility to be recoverable.
+
+The operational role/control set describes where responsibility is owned, approved, executed, stopped, recorded, repaired, or returned in a concrete AI-involved workflow.
+
+These are not competing lists.
 
 ## Scope
 
-These elements describe responsibility-flow structure for AI-involved judgment and action.
+These roles and controls describe responsibility-flow structure for AI-involved judgment and action.
 
 They do not determine legal liability, safety, compliance, fairness, moral accountability, certification, or production readiness.
 
-## Minimal element set
+## Current operational role/control set
 
-The current minimal pathway elements are:
+The current source-aligned operational set is:
 
 1. Decision Owner
 2. Approval Gate
@@ -22,21 +37,23 @@ The current minimal pathway elements are:
 6. Repair Owner
 7. Human Return Point
 
-Together, these elements ask:
+Together, these roles and controls ask:
 
 > Who owns the judgment, who approves, who executes, who can stop, what evidence remains, who repairs, and where can the case return to human responsibility capacity?
 
-## Element summary
+## Summary
 
-| Element | Short role | Primary question |
-|---|---|---|
-| Decision Owner | Owns judgment responsibility. | Who owns the decision or judgment unit? |
-| Approval Gate | Defines required approval before action. | Where must approval occur before execution? |
-| Execution Actor | Performs or triggers action. | Who or what executes the approved action? |
-| Stop Authority | Can stop, suspend, or downgrade the path. | Who can stop or hold the process? |
-| Evidence Log | Supports pathway reconstruction. | What remains to reconstruct what happened? |
-| Repair Owner | Owns repair, rollback, or reconnection. | Who repairs after failure or ambiguity? |
-| Human Return Point | Returns AI-mediated judgment to human capacity. | Where can the case return to human understanding and authority? |
+| Role / control | Short role | Primary question | Related eight-element dimensions |
+|---|---|---|---|
+| Decision Owner | Owns judgment responsibility. | Who owns the decision or judgment unit? | Authority, Meaning, Value, Cost |
+| Approval Gate | Defines required approval before action. | Where must approval occur before execution? | Authority, Trust, Quality, Time |
+| Execution Actor | Performs or triggers action. | Who or what executes the approved action? | Authority, Reversibility, Cost, Quality |
+| Stop Authority | Can stop, suspend, or downgrade the path. | Who can stop or hold the process? | Authority, Time, Reversibility, Trust |
+| Evidence Log | Supports pathway reconstruction. | What remains to reconstruct what happened? | Trust, Quality, Time, Meaning |
+| Repair Owner | Owns repair, rollback, or reconnection. | Who repairs after failure or ambiguity? | Reversibility, Cost, Value, Authority |
+| Human Return Point | Returns AI-mediated judgment to human capacity. | Where can the case return to human understanding and authority? | Meaning, Authority, Time, Trust |
+
+The related eight-element dimensions are indicative, not exhaustive.
 
 ## 1. Decision Owner
 
@@ -50,6 +67,12 @@ Useful questions:
 - Who can decide whether the AI proposal is acceptable?
 - Is the decision owner an individual, role, team, or organization unit?
 - Does the decision owner have enough information, authority, and time?
+
+Relation to the eight-element model:
+
+- Authority: can the owner actually accept or reject the judgment?
+- Meaning: does the owner understand what is being decided?
+- Value / Cost: does the owner carry the consequence of adopting the judgment?
 
 Boundary:
 
@@ -71,6 +94,13 @@ Useful questions:
 - Was approval actually performed?
 - Was approval skipped? Why?
 
+Relation to the eight-element model:
+
+- Authority: who can approve?
+- Trust: what evidence makes approval meaningful?
+- Quality: what review depth is required?
+- Time: was there enough time to approve meaningfully?
+
 Boundary:
 
 - A planned approval gate is not the same as actual review.
@@ -90,6 +120,13 @@ Useful questions:
 - Was execution delegated to a tool or workflow?
 - Did the execution match the approved action?
 
+Relation to the eight-element model:
+
+- Authority: was execution authorized?
+- Reversibility: can execution be undone?
+- Cost: what does execution affect?
+- Quality: did execution match the approved pathway?
+
 Boundary:
 
 - Execution capability is not responsibility ownership.
@@ -108,6 +145,13 @@ Useful questions:
 - Who can stop after unexpected output or context change?
 - Is stop authority separated from execution authority?
 - What happens to pending responsibility after stop?
+
+Relation to the eight-element model:
+
+- Authority: who is empowered to stop?
+- Time: can stop occur before irreversible impact?
+- Reversibility: what can be recovered after stop?
+- Trust: can stop decisions be reviewed?
 
 Boundary:
 
@@ -144,6 +188,13 @@ Useful questions:
 - Can we distinguish planned review from actual review?
 - Can we find where the pathway broke?
 
+Relation to the eight-element model:
+
+- Trust: can later reviewers trust the reconstruction?
+- Quality: is the evidence sufficient for bounded review?
+- Time: when did the pathway move, stop, or return?
+- Meaning: can the record explain what happened in human terms?
+
 Boundary:
 
 - Evidence Log supports reconstructability.
@@ -162,6 +213,13 @@ Useful questions:
 - Who owns incident response?
 - Who reconnects the case to organizational responsibility?
 - Who approves restart after repair?
+
+Relation to the eight-element model:
+
+- Reversibility: can the effect be undone or mitigated?
+- Cost: who carries the cost of repair?
+- Value: what value or harm must be restored?
+- Authority: who can authorize repair and restart?
 
 Boundary:
 
@@ -184,6 +242,13 @@ Useful questions:
 - Does the human have time and information to meaningfully review?
 - Who repairs if the human refuses or the action fails?
 
+Relation to the eight-element model:
+
+- Meaning: can the human understand the situation?
+- Authority: can the human act on that understanding?
+- Time: can the human intervene before the pathway collapses?
+- Trust: can the human trust enough evidence to decide?
+
 Boundary:
 
 - HITL is not automatically HRP.
@@ -192,7 +257,7 @@ Boundary:
 
 ## Relationship to Action Class Matrix
 
-The required strength of each element depends on action class.
+The required strength of each operational role/control depends on action class.
 
 For example:
 
@@ -207,7 +272,7 @@ See `docs/concepts/action-class-matrix.md` when available.
 
 ## Relationship to try/catch/finally analogy
 
-A developer-facing analogy maps the elements roughly as follows:
+A developer-facing analogy maps the roles and controls roughly as follows:
 
 - `try`: Decision Owner, Approval Gate, Execution Actor
 - `catch`: Stop Authority, Human Return Point, Action Class Matrix
@@ -216,6 +281,15 @@ A developer-facing analogy maps the elements roughly as follows:
 This analogy is explanatory only and not formal semantics.
 
 See [docs/explanations/try-catch-finally-responsibility-pathway.md](../explanations/try-catch-finally-responsibility-pathway.md).
+
+## Naming note
+
+This file uses "roles and controls" rather than "elements" for the seven-item operational set to avoid confusion with the eight-element model.
+
+When precision matters:
+
+- say "eight-element model" for Meaning, Authority, Time, Quality, Trust, Reversibility, Value, and Cost
+- say "operational roles and controls" for Decision Owner, Approval Gate, Execution Actor, Stop Authority, Evidence Log, Repair Owner, and Human Return Point
 
 ## Boundary and non-claims
 
@@ -230,4 +304,4 @@ This document does not claim:
 - AI final-responsibility transfer
 - complete formal semantics
 
-It only records the current source-aligned minimal element set for repository design work.
+It only records the current source-aligned operational role/control set for repository design work.
