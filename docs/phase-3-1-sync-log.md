@@ -34,15 +34,54 @@ The observed green status means only that the bounded structural example checker
 
 It is not certification.
 
-## Reader-path synchronization completed
+## Initial reader-path synchronization completed
 
-The following reader-path and coverage synchronization has been completed:
+The following reader-path and coverage synchronization was completed for the initial runtime-event bridge:
 
-- `docs/example-index.md` now includes `examples/runtime-event-to-pathway-minimal.yaml`
-- `docs/checker-coverage.md` now includes a runtime-event bridge note and coverage-map row
-- `README.md` now links to `docs/adapter-boundary.md`, `docs/phase-3-1-current-snapshot.md`, `spec/runtime-event.schema.yaml`, and `examples/runtime-event-to-pathway-minimal.yaml`
-- `README.ja.md` now links to the same Phase 3.1 artifacts using developer-oriented Japanese wording
-- `BEACON.md` now records Phase 3.1 current position, observed #16 green status, staged update operation, read-first order, and restart point
+- `docs/example-index.md` included `examples/runtime-event-to-pathway-minimal.yaml`
+- `docs/checker-coverage.md` included a runtime-event bridge note and coverage-map row
+- `README.md` linked to `docs/adapter-boundary.md`, `docs/phase-3-1-current-snapshot.md`, `spec/runtime-event.schema.yaml`, and `examples/runtime-event-to-pathway-minimal.yaml`
+- `README.ja.md` linked to the same Phase 3.1 artifacts using developer-oriented Japanese wording
+- `BEACON.md` recorded Phase 3.1 current position, observed #16 green status, staged update operation, read-first order, and restart point
+
+## Repository operation synchronization completed
+
+Phase 3.1 later added an explicit repository-operation layer so that large documentation updates can remain traceable and reviewable.
+
+Completed operation-layer synchronization includes:
+
+- `docs/repository-operation-model.md` for staged update operation, document roles, snapshot roles, sync-log roles, roadmap-note roles, workflow observation policy, checker interpretation policy, long-file update policy, log organization policy, and restart rules
+- `docs/operation-index.md` as the navigation index for operation documents, snapshots, sync logs, roadmap notes, checker coverage, example navigation, and periodic operation review
+- `docs/phase-3-1-current-snapshot.md` updated to include adapter boundary, runtime-event bridge, and repository operation layer
+- `ROADMAP.md` updated with Phase 3.1 operation-layer status
+- `CHANGELOG.md` updated with a conceptual milestone for the operation-layer synchronization
+
+This operation layer remains a repository-maintenance aid only. It is not production approval, connector correctness proof, adapter correctness proof, legal review, safety review, compliance review, fairness review, Lean completeness proof, or AI final-responsibility transfer.
+
+## Runtime-event checking plan synchronization completed
+
+A second Phase 3.1 synchronization refresh added `docs/runtime-event-checking-plan.md` before any runtime-event checker implementation.
+
+The checking plan records:
+
+- planned future runtime-event schema and JSON-fixture checks
+- checks that the first runtime-event checker must not perform
+- preconditions before adding `scripts/check_runtime_events.py`
+- suggested implementation order
+- the boundary for passing runtime-event checks
+- the current decision that runtime-event checking remains deferred
+
+Completed checking-plan synchronization includes:
+
+- `docs/runtime-event-checking-plan.md` added as the primary plan before runtime-event checker implementation
+- `docs/operation-index.md` updated so runtime-event schema checking, JSON fixture checking, and future runtime-event checker work point to the plan first
+- `docs/phase-3-1-current-snapshot.md` updated so the current restart point includes the runtime-event checking plan
+- `ROADMAP.md` updated with a runtime-event checking rule that blocks checker or workflow work until the plan preconditions are satisfied
+- `CHANGELOG.md` updated with a conceptual milestone for the checking plan
+- `docs/checker-coverage.md` updated to clarify that current checkers do not validate `spec/runtime-event.schema.yaml` or `examples/adapter-input-event-minimal.json`, and that runtime-event checking remains deferred
+- `docs/example-index.md` updated to clarify that `examples/runtime-event-to-pathway-minimal.yaml` is currently checked only as a pathway example, while `docs/runtime-event-checking-plan.md` describes possible future runtime-event checks
+
+This refresh is one responsibility unit split across multiple small commits for reviewability.
 
 ## Current checker interpretation
 
@@ -55,8 +94,10 @@ The current checker does not validate:
 - adapter mapping correctness
 - service-specific connector behavior
 - production runtime behavior
+- runtime-event schema correctness
+- JSON fixture correctness
 
-A checker pass for the runtime-event-to-pathway example does not certify an adapter, approve a connector, prove event mapping correctness, or make the generated record production ready.
+A checker pass for the runtime-event-to-pathway example does not certify an adapter, approve a connector, prove event mapping correctness, prove schema correctness, prove JSON fixture correctness, or make the generated record production ready.
 
 ## Deferred work
 
@@ -66,12 +107,16 @@ The following work remains deferred:
 - production conversion code
 - runtime-event schema checker
 - JSON fixture checker
+- `scripts/check_runtime_events.py`
+- runtime-event workflow
 - action-class-specific checker enforcement
 - Class E positive examples
 - Lean expansion around adapter or runtime-event concepts
 
 ## Next safe synchronization step
 
-The next safe synchronization step is to add a short reference from `CHANGELOG.md` or `ROADMAP.md` to this log and to `docs/phase-3-1-current-snapshot.md` without replacing those long files in a single large update.
+The next safe synchronization step is to refresh `docs/phase-3-1-roadmap-note.md` so that the roadmap companion matches the current runtime-event checking plan, checker-coverage note, and example-index reading path.
+
+After that, update `docs/phase-3-1-current-snapshot.md` only if the restart point needs to explicitly say that checker coverage and example index are now connected to the runtime-event checking plan.
 
 If a long full-file update is blocked or risky, preserve the state in this log and continue with smaller reader-path commits.
