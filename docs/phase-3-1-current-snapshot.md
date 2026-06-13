@@ -147,6 +147,7 @@ Phase 3.1 now has an explicit repository-operation layer.
 
 `docs/repository-operation-model.md` records:
 
+- document purpose and usage phase policy
 - staged update operation
 - synchronization unit operation
 - session load and handoff policy
@@ -176,7 +177,28 @@ The operation index is now connected from:
 
 `docs/operation-index.md` also now points readers to the session load and handoff policy when session load is becoming heavy or a durable restart path is needed.
 
+`docs/operation-index.md` now states that `CHANGELOG.md` is not part of the primary construction-time reconnection path and should be used mainly for archival, investigative, historical, or retrospective milestone review.
+
 `CHANGELOG.md` now records the periodic operation review policy as a conceptual milestone.
+
+## Document usage phases
+
+Current construction should use the document whose purpose matches the task.
+
+For active construction and restart, prefer:
+
+- `BEACON.md`
+- this current snapshot
+- `docs/operation-index.md`
+- `docs/phase-3-1-sync-log.md`
+- `docs/phase-3-1-roadmap-note.md`
+- `docs/checker-coverage.md`
+- `docs/example-index.md`
+- the primary artifact being changed
+
+Use `CHANGELOG.md` mainly for archival review, serious error investigation, historical cause tracing, or retrospective explanation of when and why a boundary or policy changed.
+
+If active construction starts relying on `CHANGELOG.md` as the primary restart path, use periodic operation review to correct the reading path.
 
 ## Commit granularity, session load, and operation review
 
@@ -196,6 +218,7 @@ Use periodic operation review when:
 - commit granularity feels too small or too large
 - reader paths become long or scattered
 - operation documents, snapshots, sync logs, or roadmap notes start multiplying
+- active construction starts relying on `CHANGELOG.md` as the primary restart path
 - checker interpretation and actual practice drift apart
 - deferred boundaries need to be reconsidered
 - observed workflow results need to remain bounded and non-certifying
@@ -281,8 +304,8 @@ Next safe synchronization steps:
 5. do not add `scripts/check_runtime_events.py` or a runtime-event workflow until the checking plan preconditions are satisfied
 6. keep Class E positive examples deferred
 7. keep Lean expansion around adapter and runtime events deferred
-8. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, or session handoff rules change
-9. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, session load, or deferred boundaries feel misaligned with actual practice
+8. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, session handoff rules, or document usage phase rules change
+9. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, document usage phase, session load, or deferred boundaries feel misaligned with actual practice
 10. add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, or operation document to point to
 
 ## Restart point
@@ -303,6 +326,8 @@ Also read:
 10. `spec/runtime-event.schema.yaml`
 11. `examples/adapter-input-event-minimal.json`
 12. `examples/runtime-event-to-pathway-minimal.yaml`
+
+Use `CHANGELOG.md` after these current-state documents only when a milestone, historical cause, serious inconsistency, or prior boundary decision needs investigation.
 
 If continuing after a long or heavy session, use `docs/repository-operation-model.md` and `docs/operation-index.md` to confirm the session load and handoff policy before making broad changes.
 
