@@ -6,6 +6,8 @@ The purpose is to preserve a readable Responsibility Pathway for repository chan
 
 This document is an operation guide. It is not a certification process, legal review process, safety review process, compliance process, fairness review process, production approval process, or AI final-responsibility transfer mechanism.
 
+For a short navigation index of operation-related documents, see `docs/operation-index.md`.
+
 ## Operating principle
 
 The repository should grow through small, reviewable changes.
@@ -69,6 +71,19 @@ Use it for durable milestones that changed how the repository should be read or 
 Do not use it for every individual code or documentation edit.
 
 When changelog updates become large, preserve detailed synchronization state in a phase-specific sync log and add only a short changelog reference later.
+
+### `docs/operation-index.md`
+
+`docs/operation-index.md` is the navigation index for operation-related documents.
+
+Use it when:
+
+- you are unsure which operation document to read first
+- operation documents, snapshots, sync logs, and roadmap notes are growing
+- a future maintainer needs a compact map of repository-maintenance documents
+- reader-path updates risk becoming scattered across several files
+
+The operation index should stay short and navigational. It should not replace this operation model, current snapshots, sync logs, roadmap notes, BEACON, ROADMAP, or CHANGELOG.
 
 ### Current snapshots
 
@@ -312,11 +327,12 @@ AI tools may assist drafting, organization, review, and implementation, but they
 When unsure where to restart:
 
 1. read `BEACON.md`
-2. read the current phase snapshot
-3. read the relevant sync log or roadmap note
-4. inspect the current example index and checker coverage
-5. fetch the file before changing it
-6. make one small change
-7. fetch again after writing
+2. read `docs/operation-index.md` when you need the operation-document map
+3. read the current phase snapshot
+4. read the relevant sync log or roadmap note
+5. inspect the current example index and checker coverage
+6. fetch the file before changing it
+7. make one small change
+8. fetch again after writing
 
 Do not continue directly into production connectors, production conversion code, high-impact examples, or new formal claims unless the relevant boundary documents and examples are already stable.
