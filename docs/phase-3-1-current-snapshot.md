@@ -26,7 +26,10 @@ Repository-wide reader-path and operation records now also include:
 - `README.md`
 - `README.ja.md`
 - `BEACON.md`
+- `ROADMAP.md`
 - `CHANGELOG.md`
+- `docs/checker-coverage.md`
+- `docs/example-index.md`
 
 ## Adapter boundary
 
@@ -121,6 +124,22 @@ The plan records:
 - the current decision that runtime-event checking remains deferred
 
 The plan does not implement a checker and does not certify schema correctness, JSON fixture correctness, adapter mapping correctness, service-specific connector behavior, production runtime behavior, legal validity, safety, compliance, fairness, moral resolution, production readiness, or AI final-responsibility transfer.
+
+## Runtime-event checking synchronization
+
+The runtime-event checking plan has been synchronized across the repository-maintenance reader path.
+
+Current synchronization status:
+
+- `docs/operation-index.md` points runtime-event schema checking, JSON fixture checking, and future runtime-event checker work to `docs/runtime-event-checking-plan.md` first
+- `docs/phase-3-1-sync-log.md` records the runtime-event checking plan synchronization as one responsibility unit split across multiple small commits
+- `docs/phase-3-1-roadmap-note.md` records that Phase 3.1 is not yet a runtime-event checker implementation phase
+- `ROADMAP.md` records the runtime-event checking rule before implementation
+- `CHANGELOG.md` records the runtime-event checking plan as a conceptual milestone before checker implementation
+- `docs/checker-coverage.md` records that current checkers do not validate `spec/runtime-event.schema.yaml` or `examples/adapter-input-event-minimal.json`
+- `docs/example-index.md` records that `examples/runtime-event-to-pathway-minimal.yaml` is currently checked only as a pathway example and that runtime-event checks are not yet implemented
+
+This synchronization does not unlock runtime-event checker implementation.
 
 ## Repository operation layer
 
@@ -221,6 +240,8 @@ The current Phase 3.1 set does not provide:
 - production conversion code
 - runtime-event schema validation by the checker
 - JSON fixture validation by the checker
+- runtime-event schema correctness proof
+- JSON fixture correctness proof
 - adapter mapping correctness checks
 - service-specific connector behavior checks
 - automatic responsibility decisions
@@ -240,9 +261,9 @@ Next safe synchronization steps:
 
 1. keep service-specific connectors deferred
 2. keep production conversion code deferred
-3. keep runtime-event schema checking deferred until the schema and examples remain stable
-4. keep JSON fixture checking deferred until the current event-to-pathway bridge remains readable and reviewable
-5. use `docs/runtime-event-checking-plan.md` before considering `scripts/check_runtime_events.py` or a runtime-event workflow
+3. keep runtime-event schema checking deferred until the schema and examples remain stable and `docs/runtime-event-checking-plan.md` preconditions are satisfied
+4. keep JSON fixture checking deferred until the current event-to-pathway bridge remains readable and reviewable and `docs/runtime-event-checking-plan.md` preconditions are satisfied
+5. do not add `scripts/check_runtime_events.py` or a runtime-event workflow until the checking plan preconditions are satisfied
 6. keep Class E positive examples deferred
 7. keep Lean expansion around adapter and runtime events deferred
 8. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, or checker plans change
@@ -262,9 +283,11 @@ Also read:
 5. `docs/phase-3-1-roadmap-note.md`
 6. `docs/adapter-boundary.md`
 7. `docs/runtime-event-checking-plan.md`
-8. `spec/runtime-event.schema.yaml`
-9. `examples/adapter-input-event-minimal.json`
-10. `examples/runtime-event-to-pathway-minimal.yaml`
+8. `docs/checker-coverage.md`
+9. `docs/example-index.md`
+10. `spec/runtime-event.schema.yaml`
+11. `examples/adapter-input-event-minimal.json`
+12. `examples/runtime-event-to-pathway-minimal.yaml`
 
 The next direct implementation step should not be a production connector.
 
