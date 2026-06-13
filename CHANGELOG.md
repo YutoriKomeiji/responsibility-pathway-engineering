@@ -15,10 +15,12 @@ This changelog records conceptual milestones rather than individual code edits.
 ### Phase 3.1 repository operation model and synchronization notes added
 
 - `docs/repository-operation-model.md` added to document staged update operation, snapshot roles, sync-log roles, roadmap-note roles, workflow observation policy, checker interpretation policy, long-file update policy, log organization policy, non-certifying operation boundaries, and restart rules
+- `docs/operation-index.md` added as the navigation index for operation-related documents, snapshots, sync logs, roadmap notes, checker coverage, example navigation, and periodic operation review
 - `docs/phase-3-1-sync-log.md` records the staged synchronization work for the Phase 3.1 Adapter Boundary and Runtime Event Bridge
 - `docs/phase-3-1-roadmap-note.md` records the short roadmap companion for Phase 3.1 so that large `ROADMAP.md` updates can remain small and reviewable
-- README, README.ja, BEACON, ROADMAP, and the Phase 3.1 current snapshot now point to the repository operation model or the Phase 3.1 companion notes
-- The operation model is a repository-maintenance guide only; it is not certification, legal review, safety review, compliance review, production approval, connector correctness proof, adapter correctness proof, or AI final-responsibility transfer
+- `docs/phase-3-1-current-snapshot.md` now records the current Phase 3.1 restart point for the adapter boundary, runtime-event bridge, and repository operation layer
+- README, README.ja, BEACON, ROADMAP, and the Phase 3.1 current snapshot now point to the repository operation model, operation index, or the Phase 3.1 companion notes
+- The operation model, operation index, sync log, roadmap note, and current snapshot are repository-maintenance aids only; they are not certification, legal review, safety review, compliance review, production approval, connector correctness proof, adapter correctness proof, Lean completeness proof, or AI final-responsibility transfer
 
 ### Phase 3.1 runtime-event bridge synchronization checkpoint added
 
