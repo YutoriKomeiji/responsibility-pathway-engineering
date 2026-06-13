@@ -1,0 +1,305 @@
+# Class F emergency stop flow example
+#
+# This example models an emergency stop / stop-and-await pathway.
+# It is intentionally small and illustrative.
+# It is not a certification, compliance claim, safety guarantee,
+# legal assessment, moral accountability judgment, or production-ready pattern.
+#
+# 日本語メモ:
+# これは Class F Emergency Stop の最小例です。
+# AI支援中に異常・不確実性・権限不明が検出された場合、実行を進めず、停止して人間確認へ戻します。
+# Emergency Stop は「進める権限」ではなく「止めて責任を保全する権限」です。
+
+id: emergency_stop_flow_001
+version: 0.1.0
+lifecycle_state: suspended
+
+nodes:
+  - id: human_stop_authority_001
+    type: Human
+    capabilities:
+      - receive
+      - review
+      - stop
+      - suspend
+      - return
+      - repair
+      - close
+    authority_scope:
+      can_decide: true
+      can_approve: true
+      can_execute: false
+      can_stop: true
+      can_repair: true
+      can_close: true
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_stop_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: true
+
+  - id: ai_execution_support_001
+    type: AIAgent
+    capabilities:
+      - receive
+      - generate
+      - explain
+      - escalate
+      - return
+    authority_scope:
+      can_decide: false
+      can_approve: false
+      can_execute: false
+      can_stop: false
+      can_repair: false
+      can_close: false
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_stop_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: false
+    ai_participation:
+      may_generate: true
+      may_recommend: true
+      may_classify: true
+      may_execute_under_authority: false
+      assumes_final_responsibility: false
+
+  - id: pending_operation_001
+    type: BusinessProcess
+    capabilities:
+      - preserve
+      - suspend
+    authority_scope:
+      can_decide: false
+      can_approve: false
+      can_execute: false
+      can_stop: false
+      can_repair: false
+      can_close: false
+    evidence_binding:
+      required: true
+      log_reference: evidence_log_stop_001
+      retention_scope: example_only
+      access_boundary: local_review
+    human_responsibility_capacity: false
+
+edges:
+  - from: human_stop_authority_001
+    to: ai_execution_support_001
+    relation_type: delegated_support
+    condition: human_requests_ai_support_before_possible_action
+    evidence_reference: evidence_log_stop_001
+
+  - from: ai_execution_support_001
+    to: human_stop_authority_001
+    relation_type: return_to_authority
+    condition: abnormal_uncertainty_or_authority_gap_detected
+    evidence_reference: evidence_log_stop_001
+
+  - from: human_stop_authority_001
+    to: pending_operation_001
+    relation_type: emergency_stop
+    condition: human_stop_authority_suspends_pending_operation
+    evidence_reference: evidence_log_stop_001
+
+roles:
+  decision_owner: human_stop_authority_001
+  approval_gate: human_stop_authority_001
+  execution_actor: null
+  stop_authority: human_stop_authority_001
+  evidence_log: evidence_log_stop_001
+  repair_owner: human_stop_authority_001
+  return_point: return_point_stop_001
+  human_return_point: return_point_stop_001
+  affected_party: null
+
+action_class:
+  id: class_f_emergency_stop
+  label: Class F
+  name: Emergency Stop
+  source_aligned_class: F
+  description: Stop, suspend, or return a pending operation to human confirmation instead of allowing further execution.
+  responsibility_requirements:
+    decision_owner_required: true
+    approval_gate_required: false
+    execution_actor_required: false
+    stop_authority_required: true
+    evidence_log_required: true
+    return_point_required: true
+    repair_owner_required: true
+    affected_party_visibility_required: false
+    rollback_or_correction_path_required: false
+    restart_approval_required: true
+  reversibility: partially_reversible
+  external_impact: internal
+  execution_effect: stop_or_suspend
+  automation_boundary:
+    may_be_automated: false
+    requires_human_review: true
+    requires_human_authorization: true
+    prohibited_without_explicit_authority: true
+    autonomous_execution_disallowed: true
+  excluded_interpretations:
+    - not_permission_to_proceed
+    - not_proof_of_safety
+    - not_repair_completion
+    - not_certification
+    - not_legal_review
+    - not_compliance_review
+    - not_production_ready
+
+evidence_logs:
+  - id: evidence_log_stop_001
+    pathway_id: emergency_stop_flow_001
+    evidence_categories:
+      - stop_trigger
+      - stop_reason
+      - pending_operation
+      - ai_proposal
+      - uncertainty
+      - authority_gap
+      - stop_authority
+      - return_point
+      - restart_condition
+      - timestamp
+      - excluded_claims
+    integrity_state: partial
+    ordering: timestamped
+    reconstruction_support:
+      can_reconstruct_action: true
+      can_reconstruct_authority: true
+      can_reconstruct_context: true
+      can_reconstruct_uncertainty: true
+      can_reconstruct_stop_point: true
+      can_reconstruct_return_point: true
+      can_reconstruct_repair_action: false
+    quality:
+      completeness: partial
+      readability: human_readable
+      availability: local_example
+      scope_clarity: emergency_stop_example_only
+      retention_period: not_specified
+      privacy_constraints: avoid_sensitive_data
+      safety_constraints: no_production_use
+    access_boundary:
+      readable_by:
+        - human_stop_authority_001
+      writable_by:
+        - human_stop_authority_001
+      redaction_required: false
+      retention_owner: human_stop_authority_001
+      repair_owner_access: human_stop_authority_001
+
+return_points:
+  - id: return_point_stop_001
+    type: HumanReturnPoint
+    source_node: ai_execution_support_001
+    target_node: human_stop_authority_001
+    returnability_conditions:
+      meaning_visible: true
+      authority_visible: true
+      time_available: true
+      information_quality_sufficient: partial
+      trust_calibrated: true
+      reversibility_or_compensation_visible: partial
+      value_visible: partial
+      cost_visible: partial
+    supported_actions:
+      - review_stop_reason
+      - confirm_suspension
+      - approve_restart
+      - reject_restart
+      - repair
+      - close
+    evidence_requirements:
+      evidence_log_required: true
+      minimum_evidence_categories:
+        - stop_trigger
+        - stop_reason
+        - uncertainty
+        - authority_gap
+        - stop_authority
+        - restart_condition
+      reconstruction_required: true
+      access_boundary: local_review
+    human_conditions:
+      understandable_information: true
+      meaningful_choice: true
+      refusal_available: true
+      stop_authority_available: true
+      repair_path_available: true
+      adequate_review_time: true
+      no_coercive_pressure: true
+
+suspension:
+  id: suspension_stop_001
+  pathway_id: emergency_stop_flow_001
+  suspension_owner: human_stop_authority_001
+  suspension_reason: abnormal_uncertainty_or_authority_gap_detected
+  required_before_continuation:
+    - human_review_of_stop_reason
+    - explicit_restart_approval
+    - evidence_log_review
+  continuation_boundary:
+    automatic_continuation_allowed: false
+    restart_approval_required: true
+    ai_restart_authority_allowed: false
+  closure_boundary:
+    automatic_closure_allowed: false
+    closure_requires_human_or_institutional_review: true
+  disallowed_interpretations:
+    - stop_is_not_approval_to_continue
+    - stop_is_not_repair_completion
+    - stop_is_not_safety_certification
+    - stop_is_not_legal_resolution
+
+repairs:
+  - id: repair_stop_001
+    pathway_id: emergency_stop_flow_001
+    trigger: stop_reason_requires_follow_up_review
+    repair_owner: human_stop_authority_001
+    repair_state: available_not_triggered
+    evidence_reference: evidence_log_stop_001
+    affected_parties:
+      - internal_operator
+    corrective_action:
+      - review_stop_reason
+      - revise_instruction_or_context
+      - decide_restart_or_closure
+    outcome:
+      state: not_triggered
+      boundary: example_only
+
+responsibility_boundary:
+  human_author_required: true
+  ai_final_responsibility_allowed: false
+  institutional_authority_required_when_applicable: false
+  legal_or_moral_claims_out_of_scope: true
+
+formalization_scope:
+  assumptions:
+    - The example models emergency stop and stop-and-await only.
+    - No real-world external action is executed.
+    - AI support may detect or explain uncertainty, but cannot stop, restart, approve, or assume final responsibility.
+    - Human stop authority owns suspension, restart approval, and closure decision.
+  modeled_entities:
+    - human_stop_authority_001
+    - ai_execution_support_001
+    - pending_operation_001
+    - evidence_log_stop_001
+    - return_point_stop_001
+    - suspension_stop_001
+    - repair_stop_001
+  excluded_claims:
+    - legal_liability
+    - moral_blame
+    - compliance
+    - production_safety
+    - fairness
+    - certification
+    - production_readiness
+    - real_world_accountability_resolution
+  theorem_status: not_formalized
