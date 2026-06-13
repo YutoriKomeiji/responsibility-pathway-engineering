@@ -1,6 +1,6 @@
 # Phase 3.1 Current Snapshot
 
-This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, and repository operation layer.
+This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, runtime-event checking plan, and repository operation layer.
 
 Phase 3.1 is the bridge from external logs, API events, workflow results, and runtime observations into draft Responsibility Pathway records.
 
@@ -14,6 +14,7 @@ Current Phase 3.1 artifacts:
 - `spec/runtime-event.schema.yaml`
 - `examples/adapter-input-event-minimal.json`
 - `examples/runtime-event-to-pathway-minimal.yaml`
+- `docs/runtime-event-checking-plan.md`
 - `docs/phase-3-1-current-snapshot.md`
 - `docs/phase-3-1-sync-log.md`
 - `docs/phase-3-1-roadmap-note.md`
@@ -104,6 +105,23 @@ It maps the synthetic runtime event into a Responsibility Pathway record with:
 
 The generated pathway record remains a draft requiring human review.
 
+## Runtime-event checking plan
+
+`docs/runtime-event-checking-plan.md` defines the planned path for adding bounded runtime-event schema and JSON-fixture checks.
+
+The plan exists before implementation so that runtime-event checking can remain small, structural, reviewable, and non-certifying.
+
+The plan records:
+
+- what a future runtime-event checker may inspect
+- what the first checker must not inspect
+- preconditions before adding `scripts/check_runtime_events.py`
+- suggested implementation order
+- the boundary for passing checks
+- the current decision that runtime-event checking remains deferred
+
+The plan does not implement a checker and does not certify schema correctness, JSON fixture correctness, adapter mapping correctness, service-specific connector behavior, production runtime behavior, legal validity, safety, compliance, fairness, moral resolution, production readiness, or AI final-responsibility transfer.
+
 ## Repository operation layer
 
 Phase 3.1 now has an explicit repository-operation layer.
@@ -132,6 +150,8 @@ The operation index is now connected from:
 - `README.md`
 - `README.ja.md`
 - `BEACON.md`
+
+`docs/runtime-event-checking-plan.md` is now connected from `docs/operation-index.md` as the plan to read before considering runtime-event schema checking, JSON fixture checking, or future runtime-event checker work.
 
 `CHANGELOG.md` now records the periodic operation review policy as a conceptual milestone.
 
@@ -222,11 +242,12 @@ Next safe synchronization steps:
 2. keep production conversion code deferred
 3. keep runtime-event schema checking deferred until the schema and examples remain stable
 4. keep JSON fixture checking deferred until the current event-to-pathway bridge remains readable and reviewable
-5. keep Class E positive examples deferred
-6. keep Lean expansion around adapter and runtime events deferred
-7. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, or roadmap notes change
-8. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, or deferred boundaries feel misaligned with actual practice
-9. add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, or operation document to point to
+5. use `docs/runtime-event-checking-plan.md` before considering `scripts/check_runtime_events.py` or a runtime-event workflow
+6. keep Class E positive examples deferred
+7. keep Lean expansion around adapter and runtime events deferred
+8. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, or checker plans change
+9. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, or deferred boundaries feel misaligned with actual practice
+10. add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, or operation document to point to
 
 ## Restart point
 
@@ -240,10 +261,11 @@ Also read:
 4. `docs/phase-3-1-sync-log.md`
 5. `docs/phase-3-1-roadmap-note.md`
 6. `docs/adapter-boundary.md`
-7. `spec/runtime-event.schema.yaml`
-8. `examples/adapter-input-event-minimal.json`
-9. `examples/runtime-event-to-pathway-minimal.yaml`
+7. `docs/runtime-event-checking-plan.md`
+8. `spec/runtime-event.schema.yaml`
+9. `examples/adapter-input-event-minimal.json`
+10. `examples/runtime-event-to-pathway-minimal.yaml`
 
 The next direct implementation step should not be a production connector.
 
-The next direct documentation step should be either a short ROADMAP reference update or a periodic operation review if the operation layer becomes misaligned with actual practice.
+The next direct checker step should not begin until `docs/runtime-event-checking-plan.md` preconditions are satisfied.
