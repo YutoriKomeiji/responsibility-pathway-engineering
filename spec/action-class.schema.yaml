@@ -1,15 +1,20 @@
-version: 0.1.0
+version: 0.2.0
 kind: ActionClassSchema
 
 purpose: >
   Defines the minimum machine-readable structure for classifying actions
-  by responsibility impact.
+  by responsibility impact, reversibility, externality, approval requirement,
+  evidence requirement, and repair burden.
+
+schema_status: >
+  Source-aligned Class A-F structure. Earlier Class 0-4 values are retained
+  only as historical mapping references.
 
 action_class:
   required_fields:
     - id
     - name
-    - level
+    - source_aligned_class
     - responsibility_requirements
 
   fields:
@@ -17,18 +22,44 @@ action_class:
       type: string
       description: Stable identifier for the action class.
 
+    label:
+      type: string
+      description: Human-readable class label such as Class A, Class B, Class C, Class D, Class E, or Class F.
+
     name:
       type: string
       description: Human-readable name of the action class.
 
+    source_aligned_class:
+      type: enum
+      allowed_values:
+        - A
+        - B
+        - C
+        - D
+        - E
+        - F
+      description: Current source-aligned action class label.
+
+    legacy_mapping:
+      type: object
+      description: Optional mapping to the earlier Class 0-4 structure when updating old examples.
+      suggested_fields:
+        - earlier_class_id
+        - earlier_class_name
+        - earlier_level
+        - mapping_note
+
     level:
       type: integer
+      status: legacy_optional
       allowed_values:
         - 0
         - 1
         - 2
         - 3
         - 4
+      description: Legacy Class 0-4 level. New examples should prefer source_aligned_class.
 
     description:
       type: string
@@ -43,11 +74,14 @@ action_class:
       suggested_fields:
         - decision_owner_required
         - approval_gate_required
+        - execution_actor_required
         - stop_authority_required
         - evidence_log_required
         - return_point_required
         - repair_owner_required
         - affected_party_visibility_required
+        - rollback_or_correction_path_required
+        - restart_approval_required
 
     reversibility:
       type: enum
@@ -67,6 +101,16 @@ action_class:
         - public
         - high_risk
 
+    execution_effect:
+      type: enum
+      allowed_values:
+        - none
+        - internal_state_change
+        - external_state_change
+        - high_impact_change
+        - stop_or_suspend
+        - unknown
+
     automation_boundary:
       type: object
       suggested_fields:
@@ -74,52 +118,153 @@ action_class:
         - requires_human_review
         - requires_human_authorization
         - prohibited_without_explicit_authority
+        - autonomous_execution_disallowed
+
+    excluded_interpretations:
+      type: list
+      item_type: string
 
 classes:
+  - id: class_a_observe_only
+    label: Class A
+    source_aligned_class: A
+    name: Observe-Only
+    reversibility: reversible
+    external_impact: none
+    execution_effect: none
+    typical_requirements:
+      - source visibility
+      - input-contamination awareness
+      - no external execution
+      - adoption boundary when observed information affects later judgment
+
+  - id: class_b_suggest_only
+    label: Class B
+    source_aligned_class: B
+    name: Suggest-Only
+    reversibility: reversible
+    external_impact: internal
+    execution_effect: none
+    typical_requirements:
+      - proposal/execution separation
+      - human adoption clarity
+      - uncertainty visibility
+      - final responsibility remains human or institutional
+
+  - id: class_c_approval_required
+    label: Class C
+    source_aligned_class: C
+    name: Approval-Required
+    reversibility: partially_reversible
+    external_impact: internal
+    execution_effect: internal_state_change
+    typical_requirements:
+      - decision owner
+      - approval gate
+      - execution actor
+      - evidence log
+      - human return point
+      - correction or rollback path where feasible
+
+  - id: class_d_reversible_external_action
+    label: Class D
+    source_aligned_class: D
+    name: Reversible External Action
+    reversibility: partially_reversible
+    external_impact: external
+    execution_effect: external_state_change
+    typical_requirements:
+      - explicit approver
+      - execution actor
+      - execution log
+      - rollback method
+      - impact scope
+      - abnormal-case contact
+      - human return point
+      - stop authority where timing matters
+
+  - id: class_e_irreversible_or_high_impact
+    label: Class E
+    source_aligned_class: E
+    name: Irreversible or High-Impact Action
+    reversibility: irreversible
+    external_impact: high_risk
+    execution_effect: high_impact_change
+    typical_requirements:
+      - strong human authorization
+      - independent review where appropriate
+      - explicit stop authority
+      - pre-execution evidence capture
+      - post-execution repair plan
+      - documented non-automation boundary where needed
+      - affected-party and escalation visibility where relevant
+
+  - id: class_f_emergency_stop
+    label: Class F
+    source_aligned_class: F
+    name: Emergency Stop
+    reversibility: partially_reversible
+    external_impact: internal
+    execution_effect: stop_or_suspend
+    typical_requirements:
+      - explicit stop authority
+      - stop trigger condition
+      - evidence of stop reason
+      - pending responsibility owner
+      - return path to human or institutional review
+      - restart approval where continuation is possible
+      - repair owner where damage or ambiguity remains
+
+legacy_classes:
   - id: class_0_informational
     level: 0
     name: Informational
-    reversibility: reversible
-    external_impact: none
+    source_aligned_relation: Mostly maps to Class A Observe-Only and Class B Suggest-Only.
 
   - id: class_1_internal_assistive
     level: 1
     name: Internal Assistive
-    reversibility: reversible
-    external_impact: internal
+    source_aligned_relation: Mostly maps to Class B Suggest-Only and lightweight Class C Approval-Required.
 
   - id: class_2_controlled_execution
     level: 2
     name: Controlled Execution
-    reversibility: partially_reversible
-    external_impact: internal
+    source_aligned_relation: Mostly maps to Class C Approval-Required and some Class D Reversible External Action.
 
   - id: class_3_external_impact
     level: 3
     name: External Impact
-    reversibility: hard_to_reverse
-    external_impact: external
+    source_aligned_relation: Mostly maps to Class D Reversible External Action and Class E Irreversible or High-Impact Action.
 
   - id: class_4_irreversible_or_high_risk
     level: 4
     name: Irreversible or High Risk
-    reversibility: irreversible
-    external_impact: high_risk
+    source_aligned_relation: Mostly maps to Class E Irreversible or High-Impact Action.
 
 validation_rules:
-  - id: high_impact_requires_human_authorization
+  - id: class_c_or_higher_requires_approval_design
     rule: >
-      If level is 3 or 4, requires_human_authorization should be true.
+      If source_aligned_class is C, D, or E, approval_gate_required should be true
+      or an equivalent approval design should be documented.
 
-  - id: irreversible_requires_repair_owner
+  - id: class_d_or_higher_requires_repair_or_rollback_design
     rule: >
-      If reversibility is irreversible or hard_to_reverse, repair_owner_required should be true.
+      If source_aligned_class is D or E, rollback_or_correction_path_required
+      or repair_owner_required should be true.
 
-  - id: external_impact_requires_evidence
+  - id: class_e_requires_high_impact_boundary
     rule: >
-      If external_impact is external, public, or high_risk, evidence_log_required should be true.
+      If source_aligned_class is E, high-impact and non-autonomous execution
+      boundaries should be explicit.
+
+  - id: class_f_requires_stop_and_return_design
+    rule: >
+      If source_aligned_class is F, stop authority, stop trigger, pending
+      responsibility owner, and return/restart conditions should be explicit.
 
 boundary:
   - This schema does not determine legal classification.
   - This schema does not determine moral blame.
+  - This schema does not certify safety, fairness, compliance, institutional approval, or production readiness.
   - This schema only classifies actions for Responsibility Pathway design.
+  - Checker rules based on this schema must remain bounded structural checks.
