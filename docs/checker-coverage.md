@@ -96,6 +96,24 @@ These checks are optional and apply only when `review_metadata` is present.
 
 They remain bounded structural checks. A pass does not certify the record, the workflow, the system, the organization, or the real-world decision.
 
+### Action-class-specific checks
+
+Current checkers do not yet enforce action-class-specific requirements from [docs/action-class-matrix.md](action-class-matrix.md).
+
+This is intentional for the current repository state because existing examples were created before the source-aligned Class A-F structure was stabilized.
+
+Future bounded checker work may inspect structural signals such as:
+
+- declared `action_class`
+- Class C or higher Approval Gate presence
+- Class D or higher rollback or repair path presence
+- Class E high-impact and non-autonomous boundary language
+- Class F stop trigger, Stop Authority, pending responsibility owner, and restart/return fields
+
+Any such rule must remain bounded to structural signals.
+
+A checker pass must not be interpreted as legal validity, safety, compliance, fairness, moral resolution, institutional approval, production readiness, or AI final-responsibility transfer.
+
 ## `scripts/check_review_results.py`
 
 `scripts/check_review_results.py` checks review-result fixtures under `fixtures/review-results/*.yaml` against `spec/review-result.schema.yaml`.
@@ -148,20 +166,33 @@ Future checker work should remain bounded to structural signals and must not tre
 
 ## Current example coverage map
 
-| Example | Declared lifecycle state | Lifecycle-specific checker rule | Optional review metadata check |
-| --- | --- | --- | --- |
-| `examples/minimal-pathway.yaml` | `originating` | yes | no |
-| `examples/record-review-minimal.yaml` | `originating` | yes | yes |
-| `examples/repair-flow.yaml` | `repaired` | yes | no |
-| `examples/suspended-pathway.yaml` | `suspended` | yes | no |
-| `examples/returning-pathway.yaml` | `returning` | yes | no |
-| `examples/closed-pathway.yaml` | `closed` | yes | no |
+| Example | Declared lifecycle state | Lifecycle-specific checker rule | Optional review metadata check | Action-class-specific check |
+| --- | --- | --- | --- | --- |
+| `examples/minimal-pathway.yaml` | `originating` | yes | no | not yet |
+| `examples/record-review-minimal.yaml` | `originating` | yes | yes | not yet |
+| `examples/repair-flow.yaml` | `repaired` | yes | no | not yet |
+| `examples/suspended-pathway.yaml` | `suspended` | yes | no | not yet |
+| `examples/returning-pathway.yaml` | `returning` | yes | no | not yet |
+| `examples/closed-pathway.yaml` | `closed` | yes | no | not yet |
 
 ## Review-result fixture coverage map
 
 | Fixture | Schema reference | Alignment note | Current checker coverage |
 | --- | --- | --- | --- |
 | `fixtures/review-results/record-review-result-minimal.yaml` | `spec/review-result.schema.yaml` | `docs/review-result-schema-fixture-alignment.md` | checked by `scripts/check_review_results.py` |
+
+## Planned action-class coverage map
+
+This is future work, not current checker behavior.
+
+| Planned area | Possible bounded signal | Boundary |
+| --- | --- | --- |
+| Class A Observe-Only | source/context visibility where observation affects later judgment | not safety or manipulation-proofing certification |
+| Class B Suggest-Only | AI proposal separated from human adoption | not semantic correctness certification |
+| Class C Approval-Required | Approval Gate, Execution Actor, Evidence Log | not approval quality certification |
+| Class D Reversible External Action | rollback or repair path, external-impact boundary | not proof of harmless reversibility |
+| Class E Irreversible or High-Impact Action | high-impact boundary, non-autonomous language, repair owner | not legal/safety/compliance approval |
+| Class F Emergency Stop | stop trigger, Stop Authority, pending responsibility owner, restart/return boundary | not proof that the system is safe |
 
 ## Interpretation boundary
 
