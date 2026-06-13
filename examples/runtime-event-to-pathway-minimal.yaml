@@ -34,6 +34,7 @@ nodes:
   - id: human_decision_owner_001
     type: Human
     name: Human Decision Owner
+    human_responsibility_capacity: true
     can_hold_final_responsibility: true
     can_decide: true
     can_approve: true
@@ -136,8 +137,9 @@ review_requirement:
   automatic_approval_allowed: false
   automatic_execution_allowed: false
 
-human_return_points:
+return_points:
   - id: return_point_runtime_event_001
+    type: HumanReturnPoint
     from: ai_support_agent_001
     to: human_decision_owner_001
     reason: AI-generated draft requires human review before any internal document update.
