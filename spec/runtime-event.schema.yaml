@@ -1,0 +1,284 @@
+schema_id: runtime_event_schema
+version: 0.1.0
+status: draft
+purpose: >
+  Define a minimal vendor-neutral input event shape for future adapters that
+  transform external logs, API events, workflow results, or runtime
+  observations into draft Responsibility Pathway records.
+
+boundary:
+  documentation_status: draft_schema
+  production_connector: false
+  production_runtime: false
+  certification_system: false
+  legal_decision_system: false
+  safety_certification_tool: false
+  compliance_engine: false
+  fairness_certification_tool: false
+  ai_final_responsibility_transfer: false
+
+interpretation:
+  event_is_observation: true
+  event_is_not_approval: true
+  event_is_not_certification: true
+  event_is_not_legal_or_moral_resolution: true
+  generated_pathway_record_requires_review: true
+
+required_fields:
+  - event_id
+  - schema_version
+  - source_system
+  - observed_at
+  - observed_actor
+  - observed_action
+  - observed_target
+  - evidence
+  - review_requirement
+  - excluded_claims
+
+fields:
+  event_id:
+    type: string
+    required: true
+    description: Stable identifier for the observed event within the example or source system.
+    example: event_minimal_001
+
+  schema_version:
+    type: string
+    required: true
+    description: Runtime event schema version used by the input event.
+    example: 0.1.0
+
+  source_system:
+    type: object
+    required: true
+    fields:
+      id:
+        type: string
+        required: true
+        example: synthetic_runtime
+      name:
+        type: string
+        required: true
+        example: Synthetic Runtime Event Source
+      type:
+        type: enum
+        required: true
+        allowed_values:
+          - synthetic
+          - workflow
+          - api
+          - application
+          - log_stream
+          - ticketing
+          - approval_workflow
+          - cloud_audit
+          - unknown
+      vendor_specific:
+        type: boolean
+        required: true
+        description: Whether this event depends on a vendor-specific connector contract.
+        expected_initial_value: false
+
+  observed_at:
+    type: string
+    format: date-time
+    required: true
+    description: Timestamp when the event was observed or recorded.
+
+  observed_actor:
+    type: object
+    required: true
+    fields:
+      id:
+        type: string
+        required: true
+      type:
+        type: enum
+        required: true
+        allowed_values:
+          - human
+          - ai_agent
+          - system
+          - organization
+          - institution
+          - unknown
+      display_name:
+        type: string
+        required: false
+      final_responsibility_claimed:
+        type: boolean
+        required: true
+        expected_for_ai_agent: false
+
+  observed_action:
+    type: object
+    required: true
+    fields:
+      id:
+        type: string
+        required: true
+      type:
+        type: enum
+        required: true
+        allowed_values:
+          - observe
+          - summarize
+          - classify
+          - recommend
+          - draft
+          - approve
+          - execute
+          - publish
+          - notify_external_party
+          - stop
+          - repair
+          - rollback
+          - unknown
+      description:
+        type: string
+        required: true
+      proposed_action_class:
+        type: enum
+        required: false
+        allowed_values:
+          - class_a_observe_only
+          - class_b_suggest_only
+          - class_c_approval_required
+          - class_d_reversible_external_action
+          - class_e_irreversible_or_high_impact
+          - class_f_emergency_stop
+          - unknown
+      action_class_source:
+        type: enum
+        required: false
+        allowed_values:
+          - explicit_source_event
+          - adapter_suggestion
+          - human_review
+          - unknown
+
+  observed_target:
+    type: object
+    required: true
+    fields:
+      id:
+        type: string
+        required: true
+      type:
+        type: enum
+        required: true
+        allowed_values:
+          - internal_document
+          - external_notification
+          - workflow_run
+          - api_response
+          - user_record
+          - system_state
+          - unknown
+      description:
+        type: string
+        required: false
+      external_impact_possible:
+        type: boolean
+        required: true
+      high_impact_possible:
+        type: boolean
+        required: true
+
+  evidence:
+    type: object
+    required: true
+    fields:
+      source_reference:
+        type: string
+        required: false
+      source_event_hash:
+        type: string
+        required: false
+      captured_fields:
+        type: list[string]
+        required: true
+      missing_fields:
+        type: list[string]
+        required: true
+      uncertainty_notes:
+        type: list[string]
+        required: true
+      raw_event_available:
+        type: boolean
+        required: true
+
+  review_requirement:
+    type: object
+    required: true
+    fields:
+      human_or_institutional_review_required:
+        type: boolean
+        required: true
+        expected_initial_value: true
+      reason:
+        type: string
+        required: true
+      suggested_review_roles:
+        type: list[string]
+        required: false
+        allowed_values:
+          - decision_owner
+          - approval_gate
+          - execution_actor
+          - stop_authority
+          - repair_owner
+          - evidence_reviewer
+          - affected_party_reviewer
+      stop_or_escalate_recommended:
+        type: boolean
+        required: true
+
+  adapter_context:
+    type: object
+    required: false
+    fields:
+      adapter_id:
+        type: string
+        required: false
+      adapter_version:
+        type: string
+        required: false
+      transformed_at:
+        type: string
+        format: date-time
+        required: false
+      mapping_notes:
+        type: list[string]
+        required: false
+
+  excluded_claims:
+    type: list[string]
+    required: true
+    expected_values:
+      - legal_validity
+      - safety_certification
+      - compliance_certification
+      - fairness_certification
+      - moral_resolution
+      - institutional_approval
+      - production_readiness
+      - ai_final_responsibility_transfer
+
+minimum_valid_example_requirements:
+  - event_id is present
+  - schema_version is present
+  - source_system.vendor_specific is false for the first minimal example
+  - observed_actor.final_responsibility_claimed is false when observed_actor.type is ai_agent
+  - evidence.captured_fields is non-empty
+  - evidence.missing_fields is present even when empty
+  - evidence.uncertainty_notes is present even when empty
+  - review_requirement.human_or_institutional_review_required is true
+  - excluded_claims contains the expected non-certifying boundary items
+
+future_work:
+  - add a minimal synthetic JSON event fixture
+  - add a minimal event-to-pathway YAML example
+  - later add a local non-production converter after examples stabilize
+  - do not add service-specific connectors before the minimal runtime event bridge is readable and reviewable
