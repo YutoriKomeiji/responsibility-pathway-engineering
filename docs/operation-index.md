@@ -15,16 +15,32 @@ Use this path when restarting work after a pause or when another maintainer, rev
 5. `docs/example-index.md`
 6. `docs/checker-coverage.md`
 
+`CHANGELOG.md` is not part of the primary construction-time reconnection path. Use it mainly for archival, investigative, historical, or retrospective milestone review.
+
+## Usage phases
+
+Use documents according to the phase of work.
+
+| Work phase | Prefer reading | Use `CHANGELOG.md` when |
+| --- | --- | --- |
+| Active construction | `BEACON.md`, current snapshot, operation index, sync log, roadmap note, checker coverage, example index, primary artifact | a prior milestone or boundary change must be investigated |
+| Restart or handoff | `BEACON.md`, current snapshot, operation index, sync log, roadmap note | the restart depends on historical cause tracing |
+| Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, relevant schemas or examples | checking when a rule or coverage boundary changed |
+| Phase planning | `ROADMAP.md`, roadmap note, current snapshot, operation index | confirming a past phase milestone |
+| Audit, error investigation, or retrospective explanation | `CHANGELOG.md`, sync logs, snapshots, relevant commits and artifacts | this is the intended primary use |
+
+If the purpose does not match the document, change the reading path or update path before continuing.
+
 ## Operation documents
 
 | Document | Use when |
 | --- | --- |
-| `docs/repository-operation-model.md` | You need the current repository-wide operating model, staged update operation, synchronization unit operation, session load and handoff policy, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, or restart rule. |
+| `docs/repository-operation-model.md` | You need the current repository-wide operating model, document purpose and usage phase policy, staged update operation, synchronization unit operation, session load and handoff policy, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, or restart rule. |
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
 | `BEACON.md` | You need the current reconnection point, read-first order, current focus, and restart point. |
 | `ROADMAP.md` | You need phase-level direction, next low-risk work, phase rules, or deferred work. |
-| `CHANGELOG.md` | You need durable conceptual milestones rather than detailed per-commit history. |
+| `CHANGELOG.md` | You need archival milestones, serious error investigation support, historical cause tracing, or retrospective explanation of when and why a boundary or policy changed. |
 
 ## Periodic operation review
 
@@ -35,6 +51,7 @@ A periodic operation review is useful when:
 - commit granularity feels too small or too large
 - reader paths become long or scattered
 - operation documents, snapshots, sync logs, or roadmap notes are multiplying
+- active construction starts relying on `CHANGELOG.md` as a primary restart path
 - a workflow result is recorded as observed green
 - a checker failure changes future maintenance behavior
 - a deferred implementation boundary is being reconsidered
