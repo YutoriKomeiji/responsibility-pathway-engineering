@@ -8,11 +8,52 @@ Responsibility Pathway Engineering is a design framework for preserving the path
 
 It is not a blame assignment mechanism.
 
+## Current orientation
+
+Responsibility Pathway Engineering focuses on responsibility-flow design, not model performance alone.
+
+It asks:
+
+- where judgment arises
+- who or what participates in the judgment
+- who accepts the judgment as responsibility
+- where approval is required
+- who executes
+- where the action can stop
+- where the case returns to humans
+- what evidence remains
+- who repairs or reconnects the responsibility path
+
+The current repository treats AI as a participant in proposals, classification, tool use, and evidence production, but not as a final responsibility holder under the current minimal assumptions.
+
+## What this repository is not
+
+This repository does not claim to provide:
+
+- legal responsibility determination
+- safety certification
+- compliance certification
+- fairness certification
+- moral accountability resolution
+- institutional approval
+- production readiness
+- an agent runtime
+- a replacement for RACI, HITL, Guardrails, ISO/IEC 42001, or human oversight frameworks
+- a transfer of final responsibility to AI
+
+All schemas, examples, checkers, and Lean files in this repository remain structural, assumption-bound, and non-certifying.
+
 ## Status
 
 Early public specification.
 
 This repository is intentionally small and specification-first. See [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) for why the current core prioritizes definitions, examples, lifecycle boundaries, checker boundaries, and excluded claims before larger implementation layers.
+
+A source-alignment pass over the currently inventoried Zenn article candidates has been completed. The synthesis is available at [docs/source-alignment/zenn-source-alignment-synthesis.md](docs/source-alignment/zenn-source-alignment-synthesis.md). The detailed inventory is available at [docs/source-alignment/zenn-article-inventory.md](docs/source-alignment/zenn-article-inventory.md).
+
+A developer-facing explanatory note for the try/catch/finally analogy is available at [docs/explanations/try-catch-finally-responsibility-pathway.md](docs/explanations/try-catch-finally-responsibility-pathway.md). It is an explanatory analogy only, not formal semantics.
+
+A repository overview after the source-alignment pass is available at [docs/overview.md](docs/overview.md).
 
 Phase 2 has started. The current Lean formalization contains a minimal node/pathway model and a scoped lifecycle-invariant set in [formal/lean/ResponsibilityPathway/Core.lean](formal/lean/ResponsibilityPathway/Core.lean). These invariants are structural, assumption-bound, and non-certifying.
 
@@ -48,30 +89,46 @@ For authorship, attribution, affiliation clarification, and citation metadata, s
 For first-time readers, future maintainers, or AI-assisted continuation, read in this order:
 
 1. [BEACON.md](BEACON.md) - current position and reconnection point
-2. [LUMINALIA.md](LUMINALIA.md) - design philosophy
-3. [ROADMAP.md](ROADMAP.md) - current and future phases
-4. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
-5. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - why the current repository remains intentionally small
-6. [docs/enterprise-implementation-profile.md](docs/enterprise-implementation-profile.md) - minimal enterprise adoption profile and layer separation
-7. [docs/responsibility-pathway-record-review.md](docs/responsibility-pathway-record-review.md) - plain-language review process for responsibility pathway records
-8. [docs/phase-2-5-current-snapshot.md](docs/phase-2-5-current-snapshot.md) - current Phase 2.5 enterprise and record-review snapshot
-9. [docs/reference-implementation-boundary.md](docs/reference-implementation-boundary.md) - boundary before Phase 3 reference implementations
-10. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - lightweight validation and lifecycle-example status
-11. [formal/lean/README.md](formal/lean/README.md) - Lean formalization boundary and current invariant candidates
-12. [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md) - current Phase 2 Lean snapshot and restart point
-13. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - current Phase 2 Lean split plan and non-goals
-14. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - current Phase 2 Lean theorem role index
-15. [docs/definition.md](docs/definition.md) - core definition
-16. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
-17. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
-18. [docs/development-process.md](docs/development-process.md) - development process
-19. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
-20. [spec/review-result.schema.yaml](spec/review-result.schema.yaml) - bounded review-result output schema
-21. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
-22. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
-23. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
-24. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
-25. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
+2. [docs/overview.md](docs/overview.md) - current repository overview after source alignment
+3. [docs/source-alignment/zenn-source-alignment-synthesis.md](docs/source-alignment/zenn-source-alignment-synthesis.md) - source-alignment synthesis from reviewed Zenn materials
+4. [docs/explanations/try-catch-finally-responsibility-pathway.md](docs/explanations/try-catch-finally-responsibility-pathway.md) - developer-facing analogy, not formal semantics
+5. [LUMINALIA.md](LUMINALIA.md) - design philosophy
+6. [ROADMAP.md](ROADMAP.md) - current and future phases
+7. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
+8. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - why the current repository remains intentionally small
+9. [docs/enterprise-implementation-profile.md](docs/enterprise-implementation-profile.md) - minimal enterprise adoption profile and layer separation
+10. [docs/responsibility-pathway-record-review.md](docs/responsibility-pathway-record-review.md) - plain-language review process for responsibility pathway records
+11. [docs/phase-2-5-current-snapshot.md](docs/phase-2-5-current-snapshot.md) - current Phase 2.5 enterprise and record-review snapshot
+12. [docs/reference-implementation-boundary.md](docs/reference-implementation-boundary.md) - boundary before Phase 3 reference implementations
+13. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - lightweight validation and lifecycle-example status
+14. [formal/lean/README.md](formal/lean/README.md) - Lean formalization boundary and current invariant candidates
+15. [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md) - current Phase 2 Lean snapshot and restart point
+16. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - current Phase 2 Lean split plan and non-goals
+17. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - current Phase 2 Lean theorem role index
+18. [docs/definition.md](docs/definition.md) - core definition
+19. [docs/eight-elements.md](docs/eight-elements.md) - eight-element model
+20. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
+21. [docs/development-process.md](docs/development-process.md) - development process
+22. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
+23. [spec/review-result.schema.yaml](spec/review-result.schema.yaml) - bounded review-result output schema
+24. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
+25. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
+26. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
+27. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
+28. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
+
+## Current source-aligned concepts
+
+The source-alignment pass supports these concepts as current repository-facing source material:
+
+- Responsibility Pathway Design as responsibility-flow design
+- Responsibility Pathway Layer as a minimal operational layer
+- Action Class Matrix for classifying AI-agent actions
+- Human Return Point as return to human understanding, authority, time, information, and responsibility capacity
+- Evidence Log as pathway reconstruction support
+- Stop Authority as a separate stop role, not merely technical abort
+- Repair Owner as post-failure repair / rollback / reconnection ownership
+- non-final AI responsibility under current minimal assumptions
 
 ## Examples
 
