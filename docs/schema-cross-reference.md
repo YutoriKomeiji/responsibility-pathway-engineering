@@ -1,8 +1,8 @@
 # Schema Cross-Reference
 
-This note explains how the current Responsibility Pathway Engineering schema files relate to each other during Phase 1.5 - Specification Binding, Phase 1.6 - lightweight validation, and Phase 2.5 - record-review alignment.
+This note explains how the current Responsibility Pathway Engineering schema files relate to each other during Phase 1.5 - Specification Binding, Phase 1.6 - lightweight validation, Phase 2.5 - record-review alignment, and Phase 3.1 - runtime-event bridge work.
 
-It is explanatory only. It does not claim complete validation, legal liability, production readiness, compliance, safety, fairness, or moral accountability.
+It is explanatory only. It does not claim complete validation, legal liability, production readiness, compliance, safety, fairness, moral accountability, connector correctness, adapter correctness, or runtime readiness.
 
 ## Core vocabulary map
 
@@ -145,6 +145,38 @@ Key concerns:
 
 Repair does not mean harm disappears, and it does not resolve blame by itself. It restores the pathway enough for action, explanation, correction, compensation, redesign, closure, or explicit unresolved preservation.
 
+### `spec/runtime-event.schema.yaml`
+
+Defines a minimal vendor-neutral input event shape for future adapters.
+
+Use this schema when describing an observed runtime event before it is transformed into a draft Responsibility Pathway record.
+
+Key concerns:
+
+- event identity
+- schema version
+- source system
+- observation timestamp
+- observed actor
+- observed action
+- observed target
+- evidence and missing-context notes
+- review requirement
+- excluded claims
+- adapter context when available
+
+Important boundary:
+
+A runtime event is an observation input, not approval, execution authority, certification, legal or moral resolution, connector correctness, adapter correctness, or production readiness.
+
+Related documents and examples:
+
+- `docs/adapter-boundary.md`
+- `docs/phase-3-1-current-snapshot.md`
+- `docs/phase-3-1-sync-log.md`
+- `examples/adapter-input-event-minimal.json`
+- `examples/runtime-event-to-pathway-minimal.yaml`
+
 ### `spec/pathway.schema.yaml`
 
 Defines the minimum structure for a composed Responsibility Pathway instance.
@@ -175,6 +207,9 @@ This file composes the split schema files:
 | `evidence_logs` | `spec/evidence-log.schema.yaml` |
 | `return_points` | `spec/return-point.schema.yaml` |
 | `repairs` | `spec/repair.schema.yaml` |
+| `source_runtime_event` | optional Phase 3.1 runtime-event bridge input |
+| `input_event_mapping` | optional adapter mapping notes |
+| `runtime_adapter_boundary` | optional adapter-boundary fields |
 | `review_metadata` | optional bounded record-review metadata |
 | `responsibility_boundary` | AI and human/institutional responsibility boundary from the core vocabulary |
 | `formalization_scope` | bounded assumptions, modeled entities, excluded claims, and theorem status |
@@ -215,17 +250,20 @@ Recommended reading order:
 4. `spec/return-point.schema.yaml`
 5. `spec/evidence-log.schema.yaml`
 6. `spec/repair.schema.yaml`
-7. `spec/pathway.schema.yaml`
-8. `spec/review-result.schema.yaml`
+7. `spec/runtime-event.schema.yaml`
+8. `spec/pathway.schema.yaml`
+9. `spec/review-result.schema.yaml`
 
-This order moves from concept vocabulary to specialized schema files, composed pathway instances, and then bounded review-result outputs.
+This order moves from concept vocabulary to specialized schema files, runtime-event inputs, composed pathway instances, and then bounded review-result outputs.
 
 ## Validation boundary
 
-These schema files currently define minimum structure and design expectations. They do not yet constitute a complete validator, certification scheme, compliance framework, or formal proof system.
+These schema files currently define minimum structure and design expectations. They do not yet constitute a complete validator, certification scheme, compliance framework, connector framework, adapter correctness proof, or formal proof system.
+
+`spec/runtime-event.schema.yaml` is not yet validated by the current lightweight checker. `examples/adapter-input-event-minimal.json` is not yet checked by `scripts/check_examples.py`.
 
 Action-class-specific checker enforcement is not yet active. Future checker work may inspect bounded structural signals from `spec/action-class.schema.yaml`, but such checks must remain non-certifying and must not be interpreted as legal validity, safety, compliance, fairness, moral resolution, institutional approval, production readiness, or AI final-responsibility transfer.
 
 Formal claims must remain limited to explicitly stated definitions, assumptions, modeled entities, and transitions.
 
-Real-world claims about safety, legality, fairness, compliance, or moral accountability require additional human, institutional, legal, domain, and operational review outside these schema files.
+Real-world claims about safety, legality, fairness, compliance, connector behavior, adapter correctness, production readiness, or moral accountability require additional human, institutional, legal, domain, and operational review outside these schema files.
