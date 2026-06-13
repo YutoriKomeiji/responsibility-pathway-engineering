@@ -22,7 +22,7 @@ These tasks preserve the repository's current operating ability.
 
 - Keep `BEACON.md` short enough to remain a reconnection entrance.
 - Keep `docs/phase-3-1-current-snapshot.md` as the detailed current-state record for Phase 3.1.
-- Keep `docs/operation-index.md` aligned when operation documents, snapshots, sync logs, roadmap notes, checker plans, runtime candidate planning, or document-role rules change.
+- Keep `docs/operation-index.md` aligned when operation documents, snapshots, sync logs, roadmap notes, checker plans, runtime candidate planning, review notes, or document-role rules change.
 - Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record, not a phase plan.
 - Keep `docs/phase-3-1-roadmap-note.md` as the short planning companion, not a second changelog.
 - Keep `CHANGELOG.md` archival and investigative rather than the active construction restart path.
@@ -113,19 +113,21 @@ Current status: first bounded reference example reached; action-class classifica
 
 ## Phase 3.1 task inventory
 
-Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate design, and minimal synthetic runtime fixture exist.
+Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate design, minimal synthetic runtime fixture, and minimal runtime fixture review note exist.
 
 ### P1: low-risk consolidation
 
-- Keep `docs/phase-3-1-current-snapshot.md` aligned with runtime fixture, checker boundary, open-source review intent, and deferred work.
+- Keep `docs/phase-3-1-current-snapshot.md` aligned with runtime fixture, checker boundary, open-source review intent, review notes, and deferred work.
 - Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record for runtime-event and runtime-fixture work.
 - Keep `docs/phase-3-1-roadmap-note.md` as the short planning companion for near-term runtime candidate decisions.
 - Keep `docs/phase-3-1-roadmap-runtime-reference.md` as a short note for ROADMAP reference until a safe short ROADMAP edit is possible.
+- Keep `docs/minimal-runtime-fixture-review-connection.md` as the temporary reader-path note for the fixture review until the operation index and snapshot can safely absorb a short reference.
 - Keep `docs/example-index.md` and `docs/checker-coverage.md` explicit that the JSON runtime fixture is for reading and review only.
 
 ### P2: bounded artifact preparation
 
-- Review `examples/minimal-synthetic-runtime-fixture.json` for clarity, smallness, and boundary preservation.
+- `docs/minimal-runtime-fixture-review.md` records that `examples/minimal-synthetic-runtime-fixture.json` is acceptable as a first minimal synthetic runtime observation fixture for reading and review.
+- No change to `examples/minimal-synthetic-runtime-fixture.json` was required by the first review.
 - If a second runtime fixture is ever needed, design it only through `docs/minimal-runtime-candidate-design.md`.
 - Keep any runtime fixture synthetic, local, vendor-neutral, non-production, review-required, and non-certifying.
 
@@ -153,12 +155,13 @@ Open-source review is intended to invite inspection of boundaries, responsibilit
 
 - Make reader paths clear enough that an external reviewer can find current boundaries without reading the whole repository.
 - Keep non-certifying boundaries repeated where misunderstanding would be likely.
-- Keep `BEACON.md`, `docs/operation-index.md`, current snapshots, checker coverage, and example index aligned.
+- Keep `BEACON.md`, `docs/operation-index.md`, current snapshots, checker coverage, example index, and focused review notes aligned.
 
 ### P2: bounded review artifacts
 
 - Prepare short review notes only when they help reviewers inspect a specific boundary.
 - Prefer boundary-focused notes over broad claims.
+- Keep `docs/minimal-runtime-fixture-review.md` as a boundary-focused review note, not a checker result or certification record.
 
 ### P4: deferred public claims
 
@@ -169,12 +172,11 @@ Open-source review is intended to invite inspection of boundaries, responsibilit
 Use this sequence unless a checker failure or serious inconsistency appears.
 
 1. P0: preserve restartability and boundary clarity.
-2. P1: connect this task inventory through `docs/operation-index.md` and the current Phase 3.1 snapshot.
+2. P1: connect fixture-review status through the current Phase 3.1 snapshot or sync log only if it improves restartability.
 3. P1: decide whether `ROADMAP.md` should receive only a short reference to `docs/phase-3-1-roadmap-runtime-reference.md` in a later small edit.
-4. P2: review the minimal synthetic runtime fixture for readability and boundary preservation.
-5. P2: prepare external-review notes only if they improve reviewability.
-6. P3: consider runtime fixture checking only after documented preconditions remain satisfied.
-7. P4: keep connectors, production runtime, production conversion, Class E positive examples, and runtime Lean expansion deferred.
+4. P2: prepare external-review notes only if they improve reviewability.
+5. P3: consider runtime fixture checking only after documented preconditions remain satisfied.
+6. P4: keep connectors, production runtime, production conversion, Class E positive examples, and runtime Lean expansion deferred.
 
 ## Stop conditions
 
