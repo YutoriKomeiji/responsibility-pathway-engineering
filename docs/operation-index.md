@@ -12,8 +12,9 @@ Use this path when restarting work after a pause or when another maintainer, rev
 2. `docs/repository-operation-model.md`
 3. the current phase snapshot
 4. the relevant sync log or roadmap note
-5. `docs/example-index.md`
-6. `docs/checker-coverage.md`
+5. `docs/current-task-inventory.md` when choosing the next task
+6. `docs/example-index.md`
+7. `docs/checker-coverage.md`
 
 `CHANGELOG.md` is not part of the primary construction-time reconnection path. Use it mainly for archival, investigative, historical, or retrospective milestone review.
 
@@ -23,10 +24,10 @@ Use documents according to the phase of work.
 
 | Work phase | Prefer reading | Use `CHANGELOG.md` when |
 | --- | --- | --- |
-| Active construction | `BEACON.md`, current snapshot, operation index, sync log, roadmap note, checker coverage, example index, primary artifact | a prior milestone or boundary change must be investigated |
-| Restart or handoff | `BEACON.md`, current snapshot, operation index, sync log, roadmap note | the restart depends on historical cause tracing |
+| Active construction | `BEACON.md`, current snapshot, operation index, sync log, roadmap note, current task inventory, checker coverage, example index, primary artifact | a prior milestone or boundary change must be investigated |
+| Restart or handoff | `BEACON.md`, current snapshot, operation index, sync log, roadmap note, current task inventory | the restart depends on historical cause tracing |
 | Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, relevant schemas or examples | checking when a rule or coverage boundary changed |
-| Phase planning | `ROADMAP.md`, roadmap note, current snapshot, operation index | confirming a past phase milestone |
+| Phase planning | `ROADMAP.md`, roadmap note, current snapshot, operation index, current task inventory | confirming a past phase milestone |
 | Audit, error investigation, or retrospective explanation | `CHANGELOG.md`, sync logs, snapshots, relevant commits and artifacts | this is the intended primary use |
 
 If the purpose does not match the document, change the reading path or update path before continuing.
@@ -64,11 +65,26 @@ When BEACON grows too large, preserve detailed state in the relevant snapshot, s
 | Document | Use when |
 | --- | --- |
 | `docs/repository-operation-model.md` | You need the current repository-wide operating model, document purpose and usage phase policy, staged update operation, synchronization unit operation, session load and handoff policy, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, sync-log and roadmap-note separation policy, or restart rule. |
+| `docs/current-task-inventory.md` | You need the current P0-P4 task inventory across active and near-active phases before selecting the next task. |
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
 | `BEACON.md` | You need the current reconnection entrance, compact read-first order, current focus, and restart pointer. |
 | `ROADMAP.md` | You need phase-level direction, next low-risk work, phase rules, or deferred work. |
 | `CHANGELOG.md` | You need archival milestones, serious error investigation support, historical cause tracing, or retrospective explanation of when and why a boundary or policy changed. |
+
+## Task inventory navigation
+
+Use `docs/current-task-inventory.md` when choosing what to do next.
+
+The inventory separates tasks into:
+
+- P0 restartability and boundary preservation
+- P1 low-risk consolidation
+- P2 bounded artifact preparation
+- P3 conditional checker or workflow work
+- P4 deferred expansion
+
+Use it before starting checker work, workflow work, runtime work, Lean expansion, connector work, Class E examples, or public-claim expansion.
 
 ## Periodic operation review
 
@@ -78,7 +94,7 @@ A periodic operation review is useful when:
 
 - commit granularity feels too small or too large
 - reader paths become long or scattered
-- operation documents, snapshots, sync logs, or roadmap notes are multiplying
+- operation documents, snapshots, sync logs, roadmap notes, or task inventories are multiplying
 - BEACON starts carrying detailed snapshot history or changelog-like content
 - sync logs and roadmap notes start duplicating each other
 - active construction starts relying on `CHANGELOG.md` as a primary restart path
@@ -88,7 +104,7 @@ A periodic operation review is useful when:
 - session load is becoming heavy or a session handoff needs a durable restart path
 - Class E positive examples, production connectors, production conversion code, runtime-event schema checks, JSON fixture checks, or Lean expansion may need to be revisited
 
-A periodic operation review may produce an operation-model update, operation-index update, snapshot update, sync-log entry, roadmap note, BEACON update, or short CHANGELOG milestone.
+A periodic operation review may produce an operation-model update, operation-index update, task-inventory update, snapshot update, sync-log entry, roadmap note, BEACON update, or short CHANGELOG milestone.
 
 It must not be used as production approval, connector correctness proof, adapter correctness proof, legal review, safety review, compliance review, fairness review, Lean completeness proof, or AI final-responsibility transfer.
 
@@ -100,7 +116,7 @@ Snapshots record current restart positions for phases or subphases.
 | --- | --- |
 | `docs/phase-2-current-snapshot.md` | Current Phase 2 Lean restart point and scoped formalization status. |
 | `docs/phase-2-5-current-snapshot.md` | Current Phase 2.5 enterprise and record-review restart point. |
-| `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate planning, repository operation, checker coverage, and example-index restart point. |
+| `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate planning, minimal runtime fixture, current task inventory, repository operation, checker coverage, and example-index restart point. |
 
 Use snapshots when a change spans multiple documents, when a long-file update becomes risky, when session handoff needs a durable restart path, when BEACON would otherwise need to carry detailed current-state history, or when the next maintainer needs a compact restart point.
 
@@ -112,6 +128,7 @@ Sync logs and roadmap notes are complementary but separate.
 | --- | --- |
 | `docs/phase-3-1-sync-log.md` | Detailed synchronization record for multi-commit Phase 3.1 reader-path, coverage, checker-interpretation, and boundary synchronization. |
 | `docs/phase-3-1-roadmap-note.md` | Short current-planning companion for Phase 3.1 near-term roadmap position, minimal runtime candidate planning, next low-risk work, phase rules, and stop conditions. |
+| `docs/phase-3-1-roadmap-runtime-reference.md` | Short companion note for a future small ROADMAP reference to the minimal runtime fixture synchronization. |
 
 Use sync logs to understand what changed across several commits, what was synchronized, what checker status or interpretation was current, and what work remained deferred after a synchronization unit.
 
