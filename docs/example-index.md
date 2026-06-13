@@ -187,6 +187,32 @@ Use this example when introducing:
 - generated record review requirements
 - runtime-event checking plan boundaries before checker implementation
 
+### `examples/minimal-synthetic-runtime-fixture.json`
+
+Purpose:
+
+- show the first minimal synthetic runtime observation fixture
+- provide a small runtime-like observation point before production runtime integration
+- wrap a draft proposal observation while preserving review-required and non-production boundaries
+- reference `examples/adapter-input-event-minimal.json` without adding a service-specific connector
+
+Key boundary:
+
+This fixture is synthetic, local, vendor-neutral, non-production, review-required, and non-certifying. It does not implement a production runtime, service-specific connector, runtime workflow, checker, adapter mapping correctness proof, automatic approval, automatic execution, legal validation, safety certification, compliance certification, fairness certification, moral resolution, production readiness, or AI final-responsibility transfer.
+
+Current checker boundary:
+
+This fixture is not currently checked by `scripts/check_examples.py`. It is a JSON runtime candidate fixture for reading and review. Future structural checking must follow `docs/runtime-event-checking-plan.md` and `docs/minimal-runtime-candidate-design.md`.
+
+Use this example when introducing:
+
+- minimal runtime candidate planning
+- synthetic runtime observation boundaries
+- non-production runtime-like fixtures
+- missing approval evidence and missing execution evidence preservation
+- separation between runtime fixture, checker stub, workflow, connector, and production runtime
+- open review of runtime boundaries before implementation
+
 ### `examples/repair-flow.yaml`
 
 Purpose:
@@ -296,12 +322,14 @@ Recommended reading order:
 13. `examples/human-ai-review-workflow-minimal.yaml`
 14. `docs/adapter-boundary.md`
 15. `docs/runtime-event-checking-plan.md`
-16. `examples/runtime-event-to-pathway-minimal.yaml`
-17. `examples/repair-flow.yaml`
-18. `examples/suspended-pathway.yaml`
-19. `examples/returning-pathway.yaml`
-20. `examples/closed-pathway.yaml`
-21. `docs/example-review-notes.md`
+16. `docs/minimal-runtime-candidate-design.md`
+17. `examples/runtime-event-to-pathway-minimal.yaml`
+18. `examples/minimal-synthetic-runtime-fixture.json`
+19. `examples/repair-flow.yaml`
+20. `examples/suspended-pathway.yaml`
+21. `examples/returning-pathway.yaml`
+22. `examples/closed-pathway.yaml`
+23. `docs/example-review-notes.md`
 
 ## Relationship to Action Class Matrix
 
@@ -334,6 +362,7 @@ Current examples use descriptive filenames:
 - `record-review-minimal.yaml`
 - `human-ai-review-workflow-minimal.yaml`
 - `runtime-event-to-pathway-minimal.yaml`
+- `minimal-synthetic-runtime-fixture.json`
 - `repair-flow.yaml`
 - `suspended-pathway.yaml`
 - `returning-pathway.yaml`
@@ -358,19 +387,3 @@ New examples should:
 - state assumptions and excluded claims
 - avoid implying certification, compliance, safety, fairness, legal resolution, or moral resolution
 - distinguish suspension, return, repair, continuation, closure, and reopening conditions when lifecycle state matters
-- remain small enough to be read without tooling
-
-## Future work
-
-Low-risk next steps:
-
-- keep Phase 3.1 runtime-event bridge examples synthetic, vendor-neutral, review-required, and non-certifying
-- read `docs/runtime-event-checking-plan.md` before considering runtime-event schema checking, JSON fixture checking, `scripts/check_runtime_events.py`, or a runtime-event workflow
-- keep service-specific connectors deferred until the runtime event schema and examples remain stable
-- keep conversion code deferred until the event-to-pathway mapping remains readable and reviewable
-- keep Class D reversible external action examples small, correctable, and non-certifying
-- keep Class E high-impact examples negative or boundary-only until lower classes are stable
-- refine lightweight checker rules after action-class and runtime-event example structures exist
-- add diagrams only after example structures stabilize
-- add machine-readable fixtures only after schema validation rules are explicit
-- add higher-impact flow examples only after lifecycle and action-class boundaries remain stable
