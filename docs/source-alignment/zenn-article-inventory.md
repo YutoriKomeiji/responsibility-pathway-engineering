@@ -48,7 +48,7 @@ These files have descriptive filenames and should be reviewed first.
 | P1 | `articles/stop-authority-design.md` | aligned | Stop Authority source material candidate. Reviewed in `docs/source-alignment/zenn-stop-authority-design.md`. |
 | P1 | `articles/enterprise-agent-checklist.md` | aligned | Enterprise and agent checklist source material candidate. Reviewed in `docs/source-alignment/zenn-enterprise-agent-checklist.md`. |
 | P1 | `articles/sap-ai-responsibility-pathway.md` | aligned | SAP / enterprise AI responsibility-pathway application candidate. Reviewed in `docs/source-alignment/zenn-sap-ai-responsibility-pathway.md`. |
-| P1 | `articles/iso42001-responsibility-pathway.md` | pending | ISO 42001 alignment candidate. |
+| P1 | `articles/iso42001-responsibility-pathway.md` | aligned | ISO 42001 alignment candidate. Reviewed in `docs/source-alignment/zenn-iso42001-responsibility-pathway.md`. |
 | P2 | `articles/self-application-responsibility.md` | pending | Self-application and meta-responsibility candidate. |
 
 ## Hash / legacy filename candidates
