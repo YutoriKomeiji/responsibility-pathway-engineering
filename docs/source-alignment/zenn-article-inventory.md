@@ -57,7 +57,7 @@ These files have non-descriptive filenames but appeared in searches for responsi
 
 | Priority | Path | Current status | Initial reason |
 |---|---|---|---|
-| P1 | `articles/33825ca3f8c0e6.md` | pending | Appears across searches for responsibility, return point, evidence log, stop authority, decision owner, approval gate, and repair owner. |
+| P1 | `articles/33825ca3f8c0e6.md` | aligned | Responsibility Pathway Layer source material. Reviewed in `docs/source-alignment/zenn-33825ca3f8c0e6-responsibility-pathway-layer.md`. |
 | P1 | `articles/7ee72995004c90.md` | pending | Appears across searches for responsibility pathway, return point, evidence log, stop authority, decision owner, and approval gate. |
 | P1 | `articles/3829d785b15b60.md` | pending | Appears across searches for responsibility pathway and AI responsibility. |
 | P1 | `articles/fa69352ddd48ae.md` | pending | Appears across searches for responsibility pathway, fixed responsibility, and AI responsibility. |
