@@ -76,12 +76,14 @@ Established schema files:
 - `examples/action-class-matrix-minimal.yaml` added as a classification-only fixture for Class A-F reading before higher-impact examples
 - `examples/internal-document-update.yaml` added as a Class C Approval-Required internal document update example
 - `examples/emergency-stop-flow.yaml` added as a Class F Emergency Stop / stop-and-await example
+- `examples/reversible-external-action.yaml` added as a Class D Reversible External Action example with external-impact visibility and rollback/correction path
 - `docs/example-index.md` connected future examples to Action Class Matrix design rules
 - `docs/checker-coverage.md` documented action-class-specific checks as planned future bounded checks, not current enforcement
 - `Check examples #10` observed green on commit `2af698c` on `main` after minimal-pathway action-class migration
 - `Check examples #11` observed green on commit `b50226d` on `main` after adding `examples/action-class-matrix-minimal.yaml`; the workflow completed successfully in about 14 seconds, and the `Bounded structural example checks` job completed successfully in about 10 seconds
 - `Check examples #12` observed green on commit `fdd7bd4` on `main` after adding `examples/internal-document-update.yaml`; the workflow completed successfully in about 9 seconds, and the `Bounded structural example checks` job completed successfully in about 7 seconds
 - `Check examples #13` observed green on commit `266845b` on `main` after adding `examples/emergency-stop-flow.yaml`; the workflow completed successfully in about 10 seconds, and the `Bounded structural example checks` job completed successfully in about 7 seconds
+- `Check examples #14` observed green on commit `caf285b` on `main` after adding `examples/reversible-external-action.yaml`; the `Bounded structural example checks` job completed successfully
 
 Phase 1.6 rule:
 
@@ -89,7 +91,7 @@ Lifecycle-aware and action-class-aware checks remain bounded structural maintena
 
 Remaining Phase 1.6 maintenance tasks:
 
-- maintain bounded checker stability after the Class F emergency stop flow fixture
+- maintain bounded checker stability after the Class D reversible external action fixture
 - keep examples small and manually readable
 - keep action-class-specific checker additions optional until examples are deliberately migrated
 - avoid adding higher-impact examples until lifecycle and action-class boundaries remain stable
@@ -202,6 +204,8 @@ Next low-risk Phase 2.5 work:
 - `Check examples #12` observed green on commit `fdd7bd4` on `main` for the Class C internal document update fixture
 - Class F emergency stop flow example added at `examples/emergency-stop-flow.yaml`
 - `Check examples #13` observed green on commit `266845b` on `main` for the Class F emergency stop flow fixture
+- Class D reversible external action example added at `examples/reversible-external-action.yaml`
+- `Check examples #14` observed green on commit `caf285b` on `main` for the Class D reversible external action fixture
 
 Implementation rule:
 
@@ -214,7 +218,7 @@ First recommended Phase 3 step:
 
 Next low-risk Phase 3 work:
 
-- delay Class D reversible external examples until Class C and Class F boundaries are clear
+- keep Class D reversible external examples small, correctable, and non-certifying
 - treat Class E high-impact examples as negative or boundary-only examples until lower classes are stable
 - record source-alignment checkpoints before expanding reference examples
 - reread prior Zenn articles for definition, claim, and boundary alignment
