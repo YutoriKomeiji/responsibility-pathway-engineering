@@ -63,7 +63,7 @@ These files have non-descriptive filenames but appeared in searches for responsi
 | P1 | `articles/fa69352ddd48ae.md` | aligned | Harness Engineering to Responsibility Pathway Design source material. Reviewed in `docs/source-alignment/zenn-fa69352ddd48ae-harness-to-responsibility-pathway.md`. |
 | P2 | `articles/ef12f2db314a58.md` | aligned | Meaningful Human Control / accountability gap / human oversight comparison source material. Reviewed in `docs/source-alignment/zenn-ef12f2db314a58-mhc-accountability-oversight.md`. |
 | P2 | `articles/1982703147789e.md` | aligned | HITL collapse and responsibility visibility source material. Reviewed in `docs/source-alignment/zenn-1982703147789e-hitl-collapse-visibility.md`. |
-| P2 | `articles/3235e5affbb7c9.md` | pending | Appears in broad responsibility / AI responsibility searches. |
+| P2 | `articles/3235e5affbb7c9.md` | aligned | Operational structure / model-performance boundary motivation source material. Reviewed in `docs/source-alignment/zenn-3235e5affbb7c9-operational-structure.md`. |
 
 ## Suggested reading order
 
