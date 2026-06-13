@@ -50,6 +50,28 @@ Use this example when introducing:
 - action-class-specific future example design
 - non-certifying action classification boundaries
 
+### `examples/internal-document-update.yaml`
+
+Purpose:
+
+- show a minimal Class C Approval-Required internal document update example
+- model AI-assisted drafting without AI approval, execution, or final responsibility
+- require human approval before internal document update execution
+- connect Decision Owner, Approval Gate, Execution Actor, Stop Authority, Evidence Log, Repair Owner, and Human Return Point signals
+
+Key boundary:
+
+This example models an internal document update only. It does not publish externally, certify the update, validate the content, approve real-world use, or prove legal, safety, compliance, fairness, moral, or production readiness.
+
+Use this example when introducing:
+
+- Class C Approval-Required actions
+- internal state change or internal document update
+- approval gate before execution
+- proposal/adoption separation
+- execution actor without final responsibility
+- repair owner and correction path for internal updates
+
 ### `examples/record-review-minimal.yaml`
 
 Purpose:
@@ -196,13 +218,14 @@ Recommended reading order:
 6. `docs/action-class-matrix.md`
 7. `examples/action-class-matrix-minimal.yaml`
 8. `examples/minimal-pathway.yaml`
-9. `examples/record-review-minimal.yaml`
-10. `examples/human-ai-review-workflow-minimal.yaml`
-11. `examples/repair-flow.yaml`
-12. `examples/suspended-pathway.yaml`
-13. `examples/returning-pathway.yaml`
-14. `examples/closed-pathway.yaml`
-15. `docs/example-review-notes.md`
+9. `examples/internal-document-update.yaml`
+10. `examples/record-review-minimal.yaml`
+11. `examples/human-ai-review-workflow-minimal.yaml`
+12. `examples/repair-flow.yaml`
+13. `examples/suspended-pathway.yaml`
+14. `examples/returning-pathway.yaml`
+15. `examples/closed-pathway.yaml`
+16. `docs/example-review-notes.md`
 
 ## Relationship to Action Class Matrix
 
@@ -229,6 +252,7 @@ Current examples use descriptive filenames:
 
 - `minimal-pathway.yaml`
 - `action-class-matrix-minimal.yaml`
+- `internal-document-update.yaml`
 - `record-review-minimal.yaml`
 - `human-ai-review-workflow-minimal.yaml`
 - `repair-flow.yaml`
@@ -240,7 +264,6 @@ Future examples should prefer short names that describe the responsibility-pathw
 
 Possible future names:
 
-- `internal-document-update.yaml`
 - `reversible-external-action.yaml`
 - `high-impact-negative-boundary.yaml`
 - `emergency-stop-flow.yaml`
@@ -264,7 +287,7 @@ New examples should:
 
 Low-risk next steps:
 
-- add a Class C internal document or repository update example after current examples remain stable
+- observe the next `Check examples` workflow result after adding `examples/internal-document-update.yaml`
 - add a Class F emergency-stop / stop-and-await example before high-impact examples
 - refine lightweight checker rules after action-class example structures exist
 - add diagrams only after example structures stabilize
