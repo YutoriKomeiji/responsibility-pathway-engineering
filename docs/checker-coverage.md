@@ -114,6 +114,14 @@ Any such rule must remain bounded to structural signals.
 
 A checker pass must not be interpreted as legal validity, safety, compliance, fairness, moral resolution, institutional approval, production readiness, or AI final-responsibility transfer.
 
+### Runtime-event bridge note
+
+`examples/runtime-event-to-pathway-minimal.yaml` is checked only as a pathway example under the current structural and originating-lifecycle rules.
+
+The current checker does not validate `spec/runtime-event.schema.yaml` or JSON fixtures such as `examples/adapter-input-event-minimal.json`.
+
+A pass for the runtime-event-to-pathway example means only that the generated draft pathway record preserves the currently required structural signals. It does not validate the runtime event schema, certify an adapter, approve a connector, prove the event mapping correct, or make the record production ready.
+
 ## `scripts/check_review_results.py`
 
 `scripts/check_review_results.py` checks review-result fixtures under `fixtures/review-results/*.yaml` against `spec/review-result.schema.yaml`.
@@ -173,6 +181,7 @@ Future checker work should remain bounded to structural signals and must not tre
 | `examples/internal-document-update.yaml` | `originating` | yes | no | not yet |
 | `examples/emergency-stop-flow.yaml` | `suspended` | yes | no | not yet |
 | `examples/reversible-external-action.yaml` | `originating` | yes | no | not yet |
+| `examples/runtime-event-to-pathway-minimal.yaml` | `originating` | yes | no | not yet |
 | `examples/record-review-minimal.yaml` | `originating` | yes | yes | not yet |
 | `examples/repair-flow.yaml` | `repaired` | yes | no | not yet |
 | `examples/suspended-pathway.yaml` | `suspended` | yes | no | not yet |
