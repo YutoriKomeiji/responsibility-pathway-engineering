@@ -26,7 +26,7 @@ The `Check examples` GitHub Actions workflow has been observed green for run `#9
 
 The `Check examples` GitHub Actions workflow has been observed green for run `#10` on commit `2af698c` on `main` after migrating `examples/minimal-pathway.yaml` from legacy Class 1 Internal Assistive to source-aligned Class B Suggest-Only.
 
-The next `Check examples` result should be observed after adding `examples/action-class-matrix-minimal.yaml`.
+The `Check examples` GitHub Actions workflow has been observed green for run `#11` on commit `b50226d` on `main` after adding `examples/action-class-matrix-minimal.yaml`. The workflow completed successfully in about 14 seconds, and the `Bounded structural example checks` job completed successfully in about 10 seconds. This remains a bounded repository-maintenance check and is not certification.
 
 Core definitions, the eight-element model, runtime model, responsibility node model, return point model, repair model, value/cost flow, stop authority, evidence log, action class matrix, approval gate, and decision owner model have been added.
 
@@ -209,11 +209,8 @@ The next low-risk action is not to expand into larger reference implementations 
 
 Continue by either:
 
-- observing the next `Check examples` workflow result after adding `examples/action-class-matrix-minimal.yaml`
-- updating CHANGELOG with the action-class alignment checkpoint
-- checking `docs/schema-cross-reference.md` for `spec/action-class.schema.yaml` v0.2.0 alignment
-- checking `docs/validation-checklist.md` for action-class declaration and non-certifying boundary language
-- checking `docs/validator-boundary.md` for planned action-class-specific checker boundaries
+- updating ROADMAP and CHANGELOG with the `Check examples #11` observed green result
+- adding a Class C internal document or repository update example only after confirming documentation synchronization remains stable
 - keeping `Check review-result fixtures` green while maintaining its bounded interpretation
 - keeping `Check examples` green while maintaining its bounded interpretation after the first Phase 3 reference example and Action Class Matrix classification fixture
 - maintaining the Phase 3 reference-implementation boundary before adding more reference examples
