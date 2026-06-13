@@ -19,12 +19,30 @@ Use this path when restarting work after a pause or when another maintainer, rev
 
 | Document | Use when |
 | --- | --- |
-| `docs/repository-operation-model.md` | You need the current repository-wide operating model, staged update operation, commit granularity policy, long-file update policy, workflow observation policy, or restart rule. |
+| `docs/repository-operation-model.md` | You need the current repository-wide operating model, staged update operation, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, or restart rule. |
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
 | `BEACON.md` | You need the current reconnection point, read-first order, current focus, and restart point. |
 | `ROADMAP.md` | You need phase-level direction, next low-risk work, phase rules, or deferred work. |
 | `CHANGELOG.md` | You need durable conceptual milestones rather than detailed per-commit history. |
+
+## Periodic operation review
+
+Use `docs/repository-operation-model.md` when operation itself needs review.
+
+A periodic operation review is useful when:
+
+- commit granularity feels too small or too large
+- reader paths become long or scattered
+- operation documents, snapshots, sync logs, or roadmap notes are multiplying
+- a workflow result is recorded as observed green
+- a checker failure changes future maintenance behavior
+- a deferred implementation boundary is being reconsidered
+- Class E positive examples, production connectors, production conversion code, runtime-event schema checks, JSON fixture checks, or Lean expansion may need to be revisited
+
+A periodic operation review may produce an operation-model update, operation-index update, snapshot update, sync-log entry, roadmap note, or short CHANGELOG milestone.
+
+It must not be used as production approval, connector correctness proof, adapter correctness proof, legal review, safety review, compliance review, fairness review, Lean completeness proof, or AI final-responsibility transfer.
 
 ## Snapshot documents
 
