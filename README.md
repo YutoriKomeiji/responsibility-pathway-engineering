@@ -77,6 +77,8 @@ The source-aligned Action Class Matrix now has small examples for classification
 
 Phase 3.1 has started with an adapter boundary and runtime-event bridge. See [docs/adapter-boundary.md](docs/adapter-boundary.md) and [docs/phase-3-1-current-snapshot.md](docs/phase-3-1-current-snapshot.md). The first runtime-event-to-pathway example is [examples/runtime-event-to-pathway-minimal.yaml](examples/runtime-event-to-pathway-minimal.yaml). It remains a synthetic, vendor-neutral, review-required draft example, not a service-specific connector or production runtime.
 
+The repository operation model is available at [docs/repository-operation-model.md](docs/repository-operation-model.md). It documents staged update operation, snapshots, sync logs, roadmap notes, checker observation policy, long-file update policy, and non-certifying operation boundaries.
+
 ## Authorship and citation
 
 This repository is authored and maintained by Akihisa Ono (小野昭久) as an independent public specification and design framework.
@@ -93,43 +95,44 @@ For authorship, attribution, affiliation clarification, and citation metadata, s
 For first-time readers, future maintainers, or AI-assisted continuation, read in this order:
 
 1. [BEACON.md](BEACON.md) - current position and reconnection point
-2. [docs/overview.md](docs/overview.md) - current repository overview after source alignment
-3. [docs/source-alignment/zenn-source-alignment-synthesis.md](docs/source-alignment/zenn-source-alignment-synthesis.md) - source-alignment synthesis from reviewed Zenn materials
-4. [docs/concepts/core-elements.md](docs/concepts/core-elements.md) - operational roles and controls aligned with the eight-element model
-5. [docs/action-class-matrix.md](docs/action-class-matrix.md) - source-aligned Class A-F action classification design aid
-6. [examples/action-class-matrix-minimal.yaml](examples/action-class-matrix-minimal.yaml) - classification-only Action Class Matrix fixture
-7. [examples/internal-document-update.yaml](examples/internal-document-update.yaml) - Class C Approval-Required internal document update example
-8. [examples/emergency-stop-flow.yaml](examples/emergency-stop-flow.yaml) - Class F Emergency Stop / stop-and-await example
-9. [examples/reversible-external-action.yaml](examples/reversible-external-action.yaml) - Class D Reversible External Action example
-10. [docs/adapter-boundary.md](docs/adapter-boundary.md) - adapter boundary before runtime connectors
-11. [docs/phase-3-1-current-snapshot.md](docs/phase-3-1-current-snapshot.md) - current Phase 3.1 adapter and runtime-event snapshot
-12. [examples/runtime-event-to-pathway-minimal.yaml](examples/runtime-event-to-pathway-minimal.yaml) - synthetic runtime-event-to-pathway draft example
-13. [docs/explanations/try-catch-finally-responsibility-pathway.md](docs/explanations/try-catch-finally-responsibility-pathway.md) - developer-facing analogy, not formal semantics
-14. [LUMINALIA.md](LUMINALIA.md) - design philosophy
-15. [ROADMAP.md](ROADMAP.md) - current and future phases
-16. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
-17. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - why the current repository remains intentionally small
-18. [docs/enterprise-implementation-profile.md](docs/enterprise-implementation-profile.md) - minimal enterprise adoption profile and layer separation
-19. [docs/responsibility-pathway-record-review.md](docs/responsibility-pathway-record-review.md) - plain-language review process for responsibility pathway records
-20. [docs/phase-2-5-current-snapshot.md](docs/phase-2-5-current-snapshot.md) - current Phase 2.5 enterprise and record-review snapshot
-21. [docs/reference-implementation-boundary.md](docs/reference-implementation-boundary.md) - boundary before Phase 3 reference implementations
-22. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - lightweight validation and lifecycle-example status
-23. [formal/lean/README.md](formal/lean/README.md) - Lean formalization boundary and current invariant candidates
-24. [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md) - current Phase 2 Lean snapshot and restart point
-25. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - current Phase 2 Lean split plan and non-goals
-26. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - current Phase 2 Lean theorem role index
-27. [docs/definition.md](docs/definition.md) - core definition
-28. [docs/eight-elements.md](docs/eight-elements.md) - eight-element structural dimension model
-29. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
-30. [docs/development-process.md](docs/development-process.md) - development process
-31. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
-32. [spec/review-result.schema.yaml](spec/review-result.schema.yaml) - bounded review-result output schema
-33. [spec/runtime-event.schema.yaml](spec/runtime-event.schema.yaml) - draft vendor-neutral runtime event schema
-34. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
-35. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
-36. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
-37. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
-38. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
+2. [docs/repository-operation-model.md](docs/repository-operation-model.md) - repository operation model for staged updates, snapshots, sync logs, and long-file update policy
+3. [docs/overview.md](docs/overview.md) - current repository overview after source alignment
+4. [docs/source-alignment/zenn-source-alignment-synthesis.md](docs/source-alignment/zenn-source-alignment-synthesis.md) - source-alignment synthesis from reviewed Zenn materials
+5. [docs/concepts/core-elements.md](docs/concepts/core-elements.md) - operational roles and controls aligned with the eight-element model
+6. [docs/action-class-matrix.md](docs/action-class-matrix.md) - source-aligned Class A-F action classification design aid
+7. [examples/action-class-matrix-minimal.yaml](examples/action-class-matrix-minimal.yaml) - classification-only Action Class Matrix fixture
+8. [examples/internal-document-update.yaml](examples/internal-document-update.yaml) - Class C Approval-Required internal document update example
+9. [examples/emergency-stop-flow.yaml](examples/emergency-stop-flow.yaml) - Class F Emergency Stop / stop-and-await example
+10. [examples/reversible-external-action.yaml](examples/reversible-external-action.yaml) - Class D Reversible External Action example
+11. [docs/adapter-boundary.md](docs/adapter-boundary.md) - adapter boundary before runtime connectors
+12. [docs/phase-3-1-current-snapshot.md](docs/phase-3-1-current-snapshot.md) - current Phase 3.1 adapter and runtime-event snapshot
+13. [examples/runtime-event-to-pathway-minimal.yaml](examples/runtime-event-to-pathway-minimal.yaml) - synthetic runtime-event-to-pathway draft example
+14. [docs/explanations/try-catch-finally-responsibility-pathway.md](docs/explanations/try-catch-finally-responsibility-pathway.md) - developer-facing analogy, not formal semantics
+15. [LUMINALIA.md](LUMINALIA.md) - design philosophy
+16. [ROADMAP.md](ROADMAP.md) - current and future phases
+17. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
+18. [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) - why the current repository remains intentionally small
+19. [docs/enterprise-implementation-profile.md](docs/enterprise-implementation-profile.md) - minimal enterprise adoption profile and layer separation
+20. [docs/responsibility-pathway-record-review.md](docs/responsibility-pathway-record-review.md) - plain-language review process for responsibility pathway records
+21. [docs/phase-2-5-current-snapshot.md](docs/phase-2-5-current-snapshot.md) - current Phase 2.5 enterprise and record-review snapshot
+22. [docs/reference-implementation-boundary.md](docs/reference-implementation-boundary.md) - boundary before Phase 3 reference implementations
+23. [docs/phase-1-6-plan.md](docs/phase-1-6-plan.md) - lightweight validation and lifecycle-example status
+24. [formal/lean/README.md](formal/lean/README.md) - Lean formalization boundary and current invariant candidates
+25. [docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md) - current Phase 2 Lean snapshot and restart point
+26. [docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md) - current Phase 2 Lean split plan and non-goals
+27. [docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) - current Phase 2 Lean theorem role index
+28. [docs/definition.md](docs/definition.md) - core definition
+29. [docs/eight-elements.md](docs/eight-elements.md) - eight-element structural dimension model
+30. [docs/repository-governance.md](docs/repository-governance.md) - repository governance
+31. [docs/development-process.md](docs/development-process.md) - development process
+32. [docs/schema-cross-reference.md](docs/schema-cross-reference.md) - cross-reference for schema files
+33. [spec/review-result.schema.yaml](spec/review-result.schema.yaml) - bounded review-result output schema
+34. [spec/runtime-event.schema.yaml](spec/runtime-event.schema.yaml) - draft vendor-neutral runtime event schema
+35. [docs/validation-checklist.md](docs/validation-checklist.md) - bounded validation checklist
+36. [docs/validator-boundary.md](docs/validator-boundary.md) - boundary for lightweight validation tools
+37. [docs/checker-coverage.md](docs/checker-coverage.md) - current lifecycle-aware checker coverage
+38. [docs/example-index.md](docs/example-index.md) - index and reading guide for examples
+39. [docs/example-review-notes.md](docs/example-review-notes.md) - initial bounded review notes for examples
 
 ## Current source-aligned concepts
 
