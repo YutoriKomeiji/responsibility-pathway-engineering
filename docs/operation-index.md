@@ -31,6 +31,34 @@ Use documents according to the phase of work.
 
 If the purpose does not match the document, change the reading path or update path before continuing.
 
+## BEACON and snapshot roles
+
+`BEACON.md` and current snapshots are complementary but separate.
+
+Use `BEACON.md` as the reconnection entrance:
+
+- current focus
+- read-first order
+- restart pointer
+- short boundary reminders
+- compact continuity signal across sessions
+
+Use the current phase snapshot as the detailed current-state record:
+
+- current artifacts
+- current synchronization state
+- observed bounded checks
+- detailed deferred boundaries
+- next low-risk work
+- stop conditions
+- restart details
+
+Do not let `BEACON.md` become a full snapshot or a second changelog.
+
+Do not let a current snapshot replace the short reconnection role of `BEACON.md`.
+
+When BEACON grows too large, preserve detailed state in the relevant snapshot, sync log, roadmap note, checker coverage, or example index, then keep BEACON focused on reconnection.
+
 ## Operation documents
 
 | Document | Use when |
@@ -38,7 +66,7 @@ If the purpose does not match the document, change the reading path or update pa
 | `docs/repository-operation-model.md` | You need the current repository-wide operating model, document purpose and usage phase policy, staged update operation, synchronization unit operation, session load and handoff policy, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, sync-log and roadmap-note separation policy, or restart rule. |
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
-| `BEACON.md` | You need the current reconnection point, read-first order, current focus, and restart point. |
+| `BEACON.md` | You need the current reconnection entrance, compact read-first order, current focus, and restart pointer. |
 | `ROADMAP.md` | You need phase-level direction, next low-risk work, phase rules, or deferred work. |
 | `CHANGELOG.md` | You need archival milestones, serious error investigation support, historical cause tracing, or retrospective explanation of when and why a boundary or policy changed. |
 
@@ -51,6 +79,7 @@ A periodic operation review is useful when:
 - commit granularity feels too small or too large
 - reader paths become long or scattered
 - operation documents, snapshots, sync logs, or roadmap notes are multiplying
+- BEACON starts carrying detailed snapshot history or changelog-like content
 - sync logs and roadmap notes start duplicating each other
 - active construction starts relying on `CHANGELOG.md` as a primary restart path
 - a workflow result is recorded as observed green
@@ -73,7 +102,7 @@ Snapshots record current restart positions for phases or subphases.
 | `docs/phase-2-5-current-snapshot.md` | Current Phase 2.5 enterprise and record-review restart point. |
 | `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, runtime-event checking plan, repository operation, checker coverage, and example-index restart point. |
 
-Use snapshots when a change spans multiple documents, when a long-file update becomes risky, when session handoff needs a durable restart path, or when the next maintainer needs a compact restart point.
+Use snapshots when a change spans multiple documents, when a long-file update becomes risky, when session handoff needs a durable restart path, when BEACON would otherwise need to carry detailed current-state history, or when the next maintainer needs a compact restart point.
 
 ## Sync logs and roadmap notes
 
