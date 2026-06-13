@@ -1,6 +1,6 @@
 # Phase 3.1 Current Snapshot
 
-This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, runtime-event checking plan, minimal runtime candidate planning, minimal synthetic runtime fixture, and repository operation layer.
+This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, runtime-event checking plan, minimal runtime candidate planning, minimal synthetic runtime fixture, current task inventory, and repository operation layer.
 
 Phase 3.1 is the bridge from external logs, API events, workflow results, and runtime observations into draft Responsibility Pathway records.
 
@@ -17,6 +17,7 @@ Current Phase 3.1 artifacts:
 - `examples/minimal-synthetic-runtime-fixture.json`
 - `docs/runtime-event-checking-plan.md`
 - `docs/minimal-runtime-candidate-design.md`
+- `docs/current-task-inventory.md`
 - `docs/phase-3-1-current-snapshot.md`
 - `docs/phase-3-1-sync-log.md`
 - `docs/phase-3-1-roadmap-note.md`
@@ -169,6 +170,16 @@ It references `examples/adapter-input-event-minimal.json` as the source event re
 
 The fixture is not currently checked by `scripts/check_examples.py` and does not unlock runtime-event checker implementation, runtime workflow implementation, service-specific connector work, production conversion code, or production runtime integration.
 
+## Current task inventory
+
+`docs/current-task-inventory.md` records the current P0-P4 task inventory across active and near-active phases.
+
+Use it before selecting the next task, especially before checker work, workflow work, runtime work, Lean expansion, connector work, Class E examples, or public-claim expansion.
+
+For Phase 3.1, the inventory currently treats runtime fixture review as bounded artifact preparation and keeps runtime fixture checking, runtime-event checker implementation, runtime workflows, service-specific connectors, production conversion code, production runtime integration, Class E positive examples, and Lean expansion around runtime events deferred or conditional.
+
+The task inventory is a planning and prioritization note only. It is not certification, production approval, legal review, safety review, compliance review, fairness review, connector correctness proof, adapter correctness proof, runtime correctness proof, Lean completeness proof, or AI final-responsibility transfer.
+
 ## Runtime-event checking synchronization
 
 The runtime-event checking plan has been synchronized across the repository-maintenance reader path.
@@ -177,6 +188,7 @@ Current synchronization status:
 
 - `docs/operation-index.md` points runtime-event schema checking, JSON fixture checking, and future runtime-event checker work to `docs/runtime-event-checking-plan.md` first
 - `docs/operation-index.md` points runtime candidate selection to `docs/minimal-runtime-candidate-design.md` before any runtime candidate is added
+- `docs/operation-index.md` points task selection to `docs/current-task-inventory.md` before starting higher-risk work
 - `docs/phase-3-1-sync-log.md` records the runtime-event checking plan synchronization as one responsibility unit split across multiple small commits
 - `docs/phase-3-1-roadmap-note.md` records that Phase 3.1 is not yet a runtime-event checker implementation phase or production runtime phase
 - `docs/example-index.md` records the minimal synthetic runtime fixture as a runtime candidate fixture for reading and review only
@@ -231,6 +243,8 @@ The operation index is now connected from:
 
 `docs/minimal-runtime-candidate-design.md` is now connected from `docs/operation-index.md` as the design note to read before considering a minimal synthetic runtime fixture or bounded runtime-checking stub.
 
+`docs/current-task-inventory.md` is now connected from `docs/operation-index.md` as the task-priority note to read before selecting the next task.
+
 `docs/operation-index.md` also now points readers to the session load and handoff policy when session load is becoming heavy or a durable restart path is needed.
 
 `docs/operation-index.md` now states that `CHANGELOG.md` is not part of the primary construction-time reconnection path and should be used mainly for archival, investigative, historical, or retrospective milestone review.
@@ -252,6 +266,7 @@ For active construction and restart, prefer:
 - `docs/operation-index.md`
 - `docs/phase-3-1-sync-log.md`
 - `docs/phase-3-1-roadmap-note.md`
+- `docs/current-task-inventory.md`
 - `docs/checker-coverage.md`
 - `docs/example-index.md`
 - the primary artifact being changed
@@ -332,6 +347,7 @@ Use periodic operation review when:
 - reader paths become long or scattered
 - BEACON starts carrying detailed snapshot history or changelog-like content
 - operation documents, snapshots, sync logs, or roadmap notes start multiplying
+- task inventories drift from actual repository state
 - sync logs and roadmap notes start duplicating each other
 - active construction starts relying on `CHANGELOG.md` as the primary restart path
 - checker interpretation and actual practice drift apart
@@ -414,19 +430,20 @@ The current Phase 3.1 set does not provide:
 
 Next safe synchronization steps:
 
-1. keep service-specific connectors deferred
-2. keep production conversion code deferred
-3. keep runtime-event schema checking deferred until the schema and examples remain stable and `docs/runtime-event-checking-plan.md` preconditions are satisfied
-4. keep JSON fixture checking deferred until the current event-to-pathway bridge remains readable and reviewable and `docs/runtime-event-checking-plan.md` preconditions are satisfied
-5. keep runtime fixture checking deferred until the minimal runtime fixture remains stable and `docs/minimal-runtime-candidate-design.md` and `docs/runtime-event-checking-plan.md` boundaries are satisfied
-6. keep runtime-event checker implementation deferred until `docs/runtime-event-checking-plan.md` preconditions are satisfied
-7. keep runtime workflow implementation deferred until local runtime-checking behavior exists and has been observed
-8. use `docs/minimal-runtime-candidate-design.md` before selecting any further runtime candidate
-9. keep Class E positive examples deferred
-10. keep Lean expansion around adapter and runtime events deferred
-11. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, session handoff rules, document usage phase rules, sync-log/roadmap-note role separation, BEACON/snapshot role separation, or minimal runtime candidate planning changes
-12. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, document usage phase, BEACON/snapshot separation, sync-log/roadmap-note separation, session load, runtime candidate planning, or deferred boundaries feel misaligned with actual practice
-13. add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, runtime candidate note, or operation document to point to
+1. use `docs/current-task-inventory.md` before selecting the next task
+2. keep service-specific connectors deferred
+3. keep production conversion code deferred
+4. keep runtime-event schema checking deferred until the schema and examples remain stable and `docs/runtime-event-checking-plan.md` preconditions are satisfied
+5. keep JSON fixture checking deferred until the current event-to-pathway bridge remains readable and reviewable and `docs/runtime-event-checking-plan.md` preconditions are satisfied
+6. keep runtime fixture checking deferred until the minimal runtime fixture remains stable and `docs/minimal-runtime-candidate-design.md` and `docs/runtime-event-checking-plan.md` boundaries are satisfied
+7. keep runtime-event checker implementation deferred until `docs/runtime-event-checking-plan.md` preconditions are satisfied
+8. keep runtime workflow implementation deferred until local runtime-checking behavior exists and has been observed
+9. use `docs/minimal-runtime-candidate-design.md` before selecting any further runtime candidate
+10. keep Class E positive examples deferred
+11. keep Lean expansion around adapter and runtime events deferred
+12. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, task inventories, checker plans, session handoff rules, document usage phase rules, sync-log/roadmap-note role separation, BEACON/snapshot role separation, or minimal runtime candidate planning changes
+13. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, task inventories, checker interpretation, document usage phase, BEACON/snapshot separation, sync-log/roadmap-note separation, session load, runtime candidate planning, or deferred boundaries feel misaligned with actual practice
+14. add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, runtime candidate note, task inventory, or operation document to point to
 
 ## Restart point
 
@@ -437,17 +454,18 @@ Also read:
 1. `BEACON.md`
 2. `docs/repository-operation-model.md`
 3. `docs/operation-index.md`
-4. `docs/phase-3-1-sync-log.md`
-5. `docs/phase-3-1-roadmap-note.md`
-6. `docs/adapter-boundary.md`
-7. `docs/runtime-event-checking-plan.md`
-8. `docs/minimal-runtime-candidate-design.md`
-9. `docs/checker-coverage.md`
-10. `docs/example-index.md`
-11. `spec/runtime-event.schema.yaml`
-12. `examples/adapter-input-event-minimal.json`
-13. `examples/minimal-synthetic-runtime-fixture.json`
-14. `examples/runtime-event-to-pathway-minimal.yaml`
+4. `docs/current-task-inventory.md`
+5. `docs/phase-3-1-sync-log.md`
+6. `docs/phase-3-1-roadmap-note.md`
+7. `docs/adapter-boundary.md`
+8. `docs/runtime-event-checking-plan.md`
+9. `docs/minimal-runtime-candidate-design.md`
+10. `docs/checker-coverage.md`
+11. `docs/example-index.md`
+12. `spec/runtime-event.schema.yaml`
+13. `examples/adapter-input-event-minimal.json`
+14. `examples/minimal-synthetic-runtime-fixture.json`
+15. `examples/runtime-event-to-pathway-minimal.yaml`
 
 Use `CHANGELOG.md` after these current-state documents only when a milestone, historical cause, serious inconsistency, or prior boundary decision needs investigation.
 
