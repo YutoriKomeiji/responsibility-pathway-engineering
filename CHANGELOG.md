@@ -4,6 +4,37 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Action Class Matrix source-alignment checkpoint added
+
+- `docs/action-class-matrix.md` updated from the earlier Class 0-4 form to the source-aligned Class A-F form
+- Earlier Class 0-4 categories are retained as historical mapping references instead of being silently removed
+- `spec/action-class.schema.yaml` updated to v0.2.0 with `source_aligned_class: A-F` as the current structure and legacy `level: 0-4` as optional historical mapping
+- `examples/minimal-pathway.yaml` migrated from legacy Class 1 Internal Assistive to source-aligned Class B Suggest-Only with legacy mapping preserved
+- `examples/action-class-matrix-minimal.yaml` added as a classification-only fixture for reading Class A-F before adding higher-impact examples
+- `docs/example-index.md`, `docs/checker-coverage.md`, ROADMAP, and BEACON now connect examples, schema, and checker boundaries to Action Class Matrix work
+- The checkpoint remains structural and non-certifying, and does not claim legal validity, safety, compliance, fairness, moral resolution, institutional certification, production readiness, or AI final-responsibility transfer
+
+### Core operational roles aligned with eight-element model
+
+- `docs/concepts/core-elements.md` now treats Decision Owner, Approval Gate, Execution Actor, Stop Authority, Evidence Log, Repair Owner, and Human Return Point as operational roles and controls
+- The file explicitly states that these seven roles/controls do not replace the eight-element structural dimension model
+- `docs/overview.md` and README now distinguish the eight-element model from operational roles and controls
+- The alignment preserves Meaning, Authority, Time, Quality, Trust, Reversibility, Value, and Cost as the eight-element structural dimensions
+
+### Action-class checker coverage documented as future bounded work
+
+- `docs/checker-coverage.md` now states that action-class-specific checker enforcement is not yet active
+- Planned future bounded checks may inspect declared `action_class`, Class C or higher approval design, Class D or higher rollback/repair design, Class E high-impact boundaries, and Class F stop/return boundaries
+- Existing examples are not retroactively required to satisfy action-class-specific checker rules unless deliberately migrated
+- Any future checker rule must remain structural and non-certifying
+
+### BEACON and ROADMAP synchronized with action-class current position
+
+- ROADMAP now records Phase 1.6 as an action-class alignment and documentation-synchronization pass
+- ROADMAP now records `examples/action-class-matrix-minimal.yaml` as a classification-only baseline before Class C, Class D, Class E, or Class F examples
+- BEACON now records the current action-class alignment position, read-first path, current focus, and restart point
+- BEACON and ROADMAP both state that Lean should not be expanded around Action Class Matrix until Class A-F examples, schema, checker boundary, and validation checklist are stable
+
 ### Phase 2.5 stable checkpoint added
 
 - `docs/phase-2-5-current-snapshot.md` now records a stable checkpoint for the enterprise implementation and record-review bridge
