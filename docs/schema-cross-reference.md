@@ -1,6 +1,6 @@
 # Schema Cross-Reference
 
-This note explains how the current Responsibility Pathway Engineering schema files relate to each other during Phase 1.5 - Specification Binding and Phase 2.5 - record-review alignment.
+This note explains how the current Responsibility Pathway Engineering schema files relate to each other during Phase 1.5 - Specification Binding, Phase 1.6 - lightweight validation, and Phase 2.5 - record-review alignment.
 
 It is explanatory only. It does not claim complete validation, legal liability, production readiness, compliance, safety, fairness, or moral accountability.
 
@@ -52,16 +52,46 @@ Defines the minimum structure for classifying actions by responsibility impact.
 
 Use this schema to describe the expected responsibility weight of an action before composing or validating a pathway.
 
+Current status:
+
+- `spec/action-class.schema.yaml` is currently v0.2.0.
+- The current source-aligned structure uses Class A-F.
+- Earlier Class 0-4 values are retained only as historical mapping references.
+- New examples should prefer `source_aligned_class` over legacy `level`.
+
+Current source-aligned classes:
+
+| Class | Name | Main distinction |
+| --- | --- | --- |
+| A | Observe-Only | Observation without execution. |
+| B | Suggest-Only | Proposal, summary, classification, or draft without execution. |
+| C | Approval-Required | Internal change or controlled state change requiring approval design. |
+| D | Reversible External Action | External effect with rollback or correction path. |
+| E | Irreversible or High-Impact Action | Irreversible, safety-relevant, legal, financial, production, permission, customer, or other high-impact effect. |
+| F | Emergency Stop | Stop, isolate, suspend, downgrade, or return to human confirmation. |
+
 Key concerns:
 
 - action class identity
-- action level
+- `source_aligned_class`
+- optional legacy mapping
 - responsibility requirements
 - reversibility
 - external impact
+- execution effect
 - automation boundary
+- excluded interpretations
 
-The action class helps determine when stronger requirements are expected, such as human authorization, evidence logging, stop authority, return points, or repair ownership.
+The action class helps determine when stronger requirements are expected, such as human authorization, approval gate, evidence logging, stop authority, return points, rollback/correction paths, or repair ownership.
+
+Important boundary:
+
+The schema classifies actions for Responsibility Pathway design. It does not determine legal classification, safety, compliance, fairness, moral responsibility, production readiness, or final responsibility by itself.
+
+Related documents and examples:
+
+- `docs/action-class-matrix.md`
+- `examples/action-class-matrix-minimal.yaml`
 
 ### `spec/return-point.schema.yaml`
 
@@ -193,6 +223,8 @@ This order moves from concept vocabulary to specialized schema files, composed p
 ## Validation boundary
 
 These schema files currently define minimum structure and design expectations. They do not yet constitute a complete validator, certification scheme, compliance framework, or formal proof system.
+
+Action-class-specific checker enforcement is not yet active. Future checker work may inspect bounded structural signals from `spec/action-class.schema.yaml`, but such checks must remain non-certifying and must not be interpreted as legal validity, safety, compliance, fairness, moral resolution, institutional approval, production readiness, or AI final-responsibility transfer.
 
 Formal claims must remain limited to explicitly stated definitions, assumptions, modeled entities, and transitions.
 
