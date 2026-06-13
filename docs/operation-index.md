@@ -35,7 +35,7 @@ If the purpose does not match the document, change the reading path or update pa
 
 | Document | Use when |
 | --- | --- |
-| `docs/repository-operation-model.md` | You need the current repository-wide operating model, document purpose and usage phase policy, staged update operation, synchronization unit operation, session load and handoff policy, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, or restart rule. |
+| `docs/repository-operation-model.md` | You need the current repository-wide operating model, document purpose and usage phase policy, staged update operation, synchronization unit operation, session load and handoff policy, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, sync-log and roadmap-note separation policy, or restart rule. |
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
 | `BEACON.md` | You need the current reconnection point, read-first order, current focus, and restart point. |
@@ -51,6 +51,7 @@ A periodic operation review is useful when:
 - commit granularity feels too small or too large
 - reader paths become long or scattered
 - operation documents, snapshots, sync logs, or roadmap notes are multiplying
+- sync logs and roadmap notes start duplicating each other
 - active construction starts relying on `CHANGELOG.md` as a primary restart path
 - a workflow result is recorded as observed green
 - a checker failure changes future maintenance behavior
@@ -76,18 +77,20 @@ Use snapshots when a change spans multiple documents, when a long-file update be
 
 ## Sync logs and roadmap notes
 
-Sync logs record multi-commit synchronization work.
-
-Roadmap notes are short companions to `ROADMAP.md` when direct roadmap edits would be large or risky.
+Sync logs and roadmap notes are complementary but separate.
 
 | Document | Current role |
 | --- | --- |
-| `docs/phase-3-1-sync-log.md` | Records staged synchronization work for Phase 3.1 Adapter Boundary and Runtime Event Bridge. |
-| `docs/phase-3-1-roadmap-note.md` | Records the short roadmap companion for Phase 3.1. |
+| `docs/phase-3-1-sync-log.md` | Detailed synchronization record for multi-commit Phase 3.1 reader-path, coverage, checker-interpretation, and boundary synchronization. |
+| `docs/phase-3-1-roadmap-note.md` | Short current-planning companion for Phase 3.1 near-term roadmap position, next low-risk work, phase rules, and stop conditions. |
 
-Use sync logs when reader-path updates, coverage updates, or long-file deferrals span multiple commits.
+Use sync logs to understand what changed across several commits, what was synchronized, what checker status or interpretation was current, and what work remained deferred after a synchronization unit.
 
-Use roadmap notes when the roadmap position should be recorded before changing long roadmap sections.
+Use roadmap notes to understand what should happen next, which phase rules matter now, what should remain deferred, and how to avoid changing a long `ROADMAP.md` section too early.
+
+Do not use a roadmap note as a second changelog.
+
+Do not use a sync log as a phase plan.
 
 ## Checker and example navigation
 
