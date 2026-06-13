@@ -4,6 +4,21 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Check examples #14 observed green for Class D reversible external action fixture
+
+- `Check examples #14` observed green on commit `caf285b` on `main` after adding `examples/reversible-external-action.yaml`
+- The `Bounded structural example checks` job completed successfully
+- BEACON and ROADMAP now record the observed green workflow status
+- The observed green status remains a bounded repository-maintenance check and is not certification
+
+### Class D reversible external action fixture added
+
+- `examples/reversible-external-action.yaml` added as a Class D Reversible External Action example
+- The fixture models a human-approved external notification with affected-party visibility and a rollback or correction path
+- AI participation remains drafting, recommendation, explanation, and classification support only; AI approval, execution, stop authority, repair authority, and final responsibility remain disallowed
+- `docs/example-index.md` and `docs/checker-coverage.md` now include the Class D fixture while keeping action-class-specific checker enforcement as future bounded work
+- The fixture remains structural and non-certifying, and does not claim harmless reversibility, legal validity, safety, compliance, fairness, moral resolution, production readiness, or AI final-responsibility transfer
+
 ### Action Class Matrix source-alignment checkpoint added
 
 - `docs/action-class-matrix.md` updated from the earlier Class 0-4 form to the source-aligned Class A-F form
