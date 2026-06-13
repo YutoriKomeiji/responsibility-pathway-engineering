@@ -1,0 +1,85 @@
+{
+  "event_id": "event_minimal_001",
+  "schema_version": "0.1.0",
+  "source_system": {
+    "id": "synthetic_runtime",
+    "name": "Synthetic Runtime Event Source",
+    "type": "synthetic",
+    "vendor_specific": false
+  },
+  "observed_at": "2026-06-13T00:00:00Z",
+  "observed_actor": {
+    "id": "ai_support_agent_001",
+    "type": "ai_agent",
+    "display_name": "AI Support Agent",
+    "final_responsibility_claimed": false
+  },
+  "observed_action": {
+    "id": "draft_internal_update_001",
+    "type": "draft",
+    "description": "AI support agent drafted an internal document update proposal for human review.",
+    "proposed_action_class": "class_c_approval_required",
+    "action_class_source": "adapter_suggestion"
+  },
+  "observed_target": {
+    "id": "internal_document_update_001",
+    "type": "internal_document",
+    "description": "Synthetic internal document update target used for adapter-boundary testing.",
+    "external_impact_possible": false,
+    "high_impact_possible": false
+  },
+  "evidence": {
+    "source_reference": "synthetic://runtime/events/event_minimal_001",
+    "source_event_hash": null,
+    "captured_fields": [
+      "event_id",
+      "source_system",
+      "observed_at",
+      "observed_actor",
+      "observed_action",
+      "observed_target"
+    ],
+    "missing_fields": [
+      "human_decision_owner",
+      "human_approval_decision",
+      "execution_actor",
+      "post_review_status"
+    ],
+    "uncertainty_notes": [
+      "The event records an AI-generated draft only.",
+      "No human approval decision is present in the source event.",
+      "No execution event is present in the source event."
+    ],
+    "raw_event_available": true
+  },
+  "review_requirement": {
+    "human_or_institutional_review_required": true,
+    "reason": "The observed event is an AI-generated draft proposal and does not include human approval or execution evidence.",
+    "suggested_review_roles": [
+      "decision_owner",
+      "approval_gate",
+      "evidence_reviewer"
+    ],
+    "stop_or_escalate_recommended": false
+  },
+  "adapter_context": {
+    "adapter_id": "synthetic_adapter_example",
+    "adapter_version": "0.1.0",
+    "transformed_at": "2026-06-13T00:00:00Z",
+    "mapping_notes": [
+      "This fixture is synthetic and vendor-neutral.",
+      "The proposed action class is an adapter suggestion, not a certification.",
+      "The generated pathway record must remain review-required."
+    ]
+  },
+  "excluded_claims": [
+    "legal_validity",
+    "safety_certification",
+    "compliance_certification",
+    "fairness_certification",
+    "moral_resolution",
+    "institutional_approval",
+    "production_readiness",
+    "ai_final_responsibility_transfer"
+  ]
+}
