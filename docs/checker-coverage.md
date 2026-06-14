@@ -10,9 +10,7 @@ The checkers are bounded repository-maintenance tools. They are not schema valid
 
 It does not check JSON fixtures such as `examples/adapter-input-event-minimal.json` or `examples/minimal-synthetic-runtime-fixture.json`.
 
-### General checks
-
-For each YAML example, the checker currently inspects:
+For pathway examples, the checker currently inspects:
 
 - required top-level keys
 - non-empty `nodes`
@@ -22,95 +20,15 @@ For each YAML example, the checker currently inspects:
 - AI final-responsibility flags such as `assumes_final_responsibility`
 - formalization-scope excluded-claim signals
 - optional `review_metadata` structure when present
+- lifecycle-aware structural signals for `originating`, `repaired`, `suspended`, `returning`, and `closed`
 
-### Lifecycle-aware checks
-
-#### `originating`
-
-The checker inspects whether the example includes:
-
-- a human-capable `decision_owner`
-- a human-capable `stop_authority`
-- an empty `repairs` list
-- a human return-point signal
-
-This does not mean the originating pathway is complete, safe, compliant, legally valid, morally resolved, or production ready.
-
-#### `repaired`
-
-The checker inspects whether the example includes:
-
-- a non-empty `repairs` list
-- a human-capable `repair_owner`
-- repair-record signals for trigger, repair owner, and repair state
-- repair-boundary signals in `formalization_scope`
-
-This does not mean repair is complete in the real world, harm is eliminated, legal responsibility is resolved, or moral responsibility is resolved.
-
-#### `suspended`
-
-The checker inspects whether the example includes:
-
-- a top-level `suspension` block
-- continuation and closure boundary signals
-- required-before-continuation records
-- disallowed-interpretation signals
-
-This does not mean suspension is justified in a real-world setting.
-
-#### `returning`
-
-The checker inspects whether the example includes:
-
-- a top-level `returning` block
-- prior lifecycle-state signal
-- automatic-continuation, automatic-closure, and automatic-repair-completion boundary signals
-- required-before-next-state records
-- disallowed-interpretation signals
-
-This does not mean return is equivalent to continuation, repair completion, closure, or approval.
-
-#### `closed`
-
-The checker inspects whether the example includes:
-
-- a top-level `closure` block
-- closure basis records
-- residual-obligation records
-- reopening-condition records
-- automatic-reopening, automatic-closure, and AI-closure-authority boundary signals
-- closure-specific excluded-claim signals
-
-This does not mean closure erases responsibility history, grants immunity, completes repair, certifies safety, or resolves legal or moral responsibility.
-
-### Optional record-review metadata checks
-
-When an example includes `review_metadata`, the checker now inspects whether:
-
-- `review_tool_version` is present
-- `checked_items` is present as a non-empty list
-- `unchecked_items` is present as a non-empty list
-- `review_result` is present as a mapping
-- `review_result.not_claimed` is present as a non-empty list
-- `unchecked_items` and `review_result.not_claimed` include non-certifying signals such as legal, safety, compliance, fairness, moral, and production boundaries
-
-These checks are optional and apply only when `review_metadata` is present.
-
-They remain bounded structural checks. A pass does not certify the record, the workflow, the system, the organization, or the real-world decision.
+These checks are bounded structural checks only. A pass does not certify the record, the workflow, the system, the organization, or the real-world decision.
 
 ### Action-class-specific checks
 
 Current checkers do not yet enforce action-class-specific requirements from [docs/action-class-matrix.md](action-class-matrix.md).
 
-This is intentional for the current repository state because examples and schema fields are still being stabilized before deliberate action-class-specific checker migration.
-
-Future bounded checker work may inspect structural signals such as:
-
-- declared `action_class`
-- Class C or higher Approval Gate presence
-- Class D or higher rollback or repair path presence
-- Class E high-impact and non-autonomous boundary language
-- Class F stop trigger, Stop Authority, pending responsibility owner, and restart/return fields
+Future bounded checker work may inspect structural signals such as declared `action_class`, Class C approval-gate presence, Class D rollback or repair paths, Class E high-impact boundaries, or Class F stop-trigger boundaries.
 
 Any such rule must remain bounded to structural signals.
 
@@ -136,13 +54,30 @@ A pass for this example means only that the file preserves the currently require
 
 `docs/minimal-runtime-candidate-design.md` records the boundary for selecting a minimal synthetic runtime fixture or bounded runtime-checking stub before any runtime candidate is added.
 
-`docs/runtime-event-checking-plan.md` records the planned path, preconditions, exclusions, suggested implementation order, and non-certifying boundary for runtime-event schema checking, JSON fixture checking, `scripts/check_runtime_events.py`, or a runtime-event workflow.
+`docs/runtime-event-checking-plan.md` records the path, preconditions, exclusions, implementation order, and non-certifying boundary for runtime-event schema checking, JSON fixture checking, `scripts/check_runtime_events.py`, or a runtime-event workflow.
 
 A pass for the runtime-event-to-pathway example means only that the generated draft pathway record preserves the currently required structural signals. It does not validate the runtime event schema, certify an adapter, approve a connector, prove the event mapping correct, prove JSON fixture correctness, prove schema correctness, prove runtime fixture correctness, or make the record production ready.
 
 ## `scripts/check_runtime_events.py`
 
 `scripts/check_runtime_events.py` performs bounded local structural checks on `examples/adapter-input-event-minimal.json` by default.
+
+The first local observation is recorded in `docs/runtime-event-checker-local-observation.md`.
+
+Observed local command shape:
+
+```text
+python scripts/check_runtime_events.py
+```
+
+Observed local result:
+
+```text
+exit code: 0
+PASS: bounded runtime-event checks completed without failures
+```
+
+This is a local checker observation only. There is no runtime-event workflow yet, and no GitHub Actions runtime-event workflow status has been observed yet.
 
 The current runtime-event checker inspects only whether:
 
@@ -180,8 +115,6 @@ The current runtime-event checker does not validate:
 - responsibility assignment correctness
 - AI final-responsibility transfer
 
-There is no runtime-event workflow yet, and no observed runtime-event checker status has been recorded yet.
-
 A pass from `scripts/check_runtime_events.py` may mean only that the selected synthetic runtime-event JSON fixture satisfies the bounded structural requirements implemented by the local checker. It is not schema validation, JSON semantic correctness proof, adapter correctness proof, connector correctness proof, runtime correctness proof, production readiness, certification, or AI final-responsibility transfer.
 
 ## `scripts/check_review_results.py`
@@ -208,21 +141,7 @@ A pass means only that the current review-result fixture preserves the bounded s
 
 `docs/responsibility-pathway-record-review.md` defines a plain-language review and recheck guide for Responsibility Pathway records.
 
-`spec/pathway.schema.yaml` now includes review aliases, review metadata, and record-review alignment notes for concepts such as:
-
-- `pathway_id`
-- `schema_version`
-- `ai_support_nodes`
-- `human_or_institutional_return_point`
-- `stop_authority`
-- `evidence_records`
-- `repair_record`
-- `suspension_condition`
-- `return_condition`
-- `closure_record`
-- `reopening_condition`
-- `excluded_claims`
-- `review_tool_version`
+`spec/pathway.schema.yaml` includes review aliases, review metadata, and record-review alignment notes.
 
 `spec/review-result.schema.yaml` defines the bounded review-result output structure.
 
@@ -245,7 +164,7 @@ Future checker work should remain bounded to structural signals and must not tre
 | `examples/emergency-stop-flow.yaml` | `suspended` | yes | no | not yet |
 | `examples/reversible-external-action.yaml` | `originating` | yes | no | not yet |
 | `examples/runtime-event-to-pathway-minimal.yaml` | `originating` | yes | no | not yet |
-| `examples/adapter-input-event-minimal.json` | not a pathway example | no | no | checked by `scripts/check_runtime_events.py` |
+| `examples/adapter-input-event-minimal.json` | not a pathway example | no | no | locally observed pass with `scripts/check_runtime_events.py` |
 | `examples/minimal-synthetic-runtime-fixture.json` | not a pathway example | no | no | not yet |
 | `examples/record-review-minimal.yaml` | `originating` | yes | yes | not yet |
 | `examples/repair-flow.yaml` | `repaired` | yes | no | not yet |
