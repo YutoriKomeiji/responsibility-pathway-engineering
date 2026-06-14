@@ -19,7 +19,18 @@ A first bounded runtime-event checker stub now exists at `scripts/check_runtime_
 
 It checks `examples/adapter-input-event-minimal.json` by default and performs only local structural checks on the selected synthetic runtime-event JSON fixture.
 
-It does not yet validate:
+The first local observation is recorded in `docs/runtime-event-checker-local-observation.md`.
+
+Observed local result:
+
+```text
+exit code: 0
+PASS: bounded runtime-event checks completed without failures
+```
+
+This was a local checker observation only. No runtime-event workflow existed at the time of observation, and no GitHub Actions runtime-event workflow status has been observed yet.
+
+The checker does not yet validate:
 
 - `spec/runtime-event.schema.yaml`
 - `examples/minimal-synthetic-runtime-fixture.json`
@@ -48,10 +59,6 @@ This plan records what is now checked, what may be checked later, what must rema
 - `review_requirement.human_or_institutional_review_required` is explicitly `true`
 - `review_requirement.reason` is present
 - `excluded_claims` includes the expected non-certifying boundary items
-
-No runtime-event workflow has been added yet.
-
-No observed runtime-event checker status has been recorded yet.
 
 ## Planned future checks
 
@@ -86,7 +93,7 @@ These items require separate boundaries, examples, and review rules before they 
 
 ## Preconditions before expanding implementation
 
-Do not add a runtime-event workflow, schema checker, minimal-runtime-fixture checker, service connector check, or broader runtime-event checker until the following conditions remain satisfied after the first checker stub:
+Do not add a runtime-event workflow, schema checker, minimal-runtime-fixture checker, service connector check, or broader runtime-event checker until the following conditions remain satisfied after the first checker stub and local observation:
 
 1. `spec/runtime-event.schema.yaml` remains small and readable.
 2. `examples/adapter-input-event-minimal.json` remains synthetic, vendor-neutral, and review-required.
@@ -99,15 +106,14 @@ Do not add a runtime-event workflow, schema checker, minimal-runtime-fixture che
 
 ## Suggested next implementation order
 
-Use this order after the first checker stub:
+Use this order after the first local checker observation:
 
-1. record the first checker stub in `docs/phase-3-1-current-snapshot.md` and `docs/phase-3-1-sync-log.md`
-2. update `docs/current-task-inventory.md` so runtime-event checker work is no longer described as entirely deferred, while workflow, schema checking, runtime fixture checking, connectors, production runtime, and semantic checking remain deferred
-3. optionally run the checker locally and record the observed result only after it is actually observed
-4. add a minimal GitHub Actions workflow only after local checker behavior is stable and observed
-5. update `docs/checker-coverage.md` after any checker behavior changes
-6. update `docs/example-index.md` only if the interpretation of examples changes
-7. record observed green workflow status only after the workflow has actually been observed
+1. record the first local observation in `docs/phase-3-1-current-snapshot.md`, `docs/phase-3-1-sync-log.md`, and `docs/current-task-inventory.md`
+2. consider a minimal runtime-event workflow only if the maintainer decides the local checker behavior is stable enough to observe in GitHub Actions
+3. record observed workflow status only after the workflow has actually been observed
+4. update `docs/checker-coverage.md` after any checker behavior changes
+5. update `docs/example-index.md` only if the interpretation of examples changes
+6. defer schema checking, minimal-runtime-fixture checking, service connectors, production runtime, semantic responsibility correctness checking, conformance claims, public standardization claims, and Lean expansion until their own preconditions are satisfied
 
 ## Boundary for passing checks
 
@@ -130,9 +136,11 @@ It must not be interpreted as:
 
 ## Current decision
 
-A first bounded runtime-event checker stub now exists.
+A first bounded runtime-event checker stub exists.
 
-Runtime-event workflow implementation remains deferred.
+A first local observation of the checker against `examples/adapter-input-event-minimal.json` recorded exit code `0` and bounded checks completed without failures.
+
+Runtime-event workflow implementation remains deferred until the maintainer decides the local checker behavior is stable enough to observe in GitHub Actions.
 
 Runtime-event schema checking remains deferred.
 
