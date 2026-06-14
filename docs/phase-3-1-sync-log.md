@@ -172,6 +172,28 @@ This synchronization is one responsibility unit split across multiple small comm
 
 It does not unlock conformance-model drafting, conformance checks, public standardization claims, production connectors, production runtime integration, semantic responsibility correctness checking, or Class E positive examples.
 
+## Phase 3.1 progress-map connection synchronization completed
+
+A sixth synchronization unit added and connected `docs/phase-3-1-progress-map-connection.md`.
+
+The trigger was a long-file boundary issue: `docs/phase-3-1-current-snapshot.md` was already a large detailed current-state record, so a focused connection note was safer than rewriting the full snapshot solely to connect progress-map context.
+
+The synchronization introduced or connected:
+
+- `docs/phase-3-1-progress-map-connection.md` as the focused Phase 3.1 reader-path note for progress-map context
+- `docs/operation-index.md` as the navigation entry for Phase 3.1 progress review and focused connection notes
+- `docs/current-task-inventory.md` as the task-selection record that keeps the focused progress-map connection visible during Phase 3.1 planning
+
+The focused connection note links Phase 3.1 to `docs/progress-map.md` without changing Phase 3.1 scope.
+
+It does not replace `docs/phase-3-1-current-snapshot.md`.
+
+It is not progress certification, maturity proof, conformance proof, external review finding, standardization certification, legal validation, safety certification, compliance certification, fairness certification, production approval, connector correctness proof, runtime correctness proof, Lean completeness proof, or AI final-responsibility transfer.
+
+This synchronization is one responsibility unit split across multiple small commits for reviewability.
+
+It does not unlock conformance-model drafting, conformance checks, public standardization claims, production connectors, production runtime integration, runtime-event checker implementation, runtime fixture checker implementation, support-call semantic checking, missed-support correctness checking, Class E positive examples, or Lean expansion around adapter, runtime-event, support-call, or missed-support concepts.
+
 ## Current checker interpretation
 
 `examples/runtime-event-to-pathway-minimal.yaml` is checked only as a pathway example under the current structural and originating-lifecycle rules.
@@ -217,7 +239,7 @@ The following work remains deferred:
 
 ## Next safe synchronization step
 
-The next safe synchronization step is to decide whether the repeated AI-assisted tool-selection mistake should be recorded in `docs/operation-tool-selection-guard.md` or handled only as an in-session correction.
+The next safe synchronization step is to decide whether the focused progress-map connection note should receive only a short reference from `BEACON.md` or remain reachable through `docs/operation-index.md`, `docs/current-task-inventory.md`, and this sync log.
 
 Do not update additional long files unless the reference would improve restartability, progress visibility, or external review.
 
