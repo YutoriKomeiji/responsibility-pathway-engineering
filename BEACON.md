@@ -41,12 +41,13 @@ The support-call / missed-support path is currently concept-level and boundary-e
 6. `docs/phase-3-1-roadmap-sync-after-readme-recovery.md`
 7. `docs/current-task-inventory.md`
 8. `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
-9. `docs/concepts/index.md`
-10. `docs/standardization-strategy.md` before expanding world-standard or conformance language
-11. `docs/example-index.md`
-12. `docs/checker-coverage.md`
-13. `ROADMAP.md`
-14. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
+9. `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
+10. `docs/concepts/index.md`
+11. `docs/standardization-strategy.md` before expanding world-standard or conformance language
+12. `docs/example-index.md`
+13. `docs/checker-coverage.md`
+14. `ROADMAP.md`
+15. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
 
 Use `docs/repository-operation-model.md` before broad reader-path synchronization, long-file updates, session handoff, or periodic operation review.
 
