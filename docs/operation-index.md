@@ -165,7 +165,8 @@ Sync logs and roadmap notes are complementary but separate.
 | --- | --- |
 | `docs/phase-3-1-sync-log.md` | Detailed synchronization record for multi-commit Phase 3.1 reader-path, coverage, checker-interpretation, and boundary synchronization. |
 | `docs/phase-3-1-roadmap-note.md` | Short current-planning companion for Phase 3.1 near-term roadmap position, minimal runtime candidate planning, next low-risk work, phase rules, and stop conditions. |
-| `docs/phase-3-1-roadmap-runtime-reference.md` | Short companion note for a future small ROADMAP reference to the minimal runtime fixture synchronization. |
+| `docs/phase-3-1-roadmap-runtime-reference.md` | Historical reference note for the minimal runtime fixture ROADMAP reference after the intended ROADMAP reference was absorbed. |
+| `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` | Short companion note for the README recovery and missed-support synchronization unit. |
 
 Use sync logs to understand what changed across several commits, what was synchronized, what checker status or interpretation was current, and what work remained deferred after a synchronization unit.
 
@@ -180,9 +181,13 @@ Do not use a sync log as a phase plan.
 | Document | Use when |
 | --- | --- |
 | `docs/minimal-runtime-candidate-design.md` | You need to decide whether the next runtime artifact may be a minimal synthetic runtime fixture or a bounded runtime-checking stub before any connector, workflow, checker, or production runtime implementation. |
+| `docs/minimal-runtime-fixture-review.md` | You need the review result for `examples/minimal-synthetic-runtime-fixture.json` as the first minimal synthetic runtime observation fixture. |
+| `docs/minimal-runtime-fixture-review-connection.md` | You need the reader path connecting the minimal runtime fixture review note to Phase 3.1 operation documents. |
 | `docs/runtime-event-checking-plan.md` | You need to know when runtime-event schema checking, JSON fixture checking, or future runtime-event checker work may be safely considered. |
 
 Use the minimal runtime candidate design note before adding any runtime candidate.
+
+Use the minimal runtime fixture review note before changing the minimal runtime fixture or treating its first review as current.
 
 Use the runtime-event checking plan before adding any runtime-event checker, runtime-event workflow, runtime-event schema checking, or JSON fixture checking.
 
