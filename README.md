@@ -4,15 +4,41 @@ Author: Akihisa Ono (小野昭久)
 
 Affiliation for this repository: Independent
 
-Responsibility Pathway Engineering is a design framework for preserving the pathways through which responsibility, meaning, authority, value, cost, and repair can return across humans, AI agents, organizations, and systems.
+Responsibility Pathway Engineering is a design framework for preserving where judgment, authority, evidence, stop authority, human return, and repair remain reachable when humans and AI systems act together.
 
 It is not a blame assignment mechanism.
+
+## Why this matters
+
+AI systems do not only produce outputs. They participate in decisions, recommendations, classifications, tool use, evidence production, and sometimes action preparation.
+
+When that happens, the important question is not only whether the output was correct. The important question is whether the path of responsibility remained visible and returnable:
+
+- where judgment arose
+- who or what participated
+- where approval was required
+- where the action could stop
+- where the case returned to humans
+- what evidence remained
+- who could repair or reconnect the path
+
+Responsibility Pathway Engineering treats these as design objects.
 
 ## Current status
 
 Early public specification.
 
 This repository is intentionally specification-first. It prioritizes definitions, examples, lifecycle boundaries, checker boundaries, provenance, and excluded claims before larger implementation layers.
+
+## Provenance
+
+According to the author's development record, Akihisa Ono began thinking about and using the concept of **責任経路 / Responsibility Pathway** from the public note article published on 2026-01-18:
+
+- [AI事故は「責任設計」だけでは防げない――最後の砦は「責任経路設計」である](https://note.com/dantarg/n/nb7f28afa6882)
+
+A fuller provenance record is available at [docs/provenance.md](docs/provenance.md).
+
+This provenance statement is for attribution and traceability. It is not a legal claim, ownership adjudication, plagiarism accusation, certification, or production approval.
 
 ## What this repository is not
 
