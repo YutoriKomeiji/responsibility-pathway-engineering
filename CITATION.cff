@@ -9,7 +9,7 @@ authors:
     affiliation: "Independent"
 repository-code: "https://github.com/YutoriKomeiji/responsibility-pathway-engineering"
 url: "https://github.com/YutoriKomeiji/responsibility-pathway-engineering"
-abstract: "Responsibility Pathway Engineering is a design framework for preserving the pathways through which responsibility, meaning, authority, value, cost, and repair can return across humans, AI agents, organizations, and systems."
+abstract: "Responsibility Pathway Engineering is a design framework for preserving the pathways through which responsibility, meaning, authority, value, cost, and repair can return across humans, AI agents, organizations, and systems. Public source lineage and provenance are recorded in docs/provenance.md."
 keywords:
   - responsibility pathway engineering
   - responsibility pathway
@@ -18,5 +18,6 @@ keywords:
   - responsibility boundary
   - repair flow
   - return point
+  - provenance
 license: MIT
 copyright: "Copyright (c) 2026 Akihisa Ono (小野昭久)"
