@@ -21,10 +21,12 @@ Use the following priority classes when choosing the next task.
 These tasks preserve the repository's current operating ability.
 
 - Keep `BEACON.md` short enough to remain a reconnection entrance.
+- Keep root `README.md` short, mobile-renderer friendly, and linked to `docs/readme-expanded.md` for the previous expanded content.
 - Keep `docs/phase-3-1-current-snapshot.md` as the detailed current-state record for Phase 3.1.
-- Keep `docs/operation-index.md` aligned when operation documents, snapshots, sync logs, roadmap notes, checker plans, runtime candidate planning, review notes, or document-role rules change.
 - Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record, not a phase plan.
 - Keep `docs/phase-3-1-roadmap-note.md` as the short planning companion, not a second changelog.
+- Keep `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` as the short companion note for the README recovery and missed-support synchronization unit.
+- Keep `docs/operation-index.md` aligned when operation documents, snapshots, sync logs, roadmap notes, checker plans, runtime candidate planning, review notes, document-role rules, or concept navigation change.
 - Keep `CHANGELOG.md` archival and investigative rather than the active construction restart path.
 - Preserve open-source review intent without implying certification or production approval.
 - Keep `docs/deferred-work-restart-conditions.md` as the restart-condition entry point for deferred schema, checker, workflow, connector, runtime, and Lean work.
@@ -41,10 +43,11 @@ Current status: substantially established; action-class alignment remains in mai
 - Keep `docs/example-index.md` and `docs/checker-coverage.md` aligned when examples change.
 - Keep action-class-specific checker additions documented as planned future bounded work.
 - Keep `docs/examples/missed-support-current-status.md` as the focused current-state note for missed-support example work.
+- Keep `docs/examples/missed-support-workflow-observation.md` as workflow-observation evidence, not certification.
 
 ### P2: bounded artifact preparation
 
-- Use `docs/concepts/support-call-policy.md` and `docs/examples/missed-support-boundary-example-plan.md` before adding any further missed-support examples.
+- Use `docs/concepts/support-call-policy.md`, `docs/concepts/missed-support-review-signal.md`, and `docs/examples/missed-support-boundary-example-plan.md` before adding any further missed-support examples.
 - Keep any missed-support example synthetic, local, boundary-only or negative, manually readable, and non-certifying.
 - Keep support-call policy represented as concept-level and example-level material unless a later schema-design note explicitly reopens schema work.
 
@@ -126,16 +129,19 @@ Current status: first bounded reference example reached; action-class classifica
 
 ## Phase 3.1 task inventory
 
-Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate design, minimal synthetic runtime fixture, and minimal runtime fixture review note exist.
+Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate design, minimal synthetic runtime fixture, README recovery, support-call / missed-support synchronization, and operation-reader path recovery are recorded.
 
 ### P1: low-risk consolidation
 
-- Keep `docs/phase-3-1-current-snapshot.md` aligned with runtime fixture, checker boundary, open-source review intent, review notes, and deferred work.
-- Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record for runtime-event and runtime-fixture work.
+- Keep `docs/phase-3-1-current-snapshot.md` aligned with runtime fixture, checker boundary, open-source review intent, review notes, README recovery, support-call / missed-support notes, and deferred work.
+- Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record for runtime-event, runtime-fixture, README recovery, and missed-support synchronization units.
 - Keep `docs/phase-3-1-roadmap-note.md` as the short planning companion for near-term runtime candidate decisions.
+- Keep `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` as the short companion note for the README recovery and missed-support synchronization unit.
 - Keep `docs/phase-3-1-roadmap-runtime-reference.md` as a short note for ROADMAP reference until a safe short ROADMAP edit is possible.
 - Keep `docs/minimal-runtime-fixture-review-connection.md` as the temporary reader-path note for the fixture review until the operation index and snapshot can safely absorb a short reference.
 - Keep `docs/example-index.md` and `docs/checker-coverage.md` explicit that the JSON runtime fixture is for reading and review only.
+- Keep root `README.md` short and point detailed content to `docs/readme-expanded.md`.
+- Keep `BEACON.md` short; move detailed state into snapshots, sync logs, roadmap notes, or focused status notes.
 
 ### P2: bounded artifact preparation
 
@@ -149,6 +155,7 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 - Add runtime fixture checking only after `docs/minimal-runtime-candidate-design.md` and `docs/runtime-event-checking-plan.md` preconditions remain satisfied after review.
 - Add `scripts/check_runtime_events.py` only after runtime-event checking preconditions are explicitly satisfied.
 - Add a runtime-event workflow only after local runtime-event checker behavior exists and has been observed.
+- Do not add support-call or missed-support semantic checking until schema conventions, examples, checker boundaries, and review-signal semantics are deliberately stabilized.
 
 ### P4: deferred expansion
 
@@ -158,6 +165,9 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 - Keep runtime-event schema checking deferred until the schema and examples remain stable.
 - Keep JSON fixture checking deferred until the bridge remains readable and reviewable.
 - Keep Lean expansion around adapter or runtime-event concepts deferred.
+- Keep Lean expansion around support-call policy or missed-support signals deferred.
+- Keep support-call schema fields deferred.
+- Keep missed-support schema fields deferred.
 - Keep runtime-event support-call fields deferred.
 - Keep Class E positive examples deferred.
 
@@ -169,8 +179,9 @@ Open-source review is intended to invite inspection of boundaries, responsibilit
 
 - Make reader paths clear enough that an external reviewer can find current boundaries without reading the whole repository.
 - Keep non-certifying boundaries repeated where misunderstanding would be likely.
-- Keep `BEACON.md`, `docs/operation-index.md`, current snapshots, checker coverage, example index, and focused review notes aligned.
+- Keep `BEACON.md`, `README.md`, `docs/operation-index.md`, current snapshots, sync logs, roadmap notes, checker coverage, example index, and focused review notes aligned.
 - Keep `docs/examples/missed-support-current-status.md` available as the focused reader path for missed-support review.
+- Keep `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` available as the short companion note for README recovery and missed-support synchronization.
 
 ### P2: bounded review artifacts
 
@@ -188,12 +199,13 @@ Open-source review is intended to invite inspection of boundaries, responsibilit
 Use this sequence unless a checker failure or serious inconsistency appears.
 
 1. P0: preserve restartability and boundary clarity.
-2. P1: keep missed-support current status, example index, checker coverage, and focused reader paths aligned after example changes.
-3. P1: connect fixture-review status through the current Phase 3.1 snapshot or sync log only if it improves restartability.
-4. P1: decide whether `ROADMAP.md` should receive only a short reference to `docs/phase-3-1-roadmap-runtime-reference.md` in a later small edit.
-5. P2: prepare external-review notes only if they improve reviewability.
-6. P3: consider runtime fixture checking only after documented preconditions remain satisfied.
-7. P4: keep connectors, production runtime, production conversion, Class E positive examples, runtime Lean expansion, and support-call semantic checking deferred.
+2. P1: keep BEACON short and ensure README / operation-index / current snapshot / sync log / roadmap note remain aligned.
+3. P1: keep missed-support current status, example index, checker coverage, and focused reader paths aligned after example changes.
+4. P1: connect fixture-review status through the current Phase 3.1 snapshot or sync log only if it improves restartability.
+5. P1: decide whether `ROADMAP.md` should receive only a short reference to `docs/phase-3-1-roadmap-runtime-reference.md` in a later small edit.
+6. P2: prepare external-review notes only if they improve reviewability.
+7. P3: consider runtime fixture checking only after documented preconditions remain satisfied.
+8. P4: keep connectors, production runtime, production conversion, Class E positive examples, runtime Lean expansion, support-call schema fields, missed-support schema fields, and support-call / missed-support semantic checking deferred.
 
 ## Stop conditions
 
