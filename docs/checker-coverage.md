@@ -116,6 +116,16 @@ Any such rule must remain bounded to structural signals.
 
 A checker pass must not be interpreted as legal validity, safety, compliance, fairness, moral resolution, institutional approval, production readiness, or AI final-responsibility transfer.
 
+### Support-call and missed-support note
+
+`examples/missed-support-boundary-minimal.yaml` is checked only as a pathway example under the current structural and `returning` lifecycle checker rules.
+
+The example includes a `support_call_policy` block for readability and concept mapping, but the current checker does not enforce support-call policy semantics.
+
+The current checker does not validate whether support should have been requested, whether support was materially beneficial, whether a missed-support signal is correct, or whether the support-call policy is optimal.
+
+A pass for this example means only that the file preserves the currently required bounded structural signals for pathway examples. It is not support-call policy validation, missed-support validation, approval quality validation, legal review, safety review, compliance review, fairness review, production readiness, runtime correctness, or connector correctness.
+
 ### Runtime-event bridge note
 
 `examples/runtime-event-to-pathway-minimal.yaml` is checked only as a pathway example under the current structural and originating-lifecycle rules.
@@ -189,6 +199,7 @@ Future checker work should remain bounded to structural signals and must not tre
 | `examples/minimal-pathway.yaml` | `originating` | yes | no | not yet |
 | `examples/action-class-matrix-minimal.yaml` | `originating` | yes | no | not yet |
 | `examples/internal-document-update.yaml` | `originating` | yes | no | not yet |
+| `examples/missed-support-boundary-minimal.yaml` | `returning` | yes | no | not yet |
 | `examples/emergency-stop-flow.yaml` | `suspended` | yes | no | not yet |
 | `examples/reversible-external-action.yaml` | `originating` | yes | no | not yet |
 | `examples/runtime-event-to-pathway-minimal.yaml` | `originating` | yes | no | not yet |
@@ -234,6 +245,7 @@ This is future work, not current checker behavior.
 
 Future checker work may include:
 
+- optional support-call or missed-support structural checks only after support-call schema or example conventions are deliberately designed
 - optional action-class-specific structural checks after source-aligned Class A-F examples stabilize
 - optional runtime-event structural checks after the runtime-event schema, JSON fixture, runtime fixture, and event-to-pathway example stabilize
 - optional runtime fixture checks after `docs/minimal-runtime-candidate-design.md` and `docs/runtime-event-checking-plan.md` preconditions are satisfied
