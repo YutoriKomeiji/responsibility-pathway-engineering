@@ -194,6 +194,28 @@ This synchronization is one responsibility unit split across multiple small comm
 
 It does not unlock conformance-model drafting, conformance checks, public standardization claims, production connectors, production runtime integration, runtime-event checker implementation, runtime fixture checker implementation, support-call semantic checking, missed-support correctness checking, Class E positive examples, or Lean expansion around adapter, runtime-event, support-call, or missed-support concepts.
 
+## Responsibility pathway availability synchronization completed
+
+A seventh synchronization unit added and connected `docs/responsibility-pathway-availability.md`.
+
+The trigger was an operation-design issue: responsibility pathways may become narrowed, incomplete, noisy, or temporarily broken during real repository maintenance, but the repository still needs a way to preserve residual evidence, missing evidence, uncertainty, and the next judgment point without pretending the pathway stayed complete.
+
+The synchronization introduced or connected:
+
+- `docs/responsibility-pathway-availability.md` as the operation note for degraded responsibility pathway states
+- `docs/operation-index.md` as the navigation entry for availability, residual evidence, missing evidence, uncertainty, and judgment-return handling
+- `docs/current-task-inventory.md` as the P0 task record that keeps the availability note reachable when degraded-pathway handling matters
+
+The availability note distinguishes availability from completeness, reachability, recoverability, and continuity.
+
+It records a minimum preservation rule and a judgment return rule for degraded pathway states.
+
+It treats read-only tool-discovery recurrence during known GitHub file work as a degraded-pathway signal, not automatically a content failure, when repository content was not changed and the next operation returns to direct GitHub file work.
+
+This synchronization is one responsibility unit split across multiple small commits for reviewability.
+
+It does not unlock certification claims, legal-validity claims, safety claims, compliance claims, fairness claims, production-readiness claims, connector-correctness claims, runtime-correctness claims, Lean completeness claims, public standardization claims, or AI final-responsibility transfer.
+
 ## Current checker interpretation
 
 `examples/runtime-event-to-pathway-minimal.yaml` is checked only as a pathway example under the current structural and originating-lifecycle rules.
@@ -239,8 +261,8 @@ The following work remains deferred:
 
 ## Next safe synchronization step
 
-The next safe synchronization step is to decide whether the focused progress-map connection note should receive only a short reference from `BEACON.md` or remain reachable through `docs/operation-index.md`, `docs/current-task-inventory.md`, and this sync log.
+The next safe synchronization step is to decide whether `BEACON.md` needs a short reference to `docs/responsibility-pathway-availability.md`, or whether operation-index and current-task-inventory reachability is sufficient for now.
 
-Do not update additional long files unless the reference would improve restartability, progress visibility, or external review.
+Do not update additional long files unless the reference would improve restartability, degraded-pathway handling, progress visibility, or external review.
 
 If a long full-file update is blocked or risky, preserve the state in this log and continue with smaller reader-path commits.
