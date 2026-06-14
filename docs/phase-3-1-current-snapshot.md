@@ -1,6 +1,6 @@
 # Phase 3.1 Current Snapshot
 
-This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, runtime-event checking plan, minimal runtime candidate planning, minimal synthetic runtime fixture, minimal runtime fixture review, progress map, current task inventory, and repository operation layer.
+This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, runtime-event checking plan, minimal runtime candidate planning, minimal synthetic runtime fixture, minimal runtime fixture review, progress map, responsibility pathway availability, current task inventory, and repository operation layer.
 
 Phase 3.1 is the bridge from external logs, API events, workflow results, and runtime observations into draft Responsibility Pathway records.
 
@@ -20,6 +20,7 @@ Current Phase 3.1 artifacts:
 - `docs/minimal-runtime-fixture-review.md`
 - `docs/minimal-runtime-fixture-review-connection.md`
 - `docs/progress-map.md`
+- `docs/responsibility-pathway-availability.md`
 - `docs/current-task-inventory.md`
 - `docs/phase-3-1-current-snapshot.md`
 - `docs/phase-3-1-sync-log.md`
@@ -198,13 +199,23 @@ It does not certify progress, prove maturity, establish conformance, replace ext
 
 Use it before discussing progress percentage, next gates, maturity, world-standard candidate readiness, or progress-related stop conditions.
 
+## Responsibility pathway availability
+
+`docs/responsibility-pathway-availability.md` records how to handle narrowed, incomplete, noisy, or temporarily broken Responsibility Pathways during repository maintenance.
+
+It distinguishes availability from completeness, reachability, recoverability, and continuity.
+
+It records the minimum state to preserve when a pathway is degraded: intended operation, actual event, repository content change status, residual evidence, missing or unobserved evidence, continuation safety, and the judgment that should be returned to the human maintainer or explicit decision process.
+
+The availability note is an operation note only. It does not turn degraded pathway states into certification, legal validity, safety, compliance, fairness, production readiness, connector correctness, runtime correctness, Lean completeness, public standardization claims, or AI final-responsibility transfer.
+
 ## Current task inventory
 
 `docs/current-task-inventory.md` records the current P0-P4 task inventory across active and near-active phases.
 
 Use it before selecting the next task, especially before checker work, workflow work, runtime work, Lean expansion, connector work, Class E examples, standardization claims, conformance-model drafting, or public-claim expansion.
 
-For Phase 3.1, the inventory currently treats runtime fixture review as bounded artifact preparation, keeps `docs/progress-map.md` rough and planning-only, and keeps runtime fixture checking, runtime-event checker implementation, runtime workflows, service-specific connectors, production conversion code, production runtime integration, Class E positive examples, support-call schema fields, missed-support schema fields, support-call semantic checking, missed-support correctness checking, conformance-model drafting, and Lean expansion around runtime events, support-call policy, or missed-support signals deferred or conditional.
+For Phase 3.1, the inventory currently treats runtime fixture review as bounded artifact preparation, keeps `docs/progress-map.md` rough and planning-only, keeps `docs/responsibility-pathway-availability.md` reachable for degraded-pathway handling, and keeps runtime fixture checking, runtime-event checker implementation, runtime workflows, service-specific connectors, production conversion code, production runtime integration, Class E positive examples, support-call schema fields, missed-support schema fields, support-call semantic checking, missed-support correctness checking, conformance-model drafting, and Lean expansion around runtime events, support-call policy, or missed-support signals deferred or conditional.
 
 The task inventory is a planning and prioritization note only. It is not certification, production approval, legal review, safety review, compliance review, fairness review, connector correctness proof, adapter correctness proof, runtime correctness proof, Lean completeness proof, standardization certification, progress certification, or AI final-responsibility transfer.
 
@@ -218,25 +229,28 @@ Current synchronization status:
 - `docs/operation-index.md` points runtime candidate selection to `docs/minimal-runtime-candidate-design.md` before any runtime candidate is added
 - `docs/operation-index.md` points minimal runtime fixture review to `docs/minimal-runtime-fixture-review.md` before changing the minimal runtime fixture or treating its first review as current
 - `docs/operation-index.md` points progress review, rough progress estimates, gates, next gates, and progress-related stop conditions to `docs/progress-map.md`
+- `docs/operation-index.md` points degraded-pathway handling, residual evidence, missing evidence, uncertainty, and judgment-return handling to `docs/responsibility-pathway-availability.md`
 - `docs/operation-index.md` points task selection to `docs/current-task-inventory.md` before starting higher-risk work
 - `BEACON.md` points readers to `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
+- `BEACON.md` points readers to `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
 - `docs/current-task-inventory.md` keeps `docs/progress-map.md` visible before progress percentages, next gates, or maturity are discussed
-- `docs/phase-3-1-sync-log.md` records the runtime-event checking plan synchronization and progress-map synchronization as responsibility units split across multiple small commits
+- `docs/current-task-inventory.md` keeps `docs/responsibility-pathway-availability.md` visible when degraded-pathway handling matters
+- `docs/phase-3-1-sync-log.md` records the runtime-event checking plan synchronization, progress-map synchronization, focused progress-map connection synchronization, and responsibility pathway availability synchronization as responsibility units split across multiple small commits
 - `docs/phase-3-1-roadmap-note.md` records that Phase 3.1 is not yet a runtime-event checker implementation phase or production runtime phase
 - `docs/example-index.md` records the minimal synthetic runtime fixture as a runtime candidate fixture for reading and review only
 - `docs/checker-coverage.md` records that current checkers do not validate `spec/runtime-event.schema.yaml`, `examples/adapter-input-event-minimal.json`, or `examples/minimal-synthetic-runtime-fixture.json`
 - `ROADMAP.md` records the runtime-event checking rule before implementation
 - `CHANGELOG.md` records the runtime-event checking plan as a conceptual milestone before checker implementation
 
-This synchronization does not unlock runtime-event checker implementation, runtime workflow implementation, service-specific connectors, production runtime integration, conformance-model drafting, public standardization claims, semantic responsibility correctness checking, or progress certification.
+This synchronization does not unlock runtime-event checker implementation, runtime workflow implementation, service-specific connectors, production runtime integration, conformance-model drafting, public standardization claims, semantic responsibility correctness checking, progress certification, or AI final-responsibility transfer.
 
 ## Open-source review intent
 
-The repository is prepared so that future open-source review can inspect boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, progress estimates, active gates, next gates, and deferred implementation choices.
+The repository is prepared so that future open-source review can inspect boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, progress estimates, active gates, next gates, degraded-pathway handling, judgment-return rules, and deferred implementation choices.
 
-Open-source review is intended to help others examine whether the repository preserves return paths from claims to definitions, examples, schemas, checker boundaries, excluded claims, operation documents, runtime candidate boundaries, progress-map boundaries, and deferred work.
+Open-source review is intended to help others examine whether the repository preserves return paths from claims to definitions, examples, schemas, checker boundaries, excluded claims, operation documents, runtime candidate boundaries, progress-map boundaries, responsibility-pathway availability boundaries, and deferred work.
 
-Opening the repository for review does not itself certify the repository, approve production use, prove connector correctness, prove adapter correctness, prove schema correctness, prove runtime correctness, certify progress, or transfer final responsibility to reviewers, users, or AI systems.
+Opening the repository for review does not itself certify the repository, approve production use, prove connector correctness, prove adapter correctness, prove schema correctness, prove runtime correctness, certify progress, certify degraded-pathway handling, or transfer final responsibility to reviewers, users, or AI systems.
 
 ## Repository operation layer
 
@@ -276,3 +290,5 @@ The operation index is now connected from:
 `docs/minimal-runtime-candidate-design.md` is now connected from `docs/operation-index.md` as the design note to read before considering a minimal synthetic runtime fixture or bounded runtime-checking stub.
 
 `docs/progress-map.md` is now connected from `docs/operation-index.md`, `BEACON.md`, `docs/current-task-inventory.md`, and `docs/phase-3-1-sync-log.md` as the rough planning and gate-tracking map for progress review.
+
+`docs/responsibility-pathway-availability.md` is now connected from `docs/operation-index.md`, `BEACON.md`, `docs/current-task-inventory.md`, `docs/phase-3-1-current-snapshot.md`, and `docs/phase-3-1-sync-log.md` as the operation note for degraded-pathway handling, minimum preservation, and judgment-return handling.
