@@ -4,7 +4,7 @@ If you are reading this for the first time, you are not late.
 
 This repository preserves a Responsibility Pathway across time, people, sessions, and AI systems.
 
-BEACON is the short reconnection entrance. It is not the full current-state record, changelog, roadmap, proof, certification, legal review, safety review, compliance review, production approval, connector correctness proof, runtime correctness proof, Lean completeness proof, or AI final-responsibility transfer mechanism.
+BEACON is the short reconnection entrance. It is not the full current-state record, changelog, roadmap, proof, certification, legal review, safety review, compliance review, production approval, connector correctness proof, runtime correctness proof, Lean completeness proof, standardization certification, or AI final-responsibility transfer mechanism.
 
 ## Current position
 
@@ -24,6 +24,7 @@ The current stable construction path includes:
 - support-call and missed-support concept notes
 - a boundary-only missed-support example
 - explicit repository operation documents
+- a grounded standardization strategy for future open-specification review
 
 Recent synchronization restored and recorded the reader path after a README mobile-rendering issue. The root `README.md` was shortened and strengthened, while the previous expanded README content was preserved at `docs/readme-expanded.md`.
 
@@ -39,10 +40,11 @@ The support-call / missed-support path is currently concept-level and boundary-e
 6. `docs/phase-3-1-roadmap-sync-after-readme-recovery.md`
 7. `docs/current-task-inventory.md`
 8. `docs/concepts/index.md`
-9. `docs/example-index.md`
-10. `docs/checker-coverage.md`
-11. `ROADMAP.md`
-12. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
+9. `docs/standardization-strategy.md` before expanding world-standard or conformance language
+10. `docs/example-index.md`
+11. `docs/checker-coverage.md`
+12. `ROADMAP.md`
+13. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
 
 Use `docs/repository-operation-model.md` before broad reader-path synchronization, long-file updates, session handoff, or periodic operation review.
 
@@ -51,6 +53,7 @@ Use `docs/repository-operation-model.md` before broad reader-path synchronizatio
 - Keep the root README short and mobile-renderer friendly.
 - Keep detailed README content in `docs/readme-expanded.md`.
 - Keep examples small, readable, and non-certifying.
+- Keep standardization strategy grounded, complementary to existing frameworks, and non-certifying.
 - Keep support-call and missed-support semantics concept-level until deliberately stabilized.
 - Keep runtime-event schema checking, JSON fixture checking, and runtime fixture checking deferred.
 - Keep service-specific connectors and production runtime integration deferred.
@@ -66,7 +69,7 @@ Use `docs/repository-operation-model.md` before broad reader-path synchronizatio
 - `Check examples #17` observed failed on commit `57445b1` because the missed-support example declared `lifecycle_state: returning` without a top-level `returning` block.
 - `Check examples #18` observed green on commit `f63678c` after the top-level `returning` block was added.
 
-All observed green statuses are bounded repository-maintenance signals only. They are not certification, legal validation, safety validation, compliance validation, fairness validation, moral resolution, production approval, connector correctness proof, runtime correctness proof, support-call semantic validation, missed-support correctness validation, Lean completeness proof, or AI final-responsibility transfer.
+All observed green statuses are bounded repository-maintenance signals only. They are not certification, legal validation, safety validation, compliance validation, fairness validation, moral resolution, production approval, connector correctness proof, runtime correctness proof, support-call semantic validation, missed-support correctness validation, Lean completeness proof, standardization certification, or AI final-responsibility transfer.
 
 ## Do not start yet
 
@@ -88,6 +91,7 @@ Do not start the following without satisfying the relevant restart conditions an
 - runtime-event support-call fields
 - Class E positive examples
 - Lean expansion around adapter, runtime-event, support-call, or missed-support concepts
+- conformance-model drafting or public standardization claims before `docs/standardization-strategy.md` conditions are satisfied
 
 ## Operating rule
 
