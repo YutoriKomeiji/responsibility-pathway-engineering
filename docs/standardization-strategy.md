@@ -25,6 +25,55 @@ The near-term goal is to make the repository reviewable enough that external rev
 - operation and restart records
 - excluded claims
 
+## Grounding discipline
+
+A future standardization path must remain grounded.
+
+Do not treat the goal of becoming a world standard as a rhetorical claim, branding claim, motivational slogan, or replacement for existing standards work.
+
+RPE should advance only when each step adds one of the following:
+
+- clearer terminology
+- narrower scope
+- better non-scope boundaries
+- smaller examples
+- more inspectable schemas
+- more explicit checker limits
+- better review paths
+- clearer restart records
+- stronger traceability from claims back to definitions
+- better compatibility with existing standards, governance frameworks, and audit practices
+
+If a proposed step does not improve reviewability, traceability, or boundary clarity, defer it.
+
+If a proposed step sounds like certification, legal authority, safety proof, compliance proof, production readiness, connector correctness, runtime correctness, or AI final-responsibility transfer before the repository has earned that claim, reject or rewrite it.
+
+## Relationship to existing standards and frameworks
+
+RPE should be positioned as complementary to existing AI management, risk-management, ethical-design, assurance, audit, safety, and accountability work.
+
+It should not claim to replace:
+
+- AI management system standards
+- AI risk management frameworks
+- ethical system design standards
+- safety assurance practices
+- compliance frameworks
+- audit frameworks
+- legal responsibility regimes
+- sector-specific governance requirements
+
+A grounded RPE standardization path should ask:
+
+- What gap does RPE cover that existing frameworks do not already cover clearly?
+- Which existing standards or frameworks could consume RPE as a record, evidence, traceability, or review-path layer?
+- Which RPE claims must remain out of scope because they belong to legal, safety, compliance, institutional, or sector-specific authorities?
+- Which RPE artifacts can be reviewed without implying certification?
+
+The likely standardization niche for RPE is not AI management as a whole.
+
+The likely niche is responsibility-pathway traceability: the visible route from judgment to approval, stop authority, evidence, human return, and repair.
+
 ## Candidate standardization language
 
 Use cautious language:
