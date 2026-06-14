@@ -1,8 +1,8 @@
 # Runtime Event Checking Plan
 
-This document defines the planned path for adding bounded runtime-event and JSON-fixture checks.
+This document defines the path for adding bounded runtime-event and JSON-fixture checks.
 
-It is a planning document only. It is not a checker implementation, production connector, production runtime integration, verification engine, certification tool, legal decision system, compliance engine, safety certification system, fairness certification tool, moral-resolution system, connector correctness proof, adapter correctness proof, or AI final-responsibility transfer mechanism.
+It is a planning and boundary document. It is not a production connector, production runtime integration, verification engine, certification tool, legal decision system, compliance engine, safety certification system, fairness certification tool, moral-resolution system, connector correctness proof, adapter correctness proof, or AI final-responsibility transfer mechanism.
 
 ## Purpose
 
@@ -13,39 +13,59 @@ Phase 3.1 currently includes a draft runtime-event bridge:
 - `examples/adapter-input-event-minimal.json`
 - `examples/runtime-event-to-pathway-minimal.yaml`
 
-The current checker treats `examples/runtime-event-to-pathway-minimal.yaml` only as a pathway example.
+The pathway checker treats `examples/runtime-event-to-pathway-minimal.yaml` only as a pathway example.
+
+A first bounded runtime-event checker stub now exists at `scripts/check_runtime_events.py`.
+
+It checks `examples/adapter-input-event-minimal.json` by default and performs only local structural checks on the selected synthetic runtime-event JSON fixture.
 
 It does not yet validate:
 
 - `spec/runtime-event.schema.yaml`
-- `examples/adapter-input-event-minimal.json`
+- `examples/minimal-synthetic-runtime-fixture.json`
 - adapter mapping correctness
+- semantic correctness of event-to-pathway transformation
 - service-specific connector behavior
 - production runtime behavior
+- workflow status
 
-This plan records what may be checked later, what must remain out of scope, and what conditions should be met before implementation starts.
+This plan records what is now checked, what may be checked later, what must remain out of scope, and what conditions should be met before workflow or broader checker implementation starts.
+
+## Current bounded runtime-event checks
+
+`scripts/check_runtime_events.py` currently inspects only whether:
+
+- the selected file is parseable JSON
+- the top-level JSON value is a mapping
+- required top-level runtime-event fields are present
+- `source_system.vendor_specific` is explicitly `false`
+- the first minimal fixture remains synthetic or warns if it does not
+- an AI-agent observed actor does not claim final responsibility
+- `evidence.captured_fields` is a non-empty list
+- `evidence.missing_fields` is present as a list
+- `evidence.uncertainty_notes` is present as a list
+- `evidence.raw_event_available` is explicitly `true`
+- `review_requirement.human_or_institutional_review_required` is explicitly `true`
+- `review_requirement.reason` is present
+- `excluded_claims` includes the expected non-certifying boundary items
+
+No runtime-event workflow has been added yet.
+
+No observed runtime-event checker status has been recorded yet.
 
 ## Planned future checks
 
 A future bounded runtime-event checker may inspect:
 
-- whether a runtime-event JSON fixture is valid JSON
-- whether required top-level runtime-event fields exist
-- whether schema version, source system, observation timestamp, observed actor, observed action, observed target, evidence notes, missing-context notes, review requirement, and excluded claims are present where required
-- whether `review_required` remains true for generated or transformed records
-- whether missing approval evidence and missing execution evidence remain explicit when applicable
-- whether excluded claims include non-certifying boundaries
-- whether the fixture remains synthetic or otherwise clearly scoped when no service-specific connector exists
-
-A future schema-related check may inspect:
-
+- additional runtime-event JSON fixtures after they are deliberately added
 - whether `spec/runtime-event.schema.yaml` remains readable and parseable
 - whether the minimal runtime-event schema still reflects the current fixture shape
 - whether schema changes preserve review requirement, missing-context recording, evidence references, and excluded claims
+- whether `examples/minimal-synthetic-runtime-fixture.json` preserves explicit non-production scope, review-required status, missing approval evidence, missing execution evidence, and excluded claims
 
-## Not planned for the first checker
+## Not planned for the first checker layer
 
-The first runtime-event checker should not check:
+The first checker layer should not check:
 
 - adapter mapping correctness
 - semantic correctness of event-to-pathway transformation
@@ -64,9 +84,9 @@ The first runtime-event checker should not check:
 
 These items require separate boundaries, examples, and review rules before they can be considered.
 
-## Preconditions before implementation
+## Preconditions before expanding implementation
 
-Do not add `scripts/check_runtime_events.py` or a runtime-event workflow until the following conditions are met:
+Do not add a runtime-event workflow, schema checker, minimal-runtime-fixture checker, service connector check, or broader runtime-event checker until the following conditions remain satisfied after the first checker stub:
 
 1. `spec/runtime-event.schema.yaml` remains small and readable.
 2. `examples/adapter-input-event-minimal.json` remains synthetic, vendor-neutral, and review-required.
@@ -77,21 +97,21 @@ Do not add `scripts/check_runtime_events.py` or a runtime-event workflow until t
 7. The checker can fail safely without implying that passing examples are certified.
 8. Documentation updates can be kept small and traceable through the operation model, operation index, current snapshot, checker coverage, and changelog or roadmap notes where needed.
 
-## Suggested implementation order
+## Suggested next implementation order
 
-When the preconditions are met, use this order:
+Use this order after the first checker stub:
 
-1. Add a small `scripts/check_runtime_events.py` that validates only one JSON fixture.
-2. Keep the first check structural and local.
-3. Add a minimal GitHub Actions workflow only after the local checker is stable.
-4. Update `docs/checker-coverage.md` to distinguish current runtime-event checks from planned future checks.
-5. Update `docs/example-index.md` only if the interpretation of examples changes.
-6. Update `docs/phase-3-1-current-snapshot.md` after observed checker behavior is known.
-7. Record observed green workflow status only after the workflow has actually been observed.
+1. record the first checker stub in `docs/phase-3-1-current-snapshot.md` and `docs/phase-3-1-sync-log.md`
+2. update `docs/current-task-inventory.md` so runtime-event checker work is no longer described as entirely deferred, while workflow, schema checking, runtime fixture checking, connectors, production runtime, and semantic checking remain deferred
+3. optionally run the checker locally and record the observed result only after it is actually observed
+4. add a minimal GitHub Actions workflow only after local checker behavior is stable and observed
+5. update `docs/checker-coverage.md` after any checker behavior changes
+6. update `docs/example-index.md` only if the interpretation of examples changes
+7. record observed green workflow status only after the workflow has actually been observed
 
 ## Boundary for passing checks
 
-A passing runtime-event check may mean only that a JSON fixture or runtime-event schema satisfies the bounded structural requirements implemented by the checker.
+A passing runtime-event check may mean only that a selected synthetic runtime-event JSON fixture satisfies the bounded structural requirements implemented by the checker.
 
 It must not be interpreted as:
 
@@ -110,6 +130,12 @@ It must not be interpreted as:
 
 ## Current decision
 
-Runtime-event checking remains deferred.
+A first bounded runtime-event checker stub now exists.
 
-This plan exists to make the deferral explicit, reviewable, and reversible when the schema, fixture, pathway example, checker boundary, and repository operation path are stable enough to proceed.
+Runtime-event workflow implementation remains deferred.
+
+Runtime-event schema checking remains deferred.
+
+Minimal synthetic runtime fixture checking remains deferred.
+
+Service-specific connectors, production runtime integration, adapter mapping correctness checking, semantic responsibility correctness checking, and AI final-responsibility transfer remain out of scope.
