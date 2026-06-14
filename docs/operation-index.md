@@ -15,10 +15,11 @@ Use this path when restarting work after a pause or when another maintainer, rev
 5. the current phase snapshot
 6. the relevant sync log or roadmap note
 7. `docs/current-task-inventory.md` when choosing the next task
-8. `docs/concepts/index.md` when concept-level reader paths matter
-9. `docs/standardization-strategy.md` when standardization language, grounding discipline, or world-standard preparation matters
-10. `docs/example-index.md`
-11. `docs/checker-coverage.md`
+8. `docs/progress-map.md` when checking rough progress, gates, next gates, or stop conditions
+9. `docs/concepts/index.md` when concept-level reader paths matter
+10. `docs/standardization-strategy.md` when standardization language, grounding discipline, or world-standard preparation matters
+11. `docs/example-index.md`
+12. `docs/checker-coverage.md`
 
 `CHANGELOG.md` is not part of the primary construction-time reconnection path. Use it mainly for archival, investigative, historical, or retrospective milestone review.
 
@@ -28,12 +29,13 @@ Use documents according to the phase of work.
 
 | Work phase | Prefer reading | Use `CHANGELOG.md` when |
 | --- | --- | --- |
-| Active construction | `BEACON.md`, `README.md`, current snapshot, operation index, sync log, roadmap note, current task inventory, checker coverage, example index, primary artifact | a prior milestone or boundary change must be investigated |
-| Restart or handoff | `BEACON.md`, `README.md`, current snapshot, operation index, sync log, roadmap note, current task inventory | the restart depends on historical cause tracing |
+| Active construction | `BEACON.md`, `README.md`, current snapshot, operation index, sync log, roadmap note, current task inventory, progress map, checker coverage, example index, primary artifact | a prior milestone or boundary change must be investigated |
+| Restart or handoff | `BEACON.md`, `README.md`, current snapshot, operation index, sync log, roadmap note, current task inventory, progress map | the restart depends on historical cause tracing |
+| Progress review | `docs/progress-map.md`, current snapshot, current task inventory, operation index, roadmap note | checking when a progress estimate or gate changed |
 | Concept-path navigation | `docs/concepts/index.md`, relevant concept note, source-alignment note, example index, checker coverage | checking when a concept boundary changed |
-| Standardization preparation | `docs/standardization-strategy.md`, README, operation index, current snapshot, concept index, example index, checker coverage | checking when a standardization boundary or language choice changed |
+| Standardization preparation | `docs/standardization-strategy.md`, progress map, README, operation index, current snapshot, concept index, example index, checker coverage | checking when a standardization boundary or language choice changed |
 | Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, relevant schemas or examples | checking when a rule or coverage boundary changed |
-| Phase planning | `ROADMAP.md`, roadmap note, current snapshot, operation index, current task inventory | confirming a past phase milestone |
+| Phase planning | `ROADMAP.md`, roadmap note, progress map, current snapshot, operation index, current task inventory | confirming a past phase milestone |
 | Audit, error investigation, or retrospective explanation | `CHANGELOG.md`, sync logs, snapshots, relevant commits and artifacts | this is the intended primary use |
 
 If the purpose does not match the document, change the reading path or update path before continuing.
@@ -64,7 +66,7 @@ Do not let `BEACON.md` become a full snapshot or a second changelog.
 
 Do not let a current snapshot replace the short reconnection role of `BEACON.md`.
 
-When BEACON grows too large, preserve detailed state in the relevant snapshot, sync log, roadmap note, checker coverage, or example index, then keep BEACON focused on reconnection.
+When BEACON grows too large, preserve detailed state in the relevant snapshot, sync log, roadmap note, checker coverage, example index, or progress map, then keep BEACON focused on reconnection.
 
 ## Root README role
 
@@ -88,6 +90,7 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | --- | --- |
 | `docs/repository-operation-model.md` | You need the current repository-wide operating model, document purpose and usage phase policy, staged update operation, synchronization unit operation, session load and handoff policy, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, sync-log and roadmap-note separation policy, or restart rule. |
 | `docs/current-task-inventory.md` | You need the current P0-P4 task inventory across active and near-active phases before selecting the next task. |
+| `docs/progress-map.md` | You need rough progress estimates, gate status, next gates, recommended order, or progress-related stop conditions. |
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
 | `docs/operation-tool-selection-guard.md` | You need to choose the correct GitHub read/write tool during AI-assisted maintenance, especially after a read-tool selection mistake. |
@@ -119,6 +122,14 @@ The standardization strategy positions RPE as an open specification effort and f
 
 Use this document before writing public-facing claims that may sound like certification, legal validity, safety proof, compliance proof, production readiness, connector correctness, runtime correctness, or AI final-responsibility transfer.
 
+## Progress navigation
+
+Use `docs/progress-map.md` when the question is how far the repository has progressed, which gate is active, what the next gate is, or which work must remain deferred.
+
+The progress map records approximate planning estimates only. It does not certify progress, prove maturity, establish conformance, or replace external review.
+
+Use it to avoid both false urgency and premature standardization claims.
+
 ## Task inventory navigation
 
 Use `docs/current-task-inventory.md` when choosing what to do next.
@@ -141,7 +152,7 @@ A periodic operation review is useful when:
 
 - commit granularity feels too small or too large
 - reader paths become long or scattered
-- operation documents, snapshots, sync logs, roadmap notes, or task inventories are multiplying
+- operation documents, snapshots, sync logs, roadmap notes, progress maps, or task inventories are multiplying
 - BEACON starts carrying detailed snapshot history or changelog-like content
 - sync logs and roadmap notes start duplicating each other
 - active construction starts relying on `CHANGELOG.md` as a primary restart path
@@ -149,11 +160,11 @@ A periodic operation review is useful when:
 - a checker failure changes future maintenance behavior
 - a deferred implementation boundary is being reconsidered
 - session load is becoming heavy or a session handoff needs a durable restart path
-- Class E positive examples, production connectors, production conversion code, runtime-event schema checks, JSON fixture checks, standardization claims, conformance-model drafting, or Lean expansion may need to be revisited
+- Class E positive examples, production connectors, production conversion code, runtime-event schema checks, JSON fixture checks, standardization claims, conformance-model drafting, progress-estimate changes, or Lean expansion may need to be revisited
 
-A periodic operation review may produce an operation-model update, operation-index update, task-inventory update, snapshot update, sync-log entry, roadmap note, BEACON update, or short CHANGELOG milestone.
+A periodic operation review may produce an operation-model update, operation-index update, task-inventory update, progress-map update, snapshot update, sync-log entry, roadmap note, BEACON update, or short CHANGELOG milestone.
 
-It must not be used as production approval, connector correctness proof, adapter correctness proof, legal review, safety review, compliance review, fairness review, Lean completeness proof, standardization certification, or AI final-responsibility transfer.
+It must not be used as production approval, connector correctness proof, adapter correctness proof, legal review, safety review, compliance review, fairness review, Lean completeness proof, standardization certification, progress certification, or AI final-responsibility transfer.
 
 ## Snapshot documents
 
@@ -236,6 +247,6 @@ Until then, avoid moving existing logs.
 
 Operation documents preserve maintainability, traceability, and returnability.
 
-They do not certify examples, schemas, checkers, generated records, adapters, connectors, workflows, Lean files, governance decisions, public claims, standardization claims, or repository states.
+They do not certify examples, schemas, checkers, generated records, adapters, connectors, workflows, Lean files, governance decisions, public claims, standardization claims, progress estimates, or repository states.
 
 The human author or maintainer remains responsible for deciding whether a change should be made, published, relied upon, reverted, repaired, or deferred.
