@@ -94,6 +94,7 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
 | `docs/operation-tool-selection-guard.md` | You need to choose the correct GitHub read/write tool during AI-assisted maintenance, especially after a read-tool selection mistake. |
+| `docs/responsibility-pathway-availability.md` | You need to classify a narrowed, incomplete, noisy, or temporarily broken responsibility pathway and decide what residual evidence, missing evidence, uncertainty, and next judgment should be preserved or returned. |
 | `BEACON.md` | You need the current reconnection entrance, compact read-first order, current focus, and restart pointer. |
 | `README.md` | You need the short public entrance and primary reader links. |
 | `docs/readme-expanded.md` | You need the previous expanded README content after root README lightweight recovery. |
