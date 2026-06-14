@@ -9,12 +9,15 @@ It is a navigation aid only. It is not a certification process, legal review pro
 Use this path when restarting work after a pause or when another maintainer, reviewer, or AI-assisted session needs to understand the current repository state.
 
 1. `BEACON.md`
-2. `docs/repository-operation-model.md`
-3. the current phase snapshot
-4. the relevant sync log or roadmap note
-5. `docs/current-task-inventory.md` when choosing the next task
-6. `docs/example-index.md`
-7. `docs/checker-coverage.md`
+2. `README.md`
+3. `docs/operation-index.md`
+4. `docs/repository-operation-model.md`
+5. the current phase snapshot
+6. the relevant sync log or roadmap note
+7. `docs/current-task-inventory.md` when choosing the next task
+8. `docs/concepts/index.md` when concept-level reader paths matter
+9. `docs/example-index.md`
+10. `docs/checker-coverage.md`
 
 `CHANGELOG.md` is not part of the primary construction-time reconnection path. Use it mainly for archival, investigative, historical, or retrospective milestone review.
 
@@ -24,8 +27,9 @@ Use documents according to the phase of work.
 
 | Work phase | Prefer reading | Use `CHANGELOG.md` when |
 | --- | --- | --- |
-| Active construction | `BEACON.md`, current snapshot, operation index, sync log, roadmap note, current task inventory, checker coverage, example index, primary artifact | a prior milestone or boundary change must be investigated |
-| Restart or handoff | `BEACON.md`, current snapshot, operation index, sync log, roadmap note, current task inventory | the restart depends on historical cause tracing |
+| Active construction | `BEACON.md`, `README.md`, current snapshot, operation index, sync log, roadmap note, current task inventory, checker coverage, example index, primary artifact | a prior milestone or boundary change must be investigated |
+| Restart or handoff | `BEACON.md`, `README.md`, current snapshot, operation index, sync log, roadmap note, current task inventory | the restart depends on historical cause tracing |
+| Concept-path navigation | `docs/concepts/index.md`, relevant concept note, source-alignment note, example index, checker coverage | checking when a concept boundary changed |
 | Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, relevant schemas or examples | checking when a rule or coverage boundary changed |
 | Phase planning | `ROADMAP.md`, roadmap note, current snapshot, operation index, current task inventory | confirming a past phase milestone |
 | Audit, error investigation, or retrospective explanation | `CHANGELOG.md`, sync logs, snapshots, relevant commits and artifacts | this is the intended primary use |
@@ -60,6 +64,22 @@ Do not let a current snapshot replace the short reconnection role of `BEACON.md`
 
 When BEACON grows too large, preserve detailed state in the relevant snapshot, sync log, roadmap note, checker coverage, or example index, then keep BEACON focused on reconnection.
 
+## Root README role
+
+`README.md` is the short public entrance.
+
+Use it for:
+
+- compact project definition
+- why the project matters
+- short provenance entry
+- non-certifying boundary reminder
+- primary reader links
+
+Do not let root `README.md` become the full documentation body.
+
+Expanded previous README content is preserved at `docs/readme-expanded.md` so that the root README can remain mobile-renderer friendly.
+
 ## Operation documents
 
 | Document | Use when |
@@ -68,9 +88,26 @@ When BEACON grows too large, preserve detailed state in the relevant snapshot, s
 | `docs/current-task-inventory.md` | You need the current P0-P4 task inventory across active and near-active phases before selecting the next task. |
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
+| `docs/operation-tool-selection-guard.md` | You need to choose the correct GitHub read/write tool during AI-assisted maintenance, especially after a read-tool selection mistake. |
 | `BEACON.md` | You need the current reconnection entrance, compact read-first order, current focus, and restart pointer. |
+| `README.md` | You need the short public entrance and primary reader links. |
+| `docs/readme-expanded.md` | You need the previous expanded README content after root README lightweight recovery. |
 | `ROADMAP.md` | You need phase-level direction, next low-risk work, phase rules, or deferred work. |
 | `CHANGELOG.md` | You need archival milestones, serious error investigation support, historical cause tracing, or retrospective explanation of when and why a boundary or policy changed. |
+
+## Concept navigation
+
+Use `docs/concepts/index.md` when concept-level documents or reader paths matter.
+
+Current concept-navigation anchors include:
+
+- `docs/concepts/core-elements.md`
+- `docs/concepts/support-call-policy.md`
+- `docs/concepts/missed-support-review-signal.md`
+- `docs/related-work/strategic-decision-support.md`
+- `docs/examples/missed-support-current-status.md`
+
+Concept notes remain concept-level unless restart conditions explicitly reopen schema, checker, workflow, runtime, connector, or Lean work.
 
 ## Task inventory navigation
 
