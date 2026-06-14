@@ -29,6 +29,7 @@ These tasks preserve the repository's current operating ability.
 - Keep `docs/progress-map.md` as the rough, planning-only progress and gate map before discussing progress percentage, next gates, or maturity.
 - Keep `docs/phase-3-1-progress-map-connection.md` as the focused Phase 3.1 reader-path note for progress-map context without rewriting the full current snapshot.
 - Keep `docs/standardization-strategy.md` as the grounded, non-certifying standardization-preparation note before writing world-standard, conformance, or public-facing standardization claims.
+- Keep `docs/responsibility-pathway-availability.md` available when a responsibility pathway becomes narrowed, incomplete, noisy, or temporarily broken and the remaining evidence, missing evidence, uncertainty, or next judgment must be preserved.
 - Keep `docs/operation-index.md` aligned when operation documents, snapshots, sync logs, roadmap notes, progress map, focused connection notes, checker plans, runtime candidate planning, review notes, standardization strategy, document-role rules, or concept navigation change.
 - Keep `CHANGELOG.md` archival and investigative rather than the active construction restart path.
 - Preserve open-source review intent without implying certification or production approval.
