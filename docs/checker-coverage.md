@@ -2,13 +2,13 @@
 
 This document summarizes the current coverage of bounded repository-maintenance checkers.
 
-The checkers are bounded repository-maintenance tools. They are not schema validation systems, certification processes, compliance reviews, legal reviews, safety reviews, fairness reviews, moral accountability judgments, or production-readiness assessments.
+The checkers are bounded repository-maintenance tools. They are not schema validation systems, certification processes, compliance reviews, legal reviews, safety reviews, fairness reviews, moral accountability judgments, production-readiness assessments, connector-correctness proofs, adapter-correctness proofs, or AI final-responsibility transfer mechanisms.
 
 ## `scripts/check_examples.py`
 
 `scripts/check_examples.py` checks pathway examples under `examples/*.yaml`.
 
-It does not currently check JSON fixtures such as `examples/adapter-input-event-minimal.json` or `examples/minimal-synthetic-runtime-fixture.json`.
+It does not check JSON fixtures such as `examples/adapter-input-event-minimal.json` or `examples/minimal-synthetic-runtime-fixture.json`.
 
 ### General checks
 
@@ -130,17 +130,59 @@ A pass for this example means only that the file preserves the currently require
 
 `examples/runtime-event-to-pathway-minimal.yaml` is checked only as a pathway example under the current structural and originating-lifecycle rules.
 
-The current checker does not validate `spec/runtime-event.schema.yaml` or JSON fixtures such as `examples/adapter-input-event-minimal.json` or `examples/minimal-synthetic-runtime-fixture.json`.
+`scripts/check_examples.py` does not validate `spec/runtime-event.schema.yaml` or JSON fixtures such as `examples/adapter-input-event-minimal.json` or `examples/minimal-synthetic-runtime-fixture.json`.
 
-`examples/minimal-synthetic-runtime-fixture.json` is a minimal synthetic runtime observation fixture for reading and review only. It is not currently checked by `scripts/check_examples.py`, is not runtime-event schema validation, and is not a runtime implementation, connector, workflow, or production runtime integration.
+`examples/minimal-synthetic-runtime-fixture.json` is a minimal synthetic runtime observation fixture for reading and review only. It is not currently checked by `scripts/check_examples.py` or `scripts/check_runtime_events.py`, is not runtime-event schema validation, and is not a runtime implementation, connector, workflow, or production runtime integration.
 
 `docs/minimal-runtime-candidate-design.md` records the boundary for selecting a minimal synthetic runtime fixture or bounded runtime-checking stub before any runtime candidate is added.
 
-`docs/runtime-event-checking-plan.md` records the planned path, preconditions, exclusions, suggested implementation order, and non-certifying boundary for possible future runtime-event schema checking, JSON fixture checking, `scripts/check_runtime_events.py`, or a runtime-event workflow.
-
-Runtime-event checking remains deferred.
+`docs/runtime-event-checking-plan.md` records the planned path, preconditions, exclusions, suggested implementation order, and non-certifying boundary for runtime-event schema checking, JSON fixture checking, `scripts/check_runtime_events.py`, or a runtime-event workflow.
 
 A pass for the runtime-event-to-pathway example means only that the generated draft pathway record preserves the currently required structural signals. It does not validate the runtime event schema, certify an adapter, approve a connector, prove the event mapping correct, prove JSON fixture correctness, prove schema correctness, prove runtime fixture correctness, or make the record production ready.
+
+## `scripts/check_runtime_events.py`
+
+`scripts/check_runtime_events.py` performs bounded local structural checks on `examples/adapter-input-event-minimal.json` by default.
+
+The current runtime-event checker inspects only whether:
+
+- the selected file is parseable JSON
+- the top-level JSON value is a mapping
+- required top-level runtime-event fields are present
+- `source_system.vendor_specific` is explicitly `false`
+- the first minimal fixture remains synthetic or warns if it does not
+- an AI-agent observed actor does not claim final responsibility
+- `evidence.captured_fields` is a non-empty list
+- `evidence.missing_fields` is present as a list
+- `evidence.uncertainty_notes` is present as a list
+- `evidence.raw_event_available` is explicitly `true`
+- `review_requirement.human_or_institutional_review_required` is explicitly `true`
+- `review_requirement.reason` is present
+- `excluded_claims` includes the expected non-certifying boundary items
+
+The current runtime-event checker does not validate:
+
+- `spec/runtime-event.schema.yaml`
+- `examples/minimal-synthetic-runtime-fixture.json`
+- adapter mapping correctness
+- semantic correctness of the event-to-pathway transformation
+- service-specific connector behavior
+- production runtime behavior
+- vendor API behavior
+- legal validity
+- safety
+- compliance
+- fairness
+- moral resolution
+- production readiness
+- connector correctness
+- adapter correctness
+- responsibility assignment correctness
+- AI final-responsibility transfer
+
+There is no runtime-event workflow yet, and no observed runtime-event checker status has been recorded yet.
+
+A pass from `scripts/check_runtime_events.py` may mean only that the selected synthetic runtime-event JSON fixture satisfies the bounded structural requirements implemented by the local checker. It is not schema validation, JSON semantic correctness proof, adapter correctness proof, connector correctness proof, runtime correctness proof, production readiness, certification, or AI final-responsibility transfer.
 
 ## `scripts/check_review_results.py`
 
@@ -203,6 +245,7 @@ Future checker work should remain bounded to structural signals and must not tre
 | `examples/emergency-stop-flow.yaml` | `suspended` | yes | no | not yet |
 | `examples/reversible-external-action.yaml` | `originating` | yes | no | not yet |
 | `examples/runtime-event-to-pathway-minimal.yaml` | `originating` | yes | no | not yet |
+| `examples/adapter-input-event-minimal.json` | not a pathway example | no | no | checked by `scripts/check_runtime_events.py` |
 | `examples/minimal-synthetic-runtime-fixture.json` | not a pathway example | no | no | not yet |
 | `examples/record-review-minimal.yaml` | `originating` | yes | yes | not yet |
 | `examples/repair-flow.yaml` | `repaired` | yes | no | not yet |
@@ -216,6 +259,12 @@ Future checker work should remain bounded to structural signals and must not tre
 | --- | --- | --- | --- |
 | `fixtures/review-results/record-review-result-minimal.yaml` | `spec/review-result.schema.yaml` | `docs/review-result-schema-fixture-alignment.md` | checked by `scripts/check_review_results.py` |
 
+## Runtime-event checker coverage map
+
+| Checked area | Current bounded signal | Boundary |
+| --- | --- | --- |
+| Runtime-event JSON fixture | valid JSON, required top-level runtime-event fields, synthetic source signal, review requirement, evidence lists, missing context notes, excluded claims | not JSON semantic correctness, schema correctness, adapter correctness, connector correctness, runtime correctness, production readiness, or certification |
+
 ## Planned runtime-event coverage map
 
 This is future work, not current checker behavior.
@@ -223,7 +272,6 @@ This is future work, not current checker behavior.
 | Planned area | Possible bounded signal | Boundary |
 | --- | --- | --- |
 | Minimal synthetic runtime fixture | valid JSON, explicit non-production scope, review-required status, missing approval evidence, missing execution evidence, excluded claims | not production runtime behavior, service connector correctness, adapter mapping correctness, runtime correctness, or production readiness |
-| Runtime-event JSON fixture | valid JSON, required top-level runtime-event fields, review requirement, missing-context notes, excluded claims | not JSON semantic correctness, adapter correctness, connector correctness, or production readiness |
 | Runtime-event schema | readable and parseable schema shape aligned with the current minimal fixture | not schema completeness proof or production schema certification |
 | Runtime-event to pathway relation | explicit source reference, missing context, review requirement, and non-certifying excluded claims | not semantic mapping correctness or responsibility assignment proof |
 | Runtime-event workflow | observed checker status after a workflow exists and is actually observed | not certification or deployment approval |
@@ -238,17 +286,5 @@ This is future work, not current checker behavior.
 | Class B Suggest-Only | AI proposal separated from human adoption | not semantic correctness certification |
 | Class C Approval-Required | Approval Gate, Execution Actor, Evidence Log | not approval quality certification |
 | Class D Reversible External Action | rollback or correction path | not harmlessness, reversibility completeness, or compliance proof |
-| Class E Irreversible or High-Impact | high-impact boundary and non-autonomous boundary | not approval to deploy high-impact systems |
-| Class F Emergency Stop | stop trigger, Stop Authority, pending responsibility owner, return/restart condition | not safety certification or emergency readiness certification |
-
-## Future work
-
-Future checker work may include:
-
-- optional support-call or missed-support structural checks only after support-call schema or example conventions are deliberately designed
-- optional action-class-specific structural checks after source-aligned Class A-F examples stabilize
-- optional runtime-event structural checks after the runtime-event schema, JSON fixture, runtime fixture, and event-to-pathway example stabilize
-- optional runtime fixture checks after `docs/minimal-runtime-candidate-design.md` and `docs/runtime-event-checking-plan.md` preconditions are satisfied
-- optional additional record-review fixture checks if the review-result schema grows
-
-All future checker work must remain bounded to repository-maintenance structural signals.
+| Class E High-Impact | high-impact boundary signals and explicit non-autonomous control | not permission to execute high-impact action |
+| Class F Emergency Stop | stop trigger, stop authority, pending responsibility, and restart/return boundary | not correctness of emergency response |
