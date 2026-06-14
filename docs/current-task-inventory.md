@@ -129,7 +129,7 @@ Current status: first bounded reference example reached; action-class classifica
 
 ## Phase 3.1 task inventory
 
-Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate design, minimal synthetic runtime fixture, README recovery, support-call / missed-support synchronization, and operation-reader path recovery are recorded.
+Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate design, minimal synthetic runtime fixture, README recovery, support-call / missed-support synchronization, operation-reader path recovery, and runtime ROADMAP reference closure are recorded.
 
 ### P1: low-risk consolidation
 
@@ -137,7 +137,7 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 - Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record for runtime-event, runtime-fixture, README recovery, and missed-support synchronization units.
 - Keep `docs/phase-3-1-roadmap-note.md` as the short planning companion for near-term runtime candidate decisions.
 - Keep `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` as the short companion note for the README recovery and missed-support synchronization unit.
-- Keep `docs/phase-3-1-roadmap-runtime-reference.md` as a short note for ROADMAP reference until a safe short ROADMAP edit is possible.
+- Keep `docs/phase-3-1-roadmap-runtime-reference.md` as a historical reference note; the intended ROADMAP reference has already been absorbed unless the runtime candidate boundary changes again.
 - Keep `docs/minimal-runtime-fixture-review-connection.md` as the temporary reader-path note for the fixture review until the operation index and snapshot can safely absorb a short reference.
 - Keep `docs/example-index.md` and `docs/checker-coverage.md` explicit that the JSON runtime fixture is for reading and review only.
 - Keep root `README.md` short and point detailed content to `docs/readme-expanded.md`.
@@ -202,7 +202,7 @@ Use this sequence unless a checker failure or serious inconsistency appears.
 2. P1: keep BEACON short and ensure README / operation-index / current snapshot / sync log / roadmap note remain aligned.
 3. P1: keep missed-support current status, example index, checker coverage, and focused reader paths aligned after example changes.
 4. P1: connect fixture-review status through the current Phase 3.1 snapshot or sync log only if it improves restartability.
-5. P1: decide whether `ROADMAP.md` should receive only a short reference to `docs/phase-3-1-roadmap-runtime-reference.md` in a later small edit.
+5. P1: keep `docs/phase-3-1-roadmap-runtime-reference.md` historical unless runtime candidate boundaries change again.
 6. P2: prepare external-review notes only if they improve reviewability.
 7. P3: consider runtime fixture checking only after documented preconditions remain satisfied.
 8. P4: keep connectors, production runtime, production conversion, Class E positive examples, runtime Lean expansion, support-call schema fields, missed-support schema fields, and support-call / missed-support semantic checking deferred.
