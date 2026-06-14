@@ -4,6 +4,19 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### README recovery and missed-support synchronization checkpoint added
+
+- Root `README.md` was shortened and then strengthened after it remained readable through the GitHub API but appeared blank in the GitHub mobile app
+- Previous expanded README content was preserved at `docs/readme-expanded.md`
+- `docs/operation-index.md` now records the root README as the short public entrance and points to `docs/readme-expanded.md` for the previous expanded content
+- `docs/operation-tool-selection-guard.md` now records a read/write tool-selection guard for AI-assisted GitHub maintenance
+- `docs/concepts/index.md`, `docs/concepts/support-call-policy.md`, and `docs/concepts/missed-support-review-signal.md` now connect the support-call and missed-support reader path
+- `examples/missed-support-boundary-minimal.yaml` now provides a boundary-only missed-support example with `lifecycle_state: returning`
+- `Check examples #17` was observed failed on commit `57445b1` because the first missed-support example lacked a top-level `returning` block
+- `Check examples #18` was observed green on commit `f63678c` after the top-level `returning` block was added
+- `docs/phase-3-1-roadmap-sync-after-readme-recovery.md`, `ROADMAP.md`, and `docs/phase-3-1-sync-log.md` now record this synchronization unit
+- This checkpoint remains a repository-maintenance milestone only; it is not certification, support-call semantic validation, missed-support correctness validation, legal review, safety review, compliance review, fairness review, production approval, connector correctness proof, runtime correctness proof, Lean completeness proof, or AI final-responsibility transfer
+
 ### Session load and handoff policy added
 
 - `docs/repository-operation-model.md` now includes a session load and handoff policy for scaling work size across early, middle, and late AI-assisted repository sessions
