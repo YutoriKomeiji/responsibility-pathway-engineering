@@ -72,6 +72,32 @@ Use this example when introducing:
 - execution actor without final responsibility
 - repair owner and correction path for internal updates
 
+### `examples/missed-support-boundary-minimal.yaml`
+
+Purpose:
+
+- show a small boundary-only missed-support example in repository maintenance
+- model an AI support node preparing a public-facing documentation or navigation update without requesting required human review
+- record the missed support signal as a return condition, not as automatic continuation or certification
+- connect support-call policy, Decision Owner, Approval Gate, Stop Authority, Evidence Log, Repair Owner, and Human Return Point signals
+
+Key boundary:
+
+This example is synthetic, local, boundary-only, and non-production. The `support_call_policy` block is example-only and is not currently schema-enforced. The example does not certify the update, validate runtime behavior, validate connector behavior, approve automatic execution, or prove legal, safety, compliance, fairness, moral, or production readiness.
+
+Current checker boundary:
+
+This example is checked only by the existing bounded structural example checker as a pathway example with `lifecycle_state: returning`. The checker does not currently enforce the semantics of `support_call_policy`.
+
+Use this example when introducing:
+
+- support-call policy as a concept-level mapping
+- missed support as a structural review signal
+- Class C Approval-Required public-facing repository documentation changes
+- returning lifecycle boundary after missed human review
+- stop-and-return before publication
+- repair owner review after missed support
+
 ### `examples/reversible-external-action.yaml`
 
 Purpose:
@@ -316,20 +342,21 @@ Recommended reading order:
 7. `examples/action-class-matrix-minimal.yaml`
 8. `examples/minimal-pathway.yaml`
 9. `examples/internal-document-update.yaml`
-10. `examples/emergency-stop-flow.yaml`
-11. `examples/reversible-external-action.yaml`
-12. `examples/record-review-minimal.yaml`
-13. `examples/human-ai-review-workflow-minimal.yaml`
-14. `docs/adapter-boundary.md`
-15. `docs/runtime-event-checking-plan.md`
-16. `docs/minimal-runtime-candidate-design.md`
-17. `examples/runtime-event-to-pathway-minimal.yaml`
-18. `examples/minimal-synthetic-runtime-fixture.json`
-19. `examples/repair-flow.yaml`
-20. `examples/suspended-pathway.yaml`
-21. `examples/returning-pathway.yaml`
-22. `examples/closed-pathway.yaml`
-23. `docs/example-review-notes.md`
+10. `examples/missed-support-boundary-minimal.yaml`
+11. `examples/emergency-stop-flow.yaml`
+12. `examples/reversible-external-action.yaml`
+13. `examples/record-review-minimal.yaml`
+14. `examples/human-ai-review-workflow-minimal.yaml`
+15. `docs/adapter-boundary.md`
+16. `docs/runtime-event-checking-plan.md`
+17. `docs/minimal-runtime-candidate-design.md`
+18. `examples/runtime-event-to-pathway-minimal.yaml`
+19. `examples/minimal-synthetic-runtime-fixture.json`
+20. `examples/repair-flow.yaml`
+21. `examples/suspended-pathway.yaml`
+22. `examples/returning-pathway.yaml`
+23. `examples/closed-pathway.yaml`
+24. `docs/example-review-notes.md`
 
 ## Relationship to Action Class Matrix
 
@@ -357,6 +384,7 @@ Current examples use descriptive filenames:
 - `minimal-pathway.yaml`
 - `action-class-matrix-minimal.yaml`
 - `internal-document-update.yaml`
+- `missed-support-boundary-minimal.yaml`
 - `emergency-stop-flow.yaml`
 - `reversible-external-action.yaml`
 - `record-review-minimal.yaml`
