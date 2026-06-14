@@ -14,6 +14,12 @@ AI tools are not authors, copyright holders, legal actors, moral agents, respons
 
 The human author remains responsible for deciding what is included, changed, published, claimed, or released.
 
+## Provenance
+
+The public source lineage for **責任経路 / Responsibility Pathway** is recorded in [docs/provenance.md](docs/provenance.md).
+
+A short navigation note is available at [docs/provenance-reader-path.md](docs/provenance-reader-path.md).
+
 ## Attribution
 
 When citing or referring to this repository, use:
@@ -24,5 +30,6 @@ See also:
 
 - [AUTHORSHIP.md](AUTHORSHIP.md)
 - [NOTICE.md](NOTICE.md)
+- [docs/provenance.md](docs/provenance.md)
 - [LICENSE](LICENSE)
 - [CITATION.cff](CITATION.cff)
