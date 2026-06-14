@@ -266,6 +266,23 @@ repairs:
       state: awaiting_human_review
       boundary: example_only
 
+returning:
+  previous_lifecycle_state: originating
+  automatic_continuation_allowed: false
+  automatic_closure_allowed: false
+  automatic_repair_completion_allowed: false
+  required_before_next_state:
+    - human_maintainer_reviews_missed_support_signal
+    - approval_gate_confirms_or_rejects_public_facing_update
+    - stop_authority_confirms_publication_remains_paused
+    - repair_owner_records_revision_or_rejection
+  disallowed_interpretations:
+    - returning_does_not_mean_automatic_continuation
+    - returning_does_not_mean_repair_completion
+    - returning_does_not_mean_closure
+    - returning_does_not_mean_certification
+    - returning_does_not_mean_ai_decision
+
 responsibility_boundary:
   human_author_required: true
   ai_final_responsibility_allowed: false
