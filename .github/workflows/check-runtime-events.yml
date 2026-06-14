@@ -1,0 +1,25 @@
+name: Check runtime events
+
+on:
+  push:
+    paths:
+      - "examples/adapter-input-event-minimal.json"
+      - "scripts/check_runtime_events.py"
+      - ".github/workflows/check-runtime-events.yml"
+
+jobs:
+  check-runtime-events:
+    name: Bounded runtime-event checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Run bounded runtime-event checker
+        run: python scripts/check_runtime_events.py
