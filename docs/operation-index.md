@@ -16,8 +16,9 @@ Use this path when restarting work after a pause or when another maintainer, rev
 6. the relevant sync log or roadmap note
 7. `docs/current-task-inventory.md` when choosing the next task
 8. `docs/concepts/index.md` when concept-level reader paths matter
-9. `docs/example-index.md`
-10. `docs/checker-coverage.md`
+9. `docs/standardization-strategy.md` when standardization language, grounding discipline, or world-standard preparation matters
+10. `docs/example-index.md`
+11. `docs/checker-coverage.md`
 
 `CHANGELOG.md` is not part of the primary construction-time reconnection path. Use it mainly for archival, investigative, historical, or retrospective milestone review.
 
@@ -30,6 +31,7 @@ Use documents according to the phase of work.
 | Active construction | `BEACON.md`, `README.md`, current snapshot, operation index, sync log, roadmap note, current task inventory, checker coverage, example index, primary artifact | a prior milestone or boundary change must be investigated |
 | Restart or handoff | `BEACON.md`, `README.md`, current snapshot, operation index, sync log, roadmap note, current task inventory | the restart depends on historical cause tracing |
 | Concept-path navigation | `docs/concepts/index.md`, relevant concept note, source-alignment note, example index, checker coverage | checking when a concept boundary changed |
+| Standardization preparation | `docs/standardization-strategy.md`, README, operation index, current snapshot, concept index, example index, checker coverage | checking when a standardization boundary or language choice changed |
 | Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, relevant schemas or examples | checking when a rule or coverage boundary changed |
 | Phase planning | `ROADMAP.md`, roadmap note, current snapshot, operation index, current task inventory | confirming a past phase milestone |
 | Audit, error investigation, or retrospective explanation | `CHANGELOG.md`, sync logs, snapshots, relevant commits and artifacts | this is the intended primary use |
@@ -109,6 +111,14 @@ Current concept-navigation anchors include:
 
 Concept notes remain concept-level unless restart conditions explicitly reopen schema, checker, workflow, runtime, connector, or Lean work.
 
+## Standardization navigation
+
+Use `docs/standardization-strategy.md` when discussing world-standard preparation, external standardization language, grounding discipline, anti-overclaim boundaries, relationship to existing standards and frameworks, future conformance discussion, or whether a claim should be deferred.
+
+The standardization strategy positions RPE as an open specification effort and future standardization candidate preparation, not as a finished standard, certification scheme, legal authority, safety certification process, compliance framework, production approval process, connector correctness proof, runtime correctness proof, or AI final-responsibility transfer mechanism.
+
+Use this document before writing public-facing claims that may sound like certification, legal validity, safety proof, compliance proof, production readiness, connector correctness, runtime correctness, or AI final-responsibility transfer.
+
 ## Task inventory navigation
 
 Use `docs/current-task-inventory.md` when choosing what to do next.
@@ -121,7 +131,7 @@ The inventory separates tasks into:
 - P3 conditional checker or workflow work
 - P4 deferred expansion
 
-Use it before starting checker work, workflow work, runtime work, Lean expansion, connector work, Class E examples, or public-claim expansion.
+Use it before starting checker work, workflow work, runtime work, Lean expansion, connector work, Class E examples, standardization claims, conformance-model drafting, or public-claim expansion.
 
 ## Periodic operation review
 
@@ -139,11 +149,11 @@ A periodic operation review is useful when:
 - a checker failure changes future maintenance behavior
 - a deferred implementation boundary is being reconsidered
 - session load is becoming heavy or a session handoff needs a durable restart path
-- Class E positive examples, production connectors, production conversion code, runtime-event schema checks, JSON fixture checks, or Lean expansion may need to be revisited
+- Class E positive examples, production connectors, production conversion code, runtime-event schema checks, JSON fixture checks, standardization claims, conformance-model drafting, or Lean expansion may need to be revisited
 
 A periodic operation review may produce an operation-model update, operation-index update, task-inventory update, snapshot update, sync-log entry, roadmap note, BEACON update, or short CHANGELOG milestone.
 
-It must not be used as production approval, connector correctness proof, adapter correctness proof, legal review, safety review, compliance review, fairness review, Lean completeness proof, or AI final-responsibility transfer.
+It must not be used as production approval, connector correctness proof, adapter correctness proof, legal review, safety review, compliance review, fairness review, Lean completeness proof, standardization certification, or AI final-responsibility transfer.
 
 ## Snapshot documents
 
@@ -226,6 +236,6 @@ Until then, avoid moving existing logs.
 
 Operation documents preserve maintainability, traceability, and returnability.
 
-They do not certify examples, schemas, checkers, generated records, adapters, connectors, workflows, Lean files, governance decisions, public claims, or repository states.
+They do not certify examples, schemas, checkers, generated records, adapters, connectors, workflows, Lean files, governance decisions, public claims, standardization claims, or repository states.
 
 The human author or maintainer remains responsible for deciding whether a change should be made, published, relied upon, reverted, repaired, or deferred.
