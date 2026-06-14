@@ -27,8 +27,9 @@ These tasks preserve the repository's current operating ability.
 - Keep `docs/phase-3-1-roadmap-note.md` as the short planning companion, not a second changelog.
 - Keep `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` as the short companion note for the README recovery and missed-support synchronization unit.
 - Keep `docs/progress-map.md` as the rough, planning-only progress and gate map before discussing progress percentage, next gates, or maturity.
+- Keep `docs/phase-3-1-progress-map-connection.md` as the focused Phase 3.1 reader-path note for progress-map context without rewriting the full current snapshot.
 - Keep `docs/standardization-strategy.md` as the grounded, non-certifying standardization-preparation note before writing world-standard, conformance, or public-facing standardization claims.
-- Keep `docs/operation-index.md` aligned when operation documents, snapshots, sync logs, roadmap notes, progress map, checker plans, runtime candidate planning, review notes, standardization strategy, document-role rules, or concept navigation change.
+- Keep `docs/operation-index.md` aligned when operation documents, snapshots, sync logs, roadmap notes, progress map, focused connection notes, checker plans, runtime candidate planning, review notes, standardization strategy, document-role rules, or concept navigation change.
 - Keep `CHANGELOG.md` archival and investigative rather than the active construction restart path.
 - Preserve open-source review intent without implying certification or production approval.
 - Keep `docs/deferred-work-restart-conditions.md` as the restart-condition entry point for deferred schema, checker, workflow, connector, runtime, and Lean work.
@@ -131,12 +132,13 @@ Current status: first bounded reference example reached; action-class classifica
 
 ## Phase 3.1 task inventory
 
-Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate design, minimal synthetic runtime fixture, README recovery, support-call / missed-support synchronization, operation-reader path recovery, runtime ROADMAP reference closure, grounded standardization strategy, and progress map are recorded.
+Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate design, minimal synthetic runtime fixture, README recovery, support-call / missed-support synchronization, operation-reader path recovery, runtime ROADMAP reference closure, grounded standardization strategy, progress map, and focused Phase 3.1 progress-map connection note are recorded.
 
 ### P1: low-risk consolidation
 
-- Keep `docs/phase-3-1-current-snapshot.md` aligned with runtime fixture, checker boundary, open-source review intent, review notes, README recovery, support-call / missed-support notes, progress map, standardization strategy, and deferred work.
-- Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record for runtime-event, runtime-fixture, README recovery, missed-support synchronization, progress-map synchronization, and future standardization synchronization units.
+- Keep `docs/phase-3-1-current-snapshot.md` aligned with runtime fixture, checker boundary, open-source review intent, review notes, README recovery, support-call / missed-support notes, progress map, focused progress-map connection note, standardization strategy, and deferred work.
+- Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record for runtime-event, runtime-fixture, README recovery, missed-support synchronization, progress-map synchronization, focused connection-note synchronization, and future standardization synchronization units.
+- Keep `docs/phase-3-1-progress-map-connection.md` as the focused reader-path note connecting Phase 3.1 to `docs/progress-map.md` without forcing a broad current-snapshot rewrite.
 - Keep `docs/phase-3-1-roadmap-note.md` as the short planning companion for near-term runtime candidate decisions.
 - Keep `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` as the short companion note for the README recovery and missed-support synchronization unit.
 - Keep `docs/phase-3-1-roadmap-runtime-reference.md` as a historical reference note; the intended ROADMAP reference has already been absorbed unless the runtime candidate boundary changes again.
@@ -145,7 +147,7 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 - Keep `docs/standardization-strategy.md` grounded: RPE may prepare for future standardization only by improving terminology, scope, non-scope, reviewability, traceability, compatibility, and anti-overclaim boundaries.
 - Keep `docs/example-index.md` and `docs/checker-coverage.md` explicit that the JSON runtime fixture is for reading and review only.
 - Keep root `README.md` short and point detailed content to `docs/readme-expanded.md`.
-- Keep `BEACON.md` short; move detailed state into snapshots, sync logs, roadmap notes, progress map, or focused status notes.
+- Keep `BEACON.md` short; move detailed state into snapshots, sync logs, roadmap notes, progress map, focused connection notes, or focused status notes.
 
 ### P2: bounded artifact preparation
 
@@ -180,16 +182,17 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 
 ## Open-source review tasks
 
-Open-source review is intended to invite inspection of boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, operation documents, progress map, standardization strategy, and deferred implementation choices.
+Open-source review is intended to invite inspection of boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, operation documents, progress map, focused progress-map connection note, standardization strategy, and deferred implementation choices.
 
 ### P1: low-risk review preparation
 
 - Make reader paths clear enough that an external reviewer can find current boundaries without reading the whole repository.
 - Keep non-certifying boundaries repeated where misunderstanding would be likely.
-- Keep `BEACON.md`, `README.md`, `docs/operation-index.md`, current snapshots, sync logs, roadmap notes, progress map, checker coverage, example index, standardization strategy, and focused review notes aligned.
+- Keep `BEACON.md`, `README.md`, `docs/operation-index.md`, current snapshots, sync logs, roadmap notes, progress map, focused connection notes, checker coverage, example index, standardization strategy, and focused review notes aligned.
 - Keep `docs/examples/missed-support-current-status.md` available as the focused reader path for missed-support review.
 - Keep `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` available as the short companion note for README recovery and missed-support synchronization.
 - Keep `docs/progress-map.md` available as the focused reader path for rough progress, active gates, next gates, and progress-related stop conditions.
+- Keep `docs/phase-3-1-progress-map-connection.md` available when reviewers need the Phase 3.1-specific route to the progress map without reading the full current snapshot first.
 - Keep `docs/standardization-strategy.md` available as the focused reader path for world-standard preparation language, grounding discipline, anti-overclaim boundaries, and future conformance discussion.
 
 ### P2: bounded review artifacts
@@ -211,14 +214,15 @@ Use this sequence unless a checker failure or serious inconsistency appears.
 1. P0: preserve restartability and boundary clarity.
 2. P1: keep BEACON short and ensure README / operation-index / current snapshot / sync log / roadmap note remain aligned.
 3. P1: keep progress map rough, planning-only, and connected before using progress percentages in public-facing language.
-4. P1: keep standardization strategy grounded and connected before any public-facing world-standard language is expanded.
-5. P1: keep missed-support current status, example index, checker coverage, and focused reader paths aligned after example changes.
-6. P1: connect fixture-review status through the current Phase 3.1 snapshot or sync log only if it improves restartability.
-7. P1: keep `docs/phase-3-1-roadmap-runtime-reference.md` historical unless runtime candidate boundaries change again.
-8. P2: prepare external-review notes only if they improve reviewability.
-9. P2: prepare future conformance-model drafting only after terminology and scope stabilize further.
-10. P3: consider runtime fixture checking only after documented preconditions remain satisfied.
-11. P4: keep connectors, production runtime, production conversion, Class E positive examples, runtime Lean expansion, support-call schema fields, missed-support schema fields, support-call / missed-support semantic checking, and premature standardization claims deferred.
+4. P1: keep `docs/phase-3-1-progress-map-connection.md` available when Phase 3.1 progress visibility is needed without rewriting the full current snapshot.
+5. P1: keep standardization strategy grounded and connected before any public-facing world-standard language is expanded.
+6. P1: keep missed-support current status, example index, checker coverage, and focused reader paths aligned after example changes.
+7. P1: connect fixture-review status through the current Phase 3.1 snapshot or sync log only if it improves restartability.
+8. P1: keep `docs/phase-3-1-roadmap-runtime-reference.md` historical unless runtime candidate boundaries change again.
+9. P2: prepare external-review notes only if they improve reviewability.
+10. P2: prepare future conformance-model drafting only after terminology and scope stabilize further.
+11. P3: consider runtime fixture checking only after documented preconditions remain satisfied.
+12. P4: keep connectors, production runtime, production conversion, Class E positive examples, runtime Lean expansion, support-call schema fields, missed-support schema fields, support-call / missed-support semantic checking, and premature standardization claims deferred.
 
 ## Stop conditions
 
