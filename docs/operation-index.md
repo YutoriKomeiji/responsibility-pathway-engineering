@@ -31,7 +31,7 @@ Use documents according to the phase of work.
 | --- | --- | --- |
 | Active construction | `BEACON.md`, `README.md`, current snapshot, operation index, sync log, roadmap note, current task inventory, progress map, checker coverage, example index, primary artifact | a prior milestone or boundary change must be investigated |
 | Restart or handoff | `BEACON.md`, `README.md`, current snapshot, operation index, sync log, roadmap note, current task inventory, progress map | the restart depends on historical cause tracing |
-| Progress review | `docs/progress-map.md`, current snapshot, current task inventory, operation index, roadmap note | checking when a progress estimate or gate changed |
+| Progress review | `docs/progress-map.md`, `docs/phase-3-1-progress-map-connection.md` when Phase 3.1 context matters, current snapshot, current task inventory, operation index, roadmap note | checking when a progress estimate or gate changed |
 | Concept-path navigation | `docs/concepts/index.md`, relevant concept note, source-alignment note, example index, checker coverage | checking when a concept boundary changed |
 | Standardization preparation | `docs/standardization-strategy.md`, progress map, README, operation index, current snapshot, concept index, example index, checker coverage | checking when a standardization boundary or language choice changed |
 | Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, relevant schemas or examples | checking when a rule or coverage boundary changed |
@@ -126,6 +126,8 @@ Use this document before writing public-facing claims that may sound like certif
 
 Use `docs/progress-map.md` when the question is how far the repository has progressed, which gate is active, what the next gate is, or which work must remain deferred.
 
+Use `docs/phase-3-1-progress-map-connection.md` when progress visibility specifically concerns Phase 3.1 and the maintainer needs the focused reader path without rewriting the full Phase 3.1 snapshot.
+
 The progress map records approximate planning estimates only. It does not certify progress, prove maturity, establish conformance, or replace external review.
 
 Use it to avoid both false urgency and premature standardization claims.
@@ -185,11 +187,14 @@ Sync logs and roadmap notes are complementary but separate.
 | Document | Current role |
 | --- | --- |
 | `docs/phase-3-1-sync-log.md` | Detailed synchronization record for multi-commit Phase 3.1 reader-path, coverage, checker-interpretation, and boundary synchronization. |
+| `docs/phase-3-1-progress-map-connection.md` | Focused Phase 3.1 reader-path note connecting the rough progress map without rewriting the full current snapshot. |
 | `docs/phase-3-1-roadmap-note.md` | Short current-planning companion for Phase 3.1 near-term roadmap position, minimal runtime candidate planning, next low-risk work, phase rules, and stop conditions. |
 | `docs/phase-3-1-roadmap-runtime-reference.md` | Historical reference note for the minimal runtime fixture ROADMAP reference after the intended ROADMAP reference was absorbed. |
 | `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` | Short companion note for the README recovery and missed-support synchronization unit. |
 
 Use sync logs to understand what changed across several commits, what was synchronized, what checker status or interpretation was current, and what work remained deferred after a synchronization unit.
+
+Use focused connection notes when a narrow reader-path bridge is safer than rewriting a long current snapshot.
 
 Use roadmap notes to understand what should happen next, which phase rules matter now, what should remain deferred, and how to avoid changing a long `ROADMAP.md` section too early.
 
