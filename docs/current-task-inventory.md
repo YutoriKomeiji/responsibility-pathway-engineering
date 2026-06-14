@@ -2,7 +2,7 @@
 
 This document records the current task inventory across active and near-active phases.
 
-It is a planning and prioritization note only. It is not a certification record, production approval record, legal review, safety review, compliance review, fairness review, connector correctness proof, adapter correctness proof, runtime correctness proof, Lean completeness proof, standardization certification, or AI final-responsibility transfer mechanism.
+It is a planning and prioritization note only. It is not a certification record, production approval record, legal review, safety review, compliance review, fairness review, connector correctness proof, adapter correctness proof, runtime correctness proof, Lean completeness proof, standardization certification, progress certification, or AI final-responsibility transfer mechanism.
 
 ## Priority classes
 
@@ -26,8 +26,9 @@ These tasks preserve the repository's current operating ability.
 - Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record, not a phase plan.
 - Keep `docs/phase-3-1-roadmap-note.md` as the short planning companion, not a second changelog.
 - Keep `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` as the short companion note for the README recovery and missed-support synchronization unit.
+- Keep `docs/progress-map.md` as the rough, planning-only progress and gate map before discussing progress percentage, next gates, or maturity.
 - Keep `docs/standardization-strategy.md` as the grounded, non-certifying standardization-preparation note before writing world-standard, conformance, or public-facing standardization claims.
-- Keep `docs/operation-index.md` aligned when operation documents, snapshots, sync logs, roadmap notes, checker plans, runtime candidate planning, review notes, standardization strategy, document-role rules, or concept navigation change.
+- Keep `docs/operation-index.md` aligned when operation documents, snapshots, sync logs, roadmap notes, progress map, checker plans, runtime candidate planning, review notes, standardization strategy, document-role rules, or concept navigation change.
 - Keep `CHANGELOG.md` archival and investigative rather than the active construction restart path.
 - Preserve open-source review intent without implying certification or production approval.
 - Keep `docs/deferred-work-restart-conditions.md` as the restart-condition entry point for deferred schema, checker, workflow, connector, runtime, and Lean work.
@@ -130,20 +131,21 @@ Current status: first bounded reference example reached; action-class classifica
 
 ## Phase 3.1 task inventory
 
-Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate design, minimal synthetic runtime fixture, README recovery, support-call / missed-support synchronization, operation-reader path recovery, runtime ROADMAP reference closure, and grounded standardization strategy are recorded.
+Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate design, minimal synthetic runtime fixture, README recovery, support-call / missed-support synchronization, operation-reader path recovery, runtime ROADMAP reference closure, grounded standardization strategy, and progress map are recorded.
 
 ### P1: low-risk consolidation
 
-- Keep `docs/phase-3-1-current-snapshot.md` aligned with runtime fixture, checker boundary, open-source review intent, review notes, README recovery, support-call / missed-support notes, standardization strategy, and deferred work.
-- Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record for runtime-event, runtime-fixture, README recovery, missed-support synchronization, and future standardization synchronization units.
+- Keep `docs/phase-3-1-current-snapshot.md` aligned with runtime fixture, checker boundary, open-source review intent, review notes, README recovery, support-call / missed-support notes, progress map, standardization strategy, and deferred work.
+- Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record for runtime-event, runtime-fixture, README recovery, missed-support synchronization, progress-map synchronization, and future standardization synchronization units.
 - Keep `docs/phase-3-1-roadmap-note.md` as the short planning companion for near-term runtime candidate decisions.
 - Keep `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` as the short companion note for the README recovery and missed-support synchronization unit.
 - Keep `docs/phase-3-1-roadmap-runtime-reference.md` as a historical reference note; the intended ROADMAP reference has already been absorbed unless the runtime candidate boundary changes again.
 - Keep `docs/minimal-runtime-fixture-review-connection.md` as the reader-path note connecting the fixture review to operation documents.
+- Keep `docs/progress-map.md` rough and planning-only: progress estimates are not maturity proof, conformance proof, external review findings, or certification.
 - Keep `docs/standardization-strategy.md` grounded: RPE may prepare for future standardization only by improving terminology, scope, non-scope, reviewability, traceability, compatibility, and anti-overclaim boundaries.
 - Keep `docs/example-index.md` and `docs/checker-coverage.md` explicit that the JSON runtime fixture is for reading and review only.
 - Keep root `README.md` short and point detailed content to `docs/readme-expanded.md`.
-- Keep `BEACON.md` short; move detailed state into snapshots, sync logs, roadmap notes, or focused status notes.
+- Keep `BEACON.md` short; move detailed state into snapshots, sync logs, roadmap notes, progress map, or focused status notes.
 
 ### P2: bounded artifact preparation
 
@@ -174,19 +176,20 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 - Keep missed-support schema fields deferred.
 - Keep runtime-event support-call fields deferred.
 - Keep Class E positive examples deferred.
-- Keep finished-standard, certification, legal-validity, safety-proof, compliance-proof, production-readiness, connector-correctness, runtime-correctness, and AI-final-responsibility-transfer claims deferred.
+- Keep finished-standard, certification, legal-validity, safety-proof, compliance-proof, production-readiness, connector-correctness, runtime-correctness, progress-certification, and AI-final-responsibility-transfer claims deferred.
 
 ## Open-source review tasks
 
-Open-source review is intended to invite inspection of boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, operation documents, standardization strategy, and deferred implementation choices.
+Open-source review is intended to invite inspection of boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, operation documents, progress map, standardization strategy, and deferred implementation choices.
 
 ### P1: low-risk review preparation
 
 - Make reader paths clear enough that an external reviewer can find current boundaries without reading the whole repository.
 - Keep non-certifying boundaries repeated where misunderstanding would be likely.
-- Keep `BEACON.md`, `README.md`, `docs/operation-index.md`, current snapshots, sync logs, roadmap notes, checker coverage, example index, standardization strategy, and focused review notes aligned.
+- Keep `BEACON.md`, `README.md`, `docs/operation-index.md`, current snapshots, sync logs, roadmap notes, progress map, checker coverage, example index, standardization strategy, and focused review notes aligned.
 - Keep `docs/examples/missed-support-current-status.md` available as the focused reader path for missed-support review.
 - Keep `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` available as the short companion note for README recovery and missed-support synchronization.
+- Keep `docs/progress-map.md` available as the focused reader path for rough progress, active gates, next gates, and progress-related stop conditions.
 - Keep `docs/standardization-strategy.md` available as the focused reader path for world-standard preparation language, grounding discipline, anti-overclaim boundaries, and future conformance discussion.
 
 ### P2: bounded review artifacts
@@ -199,7 +202,7 @@ Open-source review is intended to invite inspection of boundaries, responsibilit
 
 ### P4: deferred public claims
 
-- Do not claim the project proves legal validity, safety, compliance, fairness, moral resolution, production readiness, connector correctness, adapter correctness, runtime correctness, standardization certification, or AI final-responsibility transfer.
+- Do not claim the project proves legal validity, safety, compliance, fairness, moral resolution, production readiness, connector correctness, adapter correctness, runtime correctness, standardization certification, progress certification, or AI final-responsibility transfer.
 
 ## Recommended next sequence
 
@@ -207,14 +210,15 @@ Use this sequence unless a checker failure or serious inconsistency appears.
 
 1. P0: preserve restartability and boundary clarity.
 2. P1: keep BEACON short and ensure README / operation-index / current snapshot / sync log / roadmap note remain aligned.
-3. P1: keep standardization strategy grounded and connected before any public-facing world-standard language is expanded.
-4. P1: keep missed-support current status, example index, checker coverage, and focused reader paths aligned after example changes.
-5. P1: connect fixture-review status through the current Phase 3.1 snapshot or sync log only if it improves restartability.
-6. P1: keep `docs/phase-3-1-roadmap-runtime-reference.md` historical unless runtime candidate boundaries change again.
-7. P2: prepare external-review notes only if they improve reviewability.
-8. P2: prepare future conformance-model drafting only after terminology and scope stabilize further.
-9. P3: consider runtime fixture checking only after documented preconditions remain satisfied.
-10. P4: keep connectors, production runtime, production conversion, Class E positive examples, runtime Lean expansion, support-call schema fields, missed-support schema fields, support-call / missed-support semantic checking, and premature standardization claims deferred.
+3. P1: keep progress map rough, planning-only, and connected before using progress percentages in public-facing language.
+4. P1: keep standardization strategy grounded and connected before any public-facing world-standard language is expanded.
+5. P1: keep missed-support current status, example index, checker coverage, and focused reader paths aligned after example changes.
+6. P1: connect fixture-review status through the current Phase 3.1 snapshot or sync log only if it improves restartability.
+7. P1: keep `docs/phase-3-1-roadmap-runtime-reference.md` historical unless runtime candidate boundaries change again.
+8. P2: prepare external-review notes only if they improve reviewability.
+9. P2: prepare future conformance-model drafting only after terminology and scope stabilize further.
+10. P3: consider runtime fixture checking only after documented preconditions remain satisfied.
+11. P4: keep connectors, production runtime, production conversion, Class E positive examples, runtime Lean expansion, support-call schema fields, missed-support schema fields, support-call / missed-support semantic checking, and premature standardization claims deferred.
 
 ## Stop conditions
 
@@ -225,4 +229,4 @@ Stop and preserve state if:
 - a task starts implying production runtime integration
 - a task starts depending on a service-specific connector
 - a task implies automatic approval or execution
-- a task implies certification, legal validation, safety certification, compliance certification, fairness certification, moral resolution, connector correctness, adapter correctness, runtime correctness, production readiness, standardization certification, or AI final-responsibility transfer
+- a task implies certification, legal validation, safety certification, compliance certification, fairness certification, moral resolution, connector correctness, adapter correctness, runtime correctness, production readiness, standardization certification, progress certification, or AI final-responsibility transfer
