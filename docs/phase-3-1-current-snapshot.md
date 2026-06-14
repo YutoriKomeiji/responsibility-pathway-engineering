@@ -1,6 +1,6 @@
 # Phase 3.1 Current Snapshot
 
-This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, runtime-event checking plan, minimal runtime candidate planning, minimal synthetic runtime fixture, current task inventory, and repository operation layer.
+This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, runtime-event checking plan, minimal runtime candidate planning, minimal synthetic runtime fixture, minimal runtime fixture review, current task inventory, and repository operation layer.
 
 Phase 3.1 is the bridge from external logs, API events, workflow results, and runtime observations into draft Responsibility Pathway records.
 
@@ -17,6 +17,8 @@ Current Phase 3.1 artifacts:
 - `examples/minimal-synthetic-runtime-fixture.json`
 - `docs/runtime-event-checking-plan.md`
 - `docs/minimal-runtime-candidate-design.md`
+- `docs/minimal-runtime-fixture-review.md`
+- `docs/minimal-runtime-fixture-review-connection.md`
 - `docs/current-task-inventory.md`
 - `docs/phase-3-1-current-snapshot.md`
 - `docs/phase-3-1-sync-log.md`
@@ -170,13 +172,25 @@ It references `examples/adapter-input-event-minimal.json` as the source event re
 
 The fixture is not currently checked by `scripts/check_examples.py` and does not unlock runtime-event checker implementation, runtime workflow implementation, service-specific connector work, production conversion code, or production runtime integration.
 
+## Minimal runtime fixture review
+
+`docs/minimal-runtime-fixture-review.md` records the first review of `examples/minimal-synthetic-runtime-fixture.json` as a minimal synthetic runtime observation fixture for reading and review.
+
+The first review found that the fixture is acceptable as a first minimal synthetic runtime observation fixture.
+
+No change to `examples/minimal-synthetic-runtime-fixture.json` was required by that review.
+
+`docs/minimal-runtime-fixture-review-connection.md` records the reader path connecting the review note to the current Phase 3.1 operation documents.
+
+The review note and connection note do not unlock production runtime integration, service-specific connectors, production conversion code, runtime-event checker implementation, runtime fixture checker implementation, runtime workflow implementation, schema correctness claims, JSON semantic correctness claims, adapter mapping correctness claims, connector correctness claims, responsibility assignment correctness claims, Class E positive examples, or Lean expansion around runtime events.
+
 ## Current task inventory
 
 `docs/current-task-inventory.md` records the current P0-P4 task inventory across active and near-active phases.
 
 Use it before selecting the next task, especially before checker work, workflow work, runtime work, Lean expansion, connector work, Class E examples, or public-claim expansion.
 
-For Phase 3.1, the inventory currently treats runtime fixture review as bounded artifact preparation and keeps runtime fixture checking, runtime-event checker implementation, runtime workflows, service-specific connectors, production conversion code, production runtime integration, Class E positive examples, and Lean expansion around runtime events deferred or conditional.
+For Phase 3.1, the inventory currently treats runtime fixture review as bounded artifact preparation and keeps runtime fixture checking, runtime-event checker implementation, runtime workflows, service-specific connectors, production conversion code, production runtime integration, Class E positive examples, support-call schema fields, missed-support schema fields, support-call semantic checking, missed-support correctness checking, and Lean expansion around runtime events, support-call policy, or missed-support signals deferred or conditional.
 
 The task inventory is a planning and prioritization note only. It is not certification, production approval, legal review, safety review, compliance review, fairness review, connector correctness proof, adapter correctness proof, runtime correctness proof, Lean completeness proof, or AI final-responsibility transfer.
 
@@ -188,6 +202,7 @@ Current synchronization status:
 
 - `docs/operation-index.md` points runtime-event schema checking, JSON fixture checking, and future runtime-event checker work to `docs/runtime-event-checking-plan.md` first
 - `docs/operation-index.md` points runtime candidate selection to `docs/minimal-runtime-candidate-design.md` before any runtime candidate is added
+- `docs/operation-index.md` points minimal runtime fixture review to `docs/minimal-runtime-fixture-review.md` before changing the minimal runtime fixture or treating its first review as current
 - `docs/operation-index.md` points task selection to `docs/current-task-inventory.md` before starting higher-risk work
 - `docs/phase-3-1-sync-log.md` records the runtime-event checking plan synchronization as one responsibility unit split across multiple small commits
 - `docs/phase-3-1-roadmap-note.md` records that Phase 3.1 is not yet a runtime-event checker implementation phase or production runtime phase
@@ -242,6 +257,8 @@ The operation index is now connected from:
 `docs/runtime-event-checking-plan.md` is now connected from `docs/operation-index.md` as the plan to read before considering runtime-event schema checking, JSON fixture checking, or future runtime-event checker work.
 
 `docs/minimal-runtime-candidate-design.md` is now connected from `docs/operation-index.md` as the design note to read before considering a minimal synthetic runtime fixture or bounded runtime-checking stub.
+
+`docs/minimal-runtime-fixture-review.md` is now connected from `docs/operation-index.md` as the review note to read before changing the minimal runtime fixture or treating its first review as current.
 
 `docs/current-task-inventory.md` is now connected from `docs/operation-index.md` as the task-priority note to read before selecting the next task.
 
@@ -441,9 +458,9 @@ Next safe synchronization steps:
 9. use `docs/minimal-runtime-candidate-design.md` before selecting any further runtime candidate
 10. keep Class E positive examples deferred
 11. keep Lean expansion around adapter and runtime events deferred
-12. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, task inventories, checker plans, session handoff rules, document usage phase rules, sync-log/roadmap-note role separation, BEACON/snapshot role separation, or minimal runtime candidate planning changes
-13. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, task inventories, checker interpretation, document usage phase, BEACON/snapshot separation, sync-log/roadmap-note separation, session load, runtime candidate planning, or deferred boundaries feel misaligned with actual practice
-14. add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, runtime candidate note, task inventory, or operation document to point to
+12. maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, task inventories, checker plans, session handoff rules, document usage phase rules, sync-log/roadmap-note role separation, BEACON/snapshot role separation, runtime candidate planning, or minimal runtime fixture review links change
+13. use periodic operation review when commit granularity, reader paths, logs, roadmap notes, task inventories, checker interpretation, document usage phase, BEACON/snapshot separation, sync-log/roadmap-note separation, session load, runtime candidate planning, fixture review status, or deferred boundaries feel misaligned with actual practice
+14. add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, runtime candidate note, fixture review note, task inventory, or operation document to point to
 
 ## Restart point
 
@@ -460,12 +477,13 @@ Also read:
 7. `docs/adapter-boundary.md`
 8. `docs/runtime-event-checking-plan.md`
 9. `docs/minimal-runtime-candidate-design.md`
-10. `docs/checker-coverage.md`
-11. `docs/example-index.md`
-12. `spec/runtime-event.schema.yaml`
-13. `examples/adapter-input-event-minimal.json`
-14. `examples/minimal-synthetic-runtime-fixture.json`
-15. `examples/runtime-event-to-pathway-minimal.yaml`
+10. `docs/minimal-runtime-fixture-review.md`
+11. `docs/checker-coverage.md`
+12. `docs/example-index.md`
+13. `spec/runtime-event.schema.yaml`
+14. `examples/adapter-input-event-minimal.json`
+15. `examples/minimal-synthetic-runtime-fixture.json`
+16. `examples/runtime-event-to-pathway-minimal.yaml`
 
 Use `CHANGELOG.md` after these current-state documents only when a milestone, historical cause, serious inconsistency, or prior boundary decision needs investigation.
 
