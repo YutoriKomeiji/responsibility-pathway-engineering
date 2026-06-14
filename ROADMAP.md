@@ -53,7 +53,7 @@ Established schema files:
 - spec/repair.schema.yaml
 - spec/pathway.schema.yaml
 
-## Phase 1.6 - Lightweight Validation and Lifecycle Examples (Substantially Established; action-class alignment in progress)
+## Phase 1.6 - Lightweight Validation and Lifecycle Examples (Substantially Established; action-class and missed-support alignment in progress)
 
 - Lightweight checker added at `scripts/check_examples.py`
 - GitHub Actions workflow added for bounded example checks
@@ -77,24 +77,33 @@ Established schema files:
 - `examples/internal-document-update.yaml` added as a Class C Approval-Required internal document update example
 - `examples/emergency-stop-flow.yaml` added as a Class F Emergency Stop / stop-and-await example
 - `examples/reversible-external-action.yaml` added as a Class D Reversible External Action example with external-impact visibility and rollback/correction path
-- `docs/example-index.md` connected future examples to Action Class Matrix design rules
-- `docs/checker-coverage.md` documented action-class-specific checks as planned future bounded checks, not current enforcement
+- `docs/concepts/support-call-policy.md` added as a concept-level mapping from support-call policy to Decision Owner, Human Return Point, Approval Gate, Stop Authority, Evidence Log, and Repair Owner
+- `docs/concepts/missed-support-review-signal.md` added to define missed support as a structural review signal, not automatic fault determination or certification
+- `examples/missed-support-boundary-minimal.yaml` added as a boundary-only repository-maintenance example with `lifecycle_state: returning`
+- `docs/examples/missed-support-workflow-observation.md` records the observed failed-then-passing example-check sequence for the missed-support example
+- `docs/examples/missed-support-current-status.md` records the current missed-support reader path, checker boundary, and still-deferred schema/checker/runtime/Lean work
+- `docs/concepts/index.md` added as a concept reader-path index
+- `docs/example-index.md` connected future examples to Action Class Matrix design rules and includes the missed-support boundary example
+- `docs/checker-coverage.md` documented action-class-specific checks and support-call/missed-support checks as planned future bounded checks, not current semantic enforcement
 - `Check examples #10` observed green on commit `2af698c` on `main` after minimal-pathway action-class migration
 - `Check examples #11` observed green on commit `b50226d` on `main` after adding `examples/action-class-matrix-minimal.yaml`; the workflow completed successfully in about 14 seconds, and the `Bounded structural example checks` job completed successfully in about 10 seconds
 - `Check examples #12` observed green on commit `fdd7bd4` on `main` after adding `examples/internal-document-update.yaml`; the workflow completed successfully in about 9 seconds, and the `Bounded structural example checks` job completed successfully in about 7 seconds
 - `Check examples #13` observed green on commit `266845b` on `main` after adding `examples/emergency-stop-flow.yaml`; the workflow completed successfully in about 10 seconds, and the `Bounded structural example checks` job completed successfully in about 7 seconds
-- `Check examples #14` observed green on commit `caf285b` on `main` after adding `examples/reversible-external-action.yaml`; the `Bounded structural example checks` job completed successfully
+- `Check examples #14` observed green on commit `caf285b` on `main` for the Class D reversible external action fixture
+- `Check examples #17` observed failed on commit `57445b1` because the missed-support example declared `lifecycle_state: returning` without a top-level `returning` block
+- `Check examples #18` observed green on commit `f63678c` after adding the top-level `returning` block to the missed-support example
 
 Phase 1.6 rule:
 
-Lifecycle-aware and action-class-aware checks remain bounded structural maintenance checks. They do not certify examples, systems, legal validity, safety, compliance, fairness, moral resolution, production readiness, or real-world responsibility resolution.
+Lifecycle-aware, action-class-aware, and support-call-related checks remain bounded structural maintenance checks unless deliberately expanded later. They do not certify examples, systems, legal validity, safety, compliance, fairness, moral resolution, production readiness, support-call correctness, missed-support correctness, or real-world responsibility resolution.
 
 Remaining Phase 1.6 maintenance tasks:
 
-- maintain bounded checker stability after the Class D reversible external action fixture
+- maintain bounded checker stability after the Class D reversible external action fixture and missed-support boundary example
 - keep examples small and manually readable
+- keep support-call and missed-support fields concept-level or example-level unless schema work is explicitly reopened
 - keep action-class-specific checker additions optional until examples are deliberately migrated
-- avoid adding higher-impact examples until lifecycle and action-class boundaries remain stable
+- avoid adding higher-impact examples until lifecycle, action-class, and missed-support boundaries remain stable
 
 ## Phase 2 - Formalization (Started; minimal lifecycle invariant set reached; Lean core split, build path, theorem index, and current snapshot added)
 
@@ -144,6 +153,7 @@ The current AI final-responsibility invariant is assumption-scoped. In the curre
 Next low-risk Phase 2 work:
 
 - do not expand Lean around Action Class Matrix until the source-aligned Class A-F examples, schema, checker boundary, and validation checklist are stable
+- do not expand Lean around support-call policy or missed-support signals until examples, schema conventions, checker boundaries, and review-signal semantics are stable
 - observe the next Lean workflow result and adjust only if the minimal build path fails
 - use the current snapshot and theorem-role index before adding or renaming Lean theorem candidates
 - keep formalization incremental and assumption-explicit
@@ -206,10 +216,12 @@ Next low-risk Phase 2.5 work:
 - `Check examples #13` observed green on commit `266845b` on `main` for the Class F emergency stop flow fixture
 - Class D reversible external action example added at `examples/reversible-external-action.yaml`
 - `Check examples #14` observed green on commit `caf285b` on `main` for the Class D reversible external action fixture
+- Missed-support boundary example added at `examples/missed-support-boundary-minimal.yaml` as a repository-maintenance boundary-only example
+- `Check examples #18` observed green on commit `f63678c` on `main` for the missed-support boundary example after adding a `returning` block
 
 Implementation rule:
 
-Reference implementations must not outrun definitions, examples, checker boundaries, formalization assumptions, enterprise governance boundaries, Responsibility Pathway record review boundaries, validator boundaries, review-result boundaries, action-class boundaries, or excluded claims.
+Reference implementations must not outrun definitions, examples, checker boundaries, formalization assumptions, enterprise governance boundaries, Responsibility Pathway record review boundaries, validator boundaries, review-result boundaries, action-class boundaries, support-call boundaries, missed-support review-signal boundaries, or excluded claims.
 
 First recommended Phase 3 step:
 
@@ -220,6 +232,7 @@ Next low-risk Phase 3 work:
 
 - keep Class D reversible external examples small, correctable, and non-certifying
 - treat Class E high-impact examples as negative or boundary-only examples until lower classes are stable
+- keep support-call and missed-support examples boundary-only until semantics and checker boundaries are stable
 - record source-alignment checkpoints before expanding reference examples
 - reread prior Zenn articles for definition, claim, and boundary alignment
 - add only one small reference example at a time
@@ -243,12 +256,16 @@ Current artifacts and companion notes:
 - `docs/phase-3-1-roadmap-note.md` records the short roadmap companion for this phase
 - `docs/repository-operation-model.md` records the repository-wide staged update operation, document roles, commit granularity policy, periodic operation review policy, workflow observation policy, checker interpretation policy, long-file update policy, log organization policy, non-certifying operation boundaries, and restart rules
 - `docs/operation-index.md` records which operation-related document to read for each maintenance situation
+- `docs/operation-tool-selection-guard.md` records a guard for choosing the correct GitHub read/write tool during AI-assisted maintenance
+- `docs/readme-expanded.md` preserves the previous expanded README after root README lightweight recovery
+- `docs/concepts/index.md` records the concept-level reader path, including support-call and missed-support notes
 
 Observed status:
 
 - `Check examples #16` observed green on commit `d377be2` on `main` after fixing `examples/runtime-event-to-pathway-minimal.yaml`
 - The GitHub Actions run was `27463999395`
 - This observed green status remains a bounded repository-maintenance check and is not certification
+- Root `README.md` was shortened and then strengthened after GitHub mobile app rendering appeared blank while the file remained readable through GitHub API
 
 Adapter rule:
 
@@ -274,8 +291,9 @@ Next low-risk Phase 3.1 work:
 - keep JSON fixture checking deferred until the current event-to-pathway bridge remains readable and reviewable
 - use `docs/runtime-event-checking-plan.md` before considering `scripts/check_runtime_events.py` or a runtime-event workflow
 - keep Class E positive examples deferred
-- keep Lean expansion around adapter or runtime events deferred until the adapter boundary, runtime event schema, generated-record examples, checker boundary, and validation checklist are stable
-- maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, or checker plans change
+- keep support-call and missed-support runtime-event fields deferred until concept notes, examples, schema conventions, and checker boundaries are stable
+- keep Lean expansion around adapter, runtime events, support-call policy, or missed-support signals deferred until the adapter boundary, runtime event schema, generated-record examples, checker boundary, and validation checklist are stable
+- maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, or concept navigation change
 - use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, or deferred boundaries feel misaligned with actual practice
 - add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, or operation document to point to
 
