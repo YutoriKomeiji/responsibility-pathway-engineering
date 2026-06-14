@@ -151,6 +151,27 @@ It does not validate support-call semantics, missed-support correctness, legal v
 
 This synchronization does not unlock support-call schema fields, missed-support schema fields, support-call semantic checking, missed-support correctness checking, runtime-event support-call fields, service-specific connectors, production conversion code, production runtime integration, Lean expansion around support-call policy or missed-support signals, or Class E positive examples.
 
+## Progress-map synchronization completed
+
+A fifth synchronization unit added `docs/progress-map.md` and connected it to the repository restart and planning path.
+
+The trigger was a planning visibility issue: repository work was progressing, but there was no stable place to see rough progress, active gates, next gates, deferred work, and stop conditions together.
+
+The progress-map synchronization introduced or connected:
+
+- `docs/progress-map.md` as a rough, planning-only progress and gate map
+- `docs/operation-index.md` as the navigation entry for progress review, rough progress estimates, gates, next gates, and progress-related stop conditions
+- `BEACON.md` as the short reconnection entrance that points readers to the progress map without becoming a full snapshot
+- `docs/current-task-inventory.md` as the task-selection record that keeps the progress map visible before progress percentages, next gates, or maturity are discussed
+
+The progress map records approximate planning estimates only.
+
+It is not progress certification, maturity proof, conformance proof, external review finding, standardization certification, legal validation, safety certification, compliance certification, fairness certification, production approval, connector correctness proof, runtime correctness proof, Lean completeness proof, or AI final-responsibility transfer.
+
+This synchronization is one responsibility unit split across multiple small commits for reviewability.
+
+It does not unlock conformance-model drafting, conformance checks, public standardization claims, production connectors, production runtime integration, semantic responsibility correctness checking, or Class E positive examples.
+
 ## Current checker interpretation
 
 `examples/runtime-event-to-pathway-minimal.yaml` is checked only as a pathway example under the current structural and originating-lifecycle rules.
@@ -191,11 +212,13 @@ The following work remains deferred:
 - runtime-event support-call fields
 - Class E positive examples
 - Lean expansion around adapter, runtime-event, support-call, or missed-support concepts
+- conformance-model drafting before terminology, scope, examples, schemas, checker boundaries, and review process stabilize further
+- public standardization claims before the grounded standardization strategy conditions are satisfied
 
 ## Next safe synchronization step
 
-The next safe synchronization step is to decide whether `BEACON.md` or `CHANGELOG.md` need only short references to the README recovery and missed-support synchronization.
+The next safe synchronization step is to decide whether the repeated AI-assisted tool-selection mistake should be recorded in `docs/operation-tool-selection-guard.md` or handled only as an in-session correction.
 
-Do not update those long files unless the reference would improve restartability or external review.
+Do not update additional long files unless the reference would improve restartability, progress visibility, or external review.
 
 If a long full-file update is blocked or risky, preserve the state in this log and continue with smaller reader-path commits.
