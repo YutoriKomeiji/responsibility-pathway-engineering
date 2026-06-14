@@ -1,6 +1,6 @@
 # Notice
 
-This notice explains authorship, attribution, AI assistance, and responsibility boundaries for this repository.
+This notice explains authorship, attribution, AI assistance, provenance, and responsibility boundaries for this repository.
 
 ## Authorship
 
@@ -9,6 +9,12 @@ Responsibility Pathway Engineering, as presented in this repository, is authored
 Akihisa Ono (小野昭久)
 
 The definitions, repository framing, specification direction, examples, and public claims in this repository are maintained under the responsibility of the human author.
+
+## Provenance
+
+The public source lineage and authorship traceability for **責任経路 / Responsibility Pathway** and **Responsibility Pathway Engineering** are recorded in [docs/provenance.md](docs/provenance.md).
+
+That document is an attribution and traceability record for this repository.
 
 ## Copyright
 
@@ -28,7 +34,7 @@ The human author remains responsible for deciding what is included, changed, pub
 
 Reuse, modification, distribution, and sublicensing are permitted under the MIT License, provided that the copyright notice and license notice are preserved.
 
-When referring to the concept, definitions, examples, or specifications in this repository, attribution to the repository and author is appreciated, especially in public writing, research, standards discussion, implementation notes, or derivative documentation.
+When referring to the concept, definitions, examples, specifications, or provenance of this repository, attribution to the repository and author is appreciated, especially in public writing, research, standards discussion, implementation notes, or derivative documentation.
 
 ## Derivative interpretations
 
