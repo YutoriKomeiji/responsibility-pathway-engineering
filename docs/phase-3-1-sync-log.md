@@ -205,6 +205,7 @@ The synchronization introduced or connected:
 - `docs/responsibility-pathway-availability.md` as the operation note for degraded responsibility pathway states
 - `docs/operation-index.md` as the navigation entry for availability, residual evidence, missing evidence, uncertainty, and judgment-return handling
 - `docs/current-task-inventory.md` as the P0 task record that keeps the availability note reachable when degraded-pathway handling matters
+- `BEACON.md` as the short reconnection entrance pointing to the note when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
 
 The availability note distinguishes availability from completeness, reachability, recoverability, and continuity.
 
@@ -261,7 +262,7 @@ The following work remains deferred:
 
 ## Next safe synchronization step
 
-The next safe synchronization step is to decide whether `BEACON.md` needs a short reference to `docs/responsibility-pathway-availability.md`, or whether operation-index and current-task-inventory reachability is sufficient for now.
+The next safe synchronization step is to decide whether `docs/phase-3-1-current-snapshot.md` needs a short reference to `docs/responsibility-pathway-availability.md`, or whether BEACON, operation-index, current-task-inventory, and this sync log are sufficient for now.
 
 Do not update additional long files unless the reference would improve restartability, degraded-pathway handling, progress visibility, or external review.
 
