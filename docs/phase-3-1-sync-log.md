@@ -120,6 +120,37 @@ Open-source review intent has been recorded in the current snapshot so that futu
 
 This synchronization does not unlock runtime-event checker implementation, runtime workflow implementation, service-specific connector work, production conversion code, production runtime integration, Class E positive examples, or Lean expansion around runtime events.
 
+## README recovery and missed-support synchronization completed
+
+A fourth synchronization unit recorded the README mobile-rendering recovery and the support-call / missed-support reader path.
+
+The trigger was a practical reader-path issue: the root `README.md` remained readable through the GitHub API but appeared blank in the GitHub mobile app.
+
+The recovery and synchronization introduced or connected:
+
+- `docs/readme-expanded.md` as an archive of the previous expanded root README
+- a shortened and strengthened root `README.md` as the mobile-renderer-friendly public entrance
+- `docs/operation-tool-selection-guard.md` as a read/write tool-selection guard for AI-assisted maintenance
+- `docs/concepts/index.md` as the concept-level reader path
+- `docs/concepts/support-call-policy.md` as the support-call concept mapping note
+- `docs/concepts/missed-support-review-signal.md` as the missed-support structural review-signal note
+- `examples/missed-support-boundary-minimal.yaml` as the boundary-only missed-support example
+- `docs/examples/missed-support-workflow-observation.md` as the failed-then-passing workflow observation note
+- `docs/examples/missed-support-current-status.md` as the current reader path and boundary record
+- `docs/operation-index.md` as the operation navigation update
+- `ROADMAP.md` as the phase-level synchronization record
+- `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` as the short companion note for this synchronization unit
+
+`Check examples #17` was observed failed on commit `57445b1` because the missed-support example declared `lifecycle_state: returning` without a top-level `returning` block.
+
+`Check examples #18` was observed green on commit `f63678c` after the top-level `returning` block was added.
+
+This observed green status means only that the bounded structural example checker passed for that repository state.
+
+It does not validate support-call semantics, missed-support correctness, legal validity, safety, compliance, fairness, production readiness, runtime correctness, connector correctness, or AI final-responsibility transfer.
+
+This synchronization does not unlock support-call schema fields, missed-support schema fields, support-call semantic checking, missed-support correctness checking, runtime-event support-call fields, service-specific connectors, production conversion code, production runtime integration, Lean expansion around support-call policy or missed-support signals, or Class E positive examples.
+
 ## Current checker interpretation
 
 `examples/runtime-event-to-pathway-minimal.yaml` is checked only as a pathway example under the current structural and originating-lifecycle rules.
@@ -135,8 +166,10 @@ The current checker does not validate:
 - runtime-event schema correctness
 - JSON fixture correctness
 - runtime fixture correctness
+- support-call semantic correctness
+- missed-support semantic correctness
 
-A checker pass for the runtime-event-to-pathway example does not certify an adapter, approve a connector, prove event mapping correctness, prove schema correctness, prove JSON fixture correctness, prove runtime fixture correctness, or make the generated record production ready.
+A checker pass for the runtime-event-to-pathway example does not certify an adapter, approve a connector, prove event mapping correctness, prove schema correctness, prove JSON fixture correctness, prove runtime fixture correctness, validate support-call semantics, validate missed-support correctness, or make the generated record production ready.
 
 ## Deferred work
 
@@ -151,12 +184,17 @@ The following work remains deferred:
 - `scripts/check_runtime_events.py`
 - runtime-event workflow
 - action-class-specific checker enforcement
+- support-call schema fields
+- missed-support schema fields
+- support-call semantic checker
+- missed-support correctness checker
+- runtime-event support-call fields
 - Class E positive examples
-- Lean expansion around adapter or runtime-event concepts
+- Lean expansion around adapter, runtime-event, support-call, or missed-support concepts
 
 ## Next safe synchronization step
 
-The next safe synchronization step is to decide whether `BEACON.md`, `ROADMAP.md`, or `CHANGELOG.md` need only short references to the minimal runtime fixture synchronization.
+The next safe synchronization step is to decide whether `BEACON.md` or `CHANGELOG.md` need only short references to the README recovery and missed-support synchronization.
 
 Do not update those long files unless the reference would improve restartability or external review.
 
