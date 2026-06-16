@@ -100,37 +100,56 @@ Do not restart as:
 - an automatic approval example
 - a production support-routing claim
 
-## Runtime-event checking
+## Runtime-event checking and fixture checking
 
-Deferred item:
+Completed bounded layer:
 
-- `scripts/check_runtime_events.py`
-- runtime-event workflow
-- runtime-event schema checking
-- JSON fixture checking
-- runtime fixture checking
+- `scripts/check_runtime_events.py` exists as a bounded structural checker for selected synthetic JSON fixtures.
+- `.github/workflows/check-runtime-events.yml` exists as a minimal runtime-event workflow.
+- `examples/adapter-input-event-minimal.json` is checked by default.
+- `examples/minimal-synthetic-runtime-fixture.json` is checked by default for selected runtime-boundary structural signals.
+- observed workflow success has been recorded for run `27501847137` and run `27607798655`.
+- `docs/runtime-event-schema-fixture-alignment.md` records current schema / fixture / checker alignment without treating it as validation.
+
+Still-deferred items:
+
+- full runtime-event schema validation
+- broad JSON schema-fixture validation
+- date-time format enforcement beyond the current bounded checker layer
+- enum-value enforcement beyond the current bounded checker layer
+- event-to-pathway semantic correctness checking
+- responsibility assignment correctness checking
+- adapter mapping correctness checking
+- runtime correctness checking
+- connector behavior validation
+- workflow completeness claims
 
 Current reason for deferral:
 
-- runtime-event bridge and fixtures are still reading and review artifacts.
+- the current runtime-event bridge and fixtures are still reading, review, and bounded structural-check artifacts.
+- the current checker pass is a repository-maintenance signal only, not validation or correctness proof.
 
 Restart conditions:
 
-- `docs/runtime-event-checking-plan.md` preconditions are satisfied.
+- `docs/runtime-event-checking-plan.md` preconditions remain satisfied after the current checker and workflow observations.
+- `docs/runtime-event-schema-fixture-alignment.md` remains current.
 - runtime-event examples remain readable and reviewable.
 - JSON fixtures remain stable.
-- checker scope is limited to structural signals.
-- passing status is documented as bounded repository-maintenance only.
+- checker scope remains limited to structural signals.
+- passing status remains documented as bounded repository-maintenance only.
+- any proposed expansion has a focused plan before implementation.
 
 Allowed restart action:
 
-- write or update a checker-design note before implementation.
+- write or update a focused checker-design, schema-validation, or event-to-pathway relation plan before implementation.
 
 Do not restart as:
 
 - production runtime validation
 - connector behavior validation
 - adapter correctness validation
+- semantic responsibility correctness validation
+- conformance evidence
 - legal, safety, compliance, fairness, or production certification
 
 ## Service-specific connectors
@@ -239,22 +258,11 @@ Restart conditions:
 
 Allowed restart action:
 
-- add a short dated entry or public-source reference to `docs/provenance.md`.
+- add a focused provenance note or update existing provenance only when it improves traceability.
 
 Do not restart as:
 
-- a dispute log
-- a general update log
-- a certification record
-
-## Restart audit checklist
-
-Before restarting any deferred item, record:
-
-- which deferred item is being restarted
-- which restart conditions are satisfied
-- which files prove those conditions
-- what remains out of scope
-- why the change is small enough for post-hoc audit
-
-If those five points cannot be stated, keep the item deferred.
+- accusation
+- broad legal claim
+- general news log
+- unrelated source collection
