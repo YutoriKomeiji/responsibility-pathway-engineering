@@ -22,18 +22,16 @@ REQUIRED_FILES = [
 ]
 
 EXPECTED_BOUNDARY_TEXT = [
-    "not certification",
+    "not a security certification",
     "AI final-responsibility transfer",
 ]
 
-DANGEROUS_WORKFLOW_PATTERNS = [
+RISKY_LITERAL_WORKFLOW_PATTERNS = [
     "pull_request_target",
     "secrets.",
-    "curl | bash",
-    "wget | bash",
-    "curl | sh",
-    "wget | sh",
 ]
+
+PIPE_TO_SHELL_PATTERN = re.compile(r"\b(?:curl|wget)\b.*\|\s*(?:bash|sh)\b")
 
 # This workflow currently installs Elan through a reviewed Lean bootstrap command.
 # Keep it explicit so the checker records the exception instead of silently allowing
@@ -120,17 +118,17 @@ def check_workflow_permissions(path: Path, text: str) -> None:
 
 
 def check_workflow_risky_patterns(path: Path, text: str) -> None:
-    for pattern in DANGEROUS_WORKFLOW_PATTERNS:
-        if pattern not in text:
+    for pattern in RISKY_LITERAL_WORKFLOW_PATTERNS:
+        if pattern in text:
+            fail(f"workflow contains risky pattern '{pattern}': {path.relative_to(ROOT)}")
+
+    for line in text.splitlines():
+        stripped = line.strip()
+        if not PIPE_TO_SHELL_PATTERN.search(stripped):
             continue
-        if pattern in {"curl | sh", "curl | bash", "wget | sh", "wget | bash"}:
-            offending = [line.strip() for line in text.splitlines() if pattern in line]
-            unapproved = [line for line in offending if line not in ALLOWED_PIPE_TO_SHELL_LINES]
-            if unapproved:
-                fail(f"workflow contains unapproved pipe-to-shell command in {path.relative_to(ROOT)}: {unapproved[0]}")
-            warn(f"workflow contains approved Lean bootstrap pipe-to-shell exception: {path.relative_to(ROOT)}")
-            continue
-        fail(f"workflow contains risky pattern '{pattern}': {path.relative_to(ROOT)}")
+        if stripped not in ALLOWED_PIPE_TO_SHELL_LINES:
+            fail(f"workflow contains unapproved pipe-to-shell command in {path.relative_to(ROOT)}: {stripped}")
+        warn(f"workflow contains approved Lean bootstrap pipe-to-shell exception: {path.relative_to(ROOT)}")
 
 
 def check_workflow_action_pinning(path: Path, text: str) -> None:
