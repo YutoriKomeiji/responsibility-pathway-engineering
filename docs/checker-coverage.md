@@ -56,6 +56,8 @@ A pass for this example means only that the file preserves the currently require
 
 `docs/runtime-event-schema-fixture-alignment.md` records the current structural alignment between the draft runtime-event schema, selected JSON fixtures, and the bounded runtime-event checker without treating alignment as validation.
 
+`docs/event-to-pathway-relation-checker-plan.md` records planned future structural relation-checker boundaries between selected runtime-event JSON fixtures and pathway YAML examples. It is not current checker behavior and does not authorize implementation by itself.
+
 `docs/minimal-runtime-candidate-design.md` records the boundary for selecting a minimal synthetic runtime fixture or bounded runtime-checking stub before any further runtime candidate is added.
 
 `docs/runtime-event-checking-plan.md` records the path, preconditions, exclusions, implementation order, and non-certifying boundary for future runtime-event schema checking, broader JSON fixture checking, checker expansion, or workflow expansion.
@@ -209,7 +211,7 @@ This is future work, not current checker behavior.
 | Planned area | Possible bounded signal | Boundary |
 | --- | --- | --- |
 | Runtime-event schema | readable and parseable schema shape aligned with the selected runtime-event fixture | not schema completeness proof, conformance evidence, or production schema certification |
-| Runtime-event to pathway relation | explicit source reference, missing context, review requirement, and non-certifying excluded claims | not semantic mapping correctness or responsibility assignment proof |
+| Runtime-event to pathway relation | explicit source reference, missing context, review requirement, non-final AI responsibility boundary, and non-certifying excluded claims; see `docs/event-to-pathway-relation-checker-plan.md` | not current checker behavior, semantic mapping correctness, adapter mapping correctness, responsibility assignment proof, conformance evidence, or implementation permission |
 | Runtime-event workflow expansion | observed checker status after workflow expansion exists and is actually observed | not certification, conformance evidence, or deployment approval |
 
 ## Planned action-class coverage map
