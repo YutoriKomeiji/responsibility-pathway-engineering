@@ -1,0 +1,38 @@
+# CODEOWNERS
+#
+# This file records review ownership for sensitive repository paths.
+# It supports review routing only. It is not certification, production approval,
+# legal review, safety review, compliance review, or AI final-responsibility transfer.
+
+# Default repository ownership
+* @YutoriKomeiji
+
+# GitHub automation and repository security surfaces
+.github/ @YutoriKomeiji
+.github/workflows/ @YutoriKomeiji
+.github/dependabot.yml @YutoriKomeiji
+SECURITY.md @YutoriKomeiji
+
+# Checker and maintenance scripts
+scripts/ @YutoriKomeiji
+requirements.txt @YutoriKomeiji
+
+# Machine-readable specifications and examples
+spec/ @YutoriKomeiji
+examples/ @YutoriKomeiji
+fixtures/ @YutoriKomeiji
+
+# Formalization surface
+formal/ @YutoriKomeiji
+lakefile.lean @YutoriKomeiji
+lean-toolchain @YutoriKomeiji
+
+# Public-facing and governance documents
+README.md @YutoriKomeiji
+README.ja.md @YutoriKomeiji
+BEACON.md @YutoriKomeiji
+ROADMAP.md @YutoriKomeiji
+CHANGELOG.md @YutoriKomeiji
+docs/standardization-strategy.md @YutoriKomeiji
+docs/repository-operation-model.md @YutoriKomeiji
+docs/operation-index.md @YutoriKomeiji
