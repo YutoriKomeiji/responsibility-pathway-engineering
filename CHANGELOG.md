@@ -4,6 +4,14 @@ This changelog records conceptual milestones rather than individual code edits.
 
 ## 2026-06
 
+### Event-to-pathway relation checker planning checkpoint added
+
+- `docs/event-to-pathway-relation-checker-plan.md` was added as a future local structural checker plan for selected runtime-event JSON fixtures and pathway YAML examples
+- `docs/operation-index.md`, `docs/current-task-inventory.md`, `docs/external-review-readiness-checklist.md`, `docs/phase-3-1-current-snapshot.md`, `docs/checker-coverage.md`, `docs/example-index.md`, BEACON, and ROADMAP now connect the relation-checker planning reader path
+- The plan distinguishes current checker behavior from possible future relation-checker work
+- Current checkers still do not validate event-to-pathway semantic correctness, adapter mapping correctness, responsibility assignment correctness, production runtime behavior, conformance, or certification
+- Relation-checker implementation remains deferred until the plan preconditions are deliberately reviewed
+
 ### README recovery and missed-support synchronization checkpoint added
 
 - Root `README.md` was shortened and then strengthened after it remained readable through the GitHub API but appeared blank in the GitHub mobile app
@@ -118,12 +126,3 @@ This changelog records conceptual milestones rather than individual code edits.
 - The file explicitly states that these seven roles/controls do not replace the eight-element structural dimension model
 - `docs/overview.md` and README now distinguish the eight-element model from operational roles and controls
 - The alignment preserves Meaning, Authority, Time, Quality, Trust, Reversibility, Value, and Cost as the eight-element structural dimensions
-
-### Action-class checker coverage documented as future bounded work
-
-- `docs/checker-coverage.md` now states that action-class-specific checker enforcement is not yet active
-- Planned future bounded checks may inspect declared `action_class`, Class C or higher approval design, Class D or higher rollback/repair design, Class E high-impact boundaries, and Class F stop/return boundaries
-- Existing examples are not retroactively required to satisfy action-class-specific checker rules unless deliberately migrated
-- Any future checker rule must remain structural and non-certifying
-
-### BEACON and ROADMAP synchronized with action-class current position
