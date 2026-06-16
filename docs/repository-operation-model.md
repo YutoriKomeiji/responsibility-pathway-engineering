@@ -484,7 +484,8 @@ For example, the current runtime-event bridge state distinguishes:
 
 - `examples/runtime-event-to-pathway-minimal.yaml` is checked only as a pathway example
 - `spec/runtime-event.schema.yaml` is not yet validated by the current checker
-- `examples/adapter-input-event-minimal.json` is not yet checked by `scripts/check_examples.py`
+- `examples/adapter-input-event-minimal.json` is checked by `scripts/check_runtime_events.py` and is not checked by `scripts/check_examples.py`
+- `examples/minimal-synthetic-runtime-fixture.json` is checked by `scripts/check_runtime_events.py` and is not checked by `scripts/check_examples.py`
 - adapter mapping correctness is not yet checked
 - service-specific connector behavior is not yet checked
 
@@ -498,13 +499,18 @@ Treat the following files as long or high-risk files:
 - README files when they grow large
 - large index or coverage documents
 
+The long-file policy is not a blanket prohibition. A long file may be updated when it is the authoritative navigation surface for the current state and stale text would mislead maintainers or reviewers.
+
 Before replacing a long file:
 
 1. fetch the current file
 2. identify the smallest section to update
-3. prefer a companion note if the update is broad
-4. avoid unrelated rewrites
-5. fetch after update
+3. prefer a companion note if the update is broad, uncertain, or primarily historical
+4. update the authoritative long file when the stale text would otherwise misdirect the reader path
+5. avoid unrelated rewrites
+6. fetch after update
+
+If a long file already has a focused companion note that safely preserves the current state, avoid duplicating the full state into the long file. Add only a short pointer when needed.
 
 If a full update is blocked, do not retry by sending larger content. Use staged operation instead.
 
