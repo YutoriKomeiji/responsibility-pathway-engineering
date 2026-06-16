@@ -1,6 +1,6 @@
 # Phase 3.1 Repository Alignment Audit
 
-This note records a repository-alignment audit after the runtime-event schema/fixture alignment note was added.
+This note records a repository-alignment audit after the runtime-event schema/fixture alignment note was added and later extended through event-to-pathway relation checker planning.
 
 It is an audit and maintenance note only. It is not certification, legal review, safety review, compliance review, fairness review, production approval, connector correctness proof, runtime correctness proof, schema correctness proof, JSON semantic correctness proof, conformance evidence, or AI final-responsibility transfer mechanism.
 
@@ -14,6 +14,8 @@ The audit was opened after `docs/runtime-event-schema-fixture-alignment.md` was 
 - update omissions
 - consistency drift across operation, roadmap, snapshot, checker, and inventory documents
 
+A later extension connected `docs/event-to-pathway-relation-checker-plan.md` after the future relation-checker planning note was added.
+
 ## Main current state to preserve
 
 The current Phase 3.1 interpretation is:
@@ -21,11 +23,13 @@ The current Phase 3.1 interpretation is:
 - `spec/runtime-event.schema.yaml` is a draft schema, not validation or conformance evidence.
 - `examples/adapter-input-event-minimal.json` is the selected synthetic runtime-event JSON fixture.
 - `examples/minimal-synthetic-runtime-fixture.json` is the selected minimal synthetic runtime observation fixture.
+- `examples/runtime-event-to-pathway-minimal.yaml` is currently checked only as a pathway YAML example.
 - `scripts/check_runtime_events.py` checks both selected JSON fixtures by default.
 - `.github/workflows/check-runtime-events.yml` runs the bounded runtime-event checker for selected fixture and checker changes.
 - run `27501847137` recorded the first observed runtime-event workflow success.
 - run `27607798655` recorded the observed minimal runtime fixture checker workflow success.
 - `docs/runtime-event-schema-fixture-alignment.md` records structural alignment only, not validation.
+- `docs/event-to-pathway-relation-checker-plan.md` records possible future structural relation-checker planning only, not current checker behavior or implementation permission.
 
 ## Changes completed during this audit
 
@@ -138,6 +142,29 @@ The checker coverage note now records:
 - the example coverage map distinguishes pathway YAML examples from JSON fixtures
 - planned runtime-event schema and event-to-pathway relation checks remain future work
 
+### Connected event-to-pathway relation checker planning
+
+`docs/event-to-pathway-relation-checker-plan.md` was added and then connected through the main reader path.
+
+The relation-checker plan is now reachable from:
+
+- `docs/operation-index.md`
+- `docs/current-task-inventory.md`
+- `docs/external-review-readiness-checklist.md`
+- `docs/phase-3-1-current-snapshot.md`
+- `docs/checker-coverage.md`
+- `docs/example-index.md`
+- `BEACON.md`
+- `ROADMAP.md`
+- `CHANGELOG.md`
+
+The connected interpretation is:
+
+- current checkers still do not check the relation between selected runtime-event JSON fixtures and pathway YAML examples
+- relation-checker work remains future, local, structural, selected-fixture-only, and non-certifying
+- implementation remains deferred until the plan preconditions are deliberately reviewed
+- semantic event-to-pathway correctness, responsibility assignment correctness, adapter mapping correctness, production runtime behavior, conformance, and certification remain outside current checker behavior
+
 ## Duplication and long-file policy
 
 The repository now contains several focused notes around the same responsibility area:
@@ -147,6 +174,7 @@ The repository now contains several focused notes around the same responsibility
 - `docs/phase-3-1-minimal-runtime-fixture-checker-connection.md`
 - `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md`
 - `docs/runtime-event-schema-fixture-alignment.md`
+- `docs/event-to-pathway-relation-checker-plan.md`
 
 This is intentional for now.
 
@@ -157,6 +185,7 @@ The notes are not identical duplicates:
 - connection note gives a reader path across artifacts
 - sync note supplements the long sync log for one responsibility unit
 - schema/fixture alignment note explains schema, fixture, and checker relationship
+- relation-checker plan explains possible future structural relation-checking boundaries before implementation
 
 Do not merge these notes yet unless a future operation review concludes that the reader path has become harder rather than easier.
 
@@ -168,9 +197,9 @@ The following file may still need later review, but was not fully rewritten in t
 
 Known caution:
 
-- `docs/phase-3-1-sync-log.md` intentionally remains long and historical. Do not rewrite it solely to duplicate focused sync notes.
+- `docs/phase-3-1-sync-log.md` intentionally remains long and historical. Do not rewrite it solely to duplicate focused sync notes or focused relation-checker planning notes.
 - Some historical records may mention earlier states. Historical records should not be rewritten unless they are presented as current state.
-- focused sync notes are currently preferred over broad sync-log rewrites for narrow responsibility units.
+- focused sync notes and audit notes are currently preferred over broad sync-log rewrites for narrow responsibility units.
 
 ## Current unresolved questions
 
