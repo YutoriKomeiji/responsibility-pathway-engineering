@@ -34,8 +34,9 @@ A reviewer should start with:
 6. `docs/checker-coverage.md`
 7. `docs/example-index.md`
 8. `docs/runtime-event-schema-fixture-alignment.md`
-9. `docs/standardization-strategy.md` when public standardization language matters
-10. `docs/progress-map.md` when maturity or progress language matters
+9. `docs/event-to-pathway-relation-checker-plan.md` when future relation-checker planning matters
+10. `docs/standardization-strategy.md` when public standardization language matters
+11. `docs/progress-map.md` when maturity or progress language matters
 
 Use `CHANGELOG.md` primarily for historical cause tracing, not as the active construction restart path.
 
@@ -49,6 +50,7 @@ Check whether major claims are traceable to a current document.
 - [ ] Core concepts are reachable from `docs/concepts/index.md` or current schema notes.
 - [ ] Phase 3.1 current state is reachable from `docs/phase-3-1-current-snapshot.md`.
 - [ ] Runtime-event schema / fixture / checker alignment is reachable from `docs/runtime-event-schema-fixture-alignment.md`.
+- [ ] Event-to-pathway relation checker planning is reachable from `docs/event-to-pathway-relation-checker-plan.md`.
 - [ ] Current checker behavior is reachable from `docs/checker-coverage.md`.
 - [ ] Example interpretation is reachable from `docs/example-index.md`.
 - [ ] Deferred work is reachable from `docs/deferred-work-restart-conditions.md`.
@@ -62,6 +64,7 @@ Check whether the repository clearly says what it does not claim.
 - [ ] Runtime-event fixtures are not described as production runtime evidence.
 - [ ] JSON fixture checks are not described as JSON semantic correctness proof.
 - [ ] Schema alignment is not described as schema validation.
+- [ ] Event-to-pathway relation checker planning is not described as semantic correctness checking or implementation permission.
 - [ ] Standardization preparation is not described as finished standardization.
 - [ ] Lean formalization is not described as complete system proof.
 - [ ] AI support is not described as final responsibility transfer.
@@ -77,6 +80,7 @@ Check whether implemented checker behavior and future checker work are separated
 - [ ] `examples/runtime-event-to-pathway-minimal.yaml` is identified as a pathway YAML example.
 - [ ] Future schema validation is separated from current bounded structural JSON fixture checks.
 - [ ] Future event-to-pathway relation checking is separated from current pathway-example checking.
+- [ ] Future event-to-pathway relation checking is described as local, structural, and preconditioned before implementation.
 
 ### 4. Runtime-event bridge reviewability
 
@@ -85,6 +89,7 @@ Check whether the Phase 3.1 runtime-event bridge can be inspected without implyi
 - [ ] `docs/adapter-boundary.md` defines adapter permissions and non-permissions.
 - [ ] `spec/runtime-event.schema.yaml` is identified as draft and vendor-neutral.
 - [ ] `docs/runtime-event-schema-fixture-alignment.md` explains direct and indirect fixture alignment.
+- [ ] `docs/event-to-pathway-relation-checker-plan.md` explains planned structurally checkable relation signals without claiming semantic correctness.
 - [ ] `docs/runtime-event-checking-plan.md` explains current checks, future checks, and exclusions.
 - [ ] `docs/runtime-event-workflow-current-status.md` records observed workflow status without expanding claims.
 - [ ] `docs/minimal-runtime-fixture-checker-workflow-observation.md` records run `27607798655` as bounded observation only.
@@ -118,6 +123,7 @@ A reviewer may reasonably ask:
 - Which examples are currently checked?
 - Which fixtures are JSON runtime-event fixtures rather than pathway examples?
 - Which checker checks which files?
+- Is the event-to-pathway relation currently checked, only planned, or deferred?
 - Which workflow successes have actually been observed?
 - What does a checker pass mean?
 - What does a checker pass not mean?
@@ -138,6 +144,8 @@ The repository is not yet ready to claim:
 - runtime correctness
 - JSON semantic correctness
 - full schema validation
+- event-to-pathway semantic correctness
+- responsibility assignment correctness
 - legal validity
 - safety proof
 - compliance proof
@@ -150,9 +158,9 @@ The repository is not yet ready to claim:
 
 Possible next review-preparation tasks:
 
-1. connect this checklist from `docs/operation-index.md`
-2. connect this checklist from `docs/current-task-inventory.md`
-3. create an event-to-pathway relation checker plan without implementing semantic correctness checking
-4. prepare a short external-review package note after reader paths remain stable
+1. keep this checklist, operation index, current task inventory, checker coverage, example index, and relation-checker plan aligned when checker-planning language changes
+2. prepare a short external-review package note after reader paths remain stable
+3. review whether `docs/phase-3-1-current-snapshot.md` needs only a short pointer to the relation-checker plan
+4. consider a relation-checker implementation only after `docs/event-to-pathway-relation-checker-plan.md` preconditions are deliberately reviewed
 
-Do not start production connectors, conformance claims, schema validation, semantic checking, or public standardization claims from this checklist alone.
+Do not start production connectors, conformance claims, schema validation, semantic checking, relation-checker implementation, or public standardization claims from this checklist alone.
