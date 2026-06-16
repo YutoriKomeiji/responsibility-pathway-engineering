@@ -35,6 +35,7 @@ Use documents according to the phase of work.
 | Concept-path navigation | `docs/concepts/index.md`, relevant concept note, source-alignment note, example index, checker coverage | checking when a concept boundary changed |
 | Standardization preparation | `docs/standardization-strategy.md`, progress map, README, operation index, current snapshot, concept index, example index, checker coverage | checking when a standardization boundary or language choice changed |
 | Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, relevant schemas or examples | checking when a rule or coverage boundary changed |
+| Workflow observation | `docs/runtime-event-workflow-current-status.md`, `docs/minimal-runtime-fixture-checker-workflow-observation.md`, `docs/phase-3-1-sync-log.md`, checker coverage | checking when a bounded workflow result or workflow-observation boundary changed |
 | Phase planning | `ROADMAP.md`, roadmap note, progress map, current snapshot, operation index, current task inventory | confirming a past phase milestone |
 | Audit, error investigation, or retrospective explanation | `CHANGELOG.md`, sync logs, snapshots, relevant commits and artifacts | this is the intended primary use |
 
@@ -177,7 +178,7 @@ Snapshots record current restart positions for phases or subphases.
 | --- | --- |
 | `docs/phase-2-current-snapshot.md` | Current Phase 2 Lean restart point and scoped formalization status. |
 | `docs/phase-2-5-current-snapshot.md` | Current Phase 2.5 enterprise and record-review restart point. |
-| `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, runtime-event checking plan, minimal runtime candidate planning, minimal runtime fixture, current task inventory, repository operation, checker coverage, and example-index restart point. |
+| `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, runtime-event checking plan, runtime-event workflow observation, minimal runtime candidate planning, minimal runtime fixture, current task inventory, repository operation, checker coverage, and example-index restart point. |
 
 Use snapshots when a change spans multiple documents, when a long-file update becomes risky, when session handoff needs a durable restart path, when BEACON would otherwise need to carry detailed current-state history, or when the next maintainer needs a compact restart point.
 
@@ -187,7 +188,7 @@ Sync logs and roadmap notes are complementary but separate.
 
 | Document | Current role |
 | --- | --- |
-| `docs/phase-3-1-sync-log.md` | Detailed synchronization record for multi-commit Phase 3.1 reader-path, coverage, checker-interpretation, and boundary synchronization. |
+| `docs/phase-3-1-sync-log.md` | Detailed synchronization record for multi-commit Phase 3.1 reader-path, coverage, checker-interpretation, workflow-observation, and boundary synchronization. |
 | `docs/phase-3-1-progress-map-connection.md` | Focused Phase 3.1 reader-path note connecting the rough progress map without rewriting the full current snapshot. |
 | `docs/phase-3-1-roadmap-note.md` | Short current-planning companion for Phase 3.1 near-term roadmap position, minimal runtime candidate planning, next low-risk work, phase rules, and stop conditions. |
 | `docs/phase-3-1-roadmap-runtime-reference.md` | Historical reference note for the minimal runtime fixture ROADMAP reference after the intended ROADMAP reference was absorbed. |
@@ -211,48 +212,11 @@ Do not use a sync log as a phase plan.
 | `docs/minimal-runtime-fixture-review.md` | You need the review result for `examples/minimal-synthetic-runtime-fixture.json` as the first minimal synthetic runtime observation fixture. |
 | `docs/minimal-runtime-fixture-review-connection.md` | You need the reader path connecting the minimal runtime fixture review note to Phase 3.1 operation documents. |
 | `docs/runtime-event-checking-plan.md` | You need to know when runtime-event schema checking, JSON fixture checking, or future runtime-event checker work may be safely considered. |
+| `docs/runtime-event-workflow-current-status.md` | You need the current status of the first minimal runtime-event workflow and observed bounded workflow runs. |
+| `docs/minimal-runtime-fixture-checker-workflow-observation.md` | You need the focused observation note for the first workflow success after `examples/minimal-synthetic-runtime-fixture.json` was added to the bounded runtime-event checker coverage. |
 
 Use the minimal runtime candidate design note before adding any runtime candidate.
 
 Use the minimal runtime fixture review note before changing the minimal runtime fixture or treating its first review as current.
 
-Use the runtime-event checking plan before adding any runtime-event checker, runtime-event workflow, runtime-event schema checking, or JSON fixture checking.
-
-## Checker and example navigation
-
-| Document | Use when |
-| --- | --- |
-| `docs/example-index.md` | You need to know how examples should be read, what each example is for, and which examples remain future work. |
-| `docs/checker-coverage.md` | You need to know what current checkers actually check, what they do not check, and what is only planned future checker work. |
-| `docs/validator-boundary.md` | You need the non-certifying boundary for lightweight validation tools. |
-| `docs/schema-cross-reference.md` | You need to understand how schema files relate to each other. |
-
-## When to create a new operation document
-
-Create a new operation document only when the repository gains a new repeatable maintenance pattern.
-
-Prefer updating an existing operation document when the new rule is just a refinement of an existing policy.
-
-Create a snapshot when the repository needs a restart point.
-
-Create a sync log when several commits together form one synchronization operation.
-
-Create a roadmap note when a roadmap update needs a short companion before a larger roadmap edit.
-
-Do not create a single global log that absorbs all details.
-
-## Log organization note
-
-For the current repository state, phase-specific logs may remain directly under `docs/`.
-
-A future `docs/logs/` directory may be introduced only when there are enough logs to justify moving them and the link updates are small and deliberate.
-
-Until then, avoid moving existing logs.
-
-## Non-certifying operation boundary
-
-Operation documents preserve maintainability, traceability, and returnability.
-
-They do not certify examples, schemas, checkers, generated records, adapters, connectors, workflows, Lean files, governance decisions, public claims, standardization claims, progress estimates, or repository states.
-
-The human author or maintainer remains responsible for deciding whether a change should be made, published, relied upon, reverted, repaired, or deferred.
+Use the runtime-event checking plan before adding any runtime-event checker expansion, runtime-event workflow expansion, runtime-event schema checking, or JSON fixture checking.
