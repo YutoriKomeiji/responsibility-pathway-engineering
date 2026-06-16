@@ -18,8 +18,9 @@ Use this path when restarting work after a pause or when another maintainer, rev
 8. `docs/progress-map.md` when checking rough progress, gates, next gates, or stop conditions
 9. `docs/concepts/index.md` when concept-level reader paths matter
 10. `docs/standardization-strategy.md` when standardization language, grounding discipline, or world-standard preparation matters
-11. `docs/example-index.md`
-12. `docs/checker-coverage.md`
+11. `docs/external-review-readiness-checklist.md` when preparing or evaluating external review readiness
+12. `docs/example-index.md`
+13. `docs/checker-coverage.md`
 
 `CHANGELOG.md` is not part of the primary construction-time reconnection path. Use it mainly for archival, investigative, historical, or retrospective milestone review.
 
@@ -34,6 +35,7 @@ Use documents according to the phase of work.
 | Progress review | `docs/progress-map.md`, `docs/phase-3-1-progress-map-connection.md` when Phase 3.1 context matters, current snapshot, current task inventory, operation index, roadmap note | checking when a progress estimate or gate changed |
 | Concept-path navigation | `docs/concepts/index.md`, relevant concept note, source-alignment note, example index, checker coverage | checking when a concept boundary changed |
 | Standardization preparation | `docs/standardization-strategy.md`, progress map, README, operation index, current snapshot, concept index, example index, checker coverage | checking when a standardization boundary or language choice changed |
+| External review preparation | `docs/external-review-readiness-checklist.md`, README, operation index, current snapshot, current task inventory, checker coverage, example index, schema/fixture alignment, standardization strategy, progress map | checking when external-review scope, readiness, or non-readiness boundaries changed |
 | Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, `docs/runtime-event-schema-fixture-alignment.md`, relevant schemas or examples | checking when a rule, coverage boundary, schema-fixture alignment, or fixture interpretation changed |
 | Workflow observation | `docs/runtime-event-workflow-current-status.md`, `docs/minimal-runtime-fixture-checker-workflow-observation.md`, `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md`, `docs/phase-3-1-sync-log.md`, checker coverage | checking when a bounded workflow result or workflow-observation boundary changed |
 | Phase planning | `ROADMAP.md`, roadmap note, progress map, current snapshot, operation index, current task inventory | confirming a past phase milestone |
@@ -91,6 +93,7 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | --- | --- |
 | `docs/repository-operation-model.md` | You need the current repository-wide operating model, document purpose and usage phase policy, staged update operation, synchronization unit operation, session load and handoff policy, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, sync-log and roadmap-note separation policy, or restart rule. |
 | `docs/current-task-inventory.md` | You need the current P0-P4 task inventory across active and near-active phases before selecting the next task. |
+| `docs/external-review-readiness-checklist.md` | You need to inspect whether the repository is readable enough for external review without treating readiness as certification, conformance, correctness, production approval, or public standardization. |
 | `docs/progress-map.md` | You need rough progress estimates, gate status, next gates, recommended order, or progress-related stop conditions. |
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
@@ -133,6 +136,14 @@ Use `docs/phase-3-1-progress-map-connection.md` when progress visibility specifi
 The progress map records approximate planning estimates only. It does not certify progress, prove maturity, establish conformance, or replace external review.
 
 Use it to avoid both false urgency and premature standardization claims.
+
+## External review navigation
+
+Use `docs/external-review-readiness-checklist.md` when preparing for external review or asking whether reviewers can inspect the repository without mistaking it for certification, conformance evidence, production readiness, or finished standardization.
+
+The checklist should be used before expanding public-facing review claims, external-review package notes, conformance-model drafting, or standardization language.
+
+It is not a substitute for external review findings. It is a readiness and non-readiness checklist only.
 
 ## Task inventory navigation
 
