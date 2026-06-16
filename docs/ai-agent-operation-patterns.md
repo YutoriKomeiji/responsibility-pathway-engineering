@@ -30,6 +30,18 @@ The human maintainer remains the decision owner for:
 
 The AI assistant may help draft, edit, organize, check, and summarize, but it does not become the final responsibility holder for repository changes.
 
+## AI local judgment boundary
+
+`docs/ai-judgment-node-task-control.md` records a bounded concept for AI Judgment Nodes and task-control boundaries.
+
+Repository maintenance should distinguish final responsibility from intermediate AI operational judgment.
+
+An AI assistant may act as a local judgment node when it selects a next step, recommends whether to continue or stop, chooses which evidence to present, classifies a task as low or high risk, or decides whether a condition appears satisfied.
+
+That local judgment must not be treated as final responsibility, certification, correctness proof, safety proof, compliance proof, production approval, connector correctness proof, runtime correctness proof, or AI final-responsibility transfer.
+
+When local AI judgment affects the task, the report or record should preserve the relevant evidence, missing evidence, selected action, boundary, and human return point.
+
 ## Preferred operation loop
 
 Use this loop when possible:
@@ -126,8 +138,9 @@ The report should not claim certification, legal validity, safety, compliance, f
 
 This operation pattern is itself a Responsibility Pathway:
 
-- the human maintainer is the decision owner
+- the human maintainer is the final decision owner
 - the AI assistant is a support node
+- the AI assistant may also be a local judgment node when it performs bounded task-control judgment
 - commits and file fetches are evidence records
 - restart conditions are stop and return rules
 - deferred work preserves a future return point
