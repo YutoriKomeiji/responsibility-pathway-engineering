@@ -1,0 +1,40 @@
+name: Check repository security hygiene
+
+on:
+  push:
+    paths:
+      - "SECURITY.md"
+      - ".github/CODEOWNERS"
+      - ".github/dependabot.yml"
+      - ".github/workflows/**/*.yml"
+      - ".github/workflows/**/*.yaml"
+      - "scripts/check_repository_security.py"
+  pull_request:
+    paths:
+      - "SECURITY.md"
+      - ".github/CODEOWNERS"
+      - ".github/dependabot.yml"
+      - ".github/workflows/**/*.yml"
+      - ".github/workflows/**/*.yaml"
+      - "scripts/check_repository_security.py"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check-repository-security:
+    name: Bounded repository security hygiene checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run bounded repository security hygiene checker
+        run: python scripts/check_repository_security.py
