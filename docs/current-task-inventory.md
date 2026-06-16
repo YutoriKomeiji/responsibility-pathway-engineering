@@ -23,6 +23,7 @@ These tasks preserve the repository's current operating ability.
 - Keep `BEACON.md` short enough to remain a reconnection entrance.
 - Keep root `README.md` short, mobile-renderer friendly, and linked to `docs/readme-expanded.md` for the previous expanded content.
 - Keep `docs/phase-3-1-current-snapshot.md` as the detailed current-state record for Phase 3.1.
+- Keep `docs/phase-3-1-snapshot-reduction-note.md` available as a low-risk follow-up when the Phase 3.1 snapshot becomes too heavy.
 - Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record, not a phase plan.
 - Keep focused sync notes available when a narrow responsibility unit should not force broad long-file rewrites.
 - Keep `docs/phase-3-1-roadmap-note.md` as the short planning companion, not a second changelog.
@@ -140,11 +141,12 @@ Current status: first bounded reference example reached; action-class classifica
 
 ## Phase 3.1 task inventory
 
-Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, first bounded runtime-event checker stub, first local runtime-event checker pass, first minimal runtime-event workflow, first observed runtime-event workflow success, minimal runtime candidate design, minimal synthetic runtime fixture, minimal synthetic runtime fixture checker coverage, observed minimal runtime fixture checker workflow success, runtime-event schema/fixture alignment note, event-to-pathway relation checker plan, external review readiness checklist, external review package note, README recovery, support-call / missed-support synchronization, operation-reader path recovery, runtime ROADMAP reference closure, grounded standardization strategy, progress map, responsibility pathway availability, focused Phase 3.1 progress-map connection note, AI Judgment Node task-control boundary note, focused Phase 3.1 AI Judgment Node connection note, and focused AI Judgment Node synchronization note are recorded.
+Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, first bounded runtime-event checker stub, first local runtime-event checker pass, first minimal runtime-event workflow, first observed runtime-event workflow success, minimal runtime candidate design, minimal synthetic runtime fixture, minimal synthetic runtime fixture checker coverage, observed minimal runtime fixture checker workflow success, runtime-event schema/fixture alignment note, event-to-pathway relation checker plan, external review readiness checklist, external review package note, README recovery, support-call / missed-support synchronization, operation-reader path recovery, runtime ROADMAP reference closure, grounded standardization strategy, progress map, responsibility pathway availability, focused Phase 3.1 progress-map connection note, AI Judgment Node task-control boundary note, focused Phase 3.1 AI Judgment Node connection note, focused AI Judgment Node synchronization note, and Phase 3.1 snapshot reduction follow-up note are recorded.
 
 ### P1: low-risk consolidation
 
 - Keep `docs/phase-3-1-current-snapshot.md` aligned with runtime fixture, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed runtime-event workflow success, minimal runtime fixture checker coverage, runtime-event schema/fixture alignment, event-to-pathway relation checker plan, external review readiness, external review package note, checker boundary, open-source review intent, review notes, README recovery, support-call / missed-support notes, progress map, focused progress-map connection note, responsibility pathway availability, AI Judgment Node task-control boundary, focused AI Judgment Node connection note, standardization strategy, and deferred work.
+- Keep `docs/phase-3-1-snapshot-reduction-note.md` as a follow-up for future low-risk snapshot reduction if the current snapshot becomes too heavy.
 - Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record for runtime-event, runtime-fixture, runtime-event checker stub, runtime-event workflow observation, minimal runtime fixture checker workflow observation, runtime-event schema/fixture alignment, event-to-pathway relation checker planning, external review readiness, external review package note, README recovery, missed-support synchronization, progress-map synchronization, focused connection-note synchronization, responsibility pathway availability synchronization, AI Judgment Node synchronization, and future standardization synchronization units.
 - Keep `docs/ai-judgment-node-task-control.md` as the bounded concept and operation boundary note for AI Judgment Nodes, task-control loops, stop conditions, evaluator separation, evidence visibility, and judgment-versus-execution separation.
 - Keep `docs/phase-3-1-ai-judgment-node-connection.md` as the focused reader-path note connecting Phase 3.1 to the AI Judgment Node boundary without forcing a broad current-snapshot rewrite.
@@ -180,6 +182,7 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 - `docs/external-review-readiness-checklist.md` records the current review-readiness checklist for claim traceability, boundary clarity, checker readability, runtime-event bridge reviewability, operation readability, and non-readiness areas.
 - `docs/external-review-package-note.md` records the compact external-review reader path, reviewer questions, inspection targets, non-readiness boundaries, and maintainer pre-send checklist without treating it as an external review result.
 - `docs/ai-judgment-node-task-control.md` records the bounded concept for AI Judgment Nodes and task-control boundaries without introducing schema, checker, workflow, runtime, connector, conformance, or Lean work.
+- `docs/phase-3-1-snapshot-reduction-note.md` records a maintainability follow-up after the snapshot was expanded with AI Judgment Node material.
 - `docs/runtime-event-checker-local-observation.md` records the first local runtime-event checker pass.
 - `docs/runtime-event-workflow-current-status.md` records the first observed runtime-event workflow success on run `27501847137` and the observed minimal runtime fixture checker workflow success on run `27607798655`.
 - `docs/minimal-runtime-fixture-checker-workflow-observation.md` records the focused workflow observation for run `27607798655`.
@@ -270,7 +273,8 @@ Use this sequence unless a checker failure or serious inconsistency appears.
 1. P0: preserve restartability and boundary clarity.
 2. P1: keep BEACON short and ensure README / operation-index / current snapshot / sync log / roadmap note remain aligned.
 3. P1: keep AI Judgment Node task-control boundary connected before discussing loop-like task control, goal-like stop conditions, evaluator separation, or local AI judgment as Phase 3.1 runtime-event design inputs.
-4. P1: keep progress map rough, planning-only, and connected before using progress percentages in public-facing language.
-5. P1: keep `docs/phase-3-1-progress-map-connection.md` available when Phase 3.1 progress visibility is needed without rewriting the full current snapshot.
-6. P1: keep standardization strategy grounded and connected before any public-facing world-standard language is expanded.
-7. P1: keep external review package note, external review readiness checklist, event-to-pathway relation checker plan, missed-support current status, example index, checker coverage, and focused reader paths aligned after review-readiness, package-note, or checker-planning changes.
+4. P1: consider `docs/phase-3-1-snapshot-reduction-note.md` before adding more narrow detailed sections to `docs/phase-3-1-current-snapshot.md`.
+5. P1: keep progress map rough, planning-only, and connected before using progress percentages in public-facing language.
+6. P1: keep `docs/phase-3-1-progress-map-connection.md` available when Phase 3.1 progress visibility is needed without rewriting the full current snapshot.
+7. P1: keep standardization strategy grounded and connected before any public-facing world-standard language is expanded.
+8. P1: keep external review package note, external review readiness checklist, event-to-pathway relation checker plan, missed-support current status, example index, checker coverage, and focused reader paths aligned after review-readiness, package-note, or checker-planning changes.
