@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "examples/adapter-input-event-minimal.json"
+      - "examples/minimal-synthetic-runtime-fixture.json"
       - "scripts/check_runtime_events.py"
       - ".github/workflows/check-runtime-events.yml"
 
