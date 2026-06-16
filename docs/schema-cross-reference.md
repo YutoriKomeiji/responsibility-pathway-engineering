@@ -2,7 +2,7 @@
 
 This note explains how the current Responsibility Pathway Engineering schema files relate to each other during Phase 1.5 - Specification Binding, Phase 1.6 - lightweight validation, Phase 2.5 - record-review alignment, and Phase 3.1 - runtime-event bridge work.
 
-It is explanatory only. It does not claim complete validation, legal liability, production readiness, compliance, safety, fairness, moral accountability, connector correctness, adapter correctness, or runtime readiness.
+It is explanatory only. It does not claim complete validation, legal liability, production readiness, compliance, safety, fairness, moral accountability, connector correctness, adapter correctness, runtime readiness, schema correctness proof, JSON semantic correctness proof, conformance evidence, or AI final-responsibility transfer.
 
 ## Core vocabulary map
 
@@ -169,12 +169,24 @@ Important boundary:
 
 A runtime event is an observation input, not approval, execution authority, certification, legal or moral resolution, connector correctness, adapter correctness, or production readiness.
 
+Current alignment and bounded checker status:
+
+- `docs/runtime-event-schema-fixture-alignment.md` records the current structural alignment between `spec/runtime-event.schema.yaml`, selected JSON fixtures, and `scripts/check_runtime_events.py`.
+- `examples/adapter-input-event-minimal.json` is the selected synthetic runtime-event JSON fixture.
+- `examples/minimal-synthetic-runtime-fixture.json` is the selected minimal synthetic runtime observation fixture; it is runtime-like and indirectly aligned, not a direct schema instance in the same way as the selected runtime-event fixture.
+- `scripts/check_runtime_events.py` currently performs bounded structural checks on both selected JSON fixtures by default.
+- A checker pass is not schema validation, JSON semantic correctness proof, adapter mapping correctness proof, connector correctness proof, runtime correctness proof, production readiness, conformance evidence, certification, or AI final-responsibility transfer.
+
 Related documents and examples:
 
 - `docs/adapter-boundary.md`
+- `docs/runtime-event-schema-fixture-alignment.md`
+- `docs/runtime-event-checking-plan.md`
+- `docs/runtime-event-workflow-current-status.md`
 - `docs/phase-3-1-current-snapshot.md`
 - `docs/phase-3-1-sync-log.md`
 - `examples/adapter-input-event-minimal.json`
+- `examples/minimal-synthetic-runtime-fixture.json`
 - `examples/runtime-event-to-pathway-minimal.yaml`
 
 ### `spec/pathway.schema.yaml`
@@ -251,16 +263,17 @@ Recommended reading order:
 5. `spec/evidence-log.schema.yaml`
 6. `spec/repair.schema.yaml`
 7. `spec/runtime-event.schema.yaml`
-8. `spec/pathway.schema.yaml`
-9. `spec/review-result.schema.yaml`
+8. `docs/runtime-event-schema-fixture-alignment.md` when runtime-event schema / fixture / checker alignment matters
+9. `spec/pathway.schema.yaml`
+10. `spec/review-result.schema.yaml`
 
-This order moves from concept vocabulary to specialized schema files, runtime-event inputs, composed pathway instances, and then bounded review-result outputs.
+This order moves from concept vocabulary to specialized schema files, runtime-event inputs, current runtime-event alignment, composed pathway instances, and then bounded review-result outputs.
 
 ## Validation boundary
 
-These schema files currently define minimum structure and design expectations. They do not yet constitute a complete validator, certification scheme, compliance framework, connector framework, adapter correctness proof, or formal proof system.
+These schema files currently define minimum structure and design expectations. They do not yet constitute a complete validator, certification scheme, compliance framework, connector framework, adapter correctness proof, runtime correctness proof, conformance evidence, or formal proof system.
 
-`spec/runtime-event.schema.yaml` is not yet validated by the current lightweight checker. `examples/adapter-input-event-minimal.json` is not yet checked by `scripts/check_examples.py`.
+`spec/runtime-event.schema.yaml` is not yet fully validated by the current lightweight checker. `scripts/check_runtime_events.py` performs bounded structural checks on the selected synthetic runtime-event JSON fixture and selected minimal synthetic runtime observation fixture only. `examples/adapter-input-event-minimal.json` and `examples/minimal-synthetic-runtime-fixture.json` are not checked by `scripts/check_examples.py`, because they are JSON fixtures rather than pathway YAML examples.
 
 Action-class-specific checker enforcement is not yet active. Future checker work may inspect bounded structural signals from `spec/action-class.schema.yaml`, but such checks must remain non-certifying and must not be interpreted as legal validity, safety, compliance, fairness, moral resolution, institutional approval, production readiness, or AI final-responsibility transfer.
 
