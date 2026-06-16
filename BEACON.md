@@ -43,22 +43,23 @@ The support-call / missed-support path is currently concept-level and boundary-e
 3. `docs/phase-3-1-current-snapshot.md`
 4. `docs/current-task-inventory.md`
 5. `docs/ai-judgment-node-task-control.md` when AI local judgment, task-control loops, stop conditions, or evaluator separation matter
-6. `docs/phase-3-1-ai-judgment-node-sync-note.md` when the focused AI Judgment Node synchronization unit matters
-7. `docs/runtime-event-schema-fixture-alignment.md` when schema/fixture/checker alignment matters
-8. `docs/event-to-pathway-relation-checker-plan.md` when future relation-checker planning matters
-9. `docs/runtime-event-workflow-current-status.md` when workflow observation matters
-10. `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md` when the focused sync-log supplement matters
-11. `docs/phase-3-1-sync-log.md`
-12. `docs/phase-3-1-roadmap-note.md`
-13. `docs/phase-3-1-roadmap-sync-after-readme-recovery.md`
-14. `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
-15. `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
-16. `docs/concepts/index.md`
-17. `docs/standardization-strategy.md` before expanding world-standard or conformance language
-18. `docs/example-index.md`
-19. `docs/checker-coverage.md`
-20. `ROADMAP.md`
-21. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
+6. `docs/phase-3-1-ai-judgment-node-reader-path-status.md` when the current AI Judgment Node reader path matters
+7. `docs/phase-3-1-ai-judgment-node-sync-note.md` when the focused AI Judgment Node synchronization unit matters
+8. `docs/runtime-event-schema-fixture-alignment.md` when schema/fixture/checker alignment matters
+9. `docs/event-to-pathway-relation-checker-plan.md` when future relation-checker planning matters
+10. `docs/runtime-event-workflow-current-status.md` when workflow observation matters
+11. `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md` when the focused sync-log supplement matters
+12. `docs/phase-3-1-sync-log.md`
+13. `docs/phase-3-1-roadmap-note.md`
+14. `docs/phase-3-1-roadmap-sync-after-readme-recovery.md`
+15. `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
+16. `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
+17. `docs/concepts/index.md`
+18. `docs/standardization-strategy.md` before expanding world-standard or conformance language
+19. `docs/example-index.md`
+20. `docs/checker-coverage.md`
+21. `ROADMAP.md`
+22. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
 
 Use `docs/repository-operation-model.md` before broad reader-path synchronization, long-file updates, session handoff, or periodic operation review.
 
