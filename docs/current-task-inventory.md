@@ -133,13 +133,15 @@ Current status: first bounded reference example reached; action-class classifica
 
 ## Phase 3.1 task inventory
 
-Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, first bounded runtime-event checker stub, first local runtime-event checker pass, first minimal runtime-event workflow, first observed runtime-event workflow success, minimal runtime candidate design, minimal synthetic runtime fixture, README recovery, support-call / missed-support synchronization, operation-reader path recovery, runtime ROADMAP reference closure, grounded standardization strategy, progress map, responsibility pathway availability, and focused Phase 3.1 progress-map connection note are recorded.
+Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, first bounded runtime-event checker stub, first local runtime-event checker pass, first minimal runtime-event workflow, first observed runtime-event workflow success, minimal runtime candidate design, minimal synthetic runtime fixture, minimal synthetic runtime fixture checker coverage, observed minimal runtime fixture checker workflow success, README recovery, support-call / missed-support synchronization, operation-reader path recovery, runtime ROADMAP reference closure, grounded standardization strategy, progress map, responsibility pathway availability, and focused Phase 3.1 progress-map connection note are recorded.
 
 ### P1: low-risk consolidation
 
-- Keep `docs/phase-3-1-current-snapshot.md` aligned with runtime fixture, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed runtime-event workflow success, checker boundary, open-source review intent, review notes, README recovery, support-call / missed-support notes, progress map, focused progress-map connection note, responsibility pathway availability, standardization strategy, and deferred work.
-- Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record for runtime-event, runtime-fixture, runtime-event checker stub, runtime-event workflow observation, README recovery, missed-support synchronization, progress-map synchronization, focused connection-note synchronization, responsibility pathway availability synchronization, and future standardization synchronization units.
+- Keep `docs/phase-3-1-current-snapshot.md` aligned with runtime fixture, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed runtime-event workflow success, minimal runtime fixture checker coverage, checker boundary, open-source review intent, review notes, README recovery, support-call / missed-support notes, progress map, focused progress-map connection note, responsibility pathway availability, standardization strategy, and deferred work.
+- Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record for runtime-event, runtime-fixture, runtime-event checker stub, runtime-event workflow observation, minimal runtime fixture checker workflow observation, README recovery, missed-support synchronization, progress-map synchronization, focused connection-note synchronization, responsibility pathway availability synchronization, and future standardization synchronization units.
 - Keep `docs/runtime-event-workflow-current-status.md` as the focused workflow-status note for the first runtime-event workflow and observed run status.
+- Keep `docs/minimal-runtime-fixture-checker-workflow-observation.md` as the focused observation note for the workflow success after `examples/minimal-synthetic-runtime-fixture.json` was added to bounded runtime-event checker coverage.
+- Keep `docs/phase-3-1-minimal-runtime-fixture-checker-connection.md` as the focused reader-path note connecting the minimal runtime fixture checker expansion, workflow observation, and operation documents without forcing a broad current-snapshot or sync-log rewrite.
 - Keep `docs/phase-3-1-progress-map-connection.md` as the focused reader-path note connecting Phase 3.1 to `docs/progress-map.md` without forcing a broad current-snapshot rewrite.
 - Keep `docs/phase-3-1-roadmap-note.md` as the short planning companion for near-term runtime candidate decisions.
 - Keep `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` as the short companion note for the README recovery and missed-support synchronization unit.
@@ -148,7 +150,7 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 - Keep `docs/progress-map.md` rough and planning-only: progress estimates are not maturity proof, conformance proof, external review findings, or certification.
 - Keep `docs/responsibility-pathway-availability.md` reachable for degraded-pathway handling, minimum preservation, and judgment-return handling.
 - Keep `docs/standardization-strategy.md` grounded: RPE may prepare for future standardization only by improving terminology, scope, non-scope, reviewability, traceability, compatibility, and anti-overclaim boundaries.
-- Keep `docs/example-index.md` and `docs/checker-coverage.md` explicit that JSON runtime-event checking is bounded to the selected synthetic runtime-event JSON fixture and does not validate schema correctness, JSON semantic correctness, adapter mapping correctness, runtime correctness, production readiness, or certification.
+- Keep `docs/example-index.md` and `docs/checker-coverage.md` explicit that JSON runtime-event and minimal synthetic runtime fixture checking remains bounded structural checking and does not validate schema correctness, JSON semantic correctness, adapter mapping correctness, runtime correctness, production readiness, or certification.
 - Keep root `README.md` short and point detailed content to `docs/readme-expanded.md`.
 - Keep `BEACON.md` short; move detailed state into snapshots, sync logs, roadmap notes, progress map, focused connection notes, or focused status notes.
 
@@ -156,10 +158,11 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 
 - `docs/minimal-runtime-fixture-review.md` records that `examples/minimal-synthetic-runtime-fixture.json` is acceptable as a first minimal synthetic runtime observation fixture for reading and review.
 - No change to `examples/minimal-synthetic-runtime-fixture.json` was required by the first review.
-- `scripts/check_runtime_events.py` now exists as the first bounded local runtime-event checker stub for `examples/adapter-input-event-minimal.json`.
-- `.github/workflows/check-runtime-events.yml` now exists as the first minimal runtime-event workflow.
+- `scripts/check_runtime_events.py` now exists as the first bounded local runtime-event checker stub and checks both `examples/adapter-input-event-minimal.json` and `examples/minimal-synthetic-runtime-fixture.json` by default.
+- `.github/workflows/check-runtime-events.yml` now exists as the first minimal runtime-event workflow and runs when either selected JSON fixture or the checker changes.
 - `docs/runtime-event-checker-local-observation.md` records the first local runtime-event checker pass.
-- `docs/runtime-event-workflow-current-status.md` records the first observed runtime-event workflow success on run `27501847137`.
+- `docs/runtime-event-workflow-current-status.md` records the first observed runtime-event workflow success on run `27501847137` and the observed minimal runtime fixture checker workflow success on run `27607798655`.
+- `docs/minimal-runtime-fixture-checker-workflow-observation.md` records the focused workflow observation for run `27607798655`.
 - If a second runtime fixture is ever needed, design it only through `docs/minimal-runtime-candidate-design.md`.
 - Keep any runtime fixture synthetic, local, vendor-neutral, non-production, review-required, and non-certifying.
 - Prepare a future `docs/conformance-model-draft.md` only after terminology, scope, examples, schemas, checker boundaries, and review processes stabilize further.
@@ -167,10 +170,10 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 ### P3: conditional checker or workflow work
 
 - Treat `scripts/check_runtime_events.py` as the first bounded local runtime-event checker stub, not as schema validation, semantic mapping validation, production runtime integration, or certification.
-- Treat the observed runtime-event workflow success as bounded workflow observation only, not as schema validation, JSON semantic correctness proof, runtime correctness proof, production readiness, or certification.
+- Treat the observed runtime-event workflow successes as bounded workflow observations only, not as schema validation, JSON semantic correctness proof, runtime correctness proof, production readiness, or certification.
 - Expand the runtime-event workflow only after the minimal push-triggered workflow remains stable and the expansion need is documented.
-- Add runtime fixture checking only after `docs/minimal-runtime-candidate-design.md` and `docs/runtime-event-checking-plan.md` preconditions remain satisfied after review.
-- Expand runtime-event schema checking only after the schema, selected JSON fixture, checker boundary, workflow boundary, and documentation path remain stable after the first checker stub and workflow observation.
+- Add further runtime fixture checking only after `docs/minimal-runtime-candidate-design.md` and `docs/runtime-event-checking-plan.md` preconditions remain satisfied after review.
+- Expand runtime-event schema checking only after the schema, selected JSON fixtures, checker boundary, workflow boundary, and documentation path remain stable after the first checker stub and workflow observations.
 - Do not add support-call or missed-support semantic checking until schema conventions, examples, checker boundaries, and review-signal semantics are deliberately stabilized.
 - Do not create conformance claims or conformance checks until `docs/standardization-strategy.md` conditions are satisfied.
 
@@ -180,9 +183,9 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 - Keep production conversion code deferred.
 - Keep production runtime integration deferred.
 - Keep runtime-event workflow expansion deferred until a specific need is documented.
-- Keep runtime-event schema checking deferred until the schema and examples remain stable after the first checker stub and workflow observation.
-- Keep JSON schema-fixture checking beyond the first selected synthetic runtime-event JSON fixture deferred until the bridge remains readable and reviewable.
-- Keep runtime fixture checking deferred.
+- Keep runtime-event schema checking deferred until the schema and examples remain stable after the first checker stub and workflow observations.
+- Keep JSON schema-fixture checking beyond the selected synthetic runtime-event and minimal synthetic runtime observation fixtures deferred until the bridge remains readable and reviewable.
+- Keep further runtime fixture checking deferred unless a new fixture is deliberately designed.
 - Keep Lean expansion around adapter or runtime-event concepts deferred.
 - Keep Lean expansion around support-call policy or missed-support signals deferred.
 - Keep support-call schema fields deferred.
@@ -193,7 +196,7 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 
 ## Open-source review tasks
 
-Open-source review is intended to invite inspection of boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, first bounded runtime-event checker stub, first minimal runtime-event workflow, first observed runtime-event workflow success, operation documents, progress map, focused progress-map connection note, responsibility pathway availability, standardization strategy, and deferred implementation choices.
+Open-source review is intended to invite inspection of boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed runtime-event workflow successes, minimal runtime fixture checker coverage, operation documents, progress map, focused progress-map connection note, responsibility pathway availability, standardization strategy, and deferred implementation choices.
 
 ### P1: low-risk review preparation
 
@@ -208,6 +211,8 @@ Open-source review is intended to invite inspection of boundaries, responsibilit
 - Keep `docs/standardization-strategy.md` available as the focused reader path for world-standard preparation language, grounding discipline, anti-overclaim boundaries, and future conformance discussion.
 - Keep `docs/checker-coverage.md` available as the focused reader path for current checker behavior, including the first bounded runtime-event checker stub and remaining unchecked boundaries.
 - Keep `docs/runtime-event-workflow-current-status.md` available as the focused reader path for the first minimal runtime-event workflow and observed workflow status.
+- Keep `docs/minimal-runtime-fixture-checker-workflow-observation.md` available as the focused reader path for the first observed workflow success after the minimal synthetic runtime fixture was added to bounded checker coverage.
+- Keep `docs/phase-3-1-minimal-runtime-fixture-checker-connection.md` available as the focused reader path connecting minimal runtime fixture checker expansion and workflow observation without forcing broad long-file rewrites.
 
 ### P2: bounded review artifacts
 
@@ -231,13 +236,13 @@ Use this sequence unless a checker failure or serious inconsistency appears.
 4. P1: keep `docs/phase-3-1-progress-map-connection.md` available when Phase 3.1 progress visibility is needed without rewriting the full current snapshot.
 5. P1: keep standardization strategy grounded and connected before any public-facing world-standard language is expanded.
 6. P1: keep missed-support current status, example index, checker coverage, and focused reader paths aligned after example changes.
-7. P1: keep first bounded runtime-event checker stub, local observation, minimal workflow, and workflow success status synchronized through checker coverage, current snapshot, sync log, and task inventory.
+7. P1: keep first bounded runtime-event checker stub, local observation, minimal workflow, workflow success status, minimal runtime fixture checker coverage, and focused observation notes synchronized through checker coverage, current snapshot, sync log, operation index, and task inventory.
 8. P1: connect fixture-review status through the current Phase 3.1 snapshot or sync log only if it improves restartability.
 9. P1: keep `docs/phase-3-1-roadmap-runtime-reference.md` historical unless runtime candidate boundaries change again.
 10. P2: prepare external-review notes only if they improve reviewability.
 11. P2: prepare future conformance-model drafting only after terminology and scope stabilize further.
-12. P3: consider runtime fixture checking only after documented preconditions remain satisfied.
-13. P3: consider runtime-event workflow expansion only after a specific need is documented.
+12. P3: consider runtime-event workflow expansion only after a specific need is documented.
+13. P3: consider schema or semantic checking only after documented preconditions are deliberately reopened and satisfied.
 14. P4: keep connectors, production runtime, production conversion, Class E positive examples, runtime Lean expansion, support-call schema fields, missed-support schema fields, support-call / missed-support semantic checking, and premature standardization claims deferred.
 
 ## Stop conditions
