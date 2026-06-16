@@ -15,14 +15,15 @@ Use this path when restarting work after a pause or when another maintainer, rev
 5. the current phase snapshot
 6. the relevant sync log or roadmap note
 7. `docs/current-task-inventory.md` when choosing the next task
-8. `docs/progress-map.md` when checking rough progress, gates, next gates, or stop conditions
-9. `docs/concepts/index.md` when concept-level reader paths matter
-10. `docs/standardization-strategy.md` when standardization language, grounding discipline, or world-standard preparation matters
-11. `docs/external-review-readiness-checklist.md` when preparing or evaluating external review readiness
-12. `docs/external-review-package-note.md` when preparing a compact external-review reader package
-13. `docs/event-to-pathway-relation-checker-plan.md` when considering future relation-checker planning without implementation
-14. `docs/example-index.md`
-15. `docs/checker-coverage.md`
+8. `docs/ai-judgment-node-task-control.md` when AI local judgment, task-control loops, stop conditions, or evaluator separation matter
+9. `docs/progress-map.md` when checking rough progress, gates, next gates, or stop conditions
+10. `docs/concepts/index.md` when concept-level reader paths matter
+11. `docs/standardization-strategy.md` when standardization language, grounding discipline, or world-standard preparation matters
+12. `docs/external-review-readiness-checklist.md` when preparing or evaluating external review readiness
+13. `docs/external-review-package-note.md` when preparing a compact external-review reader package
+14. `docs/event-to-pathway-relation-checker-plan.md` when considering future relation-checker planning without implementation
+15. `docs/example-index.md`
+16. `docs/checker-coverage.md`
 
 `CHANGELOG.md` is not part of the primary construction-time reconnection path. Use it mainly for archival, investigative, historical, or retrospective milestone review.
 
@@ -36,6 +37,7 @@ Use documents according to the phase of work.
 | Restart or handoff | `BEACON.md`, `README.md`, current snapshot, operation index, sync log, roadmap note, current task inventory, progress map | the restart depends on historical cause tracing |
 | Progress review | `docs/progress-map.md`, `docs/phase-3-1-progress-map-connection.md` when Phase 3.1 context matters, current snapshot, current task inventory, operation index, roadmap note | checking when a progress estimate or gate changed |
 | Concept-path navigation | `docs/concepts/index.md`, relevant concept note, source-alignment note, example index, checker coverage | checking when a concept boundary changed |
+| AI local judgment or task-control boundary review | `docs/ai-judgment-node-task-control.md`, `docs/phase-3-1-ai-judgment-node-connection.md`, `docs/phase-3-1-ai-judgment-node-sync-note.md`, `docs/ai-agent-operation-patterns.md`, current snapshot, current task inventory | checking when AI local judgment, loop-like task control, goal-like stop conditions, evaluator separation, or evidence-selection boundaries changed |
 | Standardization preparation | `docs/standardization-strategy.md`, progress map, README, operation index, current snapshot, concept index, example index, checker coverage | checking when a standardization boundary or language choice changed |
 | External review preparation | `docs/external-review-package-note.md`, `docs/external-review-readiness-checklist.md`, README, operation index, current snapshot, current task inventory, checker coverage, example index, schema/fixture alignment, standardization strategy, progress map | checking when external-review scope, package path, readiness, or non-readiness boundaries changed |
 | Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, `docs/runtime-event-schema-fixture-alignment.md`, `docs/event-to-pathway-relation-checker-plan.md` when relation-checker planning matters, relevant schemas or examples | checking when a rule, coverage boundary, schema-fixture alignment, relation-checker plan, or fixture interpretation changed |
@@ -95,6 +97,9 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | --- | --- |
 | `docs/repository-operation-model.md` | You need the current repository-wide operating model, document purpose and usage phase policy, staged update operation, synchronization unit operation, session load and handoff policy, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, sync-log and roadmap-note separation policy, or restart rule. |
 | `docs/current-task-inventory.md` | You need the current P0-P4 task inventory across active and near-active phases before selecting the next task. |
+| `docs/ai-judgment-node-task-control.md` | You need the bounded concept and operation boundary for AI Judgment Nodes, task-control loops, stop conditions, evaluator separation, evidence visibility, judgment versus execution, and human or institutional return gates. |
+| `docs/phase-3-1-ai-judgment-node-connection.md` | You need the focused Phase 3.1 reader-path connection for AI local judgment and task-control boundaries without rewriting the full current snapshot. |
+| `docs/phase-3-1-ai-judgment-node-sync-note.md` | You need the focused synchronization record for the AI Judgment Node task-control boundary unit. |
 | `docs/external-review-readiness-checklist.md` | You need to inspect whether the repository is readable enough for external review without treating readiness as certification, conformance, correctness, production approval, or public standardization. |
 | `docs/external-review-package-note.md` | You need a compact external-review reader package, suggested reviewer questions, non-readiness boundaries, and reviewer handoff path without treating it as an endorsement or certification package. |
 | `docs/event-to-pathway-relation-checker-plan.md` | You need the future event-to-pathway relation checker plan before considering any relation checker implementation or event-to-pathway structural relation check. |
@@ -123,6 +128,16 @@ Current concept-navigation anchors include:
 - `docs/examples/missed-support-current-status.md`
 
 Concept notes remain concept-level unless restart conditions explicitly reopen schema, checker, workflow, runtime, connector, or Lean work.
+
+## AI local judgment and task-control navigation
+
+Use `docs/ai-judgment-node-task-control.md` when discussing whether an AI system is only a support node or also acts as a local judgment node inside a Responsibility Pathway.
+
+Use `docs/phase-3-1-ai-judgment-node-connection.md` when Phase 3.1 runtime-event, adapter-boundary, loop-like task control, goal-like stop condition, evaluator separation, evidence-selection, continuation, retry, escalation, or human-return discussions need a focused reader path.
+
+Use `docs/phase-3-1-ai-judgment-node-sync-note.md` when reviewing the synchronization unit that added the AI Judgment Node concept and its Phase 3.1 connection.
+
+These notes do not authorize autonomous task-control implementation, automatic approval, automatic execution, schema expansion, checker expansion, workflow expansion, production connectors, production runtime integration, conformance checks, Lean expansion, or AI final-responsibility transfer.
 
 ## Standardization navigation
 
@@ -215,8 +230,9 @@ Sync logs and roadmap notes are complementary but separate.
 | Document | Current role |
 | --- | --- |
 | `docs/phase-3-1-sync-log.md` | Detailed synchronization record for multi-commit Phase 3.1 reader-path, coverage, checker-interpretation, workflow-observation, and boundary synchronization. |
+| `docs/phase-3-1-ai-judgment-node-sync-note.md` | Focused sync-log supplement for the AI Judgment Node task-control boundary responsibility unit. |
 | `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md` | Focused sync-log supplement for the minimal runtime fixture checker workflow observation responsibility unit. |
-| `docs/phase-3-1-progress-map-connection.md` | Focused Phase 3.1 reader-path note connecting the rough progress map without rewriting the full Phase 3.1 snapshot. |
+| `docs/phase-3-1-progress-map-connection.md` | Focused Phase 3.1 reader-path note connecting the rough progress map without rewriting the full current snapshot. |
 | `docs/phase-3-1-roadmap-note.md` | Short current-planning companion for Phase 3.1 near-term roadmap position, minimal runtime candidate planning, next low-risk work, phase rules, and stop conditions. |
 | `docs/phase-3-1-roadmap-runtime-reference.md` | Historical reference note for the minimal runtime fixture ROADMAP reference after the intended ROADMAP reference was absorbed. |
 | `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` | Short companion note for the README recovery and missed-support synchronization unit. |
