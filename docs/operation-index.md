@@ -19,8 +19,9 @@ Use this path when restarting work after a pause or when another maintainer, rev
 9. `docs/concepts/index.md` when concept-level reader paths matter
 10. `docs/standardization-strategy.md` when standardization language, grounding discipline, or world-standard preparation matters
 11. `docs/external-review-readiness-checklist.md` when preparing or evaluating external review readiness
-12. `docs/example-index.md`
-13. `docs/checker-coverage.md`
+12. `docs/event-to-pathway-relation-checker-plan.md` when considering future relation-checker planning without implementation
+13. `docs/example-index.md`
+14. `docs/checker-coverage.md`
 
 `CHANGELOG.md` is not part of the primary construction-time reconnection path. Use it mainly for archival, investigative, historical, or retrospective milestone review.
 
@@ -36,7 +37,7 @@ Use documents according to the phase of work.
 | Concept-path navigation | `docs/concepts/index.md`, relevant concept note, source-alignment note, example index, checker coverage | checking when a concept boundary changed |
 | Standardization preparation | `docs/standardization-strategy.md`, progress map, README, operation index, current snapshot, concept index, example index, checker coverage | checking when a standardization boundary or language choice changed |
 | External review preparation | `docs/external-review-readiness-checklist.md`, README, operation index, current snapshot, current task inventory, checker coverage, example index, schema/fixture alignment, standardization strategy, progress map | checking when external-review scope, readiness, or non-readiness boundaries changed |
-| Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, `docs/runtime-event-schema-fixture-alignment.md`, relevant schemas or examples | checking when a rule, coverage boundary, schema-fixture alignment, or fixture interpretation changed |
+| Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, `docs/runtime-event-schema-fixture-alignment.md`, `docs/event-to-pathway-relation-checker-plan.md` when relation-checker planning matters, relevant schemas or examples | checking when a rule, coverage boundary, schema-fixture alignment, relation-checker plan, or fixture interpretation changed |
 | Workflow observation | `docs/runtime-event-workflow-current-status.md`, `docs/minimal-runtime-fixture-checker-workflow-observation.md`, `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md`, `docs/phase-3-1-sync-log.md`, checker coverage | checking when a bounded workflow result or workflow-observation boundary changed |
 | Phase planning | `ROADMAP.md`, roadmap note, progress map, current snapshot, operation index, current task inventory | confirming a past phase milestone |
 | Audit, error investigation, or retrospective explanation | `CHANGELOG.md`, sync logs, snapshots, relevant commits and artifacts | this is the intended primary use |
@@ -94,6 +95,7 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | `docs/repository-operation-model.md` | You need the current repository-wide operating model, document purpose and usage phase policy, staged update operation, synchronization unit operation, session load and handoff policy, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, sync-log and roadmap-note separation policy, or restart rule. |
 | `docs/current-task-inventory.md` | You need the current P0-P4 task inventory across active and near-active phases before selecting the next task. |
 | `docs/external-review-readiness-checklist.md` | You need to inspect whether the repository is readable enough for external review without treating readiness as certification, conformance, correctness, production approval, or public standardization. |
+| `docs/event-to-pathway-relation-checker-plan.md` | You need the future event-to-pathway relation checker plan before considering any relation checker implementation or event-to-pathway structural relation check. |
 | `docs/progress-map.md` | You need rough progress estimates, gate status, next gates, recommended order, or progress-related stop conditions. |
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
@@ -144,6 +146,14 @@ Use `docs/external-review-readiness-checklist.md` when preparing for external re
 The checklist should be used before expanding public-facing review claims, external-review package notes, conformance-model drafting, or standardization language.
 
 It is not a substitute for external review findings. It is a readiness and non-readiness checklist only.
+
+## Event-to-pathway relation checker planning
+
+Use `docs/event-to-pathway-relation-checker-plan.md` before considering any checker that compares a runtime-event JSON fixture with a pathway YAML example.
+
+The plan defines structurally checkable relation signals such as source-reference preservation, review requirement preservation, evidence and missing-context preservation, actor and responsibility-boundary preservation, excluded-claim preservation, and lifecycle compatibility.
+
+It does not authorize implementation by itself. It should be read before any future event-to-pathway relation checker work, schema expansion, semantic checking, adapter mapping check, runtime correctness check, or conformance language.
 
 ## Task inventory navigation
 
@@ -226,6 +236,7 @@ Do not use a sync log as a phase plan.
 | `docs/minimal-runtime-fixture-review.md` | You need the review result for `examples/minimal-synthetic-runtime-fixture.json` as the first minimal synthetic runtime observation fixture. |
 | `docs/minimal-runtime-fixture-review-connection.md` | You need the reader path connecting the minimal runtime fixture review note to Phase 3.1 operation documents. |
 | `docs/runtime-event-schema-fixture-alignment.md` | You need the current alignment between the draft runtime-event schema, selected JSON fixtures, and bounded runtime-event checker, without treating it as validation. |
+| `docs/event-to-pathway-relation-checker-plan.md` | You need the planned boundary for a possible future checker comparing selected runtime-event JSON fixtures with pathway YAML examples. |
 | `docs/runtime-event-checking-plan.md` | You need to know when runtime-event schema checking, JSON fixture checking, or future runtime-event checker work may be safely considered. |
 | `docs/runtime-event-workflow-current-status.md` | You need the current status of the first minimal runtime-event workflow and observed bounded workflow runs. |
 | `docs/minimal-runtime-fixture-checker-workflow-observation.md` | You need the focused observation note for the first workflow success after `examples/minimal-synthetic-runtime-fixture.json` was added to the bounded runtime-event checker coverage. |
@@ -235,5 +246,7 @@ Use the minimal runtime candidate design note before adding any runtime candidat
 Use the minimal runtime fixture review note before changing the minimal runtime fixture or treating its first review as current.
 
 Use the runtime-event schema/fixture alignment note before treating a runtime-event fixture, minimal runtime fixture, or checker pass as current alignment.
+
+Use the event-to-pathway relation checker plan before considering any relation checker implementation between selected runtime-event JSON fixtures and pathway YAML examples.
 
 Use the runtime-event checking plan before adding any runtime-event checker expansion, runtime-event workflow expansion, runtime-event schema checking, or JSON fixture checking.
