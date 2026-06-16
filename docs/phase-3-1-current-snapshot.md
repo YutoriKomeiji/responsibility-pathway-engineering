@@ -1,10 +1,10 @@
 # Phase 3.1 Current Snapshot
 
-This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, runtime-event checking plan, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed runtime-event workflow successes, minimal runtime candidate planning, minimal synthetic runtime fixture, minimal runtime fixture checker coverage, minimal runtime fixture review, event-to-pathway relation checker planning, progress map, responsibility pathway availability, current task inventory, and repository operation layer.
+This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, runtime-event checking plan, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed runtime-event workflow successes, minimal runtime candidate planning, minimal synthetic runtime fixture, minimal runtime fixture review, event-to-pathway relation checker planning, progress map, responsibility pathway availability, AI Judgment Node task-control boundary, current task inventory, and repository operation layer.
 
 Phase 3.1 is the bridge from external logs, API events, workflow results, and runtime observations into draft Responsibility Pathway records.
 
-It is not a production connector, production runtime, verification engine, certification tool, legal decision system, compliance engine, safety certification system, fairness certification tool, moral-resolution system, progress certification, or AI final-responsibility transfer mechanism.
+It is not a production connector, production runtime, verification engine, certification tool, legal decision system, compliance engine, safety certification system, fairness certification tool, moral-resolution system, progress certification, conformance model, or AI final-responsibility transfer mechanism.
 
 ## Current artifacts
 
@@ -29,6 +29,9 @@ Current Phase 3.1 artifacts:
 - `docs/minimal-runtime-fixture-review-connection.md`
 - `docs/progress-map.md`
 - `docs/responsibility-pathway-availability.md`
+- `docs/ai-judgment-node-task-control.md`
+- `docs/phase-3-1-ai-judgment-node-connection.md`
+- `docs/phase-3-1-ai-judgment-node-sync-note.md`
 - `docs/current-task-inventory.md`
 - `docs/phase-3-1-current-snapshot.md`
 - `docs/phase-3-1-sync-log.md`
@@ -47,6 +50,7 @@ Repository-wide reader-path and operation records now also include:
 - `docs/example-index.md`
 - `docs/standardization-strategy.md`
 - `docs/external-review-readiness-checklist.md`
+- `docs/external-review-package-note.md`
 
 ## Adapter boundary
 
@@ -63,6 +67,24 @@ An adapter may support:
 - draft record generation for human or institutional review
 
 An adapter must not decide responsibility, approve actions, certify records, prove safety, prove compliance, resolve legal or moral responsibility, or transfer final responsibility to AI.
+
+## AI Judgment Node task-control boundary
+
+`docs/ai-judgment-node-task-control.md` records a bounded concept for AI Judgment Nodes and task-control boundaries.
+
+The concept exists because an AI system may act as a local judgment node inside a Responsibility Pathway when it affects continuation, stopping, retry, escalation, re-observation timing, evidence selection, action selection, or downstream execution allowance.
+
+The focused Phase 3.1 connection note is `docs/phase-3-1-ai-judgment-node-connection.md`.
+
+The focused synchronization note for this responsibility unit is `docs/phase-3-1-ai-judgment-node-sync-note.md`.
+
+This concept distinguishes final responsibility from intermediate AI operational judgment.
+
+It does not make evaluator separation the same as verification.
+
+It does not create final AI responsibility, factual correctness proof, semantic responsibility correctness proof, safety proof, legal validity, compliance proof, fairness proof, connector correctness proof, runtime correctness proof, conformance evidence, production readiness, autonomous task-control implementation, automatic approval, automatic execution, or AI final-responsibility transfer.
+
+Any future schema, checker, workflow, connector, runtime, conformance, or Lean work based on this concept requires a separate design note and restart-condition review.
 
 ## Runtime event schema
 
@@ -344,15 +366,15 @@ The availability note is an operation note only. It does not turn degraded pathw
 
 `docs/current-task-inventory.md` records the current P0-P4 task inventory across active and near-active phases.
 
-Use it before selecting the next task, especially before checker work, workflow work, runtime work, Lean expansion, connector work, Class E examples, standardization claims, conformance-model drafting, or public-claim expansion.
+Use it before selecting the next task, especially before checker work, workflow work, runtime work, Lean expansion, connector work, Class E examples, standardization claims, conformance-model drafting, public-claim expansion, or AI Judgment Node task-control expansion.
 
-For Phase 3.1, the inventory currently treats the first bounded runtime-event checker stub as implemented bounded structural checker work, records observed runtime-event workflow successes as bounded workflow observations, keeps runtime fixture review as bounded artifact preparation, keeps event-to-pathway relation checker planning as a future local structural checker plan only, keeps `docs/progress-map.md` rough and planning-only, keeps `docs/responsibility-pathway-availability.md` reachable for degraded-pathway handling, and keeps runtime-event workflow expansion, service-specific connectors, production conversion code, production runtime integration, Class E positive examples, support-call schema fields, missed-support schema fields, support-call semantic checking, missed-support correctness checking, conformance-model drafting, and Lean expansion around runtime events, support-call policy, or missed-support signals deferred or conditional.
+For Phase 3.1, the inventory currently treats the first bounded runtime-event checker stub as implemented bounded structural checker work, records observed runtime-event workflow successes as bounded workflow observations, keeps runtime fixture review as bounded artifact preparation, keeps event-to-pathway relation checker planning as a future local structural checker plan only, keeps `docs/progress-map.md` rough and planning-only, keeps `docs/responsibility-pathway-availability.md` reachable for degraded-pathway handling, keeps `docs/ai-judgment-node-task-control.md` as a bounded concept and operation boundary note, keeps `docs/phase-3-1-ai-judgment-node-connection.md` and `docs/phase-3-1-ai-judgment-node-sync-note.md` as focused reader-path records, and keeps runtime-event workflow expansion, service-specific connectors, production conversion code, production runtime integration, Class E positive examples, support-call schema fields, missed-support schema fields, support-call semantic checking, missed-support correctness checking, conformance-model drafting, AI Judgment Node schema/checker/workflow/runtime/connector/conformance expansion, and Lean expansion around runtime events, AI Judgment Nodes, support-call policy, or missed-support signals deferred or conditional.
 
 The task inventory is a planning and prioritization note only. It is not certification, production approval, legal review, safety review, compliance review, fairness review, connector correctness proof, adapter correctness proof, runtime correctness proof, Lean completeness proof, standardization certification, progress certification, or AI final-responsibility transfer.
 
 ## Runtime-event checking synchronization
 
-The runtime-event checking plan, first bounded checker stub, local observation, first minimal workflow, observed workflow successes, minimal runtime fixture checker coverage, event-to-pathway relation checker planning, and focused observation notes have been synchronized across the repository-maintenance reader path.
+The runtime-event checking plan, first bounded checker stub, local observation, first minimal workflow, observed workflow successes, minimal runtime fixture checker coverage, event-to-pathway relation checker planning, focused observation notes, and AI Judgment Node focused notes have been synchronized across the repository-maintenance reader path.
 
 Current synchronization status:
 
@@ -365,13 +387,18 @@ Current synchronization status:
 - `docs/runtime-event-checking-plan.md` records current bounded runtime-event checks, future checks, out-of-scope checks, and next implementation order
 - `docs/runtime-event-schema-fixture-alignment.md` records current alignment between the draft runtime-event schema, selected JSON fixtures, and bounded runtime-event checker without treating it as validation
 - `docs/event-to-pathway-relation-checker-plan.md` records planned future local structural relation-checker boundaries before any implementation
+- `docs/ai-judgment-node-task-control.md` records AI local judgment and task-control boundaries as documentation-only concept material
+- `docs/phase-3-1-ai-judgment-node-connection.md` records the focused Phase 3.1 reader path for AI local judgment and task-control boundaries
+- `docs/phase-3-1-ai-judgment-node-sync-note.md` records the focused synchronization unit for the AI Judgment Node task-control boundary
 - `docs/checker-coverage.md` records the current runtime-event checker coverage and remaining boundaries
-- `docs/operation-index.md` points runtime-event schema checking, JSON fixture checking, event-to-pathway relation checker planning, future runtime-event checker work, workflow observation, runtime candidate planning, degraded-pathway handling, progress review, and task selection to the relevant operation documents
+- `docs/operation-index.md` points runtime-event schema checking, JSON fixture checking, event-to-pathway relation checker planning, future runtime-event checker work, workflow observation, runtime candidate planning, degraded-pathway handling, AI local judgment task-control boundaries, progress review, and task selection to the relevant operation documents
 - `BEACON.md` points readers to `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
 - `BEACON.md` points readers to `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
+- `BEACON.md` points readers to `docs/ai-judgment-node-task-control.md` and `docs/phase-3-1-ai-judgment-node-sync-note.md` when AI local judgment, task-control loops, stop conditions, evaluator separation, or the focused synchronization unit matters
 - `docs/current-task-inventory.md` keeps `docs/progress-map.md` visible before progress percentages, next gates, or maturity are discussed
 - `docs/current-task-inventory.md` keeps `docs/responsibility-pathway-availability.md` visible when degraded-pathway handling matters
 - `docs/current-task-inventory.md` keeps `docs/event-to-pathway-relation-checker-plan.md` visible before any future relation checker implementation
+- `docs/current-task-inventory.md` keeps `docs/ai-judgment-node-task-control.md`, `docs/phase-3-1-ai-judgment-node-connection.md`, and `docs/phase-3-1-ai-judgment-node-sync-note.md` visible when AI local judgment or task-control boundaries matter
 - `docs/phase-3-1-sync-log.md` records runtime-event checker stub synchronization and runtime-event workflow observation synchronization as responsibility units split across multiple small commits
 - `docs/phase-3-1-roadmap-note.md` remains a planning companion and does not convert Phase 3.1 into a production runtime phase
 - `docs/example-index.md` records the minimal synthetic runtime fixture as a runtime candidate fixture for reading and review only
@@ -379,15 +406,15 @@ Current synchronization status:
 - `ROADMAP.md` records the runtime-event checking rule before broader implementation
 - `CHANGELOG.md` records the runtime-event checking plan as a conceptual milestone before checker implementation
 
-This synchronization does not unlock service-specific connectors, production runtime integration, relation-checker implementation, conformance-model drafting, public standardization claims, semantic responsibility correctness checking, progress certification, schema correctness claims, JSON semantic correctness claims, runtime correctness claims, or AI final-responsibility transfer.
+This synchronization does not unlock service-specific connectors, production runtime integration, relation-checker implementation, conformance-model drafting, public standardization claims, semantic responsibility correctness checking, AI Judgment Node schema/checker/workflow/runtime/connector/conformance expansion, progress certification, schema correctness claims, JSON semantic correctness claims, runtime correctness claims, or AI final-responsibility transfer.
 
 ## Open-source review intent
 
-The repository is prepared so that future open-source review can inspect boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed workflow successes, minimal runtime fixture checker coverage, event-to-pathway relation checker planning, progress estimates, active gates, next gates, degraded-pathway handling, judgment-return rules, and deferred implementation choices.
+The repository is prepared so that future open-source review can inspect boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed workflow successes, minimal runtime fixture checker coverage, event-to-pathway relation checker planning, progress estimates, active gates, next gates, degraded-pathway handling, AI local judgment task-control boundaries, judgment-return rules, and deferred implementation choices.
 
-Open-source review is intended to help others examine whether the repository preserves return paths from claims to definitions, examples, schemas, checker boundaries, excluded claims, operation documents, runtime candidate boundaries, relation-checker planning boundaries, progress-map boundaries, responsibility-pathway availability boundaries, and deferred work.
+Open-source review is intended to help others examine whether the repository preserves return paths from claims to definitions, examples, schemas, checker boundaries, excluded claims, operation documents, runtime candidate boundaries, AI Judgment Node boundaries, relation-checker planning boundaries, progress-map boundaries, responsibility-pathway availability boundaries, and deferred work.
 
-Opening the repository for review does not itself certify the repository, approve production use, prove connector correctness, prove adapter correctness, prove schema correctness, prove runtime correctness, certify progress, certify degraded-pathway handling, certify checker completeness, certify workflow completeness, or transfer final responsibility to reviewers, users, or AI systems.
+Opening the repository for review does not itself certify the repository, approve production use, prove connector correctness, prove adapter correctness, prove schema correctness, prove runtime correctness, certify progress, certify degraded-pathway handling, certify checker completeness, certify workflow completeness, certify AI local judgment correctness, or transfer final responsibility to reviewers, users, or AI systems.
 
 ## Repository operation layer
 
@@ -431,6 +458,8 @@ The operation index is now connected from:
 `docs/progress-map.md` is now connected from `docs/operation-index.md`, `BEACON.md`, `docs/current-task-inventory.md`, and `docs/phase-3-1-sync-log.md` as the rough planning and gate-tracking map for progress review.
 
 `docs/responsibility-pathway-availability.md` is now connected from `docs/operation-index.md`, `BEACON.md`, `docs/current-task-inventory.md`, `docs/phase-3-1-current-snapshot.md`, and `docs/phase-3-1-sync-log.md` as the operation note for degraded-pathway handling, minimum preservation, and judgment-return handling.
+
+`docs/ai-judgment-node-task-control.md` is now connected from `docs/operation-index.md`, `BEACON.md`, `docs/current-task-inventory.md`, `docs/phase-3-1-current-snapshot.md`, and focused Phase 3.1 AI Judgment Node notes as the concept and operation boundary for AI local judgment and task-control boundaries.
 
 `scripts/check_runtime_events.py` is the first bounded runtime-event checker stub. It is connected through `docs/runtime-event-checking-plan.md`, `docs/checker-coverage.md`, this snapshot, and the Phase 3.1 sync log. It does not create a production runtime, service connector, schema certification, JSON semantic correctness proof, adapter correctness proof, connector correctness proof, runtime correctness proof, or AI final-responsibility transfer.
 
