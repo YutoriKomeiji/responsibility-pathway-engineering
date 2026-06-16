@@ -24,6 +24,7 @@ The current stable construction path includes:
 - a bounded runtime-event checker for selected synthetic JSON fixtures
 - observed minimal runtime-event workflow successes
 - runtime-event schema/fixture alignment documentation
+- event-to-pathway relation checker planning before any relation-checker implementation
 - support-call and missed-support concept notes
 - a boundary-only missed-support example
 - explicit repository operation documents
@@ -41,19 +42,20 @@ The support-call / missed-support path is currently concept-level and boundary-e
 3. `docs/phase-3-1-current-snapshot.md`
 4. `docs/current-task-inventory.md`
 5. `docs/runtime-event-schema-fixture-alignment.md` when schema/fixture/checker alignment matters
-6. `docs/runtime-event-workflow-current-status.md` when workflow observation matters
-7. `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md` when the focused sync-log supplement matters
-8. `docs/phase-3-1-sync-log.md`
-9. `docs/phase-3-1-roadmap-note.md`
-10. `docs/phase-3-1-roadmap-sync-after-readme-recovery.md`
-11. `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
-12. `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
-13. `docs/concepts/index.md`
-14. `docs/standardization-strategy.md` before expanding world-standard or conformance language
-15. `docs/example-index.md`
-16. `docs/checker-coverage.md`
-17. `ROADMAP.md`
-18. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
+6. `docs/event-to-pathway-relation-checker-plan.md` when future relation-checker planning matters
+7. `docs/runtime-event-workflow-current-status.md` when workflow observation matters
+8. `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md` when the focused sync-log supplement matters
+9. `docs/phase-3-1-sync-log.md`
+10. `docs/phase-3-1-roadmap-note.md`
+11. `docs/phase-3-1-roadmap-sync-after-readme-recovery.md`
+12. `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
+13. `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
+14. `docs/concepts/index.md`
+15. `docs/standardization-strategy.md` before expanding world-standard or conformance language
+16. `docs/example-index.md`
+17. `docs/checker-coverage.md`
+18. `ROADMAP.md`
+19. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
 
 Use `docs/repository-operation-model.md` before broad reader-path synchronization, long-file updates, session handoff, or periodic operation review.
 
@@ -67,6 +69,7 @@ Use `docs/repository-operation-model.md` before broad reader-path synchronizatio
 - Keep support-call and missed-support semantics concept-level until deliberately stabilized.
 - Keep the current bounded runtime-event checker and workflow observations documented as structural repository-maintenance signals only.
 - Keep runtime-event schema/fixture alignment visible without treating it as validation.
+- Keep event-to-pathway relation checker planning visible without treating it as current checker behavior or implementation permission.
 - Keep further runtime-event schema checking, broader JSON fixture checking, event-to-pathway semantic checking, and further runtime fixture checking deferred unless deliberately reopened.
 - Keep service-specific connectors and production runtime integration deferred.
 - Keep Lean expansion around adapter, runtime-event, support-call, or missed-support concepts deferred.
@@ -95,6 +98,7 @@ Do not start the following without satisfying the relevant restart conditions an
 - runtime-event schema checker
 - broader JSON schema-fixture checker
 - further runtime fixture checker beyond the selected minimal synthetic runtime observation fixture
+- event-to-pathway relation checker implementation
 - event-to-pathway semantic checker
 - action-class-specific checker enforcement
 - support-call schema fields
