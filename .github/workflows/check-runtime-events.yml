@@ -8,6 +8,9 @@ on:
       - "scripts/check_runtime_events.py"
       - ".github/workflows/check-runtime-events.yml"
 
+permissions:
+  contents: read
+
 jobs:
   check-runtime-events:
     name: Bounded runtime-event checks
