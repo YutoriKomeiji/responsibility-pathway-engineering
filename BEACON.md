@@ -21,6 +21,9 @@ The current stable construction path includes:
 - reference implementation boundaries
 - adapter-boundary and runtime-event bridge notes
 - a minimal synthetic runtime fixture for reading and review only
+- a bounded runtime-event checker for selected synthetic JSON fixtures
+- observed minimal runtime-event workflow successes
+- runtime-event schema/fixture alignment documentation
 - support-call and missed-support concept notes
 - a boundary-only missed-support example
 - explicit repository operation documents
@@ -36,18 +39,21 @@ The support-call / missed-support path is currently concept-level and boundary-e
 1. `README.md` or `README.ja.md`
 2. `docs/operation-index.md`
 3. `docs/phase-3-1-current-snapshot.md`
-4. `docs/phase-3-1-sync-log.md`
-5. `docs/phase-3-1-roadmap-note.md`
-6. `docs/phase-3-1-roadmap-sync-after-readme-recovery.md`
-7. `docs/current-task-inventory.md`
-8. `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
-9. `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
-10. `docs/concepts/index.md`
-11. `docs/standardization-strategy.md` before expanding world-standard or conformance language
-12. `docs/example-index.md`
-13. `docs/checker-coverage.md`
-14. `ROADMAP.md`
-15. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
+4. `docs/current-task-inventory.md`
+5. `docs/runtime-event-schema-fixture-alignment.md` when schema/fixture/checker alignment matters
+6. `docs/runtime-event-workflow-current-status.md` when workflow observation matters
+7. `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md` when the focused sync-log supplement matters
+8. `docs/phase-3-1-sync-log.md`
+9. `docs/phase-3-1-roadmap-note.md`
+10. `docs/phase-3-1-roadmap-sync-after-readme-recovery.md`
+11. `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
+12. `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
+13. `docs/concepts/index.md`
+14. `docs/standardization-strategy.md` before expanding world-standard or conformance language
+15. `docs/example-index.md`
+16. `docs/checker-coverage.md`
+17. `ROADMAP.md`
+18. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
 
 Use `docs/repository-operation-model.md` before broad reader-path synchronization, long-file updates, session handoff, or periodic operation review.
 
@@ -59,11 +65,13 @@ Use `docs/repository-operation-model.md` before broad reader-path synchronizatio
 - Keep progress estimates rough, planning-only, and non-certifying.
 - Keep standardization strategy grounded, complementary to existing frameworks, and non-certifying.
 - Keep support-call and missed-support semantics concept-level until deliberately stabilized.
-- Keep runtime-event schema checking, JSON fixture checking, and runtime fixture checking deferred.
+- Keep the current bounded runtime-event checker and workflow observations documented as structural repository-maintenance signals only.
+- Keep runtime-event schema/fixture alignment visible without treating it as validation.
+- Keep further runtime-event schema checking, broader JSON fixture checking, event-to-pathway semantic checking, and further runtime fixture checking deferred unless deliberately reopened.
 - Keep service-specific connectors and production runtime integration deferred.
 - Keep Lean expansion around adapter, runtime-event, support-call, or missed-support concepts deferred.
 - Keep Class E positive examples deferred.
-- Preserve restartability through operation-index, current snapshots, sync logs, roadmap notes, progress map, and short changelog milestones.
+- Preserve restartability through operation-index, current snapshots, sync logs, focused sync notes, roadmap notes, progress map, and short changelog milestones.
 
 ## Recent bounded check observations
 
@@ -72,8 +80,10 @@ Use `docs/repository-operation-model.md` before broad reader-path synchronizatio
 - `Check examples #16` observed green on commit `d377be2` for the runtime-event-to-pathway draft example after structural repair.
 - `Check examples #17` observed failed on commit `57445b1` because the missed-support example declared `lifecycle_state: returning` without a top-level `returning` block.
 - `Check examples #18` observed green on commit `f63678c` after the top-level `returning` block was added.
+- `Check runtime events` observed green on run `27501847137` for the first minimal runtime-event workflow.
+- `Check runtime events` observed green on run `27607798655` after `examples/minimal-synthetic-runtime-fixture.json` was added to bounded runtime-event checker coverage.
 
-All observed green statuses are bounded repository-maintenance signals only. They are not certification, legal validation, safety validation, compliance validation, fairness validation, moral resolution, production approval, connector correctness proof, runtime correctness proof, support-call semantic validation, missed-support correctness validation, Lean completeness proof, standardization certification, progress certification, or AI final-responsibility transfer.
+All observed green statuses are bounded repository-maintenance signals only. They are not certification, legal validation, safety validation, compliance validation, fairness validation, moral resolution, production approval, connector correctness proof, runtime correctness proof, schema validation, JSON semantic correctness proof, adapter mapping correctness proof, support-call semantic validation, missed-support correctness validation, Lean completeness proof, standardization certification, progress certification, or AI final-responsibility transfer.
 
 ## Do not start yet
 
@@ -83,10 +93,9 @@ Do not start the following without satisfying the relevant restart conditions an
 - production conversion code
 - production runtime integration
 - runtime-event schema checker
-- JSON fixture checker
-- runtime fixture checker
-- `scripts/check_runtime_events.py`
-- runtime-event workflow
+- broader JSON schema-fixture checker
+- further runtime fixture checker beyond the selected minimal synthetic runtime observation fixture
+- event-to-pathway semantic checker
 - action-class-specific checker enforcement
 - support-call schema fields
 - missed-support schema fields
