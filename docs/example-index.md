@@ -1,10 +1,10 @@
 # Example Index
 
-This index lists the current example files and explains how they should be read during Phase 1.6 and Phase 3 reference-example work.
+This index lists the current example and fixture files and explains how they should be read during Phase 1.6, Phase 3 reference-example work, and Phase 3.1 runtime-event bridge work.
 
-Examples are illustrative reference instances. They are not schema validation results, certifications, compliance determinations, safety guarantees, fairness guarantees, legal assessments, moral accountability judgments, or production-ready patterns.
+Examples and fixtures are illustrative reference instances. They are not schema validation results, certifications, compliance determinations, safety guarantees, fairness guarantees, legal assessments, moral accountability judgments, or production-ready patterns.
 
-## Current examples
+## Current examples and fixtures
 
 ### `examples/minimal-pathway.yaml`
 
@@ -186,6 +186,32 @@ Use this example when introducing:
 - review-result boundaries in a reference workflow
 - reference implementation boundaries
 
+### `examples/adapter-input-event-minimal.json`
+
+Purpose:
+
+- show the first selected synthetic runtime-event JSON fixture
+- provide a small vendor-neutral runtime-event input for the adapter boundary
+- preserve event identity, source system, observed actor, observed action, observed target, evidence, review requirement, adapter context, and excluded claims
+- keep the event as an observation input, not approval, execution, certification, or production connector output
+
+Key boundary:
+
+This fixture is synthetic and vendor-neutral. It is not a production runtime event, service-specific connector payload, approval record, execution record, legal validation, safety certification, compliance certification, fairness certification, moral resolution, production-readiness proof, or AI final-responsibility transfer.
+
+Current checker boundary:
+
+This JSON fixture is checked by `scripts/check_runtime_events.py` for bounded structural runtime-event signals only. It is not checked by `scripts/check_examples.py` because it is not a pathway YAML example.
+
+Use this fixture when introducing:
+
+- Phase 3.1 adapter boundary and runtime event bridge
+- synthetic runtime-event input shape
+- source-system and observed-actor boundaries
+- missing-context and uncertainty preservation
+- adapter suggestion versus human review
+- review-required event interpretation
+
 ### `examples/runtime-event-to-pathway-minimal.yaml`
 
 Purpose:
@@ -201,7 +227,7 @@ This example models a synthetic, vendor-neutral runtime-event bridge only. It do
 
 Current checker boundary:
 
-This example is currently checked only as a pathway example under the existing structural and originating-lifecycle checker rules. `docs/runtime-event-checking-plan.md` describes possible future runtime-event schema checking, JSON fixture checking, and runtime-event workflow checks, but those checks are not implemented yet.
+This example is currently checked only as a pathway example under the existing structural and originating-lifecycle checker rules. `docs/runtime-event-schema-fixture-alignment.md` describes the current structural alignment between the draft runtime-event schema, selected JSON fixtures, and bounded runtime-event checker. `docs/runtime-event-checking-plan.md` describes future checks and boundaries. A checker pass must not be interpreted as schema validation, JSON semantic correctness proof, adapter mapping correctness proof, runtime correctness proof, production readiness, certification, conformance evidence, or AI final-responsibility transfer.
 
 Use this example when introducing:
 
@@ -211,7 +237,7 @@ Use this example when introducing:
 - missing-context and uncertainty preservation
 - adapter suggestion versus human review
 - generated record review requirements
-- runtime-event checking plan boundaries before checker implementation
+- difference between pathway-example checks and JSON fixture checks
 
 ### `examples/minimal-synthetic-runtime-fixture.json`
 
@@ -224,13 +250,13 @@ Purpose:
 
 Key boundary:
 
-This fixture is synthetic, local, vendor-neutral, non-production, review-required, and non-certifying. It does not implement a production runtime, service-specific connector, runtime workflow, checker, adapter mapping correctness proof, automatic approval, automatic execution, legal validation, safety certification, compliance certification, fairness certification, moral resolution, production readiness, or AI final-responsibility transfer.
+This fixture is synthetic, local, vendor-neutral, non-production, review-required, and non-certifying. It does not implement a production runtime, service-specific connector, adapter mapping correctness proof, automatic approval, automatic execution, legal validation, safety certification, compliance certification, fairness certification, moral resolution, production readiness, runtime correctness, conformance evidence, or AI final-responsibility transfer.
 
 Current checker boundary:
 
-This fixture is not currently checked by `scripts/check_examples.py`. It is a JSON runtime candidate fixture for reading and review. Future structural checking must follow `docs/runtime-event-checking-plan.md` and `docs/minimal-runtime-candidate-design.md`.
+This JSON fixture is checked by `scripts/check_runtime_events.py` for bounded structural runtime-boundary signals only. It is not checked by `scripts/check_examples.py` because it is not a pathway YAML example. It remains a minimal synthetic runtime observation fixture for reading and review, not a production runtime or runtime correctness proof.
 
-Use this example when introducing:
+Use this fixture when introducing:
 
 - minimal runtime candidate planning
 - synthetic runtime observation boundaries
@@ -329,7 +355,7 @@ Use this example when introducing:
 - reopening conditions
 - distinction between closure, repair completion, certification, and responsibility erasure
 
-## Reading order for examples
+## Reading order for examples and fixtures
 
 Recommended reading order:
 
@@ -348,15 +374,18 @@ Recommended reading order:
 13. `examples/record-review-minimal.yaml`
 14. `examples/human-ai-review-workflow-minimal.yaml`
 15. `docs/adapter-boundary.md`
-16. `docs/runtime-event-checking-plan.md`
-17. `docs/minimal-runtime-candidate-design.md`
-18. `examples/runtime-event-to-pathway-minimal.yaml`
-19. `examples/minimal-synthetic-runtime-fixture.json`
-20. `examples/repair-flow.yaml`
-21. `examples/suspended-pathway.yaml`
-22. `examples/returning-pathway.yaml`
-23. `examples/closed-pathway.yaml`
-24. `docs/example-review-notes.md`
+16. `spec/runtime-event.schema.yaml`
+17. `docs/runtime-event-schema-fixture-alignment.md`
+18. `docs/runtime-event-checking-plan.md`
+19. `docs/minimal-runtime-candidate-design.md`
+20. `examples/adapter-input-event-minimal.json`
+21. `examples/runtime-event-to-pathway-minimal.yaml`
+22. `examples/minimal-synthetic-runtime-fixture.json`
+23. `examples/repair-flow.yaml`
+24. `examples/suspended-pathway.yaml`
+25. `examples/returning-pathway.yaml`
+26. `examples/closed-pathway.yaml`
+27. `docs/example-review-notes.md`
 
 ## Relationship to Action Class Matrix
 
@@ -389,6 +418,7 @@ Current examples use descriptive filenames:
 - `reversible-external-action.yaml`
 - `record-review-minimal.yaml`
 - `human-ai-review-workflow-minimal.yaml`
+- `adapter-input-event-minimal.json`
 - `runtime-event-to-pathway-minimal.yaml`
 - `minimal-synthetic-runtime-fixture.json`
 - `repair-flow.yaml`
