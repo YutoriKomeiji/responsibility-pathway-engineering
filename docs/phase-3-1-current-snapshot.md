@@ -1,6 +1,6 @@
 # Phase 3.1 Current Snapshot
 
-This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, runtime-event checking plan, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed runtime-event workflow success, minimal runtime candidate planning, minimal synthetic runtime fixture, minimal runtime fixture review, progress map, responsibility pathway availability, current task inventory, and repository operation layer.
+This snapshot records the current Phase 3.1 position for the adapter boundary, runtime event bridge, runtime-event checking plan, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed runtime-event workflow successes, minimal runtime candidate planning, minimal synthetic runtime fixture, minimal runtime fixture checker coverage, minimal runtime fixture review, progress map, responsibility pathway availability, current task inventory, and repository operation layer.
 
 Phase 3.1 is the bridge from external logs, API events, workflow results, and runtime observations into draft Responsibility Pathway records.
 
@@ -19,6 +19,8 @@ Current Phase 3.1 artifacts:
 - `.github/workflows/check-runtime-events.yml`
 - `docs/runtime-event-checker-local-observation.md`
 - `docs/runtime-event-workflow-current-status.md`
+- `docs/minimal-runtime-fixture-checker-workflow-observation.md`
+- `docs/phase-3-1-minimal-runtime-fixture-checker-connection.md`
 - `docs/runtime-event-checking-plan.md`
 - `docs/minimal-runtime-candidate-design.md`
 - `docs/minimal-runtime-fixture-review.md`
@@ -133,10 +135,10 @@ The plan records:
 - what the first bounded runtime-event checker stub currently checks
 - what future runtime-event checker work may inspect
 - what the first checker layer must not inspect
-- preconditions before adding a runtime-event workflow expansion, schema checker, minimal-runtime-fixture checker, service connector check, or broader runtime-event checker
+- preconditions before adding a runtime-event workflow expansion, schema checker, further minimal-runtime-fixture checker, service connector check, or broader runtime-event checker
 - suggested next implementation order
 - the boundary for passing checks
-- the current decision that schema checking, minimal-runtime-fixture checking, connectors, production runtime, semantic checking, workflow expansion, and AI final-responsibility transfer remain deferred or out of scope
+- the current decision that schema checking, further runtime-fixture checking, connectors, production runtime, semantic checking, workflow expansion, and AI final-responsibility transfer remain deferred or out of scope
 
 The plan does not certify schema correctness, JSON fixture semantic correctness, adapter mapping correctness, service-specific connector behavior, production runtime behavior, workflow stability, legal validity, safety, compliance, fairness, moral resolution, production readiness, or AI final-responsibility transfer.
 
@@ -144,9 +146,16 @@ The plan does not certify schema correctness, JSON fixture semantic correctness,
 
 `scripts/check_runtime_events.py` is the first bounded runtime-event checker stub.
 
-It checks `examples/adapter-input-event-minimal.json` by default and performs only local structural checks on the selected synthetic runtime-event JSON fixture.
+It checks the following fixtures by default:
 
-The checker currently inspects only whether:
+```text
+examples/adapter-input-event-minimal.json
+examples/minimal-synthetic-runtime-fixture.json
+```
+
+It performs only bounded structural checks on selected synthetic runtime-event and minimal synthetic runtime observation JSON fixtures.
+
+For `examples/adapter-input-event-minimal.json`, the checker currently inspects only whether:
 
 - the selected file is parseable JSON
 - the top-level JSON value is a mapping
@@ -162,6 +171,26 @@ The checker currently inspects only whether:
 - `review_requirement.reason` is present
 - `excluded_claims` includes the expected non-certifying boundary items
 
+For `examples/minimal-synthetic-runtime-fixture.json`, the checker currently inspects only bounded runtime-boundary signals such as:
+
+- explicit non-production scope
+- synthetic fixture status
+- vendor-neutral status
+- review-required status
+- no certification claim
+- no production runtime
+- no service-specific connector
+- no automatic approval
+- no automatic execution
+- no external side effects
+- AI final-responsibility non-claim
+- missing approval evidence
+- missing execution evidence
+- human review requirement
+- source event reference
+- expected boundary-preservation flags
+- excluded claims
+
 ## Local and workflow observation status
 
 `docs/runtime-event-checker-local-observation.md` records the first local observation of `scripts/check_runtime_events.py` against `examples/adapter-input-event-minimal.json`.
@@ -173,15 +202,15 @@ exit code: 0
 PASS: bounded runtime-event checks completed without failures
 ```
 
-`docs/runtime-event-workflow-current-status.md` records the first observed runtime-event workflow success.
+`docs/runtime-event-workflow-current-status.md` records observed runtime-event workflow successes.
 
-Observed workflow run:
+First observed workflow run:
 
 ```text
 https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/runs/27501847137
 ```
 
-Observed job:
+First observed job:
 
 ```text
 job id: 81286034329
@@ -191,20 +220,40 @@ job conclusion: success
 step: Run bounded runtime-event checker: completed / success
 ```
 
-A local or workflow pass may mean only that the selected synthetic runtime-event JSON fixture satisfies the bounded structural requirements implemented by the local checker or that the bounded checker completed successfully in GitHub Actions for that workflow run. It is not schema validation, JSON semantic correctness proof, adapter correctness proof, connector correctness proof, runtime correctness proof, production readiness, certification, legal review, safety review, compliance review, fairness review, moral-resolution evidence, or AI final-responsibility transfer.
+After `examples/minimal-synthetic-runtime-fixture.json` was added to the default checker coverage and workflow watch path, the following workflow success was observed and recorded:
+
+```text
+https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/runs/27607798655
+```
+
+Observed job:
+
+```text
+job id: 81624113270
+job name: Bounded runtime-event checks
+job status: completed
+job conclusion: success
+step: Run bounded runtime-event checker: completed / success
+```
+
+The focused observation note is `docs/minimal-runtime-fixture-checker-workflow-observation.md`.
+
+The focused reader-path connection note is `docs/phase-3-1-minimal-runtime-fixture-checker-connection.md`.
+
+A local or workflow pass may mean only that the selected synthetic runtime-event or minimal synthetic runtime observation JSON fixtures satisfy the bounded structural requirements implemented by the local checker or that the bounded checker completed successfully in GitHub Actions for that workflow run. It is not schema validation, JSON semantic correctness proof, adapter correctness proof, connector correctness proof, runtime correctness proof, production readiness, certification, legal review, safety review, compliance review, fairness review, moral-resolution evidence, or AI final-responsibility transfer.
 
 ## Minimal runtime candidate design
 
 `docs/minimal-runtime-candidate-design.md` defines the narrowest acceptable shape for an early runtime candidate.
 
-The design note exists before any runtime fixture, runtime checker expansion, runtime workflow expansion, connector, or production runtime implementation.
+The design note exists before any service connector, production runtime implementation, production conversion code, automatic approval system, or automatic execution system.
 
-It allows only one first candidate:
+It allowed the first bounded candidates:
 
 - a minimal synthetic runtime fixture
-- or a bounded runtime-checking stub
+- a bounded runtime-checking stub
 
-The first minimal synthetic runtime fixture, first bounded runtime-event checker stub, and first minimal workflow are now separate bounded artifacts. They do not together create a production runtime or connector.
+The first minimal synthetic runtime fixture, first bounded runtime-event checker stub, first minimal workflow, and observed bounded workflow successes are now separate bounded artifacts. They do not together create a production runtime or connector.
 
 The candidate must remain non-production, synthetic, local to the repository, review-required, non-certifying, disconnected from service-specific connectors, disconnected from automatic approval or execution, and explicit about missing context, missing approval evidence, missing execution evidence, and excluded claims.
 
@@ -233,7 +282,7 @@ The fixture is:
 
 It references `examples/adapter-input-event-minimal.json` as the source event reference for the observed draft proposal.
 
-The fixture is not currently checked by `scripts/check_examples.py` or `scripts/check_runtime_events.py` and does not unlock service-specific connector work, production conversion code, or production runtime integration.
+The fixture is now checked by `scripts/check_runtime_events.py` for bounded structural runtime-boundary signals only. That check does not validate runtime correctness, schema correctness, JSON semantic correctness, adapter mapping correctness, service connector correctness, production readiness, certification, or AI final-responsibility transfer.
 
 ## Minimal runtime fixture review
 
@@ -245,7 +294,7 @@ No change to `examples/minimal-synthetic-runtime-fixture.json` was required by t
 
 `docs/minimal-runtime-fixture-review-connection.md` records the reader path connecting the review note to the current Phase 3.1 operation documents.
 
-The review note and connection note do not unlock production runtime integration, service-specific connectors, production conversion code, runtime fixture checker implementation, schema correctness claims, JSON semantic correctness claims, adapter mapping correctness claims, connector correctness claims, responsibility assignment correctness claims, Class E positive examples, or Lean expansion around runtime events.
+The review note and connection note do not unlock production runtime integration, service-specific connectors, production conversion code, schema correctness claims, JSON semantic correctness claims, adapter mapping correctness claims, connector correctness claims, responsibility assignment correctness claims, Class E positive examples, or Lean expansion around runtime events.
 
 ## Progress map
 
@@ -275,28 +324,25 @@ The availability note is an operation note only. It does not turn degraded pathw
 
 Use it before selecting the next task, especially before checker work, workflow work, runtime work, Lean expansion, connector work, Class E examples, standardization claims, conformance-model drafting, or public-claim expansion.
 
-For Phase 3.1, the inventory currently treats the first bounded runtime-event checker stub as implemented local structural checker work, records the first observed runtime-event workflow success as bounded workflow observation, keeps runtime fixture review as bounded artifact preparation, keeps `docs/progress-map.md` rough and planning-only, keeps `docs/responsibility-pathway-availability.md` reachable for degraded-pathway handling, and keeps runtime fixture checking, runtime-event workflow expansion, service-specific connectors, production conversion code, production runtime integration, Class E positive examples, support-call schema fields, missed-support schema fields, support-call semantic checking, missed-support correctness checking, conformance-model drafting, and Lean expansion around runtime events, support-call policy, or missed-support signals deferred or conditional.
+For Phase 3.1, the inventory currently treats the first bounded runtime-event checker stub as implemented bounded structural checker work, records observed runtime-event workflow successes as bounded workflow observations, keeps runtime fixture review as bounded artifact preparation, keeps `docs/progress-map.md` rough and planning-only, keeps `docs/responsibility-pathway-availability.md` reachable for degraded-pathway handling, and keeps runtime-event workflow expansion, service-specific connectors, production conversion code, production runtime integration, Class E positive examples, support-call schema fields, missed-support schema fields, support-call semantic checking, missed-support correctness checking, conformance-model drafting, and Lean expansion around runtime events, support-call policy, or missed-support signals deferred or conditional.
 
 The task inventory is a planning and prioritization note only. It is not certification, production approval, legal review, safety review, compliance review, fairness review, connector correctness proof, adapter correctness proof, runtime correctness proof, Lean completeness proof, standardization certification, progress certification, or AI final-responsibility transfer.
 
 ## Runtime-event checking synchronization
 
-The runtime-event checking plan, first bounded checker stub, local observation, first minimal workflow, and first observed workflow success have been synchronized across the repository-maintenance reader path.
+The runtime-event checking plan, first bounded checker stub, local observation, first minimal workflow, observed workflow successes, minimal runtime fixture checker coverage, and focused observation notes have been synchronized across the repository-maintenance reader path.
 
 Current synchronization status:
 
-- `scripts/check_runtime_events.py` implements the first bounded runtime-event checker stub for `examples/adapter-input-event-minimal.json`
+- `scripts/check_runtime_events.py` implements bounded structural checks for `examples/adapter-input-event-minimal.json` and `examples/minimal-synthetic-runtime-fixture.json`
 - `.github/workflows/check-runtime-events.yml` runs the bounded runtime-event checker on push for the selected fixture and checker files
 - `docs/runtime-event-checker-local-observation.md` records the first local pass observation
-- `docs/runtime-event-workflow-current-status.md` records the first observed runtime-event workflow success on run `27501847137`
+- `docs/runtime-event-workflow-current-status.md` records the first observed runtime-event workflow success on run `27501847137` and the observed minimal runtime fixture checker workflow success on run `27607798655`
+- `docs/minimal-runtime-fixture-checker-workflow-observation.md` records the focused workflow observation for run `27607798655`
+- `docs/phase-3-1-minimal-runtime-fixture-checker-connection.md` records the focused reader path for the minimal runtime fixture checker expansion and workflow observation
 - `docs/runtime-event-checking-plan.md` records current bounded runtime-event checks, future checks, out-of-scope checks, and next implementation order
 - `docs/checker-coverage.md` records the current runtime-event checker coverage and remaining boundaries
-- `docs/operation-index.md` points runtime-event schema checking, JSON fixture checking, and future runtime-event checker work to `docs/runtime-event-checking-plan.md` first
-- `docs/operation-index.md` points runtime candidate selection to `docs/minimal-runtime-candidate-design.md` before any runtime candidate is added
-- `docs/operation-index.md` points minimal runtime fixture review to `docs/minimal-runtime-fixture-review.md` before changing the minimal runtime fixture or treating its first review as current
-- `docs/operation-index.md` points progress review, rough progress estimates, gates, next gates, and progress-related stop conditions to `docs/progress-map.md`
-- `docs/operation-index.md` points degraded-pathway handling, residual evidence, missing evidence, uncertainty, and judgment-return handling to `docs/responsibility-pathway-availability.md`
-- `docs/operation-index.md` points task selection to `docs/current-task-inventory.md` before starting higher-risk work
+- `docs/operation-index.md` points runtime-event schema checking, JSON fixture checking, future runtime-event checker work, workflow observation, runtime candidate planning, degraded-pathway handling, progress review, and task selection to the relevant operation documents
 - `BEACON.md` points readers to `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
 - `BEACON.md` points readers to `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
 - `docs/current-task-inventory.md` keeps `docs/progress-map.md` visible before progress percentages, next gates, or maturity are discussed
@@ -304,7 +350,7 @@ Current synchronization status:
 - `docs/phase-3-1-sync-log.md` records runtime-event checker stub synchronization and runtime-event workflow observation synchronization as responsibility units split across multiple small commits
 - `docs/phase-3-1-roadmap-note.md` remains a planning companion and does not convert Phase 3.1 into a production runtime phase
 - `docs/example-index.md` records the minimal synthetic runtime fixture as a runtime candidate fixture for reading and review only
-- `docs/checker-coverage.md` records that `scripts/check_runtime_events.py` checks `examples/adapter-input-event-minimal.json` by default, while current checkers do not validate `spec/runtime-event.schema.yaml` or `examples/minimal-synthetic-runtime-fixture.json`
+- `docs/checker-coverage.md` records that `scripts/check_runtime_events.py` checks the selected synthetic runtime-event and minimal synthetic runtime observation JSON fixtures by default, while current checkers do not validate `spec/runtime-event.schema.yaml`
 - `ROADMAP.md` records the runtime-event checking rule before broader implementation
 - `CHANGELOG.md` records the runtime-event checking plan as a conceptual milestone before checker implementation
 
@@ -312,7 +358,7 @@ This synchronization does not unlock service-specific connectors, production run
 
 ## Open-source review intent
 
-The repository is prepared so that future open-source review can inspect boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, first bounded runtime-event checker stub, first minimal runtime-event workflow, first observed workflow success, progress estimates, active gates, next gates, degraded-pathway handling, judgment-return rules, and deferred implementation choices.
+The repository is prepared so that future open-source review can inspect boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed workflow successes, minimal runtime fixture checker coverage, progress estimates, active gates, next gates, degraded-pathway handling, judgment-return rules, and deferred implementation choices.
 
 Open-source review is intended to help others examine whether the repository preserves return paths from claims to definitions, examples, schemas, checker boundaries, excluded claims, operation documents, runtime candidate boundaries, progress-map boundaries, responsibility-pathway availability boundaries, and deferred work.
 
@@ -359,6 +405,6 @@ The operation index is now connected from:
 
 `docs/responsibility-pathway-availability.md` is now connected from `docs/operation-index.md`, `BEACON.md`, `docs/current-task-inventory.md`, `docs/phase-3-1-current-snapshot.md`, and `docs/phase-3-1-sync-log.md` as the operation note for degraded-pathway handling, minimum preservation, and judgment-return handling.
 
-`scripts/check_runtime_events.py` is now the first bounded local runtime-event checker stub. It is connected through `docs/runtime-event-checking-plan.md`, `docs/checker-coverage.md`, this snapshot, and the Phase 3.1 sync log. It does not create a production runtime, service connector, schema certification, JSON semantic correctness proof, adapter correctness proof, connector correctness proof, or AI final-responsibility transfer.
+`scripts/check_runtime_events.py` is the first bounded runtime-event checker stub. It is connected through `docs/runtime-event-checking-plan.md`, `docs/checker-coverage.md`, this snapshot, and the Phase 3.1 sync log. It does not create a production runtime, service connector, schema certification, JSON semantic correctness proof, adapter correctness proof, connector correctness proof, runtime correctness proof, or AI final-responsibility transfer.
 
-`.github/workflows/check-runtime-events.yml` is now the first minimal runtime-event workflow. Its first observed success is recorded in `docs/runtime-event-workflow-current-status.md` and `docs/phase-3-1-sync-log.md`. This workflow success does not create schema validation, JSON semantic correctness proof, runtime correctness proof, production readiness, certification, or AI final-responsibility transfer.
+`.github/workflows/check-runtime-events.yml` is the first minimal runtime-event workflow. Its observed successes are recorded in `docs/runtime-event-workflow-current-status.md`, `docs/minimal-runtime-fixture-checker-workflow-observation.md`, `docs/phase-3-1-minimal-runtime-fixture-checker-connection.md`, and `docs/phase-3-1-sync-log.md`. These workflow successes do not create schema validation, JSON semantic correctness proof, runtime correctness proof, production readiness, certification, or AI final-responsibility transfer.
