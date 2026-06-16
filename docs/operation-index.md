@@ -35,7 +35,7 @@ Use documents according to the phase of work.
 | Concept-path navigation | `docs/concepts/index.md`, relevant concept note, source-alignment note, example index, checker coverage | checking when a concept boundary changed |
 | Standardization preparation | `docs/standardization-strategy.md`, progress map, README, operation index, current snapshot, concept index, example index, checker coverage | checking when a standardization boundary or language choice changed |
 | Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, relevant schemas or examples | checking when a rule or coverage boundary changed |
-| Workflow observation | `docs/runtime-event-workflow-current-status.md`, `docs/minimal-runtime-fixture-checker-workflow-observation.md`, `docs/phase-3-1-sync-log.md`, checker coverage | checking when a bounded workflow result or workflow-observation boundary changed |
+| Workflow observation | `docs/runtime-event-workflow-current-status.md`, `docs/minimal-runtime-fixture-checker-workflow-observation.md`, `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md`, `docs/phase-3-1-sync-log.md`, checker coverage | checking when a bounded workflow result or workflow-observation boundary changed |
 | Phase planning | `ROADMAP.md`, roadmap note, progress map, current snapshot, operation index, current task inventory | confirming a past phase milestone |
 | Audit, error investigation, or retrospective explanation | `CHANGELOG.md`, sync logs, snapshots, relevant commits and artifacts | this is the intended primary use |
 
@@ -178,7 +178,7 @@ Snapshots record current restart positions for phases or subphases.
 | --- | --- |
 | `docs/phase-2-current-snapshot.md` | Current Phase 2 Lean restart point and scoped formalization status. |
 | `docs/phase-2-5-current-snapshot.md` | Current Phase 2.5 enterprise and record-review restart point. |
-| `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, runtime-event checking plan, runtime-event workflow observation, minimal runtime candidate planning, minimal runtime fixture, current task inventory, repository operation, checker coverage, and example-index restart point. |
+| `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, runtime-event checking plan, runtime-event workflow observation, minimal runtime candidate planning, minimal runtime fixture, minimal runtime fixture checker coverage, current task inventory, repository operation, checker coverage, and example-index restart point. |
 
 Use snapshots when a change spans multiple documents, when a long-file update becomes risky, when session handoff needs a durable restart path, when BEACON would otherwise need to carry detailed current-state history, or when the next maintainer needs a compact restart point.
 
@@ -189,12 +189,15 @@ Sync logs and roadmap notes are complementary but separate.
 | Document | Current role |
 | --- | --- |
 | `docs/phase-3-1-sync-log.md` | Detailed synchronization record for multi-commit Phase 3.1 reader-path, coverage, checker-interpretation, workflow-observation, and boundary synchronization. |
+| `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md` | Focused sync-log supplement for the minimal runtime fixture checker workflow observation responsibility unit. |
 | `docs/phase-3-1-progress-map-connection.md` | Focused Phase 3.1 reader-path note connecting the rough progress map without rewriting the full current snapshot. |
 | `docs/phase-3-1-roadmap-note.md` | Short current-planning companion for Phase 3.1 near-term roadmap position, minimal runtime candidate planning, next low-risk work, phase rules, and stop conditions. |
 | `docs/phase-3-1-roadmap-runtime-reference.md` | Historical reference note for the minimal runtime fixture ROADMAP reference after the intended ROADMAP reference was absorbed. |
 | `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` | Short companion note for the README recovery and missed-support synchronization unit. |
 
 Use sync logs to understand what changed across several commits, what was synchronized, what checker status or interpretation was current, and what work remained deferred after a synchronization unit.
+
+Use focused sync notes when the main sync log is long and a narrow responsibility unit needs durable preservation without forcing a broad full-file rewrite.
 
 Use focused connection notes when a narrow reader-path bridge is safer than rewriting a long current snapshot.
 
