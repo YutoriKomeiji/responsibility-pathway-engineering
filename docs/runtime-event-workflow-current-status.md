@@ -32,22 +32,46 @@ dc57a7210ecdca37f5ae86b4e72afbc50e7b36de
 
 ## Observed status
 
-At the time this note was written, no runtime-event workflow run or green status had been observed through the available connector tools.
+The first observed runtime-event workflow success was provided by the human maintainer and confirmed through the GitHub connector.
 
-The commit combined status query returned no statuses.
+Observed workflow run:
+
+```text
+https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/runs/27501847137
+```
+
+Observed run id:
+
+```text
+27501847137
+```
+
+Observed job:
+
+```text
+job id: 81286034329
+job name: Bounded runtime-event checks
+job status: completed
+job conclusion: success
+```
+
+Observed step:
+
+```text
+Run bounded runtime-event checker: completed / success
+```
 
 Therefore the current status is:
 
 ```text
 workflow file added
-workflow run not yet observed
-workflow green status not yet recorded
+workflow run observed
+workflow job completed successfully
+bounded runtime-event checker step completed successfully
 ```
 
 ## Boundary
 
-Do not describe the runtime-event workflow as green, passing, stable, required, or production-ready until a workflow run has actually been observed.
+This observed success means only that the bounded runtime-event checker completed successfully in GitHub Actions for the selected synthetic runtime-event JSON fixture in that workflow run.
 
-Do not treat a future workflow pass as schema validation, JSON semantic correctness proof, adapter mapping correctness proof, connector correctness proof, runtime correctness proof, production readiness, certification, or AI final-responsibility transfer.
-
-A future workflow pass may mean only that the bounded runtime-event checker completed without failures for the selected synthetic runtime-event JSON fixture in GitHub Actions.
+Do not treat this workflow pass as schema validation, JSON semantic correctness proof, adapter mapping correctness proof, connector correctness proof, runtime correctness proof, production readiness, certification, legal review, safety review, compliance review, fairness review, moral-resolution evidence, or AI final-responsibility transfer.
