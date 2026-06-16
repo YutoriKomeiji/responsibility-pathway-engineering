@@ -17,6 +17,9 @@ on:
       - ".github/workflows/check-review-results.yml"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   check-review-results:
     name: Check review-result fixtures
