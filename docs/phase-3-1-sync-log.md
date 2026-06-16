@@ -97,26 +97,13 @@ The synchronization introduced or connected:
 - `docs/checker-coverage.md` as the checker-boundary record stating the JSON runtime fixture is not currently checked
 - `docs/phase-3-1-current-snapshot.md` as the current-state record for the runtime fixture, open-source review intent, and remaining deferred boundaries
 
-The minimal synthetic runtime fixture is:
-
-- synthetic
-- local to the repository
-- vendor-neutral
-- non-production
-- review-required
-- non-certifying
-- disconnected from service-specific connectors
-- disconnected from automatic approval
-- disconnected from automatic execution
-- explicit about missing approval evidence, missing execution evidence, and excluded claims
+The minimal synthetic runtime fixture is synthetic, local to the repository, vendor-neutral, non-production, review-required, non-certifying, disconnected from service-specific connectors, disconnected from automatic approval, disconnected from automatic execution, and explicit about missing approval evidence, missing execution evidence, and excluded claims.
 
 The fixture is for reading and review only under the current checker state.
 
 It is not currently checked by `scripts/check_examples.py` or `scripts/check_runtime_events.py`.
 
 It is not a production runtime, connector, workflow, adapter correctness proof, runtime correctness proof, legal validation, safety certification, compliance certification, fairness certification, moral resolution, production-readiness claim, or AI final-responsibility transfer.
-
-Open-source review intent has been recorded in the current snapshot so that future reviewers can inspect boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, and deferred implementation choices.
 
 This synchronization does not unlock runtime workflow implementation, service-specific connector work, production conversion code, production runtime integration, Class E positive examples, or Lean expansion around runtime events.
 
@@ -233,21 +220,56 @@ The synchronization introduced or connected:
 
 The checker stub currently checks only local structural signals for the selected synthetic runtime-event JSON fixture, including required top-level fields, synthetic source signal, AI final-responsibility non-claim, evidence lists, review requirement, and excluded claims.
 
-No runtime-event workflow has been added yet.
-
-No observed runtime-event checker status has been recorded yet.
+At the time of this eighth synchronization unit, no runtime-event workflow had been added yet and no observed runtime-event checker workflow status had been recorded yet.
 
 The checker stub is not schema validation, JSON semantic correctness proof, adapter mapping correctness proof, connector correctness proof, runtime correctness proof, production-readiness evidence, certification, legal review, safety review, compliance review, fairness review, moral-resolution evidence, or AI final-responsibility transfer.
 
 This synchronization is one responsibility unit split across multiple small commits for reviewability.
 
-It does not unlock service-specific connectors, production conversion code, production runtime integration, runtime-event workflow implementation, schema checking, minimal-runtime-fixture checking, semantic responsibility correctness checking, support-call semantic checking, missed-support correctness checking, Class E positive examples, conformance-model drafting, public standardization claims, or Lean expansion around adapter, runtime-event, support-call, or missed-support concepts.
+It did not unlock service-specific connectors, production conversion code, production runtime integration, schema checking, minimal-runtime-fixture checking, semantic responsibility correctness checking, support-call semantic checking, missed-support correctness checking, Class E positive examples, conformance-model drafting, public standardization claims, or Lean expansion around adapter, runtime-event, support-call, or missed-support concepts.
+
+## Runtime-event workflow observation synchronization completed
+
+A ninth synchronization unit recorded the first minimal runtime-event workflow and its first observed success.
+
+The trigger was an implementation-observation issue: after the local bounded runtime-event checker passed, the repository needed a minimal workflow observation path without treating workflow success as certification, schema validation, runtime correctness, production readiness, or AI final-responsibility transfer.
+
+The synchronization introduced or connected:
+
+- `.github/workflows/check-runtime-events.yml` as the first minimal runtime-event workflow file
+- `docs/runtime-event-workflow-current-status.md` as the focused status note for workflow creation and observed run status
+- GitHub Actions run `27501847137` as the first observed runtime-event workflow success
+
+The workflow is push-triggered only and runs:
+
+```text
+python scripts/check_runtime_events.py
+```
+
+The observed run details were:
+
+```text
+run id: 27501847137
+job id: 81286034329
+job name: Bounded runtime-event checks
+job status: completed
+job conclusion: success
+step: Run bounded runtime-event checker: completed / success
+```
+
+This observed workflow success means only that the bounded runtime-event checker completed successfully in GitHub Actions for the selected synthetic runtime-event JSON fixture in that workflow run.
+
+It is not schema validation, JSON semantic correctness proof, adapter mapping correctness proof, connector correctness proof, runtime correctness proof, production readiness, certification, legal review, safety review, compliance review, fairness review, moral-resolution evidence, or AI final-responsibility transfer.
+
+This synchronization does not unlock service-specific connectors, production conversion code, production runtime integration, runtime-event schema checking, minimal-runtime-fixture checking, semantic responsibility correctness checking, support-call semantic checking, missed-support correctness checking, Class E positive examples, conformance-model drafting, public standardization claims, or Lean expansion around adapter, runtime-event, support-call, or missed-support concepts.
 
 ## Current checker interpretation
 
 `examples/runtime-event-to-pathway-minimal.yaml` is checked only as a pathway example under the current structural and originating-lifecycle rules.
 
 `scripts/check_runtime_events.py` checks `examples/adapter-input-event-minimal.json` by default as a selected synthetic runtime-event JSON fixture.
+
+The first runtime-event workflow observed success on run `27501847137`.
 
 The current checker set does not validate:
 
@@ -262,7 +284,7 @@ The current checker set does not validate:
 - support-call semantic correctness
 - missed-support semantic correctness
 
-A checker pass for the runtime-event-to-pathway example or runtime-event JSON fixture does not certify an adapter, approve a connector, prove event mapping correctness, prove schema correctness, prove JSON semantic correctness, prove runtime fixture correctness, validate support-call semantics, validate missed-support correctness, or make the generated record production ready.
+A checker pass for the runtime-event-to-pathway example, runtime-event JSON fixture, or runtime-event workflow does not certify an adapter, approve a connector, prove event mapping correctness, prove schema correctness, prove JSON semantic correctness, prove runtime fixture correctness, validate support-call semantics, validate missed-support correctness, or make the generated record production ready.
 
 ## Deferred work
 
@@ -271,7 +293,6 @@ The following work remains deferred:
 - service-specific connectors
 - production conversion code
 - production runtime integration
-- runtime-event workflow
 - runtime-event schema checker
 - JSON schema-fixture checking beyond the first selected synthetic runtime-event JSON fixture
 - runtime fixture checker
@@ -288,10 +309,8 @@ The following work remains deferred:
 
 ## Next safe synchronization step
 
-The next safe synchronization step is to update `docs/current-task-inventory.md` so runtime-event checker work is no longer described as entirely deferred, while workflow, schema checking, runtime fixture checking, connectors, production runtime, semantic checking, conformance-model drafting, public standardization claims, and Lean expansion remain deferred or conditional.
+The next safe synchronization step is to update `docs/phase-3-1-current-snapshot.md`, `docs/current-task-inventory.md`, and optionally `docs/checker-coverage.md` so the first observed runtime-event workflow success is reachable without treating it as certification, schema validation, runtime correctness, production readiness, or AI final-responsibility transfer.
 
-Do not add a runtime-event workflow until local checker behavior has been actually observed.
-
-Do not record observed green status until the checker or workflow result has actually been observed.
+Do not expand runtime-event schema checking, minimal-runtime-fixture checking, service connectors, production runtime, semantic responsibility correctness checking, conformance-model drafting, public standardization claims, or Lean expansion from the workflow success alone.
 
 If a long full-file update is blocked or risky, preserve the state in this log and continue with smaller reader-path commits.
