@@ -255,6 +255,7 @@ Current artifacts and companion notes:
 - `.github/workflows/check-runtime-events.yml` runs the bounded runtime-event checker for selected fixture and checker changes
 - `docs/runtime-event-checking-plan.md` defines current checks, future checks, preconditions, exclusions, and non-certifying boundaries
 - `docs/runtime-event-schema-fixture-alignment.md` records the current structural alignment between draft schema, selected JSON fixtures, and bounded checker without treating alignment as validation
+- `docs/event-to-pathway-relation-checker-plan.md` records planned future local structural relation-checker boundaries between selected runtime-event JSON fixtures and pathway YAML examples before any implementation
 - `docs/runtime-event-workflow-current-status.md` records observed runtime-event workflow status
 - `docs/minimal-runtime-fixture-checker-workflow-observation.md` records the focused observation for run `27607798655`
 - `docs/phase-3-1-minimal-runtime-fixture-checker-connection.md` records the reader path for the minimal runtime fixture checker expansion and workflow observation
@@ -298,6 +299,14 @@ Any passing runtime-event check must remain a bounded repository-maintenance sig
 
 A passing runtime-event check must not be interpreted as certification, legal review, safety review, compliance review, fairness review, production approval, connector correctness proof, adapter correctness proof, schema correctness proof, JSON fixture correctness proof, semantic mapping correctness proof, responsibility assignment proof, conformance evidence, or AI final-responsibility transfer.
 
+Event-to-pathway relation checker planning rule:
+
+`docs/event-to-pathway-relation-checker-plan.md` may be maintained as a future local structural checker plan for selected runtime-event JSON fixtures and pathway YAML examples.
+
+It is not current checker behavior and does not authorize implementation by itself.
+
+Any future relation checker must remain local, structural, selected-fixture-only, non-certifying, and preconditioned by the plan before implementation.
+
 Next low-risk Phase 3.1 work:
 
 - keep service-specific connectors deferred
@@ -305,9 +314,11 @@ Next low-risk Phase 3.1 work:
 - keep production runtime integration deferred
 - keep runtime-event schema checking deferred until the schema and examples remain stable
 - keep broader JSON schema-fixture checking deferred until the current event-to-pathway bridge remains readable and reviewable
+- keep event-to-pathway relation checker implementation deferred until `docs/event-to-pathway-relation-checker-plan.md` preconditions are deliberately reviewed
 - keep event-to-pathway semantic checking deferred
-- keep `docs/runtime-event-schema-fixture-alignment.md`, `docs/checker-coverage.md`, `docs/example-index.md`, current snapshot, current task inventory, and operation index aligned when fixture or checker interpretation changes
-- use `docs/runtime-event-checking-plan.md` before considering checker expansion or runtime-event workflow expansion
+- keep `docs/runtime-event-schema-fixture-alignment.md`, `docs/event-to-pathway-relation-checker-plan.md`, `docs/checker-coverage.md`, `docs/example-index.md`, current snapshot, current task inventory, and operation index aligned when fixture, checker, or relation-checker planning interpretation changes
+- use `docs/runtime-event-checking-plan.md` before considering runtime-event checker expansion or runtime-event workflow expansion
+- use `docs/event-to-pathway-relation-checker-plan.md` before considering any future relation checker between selected runtime-event JSON fixtures and pathway YAML examples
 - keep Class E positive examples deferred
 - keep support-call and missed-support runtime-event fields deferred until concept notes, examples, schema conventions, and checker boundaries are stable
 - keep Lean expansion around adapter, runtime events, support-call policy, or missed-support signals deferred until the adapter boundary, runtime event schema, generated-record examples, checker boundary, and validation checklist are stable
