@@ -28,6 +28,7 @@ The current stable construction path includes:
 - support-call and missed-support concept notes
 - a boundary-only missed-support example
 - explicit repository operation documents
+- AI Judgment Node task-control boundary documentation
 - a grounded standardization strategy for future open-specification review
 - a progress map for rough planning estimates and gate tracking
 
@@ -41,21 +42,22 @@ The support-call / missed-support path is currently concept-level and boundary-e
 2. `docs/operation-index.md`
 3. `docs/phase-3-1-current-snapshot.md`
 4. `docs/current-task-inventory.md`
-5. `docs/runtime-event-schema-fixture-alignment.md` when schema/fixture/checker alignment matters
-6. `docs/event-to-pathway-relation-checker-plan.md` when future relation-checker planning matters
-7. `docs/runtime-event-workflow-current-status.md` when workflow observation matters
-8. `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md` when the focused sync-log supplement matters
-9. `docs/phase-3-1-sync-log.md`
-10. `docs/phase-3-1-roadmap-note.md`
-11. `docs/phase-3-1-roadmap-sync-after-readme-recovery.md`
-12. `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
-13. `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
-14. `docs/concepts/index.md`
-15. `docs/standardization-strategy.md` before expanding world-standard or conformance language
-16. `docs/example-index.md`
-17. `docs/checker-coverage.md`
-18. `ROADMAP.md`
-19. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
+5. `docs/ai-judgment-node-task-control.md` when AI local judgment, task-control loops, stop conditions, or evaluator separation matter
+6. `docs/runtime-event-schema-fixture-alignment.md` when schema/fixture/checker alignment matters
+7. `docs/event-to-pathway-relation-checker-plan.md` when future relation-checker planning matters
+8. `docs/runtime-event-workflow-current-status.md` when workflow observation matters
+9. `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md` when the focused sync-log supplement matters
+10. `docs/phase-3-1-sync-log.md`
+11. `docs/phase-3-1-roadmap-note.md`
+12. `docs/phase-3-1-roadmap-sync-after-readme-recovery.md`
+13. `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
+14. `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
+15. `docs/concepts/index.md`
+16. `docs/standardization-strategy.md` before expanding world-standard or conformance language
+17. `docs/example-index.md`
+18. `docs/checker-coverage.md`
+19. `ROADMAP.md`
+20. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
 
 Use `docs/repository-operation-model.md` before broad reader-path synchronization, long-file updates, session handoff, or periodic operation review.
 
@@ -64,6 +66,7 @@ Use `docs/repository-operation-model.md` before broad reader-path synchronizatio
 - Keep the root README short and mobile-renderer friendly.
 - Keep detailed README content in `docs/readme-expanded.md`.
 - Keep examples small, readable, and non-certifying.
+- Keep AI Judgment Node task-control language bounded: local AI judgment is pathway-relevant, but it is not final responsibility, verification, certification, safety proof, runtime correctness, or AI final-responsibility transfer.
 - Keep progress estimates rough, planning-only, and non-certifying.
 - Keep standardization strategy grounded, complementary to existing frameworks, and non-certifying.
 - Keep support-call and missed-support semantics concept-level until deliberately stabilized.
