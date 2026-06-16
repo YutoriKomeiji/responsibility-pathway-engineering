@@ -126,6 +126,18 @@ The example index now distinguishes:
 - `examples/minimal-synthetic-runtime-fixture.json` as the selected minimal synthetic runtime observation fixture
 - `examples/runtime-event-to-pathway-minimal.yaml` as a pathway example, not a JSON fixture
 
+### Updated checker coverage
+
+`docs/checker-coverage.md` was updated because it still said the post-expansion workflow run had not yet been observed.
+
+The checker coverage note now records:
+
+- `examples/adapter-input-event-minimal.json` is checked by `scripts/check_runtime_events.py`
+- `examples/minimal-synthetic-runtime-fixture.json` is checked by `scripts/check_runtime_events.py`
+- workflow observations are recorded in current status and focused observation notes
+- the example coverage map distinguishes pathway YAML examples from JSON fixtures
+- planned runtime-event schema and event-to-pathway relation checks remain future work
+
 ## Duplication and long-file policy
 
 The repository now contains several focused notes around the same responsibility area:
@@ -150,24 +162,22 @@ Do not merge these notes yet unless a future operation review concludes that the
 
 ## Remaining audit candidates
 
-The following files may still need later review, but were not fully rewritten in this audit unit:
+The following file may still need later review, but was not fully rewritten in this audit unit:
 
-- `docs/checker-coverage.md`
 - `docs/phase-3-1-sync-log.md`
 
 Known caution:
 
 - `docs/phase-3-1-sync-log.md` intentionally remains long and historical. Do not rewrite it solely to duplicate focused sync notes.
 - Some historical records may mention earlier states. Historical records should not be rewritten unless they are presented as current state.
-- `docs/checker-coverage.md` already received prior runtime-event checker updates, but future checker edits should re-check it.
+- focused sync notes are currently preferred over broad sync-log rewrites for narrow responsibility units.
 
 ## Current unresolved questions
 
 Future audit should check whether:
 
-1. `docs/checker-coverage.md` remains aligned after future checker edits.
-2. `docs/phase-3-1-sync-log.md` should receive only a short reference to this audit if a future sync-log edit is already needed.
-3. the focused notes should remain separate or be merged after external-review reader testing.
+1. `docs/phase-3-1-sync-log.md` should receive only a short reference to this audit if a future sync-log edit is already needed.
+2. the focused notes should remain separate or be merged after external-review reader testing.
 
 ## Boundary
 
