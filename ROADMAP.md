@@ -238,7 +238,7 @@ Next low-risk Phase 3 work:
 - add only one small reference example at a time
 - avoid production-service, legal-decision, certification, compliance, fairness, moral-resolution, or AI-final-responsibility interpretations
 
-## Phase 3.1 - Adapter Boundary and Runtime Event Bridge (Started; checking plan added before checker implementation)
+## Phase 3.1 - Adapter Boundary and Runtime Event Bridge (Bounded bridge checkpoint reached; checker and workflow observed)
 
 Purpose:
 
@@ -249,11 +249,20 @@ Current artifacts and companion notes:
 - `docs/adapter-boundary.md` defines what adapters may do, what they must not claim, human review requirements, evidence logging requirements, missing-context handling, and relationship to the Action Class Matrix
 - `spec/runtime-event.schema.yaml` defines a minimal input event shape before service-specific connectors exist
 - `examples/adapter-input-event-minimal.json` provides a small synthetic runtime event input
+- `examples/minimal-synthetic-runtime-fixture.json` provides a selected minimal synthetic runtime observation fixture for reading and review
 - `examples/runtime-event-to-pathway-minimal.yaml` shows how a runtime event can be represented as a Responsibility Pathway record pending human or institutional review
-- `docs/runtime-event-checking-plan.md` defines the planned path, preconditions, exclusions, and non-certifying boundary before adding runtime-event schema checking, JSON fixture checking, `scripts/check_runtime_events.py`, or a runtime-event workflow
-- `docs/phase-3-1-current-snapshot.md` records the current Phase 3.1 restart point, including adapter boundary, runtime-event bridge, runtime-event checking plan, and repository operation layer
+- `scripts/check_runtime_events.py` provides bounded structural checks for selected synthetic JSON fixtures
+- `.github/workflows/check-runtime-events.yml` runs the bounded runtime-event checker for selected fixture and checker changes
+- `docs/runtime-event-checking-plan.md` defines current checks, future checks, preconditions, exclusions, and non-certifying boundaries
+- `docs/runtime-event-schema-fixture-alignment.md` records the current structural alignment between draft schema, selected JSON fixtures, and bounded checker without treating alignment as validation
+- `docs/runtime-event-workflow-current-status.md` records observed runtime-event workflow status
+- `docs/minimal-runtime-fixture-checker-workflow-observation.md` records the focused observation for run `27607798655`
+- `docs/phase-3-1-minimal-runtime-fixture-checker-connection.md` records the reader path for the minimal runtime fixture checker expansion and workflow observation
+- `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md` supplements the long sync log for the minimal runtime fixture checker workflow observation responsibility unit
+- `docs/phase-3-1-current-snapshot.md` records the current Phase 3.1 restart point
 - `docs/phase-3-1-sync-log.md` records the staged synchronization work for Phase 3.1
 - `docs/phase-3-1-roadmap-note.md` records the short roadmap companion for this phase
+- `docs/phase-3-1-repository-alignment-audit.md` records the current repository alignment audit and remaining cleanup candidates
 - `docs/repository-operation-model.md` records the repository-wide staged update operation, document roles, commit granularity policy, periodic operation review policy, workflow observation policy, checker interpretation policy, long-file update policy, log organization policy, non-certifying operation boundaries, and restart rules
 - `docs/operation-index.md` records which operation-related document to read for each maintenance situation
 - `docs/operation-tool-selection-guard.md` records a guard for choosing the correct GitHub read/write tool during AI-assisted maintenance
@@ -263,9 +272,11 @@ Current artifacts and companion notes:
 Observed status:
 
 - `Check examples #16` observed green on commit `d377be2` on `main` after fixing `examples/runtime-event-to-pathway-minimal.yaml`
-- The GitHub Actions run was `27463999395`
-- This observed green status remains a bounded repository-maintenance check and is not certification
-- Root `README.md` was shortened and then strengthened after GitHub mobile app rendering appeared blank while the file remained readable through GitHub API
+- the GitHub Actions run was `27463999395`
+- `Check runtime events` observed green on run `27501847137` for the first minimal runtime-event workflow
+- `Check runtime events` observed green on run `27607798655` after `examples/minimal-synthetic-runtime-fixture.json` was added to bounded runtime-event checker coverage
+- all observed green statuses remain bounded repository-maintenance checks and are not certification
+- root `README.md` was shortened and then strengthened after GitHub mobile app rendering appeared blank while the file remained readable through GitHub API
 
 Adapter rule:
 
@@ -281,21 +292,28 @@ Broad reader-path synchronization, long-file updates, snapshot updates, operatio
 
 Runtime-event checking rule:
 
-Do not add `scripts/check_runtime_events.py`, a runtime-event workflow, runtime-event schema checking, or JSON fixture checking until `docs/runtime-event-checking-plan.md` preconditions are satisfied. Any future passing runtime-event check must remain a bounded repository-maintenance signal only.
+The current runtime-event checker and workflow may be maintained as bounded repository-maintenance tools for selected synthetic JSON fixtures only.
+
+Any passing runtime-event check must remain a bounded repository-maintenance signal only.
+
+A passing runtime-event check must not be interpreted as certification, legal review, safety review, compliance review, fairness review, production approval, connector correctness proof, adapter correctness proof, schema correctness proof, JSON fixture correctness proof, semantic mapping correctness proof, responsibility assignment proof, conformance evidence, or AI final-responsibility transfer.
 
 Next low-risk Phase 3.1 work:
 
 - keep service-specific connectors deferred
 - keep production conversion code deferred
+- keep production runtime integration deferred
 - keep runtime-event schema checking deferred until the schema and examples remain stable
-- keep JSON fixture checking deferred until the current event-to-pathway bridge remains readable and reviewable
-- use `docs/runtime-event-checking-plan.md` before considering `scripts/check_runtime_events.py` or a runtime-event workflow
+- keep broader JSON schema-fixture checking deferred until the current event-to-pathway bridge remains readable and reviewable
+- keep event-to-pathway semantic checking deferred
+- keep `docs/runtime-event-schema-fixture-alignment.md`, `docs/checker-coverage.md`, `docs/example-index.md`, current snapshot, current task inventory, and operation index aligned when fixture or checker interpretation changes
+- use `docs/runtime-event-checking-plan.md` before considering checker expansion or runtime-event workflow expansion
 - keep Class E positive examples deferred
 - keep support-call and missed-support runtime-event fields deferred until concept notes, examples, schema conventions, and checker boundaries are stable
 - keep Lean expansion around adapter, runtime events, support-call policy, or missed-support signals deferred until the adapter boundary, runtime event schema, generated-record examples, checker boundary, and validation checklist are stable
-- maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, or concept navigation change
+- maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, alignment notes, or concept navigation change
 - use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, or deferred boundaries feel misaligned with actual practice
-- add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, or operation document to point to
+- add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, alignment note, or operation document to point to
 
 ## Guiding Principle
 
