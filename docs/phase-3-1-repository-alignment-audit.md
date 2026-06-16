@@ -80,6 +80,52 @@ The roadmap note now records:
 - schema/fixture alignment exists
 - next low-risk work is reviewability and alignment, not production runtime or conformance claims
 
+### Updated stale root roadmap state
+
+`ROADMAP.md` was updated because the Phase 3.1 section still described the checker and workflow as future work before implementation.
+
+The root roadmap now records:
+
+- bounded runtime-event bridge checkpoint reached
+- selected runtime-event fixture and minimal runtime observation fixture
+- bounded checker and minimal workflow
+- observed workflow successes on run `27501847137` and run `27607798655`
+- schema/fixture alignment note
+- next low-risk work as alignment and reviewability rather than production runtime or conformance claims
+
+### Updated deferred-work restart conditions
+
+`docs/deferred-work-restart-conditions.md` was updated because it grouped completed bounded runtime-event checker work together with still-deferred runtime expansion work.
+
+The restart-condition note now separates:
+
+- completed bounded layer: checker, minimal workflow, selected JSON fixtures, observed workflow successes, and alignment note
+- still-deferred work: full schema validation, broad JSON schema-fixture validation, semantic checking, adapter mapping correctness checking, runtime correctness checking, connector behavior validation, workflow completeness claims, and conformance evidence
+
+### Updated schema cross-reference
+
+`docs/schema-cross-reference.md` was updated because it did not yet point to `docs/runtime-event-schema-fixture-alignment.md` and still had stale runtime-event checker status wording.
+
+The schema cross-reference now records:
+
+- runtime-event schema / fixture / checker alignment note
+- selected runtime-event JSON fixture
+- selected minimal synthetic runtime observation fixture
+- bounded checker status for both selected JSON fixtures
+- the difference between `scripts/check_runtime_events.py` checks and `scripts/check_examples.py` pathway-example checks
+
+### Updated example index
+
+`docs/example-index.md` was updated because it still described runtime-event JSON and minimal runtime fixture checking as future work.
+
+The example index now distinguishes:
+
+- pathway YAML examples checked by `scripts/check_examples.py`
+- selected JSON fixtures checked by `scripts/check_runtime_events.py`
+- `examples/adapter-input-event-minimal.json` as the selected synthetic runtime-event JSON fixture
+- `examples/minimal-synthetic-runtime-fixture.json` as the selected minimal synthetic runtime observation fixture
+- `examples/runtime-event-to-pathway-minimal.yaml` as a pathway example, not a JSON fixture
+
 ## Duplication and long-file policy
 
 The repository now contains several focused notes around the same responsibility area:
@@ -106,10 +152,6 @@ Do not merge these notes yet unless a future operation review concludes that the
 
 The following files may still need later review, but were not fully rewritten in this audit unit:
 
-- `ROADMAP.md`
-- `docs/deferred-work-restart-conditions.md`
-- `docs/schema-cross-reference.md`
-- `docs/example-index.md`
 - `docs/checker-coverage.md`
 - `docs/phase-3-1-sync-log.md`
 
@@ -117,17 +159,15 @@ Known caution:
 
 - `docs/phase-3-1-sync-log.md` intentionally remains long and historical. Do not rewrite it solely to duplicate focused sync notes.
 - Some historical records may mention earlier states. Historical records should not be rewritten unless they are presented as current state.
-- `ROADMAP.md` may be updated only if it still presents obsolete Phase 3.1 state as current roadmap guidance.
+- `docs/checker-coverage.md` already received prior runtime-event checker updates, but future checker edits should re-check it.
 
 ## Current unresolved questions
 
 Future audit should check whether:
 
-1. `ROADMAP.md` still says runtime-event checker, runtime-event workflow, or minimal runtime fixture checker work has not started.
-2. `docs/deferred-work-restart-conditions.md` cleanly distinguishes completed bounded checker work from still-deferred broader schema, semantic, connector, production, and Lean work.
-3. `docs/schema-cross-reference.md` needs a short reference to `docs/runtime-event-schema-fixture-alignment.md`.
-4. `docs/example-index.md` accurately distinguishes pathway examples from JSON runtime-event fixtures and minimal runtime observation fixtures.
-5. `docs/checker-coverage.md` remains aligned after future checker edits.
+1. `docs/checker-coverage.md` remains aligned after future checker edits.
+2. `docs/phase-3-1-sync-log.md` should receive only a short reference to this audit if a future sync-log edit is already needed.
+3. the focused notes should remain separate or be merged after external-review reader testing.
 
 ## Boundary
 
