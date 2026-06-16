@@ -227,7 +227,7 @@ This example models a synthetic, vendor-neutral runtime-event bridge only. It do
 
 Current checker boundary:
 
-This example is currently checked only as a pathway example under the existing structural and originating-lifecycle checker rules. `docs/runtime-event-schema-fixture-alignment.md` describes the current structural alignment between the draft runtime-event schema, selected JSON fixtures, and bounded runtime-event checker. `docs/runtime-event-checking-plan.md` describes future checks and boundaries. A checker pass must not be interpreted as schema validation, JSON semantic correctness proof, adapter mapping correctness proof, runtime correctness proof, production readiness, certification, conformance evidence, or AI final-responsibility transfer.
+This example is currently checked only as a pathway example under the existing structural and originating-lifecycle checker rules. `docs/runtime-event-schema-fixture-alignment.md` describes the current structural alignment between the draft runtime-event schema, selected JSON fixtures, and bounded runtime-event checker. `docs/event-to-pathway-relation-checker-plan.md` describes a possible future local structural relation checker plan between selected runtime-event JSON fixtures and pathway YAML examples, but it is not current checker behavior and does not authorize implementation by itself. `docs/runtime-event-checking-plan.md` describes future checks and boundaries. A checker pass must not be interpreted as schema validation, JSON semantic correctness proof, adapter mapping correctness proof, event-to-pathway relation correctness proof, runtime correctness proof, production readiness, certification, conformance evidence, or AI final-responsibility transfer.
 
 Use this example when introducing:
 
@@ -237,7 +237,7 @@ Use this example when introducing:
 - missing-context and uncertainty preservation
 - adapter suggestion versus human review
 - generated record review requirements
-- difference between pathway-example checks and JSON fixture checks
+- difference between pathway-example checks, JSON fixture checks, and planned relation-checker work
 
 ### `examples/minimal-synthetic-runtime-fixture.json`
 
@@ -376,16 +376,17 @@ Recommended reading order:
 15. `docs/adapter-boundary.md`
 16. `spec/runtime-event.schema.yaml`
 17. `docs/runtime-event-schema-fixture-alignment.md`
-18. `docs/runtime-event-checking-plan.md`
-19. `docs/minimal-runtime-candidate-design.md`
-20. `examples/adapter-input-event-minimal.json`
-21. `examples/runtime-event-to-pathway-minimal.yaml`
-22. `examples/minimal-synthetic-runtime-fixture.json`
-23. `examples/repair-flow.yaml`
-24. `examples/suspended-pathway.yaml`
-25. `examples/returning-pathway.yaml`
-26. `examples/closed-pathway.yaml`
-27. `docs/example-review-notes.md`
+18. `docs/event-to-pathway-relation-checker-plan.md`
+19. `docs/runtime-event-checking-plan.md`
+20. `docs/minimal-runtime-candidate-design.md`
+21. `examples/adapter-input-event-minimal.json`
+22. `examples/runtime-event-to-pathway-minimal.yaml`
+23. `examples/minimal-synthetic-runtime-fixture.json`
+24. `examples/repair-flow.yaml`
+25. `examples/suspended-pathway.yaml`
+26. `examples/returning-pathway.yaml`
+27. `examples/closed-pathway.yaml`
+28. `docs/example-review-notes.md`
 
 ## Relationship to Action Class Matrix
 
@@ -427,21 +428,3 @@ Current examples use descriptive filenames:
 - `closed-pathway.yaml`
 
 Future examples should prefer short names that describe the responsibility-pathway pattern rather than implementation details.
-
-Possible future names:
-
-- `high-impact-negative-boundary.yaml`
-
-## Example design rules
-
-New examples should:
-
-- keep human or institutional responsibility visible
-- keep AI final responsibility explicitly disallowed
-- declare the intended action class when action-class-specific requirements matter
-- include evidence logging when reconstruction is relevant
-- include a return point when human review or authority return is relevant
-- include approval, stop, rollback, or repair paths when required by action class
-- state assumptions and excluded claims
-- avoid implying certification, compliance, safety, fairness, legal resolution, or moral resolution
-- distinguish suspension, return, repair, continuation, closure, and reopening conditions when lifecycle state matters
