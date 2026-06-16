@@ -34,7 +34,7 @@ Use documents according to the phase of work.
 | Progress review | `docs/progress-map.md`, `docs/phase-3-1-progress-map-connection.md` when Phase 3.1 context matters, current snapshot, current task inventory, operation index, roadmap note | checking when a progress estimate or gate changed |
 | Concept-path navigation | `docs/concepts/index.md`, relevant concept note, source-alignment note, example index, checker coverage | checking when a concept boundary changed |
 | Standardization preparation | `docs/standardization-strategy.md`, progress map, README, operation index, current snapshot, concept index, example index, checker coverage | checking when a standardization boundary or language choice changed |
-| Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, relevant schemas or examples | checking when a rule or coverage boundary changed |
+| Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, `docs/runtime-event-schema-fixture-alignment.md`, relevant schemas or examples | checking when a rule, coverage boundary, schema-fixture alignment, or fixture interpretation changed |
 | Workflow observation | `docs/runtime-event-workflow-current-status.md`, `docs/minimal-runtime-fixture-checker-workflow-observation.md`, `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md`, `docs/phase-3-1-sync-log.md`, checker coverage | checking when a bounded workflow result or workflow-observation boundary changed |
 | Phase planning | `ROADMAP.md`, roadmap note, progress map, current snapshot, operation index, current task inventory | confirming a past phase milestone |
 | Audit, error investigation, or retrospective explanation | `CHANGELOG.md`, sync logs, snapshots, relevant commits and artifacts | this is the intended primary use |
@@ -214,6 +214,7 @@ Do not use a sync log as a phase plan.
 | `docs/minimal-runtime-candidate-design.md` | You need to decide whether the next runtime artifact may be a minimal synthetic runtime fixture or a bounded runtime-checking stub before any connector, workflow, checker, or production runtime implementation. |
 | `docs/minimal-runtime-fixture-review.md` | You need the review result for `examples/minimal-synthetic-runtime-fixture.json` as the first minimal synthetic runtime observation fixture. |
 | `docs/minimal-runtime-fixture-review-connection.md` | You need the reader path connecting the minimal runtime fixture review note to Phase 3.1 operation documents. |
+| `docs/runtime-event-schema-fixture-alignment.md` | You need the current alignment between the draft runtime-event schema, selected JSON fixtures, and bounded runtime-event checker, without treating it as validation. |
 | `docs/runtime-event-checking-plan.md` | You need to know when runtime-event schema checking, JSON fixture checking, or future runtime-event checker work may be safely considered. |
 | `docs/runtime-event-workflow-current-status.md` | You need the current status of the first minimal runtime-event workflow and observed bounded workflow runs. |
 | `docs/minimal-runtime-fixture-checker-workflow-observation.md` | You need the focused observation note for the first workflow success after `examples/minimal-synthetic-runtime-fixture.json` was added to the bounded runtime-event checker coverage. |
@@ -221,5 +222,7 @@ Do not use a sync log as a phase plan.
 Use the minimal runtime candidate design note before adding any runtime candidate.
 
 Use the minimal runtime fixture review note before changing the minimal runtime fixture or treating its first review as current.
+
+Use the runtime-event schema/fixture alignment note before treating a runtime-event fixture, minimal runtime fixture, or checker pass as current alignment.
 
 Use the runtime-event checking plan before adding any runtime-event checker expansion, runtime-event workflow expansion, runtime-event schema checking, or JSON fixture checking.
