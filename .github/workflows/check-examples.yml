@@ -14,6 +14,9 @@ on:
       - "requirements.txt"
       - ".github/workflows/check-examples.yml"
 
+permissions:
+  contents: read
+
 jobs:
   check-examples:
     name: Bounded structural example checks
