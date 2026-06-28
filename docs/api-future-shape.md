@@ -44,6 +44,48 @@ Any future route should preserve review requirement, missing context, uncertaint
 
 A future route must not silently turn a draft record into an approved or final record.
 
+## Expected input concepts
+
+A future API input should preserve enough structure for later human or institutional review.
+
+Expected input concepts include:
+
+- event identifier
+- source system
+- event timestamp
+- observed actor or system
+- observed action
+- observed target or affected object
+- source reference or evidence pointer
+- uncertainty notes
+- missing-context notes
+- review requirement signal
+- excluded claims
+
+The input should preserve what is unknown instead of filling gaps silently.
+
+## Expected draft output concepts
+
+A future draft output should support review, correction, repair, or rejection.
+
+Expected draft output concepts include:
+
+- draft record identifier
+- lifecycle state
+- candidate Decision Owner
+- candidate Approval Gate
+- candidate Execution Actor
+- candidate Stop Authority
+- candidate Evidence Log entries
+- candidate Repair Owner
+- candidate Human Return Point
+- missing-context notes
+- uncertainty notes
+- excluded claims
+- review-required flag
+
+The output should remain a draft until the responsible human or institution reviews it.
+
 ## Boundary
 
 This file does not define an implemented API, connector, runtime, certification process, conformance process, or final-responsibility transfer mechanism.
@@ -52,8 +94,6 @@ This file does not define an implemented API, connector, runtime, certification 
 
 A later small commit may add:
 
-- expected input concepts
-- expected draft output concepts
 - relation to current runtime-event fixtures
 - restart conditions before implementation
 
