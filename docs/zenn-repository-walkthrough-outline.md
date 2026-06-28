@@ -45,6 +45,12 @@ Keep this descriptive and avoid maturity claims.
 
 The article should clearly say that the repository walkthrough is not a certification, conformance result, production-readiness claim, or completed implementation claim.
 
+## Examples and checks note
+
+Examples and checks should be explained as bounded reading aids.
+
+Do not describe them as proof of full coverage or operational correctness.
+
 ## Draft structure
 
 1. Why the repository exists.
