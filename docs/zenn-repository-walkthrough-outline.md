@@ -63,6 +63,12 @@ API future-shape and connector target documents should be introduced as planning
 
 Do not describe them as implemented public APIs, live connectors, or completed external integrations.
 
+## Cadence note
+
+Future Zenn articles should follow repository readability and explainability, not calendar rhythm alone.
+
+Use `docs/zenn-publication-cadence-note.md` before treating a follow-up article as timely.
+
 ## Draft structure
 
 1. Why the repository exists.
