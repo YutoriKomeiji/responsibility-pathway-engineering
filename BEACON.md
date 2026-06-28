@@ -34,6 +34,7 @@ The current stable construction path includes:
 - public-entry synchronization for external readers and review navigation
 - API future-shape documentation as design preview only
 - external product connection-surface survey notes for future connector planning
+- connector target matrix planning for future synthetic-first connector categories
 - Zenn publication readiness planning before public-facing article expansion
 
 Recent synchronization restored and recorded the reader path after a README mobile-rendering issue. The root `README.md` was shortened and strengthened, while the previous expanded README content was preserved at `docs/readme-expanded.md`.
@@ -63,10 +64,12 @@ The support-call / missed-support path is currently concept-level and boundary-e
 19. `docs/standardization-strategy.md` before expanding world-standard or conformance language
 20. `docs/zenn-publication-readiness-plan.md` before drafting or publishing Zenn-facing public articles
 21. `docs/zenn-publication-readiness-connection.md` when connecting Zenn publication planning to public-entry and review-reader paths
-22. `docs/example-index.md`
-23. `docs/checker-coverage.md`
-24. `ROADMAP.md`
-25. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
+22. `docs/connector-target-matrix.md` when choosing future connector target categories before any implementation
+23. `docs/connector-target-matrix-connection.md` when connecting connector targets to API future-shape and external product survey notes
+24. `docs/example-index.md`
+25. `docs/checker-coverage.md`
+26. `ROADMAP.md`
+27. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
 
 Use `docs/repository-operation-model.md` before broad reader-path synchronization, long-file updates, session handoff, or periodic operation review.
 
@@ -84,6 +87,7 @@ Use `docs/repository-operation-model.md` before broad reader-path synchronizatio
 - Keep runtime-event schema/fixture alignment visible without treating it as validation.
 - Keep event-to-pathway relation checker planning visible without treating it as current checker behavior or implementation permission.
 - Keep API and connector documents as future-shape or connection-surface planning until restart conditions explicitly reopen implementation.
+- Keep connector target matrix work synthetic-first and non-implementation until a separate restart review explicitly reopens connector work.
 - Keep further runtime-event schema checking, broader JSON fixture checking, event-to-pathway semantic checking, and further runtime fixture checking deferred unless deliberately reopened.
 - Keep service-specific connectors and production runtime integration deferred.
 - Keep Lean expansion around adapter, runtime-event, support-call, or missed-support concepts deferred.
