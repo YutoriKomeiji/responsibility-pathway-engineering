@@ -57,6 +57,12 @@ Publication-readiness and external-review notes should be introduced as navigati
 
 Do not describe them as completed review, approval, or publication authorization.
 
+## API and connector planning note
+
+API future-shape and connector target documents should be introduced as planning notes.
+
+Do not describe them as implemented public APIs, live connectors, or completed external integrations.
+
 ## Draft structure
 
 1. Why the repository exists.
