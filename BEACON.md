@@ -31,6 +31,10 @@ The current stable construction path includes:
 - AI Judgment Node task-control boundary documentation
 - a grounded standardization strategy for future open-specification review
 - a progress map for rough planning estimates and gate tracking
+- public-entry synchronization for external readers and review navigation
+- API future-shape documentation as design preview only
+- external product connection-surface survey notes for future connector planning
+- Zenn publication readiness planning before public-facing article expansion
 
 Recent synchronization restored and recorded the reader path after a README mobile-rendering issue. The root `README.md` was shortened and strengthened, while the previous expanded README content was preserved at `docs/readme-expanded.md`.
 
@@ -57,10 +61,12 @@ The support-call / missed-support path is currently concept-level and boundary-e
 17. `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
 18. `docs/concepts/index.md`
 19. `docs/standardization-strategy.md` before expanding world-standard or conformance language
-20. `docs/example-index.md`
-21. `docs/checker-coverage.md`
-22. `ROADMAP.md`
-23. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
+20. `docs/zenn-publication-readiness-plan.md` before drafting or publishing Zenn-facing public articles
+21. `docs/zenn-publication-readiness-connection.md` when connecting Zenn publication planning to public-entry and review-reader paths
+22. `docs/example-index.md`
+23. `docs/checker-coverage.md`
+24. `ROADMAP.md`
+25. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
 
 Use `docs/repository-operation-model.md` before broad reader-path synchronization, long-file updates, session handoff, or periodic operation review.
 
@@ -72,10 +78,12 @@ Use `docs/repository-operation-model.md` before broad reader-path synchronizatio
 - Keep AI Judgment Node task-control language bounded: local AI judgment is pathway-relevant, but it is not final responsibility, verification, certification, safety proof, runtime correctness, or AI final-responsibility transfer.
 - Keep progress estimates rough, planning-only, and non-certifying.
 - Keep standardization strategy grounded, complementary to existing frameworks, and non-certifying.
+- Keep public Zenn publication language explanatory, review-oriented, and boundary-aware; do not treat it as standardization, certification, production readiness, external-review approval, or implemented API / connector announcement.
 - Keep support-call and missed-support semantics concept-level until deliberately stabilized.
 - Keep the current bounded runtime-event checker and workflow observations documented as structural repository-maintenance signals only.
 - Keep runtime-event schema/fixture alignment visible without treating it as validation.
 - Keep event-to-pathway relation checker planning visible without treating it as current checker behavior or implementation permission.
+- Keep API and connector documents as future-shape or connection-surface planning until restart conditions explicitly reopen implementation.
 - Keep further runtime-event schema checking, broader JSON fixture checking, event-to-pathway semantic checking, and further runtime fixture checking deferred unless deliberately reopened.
 - Keep service-specific connectors and production runtime integration deferred.
 - Keep Lean expansion around adapter, runtime-event, support-call, or missed-support concepts deferred.
