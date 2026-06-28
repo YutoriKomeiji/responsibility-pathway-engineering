@@ -83,6 +83,12 @@ Avoid marketing-style exaggeration.
 
 Let the repository artifacts carry the strength of the claim.
 
+## Reader wording note
+
+Prefer wording such as reading guide, current position, boundary, example, and planning note.
+
+Avoid wording that implies completion, guarantee, certification, approval, or production readiness.
+
 ## Draft structure
 
 1. Why the repository exists.
