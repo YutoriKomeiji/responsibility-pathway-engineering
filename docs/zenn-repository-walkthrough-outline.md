@@ -35,6 +35,12 @@ Recommended reader path:
 
 This path should be presented as a reading guide, not as a maturity claim.
 
+## Repository contents note
+
+The article can briefly group the repository into entry documents, navigation documents, examples, checks, review notes, and future-planning notes.
+
+Keep this descriptive and avoid maturity claims.
+
 ## Draft structure
 
 1. Why the repository exists.
