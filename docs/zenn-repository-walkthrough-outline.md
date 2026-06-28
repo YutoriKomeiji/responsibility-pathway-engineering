@@ -51,6 +51,12 @@ Examples and checks should be explained as bounded reading aids.
 
 Do not describe them as proof of full coverage or operational correctness.
 
+## Review readiness note
+
+Publication-readiness and external-review notes should be introduced as navigation aids for reviewers and readers.
+
+Do not describe them as completed review, approval, or publication authorization.
+
 ## Draft structure
 
 1. Why the repository exists.
