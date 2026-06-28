@@ -1,6 +1,6 @@
 # Responsibility Pathway Engineering Overview
 
-This overview is the current entry map for the repository after the Zenn source-alignment pass.
+This overview is the current entry map for the repository after the Zenn source-alignment pass and the Phase 3.1 reader-path synchronization work.
 
 It explains what Responsibility Pathway Engineering currently means in this repository, what it does not claim, and where to go next.
 
@@ -34,14 +34,67 @@ The reviewed source material supports the following interpretation:
 - RPE is operation-oriented, but not itself a production runtime.
 - RPE requires explicit boundaries for what examples, schemas, checkers, and Lean files do not claim.
 
+## Current repository status
+
+The repository is currently in Phase 3.1: Adapter Boundary and Runtime Event Bridge.
+
+The current public specification contains:
+
+- definitions and design notes
+- minimal examples
+- bounded structural checkers
+- review-result schema and fixtures
+- minimal Lean formalization of scoped invariants
+- source-alignment notes and synthesis
+- adapter-boundary and runtime-event bridge notes
+- a draft vendor-neutral runtime-event schema
+- selected synthetic runtime-event JSON fixtures
+- a bounded runtime-event checker for selected synthetic JSON fixtures
+- observed bounded runtime-event workflow results
+- external-review readiness and package notes
+- rough planning-only progress and gate mapping
+
+The repository does not yet contain:
+
+- production runtime
+- production verifier
+- production connector
+- legal responsibility engine
+- compliance tool
+- safety certification tool
+- fairness certification tool
+- complete action-class checker
+- event-to-pathway semantic checker
+- production runtime-event schema validation
+- formal try/catch/finally semantics
+- conformance model
+- finished standardization claim
+
+## Public and external-review path
+
+For external readers, reviewers, or readers arriving from public articles, start from:
+
+1. [../README.md](../README.md)
+2. [../BEACON.md](../BEACON.md)
+3. [operation-index.md](operation-index.md)
+4. [external-review-package-note.md](external-review-package-note.md)
+5. [external-review-readiness-checklist.md](external-review-readiness-checklist.md)
+6. [progress-map.md](progress-map.md)
+7. [phase-3-1-current-snapshot.md](phase-3-1-current-snapshot.md)
+8. [current-task-inventory.md](current-task-inventory.md)
+
+These documents help readers separate current claims from deferred work.
+
+They are not external review findings, certification results, conformance evidence, standardization approval, production approval, legal review, safety review, compliance review, fairness review, or AI final-responsibility transfer.
+
 ## Two-layer model
 
 The repository currently uses two related layers.
 
 | Layer | Purpose | Where to read |
 |---|---|---|
-| Eight-element model | Structural dimensions that preserve responsibility returnability. | [docs/eight-elements.md](eight-elements.md) |
-| Operational roles and controls | Concrete workflow roles/checkpoints for AI-involved operations. | [docs/concepts/core-elements.md](concepts/core-elements.md) |
+| Eight-element model | Structural dimensions that preserve responsibility returnability. | [eight-elements.md](eight-elements.md) |
+| Operational roles and controls | Concrete workflow roles/checkpoints for AI-involved operations. | [concepts/core-elements.md](concepts/core-elements.md) |
 
 The eight-element model is the broader structural layer:
 
@@ -89,6 +142,7 @@ AI may participate as:
 - tool-using actor under configured authority
 - trace producer
 - monitoring assistant
+- local judgment node inside a bounded pathway, when evaluator separation and human or institutional return gates remain visible
 
 But under the current minimal assumptions, AI is not treated as a final responsibility holder.
 
@@ -110,7 +164,7 @@ RPE is close to several existing concepts, but it asks a different question.
 
 ## Action Class Matrix
 
-The source-aligned Action Class Matrix is maintained in [docs/action-class-matrix.md](action-class-matrix.md).
+The source-aligned Action Class Matrix is maintained in [action-class-matrix.md](action-class-matrix.md).
 
 It classifies AI-agent actions by:
 
@@ -137,6 +191,33 @@ Action class should influence:
 - repair ownership
 
 A pathway should not claim sufficiency without considering action class.
+
+Class E positive examples remain deferred.
+
+## Phase 3.1 runtime-event bridge
+
+Phase 3.1 connects adapter-boundary and runtime-event concepts to draft Responsibility Pathway records.
+
+Important Phase 3.1 documents include:
+
+- [adapter-boundary.md](adapter-boundary.md)
+- [phase-3-1-current-snapshot.md](phase-3-1-current-snapshot.md)
+- [runtime-event-schema-fixture-alignment.md](runtime-event-schema-fixture-alignment.md)
+- [event-to-pathway-relation-checker-plan.md](event-to-pathway-relation-checker-plan.md)
+- [runtime-event-workflow-current-status.md](runtime-event-workflow-current-status.md)
+- [phase-3-1-progress-map-connection.md](phase-3-1-progress-map-connection.md)
+
+Current Phase 3.1 implementation artifacts include:
+
+- [../spec/runtime-event.schema.yaml](../spec/runtime-event.schema.yaml)
+- [../examples/adapter-input-event-minimal.json](../examples/adapter-input-event-minimal.json)
+- [../examples/minimal-synthetic-runtime-fixture.json](../examples/minimal-synthetic-runtime-fixture.json)
+- [../examples/runtime-event-to-pathway-minimal.yaml](../examples/runtime-event-to-pathway-minimal.yaml)
+- [../scripts/check_runtime_events.py](../scripts/check_runtime_events.py)
+
+Current runtime-event checking is bounded and structural for selected synthetic JSON fixtures only.
+
+It is not schema validation, JSON semantic correctness proof, adapter mapping correctness proof, runtime correctness proof, production readiness, certification, or event-to-pathway semantic correctness proof.
 
 ## Evidence, stop, return, and repair
 
@@ -194,7 +275,7 @@ Repair may include:
 
 ## Try/catch/finally analogy
 
-A developer-facing analogy is available in [docs/explanations/try-catch-finally-responsibility-pathway.md](explanations/try-catch-finally-responsibility-pathway.md).
+A developer-facing analogy is available in [explanations/try-catch-finally-responsibility-pathway.md](explanations/try-catch-finally-responsibility-pathway.md).
 
 Short version:
 
@@ -206,38 +287,17 @@ finally  = evidence / repair / explanation / closure path
 
 This is only an explanatory analogy. It is not formal semantics.
 
-## Current implementation status
-
-The repository currently contains:
-
-- definitions and design notes
-- minimal examples
-- bounded structural checkers
-- review-result schema and fixtures
-- minimal Lean formalization of scoped invariants
-- source-alignment notes and synthesis
-
-The repository does not yet contain:
-
-- production runtime
-- production verifier
-- legal responsibility engine
-- compliance tool
-- safety certification tool
-- complete action-class checker
-- formal try/catch/finally semantics
-
 ## Recommended next work
 
-The source-alignment pass suggests this implementation order:
+Recommended next work should be chosen from [current-task-inventory.md](current-task-inventory.md) and checked against [deferred-work-restart-conditions.md](deferred-work-restart-conditions.md).
 
-1. Stabilize README and overview entry points.
-2. Keep `docs/concepts/core-elements.md` aligned as operational roles/controls connected to the eight-element model.
-3. Keep `docs/action-class-matrix.md` aligned as the Class A-F action-class design aid.
-4. Add negative examples for HITL collapse and rubber-stamp approval.
-5. Draft `docs/proposals/evidence-log-approval-state-extension.md`.
-6. Extend checkers by action class.
-7. Add small Lean invariants only after examples and schemas stabilize.
+At the current stage, low-risk work is preferred:
+
+1. Keep README, README.ja, BEACON, operation-index, overview, current-task-inventory, progress-map, and Phase 3.1 notes aligned.
+2. Keep external-review package and readiness checklist reachable without treating them as review results.
+3. Keep checker coverage and example index aligned with actual checker behavior.
+4. Keep event-to-pathway relation checker work as planning only until preconditions are deliberately reviewed.
+5. Keep production connectors, production runtime integration, conformance claims, schema validation, semantic checking, Class E positive examples, and Lean expansion deferred unless explicitly reopened.
 
 ## Boundary
 
@@ -250,6 +310,12 @@ This overview does not claim:
 - production readiness
 - fairness validation
 - moral accountability resolution
+- conformance status
+- finished standardization
+- runtime correctness
+- connector correctness
+- schema semantic correctness
+- event-to-pathway semantic correctness
 - AI final-responsibility transfer
 
 It is an orientation map for the repository's current public specification work.
