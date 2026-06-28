@@ -6,7 +6,14 @@ Before selecting a final title, check:
 
 - `docs/zenn-article-title-source-check.md`
 - `docs/zenn-publication-readiness-plan.md`
+- `docs/zenn-publication-cadence-note.md`
 - `YutoriKomeiji/zenn-content/articles/`
+
+## Cadence relation
+
+Zenn article planning should follow repository readiness, not a one-time announcement pattern or calendar rhythm alone.
+
+Use `docs/zenn-publication-cadence-note.md` when deciding whether the repository has grown into a state that can be explained without avoidable misunderstanding.
 
 ## Candidate scopes
 
