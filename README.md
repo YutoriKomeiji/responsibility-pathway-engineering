@@ -84,6 +84,10 @@ The previous expanded root README content has been moved to [docs/readme-expande
 - [docs/external-review-package-note.md](docs/external-review-package-note.md) - compact external-review reader package
 - [docs/external-review-readiness-checklist.md](docs/external-review-readiness-checklist.md) - non-certifying review-readiness checklist
 - [docs/progress-map.md](docs/progress-map.md) - rough planning-only progress and gate map
+- [docs/zenn-publication-readiness-plan.md](docs/zenn-publication-readiness-plan.md) - non-certifying public-publication readiness gates
+- [docs/api-future-shape.md](docs/api-future-shape.md) - future API design preview, not implementation
+- [docs/external-product-connection-survey.md](docs/external-product-connection-survey.md) - external connection-surface survey note
+- [docs/connector-target-matrix.md](docs/connector-target-matrix.md) - future connector target matrix, synthetic-first and non-implementation
 - [formal/lean/README.md](formal/lean/README.md) - Lean formalization boundary
 
 ## Examples
