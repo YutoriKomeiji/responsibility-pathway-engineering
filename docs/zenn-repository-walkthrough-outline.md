@@ -41,6 +41,10 @@ The article can briefly group the repository into entry documents, navigation do
 
 Keep this descriptive and avoid maturity claims.
 
+## Non-claim note
+
+The article should clearly say that the repository walkthrough is not a certification, conformance result, production-readiness claim, or completed implementation claim.
+
 ## Draft structure
 
 1. Why the repository exists.
