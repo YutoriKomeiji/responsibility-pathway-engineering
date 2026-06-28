@@ -1,14 +1,16 @@
 # API Future Shape
 
-This document is a placeholder for a future API design preview.
+This document records a future API design preview for Responsibility Pathway Engineering.
 
 The future API material is not implemented yet.
 
-This file will describe intended input, draft-output, review, and boundary concepts before any implementation work begins.
+This file describes intended input, draft-output, review, fixture relationship, and boundary concepts before any implementation work begins.
 
 ## Current status
 
-Design preview placeholder.
+Design preview only.
+
+No public API route, service connector, production runtime, schema-validation service, conformance service, or adapter implementation is defined here.
 
 ## Expected API layers
 
@@ -104,15 +106,41 @@ The matrix helps distinguish:
 
 The matrix is a design-preview aid only. It does not authorize connector implementation or production integration.
 
+## Relation to current runtime-event fixtures
+
+Current fixture-related artifacts include:
+
+- `spec/runtime-event.schema.yaml`
+- `examples/adapter-input-event-minimal.json`
+- `examples/minimal-synthetic-runtime-fixture.json`
+- `examples/runtime-event-to-pathway-minimal.yaml`
+- `scripts/check_runtime_events.py`
+- `docs/runtime-event-schema-fixture-alignment.md`
+- `docs/event-to-pathway-relation-checker-plan.md`
+
+These artifacts are useful for API design because they show the current draft boundary between observed runtime events, draft pathway records, and bounded structural checking.
+
+They do not define a production API contract.
+
+They also do not prove schema validity, semantic correctness, adapter correctness, runtime correctness, connector correctness, or responsibility assignment correctness.
+
+## Restart conditions before implementation
+
+Before implementing any API route, the maintainer should confirm that:
+
+1. the relevant concept is documented;
+2. the reader path is clear;
+3. boundary and non-goals are explicit;
+4. examples or fixtures are stable enough to review;
+5. the change can be made in a small, auditable commit;
+6. the result remains non-certifying;
+7. service-specific connectors remain deferred unless explicitly reopened;
+8. production runtime integration remains deferred unless explicitly reopened.
+
+The preferred next action is still documentation alignment or a local synthetic design note, not service integration.
+
 ## Boundary
 
 This file does not define an implemented API, connector, runtime, certification process, conformance process, or final-responsibility transfer mechanism.
 
-## Next note expansion
-
-A later small commit may add:
-
-- relation to current runtime-event fixtures
-- restart conditions before implementation
-
-The human author or maintainer remains responsible for deciding whether this placeholder should be expanded, revised, published, relied upon, reverted, repaired, or deferred.
+The human author or maintainer remains responsible for deciding whether this file should be expanded, revised, published, relied upon, reverted, repaired, or deferred.
