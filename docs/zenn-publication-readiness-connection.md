@@ -19,6 +19,8 @@ Related public-entry and review documents:
 - `docs/external-review-package-note.md`
 - `docs/external-review-readiness-checklist.md`
 - `docs/progress-map.md`
+- `docs/zenn-publication-cadence-note.md`
+- `docs/zenn-next-article-scope-candidates.md`
 - `docs/api-future-shape.md`
 - `docs/external-product-connection-survey.md`
 - `docs/deferred-work-restart-conditions.md`
@@ -40,6 +42,8 @@ This note keeps the Zenn publication plan reachable while preserving the distinc
 ## Publication posture
 
 The near-term Zenn posture should remain explanatory.
+
+Publication timing should follow repository readability and explainability, not one-time announcement pressure or calendar rhythm alone.
 
 Allowed near-term framing:
 
