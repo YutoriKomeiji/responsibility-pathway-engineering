@@ -22,6 +22,19 @@ Before drafting article text, check:
 
 Explain where to start, what each repository entrance means, and how not to overread the current repository state.
 
+## Read-first path
+
+Recommended reader path:
+
+1. `README.ja.md` for the Japanese entry point.
+2. `README.md` for the compact public entrance.
+3. `BEACON.md` for current phase and restart position.
+4. `docs/overview.md` for repository structure.
+5. `docs/operation-index.md` for detailed navigation.
+6. `docs/external-review-package-note.md` for review-oriented reading.
+
+This path should be presented as a reading guide, not as a maturity claim.
+
 ## Draft structure
 
 1. Why the repository exists.
