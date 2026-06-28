@@ -1,0 +1,124 @@
+# Zenn Publication Readiness Plan
+
+This document defines readiness gates for publishing Responsibility Pathway Engineering updates on Zenn.
+
+It is a publication-planning note only. It is not a publication record, external review result, endorsement, certification, conformance claim, production approval, standardization claim, legal review, safety review, compliance review, fairness review, or AI final-responsibility transfer mechanism.
+
+## Purpose
+
+Zenn is expected to be the first external publication surface for explaining the current RPE GitHub repository.
+
+The purpose of this plan is to decide what must be true before publishing public articles that point readers to the repository.
+
+The plan separates:
+
+- safe public explanation
+- repository reader-path readiness
+- external-review readiness
+- implementation-readiness
+- explicitly deferred work
+
+## Publication levels
+
+| Level | Publication type | Allowed message | Required repository state |
+| --- | --- | --- | --- |
+| Level 0 | No external publication | Internal construction only. | Repository may still have missing reader paths. |
+| Level 1 | Concept introduction | RPE is an early public specification and design framework. | README, BEACON, overview, provenance, and boundary documents are readable. |
+| Level 2 | Repository walkthrough | Readers can inspect current definitions, examples, checkers, and non-claims. | Operation index, current task inventory, example index, checker coverage, and external-review package are reachable. |
+| Level 3 | Review request | External readers can give feedback on clarity, overclaim risk, examples, and checker boundaries. | External-review readiness checklist and package note are current. |
+| Level 4 | Implementation preview | Future connector/API direction can be discussed as design preview only. | API future shape, external product survey, connector target matrix, and deferred-work boundaries are current. |
+| Level 5 | Implementation announcement | A bounded implementation exists and can be inspected. | Not current. Requires separate implementation notes, checker boundaries, and observed workflow records. |
+
+## Current intended publication level
+
+The near-term Zenn target should be Level 2 to Level 4, depending on article scope.
+
+Safe near-term article scopes:
+
+- what Responsibility Pathway Engineering is
+- why responsibility paths matter around AI-involved judgment and action
+- what the GitHub repository currently contains
+- how to read the repository
+- what the repository explicitly does not claim
+- why future API / connector work remains design-preview only
+- what external product connection surfaces RPE is observing
+
+Unsafe near-term article scopes:
+
+- claiming RPE is a finished standard
+- claiming conformance readiness
+- claiming certification readiness
+- claiming production readiness
+- claiming implemented connectors
+- claiming legal, safety, compliance, or fairness validation
+- claiming semantic correctness of event-to-pathway mapping
+- claiming AI can receive final responsibility under the current minimal model
+
+## Required documents before Zenn publication
+
+Before a Zenn article points readers to the repository, confirm that these documents are reachable and current enough for the article scope:
+
+| Document | Required for | Check |
+| --- | --- | --- |
+| `README.md` | all publication levels | public entrance is short and boundary-aware |
+| `README.ja.md` | Japanese reader entry | Japanese public-reader path is visible |
+| `BEACON.md` | restart and current position | current phase and read-first path are visible |
+| `docs/overview.md` | repository overview | Phase 3.1 and public-review path are current |
+| `docs/provenance.md` | source lineage | public source lineage is traceable |
+| `docs/external-review-package-note.md` | review navigation | external-review path is compact |
+| `docs/external-review-readiness-checklist.md` | review-readiness | readiness is framed as non-certifying |
+| `docs/progress-map.md` | progress language | estimates are planning-only |
+| `docs/api-future-shape.md` | API preview article | future API is clearly not implemented |
+| `docs/external-product-connection-survey.md` | world-product context | survey is framed as connection-surface observation |
+| `docs/deferred-work-restart-conditions.md` | deferred boundary | deferred work remains explicit |
+
+## Article gate checklist
+
+Before publication, check:
+
+- [ ] The article states that RPE is an early public specification.
+- [ ] The article links to the repository entrance, not only to deep documents.
+- [ ] The article distinguishes concept, repository state, review request, and future preview.
+- [ ] The article does not imply certification, conformance, production readiness, or standardization completion.
+- [ ] The article does not imply external review has already approved the project.
+- [ ] The article does not imply current API routes are implemented.
+- [ ] The article does not imply current connectors exist.
+- [ ] The article does not use observed checker or workflow success as correctness proof.
+- [ ] The article points readers to non-claims and deferred boundaries.
+- [ ] The article keeps responsibility with the human author or responsible institution.
+
+## Recommended first Zenn article set
+
+A safe first article set would be:
+
+1. Concept article: what Responsibility Pathway Engineering is.
+2. Repository guide: how to read the GitHub repository.
+3. Boundary article: what RPE does not claim.
+4. API / connector preview article: what may be built later and why it remains deferred.
+5. External product connection article: what current AI products expose as connection surfaces and what RPE observes from them.
+
+These should be published as explanatory notes, not as standardization announcements.
+
+## Stop conditions
+
+Do not publish a Zenn article if:
+
+- the repository entrance contradicts the article;
+- the article relies on a document that is not linked from a public reader path;
+- the article uses maturity language stronger than the repository supports;
+- checker or workflow results are described as validation rather than bounded maintenance signals;
+- future API or connector work is described as implemented;
+- deferred work is presented as current capability;
+- the article creates avoidable legal, safety, compliance, fairness, or certification implications.
+
+## Next safe repository action
+
+If Zenn publication planning continues, the next safe action is to connect this plan from a reader-path document such as:
+
+- `docs/operation-index.md`
+- `docs/current-task-inventory.md`
+- `docs/phase-3-1-public-entry-sync-note.md`
+
+Do not rewrite long documents solely to duplicate this plan.
+
+The human author or maintainer remains responsible for deciding whether a Zenn article should be drafted, published, revised, relied upon, retracted, repaired, or deferred.
