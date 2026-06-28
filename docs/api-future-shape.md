@@ -10,6 +10,22 @@ This file will describe intended input, draft-output, review, and boundary conce
 
 Design preview placeholder.
 
+## Expected API layers
+
+The future API shape is expected to remain layered.
+
+| Layer | Purpose | Current status |
+| --- | --- | --- |
+| Runtime event input | Receive structured observations from external systems. | Draft schema exists. |
+| Adapter mapping | Map event fields to candidate pathway roles and evidence records. | Boundary documented; implementation deferred. |
+| Draft pathway generation | Produce draft Responsibility Pathway records for review. | Minimal examples exist. |
+| Review result capture | Record what a human or institution reviewed and did not review. | Bounded schema and checker exist. |
+| Relation checking | Check selected structural preservation between event and pathway record. | Planning only. |
+| Service connectors | Connect specific systems such as workflow logs, API logs, ticketing systems, or audit logs. | Deferred. |
+| Production runtime | Continuous production integration. | Deferred. |
+
+This layered view is a planning aid only. It does not change the current implementation state.
+
 ## Boundary
 
 This file does not define an implemented API, connector, runtime, certification process, conformance process, or final-responsibility transfer mechanism.
