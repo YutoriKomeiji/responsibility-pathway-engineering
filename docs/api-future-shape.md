@@ -26,6 +26,24 @@ The future API shape is expected to remain layered.
 
 This layered view is a planning aid only. It does not change the current implementation state.
 
+## Candidate route preview
+
+The following route names are illustrative only.
+
+They are not implemented routes and are not stable public API.
+
+| Candidate route | Intended role | Current status |
+| --- | --- | --- |
+| `POST /runtime-events` | Receive a structured runtime-event object for bounded inspection. | Preview only. |
+| `POST /pathway-drafts/from-runtime-event` | Produce a draft Responsibility Pathway record from a runtime-event object or reference. | Preview only. |
+| `GET /pathway-drafts/{id}` | Retrieve a draft pathway record for review, correction, repair, or closure. | Preview only. |
+| `POST /review-results` | Record a bounded human or institutional review result. | Preview only. |
+| `POST /pathway-drafts/{id}/repair-note` | Attach a repair, rollback, correction, or reconnection note to a draft record. | Preview only. |
+
+Any future route should preserve review requirement, missing context, uncertainty, evidence references, and excluded claims.
+
+A future route must not silently turn a draft record into an approved or final record.
+
 ## Boundary
 
 This file does not define an implemented API, connector, runtime, certification process, conformance process, or final-responsibility transfer mechanism.
@@ -36,7 +54,6 @@ A later small commit may add:
 
 - expected input concepts
 - expected draft output concepts
-- candidate route names
 - relation to current runtime-event fixtures
 - restart conditions before implementation
 
