@@ -21,6 +21,16 @@ Do not use a whole-file rewrite as the default mental model for long navigation,
 
 Use a focused note only when a narrow responsibility unit should not force a risky broad rewrite, or when tool-side checks block an otherwise safe local edit.
 
+## Write retry note
+
+If a write attempt fails and no repository content changed, one smaller retry is allowed.
+
+The retry should keep the same maintenance intent but reduce size or structure.
+
+If the smaller retry also fails, stop that write path and use a safer later step.
+
+Do not keep repeating the same failed shape.
+
 ## Boundary
 
 This is an operation rule only.
