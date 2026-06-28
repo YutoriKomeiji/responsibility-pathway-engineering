@@ -89,6 +89,12 @@ Prefer wording such as reading guide, current position, boundary, example, and p
 
 Avoid wording that implies completion, guarantee, certification, approval, or production readiness.
 
+## Title note
+
+Prefer repository reading or reader guidance titles.
+
+Avoid final-state titles.
+
 ## Draft structure
 
 1. Why the repository exists.
