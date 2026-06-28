@@ -19,7 +19,7 @@ Use `docs/zenn-publication-cadence-note.md` when deciding whether the repository
 
 | Candidate scope | Main purpose |
 | --- | --- |
-| Repository walkthrough | Explain how to read the GitHub repository. |
+| Repository walkthrough | Explain how to read the GitHub repository. See `docs/zenn-repository-walkthrough-outline.md`. |
 | Current repository status | Explain what is currently available and what is still pending. |
 | Review preparation guide | Explain how external readers can inspect the repository. |
 | API future-shape explanation | Explain API planning as design preview. |
