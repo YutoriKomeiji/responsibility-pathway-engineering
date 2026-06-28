@@ -75,6 +75,14 @@ Before writing the article body, check the dedicated Zenn content repository and
 
 The latest boundary article should be treated as a recent source to avoid immediate reuse.
 
+## Claim posture note
+
+Explain current capability, current boundary, and future possibility separately.
+
+Avoid marketing-style exaggeration.
+
+Let the repository artifacts carry the strength of the claim.
+
 ## Draft structure
 
 1. Why the repository exists.
