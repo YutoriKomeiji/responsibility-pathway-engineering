@@ -69,6 +69,12 @@ Future Zenn articles should follow repository readability and explainability, no
 
 Use `docs/zenn-publication-cadence-note.md` before treating a follow-up article as timely.
 
+## Draft readiness checkpoint
+
+Before writing the article body, check the dedicated Zenn content repository and avoid duplicating existing article titles or scopes.
+
+The latest boundary article should be treated as a recent source to avoid immediate reuse.
+
 ## Draft structure
 
 1. Why the repository exists.
