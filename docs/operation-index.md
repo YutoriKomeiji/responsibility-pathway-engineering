@@ -23,11 +23,12 @@ Use this path when restarting work after a pause or when another maintainer, rev
 13. `docs/external-review-package-note.md` when preparing a compact external-review reader package
 14. `docs/zenn-publication-readiness-plan.md` when preparing public Zenn publication language or publication gates
 15. `docs/zenn-publication-readiness-connection.md` when connecting Zenn publication planning to public-entry and review-reader paths
-16. `docs/connector-target-matrix.md` when choosing future connector target categories before any implementation
-17. `docs/connector-target-matrix-connection.md` when connecting connector target planning to API future shape and external product survey notes
-18. `docs/event-to-pathway-relation-checker-plan.md` when considering future relation-checker planning without implementation
-19. `docs/example-index.md`
-20. `docs/checker-coverage.md`
+16. `docs/zenn-publication-ja-reader-note.md` when Japanese Zenn readers need a short repository-reading route
+17. `docs/connector-target-matrix.md` when choosing future connector target categories before any implementation
+18. `docs/connector-target-matrix-connection.md` when connecting connector target planning to API future shape and external product survey notes
+19. `docs/event-to-pathway-relation-checker-plan.md` when considering future relation-checker planning without implementation
+20. `docs/example-index.md`
+21. `docs/checker-coverage.md`
 
 `CHANGELOG.md` is not part of the primary construction-time reconnection path. Use it mainly for archival, investigative, historical, or retrospective milestone review.
 
@@ -44,7 +45,7 @@ Use documents according to the phase of work.
 | AI local judgment or task-control boundary review | `docs/ai-judgment-node-task-control.md`, `docs/phase-3-1-ai-judgment-node-connection.md`, `docs/phase-3-1-ai-judgment-node-sync-note.md`, `docs/ai-agent-operation-patterns.md`, current snapshot, current task inventory | checking when AI local judgment, loop-like task control, goal-like stop conditions, evaluator separation, or evidence-selection boundaries changed |
 | Standardization preparation | `docs/standardization-strategy.md`, progress map, README, operation index, current snapshot, concept index, example index, checker coverage | checking when a standardization boundary or language choice changed |
 | External review preparation | `docs/external-review-package-note.md`, `docs/external-review-readiness-checklist.md`, README, operation index, current snapshot, current task inventory, checker coverage, example index, schema/fixture alignment, standardization strategy, progress map | checking when external-review scope, package path, readiness, or non-readiness boundaries changed |
-| Public publication planning | `docs/zenn-publication-readiness-plan.md`, `docs/zenn-publication-readiness-connection.md`, README, README.ja, BEACON, overview, external-review package, progress map, deferred-work restart conditions | checking when publication gates, public-entry framing, or Zenn article scope changed |
+| Public publication planning | `docs/zenn-publication-readiness-plan.md`, `docs/zenn-publication-readiness-connection.md`, `docs/zenn-publication-ja-reader-note.md`, README, README.ja, BEACON, overview, external-review package, progress map, deferred-work restart conditions | checking when publication gates, Japanese reader path, public-entry framing, or Zenn article scope changed |
 | Connector and API target planning | `docs/connector-target-matrix.md`, `docs/connector-target-matrix-connection.md`, `docs/api-future-shape.md`, `docs/external-product-connection-survey.md`, `docs/adapter-boundary.md`, `docs/deferred-work-restart-conditions.md` | checking when connector target categories, future API surfaces, or external product observation boundaries changed |
 | Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, `docs/runtime-event-schema-fixture-alignment.md`, `docs/event-to-pathway-relation-checker-plan.md` when relation-checker planning matters, relevant schemas or examples | checking when a rule, coverage boundary, schema-fixture alignment, relation-checker plan, or fixture interpretation changed |
 | Workflow observation | `docs/runtime-event-workflow-current-status.md`, `docs/minimal-runtime-fixture-checker-workflow-observation.md`, `docs/repository-security-workflow-observation.md`, `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md`, `docs/phase-3-1-sync-log.md`, checker coverage | checking when a bounded workflow result or workflow-observation boundary changed |
@@ -110,6 +111,7 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | `docs/external-review-package-note.md` | You need a compact external-review reader package, suggested reviewer questions, non-readiness boundaries, and reviewer handoff path without treating it as an endorsement or certification package. |
 | `docs/zenn-publication-readiness-plan.md` | You need Zenn publication levels, article gates, required documents, stop conditions, or safe public article scope before drafting or publishing public-facing Zenn material. |
 | `docs/zenn-publication-readiness-connection.md` | You need the focused connection between Zenn publication planning, public-entry documents, external-review readiness, future API preview, external product survey, and deferred-work boundaries. |
+| `docs/zenn-publication-ja-reader-note.md` | You need a short Japanese reader path for readers arriving from Zenn or other Japanese public articles. |
 | `docs/connector-target-matrix.md` | You need candidate external system categories, observable events, candidate RPE mapping focus, first safe synthetic forms, and deferred connector boundaries before choosing any connector target. |
 | `docs/connector-target-matrix-connection.md` | You need the focused connection between connector target planning, API future-shape planning, external product survey observations, adapter boundary, and deferred-work restart conditions. |
 | `docs/event-to-pathway-relation-checker-plan.md` | You need the future event-to-pathway relation checker plan before considering any relation checker implementation or event-to-pathway structural relation check. |
@@ -182,6 +184,8 @@ Neither the package note nor the readiness checklist is a substitute for externa
 Use `docs/zenn-publication-readiness-plan.md` when deciding what can safely be published on Zenn and what publication level is supported by the repository state.
 
 Use `docs/zenn-publication-readiness-connection.md` when connecting Zenn publication planning to public-entry documents, external-review readiness, future API or connector previews, external product connection-surface observations, and deferred-work boundaries.
+
+Use `docs/zenn-publication-ja-reader-note.md` when Japanese public readers need a short reading route from Zenn or other Japanese-facing articles into the repository.
 
 Zenn publication planning is not an external review result, certification package, conformance package, standardization claim, production approval, or implemented API / connector announcement.
 
