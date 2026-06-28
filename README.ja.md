@@ -65,6 +65,16 @@ Phase 3.1 は adapter boundary と runtime-event bridge から開始していま
 
 運用文書索引は [docs/operation-index.md](docs/operation-index.md) にあります。この文書は、保守状況ごとにどの運用文書を読むべきかを整理します。
 
+## 公開・外部レビュー導線
+
+公開記事や外部読者から本リポジトリを見る場合は、まず現在の主張範囲と未完了範囲を分けて読んでください。
+
+- [docs/external-review-package-note.md](docs/external-review-package-note.md) - 外部レビュー向けの短い読書パッケージ
+- [docs/external-review-readiness-checklist.md](docs/external-review-readiness-checklist.md) - 認証ではないレビュー準備チェックリスト
+- [docs/progress-map.md](docs/progress-map.md) - 概算の進捗・gate・停止条件マップ
+
+これらは、外部レビューのための導線です。レビュー済み、標準化済み、認証済み、本番利用可能であることを意味しません。
+
 ## 著作者と引用
 
 本リポジトリは Akihisa Ono (小野昭久) によって、独立した公開仕様および設計フレームワークとして著作・保守されています。
@@ -239,5 +249,3 @@ workflow は [.github/workflows/check-lean.yml](.github/workflows/check-lean.yml
 Copyright (c) 2026 Akihisa Ono (小野昭久).
 
 ライセンス条件に従い、著作権表示とライセンス表示を保持する限り、再利用、改変、配布、サブライセンスが可能です。
-
-著作者表示、帰属、AI支援、責任の範囲については [NOTICE.md](NOTICE.md) を参照してください。
