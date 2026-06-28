@@ -31,6 +31,14 @@ If the smaller retry also fails, stop that write path and use a safer later step
 
 Do not keep repeating the same failed shape.
 
+## Provisional heavy-file update note
+
+Some existing operation notes may be harder to update because a write operation sends the full file content, not only the intended small change.
+
+When a small edit to a heavier operation note fails twice, treat the target file as temporarily hard to update.
+
+Prefer updating the lighter related note, or creating a focused note, instead of repeatedly rewriting the heavy file.
+
 ## Boundary
 
 This is an operation rule only.
