@@ -81,6 +81,9 @@ The previous expanded root README content has been moved to [docs/readme-expande
 - [CITATION.cff](CITATION.cff) - citation metadata
 - [docs/deferred-work-restart-conditions.md](docs/deferred-work-restart-conditions.md) - restart conditions for deferred work
 - [docs/current-task-inventory.md](docs/current-task-inventory.md) - current task inventory
+- [docs/external-review-package-note.md](docs/external-review-package-note.md) - compact external-review reader package
+- [docs/external-review-readiness-checklist.md](docs/external-review-readiness-checklist.md) - non-certifying review-readiness checklist
+- [docs/progress-map.md](docs/progress-map.md) - rough planning-only progress and gate map
 - [formal/lean/README.md](formal/lean/README.md) - Lean formalization boundary
 
 ## Examples
