@@ -69,6 +69,7 @@ Before a Zenn article points readers to the repository, confirm that these docum
 | `docs/external-review-readiness-checklist.md` | review-readiness | readiness is framed as non-certifying |
 | `docs/progress-map.md` | progress language | estimates are planning-only |
 | `docs/zenn-article-title-source-check.md` | article title planning | existing Zenn article titles and aligned source inventory are checked before choosing a title |
+| `docs/zenn-publication-cadence-note.md` | publication timing | publication timing is based on repository readability, not one-time announcement pressure or calendar rhythm alone |
 | `docs/api-future-shape.md` | API preview article | future API is clearly not implemented |
 | `docs/external-product-connection-survey.md` | world-product context | survey is framed as connection-surface observation |
 | `docs/deferred-work-restart-conditions.md` | deferred boundary | deferred work remains explicit |
@@ -85,6 +86,14 @@ The article title gate requires that:
 - the latest article is excluded from immediate reuse unless the maintainer explicitly reopens it;
 - the next title does not duplicate the already published Responsibility Pathway / RPE definition series.
 
+## Publication cadence gate
+
+Before treating a Zenn article as timely, read `docs/zenn-publication-cadence-note.md`.
+
+A Zenn article should be considered when the repository has grown into a reader-explainable state.
+
+Do not publish only because time has passed.
+
 ## Article gate checklist
 
 Before publication, check:
@@ -93,6 +102,7 @@ Before publication, check:
 - [ ] The article links to the repository entrance, not only to deep documents.
 - [ ] The article distinguishes concept, repository state, review request, and future preview.
 - [ ] The article title and scope were checked against `docs/zenn-article-title-source-check.md`.
+- [ ] The article timing was checked against `docs/zenn-publication-cadence-note.md`.
 - [ ] The article does not imply certification, conformance, production readiness, or standardization completion.
 - [ ] The article does not imply external review has already approved the project.
 - [ ] The article does not imply current API routes are implemented.
@@ -123,6 +133,7 @@ Do not publish a Zenn article if:
 - the article relies on a document that is not linked from a public reader path;
 - the article uses maturity language stronger than the repository supports;
 - the title or scope duplicates an existing Zenn article without an explicit revision purpose;
+- the article is only being published because time passed, not because the repository state is explainable;
 - checker or workflow results are described as validation rather than bounded maintenance signals;
 - future API or connector work is described as implemented;
 - deferred work is presented as current capability;
