@@ -86,6 +86,24 @@ Expected draft output concepts include:
 
 The output should remain a draft until the responsible human or institution reviews it.
 
+## Connector target relationship
+
+Future API design should use `docs/connector-target-matrix.md` when deciding which external system category is being modeled.
+
+The matrix helps distinguish:
+
+- workflow automation events;
+- agent tool protocol events;
+- API request logs;
+- local service logs;
+- cloud audit logs;
+- ticketing workflow events;
+- AI governance surfaces;
+- ERP document changes;
+- incident and support workflow events.
+
+The matrix is a design-preview aid only. It does not authorize connector implementation or production integration.
+
 ## Boundary
 
 This file does not define an implemented API, connector, runtime, certification process, conformance process, or final-responsibility transfer mechanism.
