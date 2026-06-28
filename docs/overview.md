@@ -1,6 +1,6 @@
 # Responsibility Pathway Engineering Overview
 
-This overview is the current entry map for the repository after the Zenn source-alignment pass and the Phase 3.1 reader-path synchronization work.
+This overview is the current entry map for the repository after the Zenn source-alignment pass, the Phase 3.1 reader-path synchronization work, and the public publication / connector-planning reader-path updates.
 
 It explains what Responsibility Pathway Engineering currently means in this repository, what it does not claim, and where to go next.
 
@@ -53,6 +53,12 @@ The current public specification contains:
 - observed bounded runtime-event workflow results
 - external-review readiness and package notes
 - rough planning-only progress and gate mapping
+- public publication readiness notes for Zenn-facing explanation
+- Zenn article title source-check guidance based on `YutoriKomeiji/zenn-content/articles/`
+- Zenn content handoff guidance for moving article text to the dedicated Zenn content repository at publication time
+- API future-shape documentation as design preview only
+- external product connection-surface survey notes
+- connector target matrix planning for synthetic-first connector categories
 
 The repository does not yet contain:
 
@@ -69,6 +75,9 @@ The repository does not yet contain:
 - formal try/catch/finally semantics
 - conformance model
 - finished standardization claim
+- implemented public API routes
+- implemented service-specific connectors
+- Zenn article files under this repository
 
 ## Public and external-review path
 
@@ -82,10 +91,37 @@ For external readers, reviewers, or readers arriving from public articles, start
 6. [progress-map.md](progress-map.md)
 7. [phase-3-1-current-snapshot.md](phase-3-1-current-snapshot.md)
 8. [current-task-inventory.md](current-task-inventory.md)
+9. [zenn-publication-readiness-plan.md](zenn-publication-readiness-plan.md)
+10. [zenn-publication-ja-reader-note.md](zenn-publication-ja-reader-note.md)
+11. [zenn-article-title-source-check.md](zenn-article-title-source-check.md)
+12. [zenn-content-publication-handoff.md](zenn-content-publication-handoff.md)
+13. [api-future-shape.md](api-future-shape.md)
+14. [external-product-connection-survey.md](external-product-connection-survey.md)
+15. [connector-target-matrix.md](connector-target-matrix.md)
 
 These documents help readers separate current claims from deferred work.
 
 They are not external review findings, certification results, conformance evidence, standardization approval, production approval, legal review, safety review, compliance review, fairness review, or AI final-responsibility transfer.
+
+## Public publication and Zenn handoff
+
+Zenn is treated as a public explanation surface, not as the source of truth for the RPE specification.
+
+Publication planning documents include:
+
+- [zenn-publication-readiness-plan.md](zenn-publication-readiness-plan.md)
+- [zenn-publication-readiness-connection.md](zenn-publication-readiness-connection.md)
+- [zenn-publication-ja-reader-note.md](zenn-publication-ja-reader-note.md)
+- [zenn-article-title-source-check.md](zenn-article-title-source-check.md)
+- [zenn-content-publication-handoff.md](zenn-content-publication-handoff.md)
+
+Before choosing a Zenn article title, check `YutoriKomeiji/zenn-content/articles/` and the RPE-side source-alignment inventory.
+
+At publication time, article text should be drafted or moved under the dedicated Zenn content repository:
+
+- `YutoriKomeiji/zenn-content/articles/`
+
+This repository remains the source for definitions, boundaries, examples, checker scope, reader-path status, and publication-readiness planning.
 
 ## Two-layer model
 
@@ -206,6 +242,9 @@ Important Phase 3.1 documents include:
 - [event-to-pathway-relation-checker-plan.md](event-to-pathway-relation-checker-plan.md)
 - [runtime-event-workflow-current-status.md](runtime-event-workflow-current-status.md)
 - [phase-3-1-progress-map-connection.md](phase-3-1-progress-map-connection.md)
+- [api-future-shape.md](api-future-shape.md)
+- [external-product-connection-survey.md](external-product-connection-survey.md)
+- [connector-target-matrix.md](connector-target-matrix.md)
 
 Current Phase 3.1 implementation artifacts include:
 
@@ -218,6 +257,21 @@ Current Phase 3.1 implementation artifacts include:
 Current runtime-event checking is bounded and structural for selected synthetic JSON fixtures only.
 
 It is not schema validation, JSON semantic correctness proof, adapter mapping correctness proof, runtime correctness proof, production readiness, certification, or event-to-pathway semantic correctness proof.
+
+## API and connector planning status
+
+Current API and connector-related documents are planning and design-preview documents only.
+
+They include:
+
+- [api-future-shape.md](api-future-shape.md)
+- [external-product-connection-survey.md](external-product-connection-survey.md)
+- [connector-target-matrix.md](connector-target-matrix.md)
+- [connector-target-matrix-connection.md](connector-target-matrix-connection.md)
+
+They help describe possible future inputs, draft outputs, review boundaries, external product connection surfaces, and synthetic-first connector categories.
+
+They do not authorize live external integrations, real log ingestion, personal data processing, production runtime integration, implemented public API routes, service-specific connectors, adapter correctness claims, runtime correctness claims, or AI final-responsibility transfer.
 
 ## Evidence, stop, return, and repair
 
@@ -289,15 +343,17 @@ This is only an explanatory analogy. It is not formal semantics.
 
 ## Recommended next work
 
-Recommended next work should be chosen from [current-task-inventory.md](current-task-inventory.md) and checked against [deferred-work-restart-conditions.md](deferred-work-restart-conditions.md).
+Recommended next work should be chosen from [current-task-inventory.md](current-task-inventory.md), [publication-and-connector-task-connection.md](publication-and-connector-task-connection.md), and checked against [deferred-work-restart-conditions.md](deferred-work-restart-conditions.md).
 
 At the current stage, low-risk work is preferred:
 
 1. Keep README, README.ja, BEACON, operation-index, overview, current-task-inventory, progress-map, and Phase 3.1 notes aligned.
-2. Keep external-review package and readiness checklist reachable without treating them as review results.
-3. Keep checker coverage and example index aligned with actual checker behavior.
-4. Keep event-to-pathway relation checker work as planning only until preconditions are deliberately reviewed.
-5. Keep production connectors, production runtime integration, conformance claims, schema validation, semantic checking, Class E positive examples, and Lean expansion deferred unless explicitly reopened.
+2. Keep public publication planning, title source checking, and Zenn content handoff reachable without treating them as publication or review results.
+3. Keep external-review package and readiness checklist reachable without treating them as review results.
+4. Keep API future-shape, external product survey, and connector target matrix as design-preview / synthetic-first planning documents.
+5. Keep checker coverage and example index aligned with actual checker behavior.
+6. Keep event-to-pathway relation checker work as planning only until preconditions are deliberately reviewed.
+7. Keep production connectors, production runtime integration, conformance claims, schema validation, semantic checking, Class E positive examples, and Lean expansion deferred unless explicitly reopened.
 
 ## Boundary
 
@@ -316,6 +372,9 @@ This overview does not claim:
 - connector correctness
 - schema semantic correctness
 - event-to-pathway semantic correctness
+- implemented public API routes
+- implemented service-specific connectors
+- Zenn article publication status
 - AI final-responsibility transfer
 
 It is an orientation map for the repository's current public specification work.
