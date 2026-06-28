@@ -21,9 +21,11 @@ Use this path when restarting work after a pause or when another maintainer, rev
 11. `docs/standardization-strategy.md` when standardization language, grounding discipline, or world-standard preparation matters
 12. `docs/external-review-readiness-checklist.md` when preparing or evaluating external review readiness
 13. `docs/external-review-package-note.md` when preparing a compact external-review reader package
-14. `docs/event-to-pathway-relation-checker-plan.md` when considering future relation-checker planning without implementation
-15. `docs/example-index.md`
-16. `docs/checker-coverage.md`
+14. `docs/zenn-publication-readiness-plan.md` when preparing public Zenn publication language or publication gates
+15. `docs/zenn-publication-readiness-connection.md` when connecting Zenn publication planning to public-entry and review-reader paths
+16. `docs/event-to-pathway-relation-checker-plan.md` when considering future relation-checker planning without implementation
+17. `docs/example-index.md`
+18. `docs/checker-coverage.md`
 
 `CHANGELOG.md` is not part of the primary construction-time reconnection path. Use it mainly for archival, investigative, historical, or retrospective milestone review.
 
@@ -40,6 +42,7 @@ Use documents according to the phase of work.
 | AI local judgment or task-control boundary review | `docs/ai-judgment-node-task-control.md`, `docs/phase-3-1-ai-judgment-node-connection.md`, `docs/phase-3-1-ai-judgment-node-sync-note.md`, `docs/ai-agent-operation-patterns.md`, current snapshot, current task inventory | checking when AI local judgment, loop-like task control, goal-like stop conditions, evaluator separation, or evidence-selection boundaries changed |
 | Standardization preparation | `docs/standardization-strategy.md`, progress map, README, operation index, current snapshot, concept index, example index, checker coverage | checking when a standardization boundary or language choice changed |
 | External review preparation | `docs/external-review-package-note.md`, `docs/external-review-readiness-checklist.md`, README, operation index, current snapshot, current task inventory, checker coverage, example index, schema/fixture alignment, standardization strategy, progress map | checking when external-review scope, package path, readiness, or non-readiness boundaries changed |
+| Public publication planning | `docs/zenn-publication-readiness-plan.md`, `docs/zenn-publication-readiness-connection.md`, README, README.ja, BEACON, overview, external-review package, progress map, deferred-work restart conditions | checking when publication gates, public-entry framing, or Zenn article scope changed |
 | Checker or example interpretation | `docs/checker-coverage.md`, `docs/example-index.md`, `docs/runtime-event-schema-fixture-alignment.md`, `docs/event-to-pathway-relation-checker-plan.md` when relation-checker planning matters, relevant schemas or examples | checking when a rule, coverage boundary, schema-fixture alignment, relation-checker plan, or fixture interpretation changed |
 | Workflow observation | `docs/runtime-event-workflow-current-status.md`, `docs/minimal-runtime-fixture-checker-workflow-observation.md`, `docs/repository-security-workflow-observation.md`, `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md`, `docs/phase-3-1-sync-log.md`, checker coverage | checking when a bounded workflow result or workflow-observation boundary changed |
 | Phase planning | `ROADMAP.md`, roadmap note, progress map, current snapshot, operation index, current task inventory | confirming a past phase milestone |
@@ -102,6 +105,8 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | `docs/phase-3-1-ai-judgment-node-sync-note.md` | You need the focused synchronization record for the AI Judgment Node task-control boundary unit. |
 | `docs/external-review-readiness-checklist.md` | You need to inspect whether the repository is readable enough for external review without treating readiness as certification, conformance, correctness, production approval, or public standardization. |
 | `docs/external-review-package-note.md` | You need a compact external-review reader package, suggested reviewer questions, non-readiness boundaries, and reviewer handoff path without treating it as an endorsement or certification package. |
+| `docs/zenn-publication-readiness-plan.md` | You need Zenn publication levels, article gates, required documents, stop conditions, or safe public article scope before drafting or publishing public-facing Zenn material. |
+| `docs/zenn-publication-readiness-connection.md` | You need the focused connection between Zenn publication planning, public-entry documents, external-review readiness, future API preview, external product survey, and deferred-work boundaries. |
 | `docs/event-to-pathway-relation-checker-plan.md` | You need the future event-to-pathway relation checker plan before considering any relation checker implementation or event-to-pathway structural relation check. |
 | `docs/repository-security-workflow-observation.md` | You need the first observed bounded repository security hygiene workflow result and its non-certifying interpretation. |
 | `docs/progress-map.md` | You need rough progress estimates, gate status, next gates, recommended order, or progress-related stop conditions. |
@@ -167,6 +172,14 @@ The checklist should be used before expanding public-facing review claims, exter
 
 Neither the package note nor the readiness checklist is a substitute for external review findings. They are navigation, readiness, and non-readiness notes only.
 
+## Zenn publication navigation
+
+Use `docs/zenn-publication-readiness-plan.md` when deciding what can safely be published on Zenn and what publication level is supported by the repository state.
+
+Use `docs/zenn-publication-readiness-connection.md` when connecting Zenn publication planning to public-entry documents, external-review readiness, future API or connector previews, external product connection-surface observations, and deferred-work boundaries.
+
+Zenn publication planning is not an external review result, certification package, conformance package, standardization claim, production approval, or implemented API / connector announcement.
+
 ## Event-to-pathway relation checker planning
 
 Use `docs/event-to-pathway-relation-checker-plan.md` before considering any checker that compares a runtime-event JSON fixture with a pathway YAML example.
@@ -220,54 +233,3 @@ Snapshots record current restart positions for phases or subphases.
 | `docs/phase-2-current-snapshot.md` | Current Phase 2 Lean restart point and scoped formalization status. |
 | `docs/phase-2-5-current-snapshot.md` | Current Phase 2.5 enterprise and record-review restart point. |
 | `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, runtime-event checking plan, runtime-event workflow observation, minimal runtime candidate planning, minimal runtime fixture, minimal runtime fixture checker coverage, current task inventory, repository operation, checker coverage, and example-index restart point. |
-
-Use snapshots when a change spans multiple documents, when a long-file update becomes risky, when session handoff needs a durable restart path, when BEACON would otherwise need to carry detailed current-state history, or when the next maintainer needs a compact restart point.
-
-## Sync logs and roadmap notes
-
-Sync logs and roadmap notes are complementary but separate.
-
-| Document | Current role |
-| --- | --- |
-| `docs/phase-3-1-sync-log.md` | Detailed synchronization record for multi-commit Phase 3.1 reader-path, coverage, checker-interpretation, workflow-observation, and boundary synchronization. |
-| `docs/phase-3-1-ai-judgment-node-sync-note.md` | Focused sync-log supplement for the AI Judgment Node task-control boundary responsibility unit. |
-| `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md` | Focused sync-log supplement for the minimal runtime fixture checker workflow observation responsibility unit. |
-| `docs/phase-3-1-progress-map-connection.md` | Focused Phase 3.1 reader-path note connecting the rough progress map without rewriting the full current snapshot. |
-| `docs/phase-3-1-roadmap-note.md` | Short current-planning companion for Phase 3.1 near-term roadmap position, minimal runtime candidate planning, next low-risk work, phase rules, and stop conditions. |
-| `docs/phase-3-1-roadmap-runtime-reference.md` | Historical reference note for the minimal runtime fixture ROADMAP reference after the intended ROADMAP reference was absorbed. |
-| `docs/phase-3-1-roadmap-sync-after-readme-recovery.md` | Short companion note for the README recovery and missed-support synchronization unit. |
-
-Use sync logs to understand what changed across several commits, what was synchronized, what checker status or interpretation was current, and what work remained deferred after a synchronization unit.
-
-Use focused sync notes when the main sync log is long and a narrow responsibility unit needs durable preservation without forcing a broad full-file rewrite.
-
-Use focused connection notes when a narrow reader-path bridge is safer than rewriting a long current snapshot.
-
-Use roadmap notes to understand what should happen next, which phase rules matter now, what should remain deferred, and how to avoid changing a long `ROADMAP.md` section too early.
-
-Do not use a roadmap note as a second changelog.
-
-Do not use a sync log as a phase plan.
-
-## Runtime candidate navigation
-
-| Document | Use when |
-| --- | --- |
-| `docs/minimal-runtime-candidate-design.md` | You need to decide whether the next runtime artifact may be a minimal synthetic runtime fixture or a bounded runtime-checking stub before any connector, workflow, checker, or production runtime implementation. |
-| `docs/minimal-runtime-fixture-review.md` | You need the review result for `examples/minimal-synthetic-runtime-fixture.json` as the first minimal synthetic runtime observation fixture. |
-| `docs/minimal-runtime-fixture-review-connection.md` | You need the reader path connecting the minimal runtime fixture review note to Phase 3.1 operation documents. |
-| `docs/runtime-event-schema-fixture-alignment.md` | You need the current alignment between the draft runtime-event schema, selected JSON fixtures, and bounded runtime-event checker, without treating it as validation. |
-| `docs/event-to-pathway-relation-checker-plan.md` | You need the planned boundary for a possible future checker comparing selected runtime-event JSON fixtures with pathway YAML examples. |
-| `docs/runtime-event-checking-plan.md` | You need to know when runtime-event schema checking, JSON fixture checking, or future runtime-event checker work may be safely considered. |
-| `docs/runtime-event-workflow-current-status.md` | You need the current status of the first minimal runtime-event workflow and observed bounded workflow runs. |
-| `docs/minimal-runtime-fixture-checker-workflow-observation.md` | You need the focused observation note for the first workflow success after `examples/minimal-synthetic-runtime-fixture.json` was added to the bounded runtime-event checker coverage. |
-
-Use the minimal runtime candidate design note before adding any runtime candidate.
-
-Use the minimal runtime fixture review note before changing the minimal runtime fixture or treating its first review as current.
-
-Use the runtime-event schema/fixture alignment note before treating a runtime-event fixture, minimal runtime fixture, or checker pass as current alignment.
-
-Use the event-to-pathway relation checker plan before considering any relation checker implementation between selected runtime-event JSON fixtures and pathway YAML examples.
-
-Use the runtime-event checking plan before adding any runtime-event checker expansion, runtime-event workflow expansion, runtime-event schema checking, or JSON fixture checking.
