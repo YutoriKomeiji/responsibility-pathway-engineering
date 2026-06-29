@@ -33,8 +33,19 @@ A valid approval-skip pathway should connect:
 3. the responsibility-transfer destination
 4. the evidence snapshot used at the time
 5. the later review, dispute, repair, or return path
+6. the explanation path for reviewers or affected parties when explanation is required
 
 If any of these are missing, the pathway may hide responsibility instead of transferring it.
+
+## Explanation and agreement relation
+
+Traceability alone is not enough for accountability.
+
+When agreement, acceptance, or continued use matters, the pathway should preserve what was explained, to whom it was explainable, and how the matter could be questioned, returned, or repaired.
+
+This does not mean every pathway requires explicit consent.
+
+It means approval transfer should not rely on invisible agreement or unexplained responsibility movement.
 
 ## Change and correction handling
 
@@ -71,4 +82,4 @@ This note does not claim that evidence logs guarantee legal admissibility.
 
 It also does not claim that AI systems can hold final responsibility.
 
-The alignment target is narrower: skipped approval must remain reconstructable, reviewable, and returnable through a defined responsibility pathway.
+The alignment target is narrower: skipped approval must remain reconstructable, reviewable, explainable where needed, and returnable through a defined responsibility pathway.
