@@ -4,6 +4,14 @@ This guide explains how to use the GitHub Issue Form for AI-assisted work respon
 
 It is a usage guide only. It is not certification, legal review, safety review, compliance review, fairness review, production approval, conformance evidence, social acceptance proof, or AI final-responsibility transfer.
 
+## RPE distinction
+
+This form is not only an AI-use disclosure form.
+
+Its RPE-specific purpose is to preserve where judgment, evidence, review, repair, and responsibility can return when AI-assisted work is wrong, unclear, incomplete, unsupported, or disputed.
+
+See `docs/issue-form-rpe-originality-note.md` for the design anchors.
+
 ## What it is for
 
 Use the issue form when AI assistance was involved in work and the repository should preserve a responsibility path as an issue.
