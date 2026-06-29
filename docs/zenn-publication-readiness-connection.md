@@ -2,7 +2,7 @@
 
 This focused connection note links the Zenn publication readiness plan to the current public-entry and external-review preparation path.
 
-It is a navigation and planning note only. It is not a publication record, external review result, certification record, conformance claim, production approval, standardization claim, legal review, safety review, compliance review, fairness review, or AI final-responsibility transfer mechanism.
+It is a navigation and planning note only. It is not a publication record, external review result, certification record, conformance claim, production approval, standardization claim, legal review, safety review, compliance review, fairness review, social acceptance proof, or AI final-responsibility transfer mechanism.
 
 ## Connected document
 
@@ -18,6 +18,9 @@ Related public-entry and review documents:
 - `docs/overview.md`
 - `docs/external-review-package-note.md`
 - `docs/external-review-readiness-checklist.md`
+- `docs/social-connection-review-navigation.md`
+- `docs/repository-pathway-gap-inventory.md`
+- `docs/lean-evidence-approval-formalization-plan.md`
 - `docs/progress-map.md`
 - `docs/zenn-publication-cadence-note.md`
 - `docs/zenn-next-article-scope-candidates.md`
@@ -27,7 +30,7 @@ Related public-entry and review documents:
 
 ## Why this note exists
 
-The repository now has several public-reader surfaces and future-preview documents.
+The repository now has several public-reader surfaces, social-connection review paths, evidence and approval-transfer alignment notes, Lean planning notes, and future-preview documents.
 
 Because Zenn is expected to be the first external publication surface, the maintainer needs a narrow way to connect publication planning without rewriting every long navigation file.
 
@@ -36,6 +39,8 @@ This note keeps the Zenn publication plan reachable while preserving the distinc
 - current repository state
 - public explanation
 - review-navigation readiness
+- social-connection review readiness
+- formalization planning
 - implementation preview
 - deferred implementation work
 
@@ -52,6 +57,9 @@ Allowed near-term framing:
 - repository walkthrough
 - boundary explanation
 - review request
+- social-connection review path explanation
+- evidence and approval-transfer reader-path explanation
+- Lean structural-completeness planning explanation
 - API or connector future-shape preview
 - external product connection-surface observation
 
@@ -65,17 +73,27 @@ Disallowed near-term framing:
 - implemented public API
 - external-review-approved project
 - legal, safety, compliance, or fairness validation
+- social acceptance proof
+- Lean completeness proof
 - AI final-responsibility transfer
 
 ## Reader-path role
 
 Use this connection note when deciding whether a Zenn article can safely point to the repository.
 
-A Zenn article should not be published if its claims are stronger than the repository entrance, readiness plan, external-review notes, or deferred-work boundaries support.
+A Zenn article should not be published if its claims are stronger than the repository entrance, readiness plan, external-review notes, social-connection review notes, formalization plans, or deferred-work boundaries support.
+
+## Article-route independence
+
+Article titles, drafts, and publication routes may continue outside this repository path.
+
+This note should not force article drafting, title selection, or publication cadence decisions.
+
+Its role is to keep the repository-side public reader path durable if a Zenn article later points into the repository.
 
 ## Next safe action
 
-If publication planning continues, the next safe action is to add compact references to this plan from one or more existing navigation files only where it improves restartability.
+If publication planning continues, the next safe action is to keep this connection note aligned with operation index, current task inventory, progress map, external-review readiness checklist, social-connection review navigation, repository pathway gap inventory, and deferred-work boundaries.
 
 Do not rewrite large files solely to duplicate this note.
 
