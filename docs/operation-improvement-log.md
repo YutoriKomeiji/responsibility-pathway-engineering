@@ -17,6 +17,52 @@ Add an entry when an operation problem meets at least one of these conditions:
 
 Do not add an entry for every minor typo, harmless edit, or already-covered checker failure.
 
+## Semi-automatic trigger rule
+
+During AI-assisted repository maintenance, pause and consider an entry here when any of these phrases or situations appear in the work:
+
+- "blocked"
+- "drift"
+- "recurrence"
+- "again"
+- "forgot"
+- "unclear recovery path"
+- "safe workaround"
+- "escape note"
+- "focused note"
+- "long-file update"
+- "tool discovery"
+- "not sure where this was recorded"
+- a safety check blocks an update
+- a direct file update is abandoned and replaced with a different route
+- an error is avoided but the future restart path is not obvious
+- the maintainer notices that a past lesson was recorded but not naturally applied
+
+This is a trigger to check the log, not an automatic requirement to write.
+
+## Write timing rule
+
+Write an entry at the earliest safe point after one of these happens:
+
+1. the immediate recovery has succeeded,
+2. the durable improvement file or rule is known,
+3. the next check can be named, and
+4. the entry can be written without interrupting a higher-risk repair.
+
+If these are not yet true, record a temporary pointer in the focused note, sync log, snapshot, roadmap note, or gap inventory instead.
+
+Do not wait until the same problem recurs if the current fix changes future operation behavior.
+
+## Do not write when
+
+Do not add an entry when:
+
+- the event is a one-off typo or harmless wording repair
+- the event is already fully covered by a checker failure note, workflow observation, or existing operation log entry
+- the fix does not change future operation behavior
+- the entry would be speculative before the actual recovery path is known
+- writing the log would interrupt an urgent repair that still lacks a safe current state
+
 ## Entry format
 
 Use short entries.
