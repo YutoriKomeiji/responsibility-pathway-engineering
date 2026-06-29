@@ -107,6 +107,8 @@ It does not transfer final responsibility to the AI system.
 
 See `docs/evidence-approval-transfer-alignment.md` for the relation between approval skip, evidence logging, and later return paths.
 
+When this approval-skip boundary is reviewed in a real social context, also use `docs/social-connection-review-navigation.md`.
+
 ## Layered responsibility return
 
 A responsibility pathway may return through multiple layers, depending on the matter and governance context:
