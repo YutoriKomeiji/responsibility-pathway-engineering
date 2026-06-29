@@ -4,6 +4,16 @@
 
 これはデモです。認証、法的レビュー、安全性レビュー、遵法性レビュー、公平性レビュー、本番承認、conformance evidence、社会的受容の証明、AIへの最終責任移転ではありません。
 
+## RPEとしての焦点
+
+このデモは、単に AI を使ったことを示すためのものではありません。
+
+AI支援 review が誤っている、不明確である、不完全である、根拠不足である、または争われた場合に、作業がどこへ戻れるかを示します。
+
+重要な項目は、AI assistance boundary、evidence log、missing context、responsibility return point、repair / reopening path です。
+
+RPEとしての設計上の芯については `docs/issue-form-rpe-originality-note.md` を参照してください。
+
 ## シナリオ
 
 maintainer が AI を使って pull request の要約と review risk の洗い出しを行います。
