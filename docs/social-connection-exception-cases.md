@@ -6,6 +6,12 @@ It is a social-connection risk map only.
 
 It does not introduce schema changes, checker changes, workflow changes, runtime behavior, connector behavior, legal decision logic, compliance certification, safety certification, or production authorization.
 
+## Relation to approval-transfer alignment
+
+Use this note with `docs/evidence-approval-transfer-alignment.md` when approval skip, responsibility transfer, evidence logging, or explanation paths are connected to a real social context.
+
+The exception cases below help check whether a pathway that appears locally complete may still fail in social connection.
+
 ## Exception groups
 
 ### Explanation gap
