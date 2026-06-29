@@ -35,7 +35,7 @@ The current social-connection cluster includes:
 
 | Document | Current role | Current connection status | Next likely connection |
 | --- | --- | --- | --- |
-| `docs/social-connection-review-navigation.md` | focused reader path for social-connection review | connected from validation checklist, social exception cases, approval-transfer alignment, AI Judgment Node note, Evidence Log, task inventory, and operation index | keep aligned when review paths change |
+| `docs/social-connection-review-navigation.md` | focused reader path for social-connection review | connected from validation checklist, social exception cases, approval-transfer alignment, AI Judgment Node note, Evidence Log, task inventory, operation index, and external-review readiness checklist | keep aligned when review paths change |
 | `docs/social-connection-exception-cases.md` | social-connection risk map | connected to review navigation and approval-transfer alignment | keep as review input; no schema or checker change yet |
 | `docs/evidence-approval-transfer-alignment.md` | aligns approval skip, evidence, responsibility transfer, and social exceptions | connected to social exception cases, review navigation, Evidence Log, AI Judgment Node note, and Lean formalization planning path | consider Lean implementation only after separate implementation step |
 | `docs/validation-checklist.md` | bounded review checklist | includes social connection review and review navigation | keep aligned when checklist scope changes |
@@ -45,6 +45,8 @@ The current social-connection cluster includes:
 | `formal/lean/README.md` | Lean4 adoption and evidentiary completeness boundary | connected to the Lean evidence approval formalization plan | keep theorem claims structural and assumption-scoped |
 | `docs/current-task-inventory.md` | active and near-active task inventory | reflects social-connection cluster and Lean evidence approval planning | keep aligned when cluster status changes |
 | `docs/operation-index.md` | operation navigation entrance | now includes social-connection review and gap-inventory pointers | avoid broad rewrites unless navigation changes again |
+| `docs/external-review-readiness-checklist.md` | external review readiness aid | now includes social-connection reviewability and gap-inventory pointers | keep aligned if external-review scope changes |
+| `docs/external-review-package-note.md` | compact external-review package | social-connection pointer attempted but deferred after blocked update; readiness checklist still provides an external-review path to social-connection review | retry only as a very small focused change or leave routed through readiness checklist |
 
 ## Known gap candidates
 
@@ -76,9 +78,13 @@ A separate implementation step is still required before adding Lean modules or t
 
 ### Review readiness connection
 
-Before public or external review expansion, check whether external-review notes should reference the social-connection review path.
+`docs/external-review-readiness-checklist.md` now references the social-connection review path.
 
-This should remain a navigation improvement, not a claim of social acceptance, legal validity, compliance, safety, or certification.
+`docs/external-review-package-note.md` does not yet contain a direct social-connection pointer because a small update attempt was blocked.
+
+For now, external-review package readers can reach the social-connection path through `docs/external-review-readiness-checklist.md` and `docs/operation-index.md`.
+
+A later retry should use the smallest possible pointer and must not expand the package into a certification, social acceptance, legal, compliance, safety, or production claim.
 
 ## Maintenance rule
 
