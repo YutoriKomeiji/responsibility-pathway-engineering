@@ -39,6 +39,17 @@ Early public specification.
 
 本リポジトリは、意図的に小さく、仕様優先で維持されています。現在の核が大規模実装よりも定義、例、ライフサイクル上の制限事項、チェッカーの対象範囲、主張しないことを優先する理由は [docs/minimal-core-rationale.md](docs/minimal-core-rationale.md) を参照してください。
 
+## まず試す
+
+実用上の形をすぐ確認したい場合は、最初のコピー可能なテンプレートから始めてください。
+
+- [templates/ai-assisted-work-responsibility-path.yaml](templates/ai-assisted-work-responsibility-path.yaml) - AI支援作業の責任経路を記録するための工事中テンプレート
+- [templates/README.md](templates/README.md) - テンプレート一覧と主張しないことの境界
+
+このテンプレートは、AI支援が関与した作業について、source reference、人間または組織による review、evidence、不確実性、責任の戻り先、修復・異議・再開経路を残すための軽量な出発点です。
+
+このテンプレートは、認証、conformance evidence、本番承認、法的レビュー、安全性レビュー、遵法性レビュー、公平性レビュー、社会的受容の証明、AIへの最終責任移転ではありません。
+
 Phase 2 は開始済みです。現在の Lean 形式化には、[formal/lean/ResponsibilityPathway/Core.lean](formal/lean/ResponsibilityPathway/Core.lean) に最小 node/pathway model と scoped lifecycle-invariant set が含まれています。これらの invariant は構造的・前提依存・認証ではありません。
 
 Phase 2 の Lean spine は小さな module に分割済みで、`Core.lean` は安定した入口として維持されています。詳細は [formal/lean/README.md](formal/lean/README.md)、[docs/phase-2-current-snapshot.md](docs/phase-2-current-snapshot.md)、[docs/phase-2-lean-split-plan.md](docs/phase-2-lean-split-plan.md)、[docs/phase-2-lean-theorem-index.md](docs/phase-2-lean-theorem-index.md) を参照してください。
