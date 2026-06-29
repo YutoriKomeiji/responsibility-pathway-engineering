@@ -2,7 +2,7 @@
 
 This note records repository-side readiness for Zenn Level 2 publication.
 
-Level 2 means a repository walkthrough. Readers should be able to inspect current definitions, examples, checkers, reader paths, and non-claims.
+Level 2 means a repository walkthrough. Readers should be able to inspect current definitions, examples, checkers, reader paths, lightweight templates, and non-claims.
 
 This is a readiness note only. It is not an article draft, title decision, publication record, external review result, endorsement, certification, conformance claim, production approval, standardization claim, legal review, safety review, compliance review, fairness review, social acceptance proof, or AI final-responsibility transfer mechanism.
 
@@ -16,6 +16,7 @@ Level 2 may support an explanatory repository guide showing:
 - where non-claims and deferred work are visible
 - where social-connection review and evidence / approval-transfer paths can be found
 - why lightweight reusable parts may be useful while still under construction or planning-only
+- where the first copyable AI-assisted work responsibility-path template lives
 
 Article drafting and title selection remain outside this repository-side readiness note.
 
@@ -38,6 +39,8 @@ For Level 2, a reader should be able to reach:
 - `docs/repository-pathway-gap-inventory.md`
 - `docs/repository-construction-status-labels.md`
 - `docs/lightweight-durable-quality-implementation-strategy.md`
+- `docs/public-adoption-and-fork-strategy.md`
+- `templates/ai-assisted-work-responsibility-path.yaml`
 - `docs/zenn-publication-readiness-plan.md`
 - `docs/zenn-publication-readiness-connection.md`
 - `docs/deferred-work-restart-conditions.md`
@@ -46,7 +49,7 @@ For Level 2, a reader should be able to reach:
 
 Current repository-side state: Level 2 is near-ready for a repository walkthrough.
 
-The repository already has a public entrance, operation path, task inventory, progress map, roadmap position, example index, checker coverage, external-review readiness checklist, social-connection review path, gap inventory, construction-status labels, lightweight durable quality strategy, and Zenn readiness connection note.
+The repository already has a public entrance, operation path, task inventory, progress map, roadmap position, example index, checker coverage, external-review readiness checklist, social-connection review path, gap inventory, construction-status labels, lightweight durable quality strategy, public adoption / fork strategy, first copyable AI-assisted work responsibility-path template, and Zenn readiness connection note.
 
 ## Known limitation
 
@@ -62,7 +65,9 @@ This is not a Level 2 blocker because alternate routes exist through:
 
 Level 2 may explain that the repository contains useful lightweight parts, templates, labels, and planning notes without claiming finished implementation maturity.
 
-Use `docs/lightweight-durable-quality-implementation-strategy.md` and `docs/repository-construction-status-labels.md` to keep that distinction visible.
+Use `docs/lightweight-durable-quality-implementation-strategy.md`, `docs/repository-construction-status-labels.md`, `docs/public-adoption-and-fork-strategy.md`, and `templates/ai-assisted-work-responsibility-path.yaml` to keep that distinction visible.
+
+The first template is copyable, but it remains under construction and non-certifying.
 
 ## Deferred beyond Level 2
 
