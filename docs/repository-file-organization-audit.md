@@ -10,6 +10,8 @@ Use this audit before deleting, merging, renaming, or deprecating repository doc
 
 The repository intentionally uses focused notes to avoid risky long-file rewrites. Over time, that can create too many nearby notes. This audit keeps cleanup review explicit without losing restart paths.
 
+Use this audit with `docs/repository-construction-status-labels.md` and `docs/lightweight-durable-quality-implementation-strategy.md` so useful lightweight parts can remain buildable without being mistaken for complete or certified artifacts.
+
 ## Classification
 
 When reviewing a file, classify it as one of:
@@ -38,6 +40,7 @@ Ask these before cleanup:
 - Would removing it break restartability or reader trust?
 - Can the file be merged into a broader index without losing boundary language?
 - Can the file remain but be marked as historical reference?
+- Should the file be labeled as under construction, planning-only, experimental, review-required, or deferred instead of removed?
 
 ## Current high-risk overlap zones
 
@@ -50,6 +53,7 @@ Potential overlap zones to inspect later:
 - external-review readiness checklist and external-review package note
 - social-connection review navigation, social exception cases, approval-transfer alignment, and gap inventory
 - runtime-event workflow status, workflow observation notes, and checker connection notes
+- lightweight durable quality strategy and future public adoption or implementation-part notes
 
 These are not delete decisions. They are inspection zones.
 
@@ -65,7 +69,7 @@ These are not delete decisions. They are inspection zones.
 
 Do not delete files during active Level 2 publication readiness work unless the file is clearly accidental, unreferenced, and not part of a restart or reader path.
 
-Until Level 2 is stable, prefer classification and connection over deletion.
+Until Level 2 is stable, prefer classification, construction labels, and connection over deletion.
 
 ## Next safe action
 
