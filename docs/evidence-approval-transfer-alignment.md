@@ -9,6 +9,8 @@ It is a conceptual alignment note only.
 
 It does not introduce schema changes, checker changes, runtime behavior, connector behavior, legal decision logic, or production authorization.
 
+Use `docs/social-connection-review-navigation.md` when this alignment is reviewed in a real social context.
+
 ## Core alignment
 
 Approval skip is not responsibility skip.
