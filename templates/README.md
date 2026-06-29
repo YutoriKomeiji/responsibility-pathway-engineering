@@ -9,6 +9,13 @@ These templates are lightweight adoption artifacts. They are not certification r
 - `ai-assisted-work-responsibility-path.yaml` - a first under-construction copyable YAML template for recording AI-assisted work responsibility paths.
 - `.github/ISSUE_TEMPLATE/ai-assisted-work-responsibility-path.yml` - a GitHub Issue Form for the same kind of record inside GitHub issue workflows.
 
+## Guides and demos
+
+- `docs/issue-form-user-guide.md` - English user guide for the GitHub Issue Form.
+- `docs/issue-form-demo-ai-assisted-work.md` - English filled example for an AI-assisted PR review scenario.
+- `docs/issue-form-user-guide.ja.md` - Japanese user guide for the GitHub Issue Form.
+- `docs/issue-form-demo-ai-assisted-work.ja.md` - Japanese filled example for an AI-assisted PR review scenario.
+
 ## How to use
 
 Use either route:
