@@ -7,6 +7,9 @@ on:
       - "scripts/check_issue_form.py"
       - "requirements.txt"
 
+permissions:
+  contents: read
+
 jobs:
   check_issue_form:
     runs-on: ubuntu-latest
