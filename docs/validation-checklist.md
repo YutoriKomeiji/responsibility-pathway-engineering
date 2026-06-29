@@ -212,7 +212,9 @@ Boundary expectations:
 
 ## 9. Social connection review
 
-If a pathway is connected to real organizations, affected parties, contracts, policies, legal systems, or cross-border governance, review `docs/social-connection-exception-cases.md`.
+If a pathway is connected to real organizations, affected parties, contracts, policies, legal systems, or cross-border governance, review `docs/social-connection-review-navigation.md` first.
+
+Then review `docs/social-connection-exception-cases.md`.
 
 Check whether the pathway has considered:
 
