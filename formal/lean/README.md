@@ -49,6 +49,8 @@ It does not prove that a court, regulator, organization, or jurisdiction will ac
 
 It only supports the narrower claim that the modeled record does not omit defined information that may be needed for later legal review, audit, dispute review, or evidentiary reconstruction.
 
+Use `../../docs/lean-evidence-approval-formalization-plan.md` before adding Lean theorem candidates for Evidence Log completeness, approval skip, approval transfer, correction records, or later return paths.
+
 Current new candidates for future Lean work include:
 
 - tamper-evident Evidence Log structure
