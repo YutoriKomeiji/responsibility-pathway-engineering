@@ -12,6 +12,8 @@ That is acceptable if readers can tell whether an artifact is stable, experiment
 
 Construction labels allow the project to keep building without pretending that every file is complete.
 
+Use this note with `docs/lightweight-durable-quality-implementation-strategy.md` when lightweight reusable parts are created before full implementation maturity.
+
 ## Suggested labels
 
 Use these labels in documents or indexes when helpful:
