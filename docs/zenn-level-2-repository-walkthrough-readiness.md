@@ -15,6 +15,7 @@ Level 2 may support an explanatory repository guide showing:
 - where current examples and checker limits live
 - where non-claims and deferred work are visible
 - where social-connection review and evidence / approval-transfer paths can be found
+- why lightweight reusable parts may be useful while still under construction or planning-only
 
 Article drafting and title selection remain outside this repository-side readiness note.
 
@@ -35,6 +36,8 @@ For Level 2, a reader should be able to reach:
 - `docs/external-review-package-note.md`
 - `docs/social-connection-review-navigation.md`
 - `docs/repository-pathway-gap-inventory.md`
+- `docs/repository-construction-status-labels.md`
+- `docs/lightweight-durable-quality-implementation-strategy.md`
 - `docs/zenn-publication-readiness-plan.md`
 - `docs/zenn-publication-readiness-connection.md`
 - `docs/deferred-work-restart-conditions.md`
@@ -43,7 +46,7 @@ For Level 2, a reader should be able to reach:
 
 Current repository-side state: Level 2 is near-ready for a repository walkthrough.
 
-The repository already has a public entrance, operation path, task inventory, progress map, roadmap position, example index, checker coverage, external-review readiness checklist, social-connection review path, gap inventory, and Zenn readiness connection note.
+The repository already has a public entrance, operation path, task inventory, progress map, roadmap position, example index, checker coverage, external-review readiness checklist, social-connection review path, gap inventory, construction-status labels, lightweight durable quality strategy, and Zenn readiness connection note.
 
 ## Known limitation
 
@@ -54,6 +57,12 @@ This is not a Level 2 blocker because alternate routes exist through:
 - `docs/external-review-readiness-checklist.md`
 - `docs/operation-index.md`
 - `docs/repository-pathway-gap-inventory.md`
+
+## Lightweight adoption relation
+
+Level 2 may explain that the repository contains useful lightweight parts, templates, labels, and planning notes without claiming finished implementation maturity.
+
+Use `docs/lightweight-durable-quality-implementation-strategy.md` and `docs/repository-construction-status-labels.md` to keep that distinction visible.
 
 ## Deferred beyond Level 2
 
