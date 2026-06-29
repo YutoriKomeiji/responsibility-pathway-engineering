@@ -129,6 +129,7 @@ Evidence sufficiency review:
 - Stopped or suspended pathways should preserve stop condition or refusal/override evidence.
 - Repair pathways should include repair action or post-event explanation evidence.
 - Evidence quality should be reviewed for completeness, readability, availability, scope clarity, retention period, privacy constraints, and safety constraints.
+- If approval is skipped under a policy, evidence should preserve the approval-skip rule, responsibility-transfer destination, explanation path when needed, and later return or dispute path.
 
 Boundary reminder:
 
@@ -209,7 +210,29 @@ Boundary expectations:
 - The schema may classify action type for pathway design.
 - The schema does not itself establish legal liability, moral blame, compliance, fairness, safety, or production readiness.
 
-## 9. Formalization scope review
+## 9. Social connection review
+
+If a pathway is connected to real organizations, affected parties, contracts, policies, legal systems, or cross-border governance, review `docs/social-connection-exception-cases.md`.
+
+Check whether the pathway has considered:
+
+- explanation gap
+- agreement gap
+- authority gap
+- approval-skip gap
+- high-volume processing gap
+- affected-party gap
+- jurisdiction gap
+- evidence-disclosure gap
+- organizational-continuity gap
+- effective-remedy gap
+- reopening gap
+
+For approval skip, responsibility transfer, evidence logging, or explanation-path alignment, also review `docs/evidence-approval-transfer-alignment.md`.
+
+Social connection review does not decide legal liability, compliance, safety, fairness, or social acceptability. It identifies places where a locally complete pathway may still fail when connected to society.
+
+## 10. Formalization scope review
 
 If formalization fields are present, check:
 
@@ -224,7 +247,7 @@ Formal claims must refer only to explicitly stated definitions, assumptions, mod
 
 A formal proof over a modeled structure does not by itself establish real-world safety, legality, fairness, compliance, or moral accountability.
 
-## 10. Minimum pass condition
+## 11. Minimum pass condition
 
 A pathway instance is ready for further review when:
 
@@ -236,10 +259,11 @@ A pathway instance is ready for further review when:
 - return points are available when responsibility must return
 - repair ownership exists when failure or ambiguity may need restoration
 - AI participation boundaries are explicit
+- social-connection exceptions are reviewed when applicable
 - formal claims are bounded
 - non-goals and excluded claims are preserved
 
-## 11. Action-class checker boundary
+## 12. Action-class checker boundary
 
 Current lightweight checkers do not yet enforce the full Class A-F expectation map.
 
