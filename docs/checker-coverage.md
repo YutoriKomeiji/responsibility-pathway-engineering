@@ -156,6 +156,37 @@ This checker does not check pathway examples. It does not decide whether the rev
 
 A pass means only that the current review-result fixture preserves the bounded structure and responsibility-boundary fields required by the current review-result schema.
 
+## `scripts/check_issue_form.py`
+
+`scripts/check_issue_form.py` checks the AI-assisted work GitHub Issue Form definition.
+
+By default, it checks:
+
+- `.github/ISSUE_TEMPLATE/ai-assisted-work-responsibility-path.yml`
+
+The checker note is recorded in `docs/issue-form-checker-note.md`.
+
+The workflow is `.github/workflows/check-issue-form.yml`.
+
+The current issue-form checker inspects only whether:
+
+- expected top-level GitHub Issue Form keys are present
+- selected RPE field IDs are present
+- AI assistance boundary field is present
+- human or institutional review field is present
+- evidence log field is present
+- missing context field is present as an uncertainty signal
+- responsibility return point field is present
+- repair / reopening field is present as a repair signal
+- non-claim checkbox field is present
+- non-claim checkbox options are required
+- non-final-AI responsibility boundary text is present
+- selected non-claim boundary keywords are present
+
+The current issue-form checker does not validate created issue content, URL validity, evidence quality, reviewer authority, approval quality, legal validity, safety, compliance, fairness, production readiness, conformance, social acceptance, certification, or final responsibility assignment.
+
+A pass from `scripts/check_issue_form.py` means only that the Issue Form definition preserves selected RPE structural fields and non-claim boundary signals. It does not mean that any filled issue is correct, complete, safe, compliant, legally valid, fair, production ready, externally reviewed, socially accepted, certified, or conformance-ready.
+
 ## Responsibility Pathway record review alignment
 
 `docs/responsibility-pathway-record-review.md` defines a plain-language review and recheck guide for Responsibility Pathway records.
@@ -204,6 +235,12 @@ Future checker work should remain bounded to structural signals and must not tre
 | Runtime-event JSON fixture | valid JSON, required top-level runtime-event fields, synthetic source signal, review requirement, evidence lists, missing context notes, excluded claims | not JSON semantic correctness, schema correctness, adapter correctness, connector correctness, runtime correctness, production readiness, conformance, or certification |
 | Minimal synthetic runtime fixture | valid JSON, explicit non-production scope, synthetic/vendor-neutral/review-required status, missing approval evidence, missing execution evidence, human review requirement, runtime-scope boundaries, candidate-status boundaries, excluded claims | not production runtime behavior, service connector correctness, adapter mapping correctness, runtime correctness, schema correctness, semantic correctness, conformance, or production readiness |
 
+## Issue-form checker coverage map
+
+| Checked area | Current bounded signal | Boundary |
+| --- | --- | --- |
+| AI-assisted work GitHub Issue Form definition | required form fields, RPE anchor fields, non-claim checkbox requirements, non-final-AI boundary text, selected non-claim keywords | not created issue content validation, evidence quality review, reviewer authority check, legal validity, safety, compliance, fairness, production readiness, conformance, certification, or final responsibility assignment |
+
 ## Planned runtime-event coverage map
 
 This is future work, not current checker behavior.
@@ -217,12 +254,3 @@ This is future work, not current checker behavior.
 ## Planned action-class coverage map
 
 This is future work, not current checker behavior.
-
-| Planned area | Possible bounded signal | Boundary |
-| --- | --- | --- |
-| Class A Observe-Only | source/context visibility where observation affects later judgment | not safety or manipulation-proofing certification |
-| Class B Suggest-Only | AI proposal separated from human adoption | not semantic correctness certification |
-| Class C Approval-Required | Approval Gate, Execution Actor, Evidence Log | not approval quality certification |
-| Class D Reversible External Action | rollback or correction path | not harmlessness, reversibility completeness, or compliance proof |
-| Class E High-Impact | high-impact boundary signals and explicit non-autonomous control | not permission to execute high-impact action |
-| Class F Emergency Stop | stop trigger, stop authority, pending responsibility, and restart/return boundary | not correctness of emergency response |
