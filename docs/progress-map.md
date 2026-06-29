@@ -2,7 +2,7 @@
 
 This document gives a rough progress map for the current Responsibility Pathway Engineering repository.
 
-It is a planning aid only. It is not a certification record, standardization claim, conformance claim, legal review, safety review, compliance review, fairness review, production approval, connector correctness proof, runtime correctness proof, Lean completeness proof, or AI final-responsibility transfer mechanism.
+It is a planning aid only. It is not a certification record, standardization claim, conformance claim, legal review, safety review, compliance review, fairness review, production approval, connector correctness proof, runtime correctness proof, Lean completeness proof, social acceptance proof, or AI final-responsibility transfer mechanism.
 
 Percentages are approximate working estimates for repository planning. They are not objective measurements, audit results, or external review findings.
 
@@ -11,16 +11,17 @@ Percentages are approximate working estimates for repository planning. They are 
 | Track | Current status | Approx. progress | Next gate | Do not start yet |
 | --- | --- | ---: | --- | --- |
 | Problem framing | Public problem and repository purpose are clear. | 90% | Keep README short and precise. | Grand claims beyond scope. |
-| Core terminology | Core RPE terms exist and are navigable, but stabilization is ongoing. | 75% | Tighten definitions and concept index. | Conformance claims. |
-| Public entry | Root README was recovered, shortened, strengthened, and paired with expanded README. | 80% | Add standardization wording cautiously if needed. | Turning README into full documentation. |
+| Core terminology | Core RPE terms exist and are navigable, but stabilization is ongoing. | 75% | Tighten definitions, social-connection boundaries, and concept index. | Conformance claims. |
+| Public entry | Root README was recovered, shortened, strengthened, and paired with expanded README. | 80% | Add standardization or publication wording cautiously if needed. | Turning README into full documentation. |
 | Provenance and authorship | Provenance, authorship, notice, citation, and reader-path records exist. | 80% | Keep source-aligned and non-accusatory. | Legal ownership or infringement claims. |
 | Examples and fixtures | Minimal examples and runtime-like fixtures exist; missed-support and runtime examples remain bounded. | 65% | Keep examples small, readable, review-required, and non-certifying. | Class E positive examples. |
 | Checker boundaries | Bounded structural checker coverage exists and limitations are documented. | 55% | Maintain checker coverage and example index alignment. | Semantic responsibility correctness checks. |
-| Lean formalization | A minimal Lean spine and theorem index exist. | 35% | Keep formalization assumption-scoped and small. | Lean expansion around runtime, support-call, or missed-support. |
-| Runtime / adapter bridge | Adapter boundary, runtime-event schema, runtime fixture, review note, and snapshot path exist. | 45% | Keep runtime fixture review connected and non-production. | Production runtime, connectors, runtime checker. |
-| Operation / restartability | BEACON, operation index, task inventory, snapshots, sync logs, and roadmap notes exist. | 80% | Keep reconnection path short and current. | Letting BEACON become a full snapshot. |
+| Lean formalization | A minimal Lean spine, theorem index, and evidence / approval planning route exist. | 35% | Use `docs/lean-evidence-approval-formalization-plan.md` before evidence or approval theorem work. | Lean expansion without a scoped design note. |
+| Runtime / adapter bridge | Adapter boundary, runtime-event schema, runtime fixture, review note, and snapshot path exist. | 45% | Keep runtime fixture review connected and non-production. | Production runtime, connectors, semantic runtime claims. |
+| Operation / restartability | BEACON, operation index, task inventory, snapshots, sync logs, roadmap notes, and repository pathway gap inventory exist. | 82% | Keep reconnection path short, current, and able to return to deferred gaps. | Letting BEACON become a full snapshot. |
 | Standardization preparation | Grounded standardization strategy exists and is connected to operation index and task inventory. | 20% | Keep scope narrow and anti-overclaim discipline visible. | Calling the project a finished standard. |
-| External review readiness | Reader paths, boundaries, and review notes exist, but external review package is not complete. | 40% | Prepare focused external-review notes only when useful. | Broad public claims before review. |
+| External review readiness | Reader paths, boundaries, review notes, social-connection reviewability, and gap tracking exist; package-level direct links may still have deferred gaps. | 45% | Keep readiness checklist, social review navigation, and external package paths aligned. | Broad public claims before review. |
+| Zenn / public publication readiness | Repo-side Zenn readiness connection exists and is separated from article drafting or title routes. | 35% | Keep repository-side public reader path durable when articles point into the repo. | Treating article publication as implementation, certification, or standardization. |
 | World-standard candidate maturity | A direction exists, but conformance model and external review are not yet mature. | 10% | Stabilize terminology, scope, examples, schemas, checker boundaries, and review process. | Conformance model claims or certification language. |
 
 ## Summary estimate
@@ -55,6 +56,7 @@ Required signs:
 
 - Core terms have stable definitions.
 - Ambiguous terms have boundary notes.
+- Social-connection terms and approval-transfer boundaries have reader paths.
 - Support-call and missed-support terms remain concept-level until stabilized.
 - Terms do not imply legal, safety, compliance, production, or certification claims.
 
@@ -88,6 +90,7 @@ Required signs:
 
 - Lean model remains assumption-scoped.
 - Formal claims are tied to definitions and examples.
+- Evidence-log or approval-transfer theorem work follows a scoped design note first.
 - Formalization does not imply legal, safety, compliance, production, or moral-resolution proof.
 
 ### Gate 6: standardization preparation maturity
@@ -104,14 +107,16 @@ Required signs:
 
 ### Gate 7: external review package
 
-Current state: not yet complete.
+Current state: partially prepared, not yet complete.
 
 Required signs:
 
 - External reviewers can follow the repository without internal context.
 - Review questions are explicit.
+- Social-connection reviewability is visible when social context matters.
 - Related-work comparison is source-based and cautious.
 - Public claims remain reviewable and bounded.
+- Deferred reader-path gaps are tracked and have alternate routes.
 
 ### Gate 8: conformance model draft
 
@@ -126,12 +131,16 @@ Required signs:
 ## Current recommended order
 
 1. Keep README, BEACON, operation index, current snapshot, sync log, and task inventory aligned.
-2. Keep `docs/standardization-strategy.md` visible before expanding world-standard language.
-3. Stabilize terminology and concept navigation.
-4. Keep examples and checker coverage aligned.
-5. Avoid Class E positive examples, production connectors, production runtime, runtime checker work, semantic responsibility correctness checks, and conformance claims.
-6. Prepare external-review notes only when they make a specific boundary easier to inspect.
-7. Draft a conformance model only after terminology, scope, examples, schemas, checker boundaries, and review process are more stable.
+2. Keep `docs/repository-pathway-gap-inventory.md` current before broad navigation rewrites or deferred-gap retries.
+3. Keep `docs/social-connection-review-navigation.md` visible before expanding approval-skip, responsibility-transfer, Evidence Log, explanation-path, or affected-party language.
+4. Keep `docs/lean-evidence-approval-formalization-plan.md` visible before Lean evidence / approval theorem work.
+5. Keep `docs/zenn-publication-readiness-connection.md` aligned as a repo-side public reader path while article drafting and title routes remain separate.
+6. Keep `docs/standardization-strategy.md` visible before expanding world-standard language.
+7. Stabilize terminology and concept navigation.
+8. Keep examples and checker coverage aligned.
+9. Avoid Class E positive examples, production connectors, production runtime, semantic responsibility correctness checks, social-connection checker expansion, Lean expansion without design note, and conformance claims.
+10. Prepare external-review notes only when they make a specific boundary easier to inspect.
+11. Draft a conformance model only after terminology, scope, examples, schemas, checker boundaries, and review process are more stable.
 
 ## Stop conditions
 
@@ -147,6 +156,7 @@ Stop and preserve state if a proposed progress step:
 - implies connector correctness
 - implies runtime correctness
 - implies semantic responsibility correctness
+- implies social acceptance proof
 - implies AI final-responsibility transfer
 - hides uncertainty behind mathematical, formal, or standardization language
 - reduces reviewability, traceability, or boundary clarity
