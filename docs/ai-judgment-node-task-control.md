@@ -82,6 +82,43 @@ A system may execute an action because another node judged it allowable.
 
 A bounded pathway record should preserve this separation when it matters for review, repair, or accountability.
 
+## Approval-skip and responsibility transfer boundary
+
+A pathway may allow a human approval step to be skipped for bounded AI judgment or execution.
+
+Approval skip is not responsibility skip.
+
+If approval is skipped, the pathway should preserve:
+
+- the rule or policy that allowed the skip
+- the risk or reversibility class
+- the AI Judgment Node involved
+- the responsible human, role, or institutional owner that accepted the skip condition
+- the escalation or return point if the skipped approval later becomes disputed
+- the evidence needed to reconstruct why the skip was allowed
+
+High-volume processing should not hide responsibility inside individual omitted approvals.
+
+When repeated AI-assisted decisions are allowed without per-case human approval, responsibility should move to the higher-level owner that authorized the design, policy, contract, deployment condition, or operating rule.
+
+This transfer may be internal to an organization, based on contract or policy, or may later be interpreted through legal or regulatory layers.
+
+It does not transfer final responsibility to the AI system.
+
+## Layered responsibility return
+
+A responsibility pathway may return through multiple layers, depending on the matter and governance context:
+
+1. individual actor or operator
+2. team, manager, or designated owner
+3. organization under internal rule, policy, or contract
+4. state or legal framework
+5. cross-border or international governance body where applicable
+
+This list is a conceptual pathway map only.
+
+It does not decide legal liability, jurisdiction, or institutional authority.
+
 ## Minimum record for AI local judgment
 
 When an AI Judgment Node matters to a task, a minimum record should preserve:
@@ -95,6 +132,7 @@ When an AI Judgment Node matters to a task, a minimum record should preserve:
 - risk or reversibility class when known
 - whether execution was allowed, blocked, or returned
 - whether human or institutional review was required
+- whether approval was performed, skipped, or transferred under a policy
 - downstream action or no-action status
 - audit or repair path
 
@@ -131,7 +169,7 @@ This note does not claim that:
 - runtime correctness is established
 - connector correctness is established
 - semantic responsibility correctness is established
-- human review can be omitted
+- human review can be omitted without a defined policy, record, and responsibility-transfer path
 - responsibility can be laundered through post-hoc human approval
 
 ## Current repository use
