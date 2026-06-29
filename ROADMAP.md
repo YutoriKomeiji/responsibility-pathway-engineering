@@ -129,7 +129,8 @@ Current Phase 2 status:
 - `lean-toolchain` pins the minimal Lean toolchain
 - `lakefile.lean` defines a minimal Lake package using `formal/lean` as the source directory
 - `.github/workflows/check-lean.yml` defines a minimal Lean build workflow using `lake build`
-- `formal/lean/README.md` records the formalization boundary, current invariant set, module layout, build path, and theorem summaries
+- `formal/lean/README.md` records the formalization boundary, current invariant set, module layout, build path, theorem summaries, and evidence / approval structural-completeness planning route
+- `docs/lean-evidence-approval-formalization-plan.md` records the planning boundary for possible future Evidence Log completeness, approval-skip, approval-transfer, correction-record, and later-return-path theorem work
 - `docs/phase-2-lean-split-plan.md` records the split rationale, order, stop conditions, and non-goals
 - README, README.ja, and BEACON summarize the current Phase 2 Lean status
 
@@ -154,10 +155,11 @@ Next low-risk Phase 2 work:
 
 - do not expand Lean around Action Class Matrix until the source-aligned Class A-F examples, schema, checker boundary, and validation checklist are stable
 - do not expand Lean around support-call policy or missed-support signals until examples, schema conventions, checker boundaries, and review-signal semantics are stable
+- do not expand Lean around Evidence Log completeness, approval skip, approval transfer, correction records, or later return paths without first using `docs/lean-evidence-approval-formalization-plan.md`
 - observe the next Lean workflow result and adjust only if the minimal build path fails
-- use the current snapshot and theorem-role index before adding or renaming Lean theorem candidates
+- use the current snapshot, theorem-role index, and evidence / approval formalization plan before adding or renaming theorem candidates
 - keep formalization incremental and assumption-explicit
-- maintain traceability among examples, schemas, checker boundaries, Lean definitions, theorem roles, current snapshot, and excluded claims
+- maintain traceability among examples, schemas, checker boundaries, Lean definitions, theorem roles, current snapshot, planning notes, and excluded claims
 
 ## Phase 2.5 - Enterprise Implementation Profile (Stable bridge checkpoint reached)
 
@@ -256,6 +258,11 @@ Current artifacts and companion notes:
 - `docs/runtime-event-checking-plan.md` defines current checks, future checks, preconditions, exclusions, and non-certifying boundaries
 - `docs/runtime-event-schema-fixture-alignment.md` records the current structural alignment between draft schema, selected JSON fixtures, and bounded checker without treating alignment as validation
 - `docs/event-to-pathway-relation-checker-plan.md` records planned future local structural relation-checker boundaries between selected runtime-event JSON fixtures and pathway YAML examples before any implementation
+- `docs/social-connection-review-navigation.md` records the focused reader path for social-connection review when approval skip, responsibility transfer, Evidence Log, explanation paths, affected-party visibility, or later return paths matter
+- `docs/repository-pathway-gap-inventory.md` records reader-path gaps, structure-break risks, deferred connection return rules, and safe next connection points
+- `docs/evidence-approval-transfer-alignment.md` records the relation between approval skip, evidence logging, responsibility transfer, social-connection exceptions, and later return paths
+- `docs/lean-evidence-approval-formalization-plan.md` records the planning route before any Lean evidence / approval theorem work
+- `docs/zenn-publication-readiness-connection.md` records the repo-side public reader path for Zenn readiness while article titles and article routes remain separate
 - `docs/runtime-event-workflow-current-status.md` records observed runtime-event workflow status
 - `docs/minimal-runtime-fixture-checker-workflow-observation.md` records the focused observation for run `27607798655`
 - `docs/phase-3-1-minimal-runtime-fixture-checker-connection.md` records the reader path for the minimal runtime fixture checker expansion and workflow observation
@@ -307,6 +314,12 @@ It is not current checker behavior and does not authorize implementation by itse
 
 Any future relation checker must remain local, structural, selected-fixture-only, non-certifying, and preconditioned by the plan before implementation.
 
+Social-connection and publication-readiness rule:
+
+Social-connection review, evidence / approval-transfer alignment, gap inventory, and Zenn readiness connection are reader-path and planning layers only.
+
+They do not authorize schema, checker, workflow, runtime, connector, conformance, Lean implementation, certification, legal review, safety review, compliance review, fairness review, social acceptance claim, production approval, or AI final-responsibility transfer.
+
 Next low-risk Phase 3.1 work:
 
 - keep service-specific connectors deferred
@@ -317,13 +330,16 @@ Next low-risk Phase 3.1 work:
 - keep event-to-pathway relation checker implementation deferred until `docs/event-to-pathway-relation-checker-plan.md` preconditions are deliberately reviewed
 - keep event-to-pathway semantic checking deferred
 - keep `docs/runtime-event-schema-fixture-alignment.md`, `docs/event-to-pathway-relation-checker-plan.md`, `docs/checker-coverage.md`, `docs/example-index.md`, current snapshot, current task inventory, and operation index aligned when fixture, checker, or relation-checker planning interpretation changes
+- keep `docs/social-connection-review-navigation.md`, `docs/repository-pathway-gap-inventory.md`, `docs/evidence-approval-transfer-alignment.md`, `docs/lean-evidence-approval-formalization-plan.md`, and `docs/zenn-publication-readiness-connection.md` aligned when review-navigation, deferred-gap, formalization-planning, or repo-side publication-readiness paths change
 - use `docs/runtime-event-checking-plan.md` before considering runtime-event checker expansion or runtime-event workflow expansion
 - use `docs/event-to-pathway-relation-checker-plan.md` before considering any future relation checker between selected runtime-event JSON fixtures and pathway YAML examples
+- use `docs/repository-pathway-gap-inventory.md` before retrying deferred direct reader-path connections
+- keep article drafting and title routes separate from repo-side Zenn readiness unless deliberately reopened
 - keep Class E positive examples deferred
 - keep support-call and missed-support runtime-event fields deferred until concept notes, examples, schema conventions, and checker boundaries are stable
-- keep Lean expansion around adapter, runtime events, support-call policy, or missed-support signals deferred until the adapter boundary, runtime event schema, generated-record examples, checker boundary, and validation checklist are stable
-- maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, alignment notes, or concept navigation change
-- use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, or deferred boundaries feel misaligned with actual practice
+- keep Lean expansion around adapter, runtime events, support-call policy, missed-support signals, Evidence Log completeness, approval skip, approval transfer, correction records, or later return paths deferred until the relevant boundary notes and formalization plans are stable
+- maintain `docs/operation-index.md` when operation documents, snapshots, sync logs, roadmap notes, checker plans, alignment notes, social-connection review paths, gap inventories, formalization plans, publication-readiness connections, or concept navigation change
+- use periodic operation review when commit granularity, reader paths, logs, roadmap notes, checker interpretation, social-connection boundaries, or deferred boundaries feel misaligned with actual practice
 - add only short ROADMAP or CHANGELOG references after the detailed state has a stable snapshot, sync log, roadmap note, checker plan, alignment note, or operation document to point to
 
 ## Guiding Principle
