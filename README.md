@@ -30,6 +30,17 @@ Early public specification.
 
 This repository is intentionally specification-first. It prioritizes definitions, examples, lifecycle boundaries, checker boundaries, provenance, and excluded claims before larger implementation layers.
 
+## Try this first
+
+To quickly inspect the practical shape of the project, start with the first copyable template:
+
+- [templates/ai-assisted-work-responsibility-path.yaml](templates/ai-assisted-work-responsibility-path.yaml) - under-construction template for recording AI-assisted work responsibility paths
+- [templates/README.md](templates/README.md) - template directory guide and non-claim boundary
+
+Use the template when AI assistance was involved and you need to preserve source references, human or institutional review, evidence, uncertainty, responsibility return points, and repair or reopening paths.
+
+The template is a lightweight starting point. It is not certification, conformance evidence, production approval, legal review, safety review, compliance review, fairness review, social acceptance proof, or AI final-responsibility transfer.
+
 ## Provenance
 
 According to the author's development record, Akihisa Ono began thinking about and using the concept of **責任経路 / Responsibility Pathway** from the public note article published on 2026-01-18:
