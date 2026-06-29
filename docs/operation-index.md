@@ -29,6 +29,8 @@ Use this path when restarting work after a pause or when another maintainer, rev
 19. `docs/event-to-pathway-relation-checker-plan.md` when considering future relation-checker planning without implementation
 20. `docs/example-index.md`
 21. `docs/checker-coverage.md`
+22. `docs/social-connection-review-navigation.md` when social-connection review paths matter
+23. `docs/repository-pathway-gap-inventory.md` when structure breaks or reader-path gaps need to be tracked
 
 `CHANGELOG.md` is not part of the primary construction-time reconnection path. Use it mainly for archival, investigative, historical, or retrospective milestone review.
 
@@ -43,6 +45,7 @@ Use documents according to the phase of work.
 | Progress review | `docs/progress-map.md`, `docs/phase-3-1-progress-map-connection.md` when Phase 3.1 context matters, current snapshot, current task inventory, operation index, roadmap note | checking when a progress estimate or gate changed |
 | Concept-path navigation | `docs/concepts/index.md`, relevant concept note, source-alignment note, example index, checker coverage | checking when a concept boundary changed |
 | AI local judgment or task-control boundary review | `docs/ai-judgment-node-task-control.md`, `docs/phase-3-1-ai-judgment-node-connection.md`, `docs/phase-3-1-ai-judgment-node-sync-note.md`, `docs/ai-agent-operation-patterns.md`, current snapshot, current task inventory | checking when AI local judgment, loop-like task control, goal-like stop conditions, evaluator separation, or evidence-selection boundaries changed |
+| Social connection or approval-transfer review | `docs/social-connection-review-navigation.md`, `docs/social-connection-exception-cases.md`, `docs/evidence-approval-transfer-alignment.md`, `docs/validation-checklist.md`, `docs/evidence-log.md`, `docs/repository-pathway-gap-inventory.md` | checking when social-connection exceptions, approval-transfer alignment, evidence-log review, or pathway-gap navigation changed |
 | Standardization preparation | `docs/standardization-strategy.md`, progress map, README, operation index, current snapshot, concept index, example index, checker coverage | checking when a standardization boundary or language choice changed |
 | External review preparation | `docs/external-review-package-note.md`, `docs/external-review-readiness-checklist.md`, README, operation index, current snapshot, current task inventory, checker coverage, example index, schema/fixture alignment, standardization strategy, progress map | checking when external-review scope, package path, readiness, or non-readiness boundaries changed |
 | Public publication planning | `docs/zenn-publication-readiness-plan.md`, `docs/zenn-publication-readiness-connection.md`, `docs/zenn-publication-ja-reader-note.md`, README, README.ja, BEACON, overview, external-review package, progress map, deferred-work restart conditions | checking when publication gates, Japanese reader path, public-entry framing, or Zenn article scope changed |
@@ -104,6 +107,8 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | --- | --- |
 | `docs/repository-operation-model.md` | You need the current repository-wide operating model, document purpose and usage phase policy, staged update operation, synchronization unit operation, session load and handoff policy, commit granularity policy, periodic operation review policy, long-file update policy, workflow observation policy, sync-log and roadmap-note separation policy, or restart rule. |
 | `docs/current-task-inventory.md` | You need the current P0-P4 task inventory across active and near-active phases before selecting the next task. |
+| `docs/social-connection-review-navigation.md` | You need the focused reader path for social-connection review involving approval skip, responsibility transfer, evidence logging, explanation paths, affected-party visibility, or later review, dispute, repair, or return paths. |
+| `docs/repository-pathway-gap-inventory.md` | You need to track structure breaks, reader-path gaps, social-connection cluster links, or large-index update risks before broad navigation changes. |
 | `docs/ai-judgment-node-task-control.md` | You need the bounded concept and operation boundary for AI Judgment Nodes, task-control loops, stop conditions, evaluator separation, evidence visibility, judgment versus execution, and human or institutional return gates. |
 | `docs/phase-3-1-ai-judgment-node-connection.md` | You need the focused Phase 3.1 reader-path connection for AI local judgment and task-control boundaries without rewriting the full current snapshot. |
 | `docs/phase-3-1-ai-judgment-node-sync-note.md` | You need the focused synchronization record for the AI Judgment Node task-control boundary unit. |
@@ -150,6 +155,14 @@ Use `docs/phase-3-1-ai-judgment-node-connection.md` when Phase 3.1 runtime-event
 Use `docs/phase-3-1-ai-judgment-node-sync-note.md` when reviewing the synchronization unit that added the AI Judgment Node concept and its Phase 3.1 connection.
 
 These notes do not authorize autonomous task-control implementation, automatic approval, automatic execution, schema expansion, checker expansion, workflow expansion, production connectors, production runtime integration, conformance checks, Lean expansion, or AI final-responsibility transfer.
+
+## Social connection review navigation
+
+Use `docs/social-connection-review-navigation.md` when approval skip, responsibility transfer, evidence logging, explanation paths, affected-party visibility, or later review, dispute, repair, or return paths are reviewed in real social contexts.
+
+Use `docs/repository-pathway-gap-inventory.md` when social-connection review documents or other focused notes may be disconnected from the primary reader path.
+
+These notes do not decide legal liability, social acceptability, compliance, safety, fairness, certification, production readiness, conformance, or AI final-responsibility transfer.
 
 ## Standardization navigation
 
