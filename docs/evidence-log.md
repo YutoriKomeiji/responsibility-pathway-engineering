@@ -64,6 +64,12 @@ Corrections should not silently overwrite earlier evidence.
 
 A stronger implementation may add hash chaining, external timestamping, or sealed export records.
 
+## Approval-skip relation
+
+When an approval step is skipped under a defined policy, the Evidence Log should preserve the rule, evidence snapshot, responsibility-transfer destination, and later return path.
+
+See `docs/evidence-approval-transfer-alignment.md` for the alignment boundary.
+
 ## Legal and dispute-review posture
 
 Evidence logs may support later audit, dispute review, or legal review by preserving a reconstructable record of what was known, decided, changed, and approved at the relevant time.
@@ -96,6 +102,7 @@ Evidence logging fails when:
 - logs cannot distinguish human action from AI action
 - logs preserve technical events but not affected-party visibility
 - logs can be changed without preserving reason, actor, approval, and prior-state reference
+- approval skip occurs without preserving rule, responsibility-transfer destination, and return path
 
 ## Boundary
 
