@@ -68,6 +68,18 @@ permissions:
 
 This keeps the checker aligned with the repository security hygiene rule.
 
+### Observed workflow run
+
+Manual workflow run `28387696042` was observed as successful.
+
+The job `check_issue_form` completed successfully and ran:
+
+```bash
+python scripts/check_issue_form.py
+```
+
+This is an external GitHub Actions observation for the bounded Issue Form checker only. It is not evidence that any created issue body is correct, complete, legally valid, safe, compliant, fair, production ready, externally reviewed, socially accepted, certified, conformance-ready, or that AI assumes final responsibility.
+
 ## RPE relation
 
 The checker supports the RPE anchors described in `docs/issue-form-rpe-originality-note.md`:
