@@ -2,7 +2,7 @@
 
 This checklist helps a human maintainer or external reviewer inspect the current Responsibility Pathway Engineering repository without treating it as complete, certified, standardized, production-ready, or correct by default.
 
-It is a review-readiness aid only. It is not certification, conformance evidence, legal review, safety review, compliance review, fairness review, production approval, connector correctness proof, adapter correctness proof, runtime correctness proof, schema correctness proof, JSON semantic correctness proof, Lean completeness proof, or AI final-responsibility transfer mechanism.
+It is a review-readiness aid only. It is not certification, conformance evidence, legal review, safety review, compliance review, fairness review, production approval, connector correctness proof, adapter correctness proof, runtime correctness proof, schema correctness proof, JSON semantic correctness proof, Lean completeness proof, social acceptance proof, or AI final-responsibility transfer mechanism.
 
 ## Review purpose
 
@@ -21,6 +21,7 @@ The review target is whether a reviewer can trace claims back to:
 - excluded claims
 - deferred work
 - human or institutional responsibility boundaries
+- social-connection review boundaries when social context matters
 
 ## Read-first path
 
@@ -35,8 +36,10 @@ A reviewer should start with:
 7. `docs/example-index.md`
 8. `docs/runtime-event-schema-fixture-alignment.md`
 9. `docs/event-to-pathway-relation-checker-plan.md` when future relation-checker planning matters
-10. `docs/standardization-strategy.md` when public standardization language matters
-11. `docs/progress-map.md` when maturity or progress language matters
+10. `docs/social-connection-review-navigation.md` when approval skip, responsibility transfer, evidence logging, explanation paths, affected-party visibility, or later return paths matter
+11. `docs/repository-pathway-gap-inventory.md` when reader-path gaps or structure-break risks matter
+12. `docs/standardization-strategy.md` when public standardization language matters
+13. `docs/progress-map.md` when maturity or progress language matters
 
 Use `CHANGELOG.md` primarily for historical cause tracing, not as the active construction restart path.
 
@@ -51,6 +54,7 @@ Check whether major claims are traceable to a current document.
 - [ ] Phase 3.1 current state is reachable from `docs/phase-3-1-current-snapshot.md`.
 - [ ] Runtime-event schema / fixture / checker alignment is reachable from `docs/runtime-event-schema-fixture-alignment.md`.
 - [ ] Event-to-pathway relation checker planning is reachable from `docs/event-to-pathway-relation-checker-plan.md`.
+- [ ] Social-connection review paths are reachable from `docs/social-connection-review-navigation.md` when social context matters.
 - [ ] Current checker behavior is reachable from `docs/checker-coverage.md`.
 - [ ] Example interpretation is reachable from `docs/example-index.md`.
 - [ ] Deferred work is reachable from `docs/deferred-work-restart-conditions.md`.
@@ -65,6 +69,7 @@ Check whether the repository clearly says what it does not claim.
 - [ ] JSON fixture checks are not described as JSON semantic correctness proof.
 - [ ] Schema alignment is not described as schema validation.
 - [ ] Event-to-pathway relation checker planning is not described as semantic correctness checking or implementation permission.
+- [ ] Social-connection review is not described as social acceptance, legal review, compliance review, safety review, fairness review, or certification.
 - [ ] Standardization preparation is not described as finished standardization.
 - [ ] Lean formalization is not described as complete system proof.
 - [ ] AI support is not described as final responsibility transfer.
@@ -100,22 +105,34 @@ Check whether repository-maintenance documents help rather than obscure the curr
 
 - [ ] `docs/operation-index.md` provides a compact navigation path.
 - [ ] `docs/repository-operation-model.md` explains update, sync, and long-file policies.
+- [ ] `docs/repository-pathway-gap-inventory.md` tracks reader-path gaps and structure-break risks without becoming a certification or completeness claim.
 - [ ] `docs/phase-3-1-repository-alignment-audit.md` records recent cleanup and remaining audit candidates.
 - [ ] Focused notes are not identical duplicates.
 - [ ] Long files are updated only when stale text would mislead the reader path.
 - [ ] Historical logs are not rewritten merely to duplicate focused notes.
 
-### 6. Standardization and public-language readiness
+### 6. Social-connection reviewability
+
+Check whether social-connection concerns can be inspected without implying social acceptance or legal validity.
+
+- [ ] `docs/social-connection-review-navigation.md` provides the focused reader path.
+- [ ] `docs/social-connection-exception-cases.md` is framed as a risk map, not a legal or social conclusion.
+- [ ] `docs/evidence-approval-transfer-alignment.md` keeps approval skip distinct from responsibility skip.
+- [ ] `docs/evidence-log.md` remains necessary but not sufficient for responsibility return.
+- [ ] `docs/validation-checklist.md` includes social-connection review when applicable.
+- [ ] Social-connection review does not authorize schema, checker, workflow, runtime, connector, conformance, Lean, production, or certification expansion.
+
+### 7. Standardization and public-language readiness
 
 Check whether public-facing language remains grounded and non-certifying.
 
 - [ ] `docs/standardization-strategy.md` is read before expanding world-standard or conformance language.
 - [ ] The repository does not claim to be a finished standard.
 - [ ] The repository does not claim conformance evidence.
-- [ ] The repository does not claim legal, safety, compliance, fairness, production, connector, runtime, or semantic correctness proof.
+- [ ] The repository does not claim legal, safety, compliance, fairness, production, connector, runtime, semantic correctness, or social acceptance proof.
 - [ ] Progress estimates are treated as planning estimates only.
 
-### 7. External reviewer questions
+### 8. External reviewer questions
 
 A reviewer may reasonably ask:
 
@@ -129,6 +146,7 @@ A reviewer may reasonably ask:
 - What does a checker pass not mean?
 - Which work remains deferred?
 - Where do human or institutional responsibility boundaries remain visible?
+- Where do social-connection exceptions, affected-party routes, explanation paths, or later return paths remain visible?
 - Where could overclaiming occur if public language is expanded too soon?
 
 ## Known non-readiness areas
@@ -146,6 +164,7 @@ The repository is not yet ready to claim:
 - full schema validation
 - event-to-pathway semantic correctness
 - responsibility assignment correctness
+- social acceptance
 - legal validity
 - safety proof
 - compliance proof
@@ -158,9 +177,9 @@ The repository is not yet ready to claim:
 
 Possible next review-preparation tasks:
 
-1. keep this checklist, operation index, current task inventory, checker coverage, example index, and relation-checker plan aligned when checker-planning language changes
-2. prepare a short external-review package note after reader paths remain stable
-3. review whether `docs/phase-3-1-current-snapshot.md` needs only a short pointer to the relation-checker plan
+1. keep this checklist, operation index, current task inventory, checker coverage, example index, social-connection review navigation, repository pathway gap inventory, and relation-checker plan aligned when checker-planning or social-review language changes
+2. prepare or update a short external-review package note after reader paths remain stable
+3. review whether `docs/phase-3-1-current-snapshot.md` needs only a short pointer to the relation-checker plan or social-connection review path
 4. consider a relation-checker implementation only after `docs/event-to-pathway-relation-checker-plan.md` preconditions are deliberately reviewed
 
-Do not start production connectors, conformance claims, schema validation, semantic checking, relation-checker implementation, or public standardization claims from this checklist alone.
+Do not start production connectors, conformance claims, schema validation, semantic checking, relation-checker implementation, social-connection checker expansion, or public standardization claims from this checklist alone.
