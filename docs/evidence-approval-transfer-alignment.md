@@ -34,6 +34,7 @@ A valid approval-skip pathway should connect:
 4. the evidence snapshot used at the time
 5. the later review, dispute, repair, or return path
 6. the explanation path for reviewers or affected parties when explanation is required
+7. the relevant social-connection exception cases when the pathway is deployed beyond a purely internal model
 
 If any of these are missing, the pathway may hide responsibility instead of transferring it.
 
@@ -46,6 +47,12 @@ When agreement, acceptance, or continued use matters, the pathway should preserv
 This does not mean every pathway requires explicit consent.
 
 It means approval transfer should not rely on invisible agreement or unexplained responsibility movement.
+
+## Social exception relation
+
+When a pathway connects to real organizations, affected parties, contracts, policies, legal systems, or cross-border governance, review `docs/social-connection-exception-cases.md`.
+
+The exception map helps identify gaps that may not appear in the local approval-transfer structure, such as explanation, agreement, authority, jurisdiction, disclosure, organizational continuity, effective remedy, or reopening gaps.
 
 ## Change and correction handling
 
@@ -82,4 +89,4 @@ This note does not claim that evidence logs guarantee legal admissibility.
 
 It also does not claim that AI systems can hold final responsibility.
 
-The alignment target is narrower: skipped approval must remain reconstructable, reviewable, explainable where needed, and returnable through a defined responsibility pathway.
+The alignment target is narrower: skipped approval must remain reconstructable, reviewable, explainable where needed, checked against relevant social-connection exceptions, and returnable through a defined responsibility pathway.
