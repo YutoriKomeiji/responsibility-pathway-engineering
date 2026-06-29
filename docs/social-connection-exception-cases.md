@@ -6,6 +6,8 @@ It is a social-connection risk map only.
 
 It does not introduce schema changes, checker changes, workflow changes, runtime behavior, connector behavior, legal decision logic, compliance certification, safety certification, or production authorization.
 
+Use `docs/social-connection-review-navigation.md` for the focused reader path before applying these exception cases in review.
+
 ## Relation to approval-transfer alignment
 
 Use this note with `docs/evidence-approval-transfer-alignment.md` when approval skip, responsibility transfer, evidence logging, or explanation paths are connected to a real social context.
