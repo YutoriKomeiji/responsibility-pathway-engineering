@@ -6,11 +6,15 @@ These templates are lightweight adoption artifacts. They are not certification r
 
 ## Current templates
 
-- `ai-assisted-work-responsibility-path.yaml` - a first under-construction template for recording AI-assisted work responsibility paths.
+- `ai-assisted-work-responsibility-path.yaml` - a first under-construction copyable YAML template for recording AI-assisted work responsibility paths.
+- `.github/ISSUE_TEMPLATE/ai-assisted-work-responsibility-path.yml` - a GitHub Issue Form for the same kind of record inside GitHub issue workflows.
 
 ## How to use
 
-Copy a template into your own repository, issue, review process, or documentation workflow, then fill in the missing fields.
+Use either route:
+
+1. Copy `templates/ai-assisted-work-responsibility-path.yaml` into your own repository, issue, review process, or documentation workflow.
+2. Use the GitHub Issue Form when the responsibility-path record should live as a repository issue.
 
 Keep the non-claim boundary visible when adapting a template.
 
@@ -39,6 +43,6 @@ Use it when AI assistance was involved and you need to preserve:
 
 ## Boundary
 
-A copied template can help preserve reviewability.
+A copied template or issue form can help preserve reviewability.
 
 It does not prove correctness, legality, safety, compliance, fairness, production readiness, conformance, or final responsibility assignment.
