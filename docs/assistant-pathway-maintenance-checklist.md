@@ -21,7 +21,8 @@ Run this checklist at these natural points during AI-assisted repository work:
 5. before updating a long or high-risk navigation file,
 6. after adding or changing an operation rule,
 7. before summarizing a multi-commit work unit,
-8. before ending or handing off a heavy session.
+8. before ending or handing off a heavy session,
+9. when document count, reader-path length, or boundary repetition appears to be increasing.
 
 This checklist is not a background process. It is an in-session maintenance checkpoint.
 
@@ -39,6 +40,7 @@ Ask these questions before continuing broad work:
 - Is the next safe step named?
 - Is the relevant improvement recorded in `docs/operation-improvement-log.md` or intentionally deferred?
 - Is there a boundary statement saying what the current action does not implement, authorize, validate, certify, or prove?
+- Are docs multiplying, overlapping, or repeating boundaries enough to require `docs/document-redundancy-review-plan.md` before more files are added?
 
 ## Maintenance actions
 
@@ -48,6 +50,7 @@ If a check fails, use the smallest safe maintenance action:
 - create or update a focused connection note,
 - add a temporary pointer in a sync log, snapshot, roadmap note, or gap inventory,
 - add an entry to `docs/operation-improvement-log.md`,
+- consult `docs/document-redundancy-review-plan.md` before adding more docs when overlap or navigation sprawl is the problem,
 - update `docs/focused-note-reconnection-rule.md` only if the rule itself is missing,
 - stop broad work until the recovery path is named.
 
@@ -60,6 +63,7 @@ Use `docs/operation-improvement-log.md` when the maintenance check discovers:
 - forgotten prior lesson,
 - long-file update block,
 - focused-note reconnection gap,
+- document sprawl or boundary repetition that changes future operation behavior,
 - durable rule change,
 - future operation behavior change.
 
