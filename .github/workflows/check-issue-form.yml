@@ -1,6 +1,7 @@
 name: Check issue form
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - ".github/ISSUE_TEMPLATE/ai-assisted-work-responsibility-path.yml"
