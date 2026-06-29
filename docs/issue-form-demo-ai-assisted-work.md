@@ -4,6 +4,16 @@ This demo shows a simple filled example for the GitHub Issue Form.
 
 It is a demo only. It is not certification, legal review, safety review, compliance review, fairness review, production approval, conformance evidence, social acceptance proof, or AI final-responsibility transfer.
 
+## RPE focus
+
+This demo is not only showing that AI was used.
+
+It shows where the work can return if the AI-assisted review is wrong, unclear, incomplete, unsupported, or disputed.
+
+The important fields are the AI assistance boundary, evidence log, missing context, responsibility return point, and repair / reopening path.
+
+See `docs/issue-form-rpe-originality-note.md` for the RPE-specific design anchors.
+
 ## Scenario
 
 A maintainer uses AI to summarize a pull request and highlight possible review risks.
