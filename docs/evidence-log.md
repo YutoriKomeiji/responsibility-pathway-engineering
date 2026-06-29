@@ -47,6 +47,29 @@ Evidence should be evaluated by:
 - access boundary
 - privacy and safety constraints
 
+## Tamper-evident change handling
+
+Evidence logs should be designed as append-oriented records.
+
+If a record must be corrected, updated, or superseded, the later entry should preserve:
+
+- the original record reference
+- the change reason
+- the requester or actor
+- the approver or reviewer
+- the approval time
+- the evidence snapshot used for approval
+
+Corrections should not silently overwrite earlier evidence.
+
+A stronger implementation may add hash chaining, external timestamping, or sealed export records.
+
+## Legal and dispute-review posture
+
+Evidence logs may support later audit, dispute review, or legal review by preserving a reconstructable record of what was known, decided, changed, and approved at the relevant time.
+
+This does not guarantee legal admissibility or legal sufficiency.
+
 ## Relationship to Responsibility Pathway
 
 Evidence supports a pathway when it helps answer:
@@ -72,6 +95,7 @@ Evidence logging fails when:
 - logs are unavailable to the repair owner
 - logs cannot distinguish human action from AI action
 - logs preserve technical events but not affected-party visibility
+- logs can be changed without preserving reason, actor, approval, and prior-state reference
 
 ## Boundary
 
