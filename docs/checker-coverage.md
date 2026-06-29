@@ -187,6 +187,8 @@ The current issue-form checker does not validate created issue content, URL vali
 
 A pass from `scripts/check_issue_form.py` means only that the Issue Form definition preserves selected RPE structural fields and non-claim boundary signals. It does not mean that any filled issue is correct, complete, safe, compliant, legally valid, fair, production ready, externally reviewed, socially accepted, certified, or conformance-ready.
 
+Future warning-only planning for filled issue bodies is recorded in `docs/issue-body-warning-checker-plan.md`. That plan is not current checker behavior, does not add a workflow, and does not introduce live issue access.
+
 ## Responsibility Pathway record review alignment
 
 `docs/responsibility-pathway-record-review.md` defines a plain-language review and recheck guide for Responsibility Pathway records.
@@ -240,6 +242,14 @@ Future checker work should remain bounded to structural signals and must not tre
 | Checked area | Current bounded signal | Boundary |
 | --- | --- | --- |
 | AI-assisted work GitHub Issue Form definition | required form fields, RPE anchor fields, non-claim checkbox requirements, non-final-AI boundary text, selected non-claim keywords | not created issue content validation, evidence quality review, reviewer authority check, legal validity, safety, compliance, fairness, production readiness, conformance, certification, or final responsibility assignment |
+
+## Planned issue-body warning coverage map
+
+This is future work, not current checker behavior.
+
+| Planned area | Possible bounded signal | Boundary |
+| --- | --- | --- |
+| Created issue body fixture | missing or weak source reference, work context, AI assistance boundary, missing context, evidence log, human review point, responsibility return point, repair path, non-final-AI boundary, or explicit non-claim acknowledgement; see `docs/issue-body-warning-checker-plan.md` | warning-only review prompt, not issue-content validation, evidence quality review, reviewer authority check, legal validity, safety, compliance, fairness, production readiness, conformance, certification, final responsibility assignment, live issue access, workflow addition, or AI final-responsibility transfer |
 
 ## Planned runtime-event coverage map
 
