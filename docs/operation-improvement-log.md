@@ -40,6 +40,16 @@ During AI-assisted repository maintenance, pause and consider an entry here when
 
 This is a trigger to check the log, not an automatic requirement to write.
 
+## Assistant-side maintenance trigger
+
+`docs/assistant-pathway-maintenance-checklist.md` is the assistant-side checkpoint for detecting operation-path problems before the human maintainer notices them.
+
+When that checklist finds repeated drift, unclear recovery path, forgotten prior lesson, long-file update block, focused-note reconnection gap, durable rule change, or future operation behavior change, use this log as the next place to decide whether a durable entry is needed.
+
+The checklist should be run at natural responsibility-pathway points such as before a new responsibility unit, after blocked or redirected writes, after focused-note creation, after repeated tool-selection drift, before long-file updates, after operation-rule changes, before multi-commit summaries, and before heavy-session handoff.
+
+This does not make logging automatic. It makes log consideration assistant-initiated rather than dependent on the human maintainer noticing the issue.
+
 ## Write timing rule
 
 Write an entry at the earliest safe point after one of these happens:
