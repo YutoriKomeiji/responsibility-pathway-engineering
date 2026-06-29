@@ -4,6 +4,14 @@ This directory contains copyable starting points for Responsibility Pathway Engi
 
 These templates are lightweight adoption artifacts. They are not certification records, conformance evidence, production approval, legal review, safety review, compliance review, fairness review, social acceptance proof, or AI final-responsibility transfer mechanisms.
 
+## RPE distinction
+
+These templates should not be treated as generic AI-use disclosure forms.
+
+They are intended to preserve whether judgment, evidence, review, repair, and responsibility can return to a human or institution when AI-assisted work is wrong, unclear, incomplete, unsupported, harmful, or disputed.
+
+See `docs/issue-form-rpe-originality-note.md` for the RPE-specific design anchors: returnability, non-final-AI boundary, and repair / dispute / reopening path.
+
 ## Current templates
 
 - `ai-assisted-work-responsibility-path.yaml` - a first under-construction copyable YAML template for recording AI-assisted work responsibility paths.
