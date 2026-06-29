@@ -70,6 +70,8 @@ When an approval step is skipped under a defined policy, the Evidence Log should
 
 See `docs/evidence-approval-transfer-alignment.md` for the alignment boundary.
 
+When social connection matters, also review `docs/social-connection-review-navigation.md`.
+
 ## Legal and dispute-review posture
 
 Evidence logs may support later audit, dispute review, or legal review by preserving a reconstructable record of what was known, decided, changed, and approved at the relevant time.
