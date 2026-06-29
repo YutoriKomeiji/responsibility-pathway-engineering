@@ -109,3 +109,13 @@ Recommended fields:
 - Improvement file(s): `docs/operation-tool-selection-guard.md`; `docs/focused-note-reconnection-rule.md`.
 - Next check: If the recurrence repeats inside the same responsibility unit, record whether it remained read-only and whether the write was grounded in a direct file fetch and current blob SHA.
 - Boundary: This entry does not make tool discovery a preferred path. Direct GitHub file tools remain the preferred path for known repository files.
+
+### 2026-06-30 08:14 JST - Document redundancy review trigger added
+
+- Trigger: The `docs/` directory gained many focused notes, operation notes, plans, connection notes, and guard documents, raising risk of overlap, duplicate boundary language, long reader paths, and unclear authoritative reader paths.
+- Observed problem: The repository had strong rules for small responsibility units, but the growing number of small documents could itself create navigation sprawl or boundary repetition if not periodically reviewed.
+- Immediate recovery: Created `docs/document-redundancy-review-plan.md` to define a low-risk review process before merging, deleting, renaming, or rewriting documents.
+- Durable improvement: Updated `docs/assistant-pathway-maintenance-checklist.md` so document count, reader-path length, or boundary repetition can trigger assistant-side maintenance checks before more files are added.
+- Improvement file(s): `docs/document-redundancy-review-plan.md`; `docs/assistant-pathway-maintenance-checklist.md`.
+- Next check: Before adding more operation, checker-plan, focused-connection, or navigation documents, ask whether `docs/document-redundancy-review-plan.md` should be consulted first.
+- Boundary: This entry records repository-operation improvement only. It does not delete, merge, rename, rewrite broad navigation files, certify repository maturity, prove conformance, or transfer final responsibility to AI.
