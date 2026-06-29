@@ -20,6 +20,12 @@ python -m pip install -r requirements.txt
 python scripts/check_issue_form.py
 ```
 
+## Observed workflow note
+
+The observed manual GitHub Actions run for this route is recorded in `docs/issue-form-checker-note.md`.
+
+That observation means only that the bounded Issue Form checker workflow completed successfully for the observed repository state. It is not evidence that any created issue body is correct, complete, legally valid, safe, compliant, fair, production ready, externally reviewed, socially accepted, certified, conformance-ready, or that AI assumes final responsibility.
+
 ## Meaning
 
 The checker verifies selected structural signals in the Issue Form definition.
