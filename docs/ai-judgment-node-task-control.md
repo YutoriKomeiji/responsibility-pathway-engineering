@@ -105,6 +105,8 @@ This transfer may be internal to an organization, based on contract or policy, o
 
 It does not transfer final responsibility to the AI system.
 
+See `docs/evidence-approval-transfer-alignment.md` for the relation between approval skip, evidence logging, and later return paths.
+
 ## Layered responsibility return
 
 A responsibility pathway may return through multiple layers, depending on the matter and governance context:
