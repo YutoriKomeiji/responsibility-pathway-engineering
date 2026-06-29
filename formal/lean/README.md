@@ -8,6 +8,35 @@ The purpose of these files is to express selected structural properties in Lean.
 
 Formalization is incremental and scope-limited.
 
+## Lean4 adoption policy
+
+Use Lean4 where the repository has a structure that can be expressed as definitions, predicates, invariants, or bounded theorem candidates.
+
+Lean4 should be used for:
+
+- minimal formal definitions
+- structural boundary predicates
+- constructor-level sanity checks
+- invariant candidates
+- transition constraints where the model is sufficiently explicit
+- examples that can act as witnesses inside the model
+
+Lean4 should not be used to overstate real-world validity.
+
+A Lean theorem in this repository proves only the stated property under the stated model assumptions.
+
+It does not by itself prove legal admissibility, legal liability, safety, compliance, fairness, moral resolution, operational correctness, or production readiness.
+
+Current new candidates for future Lean work include:
+
+- tamper-evident Evidence Log structure
+- append-oriented correction records
+- approval-skip responsibility-transfer boundary
+- layered responsibility return path
+- connection between skipped approval, evidence snapshot, transfer destination, and later return path
+
+These candidates require separate design notes before schema, checker, workflow, or runtime changes.
+
 ## Current files
 
 The Phase 2 Lean spine is split into small modules:
