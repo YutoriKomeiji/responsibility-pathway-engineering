@@ -20,6 +20,24 @@ Use this rule when a new focused note is created because:
 - a current state needs to be preserved before touching a larger navigation surface
 - a planning note needs a small operation bridge before implementation is reopened
 
+## Recovery path requirement
+
+Avoiding an error is not enough by itself.
+
+If an action avoids a blocked update, risky rewrite, unsafe tool path, or unclear operation path, it must also preserve a recovery path before work continues.
+
+Before continuing after an error-avoidance action, check whether the action has:
+
+- a named current state
+- a known next safe step
+- a document or line where the attempted path is recorded
+- a return path to the intended navigation, coverage, snapshot, sync log, roadmap note, or gap inventory
+- an explicit boundary describing what the action does not implement, authorize, validate, certify, or prove
+
+If no recovery path exists, stop broad work and create one using the smallest safe artifact, such as a focused note, connection note, sync-log entry, snapshot note, roadmap note, or gap-inventory entry.
+
+Do not treat an error-avoidance action as complete merely because the immediate error was avoided.
+
 ## Reconnection ladder
 
 After creating a focused note, reconnect it using the smallest safe ladder that fits the note's role.
