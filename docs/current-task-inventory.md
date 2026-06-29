@@ -38,7 +38,8 @@ These tasks preserve the repository's current operating ability.
 - Keep `docs/external-review-readiness-checklist.md` available before preparing external-review package notes, conformance-model drafting, or public-facing review-readiness claims.
 - Keep `docs/external-review-package-note.md` available when preparing a compact reviewer handoff path without treating it as an external review result, endorsement, certification package, conformance package, or deployment approval.
 - Keep `docs/responsibility-pathway-availability.md` available when a responsibility pathway becomes narrowed, incomplete, noisy, or temporarily broken and the remaining evidence, missing evidence, uncertainty, or next judgment must be preserved.
-- Keep `docs/operation-index.md` aligned when operation documents, snapshots, sync logs, roadmap notes, progress map, focused connection notes, checker plans, runtime candidate planning, review notes, external-review readiness, external-review package notes, standardization strategy, document-role rules, concept navigation, or AI local judgment task-control boundaries change.
+- Keep `docs/repository-pathway-gap-inventory.md` available when structure breaks, reader-path gaps, social-connection cluster links, or large-index update risks need to be tracked before broad navigation changes.
+- Keep `docs/operation-index.md` aligned when operation documents, snapshots, sync logs, roadmap notes, progress map, focused connection notes, checker plans, runtime candidate planning, review notes, external-review readiness, external-review package notes, standardization strategy, document-role rules, concept navigation, social-connection review paths, or AI local judgment task-control boundaries change.
 - Keep `CHANGELOG.md` archival and investigative rather than the active construction restart path.
 - Preserve open-source review intent without implying certification or production approval.
 - Keep `docs/deferred-work-restart-conditions.md` as the restart-condition entry point for deferred schema, checker, workflow, connector, runtime, and Lean work.
@@ -85,16 +86,19 @@ Current status: formalization started; minimal Lean lifecycle invariant set reac
 - Maintain `formal/lean/ResponsibilityPathway/Core.lean` as the stable import entry point.
 - Use `docs/phase-2-current-snapshot.md` and `docs/phase-2-lean-theorem-index.md` before adding or renaming theorem candidates.
 - Keep formal claims assumption-scoped and traceable to examples, schemas, checker boundaries, and excluded claims.
+- Keep `formal/lean/README.md` aligned with evidence-completeness and approval-transfer theorem candidates without treating them as legal, safety, compliance, fairness, or production-readiness proofs.
 
 ### P3: conditional Lean work
 
 - Expand Lean only after relevant examples, schema fields, checker boundaries, and validation checklists are stable.
 - Observe Lean workflow results before treating build behavior as current.
+- Prepare a separate Lean evidence and approval formalization plan before adding theorem candidates for evidence record completeness, approval-skip completeness, correction records, transfer destinations, or return paths.
 
 ### P4: deferred expansion
 
 - Do not expand Lean around Action Class Matrix, runtime events, support-call policy, missed-support signals, or AI Judgment Node task-control concepts yet.
 - Do not formalize production connectors, runtime correctness, adapter correctness, legal responsibility, safety, compliance, fairness, or moral resolution.
+- Do not add Lean evidence-completeness or approval-transfer modules before a separate design note bounds the model and excluded claims.
 
 ## Phase 2.5 task inventory
 
@@ -142,15 +146,17 @@ Current status: first bounded reference example reached; action-class classifica
 
 ## Phase 3.1 task inventory
 
-Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, first bounded runtime-event checker stub, first local runtime-event checker pass, first minimal runtime-event workflow, first observed runtime-event workflow success, minimal runtime candidate design, minimal synthetic runtime fixture, minimal synthetic runtime fixture checker coverage, observed minimal runtime fixture checker workflow success, runtime-event schema/fixture alignment note, event-to-pathway relation checker plan, external review readiness checklist, external review package note, README recovery, support-call / missed-support synchronization, operation-reader path recovery, runtime ROADMAP reference closure, grounded standardization strategy, progress map, responsibility pathway availability, focused Phase 3.1 progress-map connection note, AI Judgment Node task-control boundary note, focused Phase 3.1 AI Judgment Node connection note, focused AI Judgment Node synchronization note, Phase 3.1 snapshot reduction follow-up note, and AI Judgment Node reader-path status note are recorded.
+Current status: adapter boundary, runtime-event bridge, runtime-event checking plan, first bounded runtime-event checker stub, first local runtime-event checker pass, first minimal runtime-event workflow, first observed runtime-event workflow success, minimal runtime candidate design, minimal synthetic runtime fixture, minimal synthetic runtime fixture checker coverage, observed minimal runtime fixture checker workflow success, runtime-event schema/fixture alignment note, event-to-pathway relation checker plan, external review readiness checklist, external review package note, README recovery, support-call / missed-support synchronization, operation-reader path recovery, runtime ROADMAP reference closure, grounded standardization strategy, progress map, responsibility pathway availability, focused Phase 3.1 progress-map connection note, AI Judgment Node task-control boundary note, focused Phase 3.1 AI Judgment Node connection note, focused AI Judgment Node synchronization note, Phase 3.1 snapshot reduction follow-up note, AI Judgment Node reader-path status note, social-connection review navigation, social-connection exception cases, evidence-approval transfer alignment, Evidence Log social review pointer, validation-checklist social review, and repository pathway gap inventory are recorded.
 
 ### P1: low-risk consolidation
 
-- Keep `docs/phase-3-1-current-snapshot.md` aligned with runtime fixture, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed runtime-event workflow success, minimal runtime fixture checker coverage, runtime-event schema/fixture alignment, event-to-pathway relation checker plan, external review readiness, external review package note, checker boundary, open-source review intent, review notes, README recovery, support-call / missed-support notes, progress map, focused progress-map connection note, responsibility pathway availability, AI Judgment Node task-control boundary, focused AI Judgment Node connection note, standardization strategy, and deferred work.
+- Keep `docs/phase-3-1-current-snapshot.md` aligned with runtime fixture, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed runtime-event workflow success, minimal runtime fixture checker coverage, runtime-event schema/fixture alignment, event-to-pathway relation checker plan, external review readiness, external review package note, checker boundary, open-source review intent, review notes, README recovery, support-call / missed-support notes, progress map, focused progress-map connection note, responsibility pathway availability, AI Judgment Node task-control boundary, focused AI Judgment Node connection note, standardization strategy, social-connection review navigation, repository pathway gap inventory, and deferred work.
 - Keep `docs/phase-3-1-snapshot-reduction-note.md` as a follow-up for future low-risk snapshot reduction if the current snapshot becomes too heavy.
 - Keep `docs/phase-3-1-ai-judgment-node-reader-path-status.md` as the focused current reader-path status for AI Judgment Node material.
-- Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record for runtime-event, runtime-fixture, runtime-event checker stub, runtime-event workflow observation, minimal runtime fixture checker workflow observation, runtime-event schema/fixture alignment, event-to-pathway relation checker planning, external review readiness, external review package note, README recovery, missed-support synchronization, progress-map synchronization, focused connection-note synchronization, responsibility pathway availability synchronization, AI Judgment Node synchronization, and future standardization synchronization units.
+- Keep `docs/phase-3-1-sync-log.md` as the detailed synchronization record for runtime-event, runtime-fixture, runtime-event checker stub, runtime-event workflow observation, minimal runtime fixture checker workflow observation, runtime-event schema/fixture alignment, event-to-pathway relation checker planning, external review readiness, external review package note, README recovery, missed-support synchronization, progress-map synchronization, focused connection-note synchronization, responsibility pathway availability synchronization, AI Judgment Node synchronization, social-connection review synchronization, and future standardization synchronization units.
 - Keep `docs/ai-judgment-node-task-control.md` as the bounded concept and operation boundary note for AI Judgment Nodes, task-control loops, stop conditions, evaluator separation, evidence visibility, and judgment-versus-execution separation.
+- Keep `docs/social-connection-review-navigation.md` as the focused reader path for approval skip, responsibility transfer, evidence logging, explanation paths, affected-party visibility, and later review, dispute, repair, or return paths in real social contexts.
+- Keep `docs/repository-pathway-gap-inventory.md` as the focused maintenance inventory for structure breaks, reader-path gaps, and safe next connection points before large index rewrites.
 - Keep `docs/phase-3-1-ai-judgment-node-connection.md` as the focused reader-path note connecting Phase 3.1 to the AI Judgment Node boundary without forcing a broad current-snapshot rewrite.
 - Keep `docs/phase-3-1-ai-judgment-node-sync-note.md` as the focused sync-log supplement for the AI Judgment Node task-control boundary responsibility unit.
 - Keep `docs/runtime-event-workflow-current-status.md` as the focused workflow-status note for the first runtime-event workflow and observed run status.
@@ -184,6 +190,8 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 - `docs/external-review-readiness-checklist.md` records the current review-readiness checklist for claim traceability, boundary clarity, checker readability, runtime-event bridge reviewability, operation readability, and non-readiness areas.
 - `docs/external-review-package-note.md` records the compact external-review reader path, reviewer questions, inspection targets, non-readiness boundaries, and maintainer pre-send checklist without treating it as an external review result.
 - `docs/ai-judgment-node-task-control.md` records the bounded concept for AI Judgment Nodes and task-control boundaries without introducing schema, checker, workflow, runtime, connector, conformance, or Lean work.
+- `docs/social-connection-review-navigation.md` records the focused reader path for social-connection review without introducing schema, checker, workflow, runtime, connector, legal decision logic, compliance certification, safety certification, social acceptance certification, or production authorization.
+- `docs/repository-pathway-gap-inventory.md` records the current pathway-gap inventory and safe next connection points before broad navigation rewrites.
 - `docs/phase-3-1-snapshot-reduction-note.md` records a maintainability follow-up after the snapshot was expanded with AI Judgment Node material.
 - `docs/phase-3-1-ai-judgment-node-reader-path-status.md` records the current AI Judgment Node reader-path status without unlocking implementation.
 - `docs/runtime-event-checker-local-observation.md` records the first local runtime-event checker pass.
@@ -201,6 +209,7 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 - Treat `docs/external-review-readiness-checklist.md` as a review-readiness aid only, not as external review findings, certification readiness, conformance evidence, or public standardization evidence.
 - Treat `docs/external-review-package-note.md` as a review-navigation package only, not as external review findings, endorsement, certification package, conformance package, deployment approval, or public standardization claim.
 - Treat `docs/ai-judgment-node-task-control.md` as a boundary note only, not as autonomous task-control implementation, automatic approval, automatic execution, verification, safety proof, compliance proof, runtime correctness proof, conformance evidence, or AI final-responsibility transfer.
+- Treat `docs/social-connection-review-navigation.md`, `docs/social-connection-exception-cases.md`, and `docs/evidence-approval-transfer-alignment.md` as review-navigation and conceptual alignment notes only, not as legal review, compliance review, safety review, fairness review, social acceptance proof, or production approval.
 - Treat the observed runtime-event workflow successes as bounded workflow observations only, not as schema validation, JSON semantic correctness proof, runtime correctness proof, production readiness, or certification.
 - Expand the runtime-event workflow only after the minimal push-triggered workflow remains stable and the expansion need is documented.
 - Add further runtime fixture checking only after `docs/minimal-runtime-candidate-design.md` and `docs/runtime-event-checking-plan.md` preconditions remain satisfied after review.
@@ -219,6 +228,7 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 - Keep JSON schema-fixture checking beyond the selected synthetic runtime-event and minimal synthetic runtime observation fixtures deferred until the bridge remains readable and reviewable.
 - Keep event-to-pathway semantic checking deferred.
 - Keep AI Judgment Node schema, checker, workflow, runtime, connector, conformance, and Lean expansion deferred until a separate design note and restart-condition review exists.
+- Keep social-connection schema, checker, workflow, runtime, connector, conformance, and Lean expansion deferred until a separate design note and restart-condition review exists.
 - Keep further runtime fixture checking deferred unless a new fixture is deliberately designed.
 - Keep Lean expansion around adapter or runtime-event concepts deferred.
 - Keep Lean expansion around support-call policy or missed-support signals deferred.
@@ -230,14 +240,15 @@ Current status: adapter boundary, runtime-event bridge, runtime-event checking p
 
 ## Open-source review tasks
 
-Open-source review is intended to invite inspection of boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed runtime-event workflow successes, minimal runtime fixture checker coverage, runtime-event schema/fixture alignment, event-to-pathway relation checker planning, external review readiness checklist, external review package note, operation documents, progress map, focused progress-map connection note, responsibility pathway availability, AI Judgment Node task-control boundary, standardization strategy, and deferred implementation choices.
+Open-source review is intended to invite inspection of boundaries, responsibility paths, examples, schemas, checker limits, runtime fixture limits, first bounded runtime-event checker stub, first minimal runtime-event workflow, observed runtime-event workflow successes, minimal runtime fixture checker coverage, runtime-event schema/fixture alignment, event-to-pathway relation checker planning, external review readiness checklist, external review package note, operation documents, progress map, focused progress-map connection note, responsibility pathway availability, AI Judgment Node task-control boundary, social-connection review navigation, evidence-approval transfer alignment, repository pathway gap inventory, standardization strategy, and deferred implementation choices.
 
 ### P1: low-risk review preparation
 
 - Make reader paths clear enough that an external reviewer can find current boundaries without reading the whole repository.
 - Keep non-certifying boundaries repeated where misunderstanding would be likely.
-- Keep `BEACON.md`, `README.md`, `docs/operation-index.md`, current snapshots, sync logs, roadmap notes, progress map, focused connection notes, checker coverage, example index, standardization strategy, external review readiness checklist, external review package note, and focused review notes aligned.
+- Keep `BEACON.md`, `README.md`, `docs/operation-index.md`, current snapshots, sync logs, roadmap notes, progress map, focused connection notes, checker coverage, example index, standardization strategy, external review readiness checklist, external review package note, social-connection review navigation, repository pathway gap inventory, and focused review notes aligned.
 - Keep `docs/ai-judgment-node-task-control.md` and `docs/phase-3-1-ai-judgment-node-connection.md` available when reviewers need to inspect AI local judgment, evaluator separation, loop-like task control, goal-like stop conditions, evidence visibility, and judgment-versus-execution boundaries.
+- Keep `docs/social-connection-review-navigation.md` available when reviewers need to inspect approval skip, responsibility transfer, evidence logging, explanation paths, affected-party visibility, and later review, dispute, repair, or return paths in real social contexts.
 - Keep `docs/external-review-package-note.md` available as the compact reader package for external reviewers before broader external-review handoff or public-facing review-readiness language.
 - Keep `docs/external-review-readiness-checklist.md` available as the focused reader path for claim traceability, boundary clarity, checker readability, runtime-event bridge reviewability, operation readability, standardization/public-language readiness, and known non-readiness areas.
 - Keep `docs/event-to-pathway-relation-checker-plan.md` available as the focused reader path for planned future structural relation-checker boundaries before any implementation.
@@ -258,6 +269,7 @@ Open-source review is intended to invite inspection of boundaries, responsibilit
 - Prepare short review notes only when they help reviewers inspect a specific boundary.
 - Prefer boundary-focused notes over broad claims.
 - Keep `docs/ai-judgment-node-task-control.md` as a boundary-focused note, not an autonomous task-control implementation, verification result, certification result, conformance package, production approval, or AI final-responsibility transfer claim.
+- Keep `docs/social-connection-review-navigation.md` as a review-navigation note, not a legal review result, compliance result, safety result, fairness result, social acceptance result, certification package, conformance package, deployment approval, or public standardization claim.
 - Keep `docs/external-review-package-note.md` as a compact external-review navigation aid, not an external review result, endorsement, certification package, conformance package, deployment approval, or public standardization claim.
 - Keep `docs/external-review-readiness-checklist.md` as a review-readiness checklist, not certification, conformance evidence, external review findings, production approval, or public standardization evidence.
 - Keep `docs/event-to-pathway-relation-checker-plan.md` as a future checker-planning note, not relation-checker implementation, semantic correctness proof, adapter mapping proof, responsibility assignment proof, or conformance evidence.
@@ -267,7 +279,7 @@ Open-source review is intended to invite inspection of boundaries, responsibilit
 
 ### P4: deferred public claims
 
-- Do not claim the project proves legal validity, safety, compliance, fairness, moral resolution, production readiness, connector correctness, adapter correctness, runtime correctness, standardization certification, progress certification, AI final-responsibility transfer, or AI-local-judgment final responsibility.
+- Do not claim the project proves legal validity, safety, compliance, fairness, moral resolution, production readiness, connector correctness, adapter correctness, runtime correctness, standardization certification, progress certification, AI final-responsibility transfer, social acceptance, or AI-local-judgment final responsibility.
 
 ## Recommended next sequence
 
@@ -275,9 +287,11 @@ Use this sequence unless a checker failure or serious inconsistency appears.
 
 1. P0: preserve restartability and boundary clarity.
 2. P1: keep BEACON short and ensure README / operation-index / current snapshot / sync log / roadmap note remain aligned.
-3. P1: keep AI Judgment Node task-control boundary connected before discussing loop-like task control, goal-like stop conditions, evaluator separation, or local AI judgment as Phase 3.1 runtime-event design inputs.
-4. P1: consider `docs/phase-3-1-snapshot-reduction-note.md` before adding more narrow detailed sections to `docs/phase-3-1-current-snapshot.md`.
-5. P1: keep progress map rough, planning-only, and connected before using progress percentages in public-facing language.
-6. P1: keep `docs/phase-3-1-progress-map-connection.md` available when Phase 3.1 progress visibility is needed without rewriting the full current snapshot.
-7. P1: keep standardization strategy grounded and connected before any public-facing world-standard language is expanded.
-8. P1: keep external review package note, external review readiness checklist, event-to-pathway relation checker plan, missed-support current status, example index, checker coverage, and focused reader paths aligned after review-readiness, package-note, or checker-planning changes.
+3. P1: keep repository pathway gap inventory current before large index rewrites or broad reader-path changes.
+4. P1: keep social-connection review navigation connected before expanding approval-skip, responsibility-transfer, evidence-log, explanation-path, or affected-party review language.
+5. P1: keep AI Judgment Node task-control boundary connected before discussing loop-like task control, goal-like stop conditions, evaluator separation, or local AI judgment as Phase 3.1 runtime-event design inputs.
+6. P1: consider `docs/phase-3-1-snapshot-reduction-note.md` before adding more narrow detailed sections to `docs/phase-3-1-current-snapshot.md`.
+7. P1: keep progress map rough, planning-only, and connected before using progress percentages in public-facing language.
+8. P1: keep `docs/phase-3-1-progress-map-connection.md` available when Phase 3.1 progress visibility is needed without rewriting the full current snapshot.
+9. P1: keep standardization strategy grounded and connected before any public-facing world-standard language is expanded.
+10. P1: keep external review package note, external review readiness checklist, event-to-pathway relation checker plan, missed-support current status, example index, checker coverage, social-connection review navigation, repository pathway gap inventory, and focused reader paths aligned after review-readiness, package-note, checker-planning, or social-connection review changes.
