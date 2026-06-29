@@ -28,43 +28,51 @@ The current social-connection cluster includes:
 - `docs/validation-checklist.md`
 - `docs/ai-judgment-node-task-control.md`
 - `docs/evidence-log.md`
+- `docs/lean-evidence-approval-formalization-plan.md`
 - `formal/lean/README.md`
 
 ## Current connection status
 
 | Document | Current role | Current connection status | Next likely connection |
 | --- | --- | --- | --- |
-| `docs/social-connection-review-navigation.md` | focused reader path for social-connection review | connected from validation checklist, social exception cases, approval-transfer alignment, AI Judgment Node note, and Evidence Log | add to task inventory and operation index when safe |
+| `docs/social-connection-review-navigation.md` | focused reader path for social-connection review | connected from validation checklist, social exception cases, approval-transfer alignment, AI Judgment Node note, Evidence Log, task inventory, and operation index | keep aligned when review paths change |
 | `docs/social-connection-exception-cases.md` | social-connection risk map | connected to review navigation and approval-transfer alignment | keep as review input; no schema or checker change yet |
-| `docs/evidence-approval-transfer-alignment.md` | aligns approval skip, evidence, responsibility transfer, and social exceptions | connected to social exception cases and review navigation | consider Lean formalization plan later |
-| `docs/validation-checklist.md` | bounded review checklist | includes social connection review and review navigation | may need operation-index pointer later |
-| `docs/ai-judgment-node-task-control.md` | AI local judgment and approval-skip boundary | connected to approval-transfer alignment and social review navigation | may need task-inventory pointer if not already present |
-| `docs/evidence-log.md` | evidence reconstruction and tamper-evident change handling | connected to approval-transfer alignment and social review navigation | consider Lean evidence completeness plan later |
-| `formal/lean/README.md` | Lean4 adoption and evidentiary completeness boundary | names evidence and approval-transfer candidates | requires separate formalization plan before Lean module work |
+| `docs/evidence-approval-transfer-alignment.md` | aligns approval skip, evidence, responsibility transfer, and social exceptions | connected to social exception cases, review navigation, Evidence Log, AI Judgment Node note, and Lean formalization planning path | consider Lean implementation only after separate implementation step |
+| `docs/validation-checklist.md` | bounded review checklist | includes social connection review and review navigation | keep aligned when checklist scope changes |
+| `docs/ai-judgment-node-task-control.md` | AI local judgment and approval-skip boundary | connected to approval-transfer alignment and social review navigation | keep task-control expansion deferred without design note |
+| `docs/evidence-log.md` | evidence reconstruction and tamper-evident change handling | connected to approval-transfer alignment and social review navigation | use Lean formalization plan before formal theorem work |
+| `docs/lean-evidence-approval-formalization-plan.md` | planning note for possible future Lean structural completeness work | connected from Lean README and this gap inventory | do not implement Lean module from plan alone |
+| `formal/lean/README.md` | Lean4 adoption and evidentiary completeness boundary | connected to the Lean evidence approval formalization plan | keep theorem claims structural and assumption-scoped |
+| `docs/current-task-inventory.md` | active and near-active task inventory | reflects social-connection cluster and Lean evidence approval planning | keep aligned when cluster status changes |
+| `docs/operation-index.md` | operation navigation entrance | now includes social-connection review and gap-inventory pointers | avoid broad rewrites unless navigation changes again |
 
 ## Known gap candidates
 
 ### Operation index visibility
 
-`docs/social-connection-review-navigation.md` is not yet clearly visible from `docs/operation-index.md`.
+`docs/social-connection-review-navigation.md` and `docs/repository-pathway-gap-inventory.md` are now visible from `docs/operation-index.md`.
 
-Because `docs/operation-index.md` is a large navigation file, update it only with a small, focused change after this inventory is stable.
+Future updates should remain small and focused because `docs/operation-index.md` is a large navigation file.
 
 ### Task inventory visibility
 
-The social-connection cluster and Lean evidence-completeness candidates should be reflected in `docs/current-task-inventory.md` before deeper implementation or formalization work.
+The social-connection cluster and Lean evidence-completeness candidates are now reflected in `docs/current-task-inventory.md`.
+
+Future task-inventory updates should preserve the distinction between P1 review-navigation consolidation and P4 deferred schema, checker, workflow, runtime, connector, conformance, or Lean expansion.
 
 ### Lean formalization planning
 
 Lean work should not jump directly from candidate list to theorem implementation.
 
-A separate plan should define the minimal model terms for:
+`docs/lean-evidence-approval-formalization-plan.md` defines the current planning route for:
 
 - evidence record completeness
 - approval-skip rule preservation
 - responsibility-transfer destination
 - later return or dispute path
 - correction or supersession record completeness
+
+A separate implementation step is still required before adding Lean modules or theorem candidates.
 
 ### Review readiness connection
 
