@@ -1,0 +1,124 @@
+name: AI-assisted work responsibility path
+description: Record a lightweight responsibility path for AI-assisted work.
+title: "AI-assisted work responsibility path: "
+labels:
+  - responsibility-path
+  - under-construction
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this issue form to record how AI assistance was used, what evidence was considered, who reviewed or approved the work, and where responsibility can return if the result must be questioned, repaired, disputed, or reopened.
+
+        This form is under construction and non-certifying. It is not legal review, safety review, compliance review, fairness review, production approval, conformance evidence, certification, social acceptance proof, or AI final-responsibility transfer.
+
+  - type: input
+    id: source-reference
+    attributes:
+      label: Source reference
+      description: Link to the issue, pull request, document, ticket, incident, or other source.
+      placeholder: "https://..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: work-context
+    attributes:
+      label: Work context
+      description: What work was being done, who requested it, and what area is affected?
+      placeholder: "Requester, responsible person/team, affected area, expected outcome."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ai-role
+    attributes:
+      label: AI assistance role
+      description: Select the main role played by AI.
+      options:
+        - suggestion
+        - summarization
+        - drafting
+        - classification
+        - review_support
+        - other
+    validations:
+      required: true
+
+  - type: textarea
+    id: ai-boundary
+    attributes:
+      label: AI assistance boundary
+      description: What did the AI assist with, and what did it not decide?
+      value: "The AI assisted the work but did not become the final responsibility holder."
+    validations:
+      required: true
+
+  - type: textarea
+    id: human-review
+    attributes:
+      label: Human or institutional review
+      description: Who reviewed, approved, rejected, returned, or still needs to review the work?
+      placeholder: "Reviewer/approver, review status, approval gate, pending review."
+    validations:
+      required: true
+
+  - type: textarea
+    id: approval-skip
+    attributes:
+      label: Approval skip or transfer, if any
+      description: If approval was skipped or transferred, record why and what compensating review path remains.
+      placeholder: "Occurred? Reason? Compensating review path?"
+    validations:
+      required: false
+
+  - type: textarea
+    id: evidence-log
+    attributes:
+      label: Evidence log
+      description: List sources, logs, tests, reviews, messages, documents, or other evidence used.
+      placeholder: "- Evidence item / URI / summary"
+    validations:
+      required: true
+
+  - type: textarea
+    id: missing-context
+    attributes:
+      label: Missing context or uncertainty
+      description: What is unknown, missing, ambiguous, or assumption-dependent?
+      placeholder: "Missing context, uncertainty notes, assumptions."
+    validations:
+      required: false
+
+  - type: textarea
+    id: responsibility-return-point
+    attributes:
+      label: Responsibility return point
+      description: Where should the issue return if the output is disputed, incomplete, harmful, unclear, unsupported, or out of scope?
+      placeholder: "Human, team, institution, process, reviewer, or maintainer return point."
+    validations:
+      required: true
+
+  - type: textarea
+    id: repair-reopening
+    attributes:
+      label: Repair, dispute, or reopening path
+      description: How can the work be corrected, disputed, repaired, or reopened?
+      placeholder: "Repair owner, dispute path, reopening condition, correction record."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: non-claims
+    attributes:
+      label: Non-claim boundary
+      description: Confirm that this issue does not make stronger claims than the record supports.
+      options:
+        - label: This record does not certify correctness.
+          required: true
+        - label: This record does not prove legal validity, safety, compliance, fairness, social acceptance, or production readiness.
+          required: true
+        - label: This record does not transfer final responsibility to AI.
+          required: true
+        - label: Any checker pass should be treated only as a bounded structural maintenance signal.
+          required: true
