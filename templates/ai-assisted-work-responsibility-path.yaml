@@ -1,0 +1,74 @@
+# AI-assisted work responsibility path template
+# Construction status: under-construction
+# Use: copyable starting point for recording AI-assisted work review paths
+# Non-claim: this template is not certification, legal review, safety review,
+# compliance review, fairness review, production approval, conformance evidence,
+# or AI final-responsibility transfer.
+
+responsibility_pathway:
+  id: example-ai-assisted-work-001
+  title: "AI-assisted work responsibility path"
+  status: draft
+  construction_status: under-construction
+
+  purpose: >
+    Record how AI assistance was used, what evidence was considered,
+    who reviewed or approved the work, and where responsibility can return
+    if the result must be questioned, repaired, disputed, or reopened.
+
+  source_reference:
+    type: issue | pull_request | document | ticket | incident | other
+    uri: ""
+    summary: ""
+
+  work_context:
+    requester: ""
+    responsible_person_or_team: ""
+    affected_area: ""
+    expected_outcome: ""
+
+  ai_assistance:
+    used: true
+    system_or_tool: ""
+    role: suggestion | summarization | drafting | classification | review_support | other
+    boundary: >
+      The AI assisted the work but did not become the final responsibility holder.
+
+  human_or_institutional_review:
+    required: true
+    reviewer_or_approver: ""
+    review_status: pending | reviewed | approved | rejected | returned
+    approval_gate: ""
+    approval_skip:
+      occurred: false
+      reason: ""
+      compensating_review_path: ""
+
+  evidence_log:
+    evidence_items:
+      - id: evidence-001
+        type: source | log | test | review | message | document | other
+        uri: ""
+        summary: ""
+    missing_context:
+      - ""
+    uncertainty_notes:
+      - ""
+
+  responsibility_return_point:
+    human_or_institutional_return_point: ""
+    when_to_return: >
+      Return here if the output is disputed, incomplete, harmful, unclear,
+      unsupported by evidence, or outside the intended scope.
+
+  repair_or_reopening:
+    repair_owner: ""
+    dispute_path: ""
+    reopening_condition: ""
+    correction_record: ""
+
+  non_claims:
+    - "This record does not certify correctness."
+    - "This record does not prove legal validity, safety, compliance, fairness, or production readiness."
+    - "This record does not transfer final responsibility to AI."
+    - "A checker pass, if any, should be treated only as a bounded structural maintenance signal."
