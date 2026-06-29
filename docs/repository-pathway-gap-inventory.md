@@ -86,6 +86,17 @@ For now, external-review package readers can reach the social-connection path th
 
 A later retry should use the smallest possible pointer and must not expand the package into a certification, social acceptance, legal, compliance, safety, or production claim.
 
+## Return rule for deferred gaps
+
+When a direct connection is deferred, keep an alternate route visible and record the next safe retry condition.
+
+For the current external-review package gap:
+
+- target: `docs/external-review-package-note.md`
+- intended pointer: `docs/social-connection-review-navigation.md`
+- alternate route: `docs/external-review-readiness-checklist.md` and `docs/operation-index.md`
+- retry condition: only add a minimal pointer when the package note is otherwise being safely updated
+
 ## Maintenance rule
 
 Prefer small bidirectional links before large index rewrites.
