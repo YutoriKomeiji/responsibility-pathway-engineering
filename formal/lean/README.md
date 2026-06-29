@@ -27,6 +27,28 @@ A Lean theorem in this repository proves only the stated property under the stat
 
 It does not by itself prove legal admissibility, legal liability, safety, compliance, fairness, moral resolution, operational correctness, or production readiness.
 
+## Evidentiary completeness target
+
+Lean4 may be used to prove that a modeled evidence or approval-transfer record contains required structural information.
+
+For example, Lean4 theorem candidates may check that a modeled record preserves:
+
+- original record reference
+- change reason
+- actor or requester
+- approver or reviewer
+- approval time
+- evidence snapshot reference
+- approval-skip rule
+- responsibility-transfer destination
+- later return or dispute path
+
+This is a structural completeness target.
+
+It does not prove that a court, regulator, organization, or jurisdiction will accept the evidence.
+
+It only supports the narrower claim that the modeled record does not omit defined information that may be needed for later legal review, audit, dispute review, or evidentiary reconstruction.
+
 Current new candidates for future Lean work include:
 
 - tamper-evident Evidence Log structure
