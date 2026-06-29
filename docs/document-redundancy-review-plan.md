@@ -45,6 +45,14 @@ Possible groups:
 - public-entry and publication-readiness notes
 - standardization and external-review notes
 
+## Findings notes
+
+Current findings notes:
+
+- `docs/document-redundancy-review-findings-operation-rules.md` records first low-risk findings for the operation-rules and operation-guards document group.
+
+A findings note should not be treated as a merge, deletion, rename, archive, or broad navigation rewrite. It records classification and next safe review steps only.
+
 ## Review questions
 
 For each group, ask:
