@@ -21,6 +21,7 @@ Related public-entry and review documents:
 - `docs/social-connection-review-navigation.md`
 - `docs/repository-pathway-gap-inventory.md`
 - `docs/lean-evidence-approval-formalization-plan.md`
+- `docs/zenn-level-2-repository-walkthrough-readiness.md`
 - `docs/progress-map.md`
 - `docs/zenn-publication-cadence-note.md`
 - `docs/zenn-next-article-scope-candidates.md`
@@ -38,6 +39,7 @@ This note keeps the Zenn publication plan reachable while preserving the distinc
 
 - current repository state
 - public explanation
+- repository walkthrough readiness
 - review-navigation readiness
 - social-connection review readiness
 - formalization planning
@@ -81,7 +83,13 @@ Disallowed near-term framing:
 
 Use this connection note when deciding whether a Zenn article can safely point to the repository.
 
-A Zenn article should not be published if its claims are stronger than the repository entrance, readiness plan, external-review notes, social-connection review notes, formalization plans, or deferred-work boundaries support.
+A Zenn article should not be published if its claims are stronger than the repository entrance, readiness plan, Level 2 readiness note, external-review notes, social-connection review notes, formalization plans, or deferred-work boundaries support.
+
+## Level 2 relation
+
+Use `docs/zenn-level-2-repository-walkthrough-readiness.md` when the intended publication is a repository walkthrough rather than a review request, implementation preview, or implementation announcement.
+
+Level 2 readiness does not decide article title, article body, publication timing, external review completion, implementation readiness, conformance readiness, certification readiness, or production readiness.
 
 ## Article-route independence
 
@@ -93,7 +101,7 @@ Its role is to keep the repository-side public reader path durable if a Zenn art
 
 ## Next safe action
 
-If publication planning continues, the next safe action is to keep this connection note aligned with operation index, current task inventory, progress map, external-review readiness checklist, social-connection review navigation, repository pathway gap inventory, and deferred-work boundaries.
+If publication planning continues, the next safe action is to keep this connection note aligned with Level 2 readiness, operation index, current task inventory, progress map, external-review readiness checklist, social-connection review navigation, repository pathway gap inventory, and deferred-work boundaries.
 
 Do not rewrite large files solely to duplicate this note.
 
