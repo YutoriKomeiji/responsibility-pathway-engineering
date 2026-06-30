@@ -183,9 +183,11 @@ The current issue-form checker inspects only whether:
 - non-final-AI responsibility boundary text is present
 - selected non-claim boundary keywords are present
 
-The current issue-form checker does not validate created issue content, URL validity, evidence quality, reviewer authority, approval quality, legal validity, safety, compliance, fairness, production readiness, conformance, social acceptance, certification, or final responsibility assignment.
+The AI-assisted work template and Issue Form evidence-log guidance now include `observed_at`, `recorded_at`, and `timezone` so evidence can be reviewed in time order. The current issue-form checker does not enforce those timestamp fields inside created issue bodies.
 
-A pass from `scripts/check_issue_form.py` means only that the Issue Form definition preserves selected RPE structural fields and non-claim boundary signals. It does not mean that any filled issue is correct, complete, safe, compliant, legally valid, fair, production ready, externally reviewed, socially accepted, certified, or conformance-ready.
+The current issue-form checker does not validate created issue content, timestamp completeness, timestamp correctness, time-zone correctness, URL validity, evidence quality, reviewer authority, approval quality, legal validity, safety, compliance, fairness, production readiness, conformance, social acceptance, certification, or final responsibility assignment.
+
+A pass from `scripts/check_issue_form.py` means only that the Issue Form definition preserves selected RPE structural fields and non-claim boundary signals. It does not mean that any filled issue is correct, complete, time-ordered, safe, compliant, legally valid, fair, production ready, externally reviewed, socially accepted, certified, or conformance-ready.
 
 Future warning-only planning for filled issue bodies is recorded in `docs/issue-body-warning-checker-plan.md`. That plan is not current checker behavior, does not add a workflow, and does not introduce live issue access.
 
@@ -218,49 +220,3 @@ Future checker work should remain bounded to structural signals and must not tre
 | `examples/runtime-event-to-pathway-minimal.yaml` | `originating` | yes | no | checked by `scripts/check_examples.py` |
 | `examples/adapter-input-event-minimal.json` | not a pathway example | no | no | checked by `scripts/check_runtime_events.py` |
 | `examples/minimal-synthetic-runtime-fixture.json` | not a pathway example | no | no | checked by `scripts/check_runtime_events.py` |
-| `examples/record-review-minimal.yaml` | `originating` | yes | yes | checked by `scripts/check_examples.py` |
-| `examples/repair-flow.yaml` | `repaired` | yes | no | checked by `scripts/check_examples.py` |
-| `examples/suspended-pathway.yaml` | `suspended` | yes | no | checked by `scripts/check_examples.py` |
-| `examples/returning-pathway.yaml` | `returning` | yes | no | checked by `scripts/check_examples.py` |
-| `examples/closed-pathway.yaml` | `closed` | yes | no | checked by `scripts/check_examples.py` |
-
-## Review-result fixture coverage map
-
-| Fixture | Schema reference | Alignment note | Current checker coverage |
-| --- | --- | --- | --- |
-| `fixtures/review-results/record-review-result-minimal.yaml` | `spec/review-result.schema.yaml` | `docs/review-result-schema-fixture-alignment.md` | checked by `scripts/check_review_results.py` |
-
-## Runtime-event checker coverage map
-
-| Checked area | Current bounded signal | Boundary |
-| --- | --- | --- |
-| Runtime-event JSON fixture | valid JSON, required top-level runtime-event fields, synthetic source signal, review requirement, evidence lists, missing context notes, excluded claims | not JSON semantic correctness, schema correctness, adapter correctness, connector correctness, runtime correctness, production readiness, conformance, or certification |
-| Minimal synthetic runtime fixture | valid JSON, explicit non-production scope, synthetic/vendor-neutral/review-required status, missing approval evidence, missing execution evidence, human review requirement, runtime-scope boundaries, candidate-status boundaries, excluded claims | not production runtime behavior, service connector correctness, adapter mapping correctness, runtime correctness, schema correctness, semantic correctness, conformance, or production readiness |
-
-## Issue-form checker coverage map
-
-| Checked area | Current bounded signal | Boundary |
-| --- | --- | --- |
-| AI-assisted work GitHub Issue Form definition | required form fields, RPE anchor fields, non-claim checkbox requirements, non-final-AI boundary text, selected non-claim keywords | not created issue content validation, evidence quality review, reviewer authority check, legal validity, safety, compliance, fairness, production readiness, conformance, certification, or final responsibility assignment |
-
-## Planned issue-body warning coverage map
-
-This is future work, not current checker behavior.
-
-| Planned area | Possible bounded signal | Boundary |
-| --- | --- | --- |
-| Created issue body fixture | missing or weak source reference, work context, AI assistance boundary, missing context, evidence log, human review point, responsibility return point, repair path, non-final-AI boundary, or explicit non-claim acknowledgement; see `docs/issue-body-warning-checker-plan.md` | warning-only review prompt, not issue-content validation, evidence quality review, reviewer authority check, legal validity, safety, compliance, fairness, production readiness, conformance, certification, final responsibility assignment, live issue access, workflow addition, or AI final-responsibility transfer |
-
-## Planned runtime-event coverage map
-
-This is future work, not current checker behavior.
-
-| Planned area | Possible bounded signal | Boundary |
-| --- | --- | --- |
-| Runtime-event schema | readable and parseable schema shape aligned with the selected runtime-event fixture | not schema completeness proof, conformance evidence, or production schema certification |
-| Runtime-event to pathway relation | explicit source reference, missing context, review requirement, non-final AI responsibility boundary, and non-certifying excluded claims; see `docs/event-to-pathway-relation-checker-plan.md` | not current checker behavior, semantic mapping correctness, adapter mapping correctness, responsibility assignment proof, conformance evidence, or implementation permission |
-| Runtime-event workflow expansion | observed checker status after workflow expansion exists and is actually observed | not certification, conformance evidence, or deployment approval |
-
-## Planned action-class coverage map
-
-This is future work, not current checker behavior.
