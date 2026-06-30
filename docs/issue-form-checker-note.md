@@ -34,19 +34,27 @@ The checker currently checks that the form definition contains:
 - non-final-AI responsibility boundary text
 - selected non-claim boundary keywords
 
+## Evidence timestamp guidance
+
+The Issue Form evidence-log guidance asks users to include `observed_at`, `recorded_at`, and `timezone` when available.
+
+Those fields help preserve time-order reviewability for evidence, decisions, reviews, repairs, disputes, or reopening steps.
+
+The current checker only checks the Issue Form definition. It does not enforce timestamp fields inside created issue bodies.
+
 ## What it does not check
 
 The checker does not validate the actual content of a created issue.
 
 It does not judge whether a user wrote a good return point, strong evidence, sufficient review, valid repair path, or acceptable decision.
 
-It does not verify URLs, tests, reviewers, approvals, legal validity, safety, compliance, fairness, production readiness, social acceptance, conformance, or final responsibility assignment.
+It does not verify URLs, tests, reviewers, approvals, evidence timestamp completeness, timestamp correctness, time-zone correctness, chronological consistency, legal validity, safety, compliance, fairness, production readiness, social acceptance, conformance, or final responsibility assignment.
 
 ## Meaning of PASS
 
 PASS means only that the Issue Form definition contains selected RPE structural fields and non-claim boundary signals.
 
-PASS does not mean that any filled issue is correct, complete, safe, compliant, legally valid, fair, production ready, externally reviewed, socially accepted, or certified.
+PASS does not mean that any filled issue is correct, complete, time-ordered, safe, compliant, legally valid, fair, production ready, externally reviewed, socially accepted, or certified.
 
 ## How to run locally
 
@@ -78,7 +86,7 @@ The job `check_issue_form` completed successfully and ran:
 python scripts/check_issue_form.py
 ```
 
-This is an external GitHub Actions observation for the bounded Issue Form checker only. It is not evidence that any created issue body is correct, complete, legally valid, safe, compliant, fair, production ready, externally reviewed, socially accepted, certified, conformance-ready, or that AI assumes final responsibility.
+This is an external GitHub Actions observation for the bounded Issue Form checker only. It is not evidence that any created issue body is correct, complete, time-ordered, legally valid, safe, compliant, fair, production ready, externally reviewed, socially accepted, certified, conformance-ready, or that AI assumes final responsibility.
 
 ## RPE relation
 
