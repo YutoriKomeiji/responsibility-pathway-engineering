@@ -30,6 +30,9 @@ A future checker may warn when a created issue body appears to omit or weaken se
 - AI assistance boundary
 - missing context or uncertainty
 - evidence log
+- evidence observation timestamp such as `observed_at`
+- evidence recording timestamp such as `recorded_at`
+- evidence timezone such as `timezone`
 - human or institutional review point
 - responsibility return point
 - repair / reopening path
@@ -38,12 +41,18 @@ A future checker may warn when a created issue body appears to omit or weaken se
 
 These warnings should be treated as prompts for human review, not as automatic judgments.
 
+Timestamp warnings should only indicate that the time-order review path may be weak. They must not claim that the evidence is false, stale, invalid, complete, incomplete, legally insufficient, unsafe, non-compliant, unfair, or responsibility-resolving.
+
 ## Non-goals
 
 The checker must not claim to validate:
 
 - the truth of the issue body
 - the quality of evidence
+- the completeness of timestamps
+- the correctness of timestamps
+- time-zone correctness
+- chronological consistency
 - the sufficiency of review
 - reviewer authority
 - legal validity
@@ -84,4 +93,4 @@ This is a planning note only.
 
 No issue-body checker is implemented by this note. No workflow is added by this note. No live issue access is introduced by this note.
 
-A future warning-only pass must remain a repository-maintenance signal only. It must not be treated as certification, legal review, safety review, compliance review, fairness review, production approval, conformance evidence, social acceptance proof, or AI final-responsibility transfer.
+A future warning-only pass must remain a repository-maintenance signal only. It must not be treated as certification, legal review, safety review, compliance review, fairness review, production approval, conformance evidence, social acceptance proof, timestamp correctness proof, chronological correctness proof, or AI final-responsibility transfer.
