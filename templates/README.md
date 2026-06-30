@@ -33,6 +33,20 @@ Use either route:
 
 Keep the non-claim boundary visible when adapting a template.
 
+## Evidence and time-order guidance
+
+When recording evidence, preserve time-order reviewability where possible.
+
+Use:
+
+- `observed_at` for when the evidence, source, log, message, test result, or review signal was observed,
+- `recorded_at` for when it was written into the responsibility-path record,
+- `timezone` for the time zone used by the timestamps.
+
+These fields help later readers understand whether evidence existed before or after a decision, review, repair, dispute, or reopening step.
+
+They do not prove that the evidence is true, complete, legally sufficient, safe, compliant, fair, production-ready, externally reviewed, certified, conformance-ready, or responsibility-resolving.
+
 ## Construction status
 
 Current templates should be treated as `under-construction` unless a later index or release note marks them otherwise.
@@ -51,7 +65,7 @@ Use it when AI assistance was involved and you need to preserve:
 - actor or requester
 - AI assistance boundary
 - human or institutional review
-- evidence and missing context
+- evidence, evidence timestamps, and missing context
 - responsibility return point
 - repair, dispute, or reopening path
 - non-claims
