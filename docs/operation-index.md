@@ -133,6 +133,7 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | `docs/document-redundancy-review-findings-checker-plans.md` | You need the findings note for checker coverage and checker-plan redundancy review, including current coverage versus future plan separation. |
 | `docs/document-redundancy-review-findings-operation-logs.md` | You need the findings note for operation-log, improvement-log, sync-log, and workflow-observation redundancy review, including durable lessons versus phase/state records. |
 | `docs/document-redundancy-review-findings-focused-connections.md` | You need the findings note for focused connection notes, companion notes, sync notes, and reader-path status notes, including orphan-prevention versus broad-file rewriting. |
+| `docs/document-redundancy-review-findings-examples.md` | You need the findings note for example indexes, example notes, fixtures, and example-adjacent checker interpretation, including examples versus indexes versus checker coverage. |
 | `docs/responsibility-pathway-availability.md` | You need to classify a narrowed, incomplete, noisy, or temporarily broken responsibility pathway and decide what residual evidence, missing evidence, uncertainty, and next judgment should be preserved or returned. |
 | `BEACON.md` | You need the current reconnection entrance, compact read-first order, current focus, and restart pointer. |
 | `README.md` | You need the short public entrance and primary reader links. |
