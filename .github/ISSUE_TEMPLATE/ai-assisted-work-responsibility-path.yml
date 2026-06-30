@@ -76,8 +76,15 @@ body:
     id: evidence-log
     attributes:
       label: Evidence log
-      description: List sources, logs, tests, reviews, messages, documents, or other evidence used.
-      placeholder: "- Evidence item / URI / summary"
+      description: List sources, logs, tests, reviews, messages, documents, or other evidence used. Include observed_at, recorded_at, and timezone when available so the evidence path can be reviewed in time order.
+      placeholder: |
+        - id: evidence-001
+          type: source | log | test | review | message | document | other
+          observed_at: "2026-06-30T20:15:00+09:00"
+          recorded_at: "2026-06-30T20:22:00+09:00"
+          timezone: "Asia/Tokyo"
+          uri: "https://..."
+          summary: "What this evidence supports, and what it does not prove."
     validations:
       required: true
 
