@@ -48,6 +48,9 @@ responsibility_pathway:
     evidence_items:
       - id: evidence-001
         type: source | log | test | review | message | document | other
+        observed_at: ""
+        recorded_at: ""
+        timezone: ""
         uri: ""
         summary: ""
     missing_context:
