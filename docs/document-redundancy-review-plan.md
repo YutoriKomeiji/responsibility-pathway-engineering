@@ -50,6 +50,7 @@ Possible groups:
 Current findings notes:
 
 - `docs/document-redundancy-review-findings-operation-rules.md` records first low-risk findings for the operation-rules and operation-guards document group.
+- `docs/document-redundancy-review-findings-checker-plans.md` records low-risk findings for the checker coverage and checker-plan document group.
 
 A findings note should not be treated as a merge, deletion, rename, archive, or broad navigation rewrite. It records classification and next safe review steps only.
 
