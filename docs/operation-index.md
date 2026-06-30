@@ -125,6 +125,11 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
 | `docs/operation-tool-selection-guard.md` | You need to choose the correct GitHub read/write tool during AI-assisted maintenance, especially after a read-tool selection mistake. |
+| `docs/operation-improvement-log.md` | You need durable records of repeated operation drift, recovery-path improvements, future operation behavior changes, or maintenance lessons that should not remain hidden. |
+| `docs/focused-note-reconnection-rule.md` | You need the reconnection ladder, orphan-prevention checklist, or recovery-path requirement for focused notes, companion notes, connection notes, or escape notes. |
+| `docs/assistant-pathway-maintenance-checklist.md` | You need assistant-side in-session maintenance checks before new responsibility units, after blocked writes, after focused-note creation, after repeated tool drift, or when document count and boundary repetition grow. |
+| `docs/document-redundancy-review-plan.md` | You need the low-risk method for reviewing document overlap, duplication, navigation sprawl, or unclear authoritative reader paths without immediately merging, deleting, renaming, or rewriting documents. |
+| `docs/document-redundancy-review-findings-operation-rules.md` | You need the first findings note for operation-rules and operation-guards redundancy review, including initial role classification and why merge/delete is not yet appropriate. |
 | `docs/responsibility-pathway-availability.md` | You need to classify a narrowed, incomplete, noisy, or temporarily broken responsibility pathway and decide what residual evidence, missing evidence, uncertainty, and next judgment should be preserved or returned. |
 | `BEACON.md` | You need the current reconnection entrance, compact read-first order, current focus, and restart pointer. |
 | `README.md` | You need the short public entrance and primary reader links. |
@@ -220,46 +225,6 @@ It does not authorize implementation by itself. It should be read before any fut
 
 ## Task inventory navigation
 
-Use `docs/current-task-inventory.md` when choosing what to do next.
+Use `docs/current-task-inventory.md` when selecting the next repository task or checking active P0-P4 priorities.
 
-The inventory separates tasks into:
-
-- P0 restartability and boundary preservation
-- P1 low-risk consolidation
-- P2 bounded artifact preparation
-- P3 conditional checker or workflow work
-- P4 deferred expansion
-
-Use it before starting checker work, workflow work, runtime work, Lean expansion, connector work, Class E examples, standardization claims, conformance-model drafting, or public-claim expansion.
-
-## Periodic operation review
-
-Use `docs/repository-operation-model.md` when operation itself needs review.
-
-A periodic operation review is useful when:
-
-- commit granularity feels too small or too large
-- reader paths become long or scattered
-- operation documents, snapshots, sync logs, roadmap notes, progress maps, or task inventories are multiplying
-- BEACON starts carrying detailed snapshot history or changelog-like content
-- sync logs and roadmap notes start duplicating each other
-- active construction starts relying on `CHANGELOG.md` as a primary restart path
-- a workflow result is recorded as observed green
-- a checker failure changes future maintenance behavior
-- a deferred implementation boundary is being reconsidered
-- session load is becoming heavy or a session handoff needs a durable restart path
-- Class E positive examples, production connectors, production conversion code, runtime-event schema checks, JSON fixture checks, standardization claims, conformance-model drafting, progress-estimate changes, or Lean expansion may need to be revisited
-
-A periodic operation review may produce an operation-model update, operation-index update, task-inventory update, progress-map update, snapshot update, sync-log entry, roadmap note, BEACON update, or short CHANGELOG milestone.
-
-It must not be used as production approval, connector correctness proof, adapter correctness proof, legal review, safety review, compliance review, fairness review, Lean completeness proof, standardization certification, progress certification, or AI final-responsibility transfer.
-
-## Snapshot documents
-
-Snapshots record current restart positions for phases or subphases.
-
-| Document | Current role |
-| --- | --- |
-| `docs/phase-2-current-snapshot.md` | Current Phase 2 Lean restart point and scoped formalization status. |
-| `docs/phase-2-5-current-snapshot.md` | Current Phase 2.5 enterprise and record-review restart point. |
-| `docs/phase-3-1-current-snapshot.md` | Current Phase 3.1 adapter boundary, runtime-event bridge, runtime-event checking plan, runtime-event workflow observation, minimal runtime candidate planning, minimal runtime fixture, minimal runtime fixture checker coverage, current task inventory, repository operation, checker coverage, and example-index restart point. |
+The inventory is not a roadmap, guarantee, commitment, certification, conformance plan, legal plan, compliance plan, production plan, or AI final-responsibility transfer.
