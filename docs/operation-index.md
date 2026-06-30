@@ -130,6 +130,7 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | `docs/assistant-pathway-maintenance-checklist.md` | You need assistant-side in-session maintenance checks before new responsibility units, after blocked writes, after focused-note creation, after repeated tool drift, or when document count and boundary repetition grow. |
 | `docs/document-redundancy-review-plan.md` | You need the low-risk method for reviewing document overlap, duplication, navigation sprawl, or unclear authoritative reader paths without immediately merging, deleting, renaming, or rewriting documents. |
 | `docs/document-redundancy-review-findings-operation-rules.md` | You need the first findings note for operation-rules and operation-guards redundancy review, including initial role classification and why merge/delete is not yet appropriate. |
+| `docs/document-redundancy-review-findings-checker-plans.md` | You need the findings note for checker coverage and checker-plan redundancy review, including current coverage versus future plan separation. |
 | `docs/responsibility-pathway-availability.md` | You need to classify a narrowed, incomplete, noisy, or temporarily broken responsibility pathway and decide what residual evidence, missing evidence, uncertainty, and next judgment should be preserved or returned. |
 | `BEACON.md` | You need the current reconnection entrance, compact read-first order, current focus, and restart pointer. |
 | `README.md` | You need the short public entrance and primary reader links. |
