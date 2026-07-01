@@ -79,6 +79,7 @@ For each group, ask:
 - Is a focused note carrying broad navigation content that should be a short pointer elsewhere?
 - Does any document claim current behavior when it only records planned future work?
 - Does any entry need to move from a temporary note into a current snapshot, sync log, roadmap note, or operation index?
+- For public-entry and publication-readiness documents, does any public-facing path import separate non-RPE private structures, origin narratives, or project-specific relationship frameworks as support for RPE evidence, examples, maturity language, public claims, or standardization support?
 
 ## Safe review sequence
 
