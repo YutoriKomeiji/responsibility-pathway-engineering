@@ -125,6 +125,7 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | `docs/2026-07-01-evening-operation-sync-note.md` | You need the evening synchronization state after the redundancy-review post-initial-pass follow-up, task-inventory recovery path, and stream-recovery observation work. |
 | `docs/progress-map.md` | You need rough progress estimates, gate status, next gates, recommended order, or progress-related stop conditions. |
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
+| `docs/development-cadence-and-public-question-boundary.md` | You need the operation cadence principle for moving quickly enough to become publicly reviewable without rushing into overclaim, certification, standardization, or maturity language. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
 | `docs/operation-tool-selection-guard.md` | You need to choose the correct GitHub read/write tool during AI-assisted maintenance, especially after a read-tool selection mistake. |
 | `docs/operation-improvement-log.md` | You need durable records of repeated operation drift, recovery-path improvements, future operation behavior changes, or maintenance lessons that should not remain hidden. |
