@@ -56,6 +56,7 @@ Current findings notes:
 - `docs/document-redundancy-review-findings-examples.md` records low-risk findings for the example index, example note, fixture, and example-adjacent checker interpretation group.
 - `docs/document-redundancy-review-findings-phase-snapshots.md` records low-risk findings for the phase snapshot, sync log, focused sync note, restart pointer, and phase-adjacent roadmap note group.
 - `docs/document-redundancy-review-findings-roadmap-deferred.md` records low-risk findings for the roadmap note, deferred-work note, current task surface, restart-condition note, and phase-adjacent planning document group.
+- `docs/document-redundancy-review-findings-public-publication.md` records low-risk findings for the public-entry, publication-readiness, Zenn reader-path, walkthrough, cadence, and public-facing scope-candidate document group.
 
 A findings note should not be treated as a merge, deletion, rename, archive, or broad navigation rewrite. It records classification and next safe review steps only.
 
