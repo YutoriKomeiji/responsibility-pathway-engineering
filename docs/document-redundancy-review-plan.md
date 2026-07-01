@@ -19,7 +19,13 @@ This plan defines how to review that risk without immediately merging, deleting,
 
 ## Review status
 
-This is a planning note only.
+Initial findings pass status: recorded for all currently listed candidate review groups.
+
+This means each candidate group listed below has a focused findings note and a short operation-index pointer.
+
+It does not mean the repository has been consolidated, simplified, certified, externally reviewed, or approved for broad rewrites.
+
+This is a planning and classification pass only.
 
 It does not merge files.
 
