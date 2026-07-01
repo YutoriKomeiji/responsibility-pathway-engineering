@@ -70,6 +70,7 @@ Before a Zenn article points readers to the repository, confirm that these docum
 | `docs/progress-map.md` | progress language | estimates are planning-only |
 | `docs/zenn-article-title-source-check.md` | article title planning | existing Zenn article titles and aligned source inventory are checked before choosing a title |
 | `docs/zenn-publication-cadence-note.md` | publication timing | publication timing is based on repository readability, not one-time announcement pressure or calendar rhythm alone |
+| `docs/zenn-publication-docs-cleanup-task.md` | public reader-path cleanup | timestamped work-log and sync-note files under `docs/` are reviewed before public walkthrough use |
 | `docs/api-future-shape.md` | API preview article | future API is clearly not implemented |
 | `docs/external-product-connection-survey.md` | world-product context | survey is framed as connection-surface observation |
 | `docs/deferred-work-restart-conditions.md` | deferred boundary | deferred work remains explicit |
