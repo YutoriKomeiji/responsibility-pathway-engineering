@@ -61,6 +61,12 @@ This is not a Level 2 blocker because alternate routes exist through:
 - `docs/operation-index.md`
 - `docs/repository-pathway-gap-inventory.md`
 
+## Pre-publication cleanup check
+
+Before using Level 2 as a public repository walkthrough, timestamped work-log or sync-note files under `docs/` should be reviewed so they do not confuse the public reader path.
+
+This is a cleanup check, not a requirement to delete history automatically.
+
 ## Lightweight adoption relation
 
 Level 2 may explain that the repository contains useful lightweight parts, templates, labels, and planning notes without claiming finished implementation maturity.
