@@ -68,7 +68,9 @@ Known additional anchors from current work context include:
 
 7. Standardization strategy should remain separate from public publication planning because publication and standardization have different readiness thresholds.
 
-8. Repetition is acceptable when each document answers a different reader question:
+8. Public publication planning should not import separate non-RPE private structures, origin narratives, or project-specific relationship frameworks as support for RPE claims. If such structures exist outside this repository, they should remain outside RPE evidence, examples, maturity language, public-claim support, and standardization support.
+
+9. Repetition is acceptable when each document answers a different reader question:
 
    - How do public readers enter the repository?
    - What can be safely published now?
