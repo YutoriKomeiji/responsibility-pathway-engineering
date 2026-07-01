@@ -122,6 +122,7 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | `docs/event-to-pathway-relation-checker-plan.md` | You need the future event-to-pathway relation checker plan before considering any relation checker implementation or event-to-pathway structural relation check. |
 | `docs/repository-security-workflow-observation.md` | You need the first observed bounded repository security hygiene workflow result and its non-certifying interpretation. |
 | `docs/operation-stream-recovery-observation.md` | You need the operation observation for communication or UI streaming instability during AI-assisted repository maintenance, including short-output recovery behavior and the boundary that repository writes may have succeeded even if response rendering failed. |
+| `docs/2026-07-01-evening-operation-sync-note.md` | You need the evening synchronization state after the redundancy-review post-initial-pass follow-up, task-inventory recovery path, and stream-recovery observation work. |
 | `docs/progress-map.md` | You need rough progress estimates, gate status, next gates, recommended order, or progress-related stop conditions. |
 | `docs/development-process.md` | You need the standard work cycle for concept, definition, specification, example, checker, or formalization work. |
 | `docs/repository-governance.md` | You need the governance principles that preserve return paths from claims to definitions, specifications, formalization, and assumptions. |
