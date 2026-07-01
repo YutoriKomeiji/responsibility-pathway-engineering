@@ -116,6 +116,7 @@ Expanded previous README content is preserved at `docs/readme-expanded.md` so th
 | `docs/external-review-package-note.md` | You need a compact external-review reader package, suggested reviewer questions, non-readiness boundaries, and reviewer handoff path without treating it as an endorsement or certification package. |
 | `docs/zenn-publication-readiness-plan.md` | You need Zenn publication levels, article gates, required documents, stop conditions, or safe public article scope before drafting or publishing public-facing Zenn material. |
 | `docs/zenn-publication-readiness-connection.md` | You need the focused connection between Zenn publication planning, public-entry documents, external-review readiness, future API preview, external product survey, and deferred-work boundaries. |
+| `docs/zenn-publication-docs-cleanup-task.md` | You need the focused cleanup task for reviewing timestamped work-log or sync-note files under `docs/` before using the repository as a public Zenn reader path. |
 | `docs/zenn-publication-ja-reader-note.md` | You need a short Japanese reader path for readers arriving from Zenn or other Japanese public articles. |
 | `docs/connector-target-matrix.md` | You need candidate external system categories, observable events, candidate RPE mapping focus, first safe synthetic forms, and deferred connector boundaries before choosing any connector target. |
 | `docs/connector-target-matrix-connection.md` | You need the focused connection between connector target planning, API future-shape planning, external product survey observations, adapter boundary, and deferred-work restart conditions. |
@@ -216,6 +217,8 @@ Neither the package note nor the readiness checklist is a substitute for externa
 Use `docs/zenn-publication-readiness-plan.md` when deciding what can safely be published on Zenn and what publication level is supported by the repository state.
 
 Use `docs/zenn-publication-readiness-connection.md` when connecting Zenn publication planning to public-entry documents, external-review readiness, future API or connector previews, external product connection-surface observations, and deferred-work boundaries.
+
+Use `docs/zenn-publication-docs-cleanup-task.md` when reviewing timestamped work-log or sync-note files under `docs/` before using the repository as a public Zenn reader path.
 
 Use `docs/zenn-publication-ja-reader-note.md` when Japanese public readers need a short reading route from Zenn or other Japanese-facing articles into the repository.
 
