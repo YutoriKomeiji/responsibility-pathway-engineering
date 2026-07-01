@@ -25,6 +25,8 @@ Known additional log-like anchors from current work context include:
 - `docs/minimal-runtime-fixture-checker-workflow-observation.md`
 - `docs/repository-security-workflow-observation.md`
 - `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md`
+- `docs/operation-stream-recovery-observation.md`
+- `docs/2026-07-01-evening-operation-sync-note.md`
 - `CHANGELOG.md`
 
 ## Initial classification
@@ -37,6 +39,8 @@ Known additional log-like anchors from current work context include:
 | `docs/runtime-event-workflow-current-status.md` | workflow status and observation surface for runtime-event checker route |
 | `docs/minimal-runtime-fixture-checker-workflow-observation.md` | observed bounded workflow-result note |
 | `docs/repository-security-workflow-observation.md` | observed bounded repository-security workflow-result note |
+| `docs/operation-stream-recovery-observation.md` | operation observation for communication or UI streaming instability during AI-assisted maintenance |
+| `docs/2026-07-01-evening-operation-sync-note.md` | evening operation synchronization state after redundancy-review follow-up and stream-recovery work |
 | `docs/operation-index.md` | navigation surface, not a log |
 | `CHANGELOG.md` | archival milestone history, not active operation-maintenance log |
 
@@ -61,10 +65,24 @@ Known additional log-like anchors from current work context include:
    - What lesson should change future operation behavior?
    - Where should a maintainer restart?
 
+8. `docs/operation-stream-recovery-observation.md` should remain an operation observation, not a proof of a platform, network, GitHub, connector, repository, or device defect.
+
+9. `docs/2026-07-01-evening-operation-sync-note.md` should remain an evening synchronization record, not a replacement for the redundancy-review plan, findings notes, task inventory, operation index, or changelog.
+
+## Completed low-risk follow-up
+
+The operation-index pointer follow-up has been completed for the newly added operation observation and evening synchronization note:
+
+- `docs/operation-index.md` points to `docs/operation-stream-recovery-observation.md`.
+- `docs/operation-index.md` points to `docs/2026-07-01-evening-operation-sync-note.md`.
+
+This improves restartability and reader-path clarity without merging, deleting, renaming, or rewriting log-like documents.
+
 ## Possible low-risk next steps
 
-- Add this findings note to the `Findings notes` section of `docs/document-redundancy-review-plan.md`.
-- Add a short pointer from `docs/operation-index.md` if the table does not already distinguish improvement logs from sync logs and workflow observations.
+- Keep this findings note aligned when new operation-observation or sync-note documents are added.
+- Add this findings note to the `Findings notes` section of `docs/document-redundancy-review-plan.md` if not already listed.
+- Add a short pointer from `docs/operation-index.md` if the table does not already distinguish improvement logs from sync logs, operation observations, and workflow observations.
 - Avoid moving entries between logs until the target reader question is clear.
 - If a future entry appears to belong in both a sync log and improvement log, write the durable lesson in `docs/operation-improvement-log.md` and keep the phase-specific state in the sync log.
 
@@ -74,4 +92,4 @@ This findings note does not merge, delete, rename, archive, or rewrite any docum
 
 It does not change checker implementations, workflows, schemas, runtime behavior, connector behavior, Lean files, README files, BEACON, ROADMAP, or CHANGELOG.
 
-It does not certify repository maturity, conformance, legal validity, safety, compliance, fairness, production readiness, workflow correctness, chronological correctness, or AI final-responsibility transfer.
+It does not certify repository maturity, conformance, legal validity, safety, compliance, fairness, production readiness, workflow correctness, chronological correctness, communication correctness, platform behavior, connector behavior, repository-write success, or AI final-responsibility transfer.
