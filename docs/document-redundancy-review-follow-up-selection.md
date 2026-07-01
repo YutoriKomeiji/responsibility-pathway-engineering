@@ -56,6 +56,29 @@ Rationale:
 - it helps future sessions avoid automatic consolidation
 - it does not require changing README, BEACON, ROADMAP, CHANGELOG, checker behavior, schemas, workflows, runtime files, connectors, Lean files, or public claims
 
+## First selected follow-up status
+
+Status: completed with a recovery path.
+
+Completed follow-up work:
+
+- `docs/operation-index.md` now points to `docs/document-redundancy-review-initial-pass-sync-note.md`.
+- `docs/operation-index.md` now points to this selection note.
+- `docs/document-redundancy-review-task-inventory-connection.md` was added as a focused connection note after a broad direct update to `docs/current-task-inventory.md` was unnecessary or unsafe.
+- `docs/operation-index.md` now points to `docs/document-redundancy-review-task-inventory-connection.md`.
+
+Recovery interpretation:
+
+The intended task-inventory connection was preserved through a focused connection note instead of a broad inventory rewrite.
+
+This keeps the post-initial-pass route reachable while preserving the rule that broad files should not be rewritten unless a reader-path failure requires it.
+
+Next follow-up state:
+
+- choose one additional low-risk follow-up from the nine findings notes
+- prefer pointer, status clarification, boundary clarification, or index-line improvement
+- do not start automatic consolidation
+
 ## Explicit non-selection
 
 Do not select these as the immediate next follow-up:
@@ -82,4 +105,4 @@ When this selection note is read later:
 
 This note selects a safe next direction only.
 
-It does not execute the selected follow-up, merge files, delete files, rename files, certify the repository, complete external review, approve public maturity claims, standardize RPE, or change any checker, schema, workflow, runtime, connector, Lean, README, BEACON, ROADMAP, or CHANGELOG behavior.
+It does not execute broad consolidation, merge files, delete files, rename files, certify the repository, complete external review, approve public maturity claims, standardize RPE, or change any checker, schema, workflow, runtime, connector, Lean, README, BEACON, ROADMAP, or CHANGELOG behavior.
