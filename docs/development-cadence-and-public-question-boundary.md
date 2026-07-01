@@ -56,19 +56,13 @@ The repository should not answer these questions by self-certification.
 
 It should answer by documentation quality, examples, bounded checks, review paths, external inspection, and correction history.
 
-## Relation to Luminalia OS and 9 Sisters
+## Separate-structure boundary
 
-Luminalia OS and Luminalia 9 Sisters may be treated as design and operation structures that helped expose role separation, boundary maintenance, task assignment, verification, and responsibility return.
+Responsibility Pathway Engineering should remain separate from Luminalia OS and Luminalia 9 Sisters.
 
-They should not be treated as proof of agency, personhood, autonomous authority, final responsibility, certification, safety, compliance, or correctness.
+Luminalia OS and Luminalia 9 Sisters are outside this repository's RPE specification scope.
 
-If public-facing material discusses them, it should distinguish:
-
-- design structure
-- role interface
-- operation metaphor
-- task and boundary management aid
-- final human responsibility
+They should not be used in this repository to justify RPE claims, define RPE examples, expand RPE maturity language, or support RPE standardization language.
 
 ## Boundary
 
