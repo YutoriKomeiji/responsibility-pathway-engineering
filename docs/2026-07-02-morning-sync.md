@@ -35,4 +35,5 @@ The review plan and the public-publication findings note now point to the same p
 
 - Let repository search indexing catch up.
 - Decide later whether `docs/operation-index.md` needs a short pointer.
+- Review timestamped work-log files under `docs/` before public-facing cleanup.
 - Keep mobile-session changes small.
