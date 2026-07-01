@@ -58,9 +58,9 @@ It should answer by documentation quality, examples, bounded checks, review path
 
 ## Separate-structure boundary
 
-Responsibility Pathway Engineering should remain separate from Luminalia OS and Luminalia 9 Sisters.
+Responsibility Pathway Engineering should remain separate from other non-RPE structures.
 
-Luminalia OS and Luminalia 9 Sisters are outside this repository's RPE specification scope.
+Those structures are outside this repository's RPE specification scope.
 
 They should not be used in this repository to justify RPE claims, define RPE examples, expand RPE maturity language, or support RPE standardization language.
 
