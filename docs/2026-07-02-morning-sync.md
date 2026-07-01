@@ -21,6 +21,12 @@ The findings note records the publication-boundary topic as a finding.
 
 The review plan now records the same topic as a review question.
 
+## Interpretation
+
+This is a navigation and review-alignment step.
+
+The boundary remains generic and repository-facing.
+
 ## Status
 
 The review plan and the public-publication findings note now point to the same publication-boundary topic.
