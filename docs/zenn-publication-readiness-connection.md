@@ -85,6 +85,8 @@ Use this connection note when deciding whether a Zenn article can safely point t
 
 A Zenn article should not be published if its claims are stronger than the repository entrance, readiness plan, Level 2 readiness note, external-review notes, social-connection review notes, formalization plans, or deferred-work boundaries support.
 
+Before using the repository as a public reader path, timestamped work-log or sync-note files under `docs/` should be reviewed for public-facing cleanup.
+
 ## Level 2 relation
 
 Use `docs/zenn-level-2-repository-walkthrough-readiness.md` when the intended publication is a repository walkthrough rather than a review request, implementation preview, or implementation announcement.
