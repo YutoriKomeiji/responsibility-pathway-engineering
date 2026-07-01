@@ -10,6 +10,7 @@ The purpose is to prevent public readers from confusing internal operation histo
 
 ## Current connected notes
 
+- `docs/operation-index.md`
 - `docs/zenn-publication-readiness-plan.md`
 - `docs/zenn-publication-readiness-connection.md`
 - `docs/zenn-level-2-repository-walkthrough-readiness.md`
