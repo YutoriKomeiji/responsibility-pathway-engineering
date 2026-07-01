@@ -22,6 +22,7 @@ Related public-entry and review documents:
 - `docs/repository-pathway-gap-inventory.md`
 - `docs/lean-evidence-approval-formalization-plan.md`
 - `docs/zenn-level-2-repository-walkthrough-readiness.md`
+- `docs/zenn-publication-docs-cleanup-task.md`
 - `docs/progress-map.md`
 - `docs/zenn-publication-cadence-note.md`
 - `docs/zenn-next-article-scope-candidates.md`
@@ -90,6 +91,8 @@ Before using the repository as a public reader path, timestamped work-log or syn
 ## Level 2 relation
 
 Use `docs/zenn-level-2-repository-walkthrough-readiness.md` when the intended publication is a repository walkthrough rather than a review request, implementation preview, or implementation announcement.
+
+Use `docs/zenn-publication-docs-cleanup-task.md` when the intended publication path needs the timestamped work-log and sync-note cleanup task.
 
 Level 2 readiness does not decide article title, article body, publication timing, external review completion, implementation readiness, conformance readiness, certification readiness, or production readiness.
 
