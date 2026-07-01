@@ -15,6 +15,12 @@ The purpose was to keep the review plan and the public-publication findings note
 - `docs/document-redundancy-review-plan.md`
 - `docs/document-redundancy-review-findings-public-publication.md`
 
+## What changed
+
+The findings note records the publication-boundary topic as a finding.
+
+The review plan now records the same topic as a review question.
+
 ## Status
 
 The review plan and the public-publication findings note now point to the same publication-boundary topic.
