@@ -103,6 +103,7 @@ Before publication, check:
 - [ ] The article distinguishes concept, repository state, review request, and future preview.
 - [ ] The article title and scope were checked against `docs/zenn-article-title-source-check.md`.
 - [ ] The article timing was checked against `docs/zenn-publication-cadence-note.md`.
+- [ ] Timestamped work-log or sync-note files under `docs/` were reviewed for public-facing reader-path cleanup.
 - [ ] The article does not imply certification, conformance, production readiness, or standardization completion.
 - [ ] The article does not imply external review has already approved the project.
 - [ ] The article does not imply current API routes are implemented.
