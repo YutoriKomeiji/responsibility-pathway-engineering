@@ -75,6 +75,8 @@ In this sense, recovery does not mean that the original harm, loss, or uncertain
 
 Recovery means that a pathway has enough restored context, authority, evidence, and return points for the involved entities to decide what can be continued, stopped, corrected, compensated, redesigned, or closed.
 
+For the focused reading boundary, see `docs/recovery-pathway-reading.md`.
+
 ## Boundary
 
 Repair is not a guarantee of justice, safety, legal compliance, or full recovery.
