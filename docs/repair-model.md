@@ -67,6 +67,14 @@ A repair process may result in:
 - formal closure
 - unresolved status with documented reason
 
+## Recovery Pathway Note
+
+A repair process can also be read as a recovery pathway when the main concern is how an interrupted Responsibility Pathway becomes actionable again.
+
+In this sense, recovery does not mean that the original harm, loss, or uncertainty disappears.
+
+Recovery means that a pathway has enough restored context, authority, evidence, and return points for the involved entities to decide what can be continued, stopped, corrected, compensated, redesigned, or closed.
+
 ## Boundary
 
 Repair is not a guarantee of justice, safety, legal compliance, or full recovery.
