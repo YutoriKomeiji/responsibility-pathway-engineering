@@ -2,7 +2,7 @@
 
 This document defines readiness gates for publishing Responsibility Pathway Engineering updates on Zenn.
 
-It is a publication-planning note only. It is not a publication record, external review result, endorsement, certification, conformance claim, production approval, standardization claim, legal review, safety review, compliance review, fairness review, or AI final-responsibility transfer mechanism.
+It is a publication-planning note only. It is not an external review result, endorsement, certification, conformance claim, production approval, standardization claim, legal review, safety review, compliance review, fairness review, or AI final-responsibility transfer mechanism.
 
 ## Purpose
 
@@ -18,6 +18,7 @@ The plan separates:
 - implementation-readiness
 - explicitly deferred work
 - the publication repository boundary
+- published-article records
 
 ## Publication levels
 
@@ -56,6 +57,26 @@ Unsafe near-term article scopes:
 - claiming semantic correctness of event-to-pathway mapping
 - claiming AI can receive final responsibility under the current minimal model
 - importing adjacent work from another workspace unless it has a clear RPE-repository role and reader path
+
+## Published article records
+
+Published Zenn articles are reader-facing explanations, not the source of truth for RPE definitions, examples, checker scope, or formalization boundaries.
+
+Current published Level 2 repository-walkthrough article:
+
+- title: `責任経路工学の実装に向けて――GitHub Repositoryを公開しました`
+- URL: https://zenn.dev/dantarg/articles/rpe-implementation-repository
+- article source file: `YutoriKomeiji/zenn-content/articles/rpe-implementation-repository.md`
+- repository role: reader-facing entrance to the current RPE GitHub repository state
+- repository level: Level 2 repository walkthrough
+- non-claim boundary: not a certification, conformance claim, production approval, legal judgment engine, safety validation, compliance validation, fairness validation, or proof that AI can receive final responsibility
+
+This record exists so future repository work can distinguish:
+
+- repository source-of-truth documents;
+- Zenn reader-facing explanations;
+- article source files in the dedicated Zenn content repository;
+- future article candidates that should not duplicate the already published repository walkthrough.
 
 ## Progress-based article cadence
 
