@@ -24,14 +24,14 @@ The plan separates:
 | --- | --- | --- | --- |
 | Level 0 | No external publication | Internal construction only. | Repository may still have missing reader paths. |
 | Level 1 | Concept introduction | RPE is an early public specification and design framework. | README, BEACON, overview, provenance, and boundary documents are readable. |
-| Level 2 | Repository walkthrough | Readers can inspect current definitions, examples, checkers, and non-claims. | Operation index, current task inventory, example index, checker coverage, and external-review package are reachable. |
+| Level 2 | Repository walkthrough | Readers can inspect current definitions, examples, checkers, reader paths, and non-claims. | Operation index, current task inventory, example index, checker coverage, Level 2 walkthrough readiness, and external-review package are reachable. |
 | Level 3 | Review request | External readers can give feedback on clarity, overclaim risk, examples, and checker boundaries. | External-review readiness checklist and package note are current. |
 | Level 4 | Implementation preview | Future connector/API direction can be discussed as design preview only. | API future shape, external product survey, connector target matrix, and deferred-work boundaries are current. |
 | Level 5 | Implementation announcement | A bounded implementation exists and can be inspected. | Not current. Requires separate implementation notes, checker boundaries, and observed workflow records. |
 
 ## Current intended publication level
 
-The near-term Zenn target should be Level 2 to Level 4, depending on article scope.
+The near-term Zenn target should be Level 2 unless the article scope deliberately requires Level 3 or Level 4 language.
 
 Safe near-term article scopes:
 
@@ -40,8 +40,9 @@ Safe near-term article scopes:
 - what the GitHub repository currently contains
 - how to read the repository
 - what the repository explicitly does not claim
-- why future API / connector work remains design-preview only
-- what external product connection surfaces RPE is observing
+- where repair, recovery-pathway reading, examples, checker boundaries, and deferred work can be inspected
+- why future API / connector work remains design-preview only when mentioned
+- what external product connection surfaces RPE is observing when the article is explicitly a future-preview article
 
 Unsafe near-term article scopes:
 
@@ -53,6 +54,7 @@ Unsafe near-term article scopes:
 - claiming legal, safety, compliance, or fairness validation
 - claiming semantic correctness of event-to-pathway mapping
 - claiming AI can receive final responsibility under the current minimal model
+- importing adjacent work from another workspace unless it has a clear RPE-repository role and reader path
 
 ## Required documents before Zenn publication
 
@@ -65,12 +67,14 @@ Before a Zenn article points readers to the repository, confirm that these docum
 | `BEACON.md` | restart and current position | current phase and read-first path are visible |
 | `docs/overview.md` | repository overview | Phase 3.1 and public-review path are current |
 | `docs/provenance.md` | source lineage | public source lineage is traceable |
+| `docs/zenn-level-2-repository-walkthrough-readiness.md` | Level 2 repository walkthrough | Level 2 reader path and pre-publication cleanup / scope-fit checks are current |
 | `docs/external-review-package-note.md` | review navigation | external-review path is compact |
 | `docs/external-review-readiness-checklist.md` | review-readiness | readiness is framed as non-certifying |
 | `docs/progress-map.md` | progress language | estimates are planning-only |
 | `docs/zenn-article-title-source-check.md` | article title planning | existing Zenn article titles and aligned source inventory are checked before choosing a title |
 | `docs/zenn-publication-cadence-note.md` | publication timing | publication timing is based on repository readability, not one-time announcement pressure or calendar rhythm alone |
 | `docs/zenn-publication-docs-cleanup-task.md` | public reader-path cleanup | timestamped work-log and sync-note files under `docs/` are reviewed before public walkthrough use |
+| `docs/assistant-pathway-maintenance-checklist.md` | conversation-derived repository updates | repository fit is checked before adding conversation-derived material to the public walkthrough path |
 | `docs/api-future-shape.md` | API preview article | future API is clearly not implemented |
 | `docs/external-product-connection-survey.md` | world-product context | survey is framed as connection-surface observation |
 | `docs/deferred-work-restart-conditions.md` | deferred boundary | deferred work remains explicit |
@@ -95,6 +99,14 @@ A Zenn article should be considered when the repository has grown into a reader-
 
 Do not publish only because time has passed.
 
+## Scope-fit gate
+
+Before adding conversation-derived material to the repository or to a public walkthrough article, check whether it has a clear RPE-repository role.
+
+If the material belongs to another workspace, such as a separate Drive folder, article repository, private continuity record, or external project, keep it out of the RPE repository unless a repository-specific responsibility unit and reader path are named.
+
+This gate is meant to prevent public-reader confusion, not to block valid RPE work.
+
 ## Article gate checklist
 
 Before publication, check:
@@ -104,7 +116,9 @@ Before publication, check:
 - [ ] The article distinguishes concept, repository state, review request, and future preview.
 - [ ] The article title and scope were checked against `docs/zenn-article-title-source-check.md`.
 - [ ] The article timing was checked against `docs/zenn-publication-cadence-note.md`.
+- [ ] The article scope was checked against the scope-fit gate.
 - [ ] Timestamped work-log or sync-note files under `docs/` were reviewed for public-facing reader-path cleanup.
+- [ ] Conversation-derived material was checked for repository fit before being included in the public walkthrough path.
 - [ ] The article does not imply certification, conformance, production readiness, or standardization completion.
 - [ ] The article does not imply external review has already approved the project.
 - [ ] The article does not imply current API routes are implemented.
@@ -139,6 +153,7 @@ Do not publish a Zenn article if:
 - checker or workflow results are described as validation rather than bounded maintenance signals;
 - future API or connector work is described as implemented;
 - deferred work is presented as current capability;
+- adjacent non-RPE workspace material is imported without a clear RPE-repository role and reader path;
 - the article creates avoidable legal, safety, compliance, fairness, or certification implications.
 
 ## Next safe repository action
