@@ -59,6 +59,7 @@ The current public specification contains:
 - API future-shape documentation as design preview only
 - external product connection-surface survey notes
 - connector target matrix planning for synthetic-first connector categories
+- Repair Model and recovery-pathway reading notes for pathway restoration after interruption, ambiguity, or failure
 
 The repository does not yet contain:
 
@@ -327,6 +328,10 @@ Repair may include:
 - permanent countermeasure connection
 - organizational responsibility rebundling
 
+See [repair-model.md](repair-model.md) for the Repair Model.
+
+A repair process can also be read as a recovery pathway when the concern is how an interrupted pathway becomes actionable again. See [recovery-pathway-reading.md](recovery-pathway-reading.md). This reading does not mean that harm, loss, uncertainty, responsibility, or blame has been erased.
+
 ## Try/catch/finally analogy
 
 A developer-facing analogy is available in [explanations/try-catch-finally-responsibility-pathway.md](explanations/try-catch-finally-responsibility-pathway.md).
@@ -353,7 +358,8 @@ At the current stage, low-risk work is preferred:
 4. Keep API future-shape, external product survey, and connector target matrix as design-preview / synthetic-first planning documents.
 5. Keep checker coverage and example index aligned with actual checker behavior.
 6. Keep event-to-pathway relation checker work as planning only until preconditions are deliberately reviewed.
-7. Keep production connectors, production runtime integration, conformance claims, schema validation, semantic checking, Class E positive examples, and Lean expansion deferred unless explicitly reopened.
+7. Keep Repair Model and recovery-pathway reading connected without treating recovery as certification, full restoration, or harm elimination.
+8. Keep production connectors, production runtime integration, conformance claims, schema validation, semantic checking, Class E positive examples, and Lean expansion deferred unless explicitly reopened.
 
 ## Boundary
 
@@ -375,6 +381,7 @@ This overview does not claim:
 - implemented public API routes
 - implemented service-specific connectors
 - Zenn article publication status
+- full recovery or harm elimination
 - AI final-responsibility transfer
 
 It is an orientation map for the repository's current public specification work.
