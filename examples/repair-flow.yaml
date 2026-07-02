@@ -5,12 +5,19 @@
 # It is not a certification, compliance claim, safety guarantee,
 # legal assessment, moral accountability judgment, or production-ready model.
 #
+# Recovery pathway note:
+# Repair can be read as recovery when the focus is restoring enough context,
+# authority, evidence, and return points for the pathway to become actionable again.
+# Recovery does not mean the original harm, loss, or uncertainty disappeared.
+#
 # 日本語メモ:
 # これは修復を含む責任経路の最小例です。
 # 曖昧さ、証拠不足、または返却可能性の不明確さが見つかった場合、
 # 経路は repair_owner_001 に接続され、説明・記録・修復状態の保存へ進みます。
 # 修復は「被害が消えた」ことや「責任が解決した」ことを意味しません。
 # この例では、修復は説明と閉鎖に進める程度まで経路を回復するものとして扱います。
+# 回復とは、経路が再び判断可能・対応可能になる程度まで戻ることであり、
+# 損失や不確実性が消えることではありません。
 # AI支援ノードは最終責任主体ではありません。
 
 id: repair_flow_example_001
@@ -242,6 +249,13 @@ repairs:
       missing_evidence:
         - full_context_before_initial_request
       evidence_access_boundary: local_review
+    recovery_pathway_reading:
+      restored_context: partial
+      restored_authority: true
+      restored_evidence: partial
+      restored_return_point: true
+      actionable_again: true
+      non_elimination_boundary: harm_or_uncertainty_not_erased
     corrective_action: explain
     outcome: explanation_provided
 
@@ -256,6 +270,7 @@ formalization_scope:
     - The example models an internal controlled action and a repair record.
     - Evidence is partial and explicitly scoped.
     - Repair restores the pathway enough for explanation and closure, but does not resolve legal liability or moral blame.
+    - Recovery means the pathway becomes actionable again; it does not erase harm, loss, or uncertainty.
     - The human decision owner and repair owner remain the responsibility-bearing human roles.
   modeled_entities:
     - human_decision_owner_001
@@ -271,5 +286,6 @@ formalization_scope:
     - production_safety
     - fairness
     - harm_elimination
+    - uncertainty_elimination
     - real_world_accountability_resolution
   theorem_status: not_formalized
