@@ -273,10 +273,11 @@ Purpose:
 - model ambiguity, uncertainty, or incomplete evidence as a repair trigger
 - connect the human decision owner, AI support node, repair owner, evidence log, return point, and repair record
 - show that repair is a pathway-restoration mechanism, not a claim that harm disappeared or responsibility was fully resolved
+- show a recovery-pathway reading where enough context, authority, evidence, and return points are restored for the pathway to become actionable again
 
 Key boundary:
 
-Repair may support explanation, documentation, continuation, suspension, closure, or later corrective action, but it does not by itself resolve legal liability, moral blame, safety, fairness, or real-world accountability.
+Repair may support explanation, documentation, continuation, suspension, closure, or later corrective action, but it does not by itself resolve legal liability, moral blame, safety, fairness, or real-world accountability. Recovery-pathway reading does not mean that harm, loss, uncertainty, responsibility, or blame has been erased.
 
 Use this example when introducing:
 
@@ -285,7 +286,8 @@ Use this example when introducing:
 - return to authority
 - repair records
 - repair-state vocabulary
-- excluded claims for harm elimination and real-world accountability resolution
+- recovery-pathway reading
+- excluded claims for harm elimination, uncertainty elimination, and real-world accountability resolution
 
 ### `examples/suspended-pathway.yaml`
 
@@ -382,11 +384,13 @@ Recommended reading order:
 21. `examples/adapter-input-event-minimal.json`
 22. `examples/runtime-event-to-pathway-minimal.yaml`
 23. `examples/minimal-synthetic-runtime-fixture.json`
-24. `examples/repair-flow.yaml`
-25. `examples/suspended-pathway.yaml`
-26. `examples/returning-pathway.yaml`
-27. `examples/closed-pathway.yaml`
-28. `docs/example-review-notes.md`
+24. `docs/repair-model.md`
+25. `docs/recovery-pathway-reading.md`
+26. `examples/repair-flow.yaml`
+27. `examples/suspended-pathway.yaml`
+28. `examples/returning-pathway.yaml`
+29. `examples/closed-pathway.yaml`
+30. `docs/example-review-notes.md`
 
 ## Relationship to Action Class Matrix
 
