@@ -14,7 +14,7 @@ Level 2 may support an explanatory repository guide showing:
 - how to start reading it
 - where current examples and checker limits live
 - where non-claims and deferred work are visible
-- where social-connection review and evidence / approval-transfer paths can be found
+- where repair, recovery-pathway reading, social-connection review, and evidence / approval-transfer paths can be found
 - why lightweight reusable parts may be useful while still under construction or planning-only
 - where the first copyable AI-assisted work responsibility-path template lives
 
@@ -31,6 +31,9 @@ For Level 2, a reader should be able to reach:
 - `docs/current-task-inventory.md`
 - `docs/progress-map.md`
 - `ROADMAP.md`
+- `docs/overview.md`
+- `docs/repair-model.md`
+- `docs/recovery-pathway-reading.md`
 - `docs/example-index.md`
 - `docs/checker-coverage.md`
 - `docs/external-review-readiness-checklist.md`
@@ -49,7 +52,7 @@ For Level 2, a reader should be able to reach:
 
 Current repository-side state: Level 2 is near-ready for a repository walkthrough.
 
-The repository already has a public entrance, operation path, task inventory, progress map, roadmap position, example index, checker coverage, external-review readiness checklist, social-connection review path, gap inventory, construction-status labels, lightweight durable quality strategy, public adoption / fork strategy, first copyable AI-assisted work responsibility-path template, and Zenn readiness connection note.
+The repository already has a public entrance, operation path, task inventory, progress map, roadmap position, overview, repair model, recovery-pathway reading note, example index, checker coverage, external-review readiness checklist, social-connection review path, gap inventory, construction-status labels, lightweight durable quality strategy, public adoption / fork strategy, first copyable AI-assisted work responsibility-path template, and Zenn readiness connection note.
 
 ## Known limitation
 
@@ -65,7 +68,9 @@ This is not a Level 2 blocker because alternate routes exist through:
 
 Before using Level 2 as a public repository walkthrough, timestamped work-log or sync-note files under `docs/` should be reviewed so they do not confuse the public reader path.
 
-This is a cleanup check, not a requirement to delete history automatically.
+Conversation-derived material should also be checked for repository fit before it is added to the public walkthrough path. If a topic belongs to another workspace, keep it out of the RPE repository unless a clear RPE-repository role and reader path are named.
+
+This is a cleanup and scope-fit check, not a requirement to delete history automatically.
 
 ## Lightweight adoption relation
 
