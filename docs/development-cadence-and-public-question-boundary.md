@@ -24,6 +24,21 @@ If it is not useful, it should be corrected, narrowed, or abandoned.
 
 Either outcome requires the work to be clear enough to evaluate.
 
+## Sustained public stewardship
+
+The repository should be grown as a maintained public specification, not as a one-time announcement.
+
+Public release, reuse by others, issue reports, examples, corrections, papers, talks, and external criticism should be treated as inputs to continued maintenance.
+
+This means:
+
+- publish only what the repository can support
+- make reader paths clear before inviting broad use
+- keep examples usable without turning them into certification claims
+- record corrections and boundary changes instead of hiding them
+- remove, shorten, merge, or archive documents only after a replacement reader path is clear
+- keep academic paper work connected to repository definitions and boundaries, but do not treat a draft paper as repository certification
+
 ## Cadence rule
 
 Prefer steady, bounded progress:
