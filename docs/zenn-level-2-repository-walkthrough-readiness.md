@@ -46,13 +46,27 @@ For Level 2, a reader should be able to reach:
 - `templates/ai-assisted-work-responsibility-path.yaml`
 - `docs/zenn-publication-readiness-plan.md`
 - `docs/zenn-publication-readiness-connection.md`
+- `docs/zenn-content-publication-handoff.md`
 - `docs/deferred-work-restart-conditions.md`
 
 ## Current judgment
 
-Current repository-side state: Level 2 is near-ready for a repository walkthrough.
+Current repository-side state: Level 2 is ready to move to Zenn-content filename and title-scope checking for a first repository walkthrough article.
 
-The repository already has a public entrance, operation path, task inventory, progress map, roadmap position, overview, repair model, recovery-pathway reading note, example index, checker coverage, external-review readiness checklist, social-connection review path, gap inventory, construction-status labels, lightweight durable quality strategy, public adoption / fork strategy, first copyable AI-assisted work responsibility-path template, and Zenn readiness connection note.
+This means the RPE repository can support drafting a first explanatory article in the dedicated Zenn content repository, provided the article remains a repository walkthrough and does not claim publication, review approval, certification, conformance, production readiness, implemented connectors, implemented public API routes, legal validity, safety, compliance, fairness, full recovery, harm elimination, or AI final-responsibility transfer.
+
+The repository already has a public entrance, Japanese and English README alignment, operation path, task inventory, progress map, roadmap position, overview, repair model, recovery-pathway reading note, example index, checker coverage, external-review readiness checklist, social-connection review path, gap inventory, construction-status labels, lightweight durable quality strategy, public adoption / fork strategy, first copyable AI-assisted work responsibility-path template, Zenn readiness plan, Zenn content handoff boundary, and Zenn readiness connection note.
+
+## First article transition
+
+When the maintainer decides to begin the first article, the next step is not to create article text in this repository.
+
+The next step is to check the dedicated Zenn content repository for filename and title scope:
+
+- repository: `YutoriKomeiji/zenn-content`
+- article directory: `articles/`
+
+After filename and title-scope checking, the article draft should be created or updated there, not here.
 
 ## Known limitation
 
@@ -96,6 +110,6 @@ The following remain outside Level 2:
 
 ## Next safe action
 
-Connect this note from repository-side Zenn readiness navigation if Level 2 publication planning continues.
+Move to Zenn-content filename and title-scope checking if the maintainer chooses to begin the first Level 2 repository walkthrough article.
 
-Keep article drafting and title selection separate unless deliberately reopened.
+Keep article drafting and title selection separate from this repository unless deliberately reopened in `YutoriKomeiji/zenn-content/articles/`.
