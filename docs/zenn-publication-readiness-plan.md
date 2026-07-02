@@ -17,6 +17,7 @@ The plan separates:
 - external-review readiness
 - implementation-readiness
 - explicitly deferred work
+- the publication repository boundary
 
 ## Publication levels
 
@@ -56,6 +57,23 @@ Unsafe near-term article scopes:
 - claiming AI can receive final responsibility under the current minimal model
 - importing adjacent work from another workspace unless it has a clear RPE-repository role and reader path
 
+## Progress-based article cadence
+
+Zenn articles may be written as the RPE repository reaches reader-explainable progress points.
+
+A repository progress point can trigger an article candidate when:
+
+- the relevant reader path is reachable from the public entry documents;
+- the repository state can be explained without relying on private conversation context;
+- the article can point to definitions, examples, checker boundaries, non-claims, or deferred-work notes in this repository;
+- the article does not require claims stronger than the current repository state supports.
+
+The article file itself belongs in the dedicated Zenn content repository:
+
+- `YutoriKomeiji/zenn-content/articles/`
+
+This RPE repository remains the source for definitions, boundaries, examples, checker scope, reader-path status, and publication-readiness planning.
+
 ## Required documents before Zenn publication
 
 Before a Zenn article points readers to the repository, confirm that these documents are reachable and current enough for the article scope:
@@ -78,6 +96,7 @@ Before a Zenn article points readers to the repository, confirm that these docum
 | `docs/api-future-shape.md` | API preview article | future API is clearly not implemented |
 | `docs/external-product-connection-survey.md` | world-product context | survey is framed as connection-surface observation |
 | `docs/deferred-work-restart-conditions.md` | deferred boundary | deferred work remains explicit |
+| `docs/zenn-content-publication-handoff.md` | publication repository handoff | article files are prepared under `YutoriKomeiji/zenn-content/articles/`, not in this repository |
 
 ## Article title gate
 
@@ -117,6 +136,7 @@ Before publication, check:
 - [ ] The article title and scope were checked against `docs/zenn-article-title-source-check.md`.
 - [ ] The article timing was checked against `docs/zenn-publication-cadence-note.md`.
 - [ ] The article scope was checked against the scope-fit gate.
+- [ ] The article repository boundary was checked against `docs/zenn-content-publication-handoff.md`.
 - [ ] Timestamped work-log or sync-note files under `docs/` were reviewed for public-facing reader-path cleanup.
 - [ ] Conversation-derived material was checked for repository fit before being included in the public walkthrough path.
 - [ ] The article does not imply certification, conformance, production readiness, or standardization completion.
@@ -154,6 +174,7 @@ Do not publish a Zenn article if:
 - future API or connector work is described as implemented;
 - deferred work is presented as current capability;
 - adjacent non-RPE workspace material is imported without a clear RPE-repository role and reader path;
+- the article file is created in this repository instead of `YutoriKomeiji/zenn-content/articles/`;
 - the article creates avoidable legal, safety, compliance, fairness, or certification implications.
 
 ## Next safe repository action
