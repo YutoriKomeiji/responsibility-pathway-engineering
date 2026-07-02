@@ -11,6 +11,7 @@ Reviewed by repository search only at this stage.
 Candidate search terms included:
 
 - `example index examples fixture minimal checker coverage example note`
+- `repair recovery pathway reading repair-flow recovery-pathway-reading`
 
 Search results surfaced likely example, fixture, or example-adjacent anchors, including:
 
@@ -47,6 +48,9 @@ Known additional example and fixture anchors from current work context include:
 | schema-fixture alignment notes | alignment notes between schemas, fixtures, and bounded checker behavior |
 | checker coverage | authoritative map for current checker interpretation of examples and fixtures |
 | checker plans | future checking routes, not current example behavior |
+| `docs/repair-model.md` | authoritative repair definition and recovery-pathway pointer |
+| `docs/recovery-pathway-reading.md` | focused reading boundary for repair-as-recovery; not a separate model, certification layer, or example index |
+| `examples/repair-flow.yaml` | minimal example showing repair and recovery-pathway reading |
 
 ## Initial findings
 
@@ -66,12 +70,22 @@ Known additional example and fixture anchors from current work context include:
 
 8. Repetition is acceptable when it preserves local readability, but any repeated boundary must not imply certification, conformance, production readiness, runtime correctness, connector correctness, or AI final-responsibility transfer.
 
+9. `docs/recovery-pathway-reading.md` is acceptable as a focused boundary note only if it stays narrow and does not duplicate the full Repair Model.
+
+10. If future updates make `docs/recovery-pathway-reading.md` and `docs/repair-model.md` carry the same definition body, prefer keeping `docs/repair-model.md` authoritative and either shorten, merge, or delete the focused reading note after a replacement path is clear.
+
+11. `examples/repair-flow.yaml` may carry a short recovery-pathway explanation for local readability, but detailed recovery-pathway language should remain in `docs/recovery-pathway-reading.md` or `docs/repair-model.md` rather than expanding the example file.
+
+12. No deletion is recommended in this pass. The current safe action is to keep boundaries short, keep pointers explicit, and recheck after reader-path use.
+
 ## Possible low-risk next steps
 
 - Add this findings note to the `Findings notes` section of `docs/document-redundancy-review-plan.md`.
 - Add a short pointer from `docs/operation-index.md` if example-related redundancy review needs a stable navigation entry.
 - Avoid moving detailed review text into `docs/example-index.md` unless the index becomes misleading without it.
 - If example and fixture interpretation becomes confusing, add a role table rather than merging example notes into checker coverage.
+- Recheck `docs/recovery-pathway-reading.md` after the next reader-path pass; keep it only while it provides a distinct focused reading boundary.
+- Do not delete `docs/recovery-pathway-reading.md` unless `docs/repair-model.md` or another authoritative document clearly replaces its reader-path role.
 
 ## Boundary
 
