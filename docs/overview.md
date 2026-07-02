@@ -122,6 +122,8 @@ At publication time, article text should be drafted or moved under the dedicated
 
 - `YutoriKomeiji/zenn-content/articles/`
 
+Zenn articles may be written as the RPE repository reaches reader-explainable progress points. Repository progress can trigger an article candidate, but the article file itself belongs in `YutoriKomeiji/zenn-content/articles/`, not in this repository.
+
 This repository remains the source for definitions, boundaries, examples, checker scope, reader-path status, and publication-readiness planning.
 
 ## Two-layer model
@@ -360,6 +362,7 @@ At the current stage, low-risk work is preferred:
 6. Keep event-to-pathway relation checker work as planning only until preconditions are deliberately reviewed.
 7. Keep Repair Model and recovery-pathway reading connected without treating recovery as certification, full restoration, or harm elimination.
 8. Keep production connectors, production runtime integration, conformance claims, schema validation, semantic checking, Class E positive examples, and Lean expansion deferred unless explicitly reopened.
+9. Treat repository progress as a possible Zenn article trigger, while keeping article files in `YutoriKomeiji/zenn-content/articles/` and keeping this repository as the source of definitions and readiness.
 
 ## Boundary
 
