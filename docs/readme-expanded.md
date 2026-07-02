@@ -96,6 +96,8 @@ An initial enterprise adoption guide is available at [docs/enterprise-implementa
 
 A plain-language record review guide is available at [docs/responsibility-pathway-record-review.md](responsibility-pathway-record-review.md). It describes how a Responsibility Pathway record can be reviewed or rechecked after it is created without turning the review into legal, safety, compliance, fairness, moral, or production certification.
 
+The Repair Model is available at [docs/repair-model.md](repair-model.md). It describes repair as restoration of a broken, obscured, or suspended Responsibility Pathway so the pathway becomes actionable again; its recovery-pathway note clarifies that recovery does not erase harm, loss, or uncertainty.
+
 The current Phase 2.5 enterprise and record-review snapshot is available at [docs/phase-2-5-current-snapshot.md](phase-2-5-current-snapshot.md).
 
 A bounded review-result schema is available at [spec/review-result.schema.yaml](../spec/review-result.schema.yaml). It defines a public structure for recording what a review checked, what it did not check, and what it does not claim.
@@ -140,35 +142,37 @@ For first-time readers, future maintainers, or AI-assisted continuation, read in
 9. [examples/internal-document-update.yaml](../examples/internal-document-update.yaml) - Class C Approval-Required internal document update example
 10. [examples/emergency-stop-flow.yaml](../examples/emergency-stop-flow.yaml) - Class F Emergency Stop / stop-and-await example
 11. [examples/reversible-external-action.yaml](../examples/reversible-external-action.yaml) - Class D Reversible External Action example
-12. [docs/adapter-boundary.md](adapter-boundary.md) - adapter boundary before runtime connectors
-13. [docs/phase-3-1-current-snapshot.md](phase-3-1-current-snapshot.md) - current Phase 3.1 adapter and runtime-event snapshot
-14. [examples/runtime-event-to-pathway-minimal.yaml](../examples/runtime-event-to-pathway-minimal.yaml) - synthetic runtime-event-to-pathway draft example
-15. [docs/explanations/try-catch-finally-responsibility-pathway.md](explanations/try-catch-finally-responsibility-pathway.md) - developer-facing analogy, not formal semantics
-16. [LUMINALIA.md](../LUMINALIA.md) - design philosophy
-17. [ROADMAP.md](../ROADMAP.md) - current and future phases
-18. [CHANGELOG.md](../CHANGELOG.md) - conceptual milestones
-19. [docs/minimal-core-rationale.md](minimal-core-rationale.md) - why the current repository remains intentionally small
-20. [docs/enterprise-implementation-profile.md](enterprise-implementation-profile.md) - minimal enterprise adoption profile and layer separation
-21. [docs/responsibility-pathway-record-review.md](responsibility-pathway-record-review.md) - plain-language review process for responsibility pathway records
-22. [docs/phase-2-5-current-snapshot.md](phase-2-5-current-snapshot.md) - current Phase 2.5 enterprise and record-review snapshot
-23. [docs/reference-implementation-boundary.md](reference-implementation-boundary.md) - boundary before Phase 3 reference implementations
-24. [docs/phase-1-6-plan.md](phase-1-6-plan.md) - lightweight validation and lifecycle-example status
-25. [formal/lean/README.md](../formal/lean/README.md) - Lean formalization boundary and current invariant candidates
-26. [docs/phase-2-current-snapshot.md](phase-2-current-snapshot.md) - current Phase 2 Lean snapshot and restart point
-27. [docs/phase-2-lean-split-plan.md](phase-2-lean-split-plan.md) - current Phase 2 Lean split plan and non-goals
-28. [docs/phase-2-lean-theorem-index.md](phase-2-lean-theorem-index.md) - current Phase 2 Lean theorem role index
-29. [docs/definition.md](definition.md) - core definition
-30. [docs/eight-elements.md](eight-elements.md) - eight-element structural dimension model
-31. [docs/repository-governance.md](repository-governance.md) - repository governance
-32. [docs/development-process.md](development-process.md) - development process
-33. [docs/schema-cross-reference.md](schema-cross-reference.md) - cross-reference for schema files
-34. [spec/review-result.schema.yaml](../spec/review-result.schema.yaml) - bounded review-result output schema
-35. [spec/runtime-event.schema.yaml](../spec/runtime-event.schema.yaml) - draft vendor-neutral runtime event schema
-36. [docs/validation-checklist.md](validation-checklist.md) - bounded validation checklist
-37. [docs/validator-boundary.md](validator-boundary.md) - boundary for lightweight validation tools
-38. [docs/checker-coverage.md](checker-coverage.md) - current lifecycle-aware checker coverage
-39. [docs/example-index.md](example-index.md) - index and reading guide for examples
-40. [docs/example-review-notes.md](example-review-notes.md) - initial bounded review notes for examples
+12. [docs/repair-model.md](repair-model.md) - Repair Model and recovery-pathway reading boundary
+13. [examples/repair-flow.yaml](../examples/repair-flow.yaml) - minimal repair flow with recovery-pathway reading
+14. [docs/adapter-boundary.md](adapter-boundary.md) - adapter boundary before runtime connectors
+15. [docs/phase-3-1-current-snapshot.md](phase-3-1-current-snapshot.md) - current Phase 3.1 adapter and runtime-event snapshot
+16. [examples/runtime-event-to-pathway-minimal.yaml](../examples/runtime-event-to-pathway-minimal.yaml) - synthetic runtime-event-to-pathway draft example
+17. [docs/explanations/try-catch-finally-responsibility-pathway.md](explanations/try-catch-finally-responsibility-pathway.md) - developer-facing analogy, not formal semantics
+18. [LUMINALIA.md](../LUMINALIA.md) - design philosophy
+19. [ROADMAP.md](../ROADMAP.md) - current and future phases
+20. [CHANGELOG.md](../CHANGELOG.md) - conceptual milestones
+21. [docs/minimal-core-rationale.md](minimal-core-rationale.md) - why the current repository remains intentionally small
+22. [docs/enterprise-implementation-profile.md](enterprise-implementation-profile.md) - minimal enterprise adoption profile and layer separation
+23. [docs/responsibility-pathway-record-review.md](responsibility-pathway-record-review.md) - plain-language review process for responsibility pathway records
+24. [docs/phase-2-5-current-snapshot.md](phase-2-5-current-snapshot.md) - current Phase 2.5 enterprise and record-review snapshot
+25. [docs/reference-implementation-boundary.md](reference-implementation-boundary.md) - boundary before Phase 3 reference implementations
+26. [docs/phase-1-6-plan.md](phase-1-6-plan.md) - lightweight validation and lifecycle-example status
+27. [formal/lean/README.md](../formal/lean/README.md) - Lean formalization boundary and current invariant candidates
+28. [docs/phase-2-current-snapshot.md](phase-2-current-snapshot.md) - current Phase 2 Lean snapshot and restart point
+29. [docs/phase-2-lean-split-plan.md](phase-2-lean-split-plan.md) - current Phase 2 Lean split plan and non-goals
+30. [docs/phase-2-lean-theorem-index.md](phase-2-lean-theorem-index.md) - current Phase 2 Lean theorem role index
+31. [docs/definition.md](definition.md) - core definition
+32. [docs/eight-elements.md](eight-elements.md) - eight-element structural dimension model
+33. [docs/repository-governance.md](repository-governance.md) - repository governance
+34. [docs/development-process.md](development-process.md) - development process
+35. [docs/schema-cross-reference.md](schema-cross-reference.md) - cross-reference for schema files
+36. [spec/review-result.schema.yaml](../spec/review-result.schema.yaml) - bounded review-result output schema
+37. [spec/runtime-event.schema.yaml](../spec/runtime-event.schema.yaml) - draft vendor-neutral runtime event schema
+38. [docs/validation-checklist.md](validation-checklist.md) - bounded validation checklist
+39. [docs/validator-boundary.md](validator-boundary.md) - boundary for lightweight validation tools
+40. [docs/checker-coverage.md](checker-coverage.md) - current lifecycle-aware checker coverage
+41. [docs/example-index.md](example-index.md) - index and reading guide for examples
+42. [docs/example-review-notes.md](example-review-notes.md) - initial bounded review notes for examples
 
 ## Current source-aligned concepts
 
@@ -186,6 +190,7 @@ The source-alignment pass supports these concepts as current repository-facing s
 - Evidence Log as pathway reconstruction support
 - Stop Authority as a separate stop role, not merely technical abort
 - Repair Owner as post-failure repair / rollback / reconnection ownership
+- recovery pathway reading as a boundary-preserving way to describe repair becoming actionable again without claiming harm, loss, or uncertainty disappeared
 - non-final AI responsibility under current minimal assumptions
 
 ## Examples
@@ -199,7 +204,7 @@ Minimal examples are available under `examples/`.
 - [examples/reversible-external-action.yaml](../examples/reversible-external-action.yaml) - a Class D Reversible External Action example with rollback or correction path
 - [examples/runtime-event-to-pathway-minimal.yaml](../examples/runtime-event-to-pathway-minimal.yaml) - a synthetic runtime-event-to-pathway draft example requiring human review
 - [examples/record-review-minimal.yaml](../examples/record-review-minimal.yaml) - a minimal record-review example with optional review metadata and non-certifying review-result boundaries
-- [examples/repair-flow.yaml](../examples/repair-flow.yaml) - a minimal repair flow after ambiguity or incomplete evidence is detected
+- [examples/repair-flow.yaml](../examples/repair-flow.yaml) - a minimal repair flow after ambiguity or incomplete evidence is detected, with recovery-pathway reading
 - [examples/suspended-pathway.yaml](../examples/suspended-pathway.yaml) - a minimal suspended lifecycle-state example
 - [examples/returning-pathway.yaml](../examples/returning-pathway.yaml) - a minimal returning lifecycle-state example
 - [examples/closed-pathway.yaml](../examples/closed-pathway.yaml) - a minimal closed lifecycle-state example
