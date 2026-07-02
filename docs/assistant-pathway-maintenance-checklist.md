@@ -22,7 +22,8 @@ Run this checklist at these natural points during AI-assisted repository work:
 6. after adding or changing an operation rule,
 7. before summarizing a multi-commit work unit,
 8. before ending or handing off a heavy session,
-9. when document count, reader-path length, or boundary repetition appears to be increasing.
+9. when document count, reader-path length, or boundary repetition appears to be increasing,
+10. when a conversation topic may belong in another workspace rather than this repository.
 
 This checklist is not a background process. It is an in-session maintenance checkpoint.
 
@@ -33,6 +34,8 @@ Ask these questions before continuing broad work:
 - What is the current responsibility unit?
 - Which file is the primary artifact?
 - Which file or line range grounds the next write?
+- Does the next write have a clear RPE-repository role?
+- Is the topic better handled in a separate workspace until a repository-specific role is clear?
 - Did any error get avoided without a recovery path?
 - Did any focused note get created without reconnection?
 - Did a tool-discovery or read-surface drift occur?
@@ -54,6 +57,8 @@ If a check fails, use the smallest safe maintenance action:
 - update `docs/focused-note-reconnection-rule.md` only if the rule itself is missing,
 - stop broad work until the recovery path is named.
 
+If repository fit is unclear, prefer no repository write until the responsibility unit and reader path are named.
+
 ## Log trigger relation
 
 Use `docs/operation-improvement-log.md` when the maintenance check discovers:
@@ -64,6 +69,7 @@ Use `docs/operation-improvement-log.md` when the maintenance check discovers:
 - long-file update block,
 - focused-note reconnection gap,
 - document sprawl or boundary repetition that changes future operation behavior,
+- repository-fit uncertainty,
 - durable rule change,
 - future operation behavior change.
 
