@@ -14,8 +14,25 @@ Then use the broader repository entry points:
 
 - `docs/overview.md`
 - `docs/source-mapping.md`
+- `docs/source-scope-verification.md`
 - `docs/example-index.md`
 - `docs/checker-coverage.md`
+
+## Source scope verification
+
+Use `docs/source-scope-verification.md` when a claim, evidence source, workflow result, Lean file, AI summary, public article, citation, or non-claim boundary might be overread beyond its actual support.
+
+It is a concept-level note for keeping claim, evidence, evidence type, source scope, validity owner, stop condition, and human return point connected.
+
+Current boundary:
+
+- concept-level only
+- no schema enforcement
+- no checker semantics
+- no Lean theorem
+- no external-review result
+- no certification, conformance, production-readiness, legal, safety, compliance, or fairness determination
+- no AI final-responsibility transfer
 
 ## Support-call and missed-support path
 
