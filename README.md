@@ -39,6 +39,12 @@ Expected shape:
 
 The demo is a review aid only. It is not certification, safety review, legal review, compliance review, fairness review, production approval, or AI final-responsibility transfer.
 
+## Construction note
+
+This repository is also an Open Construction example: it is being constructed with assistance from [Luminalia AI](docs/ai-assisted-construction-note.md), a ChatGPT-based AI working through a LuminaliaOS working layer.
+
+Human maintainer judgment remains required for merge, publication, direction, external claims, and final responsibility decisions.
+
 ## Why this matters
 
 AI systems do not only produce outputs. They participate in decisions, recommendations, classifications, tool use, evidence production, and sometimes action preparation.
@@ -153,6 +159,7 @@ The previous expanded root README content has been moved to [docs/readme-expande
 ## Key documents
 
 - [docs/provenance.md](docs/provenance.md) - provenance and public source lineage
+- [docs/ai-assisted-construction-note.md](docs/ai-assisted-construction-note.md) - Luminalia AI construction-assistance disclosure and human-maintainer boundary
 - [AUTHORSHIP.md](AUTHORSHIP.md) - authorship and responsibility boundary
 - [NOTICE.md](NOTICE.md) - notice, attribution, and AI-assistance boundary
 - [CITATION.cff](CITATION.cff) - citation metadata
