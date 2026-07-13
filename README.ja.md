@@ -30,16 +30,43 @@ Early public specification.
 
 本リポジトリは、意図的に仕様優先で維持されています。大規模な実装層よりも先に、定義、例、ライフサイクル境界、checker境界、出典、主張しないことを優先しています。
 
+## Open Construction
+
+RPEはOpen Constructionとして開発されています。テンプレート、例、checker、workflow、将来のlibrary-like toolは、プロジェクト完成前でも有用な範囲から公開されます。
+
+それらは、テスト、確認、指摘、改善のための構築中成果物です。明示がない限り、本番Ready、認証済み、外部承認済みではありません。
+
+詳しくは [OPEN_CONSTRUCTION.md](OPEN_CONSTRUCTION.md) を参照してください。
+
+## Artifact catalog / 成果物カタログ
+
+この表は、GitHubのトップREADMEだけを読む人間やAIアシスタントにも、RPEに何が置いてあるか伝わるようにするための棚です。
+
+| 棚 | 置いてあるもの | まず見る場所 | 境界 |
+|---|---|---|---|
+| Templates | AI支援作業の責任経路を記録するためのコピー可能なテンプレート | [`templates/ai-assisted-work-responsibility-path.yaml`](templates/ai-assisted-work-responsibility-path.yaml) | テンプレートであり、認証や本番承認ではありません |
+| Examples | 責任主体、AI境界、証拠、人間への戻り先、修復経路を埋めた例 | [`examples/ai-assisted-work-minimal.yaml`](examples/ai-assisted-work-minimal.yaml)、[`docs/examples/ai-assisted-work-minimal.md`](docs/examples/ai-assisted-work-minimal.md) | 説明・レビュー用であり、法的・安全・compliance・fairness・本番性の証明ではありません |
+| Reviewer quickstart | 1つの責任経路を短時間で確認するための読者向けガイド | [`docs/quickstart-review-one-path.md`](docs/quickstart-review-one-path.md) | 点検ガイドであり、承認・認証ではありません |
+| Python scripts | examples、review results、runtime-event fixtures向けの軽量構造checker | [`scripts/check_examples.py`](scripts/check_examples.py)、[`scripts/check_review_results.py`](scripts/check_review_results.py) | PASSは限定的な構造シグナルであり、安全・合法・本番Readyの証明ではありません |
+| GitHub Actions | Leanやchecker surfaceを継続的に確認するworkflow | [`.github/workflows/check-lean.yml`](.github/workflows/check-lean.yml)、[`docs/checker-coverage.md`](docs/checker-coverage.md) | workflow greenは安全・compliance・fairness・合法性・本番Readyを意味しません |
+| Lean4 | 構造定義、例、invariant候補の最小formalization | [`formal/lean/README.md`](formal/lean/README.md)、[`formal/lean/ResponsibilityPathway/Core.lean`](formal/lean/ResponsibilityPathway/Core.lean) | Lean証明は、明示された仮定内の性質だけを示します |
+| Future starters | Python、GitHub Actions、TypeScript、CLI、JSON Schema、API-event向けの将来starter | Issues #11、#12、#13 と今後の小さなPR | starterであり、SDK・runtime・service・最終責任機構ではありません |
+
+便利な近道は、責任経路を忘れるよりも記録するほうを簡単にすることです。
+
 ## まず試す
 
-実用上の形をすぐ確認したい場合は、最初のコピー可能なテンプレートから始めてください。
+実用上の形をすぐ確認したい場合は、最初のコピー可能なテンプレートと、最初の記入済みexampleから始めてください。
 
 - [templates/ai-assisted-work-responsibility-path.yaml](templates/ai-assisted-work-responsibility-path.yaml) - AI支援作業の責任経路を記録するための工事中テンプレート
+- [examples/ai-assisted-work-minimal.yaml](examples/ai-assisted-work-minimal.yaml) - AI支援された内部作業reviewの記入済み最小example
+- [docs/examples/ai-assisted-work-minimal.md](docs/examples/ai-assisted-work-minimal.md) - exampleの読み方
+- [docs/quickstart-review-one-path.md](docs/quickstart-review-one-path.md) - 1つの責任経路を点検するquickstart
 - [templates/README.md](templates/README.md) - テンプレート一覧と主張しないことの境界
 
-このテンプレートは、AI支援が関与した作業について、source reference、人間または組織による review、evidence、不確実性、責任の戻り先、修復・異議・再開経路を残すための軽量な出発点です。
+これらは、AI支援が関与した作業について、source reference、人間または組織による review、evidence、不確実性、責任の戻り先、修復・異議・再開経路を残すための軽量な出発点です。
 
-このテンプレートは、認証、conformance evidence、本番承認、法的レビュー、安全性レビュー、遵法性レビュー、公平性レビュー、社会的受容の証明、AIへの最終責任移転ではありません。
+これらは、認証、conformance evidence、本番承認、法的レビュー、安全性レビュー、遵法性レビュー、公平性レビュー、社会的受容の証明、AIへの最終責任移転ではありません。
 
 ## 出典
 
@@ -73,14 +100,15 @@ Early public specification.
 初めて読む人、未来の保守者、AIによる継続作業では、次の順番で読むことを推奨します。
 
 1. [BEACON.md](BEACON.md) - 現在地と再接続点
-2. [docs/operation-index.md](docs/operation-index.md) - 運用と保守の導線
-3. [docs/overview.md](docs/overview.md) - 現在のリポジトリ概観
-4. [docs/concepts/index.md](docs/concepts/index.md) - 概念レベルの読書導線
-5. [docs/example-index.md](docs/example-index.md) - 例と境界
-6. [docs/checker-coverage.md](docs/checker-coverage.md) - 現在のchecker境界と対象範囲
-7. [LUMINALIA.md](LUMINALIA.md) - 公開設計思想としてのLuminalia境界
-8. [ROADMAP.md](ROADMAP.md) - 現在と今後のフェーズ
-9. [CHANGELOG.md](CHANGELOG.md) - 概念上の節目
+2. [docs/quickstart-review-one-path.md](docs/quickstart-review-one-path.md) - 1つの責任経路を点検する導線
+3. [docs/operation-index.md](docs/operation-index.md) - 運用と保守の導線
+4. [docs/overview.md](docs/overview.md) - 現在のリポジトリ概観
+5. [docs/concepts/index.md](docs/concepts/index.md) - 概念レベルの読書導線
+6. [docs/example-index.md](docs/example-index.md) - 例と境界
+7. [docs/checker-coverage.md](docs/checker-coverage.md) - 現在のchecker境界と対象範囲
+8. [LUMINALIA.md](LUMINALIA.md) - 公開設計思想としてのLuminalia境界
+9. [ROADMAP.md](ROADMAP.md) - 現在と今後のフェーズ
+10. [CHANGELOG.md](CHANGELOG.md) - 概念上の節目
 
 英語版の旧expanded README内容は、root READMEをモバイル表示しやすく保つため [docs/readme-expanded.md](docs/readme-expanded.md) に移動されています。
 
@@ -106,26 +134,40 @@ Early public specification.
 
 最小例は `examples/` にあります。
 
+- [examples/ai-assisted-work-minimal.yaml](examples/ai-assisted-work-minimal.yaml) - AI支援作業reviewの最小example
+
 例の目的、制限事項、読み順については [docs/example-index.md](docs/example-index.md) を参照してください。
 
 これらは説明用の例であり、法的責任、道徳的責任、安全性、公平性、遵法性、本番利用可能性を主張するものではありません。
 
 ## 軽量チェック
 
-対象範囲を限定した構造チェッカーは [scripts/check_examples.py](scripts/check_examples.py) にあります。
+対象範囲を限定した構造checkerは [scripts/check_examples.py](scripts/check_examples.py) にあります。
 
 ```bash
 python -m pip install -r requirements.txt
 python scripts/check_examples.py
 ```
 
-別の、対象範囲を限定した確認結果チェッカーは [scripts/check_review_results.py](scripts/check_review_results.py) にあります。
+別の、対象範囲を限定した確認結果checkerは [scripts/check_review_results.py](scripts/check_review_results.py) にあります。
 
 ```bash
 python scripts/check_review_results.py
 ```
 
 checkerやworkflowの通過結果は、認証済み、安全、遵法、公平、法的に有効、道徳的に解決済み、制度的に承認済み、本番利用可能、またはAIへ最終責任が移転されたことを意味しません。
+
+## Lean4
+
+Lean4の入口は [formal/lean/README.md](formal/lean/README.md) です。
+
+```bash
+lake build
+```
+
+Lean4は、構造定義、predicate、invariant候補、最小example witnessを扱います。
+
+Lean theoremは、明示された仮定のもとで、明示された性質だけを示します。現実世界のAIシステムや組織、法制度、運用が安全・合法・compliance適合・fairness適合・本番Readyであることは証明しません。
 
 ## リポジトリ原則
 
