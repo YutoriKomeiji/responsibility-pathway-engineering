@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RPE Artifact Catalog</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-2: #1f2937;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --line: #334155;
+      --accent: #93c5fd;
+      --ok: #86efac;
+      --warn: #fde68a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #020617 0%, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header, main, footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    header { padding: 48px 0 24px; }
+    h1 { margin: 0 0 8px; font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -0.04em; }
+    h2 { margin-top: 0; }
+    a { color: var(--accent); }
+    .lead { color: var(--muted); max-width: 780px; font-size: 1.08rem; }
+    .notice {
+      border: 1px solid var(--line);
+      background: rgba(17, 24, 39, 0.8);
+      border-radius: 16px;
+      padding: 16px;
+      margin: 24px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .card {
+      background: rgba(17, 24, 39, 0.88);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      min-height: 190px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+    }
+    .card h3 { margin: 0 0 8px; }
+    .tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      color: #0f172a;
+      background: var(--accent);
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 16px;
+      align-items: start;
+    }
+    @media (max-width: 860px) { .two-col { grid-template-columns: 1fr; } }
+    pre {
+      overflow: auto;
+      background: #020617;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      max-height: 620px;
+      white-space: pre-wrap;
+    }
+    button {
+      border: 1px solid var(--line);
+      background: var(--panel-2);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    button:hover { border-color: var(--accent); }
+    .checks { list-style: none; padding: 0; margin: 0; }
+    .checks li {
+      margin: 8px 0;
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(31, 41, 55, 0.66);
+    }
+    .ok { color: var(--ok); }
+    .warn { color: var(--warn); }
+    footer { color: var(--muted); padding: 32px 0 48px; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">Open Construction / Static Preview</p>
+    <h1>Responsibility Pathway Engineering Artifact Catalog</h1>
+    <p class="lead">A browser-friendly shelf for RPE templates, examples, scripts, GitHub Actions, Lean4, and future starters. This page helps readers and AI assistants see what exists without deep repository navigation.</p>
+    <div class="notice">
+      <strong>Boundary:</strong> This page is a static browsing and review aid. It is not certification, legal review, safety review, compliance review, fairness review, production approval, SDK maturity, service availability, or AI final-responsibility transfer.
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Artifact shelves</h2>
+      <div class="grid" id="shelves"></div>
+    </section>
+
+    <section class="two-col" aria-labelledby="example-heading">
+      <div>
+        <h2 id="example-heading">First copyable example</h2>
+        <p>This built-in preview mirrors the first RPE example shape: <code>Human reviewer -&gt; AI assistant -&gt; Human reviewer</code>.</p>
+        <p><button id="copyExample" type="button">Copy example YAML</button></p>
+        <pre id="exampleText"></pre>
+      </div>
+      <aside class="card">
+        <h2>Lightweight browser check</h2>
+        <p>This check only scans the visible example text for important structural signals. Run the Python checker, GitHub Actions, or Lean4 for stronger bounded checks.</p>
+        <ul class="checks" id="checks"></ul>
+      </aside>
+    </section>
+
+    <section>
+      <h2>Next steps</h2>
+      <div class="grid">
+        <div class="card"><h3>Run local Python checks</h3><pre>python -m pip install -r requirements.txt
+python scripts/check_examples.py</pre></div>
+        <div class="card"><h3>Run Lean4 build</h3><pre>lake build</pre></div>
+        <div class="card"><h3>Open an Issue</h3><p>If a responsibility path is unclear, propose a small Issue or bounded PR. Keep claims modest and reviewable.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Human author remains responsible for definitions and claims. AI tools may assist drafting and implementation but do not become responsible authors.</p>
+  </footer>
+
+  <script src="catalog.js"></script>
+</body>
+</html>
