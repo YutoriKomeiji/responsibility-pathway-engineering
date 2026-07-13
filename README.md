@@ -8,6 +8,43 @@ Responsibility Pathway Engineering is a design framework for preserving where ju
 
 It is not a blame assignment mechanism.
 
+## 15-second demo
+
+RPE keeps AI-assisted work from becoming a black box.
+
+```text
+Human request
+-> AI assists
+-> evidence is recorded
+-> human approval remains reachable
+-> stop / return / repair points stay visible
+```
+
+Run the tiny dependency-free demo:
+
+```bash
+python scripts/demo.py
+```
+
+Expected shape:
+
+```text
+[ok] decision owner: human_reviewer
+[ok] AI final responsibility: blocked
+[ok] approval gate: human
+[ok] stop authority: human
+[ok] evidence log: present
+[ok] return point: present
+```
+
+The demo is a review aid only. It is not certification, safety review, legal review, compliance review, fairness review, production approval, or AI final-responsibility transfer.
+
+## Construction note
+
+This repository is also an Open Construction example: it is being constructed with assistance from [Luminalia AI](docs/ai-assisted-construction-note.md), a ChatGPT-based AI working through a LuminaliaOS working layer.
+
+Human maintainer judgment remains required for merge, publication, direction, external claims, and final responsibility decisions.
+
 ## Why this matters
 
 AI systems do not only produce outputs. They participate in decisions, recommendations, classifications, tool use, evidence production, and sometimes action preparation.
@@ -48,7 +85,7 @@ This root catalog is intentionally short so humans and AI assistants can discove
 | Templates | Copyable responsibility-path record templates for AI-assisted work | [`templates/ai-assisted-work-responsibility-path.yaml`](templates/ai-assisted-work-responsibility-path.yaml) | Template only; not certification or production approval |
 | Examples | Filled examples showing responsibility holders, AI boundaries, evidence, return points, and repair paths | [`examples/ai-assisted-work-minimal.yaml`](examples/ai-assisted-work-minimal.yaml), [`docs/examples/ai-assisted-work-minimal.md`](docs/examples/ai-assisted-work-minimal.md) | Illustrative and reviewable; not legal, safety, compliance, fairness, or production proof |
 | Reviewer quickstart | A short path for reviewing one responsibility path without reading the whole repo | [`docs/quickstart-review-one-path.md`](docs/quickstart-review-one-path.md) | Inspection guide only; not endorsement or certification |
-| Python scripts | Bounded local structural checkers for examples, review results, and runtime-event fixtures | [`scripts/check_examples.py`](scripts/check_examples.py), [`scripts/check_review_results.py`](scripts/check_review_results.py) | Checker pass is a bounded structural signal only |
+| Python scripts | Bounded local structural checkers and a dependency-free quick demo | [`scripts/demo.py`](scripts/demo.py), [`scripts/check_examples.py`](scripts/check_examples.py), [`scripts/check_review_results.py`](scripts/check_review_results.py) | Demo/checker pass is a bounded structural signal only |
 | GitHub Actions | Workflow-backed checks for the current Lean and checker surfaces | [`.github/workflows/check-lean.yml`](.github/workflows/check-lean.yml), [`docs/checker-coverage.md`](docs/checker-coverage.md) | Green workflow does not mean safe, compliant, fair, lawful, or production ready |
 | Lean4 | Minimal formalization spine for structural definitions, examples, and invariant candidates | [`formal/lean/README.md`](formal/lean/README.md), [`formal/lean/ResponsibilityPathway/Core.lean`](formal/lean/ResponsibilityPathway/Core.lean) | Proves only stated properties under stated assumptions |
 | Future starters | Planned environment starters for Python, GitHub Actions, TypeScript, CLI, JSON Schema, and API-event use | Issues #11, #12, #13 and future small PRs | Starter only; not SDK, runtime, service, or final responsibility mechanism |
@@ -57,7 +94,13 @@ The useful shortcut is: make responsibility-path capture easier than forgetting 
 
 ## Try this first
 
-To quickly inspect the practical shape of the project, start with the first copyable template, first filled example, and browser-friendly catalog:
+Run the 15-second demo first:
+
+```bash
+python scripts/demo.py
+```
+
+Then inspect the first copyable template, first filled example, and browser-friendly catalog:
 
 - [site/index.html](site/index.html) - static browser-friendly artifact catalog and lightweight example inspection
 - [templates/ai-assisted-work-responsibility-path.yaml](templates/ai-assisted-work-responsibility-path.yaml) - under-construction template for recording AI-assisted work responsibility paths
@@ -116,6 +159,7 @@ The previous expanded root README content has been moved to [docs/readme-expande
 ## Key documents
 
 - [docs/provenance.md](docs/provenance.md) - provenance and public source lineage
+- [docs/ai-assisted-construction-note.md](docs/ai-assisted-construction-note.md) - Luminalia AI construction-assistance disclosure and human-maintainer boundary
 - [AUTHORSHIP.md](AUTHORSHIP.md) - authorship and responsibility boundary
 - [NOTICE.md](NOTICE.md) - notice, attribution, and AI-assistance boundary
 - [CITATION.cff](CITATION.cff) - citation metadata
@@ -141,6 +185,12 @@ These examples are illustrative only. They do not claim legal liability resoluti
 
 ## Lightweight checks
 
+A dependency-free quick demo is available at [scripts/demo.py](scripts/demo.py).
+
+```bash
+python scripts/demo.py
+```
+
 A bounded structural checker is available at [scripts/check_examples.py](scripts/check_examples.py).
 
 ```bash
@@ -154,7 +204,7 @@ A separate bounded review-result checker is available at [scripts/check_review_r
 python scripts/check_review_results.py
 ```
 
-A passing checker or workflow result does not mean certified, safe, compliant, fair, legally valid, morally resolved, institutionally approved, production ready, or AI-final-responsibility transferred.
+A passing demo, checker, or workflow result does not mean certified, safe, compliant, fair, legally valid, morally resolved, institutionally approved, production ready, or AI-final-responsibility transferred.
 
 ## Repository principle
 
