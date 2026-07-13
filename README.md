@@ -30,6 +30,14 @@ Early public specification.
 
 This repository is intentionally specification-first. It prioritizes definitions, examples, lifecycle boundaries, checker boundaries, provenance, and excluded claims before larger implementation layers.
 
+## Open Construction
+
+RPE is developed as Open Construction: useful templates, examples, checkers, workflows, and future library-like tools may appear before the project is complete.
+
+Please test them, inspect their boundaries, and point out problems. A runnable artifact remains under construction and non-certifying unless explicitly marked otherwise.
+
+See [OPEN_CONSTRUCTION.md](OPEN_CONSTRUCTION.md) for the public construction, maturity-label, test-welcome, and feedback-welcome boundary.
+
 ## Try this first
 
 To quickly inspect the practical shape of the project, start with the first copyable template:
