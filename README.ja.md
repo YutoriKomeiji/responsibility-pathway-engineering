@@ -44,6 +44,7 @@ RPEはOpen Constructionとして開発されています。テンプレート、
 
 | 棚 | 置いてあるもの | まず見る場所 | 境界 |
 |---|---|---|---|
+| HTML catalog | ブラウザで見やすい静的成果物カタログと軽量example点検 | [`site/index.html`](site/index.html) | 閲覧・便利点検用であり、認証や本番承認ではありません |
 | Templates | AI支援作業の責任経路を記録するためのコピー可能なテンプレート | [`templates/ai-assisted-work-responsibility-path.yaml`](templates/ai-assisted-work-responsibility-path.yaml) | テンプレートであり、認証や本番承認ではありません |
 | Examples | 責任主体、AI境界、証拠、人間への戻り先、修復経路を埋めた例 | [`examples/ai-assisted-work-minimal.yaml`](examples/ai-assisted-work-minimal.yaml)、[`docs/examples/ai-assisted-work-minimal.md`](docs/examples/ai-assisted-work-minimal.md) | 説明・レビュー用であり、法的・安全・compliance・fairness・本番性の証明ではありません |
 | Reviewer quickstart | 1つの責任経路を短時間で確認するための読者向けガイド | [`docs/quickstart-review-one-path.md`](docs/quickstart-review-one-path.md) | 点検ガイドであり、承認・認証ではありません |
@@ -56,8 +57,9 @@ RPEはOpen Constructionとして開発されています。テンプレート、
 
 ## まず試す
 
-実用上の形をすぐ確認したい場合は、最初のコピー可能なテンプレートと、最初の記入済みexampleから始めてください。
+実用上の形をすぐ確認したい場合は、最初のコピー可能なテンプレート、最初の記入済みexample、ブラウザ向けカタログから始めてください。
 
+- [site/index.html](site/index.html) - ブラウザで見やすい静的成果物カタログと軽量example点検
 - [templates/ai-assisted-work-responsibility-path.yaml](templates/ai-assisted-work-responsibility-path.yaml) - AI支援作業の責任経路を記録するための工事中テンプレート
 - [examples/ai-assisted-work-minimal.yaml](examples/ai-assisted-work-minimal.yaml) - AI支援された内部作業reviewの記入済み最小example
 - [docs/examples/ai-assisted-work-minimal.md](docs/examples/ai-assisted-work-minimal.md) - exampleの読み方
