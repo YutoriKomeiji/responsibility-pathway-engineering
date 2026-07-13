@@ -1,5 +1,11 @@
 const shelves = [
   {
+    name: "Reader path map",
+    what: "A decorated first-reader map showing the responsibility pathway, start points, and next pages to build.",
+    start: "reader-path/",
+    boundary: "Navigation aid only; not certification, validation, or production approval."
+  },
+  {
     name: "Templates",
     what: "Copyable responsibility-path record templates for AI-assisted work.",
     start: "../templates/ai-assisted-work-responsibility-path.yaml",

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RPE Reader Path Map 日本語</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --panel: rgba(15, 23, 42, 0.88);
+      --panel-2: rgba(30, 41, 59, 0.88);
+      --text: #e5e7eb;
+      --muted: #a5b4fc;
+      --line: rgba(148, 163, 184, 0.28);
+      --accent: #93c5fd;
+      --accent-2: #c4b5fd;
+      --ok: #86efac;
+      --warn: #fde68a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(147, 197, 253, 0.22), transparent 28rem),
+        radial-gradient(circle at 90% 15%, rgba(196, 181, 253, 0.18), transparent 26rem),
+        linear-gradient(180deg, #020617 0%, #0f172a 72%, #111827 100%);
+      line-height: 1.75;
+    }
+    header, main, footer { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 48px 0 24px; }
+    a { color: var(--accent); }
+    .tag {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: #0f172a;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+    }
+    h1 { font-size: clamp(2.2rem, 7vw, 5.1rem); letter-spacing: -0.06em; line-height: 1.02; margin: 18px 0 12px; }
+    h2 { margin: 0 0 12px; }
+    .lead { max-width: 860px; color: #cbd5e1; font-size: 1.12rem; }
+    .lang-nav { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+    .lang-nav a, .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(15, 23, 42, 0.62);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .notice, .card, .node, .rail {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 22px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.24);
+    }
+    .notice { padding: 18px; margin: 24px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin: 20px 0 32px; }
+    .card { padding: 18px; min-height: 178px; }
+    .card strong { color: var(--ok); }
+    .flow { display: grid; gap: 14px; margin: 22px 0 34px; }
+    .node { position: relative; padding: 18px 18px 18px 72px; min-height: 92px; overflow: hidden; }
+    .node::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      color: #020617;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      font-weight: 900;
+    }
+    .node::after {
+      content: "";
+      position: absolute;
+      inset: auto 24px -24px auto;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: rgba(147, 197, 253, 0.08);
+    }
+    .node h3 { margin: 0 0 6px; }
+    .rail { padding: 20px; margin: 24px 0; background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.72)); }
+    .rail ol { margin: 0; padding-left: 22px; }
+    .boundary { color: var(--warn); }
+    footer { color: #94a3b8; padding: 36px 0 52px; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="tag">✦ Visual Reader Path / Static Preview</span>
+    <h1>責任経路を一目で見る</h1>
+    <p class="lead">初めて読む人のための装飾付きマップです。何を読み、何を試し、強い主張の前に責任がどこへ戻るべきかを確認します。</p>
+    <nav class="lang-nav" aria-label="Language links">
+      <a href="../../reader-path/">English</a>
+      <a href="../">日本語カタログ</a>
+    </nav>
+    <div class="notice">
+      <strong>境界:</strong> このページは静的な閲覧・レビュー補助です。認証、法的レビュー、安全性レビュー、遵法性レビュー、公平性レビュー、本番承認、またはAIへの最終責任移転ではありません。
+    </div>
+  </header>
+
+  <main>
+    <section aria-labelledby="flow-heading">
+      <h2 id="flow-heading">責任経路の中核</h2>
+      <div class="flow">
+        <article class="node" data-step="1"><h3>人間の依頼</h3><p>人間または組織が作業を開始し、判断主体への戻り先を保ちます。</p></article>
+        <article class="node" data-step="2"><h3>AIが支援する</h3><p>AIは草案作成、要約、提案、証拠準備を支援できますが、最終責任主体にはなりません。</p></article>
+        <article class="node" data-step="3"><h3>証拠を見える状態にする</h3><p>source reference、仮定、除外事項、不確実性を確認可能に保ちます。</p></article>
+        <article class="node" data-step="4"><h3>人間の承認へ戻れる</h3><p>承認、停止権限、return pointが人間または組織の判断へ接続されている必要があります。</p></article>
+        <article class="node" data-step="5"><h3>修復と再開を可能にする</h3><p>経路が不完全、ノイズ混じり、または誤りを含む場合、repair ownerへ戻せる状態にします。</p></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="start-heading">
+      <h2 id="start-heading">まず見るもの</h2>
+      <div class="grid">
+        <article class="card"><h3>1. READMEを読む</h3><p>短い公開入口から、現在のプロジェクト境界を確認します。</p><p><a href="../../../README.ja.md">README.ja.mdを開く</a></p></article>
+        <article class="card"><h3>2. 例を1つ見る</h3><p>全体を読む前に、AI支援作業の最小責任経路を確認します。</p><p><a href="../../../examples/ai-assisted-work-minimal.yaml">最小exampleを開く</a></p></article>
+        <article class="card"><h3>3. 経路をレビューする</h3><p>責任主体、証拠、戻り先、修復点をquickstartで点検します。</p><p><a href="../../../docs/quickstart-review-one-path.md">quickstartを開く</a></p></article>
+        <article class="card"><h3>4. 限定checkerを使う</h3><p>local scriptやworkflowは、限定的な構造シグナルとして扱います。</p><p><a href="../../../scripts/check_examples.py">checkerを開く</a></p></article>
+      </div>
+    </section>
+
+    <section class="rail" aria-labelledby="build-heading">
+      <h2 id="build-heading">次に作れるページ</h2>
+      <ol>
+        <li><strong>Example browser:</strong> 記入済みYAML examplesを視覚的に確認するページ。</li>
+        <li><strong>Template helper:</strong> responsibility-path recordを組み立てる非送信型フォーム。</li>
+        <li><strong>Boundary glossary:</strong> 除外主張と非認証表現をまとめる装飾ページ。</li>
+        <li><strong>Reviewer checklist:</strong> quickstartをブラウザで使いやすくしたチェックリスト。</li>
+      </ol>
+    </section>
+
+    <section class="notice">
+      <p class="boundary"><strong>主張境界:</strong> 装飾ページは導線を見やすくするためのものです。成熟度、証明力、安全性、合法性、遵法性、公平性、本番Ready、責任移転を強めるものではありません。</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>すべての定義と主張について、人間の著作者が責任を持ちます。AI toolsは草案作成や実装を支援しますが、責任を引き受けません。</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RPE Reader Path Map</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --panel: rgba(15, 23, 42, 0.88);
+      --panel-2: rgba(30, 41, 59, 0.88);
+      --text: #e5e7eb;
+      --muted: #a5b4fc;
+      --line: rgba(148, 163, 184, 0.28);
+      --accent: #93c5fd;
+      --accent-2: #c4b5fd;
+      --ok: #86efac;
+      --warn: #fde68a;
+      --danger: #fca5a5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(147, 197, 253, 0.22), transparent 28rem),
+        radial-gradient(circle at 90% 15%, rgba(196, 181, 253, 0.18), transparent 26rem),
+        linear-gradient(180deg, #020617 0%, #0f172a 72%, #111827 100%);
+      line-height: 1.6;
+    }
+    header, main, footer { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 48px 0 24px; }
+    a { color: var(--accent); }
+    .tag {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: #0f172a;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+    }
+    h1 { font-size: clamp(2.4rem, 7vw, 5.4rem); letter-spacing: -0.06em; line-height: 0.95; margin: 18px 0 12px; }
+    h2 { margin: 0 0 12px; }
+    .lead { max-width: 840px; color: #cbd5e1; font-size: 1.12rem; }
+    .lang-nav { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+    .lang-nav a, .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(15, 23, 42, 0.62);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .notice, .card, .node, .rail {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 22px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.24);
+    }
+    .notice { padding: 18px; margin: 24px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin: 20px 0 32px; }
+    .card { padding: 18px; min-height: 178px; }
+    .card strong { color: var(--ok); }
+    .flow { display: grid; gap: 14px; margin: 22px 0 34px; }
+    .node { position: relative; padding: 18px 18px 18px 72px; min-height: 92px; overflow: hidden; }
+    .node::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      color: #020617;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      font-weight: 900;
+    }
+    .node::after {
+      content: "";
+      position: absolute;
+      inset: auto 24px -24px auto;
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: rgba(147, 197, 253, 0.08);
+    }
+    .node h3 { margin: 0 0 6px; }
+    .rail { padding: 20px; margin: 24px 0; background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.72)); }
+    .rail ol { margin: 0; padding-left: 22px; }
+    .boundary { color: var(--warn); }
+    footer { color: #94a3b8; padding: 36px 0 52px; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="tag">✦ Visual Reader Path / Static Preview</span>
+    <h1>Responsibility Pathway at a glance</h1>
+    <p class="lead">A decorated map for first-time readers: what to read, what to run, and where responsibility must return before any strong claim is made.</p>
+    <nav class="lang-nav" aria-label="Language links">
+      <a href="../">Catalog</a>
+      <a href="../ja/reader-path/">日本語</a>
+    </nav>
+    <div class="notice">
+      <strong>Boundary:</strong> This page is a static reader aid. It is not certification, legal review, safety review, compliance review, fairness review, production approval, or AI final-responsibility transfer.
+    </div>
+  </header>
+
+  <main>
+    <section aria-labelledby="flow-heading">
+      <h2 id="flow-heading">Core responsibility path</h2>
+      <div class="flow">
+        <article class="node" data-step="1"><h3>Human request</h3><p>A human or institution starts the work and keeps decision ownership reachable.</p></article>
+        <article class="node" data-step="2"><h3>AI assists</h3><p>AI may draft, summarize, recommend, or prepare evidence, but does not become the final responsible actor.</p></article>
+        <article class="node" data-step="3"><h3>Evidence remains visible</h3><p>Source references, assumptions, exclusions, and uncertainty should stay inspectable.</p></article>
+        <article class="node" data-step="4"><h3>Human approval remains reachable</h3><p>Approval, stop authority, and return points stay connected to human or institutional judgment.</p></article>
+        <article class="node" data-step="5"><h3>Repair and reopening stay possible</h3><p>If the path is incomplete, noisy, or wrong, the case can return to a repair owner.</p></article>
+      </div>
+    </section>
+
+    <section aria-labelledby="start-heading">
+      <h2 id="start-heading">Start here</h2>
+      <div class="grid">
+        <article class="card"><h3>1. Read the README</h3><p>Use the short public entry to understand the current project boundary.</p><p><a href="../../README.md">Open README.md</a></p></article>
+        <article class="card"><h3>2. Try one example</h3><p>Inspect a minimal AI-assisted work path before reading the whole repository.</p><p><a href="../../examples/ai-assisted-work-minimal.yaml">Open minimal example</a></p></article>
+        <article class="card"><h3>3. Review one path</h3><p>Use the reviewer quickstart to check responsibility holders, evidence, return points, and repair.</p><p><a href="../../docs/quickstart-review-one-path.md">Open quickstart</a></p></article>
+        <article class="card"><h3>4. Run bounded checks</h3><p>Run local scripts or workflow checks as structural signals only.</p><p><a href="../../scripts/check_examples.py">Open checker</a></p></article>
+      </div>
+    </section>
+
+    <section class="rail" aria-labelledby="build-heading">
+      <h2 id="build-heading">Next pages that can be built</h2>
+      <ol>
+        <li><strong>Example browser:</strong> a visual page for filled YAML examples.</li>
+        <li><strong>Template helper:</strong> a guided, non-submitting form for composing responsibility-path records.</li>
+        <li><strong>Boundary glossary:</strong> a decorated page for excluded claims and non-certifying language.</li>
+        <li><strong>Reviewer checklist:</strong> a browser-friendly checklist mirroring the quickstart.</li>
+      </ol>
+    </section>
+
+    <section class="notice">
+      <p class="boundary"><strong>Claim boundary:</strong> decorated pages make navigation easier. They do not increase maturity, proof strength, safety, legality, compliance, fairness, production readiness, or responsibility transfer.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Human author remains responsible for definitions and claims. AI tools may assist drafting and implementation but do not become responsible authors.</p>
+  </footer>
+</body>
+</html>
