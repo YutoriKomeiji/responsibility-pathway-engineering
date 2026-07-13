@@ -8,6 +8,43 @@
 
 これは責任追及の仕組みではありません。
 
+## 15秒デモ
+
+RPEは、AI支援作業がブラックボックス化するのを防ぐための構造を扱います。
+
+```text
+Human request
+-> AI assists
+-> evidence is recorded
+-> human approval remains reachable
+-> stop / return / repair points stay visible
+```
+
+依存なしの小さなデモを実行できます。
+
+```bash
+python scripts/demo.py
+```
+
+出力の形は次のようになります。
+
+```text
+[ok] decision owner: human_reviewer
+[ok] AI final responsibility: blocked
+[ok] approval gate: human
+[ok] stop authority: human
+[ok] evidence log: present
+[ok] return point: present
+```
+
+このデモはレビュー補助です。認証、安全性レビュー、法的レビュー、遵法性レビュー、公平性レビュー、本番承認、またはAIへの最終責任移転ではありません。
+
+## 構築ノート
+
+このリポジトリ自体もOpen Constructionの一例です。本リポジトリは、LuminaliaOS working layerを通じて動作するChatGPTベースのAIである [Luminalia AI](docs/ai-assisted-construction-note.md) の支援を受けて構築されています。
+
+merge、公開、方向性、外部向け主張、最終責任に関する判断には、人間maintainerの判断が必要です。
+
 ## なぜ重要か
 
 AIシステムは、出力を生成するだけではありません。判断、推薦、分類、ツール利用、証拠生成、ときには行為の準備にも関与します。
@@ -48,7 +85,7 @@ RPEはOpen Constructionとして開発されています。テンプレート、
 | Templates | AI支援作業の責任経路を記録するためのコピー可能なテンプレート | [`templates/ai-assisted-work-responsibility-path.yaml`](templates/ai-assisted-work-responsibility-path.yaml) | テンプレートであり、認証や本番承認ではありません |
 | Examples | 責任主体、AI境界、証拠、人間への戻り先、修復経路を埋めた例 | [`examples/ai-assisted-work-minimal.yaml`](examples/ai-assisted-work-minimal.yaml)、[`docs/examples/ai-assisted-work-minimal.md`](docs/examples/ai-assisted-work-minimal.md) | 説明・レビュー用であり、法的・安全・compliance・fairness・本番性の証明ではありません |
 | Reviewer quickstart | 1つの責任経路を短時間で確認するための読者向けガイド | [`docs/quickstart-review-one-path.md`](docs/quickstart-review-one-path.md) | 点検ガイドであり、承認・認証ではありません |
-| Python scripts | examples、review results、runtime-event fixtures向けの軽量構造checker | [`scripts/check_examples.py`](scripts/check_examples.py)、[`scripts/check_review_results.py`](scripts/check_review_results.py) | PASSは限定的な構造シグナルであり、安全・合法・本番Readyの証明ではありません |
+| Python scripts | 軽量構造checkerと依存なしquick demo | [`scripts/demo.py`](scripts/demo.py)、[`scripts/check_examples.py`](scripts/check_examples.py)、[`scripts/check_review_results.py`](scripts/check_review_results.py) | demoやPASSは限定的な構造シグナルであり、安全・合法・本番Readyの証明ではありません |
 | GitHub Actions | Leanやchecker surfaceを継続的に確認するworkflow | [`.github/workflows/check-lean.yml`](.github/workflows/check-lean.yml)、[`docs/checker-coverage.md`](docs/checker-coverage.md) | workflow greenは安全・compliance・fairness・合法性・本番Readyを意味しません |
 | Lean4 | 構造定義、例、invariant候補の最小formalization | [`formal/lean/README.md`](formal/lean/README.md)、[`formal/lean/ResponsibilityPathway/Core.lean`](formal/lean/ResponsibilityPathway/Core.lean) | Lean証明は、明示された仮定内の性質だけを示します |
 | Future starters | Python、GitHub Actions、TypeScript、CLI、JSON Schema、API-event向けの将来starter | Issues #11、#12、#13 と今後の小さなPR | starterであり、SDK・runtime・service・最終責任機構ではありません |
@@ -57,7 +94,13 @@ RPEはOpen Constructionとして開発されています。テンプレート、
 
 ## まず試す
 
-実用上の形をすぐ確認したい場合は、最初のコピー可能なテンプレート、最初の記入済みexample、ブラウザ向けカタログから始めてください。
+まず15秒デモを実行してください。
+
+```bash
+python scripts/demo.py
+```
+
+その後、最初のコピー可能なテンプレート、最初の記入済みexample、ブラウザ向けカタログを確認してください。
 
 - [site/index.html](site/index.html) - ブラウザで見やすい静的成果物カタログと軽量example点検
 - [templates/ai-assisted-work-responsibility-path.yaml](templates/ai-assisted-work-responsibility-path.yaml) - AI支援作業の責任経路を記録するための工事中テンプレート
@@ -117,6 +160,7 @@ RPEはOpen Constructionとして開発されています。テンプレート、
 ## 主要文書
 
 - [docs/provenance.md](docs/provenance.md) - 出典と公開ソース系譜
+- [docs/ai-assisted-construction-note.md](docs/ai-assisted-construction-note.md) - Luminalia AIによる構築支援の開示と人間maintainer境界
 - [AUTHORSHIP.md](AUTHORSHIP.md) - 著作者表示と責任境界
 - [NOTICE.md](NOTICE.md) - notice、帰属、AI支援境界
 - [CITATION.cff](CITATION.cff) - 引用メタデータ
@@ -144,6 +188,12 @@ RPEはOpen Constructionとして開発されています。テンプレート、
 
 ## 軽量チェック
 
+依存なしのquick demoは [scripts/demo.py](scripts/demo.py) にあります。
+
+```bash
+python scripts/demo.py
+```
+
 対象範囲を限定した構造checkerは [scripts/check_examples.py](scripts/check_examples.py) にあります。
 
 ```bash
@@ -157,7 +207,7 @@ python scripts/check_examples.py
 python scripts/check_review_results.py
 ```
 
-checkerやworkflowの通過結果は、認証済み、安全、遵法、公平、法的に有効、道徳的に解決済み、制度的に承認済み、本番利用可能、またはAIへ最終責任が移転されたことを意味しません。
+demo、checker、workflowの通過結果は、認証済み、安全、遵法、公平、法的に有効、道徳的に解決済み、制度的に承認済み、本番利用可能、またはAIへ最終責任が移転されたことを意味しません。
 
 ## Lean4
 
