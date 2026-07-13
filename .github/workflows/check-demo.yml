@@ -1,0 +1,37 @@
+name: Check demo
+
+on:
+  pull_request:
+    paths:
+      - "scripts/demo.py"
+      - "README.md"
+      - "README.ja.md"
+      - ".github/workflows/check-demo.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "scripts/demo.py"
+      - "README.md"
+      - "README.ja.md"
+      - ".github/workflows/check-demo.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  demo-check:
+    name: Demo command check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Run dependency-free demo
+        run: python scripts/demo.py
+
+      - name: Confirm README points to demo command
+        run: grep -q "python scripts/demo.py" README.md
+
+      - name: Confirm Japanese README points to demo command
+        run: grep -q "python scripts/demo.py" README.ja.md
