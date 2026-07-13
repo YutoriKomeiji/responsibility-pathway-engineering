@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RPE Artifact Catalog</title>
+  <title>RPE 成果物カタログ</title>
   <style>
     :root {
       --bg: #0f172a;
@@ -22,7 +22,7 @@
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       background: linear-gradient(180deg, #020617 0%, var(--bg) 100%);
       color: var(--text);
-      line-height: 1.55;
+      line-height: 1.65;
     }
     header, main, footer {
       width: min(1120px, calc(100% - 32px));
@@ -32,7 +32,7 @@
     h1 { margin: 0 0 8px; font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -0.04em; }
     h2 { margin-top: 0; }
     a { color: var(--accent); }
-    .lead { color: var(--muted); max-width: 780px; font-size: 1.08rem; }
+    .lead { color: var(--muted); max-width: 820px; font-size: 1.08rem; }
     .notice {
       border: 1px solid var(--line);
       background: rgba(17, 24, 39, 0.8);
@@ -121,50 +121,50 @@
 <body>
   <header>
     <p class="tag">Open Construction / Static Preview</p>
-    <h1>Responsibility Pathway Engineering Artifact Catalog</h1>
-    <p class="lead">A browser-friendly shelf for RPE templates, examples, scripts, GitHub Actions, Lean4, and future starters. This page helps readers and AI assistants see what exists without deep repository navigation.</p>
-    <nav class="lang-nav" aria-label="Language links">
-      <a href="./" aria-current="page">English</a>
-      <a href="ja/">日本語</a>
+    <h1>Responsibility Pathway Engineering 成果物カタログ</h1>
+    <p class="lead">RPEのテンプレート、例、スクリプト、GitHub Actions、Lean4、将来starterをブラウザで見やすく並べた棚です。深いリポジトリ探索をしなくても、読者やAIアシスタントが現在置かれている成果物を確認できるようにします。</p>
+    <nav class="lang-nav" aria-label="言語リンク">
+      <a href="../">English</a>
+      <a href="./" aria-current="page">日本語</a>
     </nav>
     <div class="notice">
-      <strong>Boundary:</strong> This page is a static browsing and review aid. It is not certification, legal review, safety review, compliance review, fairness review, production approval, SDK maturity, service availability, or AI final-responsibility transfer.
+      <strong>境界:</strong> このページは静的な閲覧・レビュー補助です。認証、法的レビュー、安全性レビュー、遵法性レビュー、公平性レビュー、本番承認、SDK成熟度、サービス提供可能性、またはAIへの最終責任移転ではありません。
     </div>
   </header>
 
   <main>
     <section>
-      <h2>Artifact shelves</h2>
+      <h2>成果物の棚</h2>
       <div class="grid" id="shelves"></div>
     </section>
 
     <section class="two-col" aria-labelledby="example-heading">
       <div>
-        <h2 id="example-heading">First copyable example</h2>
-        <p>This built-in preview mirrors the first RPE example shape: <code>Human reviewer -&gt; AI assistant -&gt; Human reviewer</code>.</p>
-        <p><button id="copyExample" type="button">Copy example YAML</button></p>
+        <h2 id="example-heading">最初にコピーできる例</h2>
+        <p>この内蔵プレビューは、最初のRPE例の形である <code>Human reviewer -&gt; AI assistant -&gt; Human reviewer</code> を表示します。</p>
+        <p><button id="copyExample" type="button">YAML例をコピー</button></p>
         <pre id="exampleText"></pre>
       </div>
       <aside class="card">
-        <h2>Lightweight browser check</h2>
-        <p>This check only scans the visible example text for important structural signals. Run the Python checker, GitHub Actions, or Lean4 for stronger bounded checks.</p>
+        <h2>軽量ブラウザチェック</h2>
+        <p>このチェックは、表示中の例テキストに重要な構造シグナルが含まれるかだけを確認します。より強い限定的チェックには、Python checker、GitHub Actions、Lean4を使ってください。</p>
         <ul class="checks" id="checks"></ul>
       </aside>
     </section>
 
     <section>
-      <h2>Next steps</h2>
+      <h2>次のステップ</h2>
       <div class="grid">
-        <div class="card"><h3>Run local Python checks</h3><pre>python -m pip install -r requirements.txt
+        <div class="card"><h3>ローカルPythonチェック</h3><pre>python -m pip install -r requirements.txt
 python scripts/check_examples.py</pre></div>
-        <div class="card"><h3>Run Lean4 build</h3><pre>lake build</pre></div>
-        <div class="card"><h3>Open an Issue</h3><p>If a responsibility path is unclear, propose a small Issue or bounded PR. Keep claims modest and reviewable.</p></div>
+        <div class="card"><h3>Lean4 build</h3><pre>lake build</pre></div>
+        <div class="card"><h3>Issueを開く</h3><p>責任経路が不明瞭な場合は、小さなIssueまたは限定的PRを提案してください。主張は控えめでレビュー可能な範囲に保ちます。</p></div>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>Human author remains responsible for definitions and claims. AI tools may assist drafting and implementation but do not become responsible authors.</p>
+    <p>定義と主張については人間の著作者が責任を持ちます。AI tools は草案作成や実装を支援できますが、責任ある著作者にはなりません。</p>
   </footer>
 
   <script src="catalog.js"></script>
