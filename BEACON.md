@@ -38,49 +38,54 @@ The current stable construction path includes:
 - external product connection-surface survey notes for future connector planning
 - connector target matrix planning for future synthetic-first connector categories
 - Zenn Level 2 repository walkthrough readiness planning before public-facing article expansion
+- a published GitHub Pages artifact catalog for browser-friendly repository inspection
 
 Recent synchronization restored and recorded the reader path after a README mobile-rendering issue. The root `README.md` was shortened and strengthened, the Japanese `README.ja.md` was aligned to the short public-entry shape, and the previous expanded README content was preserved at `docs/readme-expanded.md`.
+
+The GitHub Pages catalog is available at <https://yutorikomeiji.github.io/responsibility-pathway-engineering/>. It is a browsing and convenience reader path only; it is not certification, production approval, external validation, safety review, legal review, compliance review, fairness review, or AI final-responsibility transfer.
 
 The support-call / missed-support path is currently concept-level and boundary-example-level only. It does not yet unlock schema fields, semantic checking, runtime-event support-call fields, Lean expansion, service-specific connectors, production conversion code, production runtime integration, or Class E positive examples.
 
 ## Read first
 
 1. `README.md` or `README.ja.md`
-2. `docs/operation-index.md`
-3. `docs/phase-3-1-current-snapshot.md`
-4. `docs/current-task-inventory.md`
-5. `docs/overview.md` when external readers need the current repository map
-6. `docs/zenn-level-2-repository-walkthrough-readiness.md` when preparing a Level 2 repository walkthrough article
-7. `docs/zenn-publication-readiness-plan.md` before drafting or publishing Zenn-facing public articles
-8. `docs/ai-judgment-node-task-control.md` when AI local judgment, task-control loops, stop conditions, or evaluator separation matter
-9. `docs/phase-3-1-ai-judgment-node-reader-path-status.md` when the current AI Judgment Node reader path matters
-10. `docs/phase-3-1-ai-judgment-node-sync-note.md` when the focused AI Judgment Node synchronization unit matters
-11. `docs/runtime-event-schema-fixture-alignment.md` when schema/fixture/checker alignment matters
-12. `docs/event-to-pathway-relation-checker-plan.md` when future relation-checker planning matters
-13. `docs/runtime-event-workflow-current-status.md` when workflow observation matters
-14. `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md` when the focused sync-log supplement matters
-15. `docs/phase-3-1-sync-log.md`
-16. `docs/phase-3-1-roadmap-note.md`
-17. `docs/phase-3-1-roadmap-sync-after-readme-recovery.md`
-18. `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
-19. `docs/phase-3-1-progress-map-connection.md` when Phase 3.1-specific progress visibility matters
-20. `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
-21. `docs/concepts/index.md`
-22. `docs/repair-model.md` and `docs/recovery-pathway-reading.md` when repair or recovery-pathway reading matters
-23. `docs/standardization-strategy.md` before expanding world-standard or conformance language
-24. `docs/zenn-publication-readiness-connection.md` when connecting Zenn publication planning to public-entry and review-reader paths
-25. `docs/connector-target-matrix.md` when choosing future connector target categories before any implementation
-26. `docs/connector-target-matrix-connection.md` when connecting connector targets to API future-shape and external product survey notes
-27. `docs/example-index.md`
-28. `docs/checker-coverage.md`
-29. `ROADMAP.md`
-30. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
+2. Published artifact catalog: <https://yutorikomeiji.github.io/responsibility-pathway-engineering/>
+3. `docs/operation-index.md`
+4. `docs/phase-3-1-current-snapshot.md`
+5. `docs/current-task-inventory.md`
+6. `docs/overview.md` when external readers need the current repository map
+7. `docs/zenn-level-2-repository-walkthrough-readiness.md` when preparing a Level 2 repository walkthrough article
+8. `docs/zenn-publication-readiness-plan.md` before drafting or publishing Zenn-facing public articles
+9. `docs/ai-judgment-node-task-control.md` when AI local judgment, task-control loops, stop conditions, or evaluator separation matter
+10. `docs/phase-3-1-ai-judgment-node-reader-path-status.md` when the current AI Judgment Node reader path matters
+11. `docs/phase-3-1-ai-judgment-node-sync-note.md` when the focused AI Judgment Node synchronization unit matters
+12. `docs/runtime-event-schema-fixture-alignment.md` when schema/fixture/checker alignment matters
+13. `docs/event-to-pathway-relation-checker-plan.md` when future relation-checker planning matters
+14. `docs/runtime-event-workflow-current-status.md` when workflow observation matters
+15. `docs/phase-3-1-minimal-runtime-fixture-checker-sync-note.md` when the focused sync-log supplement matters
+16. `docs/phase-3-1-sync-log.md`
+17. `docs/phase-3-1-roadmap-note.md`
+18. `docs/phase-3-1-roadmap-sync-after-readme-recovery.md`
+19. `docs/progress-map.md` for rough progress, gates, next gates, and stop conditions
+20. `docs/phase-3-1-progress-map-connection.md` when Phase 3.1-specific progress visibility matters
+21. `docs/responsibility-pathway-availability.md` when the responsibility pathway is narrowed, incomplete, noisy, or temporarily broken
+22. `docs/concepts/index.md`
+23. `docs/repair-model.md` and `docs/recovery-pathway-reading.md` when repair or recovery-pathway reading matters
+24. `docs/standardization-strategy.md` before expanding world-standard or conformance language
+25. `docs/zenn-publication-readiness-connection.md` when connecting Zenn publication planning to public-entry and review-reader paths
+26. `docs/connector-target-matrix.md` when choosing future connector target categories before any implementation
+27. `docs/connector-target-matrix-connection.md` when connecting connector targets to API future-shape and external product survey notes
+28. `docs/example-index.md`
+29. `docs/checker-coverage.md`
+30. `ROADMAP.md`
+31. `CHANGELOG.md` only when historical cause tracing or milestone review is needed
 
 Use `docs/repository-operation-model.md` before broad reader-path synchronization, long-file updates, session handoff, or periodic operation review.
 
 ## Current focus
 
 - Keep `README.md` and `README.ja.md` short, aligned, and mobile-reader friendly.
+- Keep the published Pages catalog connected as a convenience reader path without treating it as validation, certification, or production approval.
 - Keep detailed README content in `docs/readme-expanded.md`.
 - Keep examples small, readable, and non-certifying.
 - Keep repair and recovery-pathway reading connected without implying harm elimination, full recovery, certification, legal validity, safety, compliance, fairness, or production readiness.
