@@ -1,0 +1,45 @@
+name: Check static site
+
+on:
+  pull_request:
+    paths:
+      - "site/**"
+      - "README.md"
+      - "README.ja.md"
+      - ".github/workflows/check-static-site.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "site/**"
+      - "README.md"
+      - "README.ja.md"
+      - ".github/workflows/check-static-site.yml"
+
+jobs:
+  static-site-check:
+    name: Static site structural check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Check JavaScript syntax
+        run: node --check site/catalog.js
+
+      - name: Confirm HTML loads catalog script
+        run: grep -q 'src="catalog.js"' site/index.html
+
+      - name: Confirm static page keeps boundary notice
+        run: grep -q 'Boundary:' site/index.html
+
+      - name: Confirm README links to static catalog
+        run: grep -q 'site/index.html' README.md
+
+      - name: Confirm Japanese README links to static catalog
+        run: grep -q 'site/index.html' README.ja.md
+
+      - name: Boundary statement
+        run: |
+          echo "This workflow is a bounded structural check only."
+          echo "It is not certification, browser rendering proof, accessibility proof, production approval, legal validation, safety validation, compliance validation, fairness validation, or AI final-responsibility transfer."
