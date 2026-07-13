@@ -12,6 +12,12 @@ on:
       - "site/**"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
+    inputs:
+      deploy_pages:
+        description: "Deploy to GitHub Pages after Pages is enabled and configured to use GitHub Actions"
+        required: true
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -40,7 +46,7 @@ jobs:
 
   deploy:
     name: Deploy GitHub Pages
-    if: github.event_name != 'pull_request'
+    if: github.event_name == 'workflow_dispatch' && inputs.deploy_pages == true
     needs: package
     runs-on: ubuntu-latest
     permissions:
