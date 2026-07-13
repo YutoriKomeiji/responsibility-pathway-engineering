@@ -40,6 +40,20 @@
       padding: 16px;
       margin: 24px 0;
     }
+    .lang-nav {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 18px 0 0;
+    }
+    .lang-nav a {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      text-decoration: none;
+      background: rgba(31, 41, 55, 0.66);
+      font-weight: 700;
+    }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -109,6 +123,10 @@
     <p class="tag">Open Construction / Static Preview</p>
     <h1>Responsibility Pathway Engineering Artifact Catalog</h1>
     <p class="lead">A browser-friendly shelf for RPE templates, examples, scripts, GitHub Actions, Lean4, and future starters. This page helps readers and AI assistants see what exists without deep repository navigation.</p>
+    <nav class="lang-nav" aria-label="Language links">
+      <a href="./" aria-current="page">English</a>
+      <a href="ja/">日本語</a>
+    </nav>
     <div class="notice">
       <strong>Boundary:</strong> This page is a static browsing and review aid. It is not certification, legal review, safety review, compliance review, fairness review, production approval, SDK maturity, service availability, or AI final-responsibility transfer.
     </div>
