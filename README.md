@@ -44,6 +44,7 @@ This root catalog is intentionally short so humans and AI assistants can discove
 
 | Shelf | What is available | Start here | Boundary |
 |---|---|---|---|
+| HTML catalog | Static browser-friendly artifact catalog and lightweight example inspection | [`site/index.html`](site/index.html) | Browsing and convenience check only; not certification or production approval |
 | Templates | Copyable responsibility-path record templates for AI-assisted work | [`templates/ai-assisted-work-responsibility-path.yaml`](templates/ai-assisted-work-responsibility-path.yaml) | Template only; not certification or production approval |
 | Examples | Filled examples showing responsibility holders, AI boundaries, evidence, return points, and repair paths | [`examples/ai-assisted-work-minimal.yaml`](examples/ai-assisted-work-minimal.yaml), [`docs/examples/ai-assisted-work-minimal.md`](docs/examples/ai-assisted-work-minimal.md) | Illustrative and reviewable; not legal, safety, compliance, fairness, or production proof |
 | Reviewer quickstart | A short path for reviewing one responsibility path without reading the whole repo | [`docs/quickstart-review-one-path.md`](docs/quickstart-review-one-path.md) | Inspection guide only; not endorsement or certification |
@@ -56,8 +57,9 @@ The useful shortcut is: make responsibility-path capture easier than forgetting 
 
 ## Try this first
 
-To quickly inspect the practical shape of the project, start with the first copyable template and first filled example:
+To quickly inspect the practical shape of the project, start with the first copyable template, first filled example, and browser-friendly catalog:
 
+- [site/index.html](site/index.html) - static browser-friendly artifact catalog and lightweight example inspection
 - [templates/ai-assisted-work-responsibility-path.yaml](templates/ai-assisted-work-responsibility-path.yaml) - under-construction template for recording AI-assisted work responsibility paths
 - [examples/ai-assisted-work-minimal.yaml](examples/ai-assisted-work-minimal.yaml) - filled minimal example for AI-assisted internal work review
 - [docs/quickstart-review-one-path.md](docs/quickstart-review-one-path.md) - reviewer-facing quickstart for inspecting one responsibility path
