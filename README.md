@@ -38,16 +38,34 @@ Please test them, inspect their boundaries, and point out problems. A runnable a
 
 See [OPEN_CONSTRUCTION.md](OPEN_CONSTRUCTION.md) for the public construction, maturity-label, test-welcome, and feedback-welcome boundary.
 
+## Artifact catalog
+
+This root catalog is intentionally short so humans and AI assistants can discover what is available from the top-level README.
+
+| Shelf | What is available | Start here | Boundary |
+|---|---|---|---|
+| Templates | Copyable responsibility-path record templates for AI-assisted work | [`templates/ai-assisted-work-responsibility-path.yaml`](templates/ai-assisted-work-responsibility-path.yaml) | Template only; not certification or production approval |
+| Examples | Filled examples showing responsibility holders, AI boundaries, evidence, return points, and repair paths | [`examples/ai-assisted-work-minimal.yaml`](examples/ai-assisted-work-minimal.yaml), [`docs/examples/ai-assisted-work-minimal.md`](docs/examples/ai-assisted-work-minimal.md) | Illustrative and reviewable; not legal, safety, compliance, fairness, or production proof |
+| Reviewer quickstart | A short path for reviewing one responsibility path without reading the whole repo | [`docs/quickstart-review-one-path.md`](docs/quickstart-review-one-path.md) | Inspection guide only; not endorsement or certification |
+| Python scripts | Bounded local structural checkers for examples, review results, and runtime-event fixtures | [`scripts/check_examples.py`](scripts/check_examples.py), [`scripts/check_review_results.py`](scripts/check_review_results.py) | Checker pass is a bounded structural signal only |
+| GitHub Actions | Workflow-backed checks for the current Lean and checker surfaces | [`.github/workflows/check-lean.yml`](.github/workflows/check-lean.yml), [`docs/checker-coverage.md`](docs/checker-coverage.md) | Green workflow does not mean safe, compliant, fair, lawful, or production ready |
+| Lean4 | Minimal formalization spine for structural definitions, examples, and invariant candidates | [`formal/lean/README.md`](formal/lean/README.md), [`formal/lean/ResponsibilityPathway/Core.lean`](formal/lean/ResponsibilityPathway/Core.lean) | Proves only stated properties under stated assumptions |
+| Future starters | Planned environment starters for Python, GitHub Actions, TypeScript, CLI, JSON Schema, and API-event use | Issues #11, #12, #13 and future small PRs | Starter only; not SDK, runtime, service, or final responsibility mechanism |
+
+The useful shortcut is: make responsibility-path capture easier than forgetting it.
+
 ## Try this first
 
-To quickly inspect the practical shape of the project, start with the first copyable template:
+To quickly inspect the practical shape of the project, start with the first copyable template and first filled example:
 
 - [templates/ai-assisted-work-responsibility-path.yaml](templates/ai-assisted-work-responsibility-path.yaml) - under-construction template for recording AI-assisted work responsibility paths
+- [examples/ai-assisted-work-minimal.yaml](examples/ai-assisted-work-minimal.yaml) - filled minimal example for AI-assisted internal work review
+- [docs/quickstart-review-one-path.md](docs/quickstart-review-one-path.md) - reviewer-facing quickstart for inspecting one responsibility path
 - [templates/README.md](templates/README.md) - template directory guide and non-claim boundary
 
-Use the template when AI assistance was involved and you need to preserve source references, human or institutional review, evidence, uncertainty, responsibility return points, and repair or reopening paths.
+Use the template or example when AI assistance was involved and you need to preserve source references, human or institutional review, evidence, uncertainty, responsibility return points, and repair or reopening paths.
 
-The template is a lightweight starting point. It is not certification, conformance evidence, production approval, legal review, safety review, compliance review, fairness review, social acceptance proof, or AI final-responsibility transfer.
+These artifacts are lightweight starting points. They are not certification, conformance evidence, production approval, legal review, safety review, compliance review, fairness review, social acceptance proof, or AI-final-responsibility transfer.
 
 ## Provenance
 
@@ -81,14 +99,15 @@ All schemas, examples, checkers, and Lean files in this repository remain struct
 For first-time readers, future maintainers, or AI-assisted continuation, read in this order:
 
 1. [BEACON.md](BEACON.md) - current position and reconnection point
-2. [docs/operation-index.md](docs/operation-index.md) - operation and maintenance navigation
-3. [docs/overview.md](docs/overview.md) - current repository overview
-4. [docs/concepts/index.md](docs/concepts/index.md) - concept-level reader path
-5. [docs/example-index.md](docs/example-index.md) - examples and boundaries
-6. [docs/checker-coverage.md](docs/checker-coverage.md) - current checker boundary and coverage
-7. [LUMINALIA.md](LUMINALIA.md) - public Luminalia design philosophy boundary
-8. [ROADMAP.md](ROADMAP.md) - current and future phases
-9. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
+2. [docs/quickstart-review-one-path.md](docs/quickstart-review-one-path.md) - review one responsibility path
+3. [docs/operation-index.md](docs/operation-index.md) - operation and maintenance navigation
+4. [docs/overview.md](docs/overview.md) - current repository overview
+5. [docs/concepts/index.md](docs/concepts/index.md) - concept-level reader path
+6. [docs/example-index.md](docs/example-index.md) - examples and boundaries
+7. [docs/checker-coverage.md](docs/checker-coverage.md) - current checker boundary and coverage
+8. [LUMINALIA.md](LUMINALIA.md) - public Luminalia design philosophy boundary
+9. [ROADMAP.md](ROADMAP.md) - current and future phases
+10. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
 
 The previous expanded root README content has been moved to [docs/readme-expanded.md](docs/readme-expanded.md) to keep the root README mobile-renderer friendly.
 
