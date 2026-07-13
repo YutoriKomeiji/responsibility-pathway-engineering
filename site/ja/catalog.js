@@ -1,5 +1,11 @@
 const shelves = [
   {
+    name: "Reader path map",
+    what: "責任経路、最初に見る場所、次に作れるページを視覚的に示す装飾付きマップ。",
+    start: "reader-path/",
+    boundary: "導線補助であり、認証・検証・本番承認ではありません。"
+  },
+  {
     name: "Templates",
     what: "AI支援作業の責任経路を記録するためのコピー可能なテンプレート。",
     start: "../../templates/ai-assisted-work-responsibility-path.yaml",
