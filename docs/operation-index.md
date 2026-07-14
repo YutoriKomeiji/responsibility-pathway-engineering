@@ -10,27 +10,28 @@ Use this path when restarting work after a pause or when another maintainer, rev
 
 1. `BEACON.md`
 2. `README.md`
-3. `docs/operation-index.md`
-4. `docs/repository-operation-model.md`
-5. the current phase snapshot
-6. the relevant sync log or roadmap note
-7. `docs/current-task-inventory.md` when choosing the next task
-8. `docs/ai-judgment-node-task-control.md` when AI local judgment, task-control loops, stop conditions, or evaluator separation matter
-9. `docs/progress-map.md` when checking rough progress, gates, next gates, or stop conditions
-10. `docs/concepts/index.md` when concept-level reader paths matter
-11. `docs/standardization-strategy.md` when standardization language, grounding discipline, or world-standard preparation matters
-12. `docs/external-review-readiness-checklist.md` when preparing or evaluating external review readiness
-13. `docs/external-review-package-note.md` when preparing a compact external-review reader package
-14. `docs/zenn-publication-readiness-plan.md` when preparing public Zenn publication language or publication gates
-15. `docs/zenn-publication-readiness-connection.md` when connecting Zenn publication planning to public-entry and review-reader paths
-16. `docs/zenn-publication-ja-reader-note.md` when Japanese Zenn readers need a short repository-reading route
-17. `docs/connector-target-matrix.md` when choosing future connector target categories before any implementation
-18. `docs/connector-target-matrix-connection.md` when connecting connector target planning to API future shape and external product survey notes
-19. `docs/event-to-pathway-relation-checker-plan.md` when considering future relation-checker planning without implementation
-20. `docs/example-index.md`
-21. `docs/checker-coverage.md`
-22. `docs/social-connection-review-navigation.md` when social-connection review paths matter
-23. `docs/repository-pathway-gap-inventory.md` when structure breaks or reader-path gaps need to be tracked
+3. Published reader path: <https://yutorikomeiji.github.io/responsibility-pathway-engineering/>
+4. `docs/operation-index.md`
+5. `docs/repository-operation-model.md`
+6. the current phase snapshot
+7. the relevant sync log or roadmap note
+8. `docs/current-task-inventory.md` when choosing the next task
+9. `docs/ai-judgment-node-task-control.md` when AI local judgment, task-control loops, stop conditions, or evaluator separation matter
+10. `docs/progress-map.md` when checking rough progress, gates, next gates, or stop conditions
+11. `docs/concepts/index.md` when concept-level reader paths matter
+12. `docs/standardization-strategy.md` when standardization language, grounding discipline, or world-standard preparation matters
+13. `docs/external-review-readiness-checklist.md` when preparing or evaluating external review readiness
+14. `docs/external-review-package-note.md` when preparing a compact external-review reader package
+15. `docs/zenn-publication-readiness-plan.md` when preparing public Zenn publication language or publication gates
+16. `docs/zenn-publication-readiness-connection.md` when connecting Zenn publication planning to public-entry and review-reader paths
+17. `docs/zenn-publication-ja-reader-note.md` when Japanese Zenn readers need a short repository-reading route
+18. `docs/connector-target-matrix.md` when choosing future connector target categories before any implementation
+19. `docs/connector-target-matrix-connection.md` when connecting connector target planning to API future shape and external product survey notes
+20. `docs/event-to-pathway-relation-checker-plan.md` when considering future relation-checker planning without implementation
+21. `docs/example-index.md`
+22. `docs/checker-coverage.md`
+23. `docs/social-connection-review-navigation.md` when social-connection review paths matter
+24. `docs/repository-pathway-gap-inventory.md` when structure breaks or reader-path gaps need to be tracked
 
 `CHANGELOG.md` is not part of the primary construction-time reconnection path. Use it mainly for archival, investigative, historical, or retrospective milestone review.
 
@@ -40,8 +41,8 @@ Use documents according to the phase of work.
 
 | Work phase | Prefer reading | Use `CHANGELOG.md` when |
 | --- | --- | --- |
-| Active construction | `BEACON.md`, `README.md`, current snapshot, operation index, sync log, roadmap note, current task inventory, progress map, checker coverage, example index, primary artifact | a prior milestone or boundary change must be investigated |
-| Restart or handoff | `BEACON.md`, `README.md`, current snapshot, operation index, sync log, roadmap note, current task inventory, progress map | the restart depends on historical cause tracing |
+| Active construction | `BEACON.md`, `README.md`, published reader path, current snapshot, operation index, sync log, roadmap note, current task inventory, progress map, checker coverage, example index, primary artifact | a prior milestone or boundary change must be investigated |
+| Restart or handoff | `BEACON.md`, `README.md`, published reader path, current snapshot, operation index, sync log, roadmap note, current task inventory, progress map | the restart depends on historical cause tracing |
 | Progress review | `docs/progress-map.md`, `docs/phase-3-1-progress-map-connection.md` when Phase 3.1 context matters, current snapshot, current task inventory, operation index, roadmap note | checking when a progress estimate or gate changed |
 | Concept-path navigation | `docs/concepts/index.md`, relevant concept note, source-alignment note, example index, checker coverage | checking when a concept boundary changed |
 | AI local judgment or task-control boundary review | `docs/ai-judgment-node-task-control.md`, `docs/phase-3-1-ai-judgment-node-connection.md`, `docs/phase-3-1-ai-judgment-node-sync-note.md`, `docs/ai-agent-operation-patterns.md`, current snapshot, current task inventory | checking when AI local judgment, loop-like task control, goal-like stop conditions, evaluator separation, or evidence-selection boundaries changed |
@@ -96,8 +97,11 @@ Use it for:
 - short provenance entry
 - non-certifying boundary reminder
 - primary reader links
+- published reader path links
 
 Do not let root `README.md` become the full documentation body.
+
+The published reader path is a browser-friendly inspection aid connected from the root README. It does not replace repository documents, external review, certification, validation, legal review, safety review, compliance review, fairness review, production approval, or human-maintainer responsibility.
 
 Expanded previous README content is preserved at `docs/readme-expanded.md` so that the root README can remain mobile-renderer friendly.
 
