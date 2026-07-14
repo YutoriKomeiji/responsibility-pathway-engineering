@@ -28,18 +28,19 @@ The review target is whether a reviewer can trace claims back to:
 A reviewer should start with:
 
 1. `README.md`
-2. `docs/operation-index.md`
-3. `BEACON.md`
-4. `docs/phase-3-1-current-snapshot.md`
-5. `docs/current-task-inventory.md`
-6. `docs/checker-coverage.md`
-7. `docs/example-index.md`
-8. `docs/runtime-event-schema-fixture-alignment.md`
-9. `docs/event-to-pathway-relation-checker-plan.md` when future relation-checker planning matters
-10. `docs/social-connection-review-navigation.md` when approval skip, responsibility transfer, evidence logging, explanation paths, affected-party visibility, or later return paths matter
-11. `docs/repository-pathway-gap-inventory.md` when reader-path gaps or structure-break risks matter
-12. `docs/standardization-strategy.md` when public standardization language matters
-13. `docs/progress-map.md` when maturity or progress language matters
+2. [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
+3. `docs/operation-index.md`
+4. `BEACON.md`
+5. `docs/phase-3-1-current-snapshot.md`
+6. `docs/current-task-inventory.md`
+7. `docs/checker-coverage.md`
+8. `docs/example-index.md`
+9. `docs/runtime-event-schema-fixture-alignment.md`
+10. `docs/event-to-pathway-relation-checker-plan.md` when future relation-checker planning matters
+11. `docs/social-connection-review-navigation.md` when approval skip, responsibility transfer, evidence logging, explanation paths, affected-party visibility, or later return paths matter
+12. `docs/repository-pathway-gap-inventory.md` when reader-path gaps or structure-break risks matter
+13. `docs/standardization-strategy.md` when public standardization language matters
+14. `docs/progress-map.md` when maturity or progress language matters
 
 Use `CHANGELOG.md` primarily for historical cause tracing, not as the active construction restart path.
 
@@ -50,6 +51,7 @@ Use `CHANGELOG.md` primarily for historical cause tracing, not as the active con
 Check whether major claims are traceable to a current document.
 
 - [ ] The project definition is visible from `README.md`.
+- [ ] Browser-friendly reader aids are visible from the Published RPE Artifact Catalog without replacing repository source files.
 - [ ] Core concepts are reachable from `docs/concepts/index.md` or current schema notes.
 - [ ] Phase 3.1 current state is reachable from `docs/phase-3-1-current-snapshot.md`.
 - [ ] Runtime-event schema / fixture / checker alignment is reachable from `docs/runtime-event-schema-fixture-alignment.md`.
@@ -177,7 +179,7 @@ The repository is not yet ready to claim:
 
 Possible next review-preparation tasks:
 
-1. keep this checklist, operation index, current task inventory, checker coverage, example index, social-connection review navigation, repository pathway gap inventory, and relation-checker plan aligned when checker-planning or social-review language changes
+1. keep this checklist, operation index, current task inventory, checker coverage, example index, social-connection review navigation, repository pathway gap inventory, relation-checker plan, and published Pages reader paths aligned when checker-planning, social-review language, or browser reader aids change
 2. prepare or update a short external-review package note after reader paths remain stable
 3. review whether `docs/phase-3-1-current-snapshot.md` needs only a short pointer to the relation-checker plan or social-connection review path
 4. consider a relation-checker implementation only after `docs/event-to-pathway-relation-checker-plan.md` preconditions are deliberately reviewed
