@@ -81,9 +81,23 @@ This root catalog is intentionally short so humans and AI assistants can discove
 
 The browser-friendly catalog is also published through GitHub Pages: [RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/). It is a convenience reader path only, not certification, production approval, or external validation.
 
+Published reader-path pages are available here:
+
+- [English artifact catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
+- [Japanese artifact catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/)
+- [English reader path map](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reader-path/)
+- [Japanese reader path map](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/reader-path/)
+- [English boundary glossary](https://yutorikomeiji.github.io/responsibility-pathway-engineering/boundary-glossary/)
+- [Japanese boundary glossary](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/boundary-glossary/)
+- [English reviewer checklist](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reviewer-checklist/)
+- [Japanese reviewer checklist](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/reviewer-checklist/)
+
+These Pages are reader and inspection aids only. They are not certification, validation, legal review, safety review, compliance review, fairness review, production approval, institutional endorsement, or AI final-responsibility transfer.
+
 | Shelf | What is available | Start here | Boundary |
 |---|---|---|---|
-| HTML catalog | Static browser-friendly artifact catalog and lightweight example inspection | [Published catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/), [`site/index.html`](site/index.html) | Browsing and convenience check only; not certification or production approval |
+| HTML catalog | Static browser-friendly artifact catalog and lightweight example inspection | [Published catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/), [Japanese catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/), [`site/index.html`](site/index.html) | Browsing and convenience check only; not certification or production approval |
+| Reader path pages | Browser-friendly maps, boundary glossary, and reviewer checklist for first readers | [Reader path map](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reader-path/), [Boundary glossary](https://yutorikomeiji.github.io/responsibility-pathway-engineering/boundary-glossary/), [Reviewer checklist](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reviewer-checklist/) | Reader and inspection aid only; not validation, certification, review completion, or production approval |
 | Templates | Copyable responsibility-path record templates for AI-assisted work | [`templates/ai-assisted-work-responsibility-path.yaml`](templates/ai-assisted-work-responsibility-path.yaml) | Template only; not certification or production approval |
 | Examples | Filled examples showing responsibility holders, AI boundaries, evidence, return points, and repair paths | [`examples/ai-assisted-work-minimal.yaml`](examples/ai-assisted-work-minimal.yaml), [`docs/examples/ai-assisted-work-minimal.md`](docs/examples/ai-assisted-work-minimal.md) | Illustrative and reviewable; not legal, safety, compliance, fairness, or production proof |
 | Reviewer quickstart | A short path for reviewing one responsibility path without reading the whole repo | [`docs/quickstart-review-one-path.md`](docs/quickstart-review-one-path.md) | Inspection guide only; not endorsement or certification |
@@ -102,9 +116,12 @@ Run the 15-second demo first:
 python scripts/demo.py
 ```
 
-Then inspect the first copyable template, first filled example, and browser-friendly catalog:
+Then inspect the first copyable template, first filled example, and browser-friendly reader path:
 
 - [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/) - static browser-friendly artifact catalog and lightweight example inspection
+- [Reader path map](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reader-path/) - visual first-reader map
+- [Boundary glossary](https://yutorikomeiji.github.io/responsibility-pathway-engineering/boundary-glossary/) - excluded-claim vocabulary boundary
+- [Reviewer checklist](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reviewer-checklist/) - browser-friendly inspection checklist with copyable Markdown
 - [templates/ai-assisted-work-responsibility-path.yaml](templates/ai-assisted-work-responsibility-path.yaml) - under-construction template for recording AI-assisted work responsibility paths
 - [examples/ai-assisted-work-minimal.yaml](examples/ai-assisted-work-minimal.yaml) - filled minimal example for AI-assisted internal work review
 - [docs/quickstart-review-one-path.md](docs/quickstart-review-one-path.md) - reviewer-facing quickstart for inspecting one responsibility path
@@ -146,15 +163,16 @@ All schemas, examples, checkers, and Lean files in this repository remain struct
 For first-time readers, future maintainers, or AI-assisted continuation, read in this order:
 
 1. [BEACON.md](BEACON.md) - current position and reconnection point
-2. [docs/quickstart-review-one-path.md](docs/quickstart-review-one-path.md) - review one responsibility path
-3. [docs/operation-index.md](docs/operation-index.md) - operation and maintenance navigation
-4. [docs/overview.md](docs/overview.md) - current repository overview
-5. [docs/concepts/index.md](docs/concepts/index.md) - concept-level reader path
-6. [docs/example-index.md](docs/example-index.md) - examples and boundaries
-7. [docs/checker-coverage.md](docs/checker-coverage.md) - current checker boundary and coverage
-8. [LUMINALIA.md](LUMINALIA.md) - public Luminalia design philosophy boundary
-9. [ROADMAP.md](ROADMAP.md) - current and future phases
-10. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
+2. [Published reader path pages](https://yutorikomeiji.github.io/responsibility-pathway-engineering/) - browser-friendly catalog, maps, glossary, and checklist
+3. [docs/quickstart-review-one-path.md](docs/quickstart-review-one-path.md) - review one responsibility path
+4. [docs/operation-index.md](docs/operation-index.md) - operation and maintenance navigation
+5. [docs/overview.md](docs/overview.md) - current repository overview
+6. [docs/concepts/index.md](docs/concepts/index.md) - concept-level reader path
+7. [docs/example-index.md](docs/example-index.md) - examples and boundaries
+8. [docs/checker-coverage.md](docs/checker-coverage.md) - current checker boundary and coverage
+9. [LUMINALIA.md](LUMINALIA.md) - public Luminalia design philosophy boundary
+10. [ROADMAP.md](ROADMAP.md) - current and future phases
+11. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
 
 The previous expanded root README content has been moved to [docs/readme-expanded.md](docs/readme-expanded.md) to keep the root README mobile-renderer friendly.
 

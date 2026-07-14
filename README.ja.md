@@ -79,9 +79,25 @@ RPEはOpen Constructionとして開発されています。テンプレート、
 
 この表は、GitHubのトップREADMEだけを読む人間やAIアシスタントにも、RPEに何が置いてあるか伝わるようにするための棚です。
 
+ブラウザ向けカタログはGitHub Pagesでも公開されています: [RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)。これは便利な読者導線であり、認証、本番承認、外部検証ではありません。
+
+公開済みの読者向けPagesは次の通りです。
+
+- [英語 成果物カタログ](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
+- [日本語 成果物カタログ](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/)
+- [英語 Reader path map](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reader-path/)
+- [日本語 Reader path map](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/reader-path/)
+- [英語 Boundary glossary](https://yutorikomeiji.github.io/responsibility-pathway-engineering/boundary-glossary/)
+- [日本語 Boundary glossary](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/boundary-glossary/)
+- [英語 Reviewer checklist](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reviewer-checklist/)
+- [日本語 Reviewer checklist](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/reviewer-checklist/)
+
+これらのPagesは、読者向け・点検補助の導線です。認証、検証、法的レビュー、安全性レビュー、遵法性レビュー、公平性レビュー、本番承認、制度的endorsement、AI最終責任移転ではありません。
+
 | 棚 | 置いてあるもの | まず見る場所 | 境界 |
 |---|---|---|---|
-| HTML catalog | ブラウザで見やすい静的成果物カタログと軽量example点検 | [Published catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)、[`site/index.html`](site/index.html) | 閲覧・便利点検用であり、認証や本番承認ではありません |
+| HTML catalog | ブラウザで見やすい静的成果物カタログと軽量example点検 | [Published catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)、[Japanese catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/)、[`site/index.html`](site/index.html) | 閲覧・便利点検用であり、認証や本番承認ではありません |
+| Reader path pages | 初読者向けのmap、境界用語集、reviewer checklist | [Reader path map](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reader-path/)、[Boundary glossary](https://yutorikomeiji.github.io/responsibility-pathway-engineering/boundary-glossary/)、[Reviewer checklist](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reviewer-checklist/) | 読者導線・点検補助であり、検証・認証・レビュー完了・本番承認ではありません |
 | Templates | AI支援作業の責任経路を記録するためのコピー可能なテンプレート | [`templates/ai-assisted-work-responsibility-path.yaml`](templates/ai-assisted-work-responsibility-path.yaml) | テンプレートであり、認証や本番承認ではありません |
 | Examples | 責任主体、AI境界、証拠、人間への戻り先、修復経路を埋めた例 | [`examples/ai-assisted-work-minimal.yaml`](examples/ai-assisted-work-minimal.yaml)、[`docs/examples/ai-assisted-work-minimal.md`](docs/examples/ai-assisted-work-minimal.md) | 説明・レビュー用であり、法的・安全・compliance・fairness・本番性の証明ではありません |
 | Reviewer quickstart | 1つの責任経路を短時間で確認するための読者向けガイド | [`docs/quickstart-review-one-path.md`](docs/quickstart-review-one-path.md) | 点検ガイドであり、承認・認証ではありません |
@@ -100,9 +116,12 @@ RPEはOpen Constructionとして開発されています。テンプレート、
 python scripts/demo.py
 ```
 
-その後、最初のコピー可能なテンプレート、最初の記入済みexample、ブラウザ向けカタログを確認してください。
+その後、最初のコピー可能なテンプレート、最初の記入済みexample、ブラウザ向け読者導線を確認してください。
 
 - [Published catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/) - ブラウザで見やすい公開成果物カタログ。閲覧補助であり、認証や本番承認ではありません
+- [Reader path map](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reader-path/) - 初読者向けの視覚的map
+- [Boundary glossary](https://yutorikomeiji.github.io/responsibility-pathway-engineering/boundary-glossary/) - 過剰に読み取られやすい言葉の境界
+- [Reviewer checklist](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reviewer-checklist/) - コピー用Markdown付きの点検チェックリスト
 - [site/index.html](site/index.html) - リポジトリ内の静的成果物カタログと軽量example点検
 - [templates/ai-assisted-work-responsibility-path.yaml](templates/ai-assisted-work-responsibility-path.yaml) - AI支援作業の責任経路を記録するための工事中テンプレート
 - [examples/ai-assisted-work-minimal.yaml](examples/ai-assisted-work-minimal.yaml) - AI支援された内部作業reviewの記入済み最小example
@@ -146,15 +165,16 @@ python scripts/demo.py
 初めて読む人、未来の保守者、AIによる継続作業では、次の順番で読むことを推奨します。
 
 1. [BEACON.md](BEACON.md) - 現在地と再接続点
-2. [docs/quickstart-review-one-path.md](docs/quickstart-review-one-path.md) - 1つの責任経路を点検する導線
-3. [docs/operation-index.md](docs/operation-index.md) - 運用と保守の導線
-4. [docs/overview.md](docs/overview.md) - 現在のリポジトリ概観
-5. [docs/concepts/index.md](docs/concepts/index.md) - 概念レベルの読書導線
-6. [docs/example-index.md](docs/example-index.md) - 例と境界
-7. [docs/checker-coverage.md](docs/checker-coverage.md) - 現在のchecker境界と対象範囲
-8. [LUMINALIA.md](LUMINALIA.md) - 公開設計思想としてのLuminalia境界
-9. [ROADMAP.md](ROADMAP.md) - 現在と今後のフェーズ
-10. [CHANGELOG.md](CHANGELOG.md) - 概念上の節目
+2. [Published reader path pages](https://yutorikomeiji.github.io/responsibility-pathway-engineering/) - ブラウザ向けcatalog、map、glossary、checklist
+3. [docs/quickstart-review-one-path.md](docs/quickstart-review-one-path.md) - 1つの責任経路を点検する導線
+4. [docs/operation-index.md](docs/operation-index.md) - 運用と保守の導線
+5. [docs/overview.md](docs/overview.md) - 現在のリポジトリ概観
+6. [docs/concepts/index.md](docs/concepts/index.md) - 概念レベルの読書導線
+7. [docs/example-index.md](docs/example-index.md) - 例と境界
+8. [docs/checker-coverage.md](docs/checker-coverage.md) - 現在のchecker境界と対象範囲
+9. [LUMINALIA.md](LUMINALIA.md) - 公開設計思想としてのLuminalia境界
+10. [ROADMAP.md](ROADMAP.md) - 現在と今後のフェーズ
+11. [CHANGELOG.md](CHANGELOG.md) - 概念上の節目
 
 英語版の旧expanded README内容は、root READMEをモバイル表示しやすく保つため [docs/readme-expanded.md](docs/readme-expanded.md) に移動されています。
 
