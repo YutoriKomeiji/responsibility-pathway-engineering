@@ -12,6 +12,12 @@ const shelves = [
     boundary: "Terminology aid only; not legal advice, safety review, compliance review, fairness review, certification, or production approval."
   },
   {
+    name: "Reviewer checklist",
+    what: "A browser-friendly checklist for reviewing one responsibility path, with a copyable Markdown review note.",
+    start: "reviewer-checklist/",
+    boundary: "Inspection aid only; not certification, endorsement, validation, or production approval."
+  },
+  {
     name: "Templates",
     what: "Copyable responsibility-path record templates for AI-assisted work.",
     start: "../templates/ai-assisted-work-responsibility-path.yaml",
