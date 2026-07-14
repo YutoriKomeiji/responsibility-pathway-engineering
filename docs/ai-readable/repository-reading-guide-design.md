@@ -1,12 +1,12 @@
 # Repository Reading Guide Design
 
-This note designs a future AI-readable reading guide for the Responsibility Pathway Engineering (RPE) repository.
+This note designs an AI-readable reading guide pattern for the Responsibility Pathway Engineering (RPE) repository.
 
 The guide should help human readers, search engines, and AI-assisted readers understand what has actually been provided, what has only been linked, and what must not be inferred from repository paths or hyperlinks.
 
 This note is design-only.
 
-It does not create a final guide, validate repository completeness, certify traversal accuracy, provide assurance, perform conformity assessment, approve AI summaries, or transfer final responsibility to AI.
+It does not validate repository completeness, certify traversal accuracy, provide assurance, perform conformity assessment, approve AI summaries, or transfer final responsibility to AI.
 
 ## Purpose
 
@@ -40,25 +40,27 @@ A repository guide is not validation.
 
 The guide should make this explicit in plain language.
 
-## Suggested final guide path
+## Concrete AI-reader entrance
 
-A future concrete guide may live at:
-
-```text
-docs/ai-readable/repository-reading-guide.md
-```
-
-A later public page may render the same guidance at:
+For external articles, search results, or chats that can only provide a small number of links, the top-level AI/search-reader entrance should be:
 
 ```text
-site/ai-readable/index.html
+READMEforAI.md
 ```
 
-This design note intentionally does not create those final files.
+The public GitHub URL form is:
+
+```text
+https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/READMEforAI.md
+```
+
+This root-level file is easier to share beside the human repository URL than a deeper `docs/` path.
+
+The deeper guide materials under `docs/ai-readable/` may continue to hold design notes, future generated manifests, and expanded traversal-map material.
 
 ## Reader notice
 
-The final guide should include a short notice near the top:
+The AI-reader entrance should include a short notice near the top:
 
 ```text
 AI / search reader notice:
@@ -67,7 +69,7 @@ Links and file paths listed in this repository are navigation hints, not evidenc
 
 Before summarizing a linked file or external source, fetch that exact full URL or use explicitly provided file content.
 
-When answering from the current page only, say "based only on the current page."
+When answering from the current page only, say which page was read.
 ```
 
 This should be framed as a reader-safety and retrieval-integrity notice.
@@ -94,16 +96,17 @@ The guide should recommend a reading order.
 
 A possible order:
 
-1. README
-2. boundary and non-claim materials
-3. core RPE vocabulary or overview documents
-4. adoption kit README
-5. adoption kit non-claims
-6. adoption kit quickstart
-7. tool proposal template
-8. first tool proposal example
-9. tool proposal index or index design
-10. distribution and AI-readable guidance notes
+1. READMEforAI
+2. README
+3. BEACON
+4. boundary and non-claim materials
+5. core RPE vocabulary or overview documents
+6. adoption kit README
+7. adoption kit non-claims
+8. adoption kit quickstart
+9. adoption kit review checklist
+10. tool proposal template or index materials
+11. distribution and AI-readable guidance notes
 
 The reading order is a navigation aid only.
 
@@ -117,6 +120,9 @@ Example shape:
 
 ```text
 /README.md
+  human-facing repository entrance
+/READMEforAI.md
+  AI/search-reader entrance and one-file-at-a-time full URL list
 /docs/
   method, boundary, publication, and tool proposal design notes
 /docs/tool-proposals/
@@ -188,16 +194,19 @@ It should not try to describe every file in prose unless it can be maintained.
 
 The guide may provide full URLs for files that AI-assisted readers commonly need to fetch directly.
 
-A future guide may include a section such as:
+A root-level AI-reader entrance should include full URLs such as:
 
 ```text
 Full URLs to fetch explicitly:
 
+- AI reader entrance: <full URL>
 - README: <full URL>
-- Tool proposal template: <full URL>
-- First tool proposal example: <full URL>
+- BEACON: <full URL>
+- Repository reading guide design: <full URL>
 - Adoption kit README: <full URL>
-- Non-claims: <full URL>
+- Adoption kit non-claims: <full URL>
+- Adoption kit quickstart: <full URL>
+- Adoption kit review checklist: <full URL>
 ```
 
 The guide should say:
@@ -212,7 +221,7 @@ This avoids relying on implicit traversal.
 
 Some AI readers may fail when multiple URLs are pasted at once.
 
-The final guide may include:
+The guide may include:
 
 ```text
 If a tool fails to recognize multiple URLs, provide one URL at a time and ask it to summarize only that fetched page.
@@ -229,7 +238,7 @@ If you can only read this page, answer only from this page.
 
 Do not summarize linked files, linked directories, external sources, repository history, pull requests, or public pages unless their exact content has been fetched or provided.
 
-Use the phrase "based only on the current page" when retrieval is limited.
+State the exact page that was read.
 ```
 
 This directly addresses source traversal hallucination.
@@ -299,33 +308,35 @@ These are guidance rules, not enforcement.
 
 The final README should not contain the entire guide.
 
-A future README update may add only a short notice and link:
+The root README should provide only a short notice and link:
 
 ```text
-AI / search reader note: links and paths in this repository are navigation hints, not evidence that linked content has been read. For safer reading order, full URL guidance, and traversal boundaries, see docs/ai-readable/repository-reading-guide.md.
+AI / search reader note: links and paths in this repository are navigation hints, not evidence that linked content has been read. For AI-assisted readers, search assistants, or external articles that need a safer one-file-at-a-time entry path, use READMEforAI.md.
 ```
 
-This keeps README readable while making the detailed guide discoverable.
+This keeps README readable while making the AI-reader entrance discoverable.
 
 ## Possible final guide outline
 
-A future concrete guide may use this outline:
+A concrete AI-reader entrance may use this outline:
 
 ```text
-# Repository Reading Guide
+# README for AI / Search Readers
 
-## AI / search reader notice
-## Repository purpose
-## What this repository does not claim
-## Suggested reading order
-## Directory map
-## Key files
-## Full URLs to fetch explicitly
-## One-link-at-a-time fallback
-## Listed / fetched / read / interpreted / supported
-## Source traversal hallucination warning
+## Reader notice
+## What this repository is about
+## What not to infer
+## Recommended one-file-at-a-time reading order
 ## Answer discipline for AI-assisted readers
+## Suggested response shape
 ## Human review remains required
+## Stop conditions
+```
+
+A later expanded repository guide may still live under:
+
+```text
+docs/ai-readable/repository-reading-guide.md
 ```
 
 ## Future generated manifest
@@ -387,6 +398,10 @@ Stop or revise if the guide:
 
 ## Next safe step
 
-After this design note, the next planned step is a short README notice that points to the future AI-readable guide.
+After this design note, a concrete AI/search-reader entrance may be maintained at:
 
-A later separate step may create the concrete guide itself after the wording and key file list are reviewed.
+```text
+READMEforAI.md
+```
+
+A later separate step may add an expanded `docs/ai-readable/repository-reading-guide.md` or generated manifest after the wording and key file list are reviewed.
