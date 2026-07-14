@@ -25,9 +25,9 @@ const shelves = [
   },
   {
     name: "Examples",
-    what: "Filled examples showing responsibility holders, AI boundaries, evidence, return points, and repair paths.",
-    start: "../examples/ai-assisted-work-minimal.yaml",
-    boundary: "Illustrative and reviewable; not legal, safety, compliance, fairness, or production proof."
+    what: "Browser-friendly example and fixture guide with links back to the source files.",
+    start: "example-browser/",
+    boundary: "Inspection aid only; examples are illustrative and not validation, certification, or production proof."
   },
   {
     name: "Reviewer quickstart",

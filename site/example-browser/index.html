@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RPE Example Browser</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-2: #1f2937;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --line: #334155;
+      --accent: #93c5fd;
+      --warn: #fde68a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #020617 0%, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header, main, footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    header { padding: 48px 0 24px; }
+    h1 { margin: 0 0 8px; font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -0.04em; }
+    h2 { margin-top: 0; }
+    a { color: var(--accent); }
+    .lead { color: var(--muted); max-width: 820px; font-size: 1.08rem; }
+    .notice {
+      border: 1px solid var(--line);
+      background: rgba(17, 24, 39, 0.8);
+      border-radius: 16px;
+      padding: 16px;
+      margin: 24px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .card {
+      background: rgba(17, 24, 39, 0.88);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+    }
+    .card h3 { margin: 0 0 8px; }
+    .tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      color: #0f172a;
+      background: var(--accent);
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    ul { padding-left: 1.2rem; }
+    li { margin: 6px 0; }
+    .warn { color: var(--warn); }
+    footer { color: var(--muted); padding: 32px 0 48px; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">Reader Aid / Examples</p>
+    <h1>RPE Example Browser</h1>
+    <p class="lead">A browser-friendly guide to the current Responsibility Pathway Engineering examples and fixtures. Use this page to find source files and understand how each example should be read.</p>
+    <p><a href="../">Back to Artifact Catalog</a></p>
+    <div class="notice">
+      <strong>Boundary:</strong> This page is an inspection and navigation aid only. The examples and fixtures are illustrative, local, and reviewable. They are not certification, validation, legal review, safety review, compliance review, fairness review, production approval, conformance evidence, or AI final-responsibility transfer.
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Pathway examples</h2>
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Minimal path</span>
+          <h3>Minimal pathway</h3>
+          <p>Smallest readable pathway showing AI-assisted support, a human decision owner, evidence logging, and a Human Return Point.</p>
+          <p><a href="../../examples/minimal-pathway.yaml">Open source YAML</a></p>
+          <p><strong>Boundary:</strong> AI support does not assume final responsibility.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Action classes</span>
+          <h3>Action Class Matrix minimal fixture</h3>
+          <p>Classification-only fixture for source-aligned Class A-F action classes before higher-impact examples.</p>
+          <p><a href="../../examples/action-class-matrix-minimal.yaml">Open source YAML</a></p>
+          <p><strong>Boundary:</strong> Classification aid only; not execution, approval, or certification.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Class C</span>
+          <h3>Internal document update</h3>
+          <p>Approval-required internal document update example with proposal/adoption separation and repair signals.</p>
+          <p><a href="../../examples/internal-document-update.yaml">Open source YAML</a></p>
+          <p><strong>Boundary:</strong> Internal update example only; not validation or production approval.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Missed support</span>
+          <h3>Missed support boundary</h3>
+          <p>Boundary-only example where missed human review is recorded as a return condition.</p>
+          <p><a href="../../examples/missed-support-boundary-minimal.yaml">Open source YAML</a></p>
+          <p><strong>Boundary:</strong> Review signal only; not automatic fault determination or certification.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Class D</span>
+          <h3>Reversible external action</h3>
+          <p>Correctable external notification example with approval, affected-party visibility, and rollback or correction path.</p>
+          <p><a href="../../examples/reversible-external-action.yaml">Open source YAML</a></p>
+          <p><strong>Boundary:</strong> Reversibility does not erase impact or prove legality, safety, compliance, or production readiness.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Runtime bridge</span>
+          <h3>Runtime event to pathway</h3>
+          <p>Draft pathway representation of a runtime event while preserving human or institutional review requirements.</p>
+          <p><a href="../../examples/runtime-event-to-pathway-minimal.yaml">Open source YAML</a></p>
+          <p><strong>Boundary:</strong> Draft representation only; not adapter mapping correctness or semantic responsibility proof.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Runtime-event fixtures</h2>
+      <div class="grid">
+        <article class="card">
+          <span class="tag">JSON fixture</span>
+          <h3>Adapter input event</h3>
+          <p>Selected synthetic runtime-event JSON fixture used by the bounded runtime-event checker.</p>
+          <p><a href="../../examples/adapter-input-event-minimal.json">Open source JSON</a></p>
+          <p><strong>Boundary:</strong> Synthetic fixture only; not service connector evidence.</p>
+        </article>
+        <article class="card">
+          <span class="tag">Runtime observation</span>
+          <h3>Minimal synthetic runtime fixture</h3>
+          <p>Selected minimal synthetic runtime observation fixture for reading and review.</p>
+          <p><a href="../../examples/minimal-synthetic-runtime-fixture.json">Open source JSON</a></p>
+          <p><strong>Boundary:</strong> Non-production, synthetic, vendor-neutral, and review-required.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>How to read this page</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Source files remain authoritative</h3>
+          <p>This page groups examples for easier browsing. It does not replace the source YAML, JSON, repository docs, or human review.</p>
+        </article>
+        <article class="card">
+          <h3>Checker passes are bounded</h3>
+          <p>Use <a href="../../docs/checker-coverage.md">checker coverage</a> before interpreting any pass. A pass is a bounded repository-maintenance signal only.</p>
+        </article>
+        <article class="card">
+          <h3>Example index gives detail</h3>
+          <p>Use <a href="../../docs/example-index.md">example index</a> for detailed purpose, boundary, and reading notes.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Human author remains responsible for definitions and claims. AI tools may assist navigation, drafting, and implementation but do not become responsible authors.</p>
+  </footer>
+</body>
+</html>
