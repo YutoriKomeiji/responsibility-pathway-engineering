@@ -19,9 +19,9 @@ const shelves = [
   },
   {
     name: "Templates",
-    what: "Copyable responsibility-path record templates for AI-assisted work.",
-    start: "../templates/ai-assisted-work-responsibility-path.yaml",
-    boundary: "Template only; not certification or production approval."
+    what: "Browser-friendly helper for inspecting and copying the first AI-assisted work responsibility-path template.",
+    start: "template-helper/",
+    boundary: "Template helper only; copying a template is not validation, certification, approval, or production readiness."
   },
   {
     name: "Examples",
