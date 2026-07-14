@@ -25,6 +25,7 @@ It now includes:
 - focused workflow observation notes
 - a runtime-event schema/fixture alignment note
 - operation-index, current-snapshot, current-task-inventory, and focused sync-note connections
+- published browser-friendly Pages reader paths for first-reader orientation
 
 Current artifacts:
 
@@ -47,6 +48,7 @@ Current artifacts:
 - `docs/current-task-inventory.md`
 - `docs/repository-operation-model.md`
 - `docs/operation-index.md`
+- [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
 
 ## What has been reached
 
@@ -64,7 +66,7 @@ The following checkpoint has been reached:
 - first runtime-event workflow success observed on run `27501847137`
 - minimal runtime fixture checker workflow success observed on run `27607798655`
 - `docs/runtime-event-schema-fixture-alignment.md` added as an alignment note, not validation
-- reader paths synchronized in operation index, current snapshot, task inventory, checker coverage, focused observation notes, and focused sync notes
+- reader paths synchronized in operation index, current snapshot, task inventory, checker coverage, focused observation notes, focused sync notes, and published Pages reader paths
 - repository operation layer added through `docs/repository-operation-model.md` and `docs/operation-index.md`
 - periodic operation review policy added for repository-maintenance alignment
 - operation-document roles clarified: `CHANGELOG.md` is archival/investigative, sync logs are detailed synchronization records, roadmap notes are short current-planning companions, BEACON is the reconnection entrance, and current snapshots are detailed current-state records
@@ -78,6 +80,8 @@ Phase 3.1 is still not a production runtime phase.
 The current runtime-event checker and workflow are bounded repository-maintenance tools only.
 
 The current schema/fixture alignment note records structural alignment and reviewability only. It does not validate the schema, prove semantic correctness, prove adapter mapping correctness, prove runtime correctness, or provide conformance evidence.
+
+Published Pages reader paths are first-reader orientation aids only. They do not replace repository Markdown files, source artifacts, review, approval, validation, or certification.
 
 Phase 3.1 does not yet include:
 
@@ -135,6 +139,7 @@ Do first when the repository has gained several operation-policy commits or the 
 - keep `docs/phase-3-1-current-snapshot.md` as the detailed current-state record
 - keep `docs/operation-index.md` aligned with document-role and reader-path changes
 - keep `docs/current-task-inventory.md` aligned with actual Phase 3.1 status
+- keep published Pages reader paths aligned when browser-facing reader aids change
 - avoid letting `CHANGELOG.md` become the construction-time restart path
 - avoid letting roadmap notes become changelogs or sync logs become phase plans
 
@@ -159,6 +164,8 @@ Possible next artifacts:
 - event-to-pathway relation checker plan
 - source-based related-work comparison notes
 - terminology stabilization notes
+- browser-facing Example browser page when it helps reviewers inspect current examples without replacing source files
+- browser-facing Template helper page when it helps reviewers inspect template shape without implying implementation maturity
 
 These artifacts must remain review aids only and must not imply certification, conformance, legal validity, safety, compliance, fairness, production readiness, connector correctness, runtime correctness, or AI final-responsibility transfer.
 
@@ -199,14 +206,15 @@ The next low-risk work is repository reviewability and alignment work only:
 
 1. keep `docs/runtime-event-schema-fixture-alignment.md` connected from operation index, task inventory, and snapshot paths
 2. keep `docs/checker-coverage.md`, `docs/example-index.md`, and current snapshot aligned after any checker or fixture interpretation change
-3. prepare an external review readiness checklist only if it makes a specific boundary easier to inspect
-4. prepare an event-to-pathway relation checker plan only as a plan, not as semantic correctness checking
-5. keep service-specific connectors deferred
-6. keep production conversion code deferred
-7. keep production runtime integration deferred
-8. keep Lean expansion deferred
-9. keep Class E positive examples deferred
-10. use periodic operation review if BEACON, snapshots, sync logs, roadmap notes, CHANGELOG usage, checker interpretation, session load, or deferred boundaries drift from actual practice
+3. keep published Pages reader paths aligned if Example browser or Template helper pages are added
+4. prepare an external review readiness checklist only if it makes a specific boundary easier to inspect
+5. prepare an event-to-pathway relation checker plan only as a plan, not as semantic correctness checking
+6. keep service-specific connectors deferred
+7. keep production conversion code deferred
+8. keep production runtime integration deferred
+9. keep Lean expansion deferred
+10. keep Class E positive examples deferred
+11. use periodic operation review if BEACON, snapshots, sync logs, roadmap notes, CHANGELOG usage, checker interpretation, session load, or deferred boundaries drift from actual practice
 
 ## Stop conditions
 
@@ -225,6 +233,7 @@ Stop and preserve the current state if:
 Restart from:
 
 - `BEACON.md`
+- [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
 - `docs/operation-index.md`
 - `docs/phase-3-1-current-snapshot.md`
 - `docs/current-task-inventory.md`
