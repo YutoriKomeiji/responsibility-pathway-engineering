@@ -6,6 +6,12 @@ const shelves = [
     boundary: "Navigation aid only; not certification, validation, or production approval."
   },
   {
+    name: "Boundary glossary",
+    what: "A decorated glossary explaining excluded readings such as certification, validation, production readiness, legal review, and AI final responsibility.",
+    start: "boundary-glossary/",
+    boundary: "Terminology aid only; not legal advice, safety review, compliance review, fairness review, certification, or production approval."
+  },
+  {
     name: "Templates",
     what: "Copyable responsibility-path record templates for AI-assisted work.",
     start: "../templates/ai-assisted-work-responsibility-path.yaml",
