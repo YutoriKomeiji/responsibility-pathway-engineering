@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RPE Template Helper</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-2: #1f2937;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --line: #334155;
+      --accent: #93c5fd;
+      --warn: #fde68a;
+      --ok: #86efac;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #020617 0%, var(--bg) 100%);
+      color: var(--text);
+      line-height: 1.55;
+    }
+    header, main, footer {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    header { padding: 48px 0 24px; }
+    h1 { margin: 0 0 8px; font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -0.04em; }
+    h2 { margin-top: 0; }
+    a { color: var(--accent); }
+    .lead { color: var(--muted); max-width: 820px; font-size: 1.08rem; }
+    .notice {
+      border: 1px solid var(--line);
+      background: rgba(17, 24, 39, 0.8);
+      border-radius: 16px;
+      padding: 16px;
+      margin: 24px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    .card {
+      background: rgba(17, 24, 39, 0.88);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+    }
+    .card h3 { margin: 0 0 8px; }
+    .tag {
+      display: inline-block;
+      font-size: 0.78rem;
+      color: #0f172a;
+      background: var(--accent);
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    pre {
+      overflow: auto;
+      background: #020617;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      max-height: 520px;
+      white-space: pre-wrap;
+    }
+    button {
+      border: 1px solid var(--line);
+      background: var(--panel-2);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      font-weight: 700;
+    }
+    button:hover { border-color: var(--accent); }
+    ul { padding-left: 1.2rem; }
+    li { margin: 6px 0; }
+    .warn { color: var(--warn); }
+    .ok { color: var(--ok); }
+    footer { color: var(--muted); padding: 32px 0 48px; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="tag">Reader Aid / Template</p>
+    <h1>RPE Template Helper</h1>
+    <p class="lead">A browser-friendly guide to the first copyable Responsibility Pathway template for AI-assisted work.</p>
+    <p><a href="../">Back to Artifact Catalog</a></p>
+    <div class="notice">
+      <strong>Boundary:</strong> This page is an inspection and copying aid only. Copying a template does not create a valid responsibility record, complete review, prove compliance, approve production use, or transfer final responsibility to AI.
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>First copyable template</h2>
+      <div class="grid">
+        <article class="card">
+          <span class="tag">Template source</span>
+          <h3>AI-assisted work responsibility path</h3>
+          <p>Use this as a starting point for recording how AI assistance was used, what evidence was considered, who reviewed or approved the work, and where responsibility can return.</p>
+          <p><a href="../../templates/ai-assisted-work-responsibility-path.yaml">Open source YAML</a></p>
+          <p><button id="copyTemplate" type="button">Copy template YAML</button></p>
+        </article>
+        <article class="card">
+          <span class="tag">Non-claim</span>
+          <h3>What copying does not mean</h3>
+          <p>Copying the template does not certify correctness, prove legal validity, prove safety, prove compliance, prove fairness, approve production use, or transfer final responsibility to AI.</p>
+        </article>
+      </div>
+      <pre id="templateText"></pre>
+    </section>
+
+    <section>
+      <h2>Inspection checklist</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Before using the template</h3>
+          <ul>
+            <li>Identify the source reference.</li>
+            <li>Identify the responsible person or team.</li>
+            <li>State how AI assistance was used.</li>
+            <li>Keep human or institutional review explicit.</li>
+            <li>Record evidence, missing context, and uncertainty.</li>
+            <li>Preserve a responsibility return point.</li>
+            <li>Preserve repair, dispute, or reopening paths.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Use with current docs</h3>
+          <ul>
+            <li><a href="../../docs/lightweight-durable-quality-implementation-strategy.md">Lightweight durable quality strategy</a></li>
+            <li><a href="../../docs/public-adoption-and-fork-strategy.md">Public adoption and fork strategy</a></li>
+            <li><a href="../../docs/repository-construction-status-labels.md">Construction status labels</a></li>
+            <li><a href="../../docs/zenn-level-2-repository-walkthrough-readiness.md">Zenn Level 2 readiness</a></li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Stop before claiming</h3>
+          <p>Stop if the filled template begins to sound like certification, conformance evidence, legal review, safety review, compliance review, fairness review, production approval, runtime correctness proof, connector correctness proof, or AI final-responsibility transfer.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Human author remains responsible for definitions and claims. AI tools may assist drafting and navigation but do not become responsible authors.</p>
+  </footer>
+
+  <script>
+    const templateYaml = `# AI-assisted work responsibility path template
+# Construction status: under-construction
+# Use: copyable starting point for recording AI-assisted work review paths
+# Non-claim: this template is not certification, legal review, safety review,
+# compliance review, fairness review, production approval, conformance evidence,
+# or AI final-responsibility transfer.
+
+responsibility_pathway:
+  id: example-ai-assisted-work-001
+  title: "AI-assisted work responsibility path"
+  status: draft
+  construction_status: under-construction
+
+  purpose: >
+    Record how AI assistance was used, what evidence was considered,
+    who reviewed or approved the work, and where responsibility can return
+    if the result must be questioned, repaired, disputed, or reopened.
+
+  source_reference:
+    type: issue | pull_request | document | ticket | incident | other
+    uri: ""
+    summary: ""
+
+  work_context:
+    requester: ""
+    responsible_person_or_team: ""
+    affected_area: ""
+    expected_outcome: ""
+
+  ai_assistance:
+    used: true
+    system_or_tool: ""
+    role: suggestion | summarization | drafting | classification | review_support | other
+    boundary: >
+      The AI assisted the work but did not become the final responsibility holder.
+
+  human_or_institutional_review:
+    required: true
+    reviewer_or_approver: ""
+    review_status: pending | reviewed | approved | rejected | returned
+    approval_gate: ""
+    approval_skip:
+      occurred: false
+      reason: ""
+      compensating_review_path: ""
+
+  evidence_log:
+    evidence_items:
+      - id: evidence-001
+        type: source | log | test | review | message | document | other
+        observed_at: ""
+        recorded_at: ""
+        timezone: ""
+        uri: ""
+        summary: ""
+    missing_context:
+      - ""
+    uncertainty_notes:
+      - ""
+
+  responsibility_return_point:
+    human_or_institutional_return_point: ""
+    when_to_return: >
+      Return here if the output is disputed, incomplete, harmful, unclear,
+      unsupported by evidence, or outside the intended scope.
+
+  repair_or_reopening:
+    repair_owner: ""
+    dispute_path: ""
+    reopening_condition: ""
+    correction_record: ""
+
+  non_claims:
+    - "This record does not certify correctness."
+    - "This record does not prove legal validity, safety, compliance, fairness, or production readiness."
+    - "This record does not transfer final responsibility to AI."
+    - "A checker pass, if any, should be treated only as a bounded structural maintenance signal."`;
+
+    document.querySelector("#templateText").textContent = templateYaml;
+    document.querySelector("#copyTemplate").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(templateYaml);
+        document.querySelector("#copyTemplate").textContent = "Copied YAML";
+      } catch (error) {
+        document.querySelector("#copyTemplate").textContent = "Copy unavailable";
+      }
+    });
+  </script>
+</body>
+</html>
