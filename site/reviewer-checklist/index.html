@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RPE Reviewer Checklist</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --panel: rgba(15, 23, 42, 0.88);
+      --text: #e5e7eb;
+      --line: rgba(148, 163, 184, 0.28);
+      --accent: #93c5fd;
+      --accent-2: #c4b5fd;
+      --ok: #86efac;
+      --warn: #fde68a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 14% 12%, rgba(147, 197, 253, 0.24), transparent 28rem),
+        radial-gradient(circle at 86% 16%, rgba(196, 181, 253, 0.18), transparent 26rem),
+        linear-gradient(180deg, #020617 0%, #0f172a 72%, #111827 100%);
+      line-height: 1.6;
+    }
+    header, main, footer { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 48px 0 24px; }
+    a { color: var(--accent); }
+    .tag {
+      display: inline-flex;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: #0f172a;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      font-weight: 800;
+      font-size: 0.78rem;
+    }
+    h1 { font-size: clamp(2.4rem, 7vw, 5.2rem); letter-spacing: -0.06em; line-height: 0.96; margin: 18px 0 12px; }
+    h2 { margin: 0 0 12px; }
+    .lead { max-width: 850px; color: #cbd5e1; font-size: 1.12rem; }
+    .lang-nav { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+    .lang-nav a, button {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(15, 23, 42, 0.72);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .notice, .card, .rail, pre {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 22px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.24);
+    }
+    .notice { padding: 18px; margin: 24px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin: 20px 0 32px; }
+    .card { padding: 18px; min-height: 184px; }
+    .card strong { color: var(--ok); }
+    .card .question { color: var(--warn); font-weight: 800; }
+    .rail { padding: 20px; margin: 24px 0; }
+    pre { white-space: pre-wrap; padding: 18px; overflow: auto; }
+    footer { color: #94a3b8; padding: 36px 0 52px; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="tag">✓ Reviewer Checklist / Static Preview</span>
+    <h1>Review one responsibility path</h1>
+    <p class="lead">A browser-friendly checklist for inspecting whether one RPE record keeps responsibility holders, AI limits, evidence, uncertainty, human return points, and repair ownership visible.</p>
+    <nav class="lang-nav" aria-label="Navigation links">
+      <a href="../">Catalog</a>
+      <a href="../ja/reviewer-checklist/">日本語</a>
+      <a href="../../docs/quickstart-review-one-path.md">Source quickstart</a>
+    </nav>
+    <div class="notice">
+      <strong>Boundary:</strong> This page is an inspection aid only. It is not certification, legal review, safety review, compliance review, fairness review, production approval, institutional endorsement, or AI final-responsibility transfer.
+    </div>
+  </header>
+
+  <main>
+    <section aria-labelledby="checklist-heading">
+      <h2 id="checklist-heading">Checklist</h2>
+      <div class="grid">
+        <article class="card"><h3>1. Human decision owner</h3><p class="question">Can a reviewer identify who owns judgment?</p><p>Look for <strong>decision_owner</strong> and confirm it points to a human or institution.</p></article>
+        <article class="card"><h3>2. Approval gate</h3><p class="question">Is approval authority explicit?</p><p>Look for <strong>approval_gate</strong>. AI support should not silently become approval.</p></article>
+        <article class="card"><h3>3. Stop authority</h3><p class="question">Can the path be stopped?</p><p>Look for <strong>stop_authority</strong>. A reviewer should know where intervention remains possible.</p></article>
+        <article class="card"><h3>4. AI boundary</h3><p class="question">Is AI final responsibility blocked?</p><p>Look for <strong>assumes_final_responsibility: false</strong> and <strong>ai_final_responsibility_allowed: false</strong>.</p></article>
+        <article class="card"><h3>5. Evidence and uncertainty</h3><p class="question">Can the basis be inspected?</p><p>Look for evidence logs, source references, human instructions, AI drafts, approval state, and uncertainty.</p></article>
+        <article class="card"><h3>6. Human return point</h3><p class="question">Where does dispute or incompleteness return?</p><p>Look for <strong>return_points</strong> and confirm they lead back to human or institutional review.</p></article>
+        <article class="card"><h3>7. Repair owner</h3><p class="question">Who can repair or reopen?</p><p>Look for <strong>repair_owner</strong>. A pathway should remain reviewable when something is wrong or unclear.</p></article>
+        <article class="card"><h3>8. Excluded claims</h3><p class="question">Are stronger claims kept out?</p><p>Confirm that safety, legal, compliance, fairness, production, and certification claims are not implied.</p></article>
+      </div>
+    </section>
+
+    <section class="rail" aria-labelledby="copy-heading">
+      <h2 id="copy-heading">Copyable review note</h2>
+      <button id="copyChecklist" type="button">Copy checklist Markdown</button>
+      <pre id="checklistText">## RPE reviewer checklist
+
+- [ ] Human decision owner is explicit.
+- [ ] Approval gate is explicit.
+- [ ] Stop authority is explicit.
+- [ ] AI final responsibility is blocked.
+- [ ] Evidence and source references are inspectable.
+- [ ] Uncertainty and missing context are visible.
+- [ ] Human return point is visible.
+- [ ] Repair or reopening owner is visible.
+- [ ] Stronger claims are excluded: certification, legal review, safety review, compliance review, fairness review, production approval, institutional endorsement, and AI final-responsibility transfer.
+
+Reviewer note:
+
+Boundary: this checklist is an inspection aid only, not certification or production approval.</pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>Human author remains responsible for definitions and claims. AI tools may assist drafting and implementation but do not become responsible authors.</p>
+  </footer>
+  <script>
+    document.querySelector("#copyChecklist").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(document.querySelector("#checklistText").textContent);
+        document.querySelector("#copyChecklist").textContent = "Copied checklist";
+      } catch (error) {
+        document.querySelector("#copyChecklist").textContent = "Copy unavailable";
+      }
+    });
+  </script>
+</body>
+</html>

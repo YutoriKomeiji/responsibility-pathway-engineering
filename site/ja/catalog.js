@@ -12,6 +12,12 @@ const shelves = [
     boundary: "用語整理であり、法的助言・安全性レビュー・遵法性レビュー・公平性レビュー・認証・本番承認ではありません。"
   },
   {
+    name: "Reviewer checklist",
+    what: "1つの責任経路を点検するためのブラウザ向けチェックリスト。コピー用Markdownレビューメモ付き。",
+    start: "reviewer-checklist/",
+    boundary: "点検補助であり、認証・endorsement・検証・本番承認ではありません。"
+  },
+  {
     name: "Templates",
     what: "AI支援作業の責任経路を記録するためのコピー可能なテンプレート。",
     start: "../../templates/ai-assisted-work-responsibility-path.yaml",
