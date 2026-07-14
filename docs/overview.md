@@ -60,6 +60,7 @@ The current public specification contains:
 - external product connection-surface survey notes
 - connector target matrix planning for synthetic-first connector categories
 - Repair Model and recovery-pathway reading notes for pathway restoration after interruption, ambiguity, or failure
+- published GitHub Pages reader paths for browser-friendly catalog, Japanese catalog, reader path maps, boundary glossary pages, and reviewer checklist pages
 
 The repository does not yet contain:
 
@@ -80,25 +81,58 @@ The repository does not yet contain:
 - implemented service-specific connectors
 - Zenn article files under this repository
 
+## Reader entrances
+
+Use the entry surface that matches the reader's situation.
+
+| Reader need | Start here | Role |
+|---|---|---|
+| Short public entrance | [../README.md](../README.md) | Project definition, demo, catalog, and primary links. |
+| Reconnection after pause | [../BEACON.md](../BEACON.md) | Compact current position and read-first order. |
+| Browser-friendly inspection | [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/) | Static Pages route for catalog, Japanese catalog, reader path maps, boundary glossary, and reviewer checklist. |
+| Operation and maintenance navigation | [operation-index.md](operation-index.md) | Which operation document to read for a maintenance situation. |
+| Current repository map | This overview | Concept, status, public reader path, and implementation boundary map. |
+
+The published Pages are reader and inspection aids only. They do not replace repository documents, external review, certification, validation, legal review, safety review, compliance review, fairness review, production approval, or human-maintainer responsibility.
+
+## Browser-friendly reader path
+
+The GitHub Pages reader path is meant for people who need a quick browser route before reading repository files directly.
+
+Start at:
+
+- [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
+
+The current Pages surface includes:
+
+- English artifact catalog
+- Japanese artifact catalog
+- English and Japanese reader path maps
+- English and Japanese boundary glossary pages
+- English and Japanese reviewer checklist pages
+
+Use Pages for orientation, glossary boundaries, and reviewer checklist copy/paste support. Use repository Markdown files for definitions, specifications, examples, checker boundaries, provenance, operation rules, phase snapshots, and source-of-truth maintenance records.
+
 ## Public and external-review path
 
 For external readers, reviewers, or readers arriving from public articles, start from:
 
 1. [../README.md](../README.md)
 2. [../BEACON.md](../BEACON.md)
-3. [operation-index.md](operation-index.md)
-4. [external-review-package-note.md](external-review-package-note.md)
-5. [external-review-readiness-checklist.md](external-review-readiness-checklist.md)
-6. [progress-map.md](progress-map.md)
-7. [phase-3-1-current-snapshot.md](phase-3-1-current-snapshot.md)
-8. [current-task-inventory.md](current-task-inventory.md)
-9. [zenn-publication-readiness-plan.md](zenn-publication-readiness-plan.md)
-10. [zenn-publication-ja-reader-note.md](zenn-publication-ja-reader-note.md)
-11. [zenn-article-title-source-check.md](zenn-article-title-source-check.md)
-12. [zenn-content-publication-handoff.md](zenn-content-publication-handoff.md)
-13. [api-future-shape.md](api-future-shape.md)
-14. [external-product-connection-survey.md](external-product-connection-survey.md)
-15. [connector-target-matrix.md](connector-target-matrix.md)
+3. [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
+4. [operation-index.md](operation-index.md)
+5. [external-review-package-note.md](external-review-package-note.md)
+6. [external-review-readiness-checklist.md](external-review-readiness-checklist.md)
+7. [progress-map.md](progress-map.md)
+8. [phase-3-1-current-snapshot.md](phase-3-1-current-snapshot.md)
+9. [current-task-inventory.md](current-task-inventory.md)
+10. [zenn-publication-readiness-plan.md](zenn-publication-readiness-plan.md)
+11. [zenn-publication-ja-reader-note.md](zenn-publication-ja-reader-note.md)
+12. [zenn-article-title-source-check.md](zenn-article-title-source-check.md)
+13. [zenn-content-publication-handoff.md](zenn-content-publication-handoff.md)
+14. [api-future-shape.md](api-future-shape.md)
+15. [external-product-connection-survey.md](external-product-connection-survey.md)
+16. [connector-target-matrix.md](connector-target-matrix.md)
 
 These documents help readers separate current claims from deferred work.
 
@@ -258,133 +292,3 @@ Current Phase 3.1 implementation artifacts include:
 - [../scripts/check_runtime_events.py](../scripts/check_runtime_events.py)
 
 Current runtime-event checking is bounded and structural for selected synthetic JSON fixtures only.
-
-It is not schema validation, JSON semantic correctness proof, adapter mapping correctness proof, runtime correctness proof, production readiness, certification, or event-to-pathway semantic correctness proof.
-
-## API and connector planning status
-
-Current API and connector-related documents are planning and design-preview documents only.
-
-They include:
-
-- [api-future-shape.md](api-future-shape.md)
-- [external-product-connection-survey.md](external-product-connection-survey.md)
-- [connector-target-matrix.md](connector-target-matrix.md)
-- [connector-target-matrix-connection.md](connector-target-matrix-connection.md)
-
-They help describe possible future inputs, draft outputs, review boundaries, external product connection surfaces, and synthetic-first connector categories.
-
-They do not authorize live external integrations, real log ingestion, personal data processing, production runtime integration, implemented public API routes, service-specific connectors, adapter correctness claims, runtime correctness claims, or AI final-responsibility transfer.
-
-## Evidence, stop, return, and repair
-
-The source-alignment pass strongly reinforces four design concerns.
-
-### Evidence
-
-Evidence Log is not merely an event log. It supports reconstruction of the responsibility pathway.
-
-Useful evidence can include:
-
-- request
-- context
-- AI proposal
-- proposal adopter
-- planned review
-- actual review
-- skipped review and reason
-- approval
-- execution
-- stop
-- rollback
-- restart approval
-- repair
-
-### Stop
-
-Stop Authority is not merely a technical abort.
-
-It asks:
-
-- who can stop
-- under what conditions
-- whether stop authority is separated from execution authority
-- who owns pending responsibility after stop
-
-### Return
-
-Human Return Point is not merely human presence.
-
-It asks whether AI-mediated judgment can return to human understanding, authority, time, information, and responsibility capacity.
-
-### Repair
-
-Repair Owner is not simply blame assignment.
-
-Repair may include:
-
-- rollback
-- correction
-- explanation
-- incident response
-- permanent countermeasure connection
-- organizational responsibility rebundling
-
-See [repair-model.md](repair-model.md) for the Repair Model.
-
-A repair process can also be read as a recovery pathway when the concern is how an interrupted pathway becomes actionable again. See [recovery-pathway-reading.md](recovery-pathway-reading.md). This reading does not mean that harm, loss, uncertainty, responsibility, or blame has been erased.
-
-## Try/catch/finally analogy
-
-A developer-facing analogy is available in [explanations/try-catch-finally-responsibility-pathway.md](explanations/try-catch-finally-responsibility-pathway.md).
-
-Short version:
-
-```text
-try      = normal judgment / approval / execution path
-catch    = stop / abnormal return / exception handling path
-finally  = evidence / repair / explanation / closure path
-```
-
-This is only an explanatory analogy. It is not formal semantics.
-
-## Recommended next work
-
-Recommended next work should be chosen from [current-task-inventory.md](current-task-inventory.md), [publication-and-connector-task-connection.md](publication-and-connector-task-connection.md), and checked against [deferred-work-restart-conditions.md](deferred-work-restart-conditions.md).
-
-At the current stage, low-risk work is preferred:
-
-1. Keep README, README.ja, BEACON, operation-index, overview, current-task-inventory, progress-map, and Phase 3.1 notes aligned.
-2. Keep public publication planning, title source checking, and Zenn content handoff reachable without treating them as publication or review results.
-3. Keep external-review package and readiness checklist reachable without treating them as review results.
-4. Keep API future-shape, external product survey, and connector target matrix as design-preview / synthetic-first planning documents.
-5. Keep checker coverage and example index aligned with actual checker behavior.
-6. Keep event-to-pathway relation checker work as planning only until preconditions are deliberately reviewed.
-7. Keep Repair Model and recovery-pathway reading connected without treating recovery as certification, full restoration, or harm elimination.
-8. Keep production connectors, production runtime integration, conformance claims, schema validation, semantic checking, Class E positive examples, and Lean expansion deferred unless explicitly reopened.
-9. Treat repository progress as a possible Zenn article trigger, while keeping article files in `YutoriKomeiji/zenn-content/articles/` and keeping this repository as the source of definitions and readiness.
-
-## Boundary
-
-This overview does not claim:
-
-- legal validity
-- safety assurance
-- compliance
-- certification
-- production readiness
-- fairness validation
-- moral accountability resolution
-- conformance status
-- finished standardization
-- runtime correctness
-- connector correctness
-- schema semantic correctness
-- event-to-pathway semantic correctness
-- implemented public API routes
-- implemented service-specific connectors
-- Zenn article publication status
-- full recovery or harm elimination
-- AI final-responsibility transfer
-
-It is an orientation map for the repository's current public specification work.
