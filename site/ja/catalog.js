@@ -32,7 +32,7 @@ const shelves = [
   {
     name: "Reviewer quickstart",
     what: "リポジトリ全体を読む前に、1つの責任経路を短時間で確認するための導線。",
-    start: "../../docs/quickstart-review-one-path.md",
+    start: "https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/docs/quickstart-review-one-path.md",
     boundary: "点検ガイドであり、承認・認証ではありません。"
   },
   {

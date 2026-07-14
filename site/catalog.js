@@ -32,7 +32,7 @@ const shelves = [
   {
     name: "Reviewer quickstart",
     what: "A short path for reviewing one responsibility path without reading the whole repo.",
-    start: "../docs/quickstart-review-one-path.md",
+    start: "https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/docs/quickstart-review-one-path.md",
     boundary: "Inspection guide only; not endorsement or certification."
   },
   {
