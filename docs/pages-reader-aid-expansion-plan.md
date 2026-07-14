@@ -1,21 +1,25 @@
 # Pages Reader-Aid Expansion Plan
 
-This note plans the next browser-facing GitHub Pages reader aids for Responsibility Pathway Engineering.
+This note records the browser-facing GitHub Pages reader-aid expansion for Responsibility Pathway Engineering.
 
-It exists before implementation so that Example browser and Template helper pages remain bounded reader aids rather than becoming certification, validation, implementation, or approval surfaces.
+It existed before implementation so that Example browser and Template helper pages remained bounded reader aids rather than becoming certification, validation, implementation, or approval surfaces.
 
-This plan is a planning note only. It is not a certification record, conformance claim, external review finding, legal review, safety review, compliance review, fairness review, production approval, standardization claim, runtime correctness proof, connector correctness proof, schema correctness proof, checker correctness proof, Lean completeness proof, or AI final-responsibility transfer mechanism.
+This plan is a planning and maintenance note only. It is not a certification record, conformance claim, external review finding, legal review, safety review, compliance review, fairness review, production approval, standardization claim, runtime correctness proof, connector correctness proof, schema correctness proof, checker correctness proof, Lean completeness proof, or AI final-responsibility transfer mechanism.
 
-## Current trigger
+## Current status
 
-The compact `ROADMAP.md` identifies the next browser-facing reader-aid candidates as:
+Initial implementation is complete.
 
-- Example browser page
-- Template helper page
+The first browser-facing reader-aid pair now exists under `site/`:
 
-The current published Pages reader path already helps first readers orient, but the next additions should remain small and source-linked.
+- `site/example-browser/index.html`
+- `site/template-helper/index.html`
 
-## Candidate 1: Example browser page
+The Artifact Catalog shelf has been connected to both pages through `site/catalog.js`.
+
+These pages are still reader and inspection aids only. They do not replace repository Markdown files, source YAML or JSON files, planning notes, checker coverage notes, human review, external review, approval, validation, certification, or maintainer responsibility.
+
+## Implemented reader aid 1: Example browser page
 
 Purpose:
 
@@ -24,7 +28,7 @@ Purpose:
 - point back to source files and existing documentation
 - make example boundaries easier to inspect
 
-Suggested source references:
+Source references:
 
 - `docs/example-index.md`
 - `docs/checker-coverage.md`
@@ -43,7 +47,7 @@ The Example browser page must not imply that examples are certified, validated, 
 
 A browser page may summarize where an example is and how to read it, but source files and review notes remain the reference artifacts.
 
-## Candidate 2: Template helper page
+## Implemented reader aid 2: Template helper page
 
 Purpose:
 
@@ -52,7 +56,7 @@ Purpose:
 - point back to source files and planning notes
 - keep lightweight adoption distinct from implementation maturity
 
-Suggested source references:
+Source references:
 
 - `templates/ai-assisted-work-responsibility-path.yaml`
 - `docs/lightweight-durable-quality-implementation-strategy.md`
@@ -65,16 +69,6 @@ Required boundary:
 The Template helper page must not imply that a copied template creates a valid responsibility record, completes review, proves compliance, approves production use, or transfers final responsibility to AI.
 
 A helper page may explain how to inspect the template shape, but it must preserve human and maintainer responsibility.
-
-## Implementation order
-
-Use this order unless the maintainer deliberately changes it:
-
-1. Add one Pages reader aid at a time.
-2. Start with the Example browser page if example navigation is the immediate need.
-3. Start with the Template helper page if lightweight adoption explanation is the immediate need.
-4. After adding a page, update only the reader-path files that need the new link.
-5. Keep each page short enough to review on GitHub mobile.
 
 ## Reader-path files to check after implementation
 
@@ -96,7 +90,7 @@ Do not update every file automatically. Update only the files where the new page
 
 ## Stop conditions
 
-Stop before implementation if a proposed page:
+Stop if a proposed site or follow-up change:
 
 - summarizes examples without linking to source files
 - hides checker limitations
@@ -108,9 +102,12 @@ Stop before implementation if a proposed page:
 
 ## Next safe step
 
-Choose exactly one first Pages reader aid:
+The initial Example browser and Template helper pages are now implemented.
 
-- Example browser page
-- Template helper page
+Next safe work is one of:
 
-Then create a small implementation PR for that one page only.
+1. keep the small reader-path synchronization current where the new pages materially improve orientation
+2. check the deployed Pages links after the maintainer confirms deployment
+3. create a short first-program design note before writing the next local helper
+
+Do not proceed directly from these Pages aids into service-specific connector work, production runtime integration, automatic approval, automatic execution, semantic correctness checking, or conformance evidence.

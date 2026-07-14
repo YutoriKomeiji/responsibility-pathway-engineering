@@ -18,7 +18,10 @@ Current repository position:
 - adapter-boundary and runtime-event bridge documents exist
 - published GitHub Pages reader paths exist as browser-friendly orientation aids
 - external-review readiness and Zenn Level 2 repository-walkthrough readiness are connected
-- Example browser and Template helper are the next browser-facing reader-aid candidates
+- the first browser-facing reader-aid pair now exists:
+  - Example browser page
+  - Template helper page
+- the next likely transition is from static site reader aids toward a small program-design step
 
 Published reader path:
 
@@ -80,25 +83,32 @@ Phase 3.1 may preserve reviewable draft pathways from runtime observations, but 
 
 ### Gate 4: prepare browser-facing reader aids cautiously
 
-Active candidate.
+Initial pair reached.
 
-Next browser-facing candidates:
+The first browser-facing reader-aid pair has been added:
 
 - Example browser page
 - Template helper page
 
-These should be inspection aids only. They must point back to source files and must not imply implementation maturity, certification, validation, conformance, production readiness, or approval.
+These remain inspection aids only. They point back to source files and must not imply implementation maturity, certification, validation, conformance, production readiness, or approval.
+
+### Gate 5: prepare first small program step
+
+Candidate.
+
+The next program step should start with a design note or a very small local helper. It must not become service-specific connector work, production runtime integration, automatic approval, automatic execution, semantic correctness checking, or conformance evidence.
 
 ## Next safe work
 
 Recommended order:
 
-1. Create a short Pages reader-aid expansion plan for Example browser and Template helper.
-2. Implement at most one browser-facing aid at a time.
-3. Keep `docs/operation-index.md`, `docs/overview.md`, external-review notes, and Pages links aligned after each reader-aid addition.
-4. Keep `docs/example-index.md` and `docs/checker-coverage.md` aligned if example presentation changes.
-5. Keep `docs/phase-3-1-roadmap-note.md` as the detailed Phase 3.1 roadmap companion.
-6. Use `docs/roadmap-history.md` and git history for older long-roadmap detail.
+1. Keep the newly added Example browser and Template helper reader paths aligned in the small set of documents that actually need the update.
+2. Confirm site links after Pages deployment when the maintainer chooses to check them.
+3. Create a short first-program design note before writing code.
+4. Implement at most one small local helper at a time.
+5. Keep `docs/example-index.md` and `docs/checker-coverage.md` aligned if example presentation or checker interpretation changes.
+6. Keep `docs/phase-3-1-roadmap-note.md` as the detailed Phase 3.1 roadmap companion.
+7. Use `docs/roadmap-history.md` and git history for older long-roadmap detail.
 
 ## Deferred work
 
