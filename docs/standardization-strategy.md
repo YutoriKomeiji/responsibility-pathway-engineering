@@ -23,6 +23,7 @@ The near-term goal is to make the repository reviewable enough that external rev
 - runtime-boundary notes
 - formalization assumptions
 - operation and restart records
+- published browser-friendly reader paths
 - excluded claims
 
 ## Grounding discipline
@@ -42,6 +43,7 @@ RPE should advance only when each step adds one of the following:
 - better review paths
 - clearer restart records
 - stronger traceability from claims back to definitions
+- clearer browser-friendly reader paths that do not replace repository source files
 - better compatibility with existing standards, governance frameworks, and audit practices
 
 If a proposed step does not improve reviewability, traceability, or boundary clarity, defer it.
@@ -225,6 +227,7 @@ Before any formal standardization attempt, prepare the repository for external r
 
 - the current README
 - the current operation index
+- the Published RPE Artifact Catalog
 - the current phase snapshot
 - the current sync log
 - the current task inventory
@@ -235,6 +238,8 @@ Before any formal standardization attempt, prepare the repository for external r
 - changelog milestones when historical cause tracing is needed
 
 External review should inspect boundaries and structure.
+
+Published Pages may help first readers orient, but they do not replace repository Markdown files or external review.
 
 External review does not certify the repository or approve production use.
 
@@ -267,7 +272,7 @@ Recommended next steps:
 
 1. keep terminology stable and readable
 2. keep README and BEACON short
-3. keep operation-index and current snapshots current
+3. keep operation-index, published reader paths, and current snapshots current
 4. maintain clear non-certifying boundaries
 5. keep examples small and reviewable
 6. avoid Class E positive examples until lower-risk examples stabilize
