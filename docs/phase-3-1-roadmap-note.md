@@ -2,7 +2,7 @@
 
 This note records the current roadmap position for Phase 3.1 Adapter Boundary and Runtime Event Bridge.
 
-It exists as a short roadmap companion so that the long `ROADMAP.md` file does not need to be replaced in one large update when repository-wide synchronization is underway.
+It exists as a short roadmap companion so that `ROADMAP.md` can remain compact while detailed Phase 3.1 status stays reviewable.
 
 This note is planning-only. It is not certification, legal review, safety review, compliance review, fairness review, production approval, connector correctness proof, runtime correctness proof, schema correctness proof, JSON semantic correctness proof, conformance evidence, or AI final-responsibility transfer mechanism.
 
@@ -26,6 +26,8 @@ It now includes:
 - a runtime-event schema/fixture alignment note
 - operation-index, current-snapshot, current-task-inventory, and focused sync-note connections
 - published browser-friendly Pages reader paths for first-reader orientation
+- an initial browser-facing Example browser page
+- an initial browser-facing Template helper page
 
 Current artifacts:
 
@@ -48,6 +50,7 @@ Current artifacts:
 - `docs/current-task-inventory.md`
 - `docs/repository-operation-model.md`
 - `docs/operation-index.md`
+- `docs/pages-reader-aid-expansion-plan.md`
 - [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
 
 ## What has been reached
@@ -70,6 +73,7 @@ The following checkpoint has been reached:
 - repository operation layer added through `docs/repository-operation-model.md` and `docs/operation-index.md`
 - periodic operation review policy added for repository-maintenance alignment
 - operation-document roles clarified: `CHANGELOG.md` is archival/investigative, sync logs are detailed synchronization records, roadmap notes are short current-planning companions, BEACON is the reconnection entrance, and current snapshots are detailed current-state records
+- the first Pages reader-aid pair has been implemented through `site/example-browser/index.html` and `site/template-helper/index.html`
 
 ## Roadmap interpretation
 
@@ -82,6 +86,8 @@ The current runtime-event checker and workflow are bounded repository-maintenanc
 The current schema/fixture alignment note records structural alignment and reviewability only. It does not validate the schema, prove semantic correctness, prove adapter mapping correctness, prove runtime correctness, or provide conformance evidence.
 
 Published Pages reader paths are first-reader orientation aids only. They do not replace repository Markdown files, source artifacts, review, approval, validation, or certification.
+
+The Example browser and Template helper pages are also reader aids only. They do not convert examples into validation results, templates into completed governance records, or Pages output into source-of-truth replacement.
 
 Phase 3.1 does not yet include:
 
@@ -154,26 +160,26 @@ Do before any semantic or schema-validation expansion:
 - keep runtime-event schema checking deferred unless deliberately opened
 - keep semantic responsibility correctness checking deferred
 
-### Priority 3: external review preparation
+### Priority 3: external review and browser reader aids
 
 After Priority 1 and Priority 2 remain stable, prepare focused external-review material only when it improves reviewability.
 
-Possible next artifacts:
+Current browser-facing reader aids:
 
-- external review readiness checklist
-- event-to-pathway relation checker plan
-- source-based related-work comparison notes
-- terminology stabilization notes
-- browser-facing Example browser page when it helps reviewers inspect current examples without replacing source files
-- browser-facing Template helper page when it helps reviewers inspect template shape without implying implementation maturity
+- Published RPE Artifact Catalog
+- Reader path map
+- Boundary glossary
+- Reviewer checklist
+- Example browser page
+- Template helper page
 
 These artifacts must remain review aids only and must not imply certification, conformance, legal validity, safety, compliance, fairness, production readiness, connector correctness, runtime correctness, or AI final-responsibility transfer.
 
-### Priority 4: checker expansion only after examples stabilize
+### Priority 4: first small program step
 
-Only after the current schema/fixture/checker alignment remains stable, consider bounded checker work.
+Only after the current static reader aids remain aligned, consider the first small program step.
 
-Possible future checker work remains limited to structural checks and must not claim:
+The first program step should begin with a design note or a very small local helper. It must not claim:
 
 - adapter mapping correctness
 - service connector correctness
@@ -204,17 +210,19 @@ Keep the following deferred until lower-risk layers are stable:
 
 The next low-risk work is repository reviewability and alignment work only:
 
-1. keep `docs/runtime-event-schema-fixture-alignment.md` connected from operation index, task inventory, and snapshot paths
-2. keep `docs/checker-coverage.md`, `docs/example-index.md`, and current snapshot aligned after any checker or fixture interpretation change
-3. keep published Pages reader paths aligned if Example browser or Template helper pages are added
-4. prepare an external review readiness checklist only if it makes a specific boundary easier to inspect
-5. prepare an event-to-pathway relation checker plan only as a plan, not as semantic correctness checking
-6. keep service-specific connectors deferred
-7. keep production conversion code deferred
-8. keep production runtime integration deferred
-9. keep Lean expansion deferred
-10. keep Class E positive examples deferred
-11. use periodic operation review if BEACON, snapshots, sync logs, roadmap notes, CHANGELOG usage, checker interpretation, session load, or deferred boundaries drift from actual practice
+1. keep the Example browser and Template helper reader paths aligned where they materially improve orientation
+2. check deployed Pages links after the maintainer confirms deployment
+3. create a short first-program design note before writing code
+4. keep `docs/runtime-event-schema-fixture-alignment.md` connected from operation index, task inventory, and snapshot paths
+5. keep `docs/checker-coverage.md`, `docs/example-index.md`, and current snapshot aligned after any checker or fixture interpretation change
+6. prepare an external review readiness checklist only if it makes a specific boundary easier to inspect
+7. prepare an event-to-pathway relation checker plan only as a plan, not as semantic correctness checking
+8. keep service-specific connectors deferred
+9. keep production conversion code deferred
+10. keep production runtime integration deferred
+11. keep Lean expansion deferred
+12. keep Class E positive examples deferred
+13. use periodic operation review if BEACON, snapshots, sync logs, roadmap notes, CHANGELOG usage, checker interpretation, session load, or deferred boundaries drift from actual practice
 
 ## Stop conditions
 
