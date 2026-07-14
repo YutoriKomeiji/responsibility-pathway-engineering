@@ -276,6 +276,7 @@ Current artifacts and companion notes:
 - `docs/operation-tool-selection-guard.md` records a guard for choosing the correct GitHub read/write tool during AI-assisted maintenance
 - `docs/readme-expanded.md` preserves the previous expanded README after root README lightweight recovery
 - `docs/concepts/index.md` records the concept-level reader path, including support-call and missed-support notes
+- [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/) provides the browser-friendly first-reader orientation path.
 
 Observed status:
 
@@ -316,7 +317,7 @@ Any future relation checker must remain local, structural, selected-fixture-only
 
 Social-connection and publication-readiness rule:
 
-Social-connection review, evidence / approval-transfer alignment, gap inventory, and Zenn readiness connection are reader-path and planning layers only.
+Social-connection review, evidence / approval-transfer alignment, gap inventory, Zenn readiness connection, and published Pages reader paths are reader-path and planning layers only.
 
 They do not authorize schema, checker, workflow, runtime, connector, conformance, Lean implementation, certification, legal review, safety review, compliance review, fairness review, social acceptance claim, production approval, or AI final-responsibility transfer.
 
@@ -335,6 +336,7 @@ Next low-risk Phase 3.1 work:
 - use `docs/event-to-pathway-relation-checker-plan.md` before considering any future relation checker between selected runtime-event JSON fixtures and pathway YAML examples
 - use `docs/repository-pathway-gap-inventory.md` before retrying deferred direct reader-path connections
 - keep article drafting and title routes separate from repo-side Zenn readiness unless deliberately reopened
+- keep published Pages reader paths aligned if Example browser or Template helper pages are added
 - keep Class E positive examples deferred
 - keep support-call and missed-support runtime-event fields deferred until concept notes, examples, schema conventions, and checker boundaries are stable
 - keep Lean expansion around adapter, runtime events, support-call policy, missed-support signals, Evidence Log completeness, approval skip, approval transfer, correction records, or later return paths deferred until the relevant boundary notes and formalization plans are stable
