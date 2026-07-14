@@ -94,10 +94,14 @@ Open Construction does not mean:
 
 This document supports public inspection and careful experimentation while keeping the repository's core boundaries intact.
 
+Published GitHub Pages reader paths provide a browser-friendly inspection route for the current catalog, Japanese catalog, reader path maps, boundary glossary pages, and reviewer checklist pages. They are reader and inspection aids only, not certification, validation, review completion, production approval, or AI final-responsibility transfer.
+
 It should be read with:
 
 - [README.md](README.md)
+- [README.ja.md](README.ja.md)
 - [BEACON.md](BEACON.md)
+- [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
 - [docs/checker-coverage.md](docs/checker-coverage.md)
 - [docs/repository-construction-status-labels.md](docs/repository-construction-status-labels.md)
 - [docs/public-adoption-and-fork-strategy.md](docs/public-adoption-and-fork-strategy.md)
