@@ -16,6 +16,7 @@ Level 2 may support an explanatory repository guide showing:
 - where non-claims and deferred work are visible
 - where repair, recovery-pathway reading, social-connection review, and evidence / approval-transfer paths can be found
 - why lightweight reusable parts may be useful while still under construction or planning-only
+- where browser-friendly reader pages can orient first-time readers without replacing source files
 - where the first copyable AI-assisted work responsibility-path template lives
 
 Article drafting and title selection remain outside this repository-side readiness note.
@@ -26,6 +27,7 @@ For Level 2, a reader should be able to reach:
 
 - `README.md`
 - `README.ja.md`
+- [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
 - `BEACON.md`
 - `docs/operation-index.md`
 - `docs/current-task-inventory.md`
@@ -55,7 +57,7 @@ Current repository-side state: Level 2 is ready to move to Zenn-content filename
 
 This means the RPE repository can support drafting a first explanatory article in the dedicated Zenn content repository, provided the article remains a repository walkthrough and does not claim publication, review approval, certification, conformance, production readiness, implemented connectors, implemented public API routes, legal validity, safety, compliance, fairness, full recovery, harm elimination, or AI final-responsibility transfer.
 
-The repository already has a public entrance, Japanese and English README alignment, operation path, task inventory, progress map, roadmap position, overview, repair model, recovery-pathway reading note, example index, checker coverage, external-review readiness checklist, social-connection review path, gap inventory, construction-status labels, lightweight durable quality strategy, public adoption / fork strategy, first copyable AI-assisted work responsibility-path template, Zenn readiness plan, Zenn content handoff boundary, and Zenn readiness connection note.
+The repository already has a public entrance, Japanese and English README alignment, published Pages reader paths, operation path, task inventory, progress map, roadmap position, overview, repair model, recovery-pathway reading note, example index, checker coverage, external-review readiness checklist, social-connection review path, gap inventory, construction-status labels, lightweight durable quality strategy, public adoption / fork strategy, first copyable AI-assisted work responsibility-path template, Zenn readiness plan, Zenn content handoff boundary, and Zenn readiness connection note.
 
 ## First article transition
 
@@ -88,9 +90,9 @@ This is a cleanup and scope-fit check, not a requirement to delete history autom
 
 ## Lightweight adoption relation
 
-Level 2 may explain that the repository contains useful lightweight parts, templates, labels, and planning notes without claiming finished implementation maturity.
+Level 2 may explain that the repository contains useful lightweight parts, templates, labels, planning notes, and browser-friendly reader aids without claiming finished implementation maturity.
 
-Use `docs/lightweight-durable-quality-implementation-strategy.md`, `docs/repository-construction-status-labels.md`, `docs/public-adoption-and-fork-strategy.md`, and `templates/ai-assisted-work-responsibility-path.yaml` to keep that distinction visible.
+Use `docs/lightweight-durable-quality-implementation-strategy.md`, `docs/repository-construction-status-labels.md`, `docs/public-adoption-and-fork-strategy.md`, `templates/ai-assisted-work-responsibility-path.yaml`, published boundary glossary pages, and published reviewer checklist pages to keep that distinction visible.
 
 The first template is copyable, but it remains under construction and non-certifying.
 
