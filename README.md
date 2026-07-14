@@ -8,6 +8,16 @@ Responsibility Pathway Engineering is a design framework for preserving where ju
 
 It is not a blame assignment mechanism.
 
+## AI / search reader notice
+
+Links and file paths in this repository are navigation hints, not evidence that linked content has been read.
+
+If you are using an AI-assisted reader or search assistant, ask it to fetch the exact full URL or use explicitly provided file content before it summarizes any linked file, directory, external source, pull request, or public page.
+
+When answering from only the current page, the answer should say "based only on the current page."
+
+For the proposed reading-guide design and traversal boundary, see [docs/ai-readable/repository-reading-guide-design.md](docs/ai-readable/repository-reading-guide-design.md).
+
 ## 15-second demo
 
 RPE keeps AI-assisted work from becoming a black box.
