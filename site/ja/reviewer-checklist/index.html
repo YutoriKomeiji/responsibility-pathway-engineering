@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RPE Reviewer Checklist 日本語</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --panel: rgba(15, 23, 42, 0.88);
+      --text: #e5e7eb;
+      --line: rgba(148, 163, 184, 0.28);
+      --accent: #93c5fd;
+      --accent-2: #c4b5fd;
+      --ok: #86efac;
+      --warn: #fde68a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 14% 12%, rgba(147, 197, 253, 0.24), transparent 28rem),
+        radial-gradient(circle at 86% 16%, rgba(196, 181, 253, 0.18), transparent 26rem),
+        linear-gradient(180deg, #020617 0%, #0f172a 72%, #111827 100%);
+      line-height: 1.6;
+    }
+    header, main, footer { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 48px 0 24px; }
+    a { color: var(--accent); }
+    .tag {
+      display: inline-flex;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: #0f172a;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      font-weight: 800;
+      font-size: 0.78rem;
+    }
+    h1 { font-size: clamp(2.4rem, 7vw, 5.2rem); letter-spacing: -0.06em; line-height: 0.96; margin: 18px 0 12px; }
+    h2 { margin: 0 0 12px; }
+    .lead { max-width: 850px; color: #cbd5e1; font-size: 1.12rem; }
+    .lang-nav { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+    .lang-nav a, button {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(15, 23, 42, 0.72);
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .notice, .card, .rail, pre {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 22px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.24);
+    }
+    .notice { padding: 18px; margin: 24px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin: 20px 0 32px; }
+    .card { padding: 18px; min-height: 184px; }
+    .card strong { color: var(--ok); }
+    .card .question { color: var(--warn); font-weight: 800; }
+    .rail { padding: 20px; margin: 24px 0; }
+    pre { white-space: pre-wrap; padding: 18px; overflow: auto; }
+    footer { color: #94a3b8; padding: 36px 0 52px; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="tag">✓ Reviewer Checklist / Static Preview</span>
+    <h1>1つの責任経路を点検する</h1>
+    <p class="lead">RPE recordにおいて、責任主体、AI境界、証拠、不確実性、人間への戻り先、修復責任者が見える状態に保たれているかを確認するためのブラウザ向けチェックリスト。</p>
+    <nav class="lang-nav" aria-label="Navigation links">
+      <a href="../">カタログ</a>
+      <a href="../../reviewer-checklist/">English</a>
+      <a href="../../../docs/quickstart-review-one-path.md">Source quickstart</a>
+    </nav>
+    <div class="notice">
+      <strong>境界:</strong> このページは点検補助です。認証、法的レビュー、安全性レビュー、遵法性レビュー、公平性レビュー、本番承認、組織的 endorsement、AI最終責任移転ではありません。
+    </div>
+  </header>
+
+  <main>
+    <section aria-labelledby="checklist-heading">
+      <h2 id="checklist-heading">チェックリスト</h2>
+      <div class="grid">
+        <article class="card"><h3>1. 人間のdecision owner</h3><p class="question">判断の責任者を特定できるか。</p><p><strong>decision_owner</strong> を確認し、人間または組織に向いているかを見る。</p></article>
+        <article class="card"><h3>2. Approval gate</h3><p class="question">承認権限が明示されているか。</p><p><strong>approval_gate</strong> を確認する。AI支援が暗黙に承認へ変わっていないことを見る。</p></article>
+        <article class="card"><h3>3. Stop authority</h3><p class="question">経路を止められるか。</p><p><strong>stop_authority</strong> を確認する。介入可能な場所が残っている必要がある。</p></article>
+        <article class="card"><h3>4. AI境界</h3><p class="question">AI最終責任がブロックされているか。</p><p><strong>assumes_final_responsibility: false</strong> と <strong>ai_final_responsibility_allowed: false</strong> を確認する。</p></article>
+        <article class="card"><h3>5. 証拠と不確実性</h3><p class="question">根拠を点検できるか。</p><p>evidence logs、source references、human instructions、AI drafts、approval state、uncertaintyを見る。</p></article>
+        <article class="card"><h3>6. Human return point</h3><p class="question">争い・不足・不明点はどこへ戻るか。</p><p><strong>return_points</strong> を確認し、人間または組織のレビューへ戻ることを見る。</p></article>
+        <article class="card"><h3>7. Repair owner</h3><p class="question">誰が修復・再オープンできるか。</p><p><strong>repair_owner</strong> を確認する。誤りや不明点があるとき、経路は再点検可能であるべき。</p></article>
+        <article class="card"><h3>8. 除外された強い主張</h3><p class="question">強い主張を含めていないか。</p><p>安全、法的、遵法、公平性、本番性、認証などを暗黙に主張していないことを確認する。</p></article>
+      </div>
+    </section>
+
+    <section class="rail" aria-labelledby="copy-heading">
+      <h2 id="copy-heading">コピー用レビューメモ</h2>
+      <button id="copyChecklist" type="button">Markdownチェックリストをコピー</button>
+      <pre id="checklistText">## RPE reviewer checklist
+
+- [ ] 人間のdecision ownerが明示されている。
+- [ ] Approval gateが明示されている。
+- [ ] Stop authorityが明示されている。
+- [ ] AI最終責任がブロックされている。
+- [ ] 証拠とsource referenceが点検可能である。
+- [ ] 不確実性と不足文脈が見える。
+- [ ] Human return pointが見える。
+- [ ] Repairまたはreopening ownerが見える。
+- [ ] 強い主張が除外されている: 認証、法的レビュー、安全性レビュー、遵法性レビュー、公平性レビュー、本番承認、組織的endorsement、AI最終責任移転。
+
+レビューメモ:
+
+境界: このチェックリストは点検補助であり、認証や本番承認ではない。</pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>定義と主張の責任は人間の著者に残ります。AIツールはドラフトや実装を支援できますが、責任ある著者にはなりません。</p>
+  </footer>
+  <script>
+    document.querySelector("#copyChecklist").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(document.querySelector("#checklistText").textContent);
+        document.querySelector("#copyChecklist").textContent = "チェックリストをコピーしました";
+      } catch (error) {
+        document.querySelector("#copyChecklist").textContent = "コピーできません";
+      }
+    });
+  </script>
+</body>
+</html>
