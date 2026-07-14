@@ -8,6 +8,16 @@
 
 これは責任追及の仕組みではありません。
 
+## AI / search reader notice
+
+このリポジトリ内のリンクやファイルパスは導線であり、リンク先が読まれた証拠ではありません。
+
+AI支援reader、検索assistant、外部記事から安全に1ファイルずつ読む入口が必要な場合は、[READMEforAI.md](READMEforAI.md) を使用してください。
+
+この入口には、AI/search reader向けの読み順、full URL、traversal boundary、non-claims がまとめられています。
+
+現在ページだけに基づく回答では、その旨を明示してください。
+
 ## 15秒デモ
 
 RPEは、AI支援作業がブラックボックス化するのを防ぐための構造を扱います。
@@ -141,7 +151,7 @@ python scripts/demo.py
 
 より詳しい出典記録は [docs/provenance.md](docs/provenance.md) にあります。
 
-この出典記録は、帰属と traceability のための記述です。法的主張、所有権の裁定、盗用・剽窃の告発、認証、本番利用承認ではありません。
+この出典表示は、帰属とtraceabilityのためのものです。法的主張、所有権判断、盗用告発、認証、本番承認ではありません。
 
 ## このリポジトリが主張しないこと
 
