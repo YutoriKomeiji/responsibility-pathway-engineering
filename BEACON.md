@@ -38,18 +38,18 @@ The current stable construction path includes:
 - external product connection-surface survey notes for future connector planning
 - connector target matrix planning for future synthetic-first connector categories
 - Zenn Level 2 repository walkthrough readiness planning before public-facing article expansion
-- a published GitHub Pages artifact catalog for browser-friendly repository inspection
+- published GitHub Pages reader paths for catalog, Japanese catalog, reader path maps, boundary glossary pages, and reviewer checklist pages
 
 Recent synchronization restored and recorded the reader path after a README mobile-rendering issue. The root `README.md` was shortened and strengthened, the Japanese `README.ja.md` was aligned to the short public-entry shape, and the previous expanded README content was preserved at `docs/readme-expanded.md`.
 
-The GitHub Pages catalog is available at <https://yutorikomeiji.github.io/responsibility-pathway-engineering/>. It is a browsing and convenience reader path only; it is not certification, production approval, external validation, safety review, legal review, compliance review, fairness review, or AI final-responsibility transfer.
+The GitHub Pages reader path starts at <https://yutorikomeiji.github.io/responsibility-pathway-engineering/> and also includes the Japanese catalog, reader path maps, boundary glossary pages, and reviewer checklist pages. These are browsing and inspection aids only; they are not certification, validation, legal review, safety review, compliance review, fairness review, production approval, or AI final-responsibility transfer.
 
 The support-call / missed-support path is currently concept-level and boundary-example-level only. It does not yet unlock schema fields, semantic checking, runtime-event support-call fields, Lean expansion, service-specific connectors, production conversion code, production runtime integration, or Class E positive examples.
 
 ## Read first
 
 1. `README.md` or `README.ja.md`
-2. Published artifact catalog: <https://yutorikomeiji.github.io/responsibility-pathway-engineering/>
+2. Published reader path: <https://yutorikomeiji.github.io/responsibility-pathway-engineering/>
 3. `docs/operation-index.md`
 4. `docs/phase-3-1-current-snapshot.md`
 5. `docs/current-task-inventory.md`
@@ -85,7 +85,7 @@ Use `docs/repository-operation-model.md` before broad reader-path synchronizatio
 ## Current focus
 
 - Keep `README.md` and `README.ja.md` short, aligned, and mobile-reader friendly.
-- Keep the published Pages catalog connected as a convenience reader path without treating it as validation, certification, or production approval.
+- Keep the published Pages reader paths connected as convenience reader and inspection aids without treating them as validation, certification, or production approval.
 - Keep detailed README content in `docs/readme-expanded.md`.
 - Keep examples small, readable, and non-certifying.
 - Keep repair and recovery-pathway reading connected without implying harm elimination, full recovery, certification, legal validity, safety, compliance, fairness, or production readiness.
