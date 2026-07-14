@@ -46,12 +46,13 @@ Use the progress map when asking:
 For Phase 3.1 work, read in this order when progress visibility matters:
 
 1. `BEACON.md`
-2. `docs/operation-index.md`
-3. `docs/progress-map.md`
-4. `docs/current-task-inventory.md`
-5. `docs/phase-3-1-sync-log.md`
-6. `docs/phase-3-1-current-snapshot.md`
-7. the primary artifact being changed
+2. [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
+3. `docs/operation-index.md`
+4. `docs/progress-map.md`
+5. `docs/current-task-inventory.md`
+6. `docs/phase-3-1-sync-log.md`
+7. `docs/phase-3-1-current-snapshot.md`
+8. the primary artifact being changed
 
 ## Current synchronization status
 
@@ -61,6 +62,7 @@ The progress map has been connected from:
 - `BEACON.md`
 - `docs/current-task-inventory.md`
 - `docs/phase-3-1-sync-log.md`
+- published GitHub Pages reader paths
 
 This note records the focused Phase 3.1 connection without requiring a full snapshot rewrite.
 
