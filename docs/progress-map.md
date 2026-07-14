@@ -12,15 +12,15 @@ Percentages are approximate working estimates for repository planning. They are 
 | --- | --- | ---: | --- | --- |
 | Problem framing | Public problem and repository purpose are clear. | 90% | Keep README short and precise. | Grand claims beyond scope. |
 | Core terminology | Core RPE terms exist and are navigable, but stabilization is ongoing. | 75% | Tighten definitions, social-connection boundaries, and concept index. | Conformance claims. |
-| Public entry | Root README was recovered, shortened, strengthened, and paired with expanded README. | 80% | Add standardization or publication wording cautiously if needed. | Turning README into full documentation. |
+| Public entry | Root README, Japanese README, BEACON, OPEN_CONSTRUCTION, operation index, overview, and published Pages reader paths are now connected. | 88% | Keep the browser-friendly reader path aligned as new Pages or reader aids are added. | Turning public entrances into full documentation or review approval claims. |
 | Provenance and authorship | Provenance, authorship, notice, citation, and reader-path records exist. | 80% | Keep source-aligned and non-accusatory. | Legal ownership or infringement claims. |
 | Examples and fixtures | Minimal examples and runtime-like fixtures exist; missed-support and runtime examples remain bounded. | 65% | Keep examples small, readable, review-required, and non-certifying. | Class E positive examples. |
 | Checker boundaries | Bounded structural checker coverage exists and limitations are documented. | 55% | Maintain checker coverage and example index alignment. | Semantic responsibility correctness checks. |
 | Lean formalization | A minimal Lean spine, theorem index, and evidence / approval planning route exist. | 35% | Use `docs/lean-evidence-approval-formalization-plan.md` before evidence or approval theorem work. | Lean expansion without a scoped design note. |
 | Runtime / adapter bridge | Adapter boundary, runtime-event schema, runtime fixture, review note, and snapshot path exist. | 45% | Keep runtime fixture review connected and non-production. | Production runtime, connectors, semantic runtime claims. |
-| Operation / restartability | BEACON, operation index, task inventory, snapshots, sync logs, roadmap notes, and repository pathway gap inventory exist. | 82% | Keep reconnection path short, current, and able to return to deferred gaps. | Letting BEACON become a full snapshot. |
+| Operation / restartability | BEACON, operation index, task inventory, snapshots, sync logs, roadmap notes, progress map, published reader path, and repository pathway gap inventory exist. | 84% | Keep reconnection path short, current, and able to return to deferred gaps. | Letting BEACON become a full snapshot. |
 | Standardization preparation | Grounded standardization strategy exists and is connected to operation index and task inventory. | 20% | Keep scope narrow and anti-overclaim discipline visible. | Calling the project a finished standard. |
-| External review readiness | Reader paths, boundaries, review notes, social-connection reviewability, and gap tracking exist; package-level direct links may still have deferred gaps. | 45% | Keep readiness checklist, social review navigation, and external package paths aligned. | Broad public claims before review. |
+| External review readiness | Reader paths, browser-friendly Pages, boundaries, review notes, social-connection reviewability, and gap tracking exist; package-level direct links may still have deferred gaps. | 50% | Keep readiness checklist, social review navigation, external package paths, and browser reader paths aligned. | Broad public claims before review. |
 | Zenn / public publication readiness | Repo-side Zenn readiness connection exists and is separated from article drafting or title routes. | 35% | Keep repository-side public reader path durable when articles point into the repo. | Treating article publication as implementation, certification, or standardization. |
 | World-standard candidate maturity | A direction exists, but conformance model and external review are not yet mature. | 10% | Stabilize terminology, scope, examples, schemas, checker boundaries, and review process. | Conformance model claims or certification language. |
 
@@ -47,6 +47,7 @@ Required signs:
 - Examples are small and readable.
 - Checker limits are visible.
 - Operation and restart records exist.
+- Browser-friendly reader paths are connected without replacing repository documents or review.
 
 ### Gate 2: terminology stabilization
 
@@ -117,6 +118,7 @@ Required signs:
 - Related-work comparison is source-based and cautious.
 - Public claims remain reviewable and bounded.
 - Deferred reader-path gaps are tracked and have alternate routes.
+- Browser-friendly Pages help first readers orient before repository-file inspection.
 
 ### Gate 8: conformance model draft
 
@@ -130,7 +132,7 @@ Required signs:
 
 ## Current recommended order
 
-1. Keep README, BEACON, operation index, current snapshot, sync log, and task inventory aligned.
+1. Keep README, BEACON, OPEN_CONSTRUCTION, operation index, overview, published reader path, current snapshot, sync log, and task inventory aligned.
 2. Keep `docs/repository-pathway-gap-inventory.md` current before broad navigation rewrites or deferred-gap retries.
 3. Keep `docs/social-connection-review-navigation.md` visible before expanding approval-skip, responsibility-transfer, Evidence Log, explanation-path, or affected-party language.
 4. Keep `docs/lean-evidence-approval-formalization-plan.md` visible before Lean evidence / approval theorem work.
