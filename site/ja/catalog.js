@@ -6,6 +6,12 @@ const shelves = [
     boundary: "導線補助であり、認証・検証・本番承認ではありません。"
   },
   {
+    name: "Boundary glossary",
+    what: "認証、検証、本番Ready、法的レビュー、AI最終責任など、過剰に読み取られやすい言葉の境界を整理する装飾付き用語集。",
+    start: "boundary-glossary/",
+    boundary: "用語整理であり、法的助言・安全性レビュー・遵法性レビュー・公平性レビュー・認証・本番承認ではありません。"
+  },
+  {
     name: "Templates",
     what: "AI支援作業の責任経路を記録するためのコピー可能なテンプレート。",
     start: "../../templates/ai-assisted-work-responsibility-path.yaml",

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RPE 境界用語集</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --panel: rgba(15, 23, 42, 0.9);
+      --panel-2: rgba(30, 41, 59, 0.82);
+      --text: #e5e7eb;
+      --muted: #cbd5e1;
+      --line: rgba(148, 163, 184, 0.28);
+      --accent: #93c5fd;
+      --accent-2: #c4b5fd;
+      --ok: #86efac;
+      --warn: #fde68a;
+      --danger: #fca5a5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(147, 197, 253, 0.2), transparent 28rem),
+        radial-gradient(circle at 88% 18%, rgba(252, 165, 165, 0.14), transparent 24rem),
+        linear-gradient(180deg, #020617 0%, #0f172a 74%, #111827 100%);
+      line-height: 1.7;
+    }
+    header, main, footer { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 48px 0 24px; }
+    a { color: var(--accent); }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: #0f172a;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+    }
+    h1 { font-size: clamp(2.3rem, 7vw, 5rem); letter-spacing: -0.05em; line-height: 0.98; margin: 18px 0 12px; }
+    h2 { margin: 0 0 12px; }
+    .lead { max-width: 860px; color: var(--muted); font-size: 1.1rem; }
+    .lang-nav { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+    .lang-nav a, .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(15, 23, 42, 0.62);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .notice, .card, .rail {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 22px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.24);
+    }
+    .notice { padding: 18px; margin: 24px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 16px; margin: 20px 0 32px; }
+    .card { padding: 18px; min-height: 226px; position: relative; overflow: hidden; }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: auto 20px -34px auto;
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background: rgba(147, 197, 253, 0.07);
+    }
+    .card h3 { margin: 0 0 8px; }
+    .card strong { color: var(--warn); }
+    .safe { color: var(--ok); font-weight: 800; }
+    .excluded { color: var(--danger); font-weight: 800; }
+    .rail { padding: 20px; margin: 24px 0; background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.72)); }
+    .rail ul { margin: 0; padding-left: 22px; }
+    .boundary { color: var(--warn); }
+    footer { color: #94a3b8; padding: 36px 0 52px; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="tag">✦ 境界用語集 / Static Preview</span>
+    <h1>このプロジェクトが主張しないこと</h1>
+    <p class="lead">読者が過剰に読み取りやすい言葉を整理するための用語集です。導線、例、形式化、Green checkを、実際より強い主張にしないためのページです。</p>
+    <nav class="lang-nav" aria-label="Language links">
+      <a href="../">カタログ</a>
+      <a href="../reader-path/">責任経路マップ</a>
+      <a href="../../boundary-glossary/">English</a>
+    </nav>
+    <div class="notice">
+      <strong>境界:</strong> このページはプロジェクト内の言葉を説明するためのものです。法的助言、安全性レビュー、遵法性レビュー、公平性レビュー、認証、本番承認、AIへの最終責任移転ではありません。
+    </div>
+  </header>
+
+  <main>
+    <section aria-labelledby="glossary-heading">
+      <h2 id="glossary-heading">過剰読解を避けるための用語集</h2>
+      <div class="grid">
+        <article class="card"><h3>認証 / Certification</h3><p><span class="excluded">除外:</span> repository page、example、checker、workflowは、組織・製品・工程を認証しません。</p><p><span class="safe">安全な読み方:</span> レビュー可能な構造を提供するものです。</p></article>
+        <article class="card"><h3>検証 / Validation</h3><p><span class="excluded">除外:</span> 限定的なcheckの通過は、現実の意思決定全体の検証ではありません。</p><p><span class="safe">安全な読み方:</span> 選ばれたfieldやexampleが局所構造に沿っていることを示す場合があります。</p></article>
+        <article class="card"><h3>本番Ready</h3><p><span class="excluded">除外:</span> 静的ページやsample fileは、RPEを本番service、SDK、runtimeにしません。</p><p><span class="safe">安全な読み方:</span> 読者導線と構築中のsurfaceです。</p></article>
+        <article class="card"><h3>法的・安全・遵法・公平性</h3><p><span class="excluded">除外:</span> これらの高注意レビューは、repository自体では完了しません。</p><p><span class="safe">安全な読み方:</span> RPEは、人間のレビューがどこに残るべきかを見えるようにします。</p></article>
+        <article class="card"><h3>形式証明 / Formal proof</h3><p><span class="excluded">除外:</span> Lean等の形式化は、明示されていない現実世界の主張を証明しません。</p><p><span class="safe">安全な読み方:</span> 明示された仮定の下で、明示された性質を示します。</p></article>
+        <article class="card"><h3>AI最終責任</h3><p><span class="excluded">除外:</span> AI支援は、最終責任主体にはなりません。</p><p><span class="safe">安全な読み方:</span> 人間または組織の責任が戻り先として残ります。</p></article>
+      </div>
+    </section>
+
+    <section class="rail" aria-labelledby="placement-heading">
+      <h2 id="placement-heading">配置ルール</h2>
+      <ul>
+        <li>主張は小さく、点検可能に保つ。</li>
+        <li>非主張は、それが制限する主張の近くに置く。</li>
+        <li>責任主体、停止権限、修復責任者を見える場所に置く。</li>
+        <li>装飾、導線、Green check、example、形式化を、実際より強い証明として扱わない。</li>
+      </ul>
+    </section>
+
+    <section class="notice">
+      <p class="boundary"><strong>読者向け注記:</strong> この用語集は過剰読解を避けるためのものです。法務、安全、遵法、公平性、調達、本番利用に関わる実際の人間レビューの必要性を減らすものではありません。</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>定義と主張の責任は人間の著者に残ります。AIツールはドラフトや実装を支援できますが、責任ある著者にはなりません。</p>
+  </footer>
+</body>
+</html>

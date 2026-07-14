@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RPE Boundary Glossary</title>
+  <style>
+    :root {
+      --bg: #020617;
+      --panel: rgba(15, 23, 42, 0.9);
+      --panel-2: rgba(30, 41, 59, 0.82);
+      --text: #e5e7eb;
+      --muted: #cbd5e1;
+      --line: rgba(148, 163, 184, 0.28);
+      --accent: #93c5fd;
+      --accent-2: #c4b5fd;
+      --ok: #86efac;
+      --warn: #fde68a;
+      --danger: #fca5a5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(147, 197, 253, 0.2), transparent 28rem),
+        radial-gradient(circle at 88% 18%, rgba(252, 165, 165, 0.14), transparent 24rem),
+        linear-gradient(180deg, #020617 0%, #0f172a 74%, #111827 100%);
+      line-height: 1.6;
+    }
+    header, main, footer { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 48px 0 24px; }
+    a { color: var(--accent); }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 12px;
+      border-radius: 999px;
+      color: #0f172a;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      font-weight: 800;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+    }
+    h1 { font-size: clamp(2.35rem, 7vw, 5.1rem); letter-spacing: -0.06em; line-height: 0.95; margin: 18px 0 12px; }
+    h2 { margin: 0 0 12px; }
+    .lead { max-width: 860px; color: var(--muted); font-size: 1.12rem; }
+    .lang-nav { display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0; }
+    .lang-nav a, .pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: rgba(15, 23, 42, 0.62);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .notice, .card, .rail {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 22px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.24);
+    }
+    .notice { padding: 18px; margin: 24px 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 16px; margin: 20px 0 32px; }
+    .card { padding: 18px; min-height: 214px; position: relative; overflow: hidden; }
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: auto 20px -34px auto;
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      background: rgba(147, 197, 253, 0.07);
+    }
+    .card h3 { margin: 0 0 8px; }
+    .card strong { color: var(--warn); }
+    .safe { color: var(--ok); font-weight: 800; }
+    .excluded { color: var(--danger); font-weight: 800; }
+    .rail { padding: 20px; margin: 24px 0; background: linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(30, 41, 59, 0.72)); }
+    .rail ul { margin: 0; padding-left: 22px; }
+    .boundary { color: var(--warn); }
+    footer { color: #94a3b8; padding: 36px 0 52px; }
+  </style>
+</head>
+<body>
+  <header>
+    <span class="tag">✦ Boundary Glossary / Static Preview</span>
+    <h1>What this project does not claim</h1>
+    <p class="lead">A first-reader glossary for terms that often get overread. Use it to keep RPE pages navigable without turning navigation, examples, formalization, or green checks into stronger claims.</p>
+    <nav class="lang-nav" aria-label="Language links">
+      <a href="../">Catalog</a>
+      <a href="../reader-path/">Reader Path</a>
+      <a href="../ja/boundary-glossary/">日本語</a>
+    </nav>
+    <div class="notice">
+      <strong>Boundary:</strong> This page explains project language. It is not legal advice, safety review, compliance review, fairness review, certification, production approval, or AI final-responsibility transfer.
+    </div>
+  </header>
+
+  <main>
+    <section aria-labelledby="glossary-heading">
+      <h2 id="glossary-heading">Glossary of excluded readings</h2>
+      <div class="grid">
+        <article class="card"><h3>Certification</h3><p><span class="excluded">Excluded:</span> A repository page, example, checker, or workflow does not certify an organization, product, or process.</p><p><span class="safe">Safe reading:</span> It may provide a reviewable structure.</p></article>
+        <article class="card"><h3>Validation</h3><p><span class="excluded">Excluded:</span> Passing a bounded check is not end-to-end validation of a real-world decision.</p><p><span class="safe">Safe reading:</span> It may confirm that selected fields or examples follow a local structure.</p></article>
+        <article class="card"><h3>Production readiness</h3><p><span class="excluded">Excluded:</span> A static page or sample file does not make RPE a production service, SDK, or runtime.</p><p><span class="safe">Safe reading:</span> It is a reader path and construction surface.</p></article>
+        <article class="card"><h3>Legal, safety, compliance, fairness</h3><p><span class="excluded">Excluded:</span> These high-stakes reviews are not completed by the repository itself.</p><p><span class="safe">Safe reading:</span> RPE can help route where such human review must remain visible.</p></article>
+        <article class="card"><h3>Formal proof</h3><p><span class="excluded">Excluded:</span> Lean or other formal material does not prove unstated real-world claims.</p><p><span class="safe">Safe reading:</span> It can show stated properties under stated assumptions.</p></article>
+        <article class="card"><h3>AI final responsibility</h3><p><span class="excluded">Excluded:</span> AI assistance does not become the final responsible subject.</p><p><span class="safe">Safe reading:</span> Human or institutional responsibility remains the return point.</p></article>
+      </div>
+    </section>
+
+    <section class="rail" aria-labelledby="placement-heading">
+      <h2 id="placement-heading">Placement rule</h2>
+      <ul>
+        <li>Keep claims small and inspectable.</li>
+        <li>Keep non-claims close to the claims they limit.</li>
+        <li>Keep responsibility holders, stop authority, and repair owners visible.</li>
+        <li>Do not treat decoration, navigation, green checks, examples, or formalization as stronger proof than they are.</li>
+      </ul>
+    </section>
+
+    <section class="notice">
+      <p class="boundary"><strong>Reader note:</strong> This glossary helps avoid overreading. It does not reduce the need for real human review where law, safety, compliance, fairness, procurement, or production use is involved.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Human author remains responsible for definitions and claims. AI tools may assist drafting and implementation but do not become responsible authors.</p>
+  </footer>
+</body>
+</html>
