@@ -12,11 +12,11 @@ It is not a blame assignment mechanism.
 
 Links and file paths in this repository are navigation hints, not evidence that linked content has been read.
 
-If you are using an AI-assisted reader or search assistant, ask it to fetch the exact full URL or use explicitly provided file content before it summarizes any linked file, directory, external source, pull request, or public page.
+For AI-assisted readers, search assistants, or external articles that need a safer one-file-at-a-time entry path, use [READMEforAI.md](READMEforAI.md).
+
+That entrance gives traversal boundaries, full URL guidance, non-claims, and a recommended reading order for AI/search readers.
 
 When answering from only the current page, the answer should say "based only on the current page."
-
-For the proposed reading-guide design and traversal boundary, see [docs/ai-readable/repository-reading-guide-design.md](docs/ai-readable/repository-reading-guide-design.md).
 
 ## 15-second demo
 
