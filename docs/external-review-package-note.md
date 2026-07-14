@@ -22,20 +22,23 @@ The goal is to help reviewers inspect:
 Recommended first-pass reading order:
 
 1. `README.md`
-2. `docs/operation-index.md`
-3. `docs/external-review-readiness-checklist.md`
-4. `docs/phase-3-1-current-snapshot.md`
-5. `docs/current-task-inventory.md`
-6. `docs/checker-coverage.md`
-7. `docs/example-index.md`
-8. `docs/standardization-strategy.md`
-9. `docs/progress-map.md`
+2. [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
+3. `docs/operation-index.md`
+4. `docs/external-review-readiness-checklist.md`
+5. `docs/phase-3-1-current-snapshot.md`
+6. `docs/current-task-inventory.md`
+7. `docs/checker-coverage.md`
+8. `docs/example-index.md`
+9. `docs/standardization-strategy.md`
+10. `docs/progress-map.md`
 
 Optional context, depending on review purpose:
 
 - `BEACON.md` for restart context
 - `ROADMAP.md` for phase direction
 - `docs/concepts/index.md` for concept-level navigation
+- published boundary glossary pages for quick non-claim terminology orientation
+- published reviewer checklist pages for browser-friendly inspection notes
 - `docs/runtime-event-schema-fixture-alignment.md` for runtime-event schema / fixture / checker alignment
 - `docs/event-to-pathway-relation-checker-plan.md` for future event-to-pathway relation checker planning
 - `docs/repository-security-workflow-observation.md` for the first bounded repository security hygiene workflow observation
@@ -58,6 +61,7 @@ Reviewers may use the repository to ask:
 Primary inspection targets:
 
 - Root README claim boundaries
+- Published Pages reader path as orientation, not as source-of-truth replacement
 - Concept definitions and terminology consistency
 - Example readability
 - Checker coverage and non-coverage
@@ -113,11 +117,12 @@ Those topics may be discussed as future risks or requirements, but not as comple
 Before sending this repository for external review, the maintainer should:
 
 1. confirm the root README still matches current artifacts
-2. confirm `docs/external-review-readiness-checklist.md` has no stale current-state claims
-3. confirm `docs/checker-coverage.md` and `docs/example-index.md` still match actual checker behavior
-4. confirm runtime-event and relation-checker notes remain future-bounded where needed
-5. confirm security notes remain bounded hygiene or future concept notes, not security certification
-6. decide whether to include a short reviewer request message outside the repository
+2. confirm the Published RPE Artifact Catalog still points to current reader aids
+3. confirm `docs/external-review-readiness-checklist.md` has no stale current-state claims
+4. confirm `docs/checker-coverage.md` and `docs/example-index.md` still match actual checker behavior
+5. confirm runtime-event and relation-checker notes remain future-bounded where needed
+6. confirm security notes remain bounded hygiene or future concept notes, not security certification
+7. decide whether to include a short reviewer request message outside the repository
 
 ## Current status
 
