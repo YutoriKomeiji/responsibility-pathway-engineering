@@ -3,6 +3,16 @@
   "title": "Synthetic data handling gate",
   "version": "0.1",
   "source_type": "synthetic_demo",
+  "source_metadata": {
+    "authority_name": "RPE synthetic example",
+    "source_url": null,
+    "jurisdiction": "not_applicable",
+    "source_version": "synthetic-0.1",
+    "effective_date": null,
+    "review_owner": "repository_maintainer",
+    "review_status": "synthetic",
+    "interpretation_status": "not_applicable"
+  },
   "applies_when": {
     "action": "external_publish"
   },
