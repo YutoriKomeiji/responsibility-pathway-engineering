@@ -1,0 +1,24 @@
+{
+  "request_id": "request-demo-001",
+  "actor": {
+    "type": "ai_agent",
+    "id": "synthetic-agent"
+  },
+  "action": "external_publish",
+  "target": "synthetic-public-destination",
+  "context": {
+    "authority_confirmed": false,
+    "target_confirmed": true,
+    "evidence_scope_recorded": true,
+    "human_approval_present": false
+  },
+  "evidence_scope": {
+    "available": [
+      "draft-content"
+    ],
+    "missing": [
+      "authority-record",
+      "human-approval-record"
+    ]
+  }
+}
