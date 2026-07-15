@@ -1,0 +1,24 @@
+{
+  "pack_id": "rpe.synthetic.publication-gate.v0",
+  "title": "Synthetic external publication gate",
+  "version": "0.1",
+  "source_type": "synthetic_demo",
+  "applies_when": {
+    "action": "external_publish"
+  },
+  "requirements": [
+    "authority_confirmed",
+    "target_confirmed",
+    "evidence_scope_recorded",
+    "human_approval_present"
+  ],
+  "decision_on_missing_requirement": "human_gate",
+  "human_return": {
+    "role": "authorized_human_owner"
+  },
+  "reason_code_prefix": "RPE-PUBLISH",
+  "notes": [
+    "This synthetic pack demonstrates executable requirement handling.",
+    "It is not a legal interpretation or production policy pack."
+  ]
+}
