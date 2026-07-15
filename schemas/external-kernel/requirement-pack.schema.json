@@ -52,7 +52,12 @@
       "type": "object",
       "additionalProperties": false,
       "required": ["action"],
-      "properties": {"action": {"type": "string", "minLength": 1}}
+      "properties": {
+        "action": {"type": "string", "minLength": 1},
+        "jurisdiction": {"type": "string", "minLength": 1},
+        "organization": {"type": "string", "minLength": 1},
+        "data_class": {"type": "string", "minLength": 1}
+      }
     },
     "requirements": {
       "type": "array",
