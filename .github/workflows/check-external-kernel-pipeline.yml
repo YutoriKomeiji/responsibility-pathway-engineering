@@ -1,0 +1,34 @@
+name: Check external kernel pipeline
+
+on:
+  pull_request:
+    paths:
+      - "scripts/run_external_kernel_pipeline.py"
+      - "scripts/check_external_kernel_pipeline.py"
+      - "scripts/resolve_pack_applicability.py"
+      - "scripts/run_external_kernel_multi.py"
+      - "examples/external-kernel/**"
+      - ".github/workflows/check-external-kernel-pipeline.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/run_external_kernel_pipeline.py"
+      - "scripts/check_external_kernel_pipeline.py"
+      - "scripts/resolve_pack_applicability.py"
+      - "scripts/run_external_kernel_multi.py"
+      - "examples/external-kernel/**"
+      - ".github/workflows/check-external-kernel-pipeline.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run external kernel pipeline checks
+        run: python scripts/check_external_kernel_pipeline.py
