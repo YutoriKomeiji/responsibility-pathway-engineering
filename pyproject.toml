@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rpe-kernel"
+version = "0.1.0"
+description = "Dependency-free reference API for Responsibility Pathway Engineering"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [{name = "Akihisa Ono"}]
+keywords = ["responsible-ai", "governance", "policy-engine", "ai-agents"]
+
+[tool.setuptools]
+packages = ["rpe_kernel"]
