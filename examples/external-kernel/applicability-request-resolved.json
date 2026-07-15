@@ -1,0 +1,21 @@
+{
+  "request_id": "request-applicability-resolved-001",
+  "actor": {"type": "ai_agent", "id": "synthetic-agent"},
+  "action": "external_publish",
+  "target": "synthetic-public-destination",
+  "applicability_context": {
+    "jurisdiction": "JP",
+    "organization": "example-org",
+    "data_class": "public_content"
+  },
+  "context": {
+    "authority_confirmed": false,
+    "target_confirmed": true,
+    "evidence_scope_recorded": true,
+    "human_approval_present": false
+  },
+  "evidence_scope": {
+    "available": ["draft-content"],
+    "missing": ["authority-record", "human-approval-record"]
+  }
+}
