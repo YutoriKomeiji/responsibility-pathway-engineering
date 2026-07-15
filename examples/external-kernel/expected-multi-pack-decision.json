@@ -1,0 +1,38 @@
+{
+  "request_id": "request-demo-001",
+  "combined_decision": "human_gate",
+  "pack_decisions": [
+    {
+      "pack_id": "rpe.synthetic.publication-gate.v0",
+      "applicable": true,
+      "decision": "human_gate",
+      "reason_codes": [
+        "RPE-PUBLISH-MISSING-AUTHORITY-CONFIRMED",
+        "RPE-PUBLISH-MISSING-HUMAN-APPROVAL-PRESENT"
+      ],
+      "missing_requirements": [
+        "authority_confirmed",
+        "human_approval_present"
+      ],
+      "human_return": {"role": "authorized_human_owner"}
+    },
+    {
+      "pack_id": "rpe.synthetic.data-handling.v0",
+      "applicable": true,
+      "decision": "hold",
+      "reason_codes": [
+        "RPE-DATA-MISSING-DATA-CLASSIFICATION-RECORDED",
+        "RPE-DATA-MISSING-MINIMUM-NECESSARY-CONFIRMED"
+      ],
+      "missing_requirements": [
+        "data_classification_recorded",
+        "minimum_necessary_confirmed"
+      ],
+      "human_return": {"role": "data_steward"}
+    }
+  ],
+  "non_claims": [
+    "The result is a reference evaluation, not legal or compliance approval.",
+    "Pack applicability and requirement quality still require human or institutional review."
+  ]
+}
