@@ -46,6 +46,12 @@ python scripts/run_external_kernel_multi.py \
   examples/external-kernel/minimal-data-handling-pack.json
 ```
 
+Run the original 15-second responsibility-path demo:
+
+```bash
+python scripts/demo.py
+```
+
 Expected combined behavior:
 
 ```text
@@ -62,12 +68,14 @@ The result preserves each pack's applicability, missing requirements, reason cod
 |---|---|---|
 | External kernel | Evaluate one Responsible AI requirement pack against an AI action | [`scripts/run_external_kernel.py`](scripts/run_external_kernel.py) |
 | Multi-pack evaluator | Combine multiple applicable requirement decisions with visible precedence | [`scripts/run_external_kernel_multi.py`](scripts/run_external_kernel_multi.py) |
+| Quick demo | Show the original responsibility-path checks in seconds | [`scripts/demo.py`](scripts/demo.py) |
 | Requirement-pack schema | Define machine-readable controls and source provenance | [`schemas/external-kernel/requirement-pack.schema.json`](schemas/external-kernel/requirement-pack.schema.json) |
 | Action-request schema | Define the AI action and its execution context | [`schemas/external-kernel/action-request.schema.json`](schemas/external-kernel/action-request.schema.json) |
 | Gate-decision schema | Define structured allow, hold, human-gate, and deny results | [`schemas/external-kernel/gate-decision.schema.json`](schemas/external-kernel/gate-decision.schema.json) |
 | Source metadata | Record authority, jurisdiction, source version, review owner, and interpretation status | [`docs/requirement-pack-source-metadata.md`](docs/requirement-pack-source-metadata.md) |
 | Repository-map generator | Produce exact file URLs for AI/search readers | [`scripts/generate_repository_map.py`](scripts/generate_repository_map.py) |
 | Responsibility-path tools | Record evidence, authority, stop, return, and repair paths | [`templates/ai-assisted-work-responsibility-path.yaml`](templates/ai-assisted-work-responsibility-path.yaml) |
+| Static artifact catalog | Browse project artifacts without cloning the repository | [`site/index.html`](site/index.html) |
 | Formalization spine | Explore structural invariants in Lean 4 | [`formal/lean/README.md`](formal/lean/README.md) |
 
 ## Example decision
@@ -135,6 +143,7 @@ The repository already contains executable kernel paths, schemas, examples, vali
 - [External-kernel roadmap](docs/external-kernel-roadmap.md)
 - [Current project roadmap](ROADMAP.md)
 - [Browser-friendly artifact catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
+- [Static catalog source](site/index.html)
 - [AI/search-reader entrance](READMEforAI.md)
 
 ## Design principle
