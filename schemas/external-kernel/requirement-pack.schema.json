@@ -9,6 +9,7 @@
     "title",
     "version",
     "source_type",
+    "source_metadata",
     "applies_when",
     "requirements",
     "decision_on_missing_requirement",
@@ -22,6 +23,30 @@
     "source_type": {
       "type": "string",
       "enum": ["synthetic_demo", "organization_policy", "law_mapping", "standard_mapping", "guideline_mapping"]
+    },
+    "source_metadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority_name",
+        "source_url",
+        "jurisdiction",
+        "source_version",
+        "effective_date",
+        "review_owner",
+        "review_status",
+        "interpretation_status"
+      ],
+      "properties": {
+        "authority_name": {"type": "string", "minLength": 1},
+        "source_url": {"type": ["string", "null"], "format": "uri"},
+        "jurisdiction": {"type": "string", "minLength": 1},
+        "source_version": {"type": "string", "minLength": 1},
+        "effective_date": {"type": ["string", "null"], "format": "date"},
+        "review_owner": {"type": "string", "minLength": 1},
+        "review_status": {"type": "string", "enum": ["synthetic", "unreviewed", "reviewed", "needs_update"]},
+        "interpretation_status": {"type": "string", "enum": ["not_applicable", "draft_mapping", "reviewed_mapping"]}
+      }
     },
     "applies_when": {
       "type": "object",
