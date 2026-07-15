@@ -1,0 +1,25 @@
+{
+  "pack_id": "rpe.synthetic.eu-publication.v0",
+  "title": "Synthetic EU publication gate",
+  "version": "0.1",
+  "source_type": "synthetic_demo",
+  "source_metadata": {
+    "authority_name": "RPE synthetic example",
+    "source_url": null,
+    "jurisdiction": "EU",
+    "source_version": "synthetic-0.1",
+    "effective_date": null,
+    "review_owner": "repository_maintainer",
+    "review_status": "synthetic",
+    "interpretation_status": "not_applicable"
+  },
+  "applies_when": {
+    "action": "external_publish",
+    "jurisdiction": "EU"
+  },
+  "requirements": ["authority_confirmed"],
+  "decision_on_missing_requirement": "human_gate",
+  "human_return": {"role": "authorized_human_owner"},
+  "reason_code_prefix": "RPE-EU-PUBLISH",
+  "notes": ["Synthetic mismatch fixture only."]
+}
