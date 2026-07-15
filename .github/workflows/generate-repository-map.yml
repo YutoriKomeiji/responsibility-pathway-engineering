@@ -1,0 +1,36 @@
+name: Generate repository map
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref_name:
+        description: Git ref used in generated browser links
+        required: false
+        default: main
+
+permissions:
+  contents: read
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Generate AI-readable repository map
+        run: |
+          python scripts/generate_repository_map.py \
+            --ref "${{ inputs.ref_name || github.ref_name }}"
+
+      - name: Upload generated map
+        uses: actions/upload-artifact@v4
+        with:
+          name: repository-map-generated
+          path: docs/ai-readable/repository-map.generated.md
+          if-no-files-found: error
