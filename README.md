@@ -1,257 +1,183 @@
 # Responsibility Pathway Engineering
 
-Author: Akihisa Ono (小野昭久)
+**Executable Responsible AI controls for AI systems.**
 
-Affiliation for this repository: Independent
+Responsibility Pathway Engineering (RPE) is a portable external responsibility kernel and component toolkit for turning Responsible AI requirements into runtime controls.
 
-Responsibility Pathway Engineering is a design framework for preserving where judgment, authority, evidence, stop authority, human return, and repair remain reachable when humans and AI systems act together.
+RPE is designed to help AI applications answer four operational questions before or during action:
 
-It is not a blame assignment mechanism.
-
-## AI / search reader notice
-
-Links and file paths in this repository are navigation hints, not evidence that linked content has been read.
-
-For AI-assisted readers, search assistants, or external articles that need a safer one-file-at-a-time entry path, use [READMEforAI.md](READMEforAI.md).
-
-That entrance gives traversal boundaries, full URL guidance, non-claims, and a recommended reading order for AI/search readers.
-
-When answering from only the current page, the answer should say "based only on the current page."
-
-## 15-second demo
-
-RPE keeps AI-assisted work from becoming a black box.
+- Is this action allowed to proceed?
+- Which requirements apply?
+- What evidence or authority is missing?
+- Should the system allow, hold, deny, or return the case to a human?
 
 ```text
-Human request
--> AI assists
--> evidence is recorded
--> human approval remains reachable
--> stop / return / repair points stay visible
+Responsible AI requirements
+        ↓
+machine-readable requirement packs
+        ↓
+AI action request
+        ↓
+RPE external kernel
+        ↓
+allow / hold / human_gate / deny
+        ↓
+reason codes, evidence scope, and responsibility return
 ```
 
-Run the tiny dependency-free demo:
+## Run the external kernel
+
+The current reference implementation is dependency-free Python.
+
+Evaluate one requirement pack:
+
+```bash
+python scripts/run_external_kernel.py \
+  examples/external-kernel/minimal-requirement-pack.json \
+  examples/external-kernel/minimal-action-request.json
+```
+
+Evaluate multiple packs together:
+
+```bash
+python scripts/run_external_kernel_multi.py \
+  examples/external-kernel/minimal-action-request.json \
+  examples/external-kernel/minimal-requirement-pack.json \
+  examples/external-kernel/minimal-data-handling-pack.json
+```
+
+Run the original 15-second responsibility-path demo:
 
 ```bash
 python scripts/demo.py
 ```
 
-Expected shape:
+Expected combined behavior:
 
 ```text
-[ok] decision owner: human_reviewer
-[ok] AI final responsibility: blocked
-[ok] approval gate: human
-[ok] stop authority: human
-[ok] evidence log: present
-[ok] return point: present
+publication requirement pack → human_gate
+data-handling requirement pack → hold
+combined decision → human_gate
 ```
 
-The demo is a review aid only. It is not certification, safety review, legal review, compliance review, fairness review, production approval, or AI final-responsibility transfer.
+The result preserves each pack's applicability, missing requirements, reason codes, source metadata, and human-return role instead of collapsing them into an opaque score.
 
-## Construction note
+## What is implemented
 
-This repository is also an Open Construction example: it is being constructed with assistance from [Luminalia AI](docs/ai-assisted-construction-note.md), a ChatGPT-based AI working through a LuminaliaOS working layer.
+| Component | Purpose | Start here |
+|---|---|---|
+| External kernel | Evaluate one Responsible AI requirement pack against an AI action | [`scripts/run_external_kernel.py`](scripts/run_external_kernel.py) |
+| Multi-pack evaluator | Combine multiple applicable requirement decisions with visible precedence | [`scripts/run_external_kernel_multi.py`](scripts/run_external_kernel_multi.py) |
+| Quick demo | Show the original responsibility-path checks in seconds | [`scripts/demo.py`](scripts/demo.py) |
+| Requirement-pack schema | Define machine-readable controls and source provenance | [`schemas/external-kernel/requirement-pack.schema.json`](schemas/external-kernel/requirement-pack.schema.json) |
+| Action-request schema | Define the AI action and its execution context | [`schemas/external-kernel/action-request.schema.json`](schemas/external-kernel/action-request.schema.json) |
+| Gate-decision schema | Define structured allow, hold, human-gate, and deny results | [`schemas/external-kernel/gate-decision.schema.json`](schemas/external-kernel/gate-decision.schema.json) |
+| Source metadata | Record authority, jurisdiction, source version, review owner, and interpretation status | [`docs/requirement-pack-source-metadata.md`](docs/requirement-pack-source-metadata.md) |
+| Repository-map generator | Produce exact file URLs for AI/search readers | [`scripts/generate_repository_map.py`](scripts/generate_repository_map.py) |
+| Responsibility-path tools | Record evidence, authority, stop, return, and repair paths | [`templates/ai-assisted-work-responsibility-path.yaml`](templates/ai-assisted-work-responsibility-path.yaml) |
+| Static artifact catalog | Browse project artifacts without cloning the repository | [`site/index.html`](site/index.html) |
+| Formalization spine | Explore structural invariants in Lean 4 | [`formal/lean/README.md`](formal/lean/README.md) |
 
-Human maintainer judgment remains required for merge, publication, direction, external claims, and final responsibility decisions.
+## Example decision
 
-## Why this matters
+An AI requests external publication, but authority and human approval have not been confirmed:
 
-AI systems do not only produce outputs. They participate in decisions, recommendations, classifications, tool use, evidence production, and sometimes action preparation.
-
-When that happens, the important question is not only whether the output was correct. The important question is whether the path of responsibility remained visible and returnable:
-
-- where judgment arose
-- who or what participated
-- where approval was required
-- where the action could stop
-- where the case returned to humans
-- what evidence remained
-- who could repair or reconnect the path
-
-Responsibility Pathway Engineering treats these as design objects.
-
-## Current status
-
-Early public specification.
-
-This repository is intentionally specification-first. It prioritizes definitions, examples, lifecycle boundaries, checker boundaries, provenance, and excluded claims before larger implementation layers.
-
-## Open Construction
-
-RPE is developed as Open Construction: useful templates, examples, checkers, workflows, and future library-like tools may appear before the project is complete.
-
-Please test them, inspect their boundaries, and point out problems. A runnable artifact remains under construction and non-certifying unless explicitly marked otherwise.
-
-See [OPEN_CONSTRUCTION.md](OPEN_CONSTRUCTION.md) for the public construction, maturity-label, test-welcome, and feedback-welcome boundary.
-
-## Artifact catalog
-
-This root catalog is intentionally short so humans and AI assistants can discover what is available from the top-level README.
-
-The browser-friendly catalog is also published through GitHub Pages: [RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/). It is a convenience reader path only, not certification, production approval, or external validation.
-
-Published reader-path pages are available here:
-
-- [English artifact catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
-- [Japanese artifact catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/)
-- [English reader path map](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reader-path/)
-- [Japanese reader path map](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/reader-path/)
-- [English boundary glossary](https://yutorikomeiji.github.io/responsibility-pathway-engineering/boundary-glossary/)
-- [Japanese boundary glossary](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/boundary-glossary/)
-- [English reviewer checklist](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reviewer-checklist/)
-- [Japanese reviewer checklist](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/reviewer-checklist/)
-
-These Pages are reader and inspection aids only. They are not certification, validation, legal review, safety review, compliance review, fairness review, production approval, institutional endorsement, or AI final-responsibility transfer.
-
-| Shelf | What is available | Start here | Boundary |
-|---|---|---|---|
-| HTML catalog | Static browser-friendly artifact catalog and lightweight example inspection | [Published catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/), [Japanese catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/ja/), [`site/index.html`](site/index.html) | Browsing and convenience check only; not certification or production approval |
-| Reader path pages | Browser-friendly maps, boundary glossary, and reviewer checklist for first readers | [Reader path map](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reader-path/), [Boundary glossary](https://yutorikomeiji.github.io/responsibility-pathway-engineering/boundary-glossary/), [Reviewer checklist](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reviewer-checklist/) | Reader and inspection aid only; not validation, certification, review completion, or production approval |
-| Templates | Copyable responsibility-path record templates for AI-assisted work | [`templates/ai-assisted-work-responsibility-path.yaml`](templates/ai-assisted-work-responsibility-path.yaml) | Template only; not certification or production approval |
-| Examples | Filled examples showing responsibility holders, AI boundaries, evidence, return points, and repair paths | [`examples/ai-assisted-work-minimal.yaml`](examples/ai-assisted-work-minimal.yaml), [`docs/examples/ai-assisted-work-minimal.md`](docs/examples/ai-assisted-work-minimal.md) | Illustrative and reviewable; not legal, safety, compliance, fairness, or production proof |
-| Reviewer quickstart | A short path for reviewing one responsibility path without reading the whole repo | [`docs/quickstart-review-one-path.md`](docs/quickstart-review-one-path.md) | Inspection guide only; not endorsement or certification |
-| Python scripts | Bounded local structural checkers and a dependency-free quick demo | [`scripts/demo.py`](scripts/demo.py), [`scripts/check_examples.py`](scripts/check_examples.py), [`scripts/check_review_results.py`](scripts/check_review_results.py) | Demo/checker pass is a bounded structural signal only |
-| GitHub Actions | Workflow-backed checks for the current Lean and checker surfaces | [`.github/workflows/check-lean.yml`](.github/workflows/check-lean.yml), [`docs/checker-coverage.md`](docs/checker-coverage.md) | Green workflow does not mean safe, compliant, fair, lawful, or production ready |
-| Lean4 | Minimal formalization spine for structural definitions, examples, and invariant candidates | [`formal/lean/README.md`](formal/lean/README.md), [`formal/lean/ResponsibilityPathway/Core.lean`](formal/lean/ResponsibilityPathway/Core.lean) | Proves only stated properties under stated assumptions |
-| Future starters | Planned environment starters for Python, GitHub Actions, TypeScript, CLI, JSON Schema, and API-event use | Issues #11, #12, #13 and future small PRs | Starter only; not SDK, runtime, service, or final responsibility mechanism |
-
-The useful shortcut is: make responsibility-path capture easier than forgetting it.
-
-## Try this first
-
-Run the 15-second demo first:
-
-```bash
-python scripts/demo.py
+```json
+{
+  "decision": "human_gate",
+  "reason_codes": [
+    "RPE-PUBLISH-MISSING-AUTHORITY-CONFIRMED",
+    "RPE-PUBLISH-MISSING-HUMAN-APPROVAL-PRESENT"
+  ],
+  "missing_requirements": [
+    "authority_confirmed",
+    "human_approval_present"
+  ],
+  "human_return": {
+    "role": "authorized_human_owner"
+  }
+}
 ```
 
-Then inspect the first copyable template, first filled example, and browser-friendly reader path:
+RPE does not ask the model to merely "behave responsibly." It inserts explicit requirements, stop conditions, evidence expectations, and human-return routes into the action pathway.
 
-- [Published RPE Artifact Catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/) - static browser-friendly artifact catalog and lightweight example inspection
-- [Reader path map](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reader-path/) - visual first-reader map
-- [Boundary glossary](https://yutorikomeiji.github.io/responsibility-pathway-engineering/boundary-glossary/) - excluded-claim vocabulary boundary
-- [Reviewer checklist](https://yutorikomeiji.github.io/responsibility-pathway-engineering/reviewer-checklist/) - browser-friendly inspection checklist with copyable Markdown
-- [templates/ai-assisted-work-responsibility-path.yaml](templates/ai-assisted-work-responsibility-path.yaml) - under-construction template for recording AI-assisted work responsibility paths
-- [examples/ai-assisted-work-minimal.yaml](examples/ai-assisted-work-minimal.yaml) - filled minimal example for AI-assisted internal work review
-- [docs/quickstart-review-one-path.md](docs/quickstart-review-one-path.md) - reviewer-facing quickstart for inspecting one responsibility path
-- [templates/README.md](templates/README.md) - template directory guide and non-claim boundary
+## Intended integrations
 
-Use the template or example when AI assistance was involved and you need to preserve source references, human or institutional review, evidence, uncertainty, responsibility return points, and repair or reopening paths.
+The external kernel is vendor-neutral. Planned adapters and starter components include:
 
-These artifacts are lightweight starting points. They are not certification, conformance evidence, production approval, legal review, safety review, compliance review, fairness review, social acceptance proof, or AI-final-responsibility transfer.
+- MCP servers and tool gateways
+- OpenAI tool and function-calling layers
+- Gemini and Claude tool adapters
+- LangGraph, LangChain, Semantic Kernel, AutoGen, and CrewAI middleware
+- GitHub Actions and CI gates
+- REST proxies and local CLI workflows
+- enterprise and SAP-oriented workflow adapters
 
-## Provenance
+See [`docs/external-kernel-roadmap.md`](docs/external-kernel-roadmap.md) for the implementation sequence.
 
-According to the author's development record, Akihisa Ono began thinking about and using the concept of **責任経路 / Responsibility Pathway** from the public note article published on 2026-01-18:
+## Requirement packs
 
-- [AI事故は「責任設計」だけでは防げない――最後の砦は「責任経路設計」である](https://note.com/dantarg/n/nb7f28afa6882)
+A requirement pack converts a law mapping, standard, guideline, organizational policy, or synthetic test requirement into an executable control.
 
-A fuller provenance record is available at [docs/provenance.md](docs/provenance.md).
+Each pack can carry:
 
-This provenance statement is for attribution and traceability. It is not a legal claim, ownership adjudication, plagiarism accusation, certification, or production approval.
+- applicability conditions
+- required context and evidence
+- decision on missing requirements
+- reason-code namespace
+- human-return role
+- source authority and URL
+- jurisdiction and source version
+- effective date and review owner
+- review and interpretation status
 
-## What this repository is not
+The current packs are synthetic examples. Real law, standard, guideline, and organizational-policy mappings require source-specific review and maintenance.
 
-This repository does not claim to provide:
+## Project status
 
-- legal responsibility determination
-- safety certification
-- compliance certification
-- fairness certification
-- moral accountability resolution
-- institutional approval
-- production readiness
-- an agent runtime
-- a replacement for RACI, HITL, Guardrails, ISO/IEC 42001, or human oversight frameworks
-- a transfer of final responsibility to AI
+RPE is an active reference implementation under construction.
 
-All schemas, examples, checkers, and Lean files in this repository remain structural, assumption-bound, and non-certifying.
+The repository already contains executable kernel paths, schemas, examples, validators, CI workflows, responsibility-record templates, reader tools, and formalization experiments. The next major work is applicability resolution, runtime packaging, adapters, richer requirement-pack tooling, and integration examples.
 
-## Start here
+- [External-kernel architecture](docs/architecture/external-responsibility-kernel.md)
+- [External-kernel roadmap](docs/external-kernel-roadmap.md)
+- [Current project roadmap](ROADMAP.md)
+- [Browser-friendly artifact catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
+- [Static catalog source](site/index.html)
+- [AI/search-reader entrance](READMEforAI.md)
 
-For first-time readers, future maintainers, or AI-assisted continuation, read in this order:
+## Design principle
 
-1. [BEACON.md](BEACON.md) - current position and reconnection point
-2. [Published reader path pages](https://yutorikomeiji.github.io/responsibility-pathway-engineering/) - browser-friendly catalog, maps, glossary, and checklist
-3. [docs/quickstart-review-one-path.md](docs/quickstart-review-one-path.md) - review one responsibility path
-4. [docs/operation-index.md](docs/operation-index.md) - operation and maintenance navigation
-5. [docs/overview.md](docs/overview.md) - current repository overview
-6. [docs/concepts/index.md](docs/concepts/index.md) - concept-level reader path
-7. [docs/example-index.md](docs/example-index.md) - examples and boundaries
-8. [docs/checker-coverage.md](docs/checker-coverage.md) - current checker boundary and coverage
-9. [LUMINALIA.md](LUMINALIA.md) - public Luminalia design philosophy boundary
-10. [ROADMAP.md](ROADMAP.md) - current and future phases
-11. [CHANGELOG.md](CHANGELOG.md) - conceptual milestones
+RPE preserves the ability to return from an AI action to:
 
-The previous expanded root README content has been moved to [docs/readme-expanded.md](docs/readme-expanded.md) to keep the root README mobile-renderer friendly.
+- the requirement that affected it
+- the evidence and uncertainty available at the time
+- the authority required for execution
+- the person or institution responsible for review
+- the stop, repair, and reopening path
 
-## Key documents
+Responsibility boundaries are part of the implementation, not a substitute for implementation.
 
-- [docs/provenance.md](docs/provenance.md) - provenance and public source lineage
-- [docs/ai-assisted-construction-note.md](docs/ai-assisted-construction-note.md) - Luminalia AI construction-assistance disclosure and human-maintainer boundary
-- [AUTHORSHIP.md](AUTHORSHIP.md) - authorship and responsibility boundary
-- [NOTICE.md](NOTICE.md) - notice, attribution, and AI-assistance boundary
-- [CITATION.cff](CITATION.cff) - citation metadata
-- [docs/deferred-work-restart-conditions.md](docs/deferred-work-restart-conditions.md) - restart conditions for deferred work
-- [docs/current-task-inventory.md](docs/current-task-inventory.md) - current task inventory
-- [docs/external-review-package-note.md](docs/external-review-package-note.md) - compact external-review reader package
-- [docs/external-review-readiness-checklist.md](docs/external-review-readiness-checklist.md) - non-certifying review-readiness checklist
-- [docs/progress-map.md](docs/progress-map.md) - rough planning-only progress and gate map
-- [docs/zenn-level-2-repository-walkthrough-readiness.md](docs/zenn-level-2-repository-walkthrough-readiness.md) - repository walkthrough readiness for public explanation
-- [docs/zenn-publication-readiness-plan.md](docs/zenn-publication-readiness-plan.md) - non-certifying public-publication readiness gates
-- [docs/api-future-shape.md](docs/api-future-shape.md) - future API design preview, not implementation
-- [docs/external-product-connection-survey.md](docs/external-product-connection-survey.md) - external connection-surface survey note
-- [docs/connector-target-matrix.md](docs/connector-target-matrix.md) - future connector target matrix, synthetic-first and non-implementation
-- [formal/lean/README.md](formal/lean/README.md) - Lean formalization boundary
+## Scope boundary
 
-## Examples
+RPE provides executable control structures and traceable responsibility pathways. It does not by itself establish that a system is lawful, safe, compliant, fair, certified, socially adequate, or production-approved.
 
-Minimal examples are available under `examples/`.
+A schema-valid or passing result means that the stated machine-readable checks passed. Real-world applicability, source interpretation, evidence sufficiency, deployment approval, and final responsibility remain with the relevant human or institution.
 
-See [docs/example-index.md](docs/example-index.md) for purposes, boundaries, and reading order.
+## Author and construction
 
-These examples are illustrative only. They do not claim legal liability resolution, moral accountability, safety, fairness, compliance, or production readiness.
+Author: **Akihisa Ono (小野昭久)**  
+Repository affiliation: Independent
 
-## Lightweight checks
+RPE is developed through Open Construction with assistance from [Luminalia AI](docs/ai-assisted-construction-note.md). Human maintainer judgment remains responsible for direction, merge, publication, external claims, and final decisions.
 
-A dependency-free quick demo is available at [scripts/demo.py](scripts/demo.py).
+- [Provenance](docs/provenance.md)
+- [Authorship](AUTHORSHIP.md)
+- [Open Construction](OPEN_CONSTRUCTION.md)
+- [Citation metadata](CITATION.cff)
 
-```bash
-python scripts/demo.py
-```
+## License
 
-A bounded structural checker is available at [scripts/check_examples.py](scripts/check_examples.py).
+Released under the [MIT License](LICENSE).
 
-```bash
-python -m pip install -r requirements.txt
-python scripts/check_examples.py
-```
-
-A separate bounded review-result checker is available at [scripts/check_review_results.py](scripts/check_review_results.py).
-
-```bash
-python scripts/check_review_results.py
-```
-
-A passing demo, checker, or workflow result does not mean certified, safe, compliant, fair, legally valid, morally resolved, institutionally approved, production ready, or AI-final-responsibility transferred.
-
-## Repository principle
-
-This repository is itself operated as a Responsibility Pathway.
-
-Readers should be able to return from claims to definitions, from definitions to specifications, from specifications to formalization, and from formalization back to assumptions.
-
-## Boundary
-
-The human author remains responsible for all definitions and claims. AI tools assist drafting and implementation but do not assume responsibility.
-
-## License and notice
-
-This repository is released under the [MIT License](LICENSE).
-
-Copyright (c) 2026 Akihisa Ono (小野昭久).
-
-Reuse, modification, distribution, and sublicensing are permitted under the license terms, provided that the copyright notice and license notice are preserved.
-
-See [NOTICE.md](NOTICE.md) for authorship, attribution, AI-assistance, and responsibility-boundary notes.
+Copyright (c) 2026 Akihisa Ono (小野昭久). See [NOTICE.md](NOTICE.md) for attribution and AI-assistance notes.
