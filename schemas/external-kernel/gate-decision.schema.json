@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/schemas/external-kernel/gate-decision.schema.json",
+  "title": "RPE External Kernel Gate Decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "request_id",
+    "pack_id",
+    "decision",
+    "reason_codes",
+    "missing_requirements",
+    "human_return",
+    "evidence_scope"
+  ],
+  "properties": {
+    "request_id": {"type": "string", "minLength": 1},
+    "pack_id": {"type": "string", "minLength": 1},
+    "decision": {"type": "string", "enum": ["allow", "hold", "deny", "human_gate", "not_applicable"]},
+    "reason_codes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "missing_requirements": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "human_return": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role"],
+      "properties": {"role": {"type": "string", "minLength": 1}}
+    },
+    "evidence_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["available", "missing"],
+      "properties": {
+        "available": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "missing": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    }
+  }
+}
