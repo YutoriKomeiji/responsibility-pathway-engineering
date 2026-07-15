@@ -23,6 +23,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Check generator behavior
+        run: python scripts/check_repository_map_generator.py
+
       - name: Generate AI-readable repository map
         run: |
           python scripts/generate_repository_map.py \
