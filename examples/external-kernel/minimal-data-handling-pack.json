@@ -1,0 +1,22 @@
+{
+  "pack_id": "rpe.synthetic.data-handling.v0",
+  "title": "Synthetic data handling gate",
+  "version": "0.1",
+  "source_type": "synthetic_demo",
+  "applies_when": {
+    "action": "external_publish"
+  },
+  "requirements": [
+    "data_classification_recorded",
+    "minimum_necessary_confirmed"
+  ],
+  "decision_on_missing_requirement": "hold",
+  "human_return": {
+    "role": "data_steward"
+  },
+  "reason_code_prefix": "RPE-DATA",
+  "notes": [
+    "This synthetic pack demonstrates composition with another requirement pack.",
+    "It is not a legal interpretation or production privacy policy."
+  ]
+}
