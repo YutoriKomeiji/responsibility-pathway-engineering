@@ -1,0 +1,25 @@
+{
+  "request_id": "request-demo-001",
+  "pack_id": "rpe.synthetic.publication-gate.v0",
+  "decision": "human_gate",
+  "reason_codes": [
+    "RPE-PUBLISH-MISSING-AUTHORITY-CONFIRMED",
+    "RPE-PUBLISH-MISSING-HUMAN-APPROVAL-PRESENT"
+  ],
+  "missing_requirements": [
+    "authority_confirmed",
+    "human_approval_present"
+  ],
+  "human_return": {
+    "role": "authorized_human_owner"
+  },
+  "evidence_scope": {
+    "available": [
+      "draft-content"
+    ],
+    "missing": [
+      "authority-record",
+      "human-approval-record"
+    ]
+  }
+}
