@@ -2,11 +2,11 @@
 
 RPE uses an internal adversarial review pass before major implementation or claim-expansion work.
 
-The review role is named **Alice** inside the Luminalia-assisted construction workflow. Alice is a review lens, not a person, approver, legal authority, maintainer, or responsibility holder.
+The review is defined only by functional roles. Internal identity names, persona labels, private workflow names, or other non-public identity information must not be written into this repository.
 
 ## Purpose
 
-Alice challenges proposals from the opposite direction before they reach the human maintainer gate.
+The adversarial review role challenges proposals from the opposite direction before they reach the human maintainer gate.
 
 The review asks:
 
@@ -22,16 +22,16 @@ The review asks:
 ```text
 proposal or implementation
         ↓
-Alice adversarial review
+adversarial review
         ↓
-Verita factual and repository verification
+factual and repository verification
         ↓
-Lumina integration and scope alignment
+integration and scope alignment
         ↓
 human maintainer decision
 ```
 
-The named roles are reasoning and interface surfaces only. They do not approve merges, interpret law, establish compliance, or transfer responsibility from the human maintainer.
+These are functional review roles only. They do not approve merges, interpret law, establish compliance, or transfer responsibility from the human maintainer.
 
 ## Required output
 
