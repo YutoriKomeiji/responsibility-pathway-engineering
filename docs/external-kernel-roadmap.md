@@ -4,9 +4,24 @@ This roadmap tracks RPE's portable external responsibility kernel and its interf
 
 ## Target
 
-Build reusable components that evaluate explicitly scoped Responsible AI requirement mappings during AI operation while preserving applicability, evidence scope, reason codes, maintenance ownership, and human-return routes.
+Build reusable components that evaluate explicitly scoped Responsible AI requirement mappings during AI operation while preserving applicability, evidence scope, reason codes, maintenance ownership, contract compatibility, and human-return routes.
 
 RPE does not directly interpret the full complexity of law or policy. Real-world mappings require named human interpretation and maintenance ownership.
+
+## Milestone M1 — Governed Reference Kernel
+
+**Status: reached as a bounded repository baseline after this compatibility change is merged.**
+
+M1 contains:
+
+- one shared deterministic kernel;
+- Python, REST, OpenAPI, and MCP reference interfaces;
+- requirement-pack governance lifecycle and maintenance ownership;
+- contract-family version baselines;
+- compatibility, reason-code, deprecation, and migration rules;
+- explicit scope and production boundaries.
+
+M1 does not contain external pack loading, runtime governance enforcement, or production service guarantees.
 
 ## Stage K0 — Foundation
 
@@ -19,21 +34,25 @@ RPE does not directly interpret the full complexity of law or policy. Real-world
 
 ## Stage K1 — Interchange schemas and compatibility
 
-**Status: partially implemented.**
+**Status: baseline implemented; runtime version fields remain open.**
 
 Implemented:
 
-- JSON Schemas for requirement packs, action requests, and gate decisions;
+- JSON Schemas for requirement packs, action requests, gate decisions, governance records, and the contract manifest;
 - positive and negative fixtures;
 - bounded validation workflows;
-- source metadata fields.
+- source metadata fields;
+- independent contract-family semantic versions;
+- additive versus breaking change rules;
+- unknown-version behavior;
+- reason-code stability;
+- deprecation and migration requirements.
 
 Open:
 
-- explicit request and result schema versions;
-- pack lifecycle and schema versions;
-- breaking-change, deprecation, and migration rules;
-- reason-code compatibility rules.
+- explicit version fields carried in runtime request and result payloads;
+- migration fixtures for the first real breaking change;
+- release support-window policy.
 
 ## Stage K2 — Applicability and mapping boundary
 
@@ -50,25 +69,25 @@ Next:
 
 ## Stage K3 — Requirement-pack governance
 
-**Status: next priority.**
+**Status: bounded governance layer implemented.**
 
-Define lifecycle states:
+Implemented lifecycle states:
 
 ```text
 draft → reviewed → approved → active → suspended / superseded / retired
 ```
 
-Define and check:
+Implemented governance fields and checks include:
 
-- owner and reviewer;
+- owner, reviewer, and approver;
 - source authority, source version, and jurisdiction;
 - effective scope and interpretation status;
 - unresolved ambiguity;
 - effective date, last review, and next review due;
 - supersession and retirement relationships;
-- failure behavior for expired, ownerless, ambiguous, or unreviewed packs.
+- visible failure behavior for expired, ownerless, ambiguous, suspended, superseded, retired, or insufficiently reviewed records.
 
-External loading and reviewed real-world packs remain blocked until this governance boundary is explicit.
+The governance checker is not yet connected to `evaluate_action()`.
 
 ## Stage K4 — Runtime kernel package
 
@@ -83,7 +102,7 @@ Implemented:
 
 Next:
 
-- explicit contract versioning;
+- explicit runtime contract-version fields;
 - richer trace, repair, resume, and evidence references;
 - release and migration policy beyond repository-local installation.
 
@@ -114,9 +133,9 @@ Future integration candidates include OpenAI, Gemini, Claude, LangGraph, LangCha
 
 ## Stage K6 — External pack loading
 
-**Status: blocked by governance and compatibility work.**
+**Status: blocked until governance and compatibility checks are intentionally connected.**
 
-A bounded loader must preserve lifecycle, source, interpretation, ownership, version, and review-validity metadata. Invalid or stale governance state must fail visibly and must not silently produce `allow`.
+A bounded loader must preserve lifecycle, source, interpretation, ownership, version, and review-validity metadata. Invalid, unsupported, or stale state must fail visibly and must not silently produce `allow`.
 
 Loading a pack is not evidence that the mapping is correct, current, complete, or approved for a deployment.
 
@@ -152,13 +171,15 @@ Interoperability or conformance language should be considered only after interfa
 
 ## Near-term PR sequence
 
-1. Define pack lifecycle, ownership, expiry, supersession, and review-validity rules.
-2. Define compatibility policy for pack, request, result, and reason-code versions.
-3. Document reference adapters separately from future SDK-based operational adapters.
-4. Add external pack loading only after governance failure modes are explicit.
-5. Extend trace, repair, resume, and evidence-reference structures.
-6. Add reviewed mappings only with named human interpretation and maintenance ownership.
+1. Merge the compatibility baseline and mark M1.
+2. Synchronize the README and integration surfaces for the M1 publication checkpoint.
+3. Prepare a project progress article from the synchronized repository state.
+4. Document reference adapters separately from future SDK-based operational adapters.
+5. Design the combined governance and compatibility gate.
+6. Add external pack loading only after deterministic failure behavior is testable.
+7. Extend trace, repair, resume, and evidence-reference structures.
+8. Add reviewed mappings only with named human interpretation and maintenance ownership.
 
 ## Success measure
 
-RPE progresses when an explicitly scoped requirement mapping can be governed, checked for applicability, evaluated, traced, stopped, escalated, repaired, resumed, and returned to the correct human or institution through a maintainable interface—not when the repository merely adds interface count, condition complexity, formal terminology, or claims.
+RPE progresses when an explicitly scoped requirement mapping can be governed, versioned, checked for applicability, evaluated, traced, stopped, escalated, repaired, resumed, and returned to the correct human or institution through a maintainable interface—not when the repository merely adds interface count, condition complexity, formal terminology, or claims.
