@@ -1,0 +1,23 @@
+name: OpenAPI contract check
+
+on:
+  pull_request:
+    paths:
+      - "spec/openapi/**"
+      - "rpe_kernel/http_api.py"
+      - "scripts/check_openapi_contract.py"
+      - ".github/workflows/openapi-contract-check.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+      - run: python scripts/check_openapi_contract.py
