@@ -12,5 +12,8 @@ license = {text = "MIT"}
 authors = [{name = "Akihisa Ono"}]
 keywords = ["responsible-ai", "governance", "policy-engine", "ai-agents"]
 
+[project.scripts]
+rpe-rest = "rpe_kernel.http_api:main"
+
 [tool.setuptools]
 packages = ["rpe_kernel"]
