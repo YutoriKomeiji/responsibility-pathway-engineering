@@ -28,19 +28,15 @@ def main() -> int:
     request = {
         "request_id": "mcp-check-001",
         "action": "publish_release",
-        "evidence": [],
+        "context": {},
     }
     pack = {
         "pack_id": "mcp-check-pack",
         "applies_when": {"action": "publish_release"},
-        "requirements": [{
-            "requirement_id": "human-review",
-            "description": "Require a human release review.",
-            "when": {"action": "publish_release"},
-            "decision": "human_gate",
-            "reason_code": "RPE-MCP-CHECK-HUMAN-REVIEW",
-            "human_return": {"role": "release_owner"},
-        }],
+        "requirements": ["human_review_completed"],
+        "decision_on_missing_requirement": "human_gate",
+        "reason_code_prefix": "RPE-MCP-CHECK",
+        "human_return": {"role": "release_owner"},
     }
     called = handle_message({
         "jsonrpc": "2.0",
@@ -52,6 +48,10 @@ def main() -> int:
     structured = called["result"]["structuredContent"]
     require(structured["decision"] == "human_gate", "unexpected kernel decision")
     require(structured["request_id"] == "mcp-check-001", "request id not preserved")
+    require(
+        structured["reason_codes"] == ["RPE-MCP-CHECK-MISSING-HUMAN-REVIEW-COMPLETED"],
+        "reason code mismatch",
+    )
 
     invalid = handle_message({
         "jsonrpc": "2.0",
