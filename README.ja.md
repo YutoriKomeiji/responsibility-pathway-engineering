@@ -58,6 +58,14 @@ result = evaluate_action(action_request, requirement_packs)
 
 Adapterは提案された行為を評価するだけです。行為の実行、merge、公開、本番承認、責任移転は行いません。
 
+## 実行例
+
+原初のdependency-free demo:
+
+```bash
+python scripts/demo.py
+```
+
 ## Canonical runtime path
 
 ```text
