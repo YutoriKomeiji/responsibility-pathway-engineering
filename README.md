@@ -35,7 +35,7 @@ Implemented at this checkpoint:
 - compatibility, unknown-version, deprecation, and migration rules;
 - schemas, synthetic fixtures, checkers, and CI guards.
 
-M1 does **not** include external pack loading, governance enforcement inside `evaluate_action()`, production authentication or deployment, automatic legal interpretation, or formal verification of the Python runtime.
+M1 does **not** include external pack loading, governance enforcement inside `evaluate_action()`, production authentication or deployment, automatic legal interpretation, reviewed real-world guideline mappings, or formal verification of the Python runtime.
 
 ## Install and call the kernel
 
@@ -62,7 +62,28 @@ All supported runtime interfaces delegate to this same package API.
 
 The adapters evaluate proposed actions only. They do not execute actions, approve deployment, publish releases, merge code, or transfer responsibility.
 
-## Run the executable examples
+## Run the decision walkthrough
+
+The one-command demo now exercises the canonical kernel with three synthetic paths:
+
+- missing approval returns `human_gate`;
+- complete stated evidence returns `allow`;
+- missing applicability context returns visibly to a human reviewer instead of silently continuing.
+
+```bash
+python scripts/demo.py
+```
+
+Select one path or emit machine-readable output:
+
+```bash
+python scripts/demo.py --scenario human_gate
+python scripts/demo.py --scenario allow
+python scripts/demo.py --scenario unknown
+python scripts/demo.py --json
+```
+
+For direct file-driven examples:
 
 ```bash
 python scripts/run_external_kernel.py \
@@ -77,11 +98,7 @@ python scripts/run_external_kernel_multi.py \
   examples/external-kernel/minimal-data-handling-pack.json
 ```
 
-Original dependency-free demo:
-
-```bash
-python scripts/demo.py
-```
+These are synthetic demonstrations. A passing result is not certification, legal review, safety approval, compliance determination, fairness assessment, or production authorization.
 
 ## Canonical runtime path
 
@@ -96,6 +113,18 @@ pack evaluation and decision combination
 ```
 
 Reference adapters must not independently redefine kernel semantics. See [`docs/single-source-kernel.md`](docs/single-source-kernel.md).
+
+## Verification, assurance, and open governance
+
+RPE connects to Verifiable AI and AI assurance through bounded, inspectable claims rather than a blanket safety declaration.
+
+Planned Lean 4 work may prove properties of explicitly formalized responsibility-path models, such as deterministic decisions, preservation of stronger stop outcomes, required human-return routes, and stated invariants. Such proofs would apply to the formal model and assumptions; they would not automatically prove the complete Python runtime, source interpretation, legal validity, operational behavior, or production safety.
+
+Public guidance can inform future human-reviewed Requirement Packs, but RPE does not automatically interpret law or guidance and does not currently claim conformity with the Japanese MIC/METI **AI Guidelines for Business Ver. 1.2**.
+
+RPE is MIT-licensed and aims for open specifications, interoperability, independent verification, and multiple-implementation potential. It is not currently an official standard. Responsibility evidence infrastructure should not become an exclusive mechanism for controlling who may demonstrate responsibility.
+
+See [`docs/verification-assurance-and-open-governance.md`](docs/verification-assurance-and-open-governance.md).
 
 ## Governance and compatibility artifacts
 
@@ -123,6 +152,7 @@ A pack is an operational mapping maintained by identified humans. Schema validit
 | OpenAPI contract | [`spec/openapi/rpe-kernel.openapi.json`](spec/openapi/rpe-kernel.openapi.json) |
 | Static artifact catalog | [`site/index.html`](site/index.html) |
 | Architecture | [`docs/architecture/external-responsibility-kernel.md`](docs/architecture/external-responsibility-kernel.md) |
+| Verification and open-governance scope | [`docs/verification-assurance-and-open-governance.md`](docs/verification-assurance-and-open-governance.md) |
 | Product roadmap | [`docs/external-kernel-roadmap.md`](docs/external-kernel-roadmap.md) |
 | Project roadmap | [`ROADMAP.md`](ROADMAP.md) |
 | AI/search-reader entrance | [`READMEforAI.md`](READMEforAI.md) |
@@ -138,9 +168,11 @@ M2 is **Governed Pack Integration**. The next bounded work is:
 4. preserve visible failure for stale, ownerless, ambiguous, suspended, or incompatible packs;
 5. continue toward trace, evidence, repair, and resume structures.
 
+Parallel research includes bounded Lean 4 formalization, model-to-runtime correspondence, AI-assurance evidence structures, and human-reviewed public-guidance mapping procedures.
+
 ## Scope boundary
 
-RPE is an enforcement and orchestration reference kernel for approved machine-readable controls. It is not a general legal reasoning engine, self-maintaining regulatory knowledge base, certification system, production governance service, or proof that an AI system is lawful, safe, compliant, fair, or socially adequate.
+RPE is an enforcement and orchestration reference kernel for approved machine-readable controls. It is not a general legal reasoning engine, self-maintaining regulatory knowledge base, certification system, production governance service, official standard, or proof that an AI system is lawful, safe, compliant, fair, or socially adequate.
 
 A schema-valid or passing result means only that the stated machine-readable checks passed. Source interpretation, real-world applicability, evidence sufficiency, deployment approval, execution authority, and final responsibility remain with the relevant human or institution.
 
