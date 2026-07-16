@@ -9,6 +9,9 @@ on:
       - ".github/workflows/rest-api-check.yml"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   check:
     runs-on: ubuntu-latest
