@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/schemas/external-kernel/requirement-pack-governance.schema.json",
+  "title": "RPE Requirement Pack Governance Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "pack_id",
+    "pack_version",
+    "lifecycle_state",
+    "maintenance_owner",
+    "reviewer",
+    "approver",
+    "source_authority",
+    "source_version",
+    "jurisdiction",
+    "effective_scope",
+    "interpretation_status",
+    "unresolved_ambiguity",
+    "effective_date",
+    "last_reviewed",
+    "next_review_due",
+    "human_return"
+  ],
+  "properties": {
+    "pack_id": {"type": "string", "minLength": 1},
+    "pack_version": {"type": "string", "minLength": 1},
+    "lifecycle_state": {
+      "type": "string",
+      "enum": ["draft", "reviewed", "approved", "active", "suspended", "superseded", "retired"]
+    },
+    "maintenance_owner": {"type": "string", "minLength": 1},
+    "reviewer": {"type": "string", "minLength": 1},
+    "approver": {"type": "string", "minLength": 1},
+    "source_authority": {"type": "string", "minLength": 1},
+    "source_version": {"type": "string", "minLength": 1},
+    "jurisdiction": {"type": "string", "minLength": 1},
+    "effective_scope": {"type": "string", "minLength": 1},
+    "interpretation_status": {
+      "type": "string",
+      "enum": ["not_applicable", "draft_mapping", "reviewed_mapping", "unreviewed"]
+    },
+    "unresolved_ambiguity": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "effective_date": {"type": ["string", "null"], "format": "date"},
+    "last_reviewed": {"type": "string", "format": "date"},
+    "next_review_due": {"type": "string", "format": "date"},
+    "supersedes": {"type": ["string", "null"]},
+    "superseded_by": {"type": ["string", "null"]},
+    "human_return": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role"],
+      "properties": {
+        "role": {"type": "string", "minLength": 1}
+      }
+    },
+    "notes": {"type": "array", "items": {"type": "string"}}
+  }
+}
