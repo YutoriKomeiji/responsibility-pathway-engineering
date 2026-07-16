@@ -1,0 +1,34 @@
+{
+  "manifest_version": "1.0.0",
+  "contracts": {
+    "action_request": {
+      "version": "1.0.0",
+      "schema_path": "schemas/external-kernel/action-request.schema.json",
+      "unknown_major_behavior": "reject",
+      "notes": "Current bounded request contract baseline. Runtime payloads do not yet carry this version field."
+    },
+    "gate_decision": {
+      "version": "1.0.0",
+      "schema_path": "schemas/external-kernel/gate-decision.schema.json",
+      "unknown_major_behavior": "human_gate",
+      "notes": "Current bounded decision contract baseline. Runtime payloads do not yet carry this version field."
+    },
+    "requirement_pack": {
+      "version": "1.0.0",
+      "schema_path": "schemas/external-kernel/requirement-pack.schema.json",
+      "unknown_major_behavior": "human_gate",
+      "notes": "Current repository pack schema baseline; compatibility does not establish governance eligibility."
+    },
+    "requirement_pack_governance": {
+      "version": "1.0.0",
+      "schema_path": "schemas/external-kernel/requirement-pack-governance.schema.json",
+      "unknown_major_behavior": "human_gate",
+      "notes": "Current governance-record baseline; not yet bound into evaluate_action()."
+    }
+  },
+  "reason_code_policy": {
+    "version": "1.0.0",
+    "unknown_code_behavior": "preserve",
+    "reuse_forbidden": true
+  }
+}
