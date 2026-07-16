@@ -32,7 +32,7 @@ jobs:
             --ref "${{ inputs.ref_name || github.ref_name }}"
 
       - name: Upload generated map
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: repository-map-generated
           path: docs/ai-readable/repository-map.generated.md
