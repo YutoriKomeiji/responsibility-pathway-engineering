@@ -4,13 +4,6 @@
 
 Responsibility Pathway Engineering (RPE) is a portable external responsibility kernel and component toolkit for turning Responsible AI requirements into runtime controls.
 
-RPE is designed to help AI applications answer four operational questions before or during action:
-
-- Is this action allowed to proceed?
-- Which requirements apply?
-- What evidence or authority is missing?
-- Should the system allow, hold, deny, or return the case to a human?
-
 ```text
 Responsible AI requirements
         ↓
@@ -22,14 +15,53 @@ RPE external kernel
         ↓
 allow / hold / human_gate / deny
         ↓
-reason codes, evidence scope, and responsibility return
+reason codes, applicability, missing evidence, and human return
 ```
 
-## Run the external kernel
+RPE helps an AI application determine which requirements apply, whether an action may continue, what is missing, and when responsibility must return to a human or institution.
 
-The current reference implementation is dependency-free Python.
+## Install and call the kernel
 
-Evaluate one requirement pack:
+The current reference implementation is dependency-free Python 3.11+.
+
+```bash
+python -m pip install .
+```
+
+```python
+from rpe_kernel import evaluate_action
+
+result = evaluate_action(action_request, requirement_packs)
+```
+
+All supported runtime interfaces delegate to this same package API.
+
+| Interface | Entry point | Documentation |
+|---|---|---|
+| Python package | `from rpe_kernel import evaluate_action` | [`docs/python-package-api.md`](docs/python-package-api.md) |
+| Local REST adapter | `rpe-rest` | [`docs/integrations/rest-api.md`](docs/integrations/rest-api.md) |
+| OpenAPI 3.1 contract | `GET /openapi.json` | [`docs/integrations/openapi.md`](docs/integrations/openapi.md) |
+| MCP stdio adapter | `rpe-mcp` | [`docs/integrations/mcp-stdio.md`](docs/integrations/mcp-stdio.md) |
+
+The REST adapter exposes:
+
+```text
+GET  /health
+GET  /openapi.json
+POST /v1/evaluate
+```
+
+The MCP adapter exposes one bounded tool:
+
+```text
+rpe_evaluate_action
+```
+
+Both adapters evaluate proposed actions only. They do not execute the action, approve deployment, publish releases, merge code, or transfer responsibility.
+
+## Run the executable examples
+
+Single pack:
 
 ```bash
 python scripts/run_external_kernel.py \
@@ -37,7 +69,7 @@ python scripts/run_external_kernel.py \
   examples/external-kernel/minimal-action-request.json
 ```
 
-Evaluate multiple packs together:
+Multiple packs:
 
 ```bash
 python scripts/run_external_kernel_multi.py \
@@ -46,123 +78,80 @@ python scripts/run_external_kernel_multi.py \
   examples/external-kernel/minimal-data-handling-pack.json
 ```
 
-Run the original 15-second responsibility-path demo:
+Original responsibility-path demo:
 
 ```bash
 python scripts/demo.py
 ```
 
-Expected combined behavior:
-
-```text
-publication requirement pack → human_gate
-data-handling requirement pack → hold
-combined decision → human_gate
-```
-
-The result preserves each pack's applicability, missing requirements, reason codes, source metadata, and human-return role instead of collapsing them into an opaque score.
-
 ## What is implemented
 
-| Component | Purpose | Start here |
-|---|---|---|
-| External kernel | Evaluate one Responsible AI requirement pack against an AI action | [`scripts/run_external_kernel.py`](scripts/run_external_kernel.py) |
-| Multi-pack evaluator | Combine multiple applicable requirement decisions with visible precedence | [`scripts/run_external_kernel_multi.py`](scripts/run_external_kernel_multi.py) |
-| Quick demo | Show the original responsibility-path checks in seconds | [`scripts/demo.py`](scripts/demo.py) |
-| Requirement-pack schema | Define machine-readable controls and source provenance | [`schemas/external-kernel/requirement-pack.schema.json`](schemas/external-kernel/requirement-pack.schema.json) |
-| Action-request schema | Define the AI action and its execution context | [`schemas/external-kernel/action-request.schema.json`](schemas/external-kernel/action-request.schema.json) |
-| Gate-decision schema | Define structured allow, hold, human-gate, and deny results | [`schemas/external-kernel/gate-decision.schema.json`](schemas/external-kernel/gate-decision.schema.json) |
-| Source metadata | Record authority, jurisdiction, source version, review owner, and interpretation status | [`docs/requirement-pack-source-metadata.md`](docs/requirement-pack-source-metadata.md) |
-| Repository-map generator | Produce exact file URLs for AI/search readers | [`scripts/generate_repository_map.py`](scripts/generate_repository_map.py) |
-| Responsibility-path tools | Record evidence, authority, stop, return, and repair paths | [`templates/ai-assisted-work-responsibility-path.yaml`](templates/ai-assisted-work-responsibility-path.yaml) |
-| Static artifact catalog | Browse project artifacts without cloning the repository | [`site/index.html`](site/index.html) |
-| Formalization spine | Explore structural invariants in Lean 4 | [`formal/lean/README.md`](formal/lean/README.md) |
+- applicability resolution for requirement packs
+- deterministic multi-pack evaluation
+- structured `allow`, `hold`, `human_gate`, and `deny` decisions
+- Python package API
+- local REST adapter
+- OpenAPI 3.1 contract served by the REST adapter
+- bounded MCP stdio adapter
+- source metadata and human-return routes
+- schemas, synthetic fixtures, checkers, and GitHub Actions
+- a single-source guard that prevents REST and MCP from reimplementing kernel semantics
 
-## Example decision
+The canonical runtime path is:
 
-An AI requests external publication, but authority and human approval have not been confirmed:
-
-```json
-{
-  "decision": "human_gate",
-  "reason_codes": [
-    "RPE-PUBLISH-MISSING-AUTHORITY-CONFIRMED",
-    "RPE-PUBLISH-MISSING-HUMAN-APPROVAL-PRESENT"
-  ],
-  "missing_requirements": [
-    "authority_confirmed",
-    "human_approval_present"
-  ],
-  "human_return": {
-    "role": "authorized_human_owner"
-  }
-}
+```text
+Python / REST / MCP
+        ↓
+rpe_kernel.evaluate_action()
+        ↓
+applicability resolution
+        ↓
+pack evaluation and decision combination
 ```
 
-RPE does not ask the model to merely "behave responsibly." It inserts explicit requirements, stop conditions, evidence expectations, and human-return routes into the action pathway.
+See [`docs/single-source-kernel.md`](docs/single-source-kernel.md) for the implementation-drift guard.
 
-## Intended integrations
+## Core artifacts
 
-The external kernel is vendor-neutral. Planned adapters and starter components include:
-
-- MCP servers and tool gateways
-- OpenAI tool and function-calling layers
-- Gemini and Claude tool adapters
-- LangGraph, LangChain, Semantic Kernel, AutoGen, and CrewAI middleware
-- GitHub Actions and CI gates
-- REST proxies and local CLI workflows
-- enterprise and SAP-oriented workflow adapters
-
-See [`docs/external-kernel-roadmap.md`](docs/external-kernel-roadmap.md) for the implementation sequence.
+| Component | Start here |
+|---|---|
+| Kernel package | [`rpe_kernel/pipeline.py`](rpe_kernel/pipeline.py) |
+| Applicability resolver | [`rpe_kernel/applicability.py`](rpe_kernel/applicability.py) |
+| Pack evaluator | [`rpe_kernel/evaluation.py`](rpe_kernel/evaluation.py) |
+| REST adapter | [`rpe_kernel/http_api.py`](rpe_kernel/http_api.py) |
+| MCP adapter | [`rpe_kernel/mcp_server.py`](rpe_kernel/mcp_server.py) |
+| OpenAPI contract | [`spec/openapi/rpe-kernel.openapi.json`](spec/openapi/rpe-kernel.openapi.json) |
+| Requirement-pack schema | [`schemas/external-kernel/requirement-pack.schema.json`](schemas/external-kernel/requirement-pack.schema.json) |
+| Action-request schema | [`schemas/external-kernel/action-request.schema.json`](schemas/external-kernel/action-request.schema.json) |
+| Gate-decision schema | [`schemas/external-kernel/gate-decision.schema.json`](schemas/external-kernel/gate-decision.schema.json) |
+| Static artifact catalog | [`site/index.html`](site/index.html) |
+| Architecture | [`docs/architecture/external-responsibility-kernel.md`](docs/architecture/external-responsibility-kernel.md) |
+| Product roadmap | [`docs/external-kernel-roadmap.md`](docs/external-kernel-roadmap.md) |
+| Project roadmap | [`ROADMAP.md`](ROADMAP.md) |
+| AI/search-reader entrance | [`READMEforAI.md`](READMEforAI.md) |
+| Japanese entrance | [`README.ja.md`](README.ja.md) |
 
 ## Requirement packs
 
-A requirement pack converts a law mapping, standard, guideline, organizational policy, or synthetic test requirement into an executable control.
+A requirement pack converts a law mapping, standard, guideline, organizational policy, or synthetic test requirement into an executable control. A pack can carry applicability conditions, required context, decision behavior, reason-code namespace, human-return role, source authority, jurisdiction, version, effective date, review owner, and interpretation status.
 
-Each pack can carry:
+The included packs are synthetic examples. A real law-, standard-, or policy-derived pack requires source-specific human review and maintenance.
 
-- applicability conditions
-- required context and evidence
-- decision on missing requirements
-- reason-code namespace
-- human-return role
-- source authority and URL
-- jurisdiction and source version
-- effective date and review owner
-- review and interpretation status
+## Current direction
 
-The current packs are synthetic examples. Real law, standard, guideline, and organizational-policy mappings require source-specific review and maintenance.
+The kernel package and first portable interfaces are implemented. Near-term work now focuses on:
 
-## Project status
-
-RPE is an active reference implementation under construction.
-
-The repository already contains executable kernel paths, schemas, examples, validators, CI workflows, responsibility-record templates, reader tools, and formalization experiments. The next major work is applicability resolution, runtime packaging, adapters, richer requirement-pack tooling, and integration examples.
-
-- [External-kernel architecture](docs/architecture/external-responsibility-kernel.md)
-- [External-kernel roadmap](docs/external-kernel-roadmap.md)
-- [Current project roadmap](ROADMAP.md)
-- [Browser-friendly artifact catalog](https://yutorikomeiji.github.io/responsibility-pathway-engineering/)
-- [Static catalog source](site/index.html)
-- [AI/search-reader entrance](READMEforAI.md)
-
-## Design principle
-
-RPE preserves the ability to return from an AI action to:
-
-- the requirement that affected it
-- the evidence and uncertainty available at the time
-- the authority required for execution
-- the person or institution responsible for review
-- the stop, repair, and reopening path
-
-Responsibility boundaries are part of the implementation, not a substitute for implementation.
+1. stabilizing request and result contracts, including explicit schema-version policy;
+2. loading and validating external requirement packs through a bounded interface;
+3. adding integration examples without duplicating kernel semantics;
+4. improving traces, repair, resume, and evidence handling;
+5. researching production boundaries such as authentication, authorization, tenancy, persistence, and deployment controls before any production claim.
 
 ## Scope boundary
 
 RPE provides executable control structures and traceable responsibility pathways. It does not by itself establish that a system is lawful, safe, compliant, fair, certified, socially adequate, or production-approved.
 
-A schema-valid or passing result means that the stated machine-readable checks passed. Real-world applicability, source interpretation, evidence sufficiency, deployment approval, and final responsibility remain with the relevant human or institution.
+A schema-valid or passing result means only that the stated machine-readable checks passed. Real-world applicability, source interpretation, evidence sufficiency, deployment approval, and final responsibility remain with the relevant human or institution.
 
 ## Author and construction
 

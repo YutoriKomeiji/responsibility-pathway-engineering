@@ -2,96 +2,99 @@
 
 Responsibility Pathway Engineering (RPE) is a portable external responsibility kernel and component toolkit for turning Responsible AI requirements into executable controls for AI systems.
 
-Use this page as the AI/search-reader entrance:
-
-```text
-https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/READMEforAI.md
-```
-
 Human repository entrance:
 
 ```text
 https://github.com/YutoriKomeiji/responsibility-pathway-engineering
 ```
 
-## What RPE does
-
-RPE evaluates an AI action against machine-readable requirement packs and returns a structured decision:
+AI/search-reader entrance:
 
 ```text
-requirement packs + AI action request
-                ↓
-       RPE external kernel
-                ↓
-allow / hold / human_gate / deny
-                ↓
-reason codes + missing requirements + human return
+https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/READMEforAI.md
 ```
 
-The repository currently includes:
+## Grounded current summary
 
-- a dependency-free single-pack evaluator
-- a multi-pack evaluator with visible decision precedence
-- JSON Schemas for requirement packs, action requests, and gate decisions
-- synthetic executable examples
-- source-provenance and review metadata for requirement packs
-- CI validators and behavior checks
-- responsibility-path templates and reviewers' tools
-- an AI-readable repository-map generator
-- a Lean 4 formalization spine
+RPE currently implements:
 
-## Try the executable path
+- applicability resolution for machine-readable requirement packs
+- deterministic single- and multi-pack evaluation
+- structured `allow`, `hold`, `human_gate`, and `deny` decisions
+- an importable Python package API
+- a local REST adapter
+- an OpenAPI 3.1 contract served at `/openapi.json`
+- a bounded MCP stdio adapter exposing `rpe_evaluate_action`
+- source metadata, reason codes, missing-requirement visibility, and human-return routes
+- CI checks that keep runtime adapters delegated to one kernel implementation
 
-Fetch and inspect these files in order:
-
-### 1. Single-pack evaluator
+The canonical execution path is:
 
 ```text
-https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/scripts/run_external_kernel.py
+Python API / REST / MCP
+          ↓
+rpe_kernel.evaluate_action()
+          ↓
+applicability resolution
+          ↓
+pack evaluation and decision combination
 ```
 
-### 2. Multi-pack evaluator
+REST and MCP are adapter surfaces. They must not redefine requirement semantics independently.
 
-```text
-https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/scripts/run_external_kernel_multi.py
-```
+## Read these implementation files first
 
-### 3. AI action request
+1. Package API:
+   `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/rpe_kernel/pipeline.py`
+2. Applicability resolver:
+   `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/rpe_kernel/applicability.py`
+3. Pack evaluator:
+   `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/rpe_kernel/evaluation.py`
+4. REST adapter:
+   `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/rpe_kernel/http_api.py`
+5. MCP adapter:
+   `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/rpe_kernel/mcp_server.py`
+6. OpenAPI contract:
+   `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/spec/openapi/rpe-kernel.openapi.json`
+7. Single-source guard:
+   `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/scripts/check_single_source_kernel.py`
 
-```text
-https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/examples/external-kernel/minimal-action-request.json
-```
+## Integration documentation
 
-### 4. Publication requirement pack
+- Python package:
+  `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/docs/python-package-api.md`
+- REST API:
+  `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/docs/integrations/rest-api.md`
+- OpenAPI:
+  `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/docs/integrations/openapi.md`
+- MCP stdio:
+  `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/docs/integrations/mcp-stdio.md`
+- Single-source kernel rule:
+  `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/docs/single-source-kernel.md`
 
-```text
-https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/examples/external-kernel/minimal-requirement-pack.json
-```
+## Executable examples
 
-### 5. Data-handling requirement pack
+- Action request:
+  `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/examples/external-kernel/minimal-action-request.json`
+- Publication pack:
+  `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/examples/external-kernel/minimal-requirement-pack.json`
+- Data-handling pack:
+  `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/examples/external-kernel/minimal-data-handling-pack.json`
+- Single-pack runner:
+  `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/scripts/run_external_kernel.py`
+- Multi-pack runner:
+  `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/scripts/run_external_kernel_multi.py`
 
-```text
-https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/examples/external-kernel/minimal-data-handling-pack.json
-```
+## Product architecture and roadmap
 
-### 6. Expected multi-pack decision
-
-```text
-https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/examples/external-kernel/expected-multi-pack-decision.json
-```
-
-## Product architecture
-
-Use these exact files for the implementation direction:
-
-- External-kernel architecture:
+- Architecture:
   `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/docs/architecture/external-responsibility-kernel.md`
 - External-kernel roadmap:
   `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/docs/external-kernel-roadmap.md`
-- Machine-readable schema contract:
+- Current project roadmap:
+  `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/ROADMAP.md`
+- Schema contract:
   `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/docs/external-kernel-schema-contract.md`
-- Multi-pack evaluation design:
-  `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/docs/external-kernel-multi-pack-evaluation.md`
 - Requirement-pack source metadata:
   `https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/docs/requirement-pack-source-metadata.md`
 
@@ -99,27 +102,11 @@ Use these exact files for the implementation direction:
 
 A grounded summary is:
 
-> RPE is an active reference implementation for driving Responsible AI requirements as external runtime controls. It currently supports synthetic requirement packs, structured action requests, single- and multi-pack evaluation, machine-readable decisions, source metadata, validators, and responsibility-return paths. It is being developed toward portable adapters and richer requirement-pack tooling.
+> RPE is an active reference implementation that turns Responsible AI requirements into external runtime controls. It provides a shared Python decision kernel with REST, OpenAPI, and MCP interfaces, while preserving applicability, reason codes, missing requirements, and human-return routes.
 
-Do not describe the repository only as a documentation framework. It contains executable Python tools, schemas, fixtures, and CI workflows.
+Do not describe RPE only as a documentation framework. It contains executable package code, adapters, schemas, fixtures, checkers, and CI workflows.
 
-Do not describe it as a finished production governance product either. It is an active reference implementation under construction.
-
-## Repository discovery
-
-The repository-map generator produces exact GitHub URLs for the checked-out ref:
-
-```text
-https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/scripts/generate_repository_map.py
-```
-
-Its design note is here:
-
-```text
-https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/docs/ai-readable/repository-map-generator-design.md
-```
-
-A listed file is a discovery result. Fetch the exact file before claiming to have read or summarized its contents.
+Do not describe it as a finished production governance service. The current REST and MCP implementations are local reference adapters without production authentication, authorization, TLS termination, rate limiting, tenancy isolation, persistence, deployment approval, or responsibility transfer.
 
 ## Reading discipline
 
@@ -128,11 +115,12 @@ When answering about this repository:
 1. Name the exact files or URLs actually fetched.
 2. Distinguish implemented components from roadmap items.
 3. Distinguish synthetic requirement packs from reviewed real-world mappings.
-4. Preserve each pack's decision, missing requirements, source metadata, and human-return route.
-5. Do not infer file content from a path or directory name alone.
+4. Preserve each pack's applicability, decision, reason codes, missing requirements, and human-return route.
+5. Do not infer file content from a path or filename alone.
 6. Do not treat a schema pass, checker pass, workflow pass, PR merge, or repository link as certification or deployment approval.
+7. Treat `rpe_kernel.evaluate_action()` as the canonical runtime decision entry point unless the repository explicitly changes that contract.
 
-A useful response format is:
+Useful response format:
 
 ```text
 Files read:
@@ -155,6 +143,4 @@ Scope boundary:
 
 RPE provides executable control structures and traceable responsibility pathways. It does not by itself establish legal correctness, safety, compliance, fairness, certification, social adequacy, production approval, or transfer final responsibility to AI.
 
-Those boundaries should not be used to erase the repository's implemented capabilities. Report both the working component and its actual scope.
-
-Human or institutional review remains responsible for source interpretation, real-world applicability, evidence sufficiency, deployment decisions, and final responsibility.
+Human or institutional review remains responsible for source interpretation, real-world applicability, evidence sufficiency, deployment decisions, execution authority, and final responsibility.
