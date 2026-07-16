@@ -1,0 +1,65 @@
+name: Check requirement pack governance
+
+on:
+  pull_request:
+    paths:
+      - "docs/requirement-pack-governance.md"
+      - "schemas/external-kernel/requirement-pack-governance.schema.json"
+      - "examples/external-kernel/*governance*.json"
+      - "scripts/check_requirement_pack_governance.py"
+      - ".github/workflows/check-requirement-pack-governance.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/requirement-pack-governance.md"
+      - "schemas/external-kernel/requirement-pack-governance.schema.json"
+      - "examples/external-kernel/*governance*.json"
+      - "scripts/check_requirement_pack_governance.py"
+      - ".github/workflows/check-requirement-pack-governance.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  governance-check:
+    name: Requirement pack governance structural check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Check synthetic active governance record
+        run: |
+          python scripts/check_requirement_pack_governance.py \
+            examples/external-kernel/minimal-requirement-pack-governance.json \
+            --today 2026-07-16
+
+      - name: Confirm expired record returns human gate
+        run: |
+          python - <<'PY'
+          import json
+          import subprocess
+          import tempfile
+          from pathlib import Path
+
+          source = Path("examples/external-kernel/minimal-requirement-pack-governance.json")
+          record = json.loads(source.read_text(encoding="utf-8"))
+          record["next_review_due"] = "2025-01-01"
+          with tempfile.TemporaryDirectory() as directory:
+              path = Path(directory) / "expired.json"
+              path.write_text(json.dumps(record), encoding="utf-8")
+              completed = subprocess.run(
+                  ["python", "scripts/check_requirement_pack_governance.py", str(path), "--today", "2026-07-16"],
+                  text=True,
+                  capture_output=True,
+              )
+              assert completed.returncode == 1, completed.stdout + completed.stderr
+              result = json.loads(completed.stdout)
+              assert result["decision"] == "human_gate"
+              assert "RPE-PACK-GOV-REVIEW-EXPIRED" in result["reason_codes"]
+          PY
+
+      - name: Boundary statement
+        run: |
+          echo "This is a bounded structural governance check only."
+          echo "It is not legal review, regulatory monitoring, certification, or production approval."

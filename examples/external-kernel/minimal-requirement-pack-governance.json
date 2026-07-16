@@ -1,0 +1,26 @@
+{
+  "pack_id": "rpe.synthetic.publication-gate.v0",
+  "pack_version": "0.1",
+  "lifecycle_state": "active",
+  "maintenance_owner": "repository_maintainer",
+  "reviewer": "repository_maintainer",
+  "approver": "repository_maintainer",
+  "source_authority": "RPE synthetic example",
+  "source_version": "synthetic-0.1",
+  "jurisdiction": "not_applicable",
+  "effective_scope": "Synthetic repository example only",
+  "interpretation_status": "not_applicable",
+  "unresolved_ambiguity": [],
+  "effective_date": null,
+  "last_reviewed": "2026-07-16",
+  "next_review_due": "2027-07-16",
+  "supersedes": null,
+  "superseded_by": null,
+  "human_return": {
+    "role": "repository_maintainer"
+  },
+  "notes": [
+    "This record demonstrates governance metadata only.",
+    "It does not approve a real legal or organizational policy mapping."
+  ]
+}
