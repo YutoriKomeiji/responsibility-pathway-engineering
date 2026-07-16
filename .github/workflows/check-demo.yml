@@ -6,6 +6,8 @@ on:
       - "scripts/demo.py"
       - "README.md"
       - "README.ja.md"
+      - "READMEforAI.md"
+      - "docs/verification-assurance-and-open-governance.md"
       - ".github/workflows/check-demo.yml"
   push:
     branches:
@@ -14,6 +16,8 @@ on:
       - "scripts/demo.py"
       - "README.md"
       - "README.ja.md"
+      - "READMEforAI.md"
+      - "docs/verification-assurance-and-open-governance.md"
       - ".github/workflows/check-demo.yml"
 
 permissions:
@@ -27,8 +31,21 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Run dependency-free demo
+      - name: Run full decision walkthrough
         run: python scripts/demo.py
+
+      - name: Run each bounded scenario
+        run: |
+          python scripts/demo.py --scenario human_gate
+          python scripts/demo.py --scenario allow
+          python scripts/demo.py --scenario unknown
+
+      - name: Validate machine-readable output
+        run: |
+          python scripts/demo.py --json > /tmp/rpe-demo.json
+          python -m json.tool /tmp/rpe-demo.json > /dev/null
+          grep -q '"decision": "allow"' /tmp/rpe-demo.json
+          grep -q '"decision": "human_gate"' /tmp/rpe-demo.json
 
       - name: Confirm README points to demo command
         run: grep -q "python scripts/demo.py" README.md
