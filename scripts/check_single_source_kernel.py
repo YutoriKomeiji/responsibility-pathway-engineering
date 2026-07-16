@@ -51,11 +51,25 @@ def check_canonical_definitions() -> None:
         )
 
 
+def delegates_to_evaluate_action(path: Path, text: str) -> bool:
+    """Accept direct calls or dependency injection of the canonical evaluator."""
+    if "evaluate_action(" in text:
+        return True
+    tree = ast.parse(text, filename=str(path))
+    return any(
+        isinstance(default, ast.Name) and default.id == "evaluate_action"
+        for node in ast.walk(tree)
+        if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
+        for default in [*node.args.defaults, *node.args.kw_defaults]
+        if default is not None
+    )
+
+
 def check_adapters_delegate() -> None:
     for path in ADAPTERS:
         text = path.read_text(encoding="utf-8")
         require("from .pipeline import evaluate_action" in text, f"{path.relative_to(ROOT)} must import evaluate_action")
-        require("evaluate_action(" in text, f"{path.relative_to(ROOT)} must delegate to evaluate_action")
+        require(delegates_to_evaluate_action(path, text), f"{path.relative_to(ROOT)} must delegate to evaluate_action")
         require("DECISION_ORDER" not in text, f"{path.relative_to(ROOT)} must not define decision precedence")
         require("resolve_pack(" not in text, f"{path.relative_to(ROOT)} must not resolve applicability directly")
         require("evaluate_pack(" not in text, f"{path.relative_to(ROOT)} must not evaluate packs directly")
