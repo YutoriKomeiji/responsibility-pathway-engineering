@@ -2,12 +2,12 @@
 
 **Executable Responsible AI controls for AI systems.**
 
-Responsibility Pathway Engineering (RPE) is a portable external responsibility kernel and component toolkit for turning Responsible AI requirements into runtime controls.
+Responsibility Pathway Engineering (RPE) is a portable external responsibility kernel and component toolkit for turning explicitly scoped Responsible AI requirement mappings into runtime controls.
 
 ```text
 Responsible AI requirements
         ↓
-machine-readable requirement packs
+human-scoped machine-readable requirement packs
         ↓
 AI action request
         ↓
@@ -18,7 +18,24 @@ allow / hold / human_gate / deny
 reason codes, applicability, missing evidence, and human return
 ```
 
-RPE helps an AI application determine which requirements apply, whether an action may continue, what is missing, and when responsibility must return to a human or institution.
+RPE helps an AI application determine which stated requirements apply, whether a proposed action may continue, what is missing, and when responsibility must return to a human or institution.
+
+## M1 current position — Governed Reference Kernel
+
+RPE has reached the **M1 Governed Reference Kernel** checkpoint.
+
+Implemented at this checkpoint:
+
+- one deterministic Python decision kernel;
+- applicability resolution and multi-pack evaluation;
+- Python, local REST, OpenAPI 3.1, and MCP stdio reference interfaces;
+- requirement-pack lifecycle and maintenance governance;
+- expiry, ambiguity, ownership, review, suspension, supersession, and retirement boundaries;
+- independent semantic-version baselines for action requests, gate decisions, requirement packs, governance records, and reason-code policy;
+- compatibility, unknown-version, deprecation, and migration rules;
+- schemas, synthetic fixtures, checkers, and CI guards.
+
+M1 does **not** include external pack loading, governance enforcement inside `evaluate_action()`, production authentication or deployment, automatic legal interpretation, or formal verification of the Python runtime.
 
 ## Install and call the kernel
 
@@ -39,37 +56,19 @@ All supported runtime interfaces delegate to this same package API.
 | Interface | Entry point | Documentation |
 |---|---|---|
 | Python package | `from rpe_kernel import evaluate_action` | [`docs/python-package-api.md`](docs/python-package-api.md) |
-| Local REST adapter | `rpe-rest` | [`docs/integrations/rest-api.md`](docs/integrations/rest-api.md) |
+| Local REST reference adapter | `rpe-rest` | [`docs/integrations/rest-api.md`](docs/integrations/rest-api.md) |
 | OpenAPI 3.1 contract | `GET /openapi.json` | [`docs/integrations/openapi.md`](docs/integrations/openapi.md) |
-| MCP stdio adapter | `rpe-mcp` | [`docs/integrations/mcp-stdio.md`](docs/integrations/mcp-stdio.md) |
+| MCP stdio reference adapter | `rpe-mcp` | [`docs/integrations/mcp-stdio.md`](docs/integrations/mcp-stdio.md) |
 
-The REST adapter exposes:
-
-```text
-GET  /health
-GET  /openapi.json
-POST /v1/evaluate
-```
-
-The MCP adapter exposes one bounded tool:
-
-```text
-rpe_evaluate_action
-```
-
-Both adapters evaluate proposed actions only. They do not execute the action, approve deployment, publish releases, merge code, or transfer responsibility.
+The adapters evaluate proposed actions only. They do not execute actions, approve deployment, publish releases, merge code, or transfer responsibility.
 
 ## Run the executable examples
-
-Single pack:
 
 ```bash
 python scripts/run_external_kernel.py \
   examples/external-kernel/minimal-requirement-pack.json \
   examples/external-kernel/minimal-action-request.json
 ```
-
-Multiple packs:
 
 ```bash
 python scripts/run_external_kernel_multi.py \
@@ -78,26 +77,7 @@ python scripts/run_external_kernel_multi.py \
   examples/external-kernel/minimal-data-handling-pack.json
 ```
 
-Original responsibility-path demo:
-
-```bash
-python scripts/demo.py
-```
-
-## What is implemented
-
-- applicability resolution for requirement packs
-- deterministic multi-pack evaluation
-- structured `allow`, `hold`, `human_gate`, and `deny` decisions
-- Python package API
-- local REST adapter
-- OpenAPI 3.1 contract served by the REST adapter
-- bounded MCP stdio adapter
-- source metadata and human-return routes
-- schemas, synthetic fixtures, checkers, and GitHub Actions
-- a single-source guard that prevents REST and MCP from reimplementing kernel semantics
-
-The canonical runtime path is:
+## Canonical runtime path
 
 ```text
 Python / REST / MCP
@@ -109,9 +89,23 @@ applicability resolution
 pack evaluation and decision combination
 ```
 
-See [`docs/single-source-kernel.md`](docs/single-source-kernel.md) for the implementation-drift guard.
+Reference adapters must not independently redefine kernel semantics. See [`docs/single-source-kernel.md`](docs/single-source-kernel.md).
 
-## Core artifacts
+## Governance and compatibility artifacts
+
+| Component | Start here |
+|---|---|
+| Requirement-pack governance | [`docs/requirement-pack-governance.md`](docs/requirement-pack-governance.md) |
+| Governance schema | [`schemas/external-kernel/requirement-pack-governance.schema.json`](schemas/external-kernel/requirement-pack-governance.schema.json) |
+| Compatibility policy | [`docs/contract-compatibility-policy.md`](docs/contract-compatibility-policy.md) |
+| Version manifest | [`schemas/external-kernel/contract-versions.json`](schemas/external-kernel/contract-versions.json) |
+| Requirement-pack schema | [`schemas/external-kernel/requirement-pack.schema.json`](schemas/external-kernel/requirement-pack.schema.json) |
+| Action-request schema | [`schemas/external-kernel/action-request.schema.json`](schemas/external-kernel/action-request.schema.json) |
+| Gate-decision schema | [`schemas/external-kernel/gate-decision.schema.json`](schemas/external-kernel/gate-decision.schema.json) |
+
+A pack is an operational mapping maintained by identified humans. Schema validity does not establish that its source interpretation is correct, current, complete, or suitable for a deployment.
+
+## Core implementation artifacts
 
 | Component | Start here |
 |---|---|
@@ -121,9 +115,6 @@ See [`docs/single-source-kernel.md`](docs/single-source-kernel.md) for the imple
 | REST adapter | [`rpe_kernel/http_api.py`](rpe_kernel/http_api.py) |
 | MCP adapter | [`rpe_kernel/mcp_server.py`](rpe_kernel/mcp_server.py) |
 | OpenAPI contract | [`spec/openapi/rpe-kernel.openapi.json`](spec/openapi/rpe-kernel.openapi.json) |
-| Requirement-pack schema | [`schemas/external-kernel/requirement-pack.schema.json`](schemas/external-kernel/requirement-pack.schema.json) |
-| Action-request schema | [`schemas/external-kernel/action-request.schema.json`](schemas/external-kernel/action-request.schema.json) |
-| Gate-decision schema | [`schemas/external-kernel/gate-decision.schema.json`](schemas/external-kernel/gate-decision.schema.json) |
 | Static artifact catalog | [`site/index.html`](site/index.html) |
 | Architecture | [`docs/architecture/external-responsibility-kernel.md`](docs/architecture/external-responsibility-kernel.md) |
 | Product roadmap | [`docs/external-kernel-roadmap.md`](docs/external-kernel-roadmap.md) |
@@ -131,27 +122,21 @@ See [`docs/single-source-kernel.md`](docs/single-source-kernel.md) for the imple
 | AI/search-reader entrance | [`READMEforAI.md`](READMEforAI.md) |
 | Japanese entrance | [`README.ja.md`](README.ja.md) |
 
-## Requirement packs
+## Next milestone
 
-A requirement pack converts a law mapping, standard, guideline, organizational policy, or synthetic test requirement into an executable control. A pack can carry applicability conditions, required context, decision behavior, reason-code namespace, human-return role, source authority, jurisdiction, version, effective date, review owner, and interpretation status.
+M2 is **Governed Pack Integration**. The next bounded work is:
 
-The included packs are synthetic examples. A real law-, standard-, or policy-derived pack requires source-specific human review and maintenance.
-
-## Current direction
-
-The kernel package and first portable interfaces are implemented. Near-term work now focuses on:
-
-1. stabilizing request and result contracts, including explicit schema-version policy;
-2. loading and validating external requirement packs through a bounded interface;
-3. adding integration examples without duplicating kernel semantics;
-4. improving traces, repair, resume, and evidence handling;
-5. researching production boundaries such as authentication, authorization, tenancy, persistence, and deployment controls before any production claim.
+1. make runtime payload version handling explicit;
+2. define and implement governance eligibility at the runtime boundary;
+3. add bounded external requirement-pack loading;
+4. preserve visible failure for stale, ownerless, ambiguous, suspended, or incompatible packs;
+5. continue toward trace, evidence, repair, and resume structures.
 
 ## Scope boundary
 
-RPE provides executable control structures and traceable responsibility pathways. It does not by itself establish that a system is lawful, safe, compliant, fair, certified, socially adequate, or production-approved.
+RPE is an enforcement and orchestration reference kernel for approved machine-readable controls. It is not a general legal reasoning engine, self-maintaining regulatory knowledge base, certification system, production governance service, or proof that an AI system is lawful, safe, compliant, fair, or socially adequate.
 
-A schema-valid or passing result means only that the stated machine-readable checks passed. Real-world applicability, source interpretation, evidence sufficiency, deployment approval, and final responsibility remain with the relevant human or institution.
+A schema-valid or passing result means only that the stated machine-readable checks passed. Source interpretation, real-world applicability, evidence sufficiency, deployment approval, execution authority, and final responsibility remain with the relevant human or institution.
 
 ## Author and construction
 
