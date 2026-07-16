@@ -14,6 +14,7 @@ keywords = ["responsible-ai", "governance", "policy-engine", "ai-agents"]
 
 [project.scripts]
 rpe-rest = "rpe_kernel.http_api:main"
+rpe-mcp = "rpe_kernel.mcp_server:main"
 
 [tool.setuptools]
 packages = ["rpe_kernel"]
