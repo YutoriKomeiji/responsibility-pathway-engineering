@@ -4,153 +4,161 @@ This roadmap tracks RPE's portable external responsibility kernel and its interf
 
 ## Target
 
-Build reusable components that convert Responsible AI requirements into runtime controls across multiple AI environments while preserving applicability, evidence scope, reason codes, and human-return ownership.
+Build reusable components that evaluate explicitly scoped Responsible AI requirement mappings during AI operation while preserving applicability, evidence scope, reason codes, maintenance ownership, and human-return routes.
+
+RPE does not directly interpret the full complexity of law or policy. Real-world mappings require named human interpretation and maintenance ownership.
 
 ## Stage K0 — Foundation
 
 **Status: implemented for the current synthetic reference scope.**
 
-- external responsibility-kernel architecture
-- minimal requirement-pack and action-request shapes
-- structured `allow`, `hold`, `human_gate`, and `deny` decisions
-- reason codes and human-return routes
+- external responsibility-kernel architecture;
+- minimal requirement-pack and action-request shapes;
+- structured `allow`, `hold`, `human_gate`, and `deny` decisions;
+- reason codes and human-return routes.
 
-Primary files:
+## Stage K1 — Interchange schemas and compatibility
 
-- `docs/architecture/external-responsibility-kernel.md`
-- `examples/external-kernel/`
-- `scripts/run_external_kernel.py`
-- `scripts/run_external_kernel_multi.py`
-
-## Stage K1 — Stable interchange schemas
-
-**Status: partially implemented; compatibility policy remains open.**
+**Status: partially implemented.**
 
 Implemented:
 
-- JSON Schemas for requirement packs, action requests, and gate decisions
-- positive and negative fixtures
-- bounded validation workflows
-- source metadata for authority, jurisdiction, version, owner, effective date, and review status
+- JSON Schemas for requirement packs, action requests, and gate decisions;
+- positive and negative fixtures;
+- bounded validation workflows;
+- source metadata fields.
+
+Open:
+
+- explicit request and result schema versions;
+- pack lifecycle and schema versions;
+- breaking-change, deprecation, and migration rules;
+- reason-code compatibility rules.
+
+## Stage K2 — Applicability and mapping boundary
+
+**Status: minimal applicability resolution implemented.**
+
+The current resolver uses a small fixed set of fields and deterministic equality checks. Requirement evaluation checks named context values. This is a bounded operational gate, not a general legal or policy reasoning engine.
 
 Next:
 
-- explicit request and result schema-version policy
-- breaking-change and deprecation rules
-- reason-code compatibility rules
+- keep unknown applicability visible and human-returning;
+- define conflict, exception, timing, and ambiguity boundaries before increasing condition complexity;
+- require human-scoped and human-approved mappings for real-world use;
+- preserve review diffs rather than silently replacing interpretation.
 
-## Stage K2 — Applicability and requirement-pack tooling
+## Stage K3 — Requirement-pack governance
 
-**Status: applicability resolution implemented; compiler and external loading remain open.**
+**Status: next priority.**
+
+Define lifecycle states:
+
+```text
+draft → reviewed → approved → active → suspended / superseded / retired
+```
+
+Define and check:
+
+- owner and reviewer;
+- source authority, source version, and jurisdiction;
+- effective scope and interpretation status;
+- unresolved ambiguity;
+- effective date, last review, and next review due;
+- supersession and retirement relationships;
+- failure behavior for expired, ownerless, ambiguous, or unreviewed packs.
+
+External loading and reviewed real-world packs remain blocked until this governance boundary is explicit.
+
+## Stage K4 — Runtime kernel package
+
+**Status: implemented as a small Python reference API.**
 
 Implemented:
 
-- deterministic applicability resolution
-- visible `applicable`, `not_applicable`, and `unknown` handling
-- human return when applicability is unknown or no pack is applicable
+- `rpe_kernel.evaluate_action()` package entry point;
+- deterministic applicability and multi-pack evaluation;
+- local package checker and CI;
+- single-source delegation guard.
 
 Next:
 
-- bounded external pack loader
-- reviewable compiler or mapping assistant
-- validation of authority, scope, ownership, and interpretation metadata
-- review diffs rather than silent policy replacement
+- explicit contract versioning;
+- richer trace, repair, resume, and evidence references;
+- release and migration policy beyond repository-local installation.
 
-## Stage K3 — Runtime kernel package
+## Stage K5 — Reference adapters and SDK integrations
 
-**Status: implemented as a small Python package reference API.**
-
-Implemented:
-
-- `rpe_kernel.evaluate_action()` package entry point
-- multi-pack evaluation and deterministic precedence
-- applicability, evaluation, and combination modules
-- local package checker and CI
-
-Next:
-
-- explicit contract versioning
-- richer trace, repair, resume, and evidence references
-- packaging and release policy beyond repository-local installation
-
-## Stage K4 — Environment adapters
-
-**Status: first bounded adapters implemented.**
+**Status: first bounded reference adapters implemented.**
 
 Implemented:
 
-- local REST adapter: `rpe-rest`
-- OpenAPI 3.1 contract served at `/openapi.json`
-- MCP stdio adapter: `rpe-mcp`
-- one MCP tool: `rpe_evaluate_action`
-- single-source guard that keeps REST and MCP delegated to `evaluate_action()`
+- dependency-free local REST reference adapter;
+- OpenAPI 3.1 contract served at `/openapi.json`;
+- dependency-free MCP stdio reference adapter;
+- one MCP tool: `rpe_evaluate_action`.
 
 Current boundary:
 
-- local reference interfaces only
-- no production authentication, authorization, TLS termination, rate limiting, persistence, tenancy isolation, deployment approval, or automatic execution
+- these are local reference interfaces, not production protocol stacks;
+- they do not execute actions or provide production authentication, authorization, transport security, persistence, tenancy, deployment approval, or operational ownership.
 
-Future adapter candidates:
+Before adding an operational adapter:
 
-- OpenAI tool/function middleware
-- Gemini and Claude tool layers
-- LangGraph, LangChain, Semantic Kernel, AutoGen, and CrewAI integration examples
-- GitHub Actions and CI gates
-- enterprise and SAP-oriented workflow adapters
+- evaluate established SDKs and maintained protocol libraries;
+- document protocol-version and dependency maintenance responsibility;
+- keep the adapter thin;
+- do not duplicate kernel semantics.
 
-Every adapter must translate environment events into the common request contract and must not redefine kernel semantics independently.
+Future integration candidates include OpenAI, Gemini, Claude, LangGraph, LangChain, Semantic Kernel, AutoGen, CrewAI, GitHub Actions, and enterprise or SAP-oriented workflows.
 
-## Stage K5 — Reviewed requirement packs
+## Stage K6 — External pack loading
+
+**Status: blocked by governance and compatibility work.**
+
+A bounded loader must preserve lifecycle, source, interpretation, ownership, version, and review-validity metadata. Invalid or stale governance state must fail visibly and must not silently produce `allow`.
+
+Loading a pack is not evidence that the mapping is correct, current, complete, or approved for a deployment.
+
+## Stage K7 — Reviewed requirement mappings
 
 **Status: synthetic examples only.**
 
-Candidate areas:
+Candidate areas include organizational AI policies, data handling, external-send controls, human oversight, transparency, evidence scope, incident handling, repair, rollback, and selected public-framework mappings.
 
-- organizational AI policies
-- data handling and external-send controls
-- human oversight and escalation
-- transparency and evidence-scope requirements
-- incident, repair, rollback, and resume paths
-- selected mappings from public Responsible AI frameworks and laws
+Each reviewed mapping needs named interpretation and maintenance ownership. A mapping is an operational artifact, not a substitute for professional or institutional judgment.
 
-A real-world pack must identify its source, version, jurisdiction, interpretation owner, effective scope, unresolved ambiguity, and required human review. A pack is an operational mapping, not a substitute for legal or regulatory judgment.
+## Stage K8 — Trace, repair, and resume
 
-## Stage K6 — Production architecture research
+**Status: candidate.**
 
-**Status: deferred until local contracts have implementation experience.**
+Add explicit trace identifiers, evidence references, repair inputs, resume conditions, return-to-human ownership, and non-silent reopening rules.
 
-Research areas:
+## Stage K9 — Production architecture research
 
-- authentication and authorization
-- persistence, retention, and tenancy
-- secrets and transport security
-- rate limiting and abuse handling
-- observability and audit traces
-- deployment, rollback, and incident ownership
+**Status: deferred.**
 
-No production claim should be made from the current local adapters.
+Research authentication, authorization, transport security, persistence, retention, tenancy, secrets, rate limiting, observability, deployment, rollback, operational ownership, and incident response before making production claims.
 
-## Stage K7 — Conformance and interoperability research
+## Stage K10 — Formalization and interoperability research
 
-**Status: future research.**
+**Status: experimental and future-facing.**
 
-Only after interfaces, packs, and adapters have real implementation experience:
+Lean currently expresses selected model-scoped structural invariants. It does not verify the Python runtime, source interpretation, organizational operation, or real-world outcome.
 
-- compare behavior across adapters
-- define compatibility levels
-- test pack portability
-- study trace interoperability
-- consider conformance language only with explicit evidence and external review
+Do not use Lean as primary product evidence unless an explicit checked correspondence between formal definitions and runtime artifacts is established.
+
+Interoperability or conformance language should be considered only after interfaces, governed packs, adapters, and traces have implementation experience and external review.
 
 ## Near-term PR sequence
 
-1. Define request/result schema-version and compatibility policy.
-2. Add a bounded external requirement-pack loader and checker.
-3. Add one integration example without duplicating kernel semantics.
-4. Extend trace, repair, resume, and evidence-reference structures.
-5. Add reviewed requirement packs only with named human interpretation ownership.
-6. Revisit production architecture after the local contracts stabilize.
+1. Define pack lifecycle, ownership, expiry, supersession, and review-validity rules.
+2. Define compatibility policy for pack, request, result, and reason-code versions.
+3. Document reference adapters separately from future SDK-based operational adapters.
+4. Add external pack loading only after governance failure modes are explicit.
+5. Extend trace, repair, resume, and evidence-reference structures.
+6. Add reviewed mappings only with named human interpretation and maintenance ownership.
 
 ## Success measure
 
-RPE progresses when a requirement can be represented, checked for applicability, evaluated, traced, stopped, escalated, repaired, resumed, and returned to the correct human or institution through a portable interface—not when the repository merely adds more prose or interface count.
+RPE progresses when an explicitly scoped requirement mapping can be governed, checked for applicability, evaluated, traced, stopped, escalated, repaired, resumed, and returned to the correct human or institution through a maintainable interface—not when the repository merely adds interface count, condition complexity, formal terminology, or claims.
