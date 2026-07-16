@@ -121,6 +121,7 @@ Pack EvaluationとDecision Combination
 | REST Adapter | [`rpe_kernel/http_api.py`](rpe_kernel/http_api.py) |
 | MCP Adapter | [`rpe_kernel/mcp_server.py`](rpe_kernel/mcp_server.py) |
 | OpenAPI Contract | [`spec/openapi/rpe-kernel.openapi.json`](spec/openapi/rpe-kernel.openapi.json) |
+| Static Artifact Catalog | [`site/index.html`](site/index.html) |
 | Architecture | [`docs/architecture/external-responsibility-kernel.md`](docs/architecture/external-responsibility-kernel.md) |
 | Product Roadmap | [`docs/external-kernel-roadmap.md`](docs/external-kernel-roadmap.md) |
 | Project Roadmap | [`ROADMAP.md`](ROADMAP.md) |
