@@ -77,6 +77,12 @@ python scripts/run_external_kernel_multi.py \
   examples/external-kernel/minimal-data-handling-pack.json
 ```
 
+Original dependency-free demo:
+
+```bash
+python scripts/demo.py
+```
+
 ## Canonical runtime path
 
 ```text
