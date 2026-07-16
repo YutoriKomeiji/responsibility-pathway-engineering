@@ -5,12 +5,19 @@ from __future__ import annotations
 import argparse
 import json
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+from pathlib import Path
 from typing import Any, Callable
 
 from .pipeline import evaluate_action
 
 JsonObject = dict[str, Any]
 Evaluator = Callable[[JsonObject, list[JsonObject]], JsonObject]
+OPENAPI_PATH = Path(__file__).resolve().parents[1] / "spec" / "openapi" / "rpe-kernel.openapi.json"
+
+
+def load_openapi_document() -> JsonObject:
+    """Load the repository-owned OpenAPI contract."""
+    return json.loads(OPENAPI_PATH.read_text(encoding="utf-8"))
 
 
 def create_handler(evaluator: Evaluator = evaluate_action) -> type[BaseHTTPRequestHandler]:
@@ -30,6 +37,9 @@ def create_handler(evaluator: Evaluator = evaluate_action) -> type[BaseHTTPReque
         def do_GET(self) -> None:  # noqa: N802 - stdlib handler contract
             if self.path == "/health":
                 self._write_json(200, {"status": "ok", "service": "rpe-kernel"})
+                return
+            if self.path == "/openapi.json":
+                self._write_json(200, load_openapi_document())
                 return
             self._write_json(404, {"error": "not_found"})
 

@@ -1,0 +1,176 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "RPE Kernel Reference API",
+    "version": "0.1.0",
+    "description": "Machine-readable contract for the local reference HTTP adapter over rpe_kernel.evaluate_action. This contract does not imply production readiness, legal interpretation, or transfer of final responsibility to an AI system."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8080",
+      "description": "Local reference server"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "getHealth",
+        "summary": "Check reference service health",
+        "responses": {
+          "200": {
+            "description": "Service is running",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/openapi.json": {
+      "get": {
+        "operationId": "getOpenApiDocument",
+        "summary": "Return this OpenAPI document",
+        "responses": {
+          "200": {
+            "description": "OpenAPI 3.1 document",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/evaluate": {
+      "post": {
+        "operationId": "evaluateAction",
+        "summary": "Resolve pack applicability and evaluate an action",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EvaluateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Structured RPE decision",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EvaluateResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Malformed JSON or invalid request shape",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Unknown route",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HealthResponse": {
+        "type": "object",
+        "required": ["status", "service"],
+        "properties": {
+          "status": {"const": "ok"},
+          "service": {"const": "rpe-kernel"}
+        },
+        "additionalProperties": false
+      },
+      "EvaluateRequest": {
+        "type": "object",
+        "required": ["request", "packs"],
+        "properties": {
+          "request": {
+            "type": "object",
+            "description": "Action request consumed by the RPE kernel.",
+            "additionalProperties": true
+          },
+          "packs": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": true
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "EvaluateResponse": {
+        "type": "object",
+        "required": ["decision", "stage", "reason_codes", "applicability", "pack_decisions", "next_step"],
+        "properties": {
+          "request_id": {},
+          "decision": {
+            "type": "string",
+            "enum": ["allow", "hold", "human_gate", "deny"]
+          },
+          "stage": {
+            "type": "string",
+            "enum": ["applicability", "evaluation"]
+          },
+          "reason_codes": {
+            "type": "array",
+            "items": {"type": "string"}
+          },
+          "applicability": {
+            "type": "array",
+            "items": {"type": "object", "additionalProperties": true}
+          },
+          "pack_decisions": {
+            "type": "array",
+            "items": {"type": "object", "additionalProperties": true}
+          },
+          "human_return": {
+            "oneOf": [
+              {"type": "object", "additionalProperties": true},
+              {"type": "null"}
+            ]
+          },
+          "next_step": {"type": "string"}
+        },
+        "additionalProperties": true
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": ["error"],
+        "properties": {
+          "error": {"type": "string"},
+          "detail": {"type": "string"}
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}
