@@ -124,6 +124,7 @@ See [`docs/single-source-kernel.md`](docs/single-source-kernel.md) for the imple
 | Requirement-pack schema | [`schemas/external-kernel/requirement-pack.schema.json`](schemas/external-kernel/requirement-pack.schema.json) |
 | Action-request schema | [`schemas/external-kernel/action-request.schema.json`](schemas/external-kernel/action-request.schema.json) |
 | Gate-decision schema | [`schemas/external-kernel/gate-decision.schema.json`](schemas/external-kernel/gate-decision.schema.json) |
+| Static artifact catalog | [`site/index.html`](site/index.html) |
 | Architecture | [`docs/architecture/external-responsibility-kernel.md`](docs/architecture/external-responsibility-kernel.md) |
 | Product roadmap | [`docs/external-kernel-roadmap.md`](docs/external-kernel-roadmap.md) |
 | Project roadmap | [`ROADMAP.md`](ROADMAP.md) |
