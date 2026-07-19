@@ -20,6 +20,30 @@ reason codes, applicability, missing evidence, and human return
 
 RPE helps an AI application determine which stated requirements apply, whether a proposed action may continue, what is missing, and when responsibility must return to a human or institution.
 
+## Long-term direction: human-reviewed normative controls
+
+RPE aims to provide an open, inspectable engineering substrate through which human-reviewed interpretations of laws, public guidelines, standards, organizational policies, professional duties, and affected-party commitments can be translated into bounded machine-readable controls.
+
+The intended direction is:
+
+```text
+official or otherwise authorized normative source
+        ↓
+human or institutional scoping, interpretation, review, and approval
+        ↓
+versioned Requirement Pack with source metadata and governance state
+        ↓
+RPE applicability resolution and bounded decision control
+        ↓
+allow / hold / human_gate / deny, with reasons and a human return path
+        ↓
+separate assurance, legal review, and operational authorization
+```
+
+RPE does not transfer legal interpretation, approval authority, or final responsibility to the kernel. It is not an automated compliance engine, legal-reasoning authority, self-updating regulatory database, certification body, or substitute for qualified legal, policy, safety, assurance, or operational governance review.
+
+Future real-world mapping work may include sources such as the EU AI regulatory framework, Japanese public AI governance guidance, international or sector standards, and organization-specific requirements. Such mappings require identified human owners, source and version control, applicable-scope decisions, interpretation records, conflict handling, review status, maintenance rules, expiry and supersession controls, and explicit Human Gates.
+
 ## M1 current position — Governed Reference Kernel
 
 RPE has reached the **M1 Governed Reference Kernel** checkpoint.
