@@ -94,6 +94,19 @@ An existing immutable tag or Release must not be silently repointed or recreated
 
 An RPE release may demonstrate that specified artifacts were built and passed declared checks under stated assumptions. It does not establish production readiness, complete runtime correctness, safety, fairness, legal compliance, certification, operational authorization, or validation of the full RPM → RPD → RPE pathway.
 
+## Connected repository artifacts
+
+This policy must be read together with:
+
+- [`README.md`](../README.md) and [`READMEforAI.md`](../READMEforAI.md) for current implementation status, supported interfaces, exclusions, and reader discipline;
+- [`contract-compatibility-policy.md`](contract-compatibility-policy.md) and [`../schemas/external-kernel/contract-versions.json`](../schemas/external-kernel/contract-versions.json) for compatibility and version baselines;
+- [`requirement-pack-governance.md`](requirement-pack-governance.md) for lifecycle, ownership, suspension, supersession, and retirement controls;
+- [`single-source-kernel.md`](single-source-kernel.md) for the canonical runtime decision path;
+- [`verification-assurance-and-open-governance.md`](verification-assurance-and-open-governance.md) for bounded verification and assurance claims;
+- [`external-kernel-roadmap.md`](external-kernel-roadmap.md) and [`../ROADMAP.md`](../ROADMAP.md) for future work that must not be represented as released capability.
+
+A passing test, schema check, CI run, merged pull request, or milestone label does not advance the release state by itself. The canonical-artifact decision and sequencing rules defined here control formal distribution and GitHub Release transitions.
+
 ## Human Gate
 
 Canonical-artifact selection, versioning, external registry publication, tag creation, release publication, immutable-release activation, exception approval, withdrawal, and production-use claims remain explicit human decisions.
