@@ -18,6 +18,28 @@ allow / hold / human_gate / deny
 理由コード・不足情報・人間への戻り先
 ```
 
+## 長期方向：人間審査済みの規範要求を限定的な制御へ
+
+RPEは、法令、公的ガイドライン、標準、組織規程、専門職上の義務、影響当事者とのcommitmentに対する**人間の審査済み解釈**を、限定された機械可読controlへ変換するための、公開的かつ検査可能な工学基盤を目指します。
+
+```text
+公式または正当に承認された規範ソース
+        ↓
+人間・制度による適用範囲、解釈、review、承認
+        ↓
+source metadataとgovernance stateを持つversioned Requirement Pack
+        ↓
+RPEによるapplicability resolutionと限定的なdecision control
+        ↓
+allow / hold / human_gate / deny、理由、戻り先
+        ↓
+別系統のAssurance、法務審査、Operational Governance
+```
+
+RPEは、法的解釈、承認権限、最終責任をkernelへ移転しません。自動コンプライアンス判定engine、法的助言主体、自動更新される規制database、認証機関、法務・政策・安全・Assurance・運用統治の代替ではありません。
+
+将来の実世界mapping対象には、EUのAI規制枠組み、総務省・経済産業省のAI事業者ガイドライン、国際・業界標準、組織固有要求などが含まれ得ます。実世界Packには、特定された人間owner、sourceとversion、適用範囲、解釈記録、競合処理、review状態、保守責任、失効・改定・supersession制御、明示的なHuman Gateが必要です。
+
 ## M1現在地 — Governed Reference Kernel
 
 RPEは **M1 Governed Reference Kernel** のcheckpointへ到達しました。
