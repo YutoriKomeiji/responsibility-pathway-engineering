@@ -15,6 +15,7 @@ SEMVER = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+$")
 REQUIRED_CONTRACTS = {
     "action_request",
     "gate_decision",
+    "runtime_evaluation_result",
     "requirement_pack",
     "requirement_pack_governance",
 }
@@ -34,7 +35,8 @@ def main() -> None:
 
     contracts = data.get("contracts")
     if not isinstance(contracts, dict) or set(contracts) != REQUIRED_CONTRACTS:
-        fail("contracts must contain exactly the four current external-kernel contract families")
+        expected = ", ".join(sorted(REQUIRED_CONTRACTS))
+        fail(f"contracts must contain exactly the current external-kernel contract families: {expected}")
 
     for name, entry in contracts.items():
         if not isinstance(entry, dict):
