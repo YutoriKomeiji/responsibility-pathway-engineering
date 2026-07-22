@@ -1,29 +1,35 @@
 {
-  "manifest_version": "1.0.0",
+  "manifest_version": "1.1.0",
   "contracts": {
     "action_request": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "schema_path": "schemas/external-kernel/action-request.schema.json",
       "unknown_major_behavior": "reject",
-      "notes": "Current bounded request contract baseline. Runtime payloads do not yet carry this version field."
+      "notes": "Runtime payloads may carry contract_version. M2 governed calls require it through explicit compatibility enforcement."
     },
     "gate_decision": {
       "version": "1.0.0",
       "schema_path": "schemas/external-kernel/gate-decision.schema.json",
       "unknown_major_behavior": "human_gate",
-      "notes": "Current bounded decision contract baseline. Runtime payloads do not yet carry this version field."
+      "notes": "Per-pack decision contract retained for bounded interchange."
+    },
+    "runtime_evaluation_result": {
+      "version": "1.0.0",
+      "schema_path": "schemas/external-kernel/runtime-evaluation-result.schema.json",
+      "unknown_major_behavior": "human_gate",
+      "notes": "Canonical multi-pack kernel result with compatibility, governance, applicability, evaluation, and human-return stages."
     },
     "requirement_pack": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "schema_path": "schemas/external-kernel/requirement-pack.schema.json",
       "unknown_major_behavior": "human_gate",
-      "notes": "Current repository pack schema baseline; compatibility does not establish governance eligibility."
+      "notes": "Runtime payloads may carry contract_version. Compatibility does not establish governance eligibility."
     },
     "requirement_pack_governance": {
       "version": "1.0.0",
       "schema_path": "schemas/external-kernel/requirement-pack-governance.schema.json",
       "unknown_major_behavior": "human_gate",
-      "notes": "Current governance-record baseline; not yet bound into evaluate_action()."
+      "notes": "Governance records can now be bound into evaluate_action() for M2 entry calls."
     }
   },
   "reason_code_policy": {
