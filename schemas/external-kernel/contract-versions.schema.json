@@ -10,10 +10,17 @@
     "contracts": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["action_request", "gate_decision", "requirement_pack", "requirement_pack_governance"],
+      "required": [
+        "action_request",
+        "gate_decision",
+        "runtime_evaluation_result",
+        "requirement_pack",
+        "requirement_pack_governance"
+      ],
       "properties": {
         "action_request": {"$ref": "#/$defs/contract"},
         "gate_decision": {"$ref": "#/$defs/contract"},
+        "runtime_evaluation_result": {"$ref": "#/$defs/contract"},
         "requirement_pack": {"$ref": "#/$defs/contract"},
         "requirement_pack_governance": {"$ref": "#/$defs/contract"}
       }
