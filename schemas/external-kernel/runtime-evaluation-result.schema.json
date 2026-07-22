@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/schemas/external-kernel/runtime-evaluation-result.schema.json",
+  "title": "RPE Runtime Evaluation Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "request_id",
+    "decision",
+    "stage",
+    "reason_codes",
+    "applicability",
+    "pack_decisions",
+    "governance",
+    "human_return",
+    "next_step"
+  ],
+  "properties": {
+    "contract_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "request_id": {"type": ["string", "null"]},
+    "decision": {"type": "string", "enum": ["allow", "hold", "human_gate", "deny"]},
+    "stage": {"type": "string", "enum": ["compatibility", "governance", "applicability", "evaluation"]},
+    "reason_codes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "applicability": {"type": "array", "items": {"type": "object"}},
+    "pack_decisions": {"type": "array", "items": {"type": "object"}},
+    "governance": {"type": "array", "items": {"type": "object"}},
+    "human_return": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "required": ["role"],
+          "properties": {"role": {"type": "string", "minLength": 1}}
+        }
+      ]
+    },
+    "next_step": {"type": "string", "minLength": 1}
+  }
+}
