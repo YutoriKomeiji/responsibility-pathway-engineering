@@ -6,6 +6,7 @@
   "additionalProperties": false,
   "required": ["request_id", "actor", "action", "target", "context", "evidence_scope"],
   "properties": {
+    "contract_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
     "request_id": {"type": "string", "minLength": 1},
     "actor": {
       "type": "object",
