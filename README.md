@@ -61,6 +61,18 @@ Implemented at this checkpoint:
 
 M1 does **not** include external pack loading, governance enforcement inside `evaluate_action()`, production authentication or deployment, automatic legal interpretation, reviewed real-world guideline mappings, or formal verification of the Python runtime.
 
+## Claim boundary and promotion path
+
+RPE does not treat every current non-claim as a permanent disclaimer. It separates **evidence-limited milestone boundaries that can move** from **permanent responsibility boundaries that an engineering kernel should not cross by itself**. See [`docs/claim-boundary-promotion.md`](docs/claim-boundary-promotion.md).
+
+Current evidence-limited boundaries include M1-only governed-pack integration, production deployment evidence, reviewed real-world normative mappings, implementation-wide formal conformance, and broader interoperability. Each has an explicit route forward: M2 implementation and tests; deployment/security/operational evidence; source/version/owner/interpretation/review records; model-to-runtime refinement evidence; and independent client/implementation evidence against declared interfaces.
+
+Promotion is explicit. Completing M2 or another engineering milestone does **not** automatically promote legal, compliance, certification, production, or operational-authority claims.
+
+Permanent responsibility boundaries remain even as RPE matures: RPE does not automatically interpret law/policy/ethics/standards; does not create deployment approval, execution authority, certification, or legal compliance; does not make a schema-valid Requirement Pack prove its interpretation; does not make an external action/system/business decision correct; and does not transfer final legal, policy, assurance, deployment, or operational responsibility to the kernel.
+
+Where practical, evidence-limited boundaries are tracked as `evidence_collecting`, `review_ready`, or `promoted`; permanent boundaries are `permanently_out_of_scope`.
+
 ## Install and call the kernel
 
 The current reference implementation is dependency-free Python 3.11+.
@@ -155,6 +167,7 @@ See [`docs/verification-assurance-and-open-governance.md`](docs/verification-ass
 | Component | Start here |
 |---|---|
 | Requirement-pack governance | [`docs/requirement-pack-governance.md`](docs/requirement-pack-governance.md) |
+| Claim boundary promotion | [`docs/claim-boundary-promotion.md`](docs/claim-boundary-promotion.md) |
 | Governance schema | [`schemas/external-kernel/requirement-pack-governance.schema.json`](schemas/external-kernel/requirement-pack-governance.schema.json) |
 | Compatibility policy | [`docs/contract-compatibility-policy.md`](docs/contract-compatibility-policy.md) |
 | Version manifest | [`schemas/external-kernel/contract-versions.json`](schemas/external-kernel/contract-versions.json) |
@@ -199,6 +212,8 @@ Parallel research includes bounded Lean 4 formalization, model-to-runtime corres
 RPE is an enforcement and orchestration reference kernel for approved machine-readable controls. It is not a general legal reasoning engine, self-maintaining regulatory knowledge base, certification system, production governance service, official standard, or proof that an AI system is lawful, safe, compliant, fair, or socially adequate.
 
 A schema-valid or passing result means only that the stated machine-readable checks passed. Source interpretation, real-world applicability, evidence sufficiency, deployment approval, execution authority, and final responsibility remain with the relevant human or institution.
+
+The distinction between temporary evidence gaps and permanent responsibility boundaries is maintained in [`docs/claim-boundary-promotion.md`](docs/claim-boundary-promotion.md).
 
 ## Author and construction
 
