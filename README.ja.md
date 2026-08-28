@@ -57,6 +57,18 @@ RPEは **M1 Governed Reference Kernel** のcheckpointへ到達しました。
 
 M1には外部Pack Loader、`evaluate_action()`内部でのGovernance強制、本番配備、自動的なsource解釈、review済みの実世界ガイドラインmapping、Python runtimeの形式検証は含まれません。
 
+## Claim boundary と promotion path
+
+RPEは、現在のnon-claimをすべて永久的な免責事項として扱いません。公開境界を、**evidenceが揃えば前進できるmilestone boundary**と、**engineering kernel単体では越えるべきでない恒久責任境界**に分けます。詳細は [`docs/claim-boundary-promotion.ja.md`](docs/claim-boundary-promotion.ja.md) を参照してください。
+
+現在のevidence依存境界には、M1段階のGoverned Pack Integration、本番deployment evidence、review済み実世界normative mapping、implementation-wide formal conformance、より広いinteroperabilityがあります。これらにはそれぞれ、M2実装・test、deployment/security/operational evidence、source/version/owner/interpretation/review記録、model-to-runtime refinement evidence、独立client/implementation evidenceという前進条件があります。
+
+Promotionは明示的に行います。M2などのengineering milestoneを完了しても、legal、compliance、certification、production、operational authority claimへ自動昇格しません。
+
+恒久責任境界として、RPEはlaw/policy/ethics/standardの自動解釈、deployment approvalやexecution authorityの生成、schema-valid Packを正しい解釈だとみなすこと、external action/system/business decisionの正しさの生成、最終責任のkernelへの移転を行いません。
+
+可能な範囲でevidence依存境界は `evidence_collecting` / `review_ready` / `promoted`、恒久境界は `permanently_out_of_scope` として扱います。
+
 ## インストール
 
 ```bash
@@ -132,6 +144,7 @@ RPEはMIT Licenseで公開し、公開仕様、相互運用性、独立検証可
 ## GovernanceとCompatibility
 
 - [`docs/requirement-pack-governance.md`](docs/requirement-pack-governance.md)
+- [`docs/claim-boundary-promotion.ja.md`](docs/claim-boundary-promotion.ja.md)
 - [`schemas/external-kernel/requirement-pack-governance.schema.json`](schemas/external-kernel/requirement-pack-governance.schema.json)
 - [`docs/contract-compatibility-policy.md`](docs/contract-compatibility-policy.md)
 - [`schemas/external-kernel/contract-versions.json`](schemas/external-kernel/contract-versions.json)
@@ -168,6 +181,8 @@ M2は **Governed Pack Integration** です。
 RPEは、承認された機械可読controlを執行・調停するreference kernelです。一般的なsource解釈engine、自動更新knowledge base、認証system、本番governance service、公的標準規格ではありません。
 
 SchemaやcheckerのPASSは、明示されたcheckが通過したことだけを意味します。Source interpretation、現実の適用可能性、evidence sufficiency、deployment approval、execution authority、最終責任は、関係する人間または組織に残ります。
+
+一時的なevidence gapと恒久責任境界の区別は [`docs/claim-boundary-promotion.ja.md`](docs/claim-boundary-promotion.ja.md) に記載します。
 
 RPEはOpen Constructionとして、[Luminalia AI](docs/ai-assisted-construction-note.md) の支援を受けて開発されています。方向性、merge、公開、外部主張、本番採用、最終責任は人間maintainerに残ります。
 
