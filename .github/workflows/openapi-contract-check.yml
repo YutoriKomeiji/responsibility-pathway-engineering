@@ -4,7 +4,11 @@ on:
   pull_request:
     paths:
       - "spec/openapi/**"
+      - "rpe_kernel/rpe-kernel.openapi.json"
       - "rpe_kernel/http_api.py"
+      - "rpe_kernel/pipeline.py"
+      - "schemas/external-kernel/governed-evaluation-request.schema.json"
+      - "schemas/external-kernel/governed-evaluation-result.schema.json"
       - "scripts/check_openapi_contract.py"
       - ".github/workflows/openapi-contract-check.yml"
   workflow_dispatch:
