@@ -8,20 +8,24 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any, Callable
 
-from .pipeline import evaluate_action
+from .pipeline import evaluate_action, evaluate_governed_action
 
 JsonObject = dict[str, Any]
 Evaluator = Callable[[JsonObject, list[JsonObject]], JsonObject]
-OPENAPI_PATH = Path(__file__).resolve().parents[1] / "spec" / "openapi" / "rpe-kernel.openapi.json"
+GovernedEvaluator = Callable[[JsonObject], JsonObject]
+OPENAPI_PATH = Path(__file__).with_name("rpe-kernel.openapi.json")
 
 
 def load_openapi_document() -> JsonObject:
-    """Load the repository-owned OpenAPI contract."""
+    """Load the packaged OpenAPI contract snapshot."""
     return json.loads(OPENAPI_PATH.read_text(encoding="utf-8"))
 
 
-def create_handler(evaluator: Evaluator = evaluate_action) -> type[BaseHTTPRequestHandler]:
-    """Create an HTTP handler bound to an evaluator implementation."""
+def create_handler(
+    evaluator: Evaluator = evaluate_action,
+    governed_evaluator: GovernedEvaluator = evaluate_governed_action,
+) -> type[BaseHTTPRequestHandler]:
+    """Create an HTTP handler bound to evaluator implementations."""
 
     class RPERequestHandler(BaseHTTPRequestHandler):
         server_version = "rpe-kernel/0.1"
@@ -44,7 +48,7 @@ def create_handler(evaluator: Evaluator = evaluate_action) -> type[BaseHTTPReque
             self._write_json(404, {"error": "not_found"})
 
         def do_POST(self) -> None:  # noqa: N802 - stdlib handler contract
-            if self.path != "/v1/evaluate":
+            if self.path not in {"/v1/evaluate", "/v1/evaluate/governed"}:
                 self._write_json(404, {"error": "not_found"})
                 return
 
@@ -57,6 +61,11 @@ def create_handler(evaluator: Evaluator = evaluate_action) -> type[BaseHTTPReque
 
             if not isinstance(payload, dict):
                 self._write_json(400, {"error": "invalid_request", "detail": "body must be an object"})
+                return
+
+            if self.path == "/v1/evaluate/governed":
+                result = governed_evaluator(payload)
+                self._write_json(200, result)
                 return
 
             request = payload.get("request")
