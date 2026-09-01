@@ -7,7 +7,10 @@ on:
       - "schemas/external-kernel/contract-versions.json"
       - "schemas/external-kernel/contract-versions.schema.json"
       - "schemas/external-kernel/*.schema.json"
+      - "examples/external-kernel/minimal-governed-evaluation-request.json"
+      - "rpe_kernel/contract_versions.py"
       - "scripts/check_contract_compatibility.py"
+      - "scripts/check_governed_contract_schemas.py"
       - ".github/workflows/check-contract-compatibility.yml"
   push:
     branches: [main]
@@ -16,7 +19,10 @@ on:
       - "schemas/external-kernel/contract-versions.json"
       - "schemas/external-kernel/contract-versions.schema.json"
       - "schemas/external-kernel/*.schema.json"
+      - "examples/external-kernel/minimal-governed-evaluation-request.json"
+      - "rpe_kernel/contract_versions.py"
       - "scripts/check_contract_compatibility.py"
+      - "scripts/check_governed_contract_schemas.py"
       - ".github/workflows/check-contract-compatibility.yml"
 
 permissions:
@@ -30,9 +36,10 @@ jobs:
       - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
+      - name: Install schema validator
+        run: python -m pip install --disable-pip-version-check jsonschema
       - name: Validate manifest structure with jsonschema
         run: |
-          python -m pip install --disable-pip-version-check jsonschema
           python - <<'PY'
           import json
           from pathlib import Path
@@ -44,5 +51,7 @@ jobs:
           Draft202012Validator(schema, format_checker=FormatChecker()).validate(instance)
           print('contract version schema: OK')
           PY
-      - name: Check compatibility invariants
+      - name: Check compatibility invariants and packaged runtime snapshot
         run: python scripts/check_contract_compatibility.py
+      - name: Check strict governed contract skeletons
+        run: python scripts/check_governed_contract_schemas.py
