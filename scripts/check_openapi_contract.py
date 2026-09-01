@@ -46,6 +46,9 @@ def main() -> int:
         "HealthResponse",
         "EvaluateRequest",
         "EvaluateResponse",
+        "TransportProvenance",
+        "DownstreamObligations",
+        "ResponsibilityHandoff",
         "GovernedEvaluateRequest",
         "GovernedEvaluateResponse",
         "ErrorResponse",
@@ -57,16 +60,56 @@ def main() -> int:
     if decisions != ["allow", "hold", "human_gate", "deny"]:
         fail("decision enum must preserve kernel precedence vocabulary")
 
-    governed_stages = schemas["GovernedEvaluateResponse"]["properties"]["stage"].get("enum")
+    governed = schemas["GovernedEvaluateResponse"]
+    governed_stages = governed["properties"]["stage"].get("enum")
     if governed_stages != ["admission", "compatibility", "governance", "applicability", "evaluation"]:
         fail("governed stage enum must preserve strict pipeline stages")
+    if "contract_version" not in governed.get("required", []):
+        fail("governed response must require contract_version")
 
-    handoff = schemas["GovernedEvaluateResponse"]["properties"].get("responsibility_handoff", {})
+    governed_request = schemas["GovernedEvaluateRequest"]
+    if governed_request.get("properties", {}).get("transport_provenance", {}).get("$ref") != "#/components/schemas/TransportProvenance":
+        fail("governed request must expose optional transport provenance")
+
+    handoff = schemas["ResponsibilityHandoff"]
     handoff_props = handoff.get("properties", {}) if isinstance(handoff, dict) else {}
+    required_handoff = {
+        "authority_effect",
+        "decision_scope",
+        "evaluation_decision",
+        "evaluation_reason_codes",
+        "selected_pack_refs",
+        "rejected_pack_refs",
+        "evaluation_evidence_scope",
+        "transport_provenance",
+        "human_return",
+        "downstream_obligations",
+    }
+    if set(handoff.get("required", [])) != required_handoff:
+        fail("governed handoff required fields drift from runtime contract")
     if handoff_props.get("authority_effect", {}).get("const") != "none":
         fail("governed OpenAPI must preserve authority_effect=none")
     if handoff_props.get("decision_scope", {}).get("const") != "evaluation_only":
         fail("governed OpenAPI must preserve decision_scope=evaluation_only")
+    if handoff_props.get("downstream_obligations", {}).get("$ref") != "#/components/schemas/DownstreamObligations":
+        fail("governed handoff must expose downstream obligations")
+
+    obligations = schemas["DownstreamObligations"]["properties"]
+    if obligations.get("dispatch_authority_required", {}).get("const") is not True:
+        fail("dispatch must require separate downstream authority")
+    if obligations.get("effect_verification_required_for_effect_claim", {}).get("const") is not True:
+        fail("effect claims must require downstream verification")
+    if obligations.get("receipt_sufficient_for_effect_claim", {}).get("const") is not False:
+        fail("receipt must not be sufficient effect evidence")
+    if obligations.get("authority_owner", {}).get("const") != "downstream_runtime_or_institution":
+        fail("RPE must not become downstream authority owner")
+
+    provenance = schemas["TransportProvenance"]
+    provenance_props = provenance.get("properties", {})
+    if provenance_props.get("observation_scope", {}).get("const") != "transport_bytes_only":
+        fail("transport provenance must remain bounded to observed bytes")
+    if "source_path" in provenance_props or "file_path" in provenance_props or "local_path" in provenance_props:
+        fail("OpenAPI transport provenance must not expose local paths")
 
     description = document.get("info", {}).get("description", "").lower()
     if "does not imply production readiness" not in description:
