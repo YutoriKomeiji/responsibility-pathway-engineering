@@ -10,7 +10,7 @@
     "/health": {"get": {"operationId": "getHealth", "summary": "Check reference service health", "responses": {"200": {"description": "Service is running", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/HealthResponse"}}}}}}},
     "/openapi.json": {"get": {"operationId": "getOpenApiDocument", "summary": "Return this OpenAPI document", "responses": {"200": {"description": "OpenAPI 3.1 document", "content": {"application/json": {"schema": {"type": "object"}}}}}}},
     "/v1/evaluate": {"post": {"operationId": "evaluateAction", "summary": "Evaluate through the legacy/M1-compatible RPE path", "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/EvaluateRequest"}}}}, "responses": {"200": {"description": "Structured legacy-compatible RPE decision", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/EvaluateResponse"}}}}, "400": {"description": "Malformed JSON or invalid request shape", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ErrorResponse"}}}}}}},
-    "/v1/evaluate/governed": {"post": {"operationId": "evaluateGovernedAction", "summary": "Evaluate through the strict governed RPE path", "description": "Fail-closed governed evaluation. A successful allow remains evaluation-only and carries authority_effect=none. Optional transport provenance records observed input bytes only and does not establish trust.", "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GovernedEvaluateRequest"}}}}, "responses": {"200": {"description": "Structured governed RPE decision, including fail-closed admission/compatibility/governance outcomes and responsibility handoff obligations", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GovernedEvaluateResponse"}}}}, "400": {"description": "Malformed JSON or a non-object request body", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ErrorResponse"}}}}}}}
+    "/v1/evaluate/governed": {"post": {"operationId": "evaluateGovernedAction", "summary": "Evaluate through the strict governed RPE path", "description": "Fail-closed governed evaluation. A successful allow remains evaluation-only and carries authority_effect=none. The shared governed result can carry loader-observed transport provenance, but this HTTP request surface does not accept caller-asserted transport provenance.", "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GovernedEvaluateRequest"}}}}, "responses": {"200": {"description": "Structured governed RPE decision, including fail-closed admission/compatibility/governance outcomes and responsibility handoff obligations", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GovernedEvaluateResponse"}}}}, "400": {"description": "Malformed JSON or a non-object request body", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ErrorResponse"}}}}}}}
   },
   "components": {
     "schemas": {
@@ -64,8 +64,7 @@
         "properties": {
           "contract_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
           "request": {"type": "object", "additionalProperties": true},
-          "governed_packs": {"type": "array", "items": {"type": "object", "additionalProperties": true}, "minItems": 1},
-          "transport_provenance": {"$ref": "#/components/schemas/TransportProvenance"}
+          "governed_packs": {"type": "array", "items": {"type": "object", "additionalProperties": true}, "minItems": 1}
         },
         "additionalProperties": false
       },
