@@ -16,7 +16,7 @@ from .evaluation import combine_decisions, evaluate_pack
 from .governance import governance_decision
 
 GATE_DECISION_CONTRACT_VERSION = "1.0.0"
-GOVERNED_RESULT_CONTRACT_VERSION = "1.0.0"
+GOVERNED_RESULT_CONTRACT_VERSION = "1.1.0"
 
 
 def _human_gate(
@@ -56,6 +56,8 @@ def _pack_ref(binding_id: str, pack: dict[str, Any], governance: dict[str, Any])
 def _responsibility_handoff(
     request: dict[str, Any],
     *,
+    decision: str,
+    reason_codes: list[str],
     selected_pack_refs: list[dict[str, Any]],
     rejected_pack_refs: list[dict[str, Any]],
     human_return: dict[str, Any] | None,
@@ -63,9 +65,16 @@ def _responsibility_handoff(
     evidence_scope = request.get("evidence_scope")
     if not isinstance(evidence_scope, dict):
         evidence_scope = {"available": [], "missing": []}
+    residual_owner_role = "downstream_execution_owner"
+    if isinstance(human_return, dict):
+        role = human_return.get("role")
+        if isinstance(role, str) and role:
+            residual_owner_role = role
     return {
         "authority_effect": "none",
         "decision_scope": "evaluation_only",
+        "evaluation_decision": decision,
+        "evaluation_reason_codes": sorted(set(reason_codes)),
         "selected_pack_refs": selected_pack_refs,
         "rejected_pack_refs": rejected_pack_refs,
         "evaluation_evidence_scope": {
@@ -73,6 +82,14 @@ def _responsibility_handoff(
             "missing": list(evidence_scope.get("missing", [])) if isinstance(evidence_scope.get("missing", []), list) else [],
         },
         "human_return": human_return,
+        "downstream_obligations": {
+            "dispatch_authority_required": True,
+            "effect_verification_required_for_effect_claim": True,
+            "receipt_sufficient_for_effect_claim": False,
+            "reauthorization_required_for": ["retry", "repair", "resume"],
+            "authority_owner": "downstream_runtime_or_institution",
+            "residual_owner_role": residual_owner_role,
+        },
     }
 
 
@@ -90,12 +107,13 @@ def _governed_result(
     pack_decisions: list[dict[str, Any]] | None = None,
     governance: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
+    normalized_reason_codes = sorted(set(reason_codes))
     return {
         "contract_version": GOVERNED_RESULT_CONTRACT_VERSION,
         "request_id": request.get("request_id"),
         "decision": decision,
         "stage": stage,
-        "reason_codes": sorted(set(reason_codes)),
+        "reason_codes": normalized_reason_codes,
         "applicability": applicability or [],
         "pack_decisions": pack_decisions or [],
         "governance": governance or [],
@@ -103,6 +121,8 @@ def _governed_result(
         "next_step": next_step,
         "responsibility_handoff": _responsibility_handoff(
             request,
+            decision=decision,
+            reason_codes=normalized_reason_codes,
             selected_pack_refs=selected_pack_refs,
             rejected_pack_refs=rejected_pack_refs,
             human_return=human_return,
