@@ -1,61 +1,76 @@
 # Security Policy
 
-This repository accepts security reports for repository-maintenance risks, documentation-process risks, checker or workflow risks, and accidental exposure risks.
+RPE is actively developed and usable within documented boundaries. Security limitations are treated as engineering work, not as a reason to discourage all use.
 
-This policy is a reporting and triage path only. It is not a security certification, production-readiness claim, legal review, compliance review, safety review, vulnerability bounty program, connector correctness proof, runtime correctness proof, or AI final-responsibility transfer mechanism.
+This policy is **not a security certification**. It is a reporting, triage, threat-model, and repair path for an evolving open-source project. It is also not an **AI final-responsibility transfer** mechanism: software and AI assistance do not assume final human or institutional responsibility for deployment, security decisions, or external effects.
 
-## Scope
+## Supported security posture
 
-In scope:
+The maintainer accepts security reports for the current `main` line and the latest intentionally published release/tag when one exists.
 
-- accidental credential, token, secret, or private-key exposure in repository content
-- GitHub Actions workflow risks
-- dependency or supply-chain risks in repository-maintenance tooling
-- unsafe checker behavior that could mislead maintainers or reviewers
-- documentation paths that could cause a security-sensitive overclaim
-- files or examples that accidentally imply production credentials, real customer data, or private operational data
+RPE currently provides a bounded responsibility-evaluation kernel and reference adapters. It does **not** currently provide a complete production authentication, authorization, tenant-isolation, secret-management, network-security, or deployment-security layer.
 
-Out of scope:
+Those missing platform controls are known boundaries, not evidence that every RPE integration is forbidden. Integrators must supply deployment-specific controls appropriate to their environment.
 
-- production-service vulnerabilities, because this repository is not a production runtime
-- service-specific connector behavior, because service connectors are currently deferred
-- real-world legal, safety, compliance, fairness, or moral responsibility determinations
-- requests to certify RPE, approve deployment, or validate production systems
-- social engineering, phishing, spam, or denial-of-service testing
-
-## Reporting
+## Report a vulnerability
 
 Please do not put secrets, private exploit details, credentials, private logs, or sensitive operational data in a public issue.
 
-Preferred reporting path:
+Prefer GitHub Private Vulnerability Reporting when enabled for this repository. If private reporting is unavailable, contact the maintainer through a non-public channel listed on the maintainer GitHub profile and include enough information to reproduce the issue safely.
 
-1. Open a minimal public issue that says a private security report is needed, without sensitive details; or
-2. Contact the repository maintainer through the account contact path listed by the maintainer profile if available.
+Useful reports include:
 
-If a public issue is used, include only:
+- affected commit/version;
+- affected interface or adapter;
+- minimal reproduction;
+- expected versus observed responsibility/authority behavior;
+- whether external effect, privilege, confidential data, or integrity is at risk;
+- any known workaround or containment step.
 
-- affected file or area, if safe to disclose
-- general issue class, such as `workflow permission`, `secret exposure`, `dependency risk`, or `documentation overclaim`
-- whether immediate maintainer review is requested
+Ordinary bugs, documentation gaps, integration failures, and non-sensitive adversarial examples may be filed as public issues.
 
-## Maintainer triage path
+## Threat families under active attention
 
-When a report is received:
+RPE security work is broader than prompt filtering. Current and planned threat-model work includes:
 
-1. Preserve the report path and available evidence.
-2. Avoid expanding public detail until exposure risk is understood.
-3. Decide whether a private fix, public issue, or public documentation correction is appropriate.
-4. If repository content changed, keep the change small and reviewable.
-5. Record any security-relevant repository-operation change in the appropriate operation document.
+- direct and indirect prompt/content injection;
+- multi-stage injection across tools, memory, agents, and systems;
+- relationship injection / relation misbinding;
+- memory or persistence poisoning;
+- goal hijacking;
+- inter-agent trust escalation;
+- authority laundering and scope escalation;
+- Requirement Pack / policy / adapter supply-chain compromise;
+- recovery-path injection;
+- trajectory and cumulative-risk escalation;
+- resource and economic abuse;
+- provenance and evidence confusion.
 
-## Current security posture
+Not all of these are fully implemented defenses today. They are explicit research and engineering targets.
 
-The repository currently uses bounded repository-maintenance workflows and synthetic examples. Workflow passes and checker passes remain bounded repository-maintenance signals only.
+## Security invariants
 
-This repository does not currently claim production runtime security, connector security, deployment approval, schema security certification, dependency security certification, or conformance evidence.
+RPE should preserve these distinctions even when a model or upstream context is wrong:
 
-## Maintainer responsibilities
+- content is not authority;
+- capability is not authority;
+- identity is not established by self-assertion alone;
+- delegation is not transitive by default;
+- trust does not automatically reset at agent/system boundaries;
+- evaluation evidence is not external-effect evidence;
+- an `allow` evaluation is not execution authorization;
+- repair/resume requirements are not repair/resume authority;
+- unknown lineage or effect remains unknown until independently resolved.
 
-The human maintainer remains responsible for deciding whether a reported issue should be fixed, disclosed, deferred, reverted, or escalated.
+## Fix lifecycle
 
-AI assistance may help draft, inspect, or organize repository changes, but it does not assume final responsibility for security decisions.
+Where feasible, a confirmed security defect should produce:
+
+1. a minimal reproduction;
+2. impact classification;
+3. a fix or containment change;
+4. regression/adversarial coverage;
+5. release or migration guidance when users must act;
+6. a public advisory when disclosure is appropriate.
+
+RPE does not claim perfect prevention of prompt injection, malicious intent, arbitrary multi-agent emergence, or all future attack classes. The engineering target is to prevent untrusted or compromised inputs from silently acquiring authority or effect whenever the architecture can enforce that separation.

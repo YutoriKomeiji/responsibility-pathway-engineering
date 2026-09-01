@@ -4,6 +4,25 @@
 
 Responsibility Pathway Engineering (RPE) is a portable external responsibility kernel and component toolkit for evaluating explicitly scoped machine-readable Responsible AI controls.
 
+## What practical problem does this solve?
+
+Many agent implementations can accidentally collapse **"the model proposed an action"** into **"the system may continue with that action."** RPE inserts a small, inspectable boundary between those two statements.
+
+For an existing agent or automation, RPE can:
+
+- turn a missing approval/evidence condition into a visible `human_gate` instead of implicit continuation;
+- return stable machine-readable reason codes plus a Human Return / residual-owner role;
+- preserve the distinction between evaluation evidence and verified external effect;
+- sit in front of an existing execution stack without becoming the executor or requiring the whole application to become an RPE-specific runtime.
+
+Run the synthetic before/after comparison:
+
+```bash
+python scripts/value_demo.py
+```
+
+See [`docs/why-rpe.md`](docs/why-rpe.md) for the concrete adoption-value boundary and what the demo does **not** prove.
+
 ```text
 Responsible AI requirements
         ↓
@@ -159,7 +178,13 @@ The adapters evaluate proposed actions only. They do not execute actions, approv
 
 ## Executable walkthrough and artifact catalog
 
-The bounded synthetic walkthrough remains available through the canonical demo command:
+For the shortest "why would I use this?" comparison:
+
+```bash
+python scripts/value_demo.py
+```
+
+For the broader bounded synthetic decision walkthrough:
 
 ```bash
 python scripts/demo.py
@@ -167,7 +192,7 @@ python scripts/demo.py
 
 The public static artifact catalog remains available at [`site/index.html`](site/index.html).
 
-A demo pass or catalog entry is repository evidence only; it is not certification, production approval, legal review, or proof of external effect.
+A demo pass or catalog entry is repository evidence only; it is not certification, production approval, legal review, real-world risk-reduction proof, or proof of external effect.
 
 ## Claim boundary and promotion path
 
@@ -204,6 +229,7 @@ See [`docs/verification-assurance-and-open-governance.md`](docs/verification-ass
 
 | Component | Start here |
 |---|---|
+| Why use RPE? | [`docs/why-rpe.md`](docs/why-rpe.md) |
 | Current M2 status | [`docs/m2-governed-integration-current.md`](docs/m2-governed-integration-current.md) |
 | Kernel package | [`rpe_kernel/pipeline.py`](rpe_kernel/pipeline.py) |
 | Bounded loader | [`rpe_kernel/loader.py`](rpe_kernel/loader.py) |
@@ -224,15 +250,14 @@ See [`docs/verification-assurance-and-open-governance.md`](docs/verification-ass
 
 ## Remaining M2 work
 
-The next M2 work is not “add more execution machinery to RPE.” It is to make the evaluation-to-runtime responsibility handoff harder to misuse.
+The next M2 work is not “add more execution machinery to RPE.” It is to make the evaluation-to-runtime responsibility handoff harder to misuse and prove a concrete adoption value rather than only internal correctness.
 
 Priority areas:
 
-1. uncertainty/effect/evidence handoff semantics;
-2. repair/resume **requirements** without repair/resume authority inflation;
-3. residual-owner and Human Return continuity;
-4. adversarial validation of authority confusion, evidence confusion, stale/binding/governance failures, adapter drift, and loader-boundary violations;
-5. synchronized claim review and M2 closure evidence.
+1. adversarial validation of authority confusion, evidence confusion, stale/binding/governance failures, adapter drift, and loader-boundary violations;
+2. prove one compact before/after adoption scenario where RPE changes an unsupported implicit continuation into a reasoned Human Return;
+3. verify that repair/resume requirements remain requirements rather than authority grants;
+4. synchronize claim review and M2 closure evidence.
 
 See [`ROADMAP.md`](ROADMAP.md).
 
