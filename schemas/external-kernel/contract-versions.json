@@ -38,16 +38,16 @@
       "notes": "Binds one versioned Requirement Pack to one versioned governance record for governed admission."
     },
     "governed_evaluation_request": {
-      "version": "1.1.0",
+      "version": "1.0.0",
       "schema_path": "schemas/external-kernel/governed-evaluation-request.schema.json",
       "unknown_major_behavior": "human_gate",
-      "notes": "1.1.0 adds optional bounded transport-provenance carriage while preserving strict governed admission."
+      "notes": "Strict M2 request envelope; loader transport observations remain outside the JSON payload so loading cannot silently migrate this contract."
     },
     "governed_evaluation_result": {
       "version": "1.2.0",
       "schema_path": "schemas/external-kernel/governed-evaluation-result.schema.json",
       "unknown_major_behavior": "human_gate",
-      "notes": "1.2.0 preserves optional bounded transport provenance through the responsibility handoff; provenance remains a transport observation, not trust evidence."
+      "notes": "1.2.0 preserves bounded loader-observed transport provenance through the responsibility handoff; provenance remains a transport observation, not trust evidence."
     }
   },
   "reason_code_policy": {
