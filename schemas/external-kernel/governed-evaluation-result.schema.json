@@ -28,10 +28,16 @@
     "responsibility_handoff": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["authority_effect", "decision_scope", "selected_pack_refs", "rejected_pack_refs", "evaluation_evidence_scope", "human_return"],
+      "required": [
+        "authority_effect", "decision_scope", "evaluation_decision", "evaluation_reason_codes",
+        "selected_pack_refs", "rejected_pack_refs", "evaluation_evidence_scope", "human_return",
+        "downstream_obligations"
+      ],
       "properties": {
         "authority_effect": {"const": "none"},
         "decision_scope": {"const": "evaluation_only"},
+        "evaluation_decision": {"type": "string", "enum": ["allow", "hold", "human_gate", "deny"]},
+        "evaluation_reason_codes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
         "selected_pack_refs": {"type": "array", "items": {"$ref": "#/$defs/pack_ref"}},
         "rejected_pack_refs": {"type": "array", "items": {"$ref": "#/$defs/pack_ref"}},
         "evaluation_evidence_scope": {
@@ -48,6 +54,32 @@
             {"type": "null"},
             {"type": "object", "required": ["role"], "properties": {"role": {"type": "string", "minLength": 1}}}
           ]
+        },
+        "downstream_obligations": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dispatch_authority_required",
+            "effect_verification_required_for_effect_claim",
+            "receipt_sufficient_for_effect_claim",
+            "reauthorization_required_for",
+            "authority_owner",
+            "residual_owner_role"
+          ],
+          "properties": {
+            "dispatch_authority_required": {"const": true},
+            "effect_verification_required_for_effect_claim": {"const": true},
+            "receipt_sufficient_for_effect_claim": {"const": false},
+            "reauthorization_required_for": {
+              "type": "array",
+              "items": {"type": "string", "enum": ["retry", "repair", "resume"]},
+              "uniqueItems": true,
+              "minItems": 3,
+              "maxItems": 3
+            },
+            "authority_owner": {"const": "downstream_runtime_or_institution"},
+            "residual_owner_role": {"type": "string", "minLength": 1}
+          }
         }
       }
     }
