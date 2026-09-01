@@ -3,156 +3,23 @@
   "info": {
     "title": "RPE Kernel Reference API",
     "version": "0.2.0",
-    "description": "Machine-readable contract for local reference HTTP adapters over the legacy and strict governed RPE evaluation paths. These endpoints evaluate proposals only and do not grant operational authority, execute actions, verify external effects, or transfer final responsibility to an AI system."
+    "description": "Machine-readable contract for local reference HTTP adapters over the legacy and strict governed RPE evaluation paths. This contract does not imply production readiness, legal interpretation, operational authorization, or transfer of final responsibility to an AI system."
   },
-  "servers": [
-    {"url": "http://127.0.0.1:8080", "description": "Local reference server"}
-  ],
+  "servers": [{"url": "http://127.0.0.1:8080", "description": "Local reference server"}],
   "paths": {
-    "/health": {
-      "get": {
-        "operationId": "getHealth",
-        "summary": "Check reference service health",
-        "responses": {
-          "200": {
-            "description": "Service is running",
-            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/HealthResponse"}}}
-          }
-        }
-      }
-    },
-    "/openapi.json": {
-      "get": {
-        "operationId": "getOpenApiDocument",
-        "summary": "Return this OpenAPI document",
-        "responses": {
-          "200": {
-            "description": "OpenAPI 3.1 document",
-            "content": {"application/json": {"schema": {"type": "object"}}}
-          }
-        }
-      }
-    },
-    "/v1/evaluate": {
-      "post": {
-        "operationId": "evaluateAction",
-        "summary": "Evaluate through the legacy/M1-compatible RPE path",
-        "requestBody": {
-          "required": true,
-          "content": {"application/json": {"schema": {"$ref": "#/components/schemas/EvaluateRequest"}}}
-        },
-        "responses": {
-          "200": {
-            "description": "Structured legacy-compatible RPE decision",
-            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/EvaluateResponse"}}}
-          },
-          "400": {
-            "description": "Malformed JSON or invalid request shape",
-            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ErrorResponse"}}}
-          }
-        }
-      }
-    },
-    "/v1/evaluate/governed": {
-      "post": {
-        "operationId": "evaluateGovernedAction",
-        "summary": "Evaluate through the strict governed RPE path",
-        "description": "Fail-closed governed evaluation. A successful allow remains evaluation-only and carries authority_effect=none.",
-        "requestBody": {
-          "required": true,
-          "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GovernedEvaluateRequest"}}}
-        },
-        "responses": {
-          "200": {
-            "description": "Structured governed RPE decision, including fail-closed admission/compatibility/governance outcomes",
-            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GovernedEvaluateResponse"}}}
-          },
-          "400": {
-            "description": "Malformed JSON or a non-object request body",
-            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ErrorResponse"}}}
-          }
-        }
-      }
-    }
+    "/health": {"get": {"operationId": "getHealth", "summary": "Check reference service health", "responses": {"200": {"description": "Service is running", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/HealthResponse"}}}}}}},
+    "/openapi.json": {"get": {"operationId": "getOpenApiDocument", "summary": "Return this OpenAPI document", "responses": {"200": {"description": "OpenAPI 3.1 document", "content": {"application/json": {"schema": {"type": "object"}}}}}}},
+    "/v1/evaluate": {"post": {"operationId": "evaluateAction", "summary": "Evaluate through the legacy/M1-compatible RPE path", "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/EvaluateRequest"}}}}, "responses": {"200": {"description": "Structured legacy-compatible RPE decision", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/EvaluateResponse"}}}}, "400": {"description": "Malformed JSON or invalid request shape", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ErrorResponse"}}}}}}},
+    "/v1/evaluate/governed": {"post": {"operationId": "evaluateGovernedAction", "summary": "Evaluate through the strict governed RPE path", "description": "Fail-closed governed evaluation. A successful allow remains evaluation-only and carries authority_effect=none.", "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GovernedEvaluateRequest"}}}}, "responses": {"200": {"description": "Structured governed RPE decision, including fail-closed admission/compatibility/governance outcomes", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GovernedEvaluateResponse"}}}}, "400": {"description": "Malformed JSON or a non-object request body", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ErrorResponse"}}}}}}}
   },
   "components": {
     "schemas": {
-      "HealthResponse": {
-        "type": "object",
-        "required": ["status", "service"],
-        "properties": {"status": {"const": "ok"}, "service": {"const": "rpe-kernel"}},
-        "additionalProperties": false
-      },
-      "EvaluateRequest": {
-        "type": "object",
-        "required": ["request", "packs"],
-        "properties": {
-          "request": {"type": "object", "additionalProperties": true},
-          "packs": {"type": "array", "items": {"type": "object", "additionalProperties": true}}
-        },
-        "additionalProperties": false
-      },
-      "EvaluateResponse": {
-        "type": "object",
-        "required": ["decision", "stage", "reason_codes", "applicability", "pack_decisions", "next_step"],
-        "properties": {
-          "request_id": {},
-          "decision": {"type": "string", "enum": ["allow", "hold", "human_gate", "deny"]},
-          "stage": {"type": "string", "enum": ["compatibility", "governance", "applicability", "evaluation"]},
-          "reason_codes": {"type": "array", "items": {"type": "string"}},
-          "applicability": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
-          "pack_decisions": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
-          "governance": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
-          "human_return": {"oneOf": [{"type": "object", "additionalProperties": true}, {"type": "null"}]},
-          "next_step": {"type": "string"}
-        },
-        "additionalProperties": true
-      },
-      "GovernedEvaluateRequest": {
-        "type": "object",
-        "required": ["contract_version", "request", "governed_packs"],
-        "properties": {
-          "contract_version": {"type": "string"},
-          "request": {"type": "object", "additionalProperties": true},
-          "governed_packs": {"type": "array", "items": {"type": "object", "additionalProperties": true}, "minItems": 1}
-        },
-        "additionalProperties": false
-      },
-      "GovernedEvaluateResponse": {
-        "type": "object",
-        "required": ["decision", "stage", "reason_codes", "applicability", "pack_decisions", "governance", "human_return", "next_step", "responsibility_handoff"],
-        "properties": {
-          "request_id": {},
-          "decision": {"type": "string", "enum": ["allow", "hold", "human_gate", "deny"]},
-          "stage": {"type": "string", "enum": ["admission", "compatibility", "governance", "applicability", "evaluation"]},
-          "reason_codes": {"type": "array", "items": {"type": "string"}},
-          "applicability": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
-          "pack_decisions": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
-          "governance": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
-          "human_return": {"oneOf": [{"type": "object", "additionalProperties": true}, {"type": "null"}]},
-          "next_step": {"type": "string"},
-          "responsibility_handoff": {
-            "type": "object",
-            "required": ["authority_effect", "decision_scope", "selected_pack_refs", "rejected_pack_refs", "evaluation_evidence_scope", "human_return"],
-            "properties": {
-              "authority_effect": {"const": "none"},
-              "decision_scope": {"const": "evaluation_only"},
-              "selected_pack_refs": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
-              "rejected_pack_refs": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
-              "evaluation_evidence_scope": {"type": "object", "additionalProperties": true},
-              "human_return": {"oneOf": [{"type": "object", "additionalProperties": true}, {"type": "null"}]}
-            },
-            "additionalProperties": false
-          }
-        },
-        "additionalProperties": true
-      },
-      "ErrorResponse": {
-        "type": "object",
-        "required": ["error"],
-        "properties": {"error": {"type": "string"}, "detail": {"type": "string"}},
-        "additionalProperties": false
-      }
+      "HealthResponse": {"type": "object", "required": ["status", "service"], "properties": {"status": {"const": "ok"}, "service": {"const": "rpe-kernel"}}, "additionalProperties": false},
+      "EvaluateRequest": {"type": "object", "required": ["request", "packs"], "properties": {"request": {"type": "object", "additionalProperties": true}, "packs": {"type": "array", "items": {"type": "object", "additionalProperties": true}}}, "additionalProperties": false},
+      "EvaluateResponse": {"type": "object", "required": ["decision", "stage", "reason_codes", "applicability", "pack_decisions", "next_step"], "properties": {"request_id": {}, "decision": {"type": "string", "enum": ["allow", "hold", "human_gate", "deny"]}, "stage": {"type": "string", "enum": ["compatibility", "governance", "applicability", "evaluation"]}, "reason_codes": {"type": "array", "items": {"type": "string"}}, "applicability": {"type": "array", "items": {"type": "object", "additionalProperties": true}}, "pack_decisions": {"type": "array", "items": {"type": "object", "additionalProperties": true}}, "governance": {"type": "array", "items": {"type": "object", "additionalProperties": true}}, "human_return": {"oneOf": [{"type": "object", "additionalProperties": true}, {"type": "null"}]}, "next_step": {"type": "string"}}, "additionalProperties": true},
+      "GovernedEvaluateRequest": {"type": "object", "required": ["contract_version", "request", "governed_packs"], "properties": {"contract_version": {"type": "string"}, "request": {"type": "object", "additionalProperties": true}, "governed_packs": {"type": "array", "items": {"type": "object", "additionalProperties": true}, "minItems": 1}}, "additionalProperties": false},
+      "GovernedEvaluateResponse": {"type": "object", "required": ["decision", "stage", "reason_codes", "applicability", "pack_decisions", "governance", "human_return", "next_step", "responsibility_handoff"], "properties": {"request_id": {}, "decision": {"type": "string", "enum": ["allow", "hold", "human_gate", "deny"]}, "stage": {"type": "string", "enum": ["admission", "compatibility", "governance", "applicability", "evaluation"]}, "reason_codes": {"type": "array", "items": {"type": "string"}}, "applicability": {"type": "array", "items": {"type": "object", "additionalProperties": true}}, "pack_decisions": {"type": "array", "items": {"type": "object", "additionalProperties": true}}, "governance": {"type": "array", "items": {"type": "object", "additionalProperties": true}}, "human_return": {"oneOf": [{"type": "object", "additionalProperties": true}, {"type": "null"}]}, "next_step": {"type": "string"}, "responsibility_handoff": {"type": "object", "required": ["authority_effect", "decision_scope", "selected_pack_refs", "rejected_pack_refs", "evaluation_evidence_scope", "human_return"], "properties": {"authority_effect": {"const": "none"}, "decision_scope": {"const": "evaluation_only"}, "selected_pack_refs": {"type": "array", "items": {"type": "object", "additionalProperties": true}}, "rejected_pack_refs": {"type": "array", "items": {"type": "object", "additionalProperties": true}}, "evaluation_evidence_scope": {"type": "object", "additionalProperties": true}, "human_return": {"oneOf": [{"type": "object", "additionalProperties": true}, {"type": "null"}]}}, "additionalProperties": false}}, "additionalProperties": true},
+      "ErrorResponse": {"type": "object", "required": ["error"], "properties": {"error": {"type": "string"}, "detail": {"type": "string"}}, "additionalProperties": false}
     }
   }
 }
