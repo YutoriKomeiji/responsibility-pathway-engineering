@@ -68,8 +68,8 @@ def main() -> int:
         fail("governed response must require contract_version")
 
     governed_request = schemas["GovernedEvaluateRequest"]
-    if governed_request.get("properties", {}).get("transport_provenance", {}).get("$ref") != "#/components/schemas/TransportProvenance":
-        fail("governed request must expose optional transport provenance")
+    if "transport_provenance" in governed_request.get("properties", {}):
+        fail("HTTP governed request must not accept caller-asserted transport provenance")
 
     handoff = schemas["ResponsibilityHandoff"]
     handoff_props = handoff.get("properties", {}) if isinstance(handoff, dict) else {}
@@ -114,6 +114,10 @@ def main() -> int:
     description = document.get("info", {}).get("description", "").lower()
     if "does not imply production readiness" not in description:
         fail("OpenAPI description must preserve the production boundary")
+
+    governed_description = paths["/v1/evaluate/governed"]["post"].get("description", "").lower()
+    if "does not accept caller-asserted transport provenance" not in governed_description:
+        fail("governed HTTP description must preserve loader-observed provenance boundary")
 
     sys.path.insert(0, str(ROOT))
     from rpe_kernel.http_api import load_openapi_document
