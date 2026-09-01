@@ -6,54 +6,73 @@ It is a planning aid only. It is not certification, conformance evidence, legal 
 
 ## Current position
 
-RPE now has a shared deterministic external-kernel implementation with multiple bounded interfaces.
+RPE is in **M2 implementation**. The governed-integration baseline has been reached, but M2 is not yet declared closed.
+
+Public current-status detail: [`docs/m2-governed-integration-current.md`](docs/m2-governed-integration-current.md).
 
 Implemented now:
 
-- applicability resolution for requirement packs;
-- deterministic multi-pack evaluation;
-- importable Python package API;
-- local REST reference adapter;
-- OpenAPI 3.1 contract served by the REST adapter;
-- bounded MCP stdio reference adapter;
-- source metadata and human-return routes;
-- requirement-pack governance lifecycle, ownership, review validity, expiry, and supersession checks;
-- contract-family version manifest and compatibility policy;
-- CI checks for package, REST, OpenAPI, MCP, governance, compatibility, repository security hygiene, and single-source kernel delegation.
+- deterministic applicability resolution and multi-pack evaluation;
+- legacy/M1-compatible Python entry via `evaluate_action()`;
+- explicit strict governed Python entry via `evaluate_governed_action()`;
+- governed contract families and runtime compatibility checks;
+- exact pack/governance identity and version binding;
+- strict governance eligibility for ownership, review state, ambiguity, effectivity, expiry, suspension, supersession, and related failure classes;
+- explicit no-authority handoff semantics: `authority_effect = none`, `decision_scope = evaluation_only`;
+- legacy and governed REST reference routes;
+- legacy and governed MCP stdio tools;
+- OpenAPI 3.1 coverage for governed admission/compatibility/governance/applicability/evaluation stages;
+- packaged OpenAPI snapshot with repository/package drift checks;
+- bounded caller-content and local-file governed-envelope loading;
+- explicit rejection of network/registry loading in the first loader;
+- schemas, synthetic fixtures, deterministic regression checks, and CI guards.
 
-Canonical runtime path:
+Current governed runtime path:
 
 ```text
-Python / REST / MCP
+Python / REST / MCP governed entry
         ↓
-rpe_kernel.evaluate_action()
+governed envelope admission
+        ↓
+contract compatibility
+        ↓
+pack ↔ governance binding
+        ↓
+governance eligibility
         ↓
 applicability resolution
         ↓
 pack evaluation and decision combination
+        ↓
+responsibility-preserving handoff
 ```
 
-The current kernel evaluates explicitly scoped operational mappings. It is not a general legal reasoning engine, complete policy engine, production service, self-maintaining regulatory knowledge base, or formally verified runtime.
+The legacy path remains available for compatibility. Governed evaluation is explicit rather than an optional gate that callers can accidentally omit.
+
+The kernel evaluates explicitly scoped operational mappings. It is not a general legal reasoning engine, complete policy engine, production service, self-maintaining regulatory knowledge base, formally verified runtime, or execution-authority provider.
 
 ## Milestone checkpoint
 
 ### M1 — Governed Reference Kernel
 
-Reached as a bounded repository baseline after the compatibility-policy change is merged.
+Reached and retained as the compatibility baseline.
 
-M1 means the repository has one shared kernel, bounded reference interfaces, pack-governance rules, contract baselines, compatibility rules, reason-code stability rules, and explicit scope limits.
+M1 established the shared deterministic kernel, bounded reference interfaces, pack-governance model, contract baselines, compatibility policy, reason-code stability rules, and explicit scope limits.
 
-M1 does not include external pack loading, runtime binding of governance eligibility, production services, or correctness claims for real-world source interpretation.
+### M2 — Governed Pack Integration
 
-The next publication checkpoint is after M1 documentation is synchronized.
+**In progress. Governed-integration baseline reached. Full M2 closure not yet claimed.**
 
-## Internal critical-review gate
+The R3A–R3D sequence has added:
 
-Major implementation and claim-expansion work should pass the internal adversarial review described in [`docs/internal-critical-review.md`](docs/internal-critical-review.md).
+1. strict governed contracts and version coherence;
+2. explicit governed admission, compatibility, binding, and normalized governance checks;
+3. REST/MCP/OpenAPI governed adapter parity;
+4. bounded caller-content/local-file loading with no network trust expansion.
 
-The first recorded response is [`docs/critical-review-response.md`](docs/critical-review-response.md).
+Remaining M2 work focuses on uncertainty/effect/evidence handoff semantics, repair/resume responsibility boundaries, adversarial validation, claim-boundary review, and closure evidence.
 
-This internal review improves design discipline but is not independent external review or approval.
+Importantly, RPE does not absorb the full post-execution state machine. Evaluation evidence is not effect evidence; repair readiness is not repair authority; resume authority belongs to the runtime/institution that owns execution.
 
 ## Active gates
 
@@ -61,70 +80,58 @@ This internal review improves design discipline but is not independent external 
 
 Active.
 
-Keep these synchronized when package, adapter, governance, contract, or claim surfaces change:
+Keep these synchronized when package, adapter, governance, contract, loader, or claim surfaces change:
 
 - `README.md`;
 - `README.ja.md`;
 - `READMEforAI.md`;
 - `ROADMAP.md`;
+- `docs/m2-governed-integration-current.md`;
 - `docs/external-kernel-roadmap.md`;
 - package and integration documentation;
-- formalization scope statements.
+- formalization and claim-boundary statements.
 
 Reference adapters must not be presented as production services. Lean must not be presented as verification of the runtime or real-world outcomes.
 
-### Gate 2: preserve one decision kernel
+### Gate 2: preserve one semantic kernel
 
 Active.
 
-All runtime interfaces must delegate to `rpe_kernel.evaluate_action()`.
-
-Adapters must not independently redefine applicability resolution, requirement evaluation, decision precedence, or human-return semantics.
+Legacy interfaces delegate to `evaluate_action()` and governed interfaces delegate to `evaluate_governed_action()`. Adapters must not independently redefine applicability, governance, compatibility, requirement evaluation, decision precedence, or Human Return semantics.
 
 The single-source guard is an implementation-drift check, not proof of semantic correctness or production safety.
 
-### Gate 3: preserve pack governance
+### Gate 3: preserve strict governed admission
 
-Implemented as a separate bounded governance layer.
+Implemented for the explicit governed entry.
 
-The current governance checker covers lifecycle, owner, reviewer, approver, source version, scope, ambiguity, review dates, expiry, suspension, supersession, retirement, and human-return behavior.
+Governed evaluation must fail visibly on incompatible contracts, invalid binding, ineligible governance, unresolved ambiguity, stale/invalid review state, and applicability uncertainty. A governed `allow` does not create execution authority.
 
-Governance eligibility is not yet bound into `evaluate_action()`.
+### Gate 4: preserve contract/version source coherence
 
-### Gate 4: preserve contract compatibility policy
+Implemented.
 
-Implemented as a documented baseline and checked manifest.
+Runtime compatibility consumes the packaged version snapshot, while CI checks repository/package coherence. Version drift must fail visibly rather than silently changing semantics.
 
-Current policy covers:
+### Gate 5: keep loader trust bounded
 
-- independent contract-family versions;
-- semantic version meaning;
-- additive versus breaking changes;
-- reason-code stability;
-- unknown-version behavior;
-- deprecation and migration requirements.
+Implemented for the first loader.
 
-Runtime payloads do not yet carry explicit contract-version fields. Adding those fields requires a separate compatibility-reviewed change.
+Caller-provided JSON and explicit local files are accepted within bounded limits. Network fetching, registry discovery, automatic updates, and remote trust establishment remain out of scope.
 
-### Gate 5: separate reference adapters from operational SDK integrations
+File existence is transport evidence only. It does not establish source authority, interpretation correctness, governance eligibility, or current validity.
 
-Next documentation task before adding another adapter.
+### Gate 6: preserve evaluation/execution separation
 
-Keep dependency-free adapters as bounded reference implementations. Before adding an operational adapter, evaluate established SDKs and maintained protocol libraries.
+Active and central to remaining M2 work.
 
-Any SDK-based adapter must remain thin and document dependency, protocol-version, security, and maintenance ownership.
+RPE may state requirements for downstream effect evidence, repair, resume, and Human Return, but must not silently become the authority owner for dispatch, effect verification, retry/reconciliation, repair execution, or resume authorization.
 
-### Gate 6: add bounded external pack loading
+### Gate 7: adversarially validate M2 before closure
 
-Blocked until governance and compatibility checks are intentionally connected.
+Next.
 
-External loading must preserve governance metadata and deterministic validation failures. Loading a pack must not imply that its source interpretation is correct or current.
-
-### Gate 7: improve trace, repair, and resume
-
-Candidate.
-
-Extend result handling with explicit trace identifiers, evidence references, repair inputs, resume conditions, and return-to-human ownership. Avoid automatic execution or silent reopening.
+Test authority confusion, evidence confusion, stale/binding/governance failures, adapter drift, loader boundary violations, and failure-path Human Return/residual-owner continuity.
 
 ### Gate 8: research production boundaries before production claims
 
@@ -134,14 +141,14 @@ Production adoption requires separate design and review for authentication, auth
 
 ## Recommended next sequence
 
-1. Merge the contract compatibility baseline and mark M1.
-2. Synchronize README and integration documentation for the M1 publication checkpoint.
-3. Prepare the project progress article from the synchronized repository state.
-4. Document reference adapters versus future SDK-based operational adapters.
-5. Design the explicit governance-plus-compatibility gate before external pack loading.
-6. Add external pack loading only after failure modes are testable.
-7. Improve trace, repair, resume, and evidence structures.
-8. Add reviewed real-world mappings only with named human interpretation and maintenance ownership.
+1. Merge/read back the M2 documentation synchronization slice.
+2. Specify uncertainty/effect/evidence handoff semantics without importing execution authority.
+3. Specify repair/resume requirement semantics and residual-owner continuity.
+4. Add adversarial tests for authority, evidence, governance, adapter, and loader failure classes.
+5. Review public claim boundaries against the resulting evidence.
+6. Declare M2 closed only if the declared engineering closure criteria are satisfied.
+7. Add reviewed real-world mappings only with named human interpretation and maintenance ownership.
+8. Scope production work separately, if ever authorized.
 
 ## Deferred work
 
@@ -149,6 +156,7 @@ Deferred unless reopened through a scoped design note and human maintainer decis
 
 - production deployment;
 - automatic approval or action execution;
+- network/registry Requirement Pack trust;
 - service-specific adapters that bypass the common kernel;
 - legal or regulatory correctness claims;
 - certification or conformance claims;
@@ -166,19 +174,22 @@ Stop and preserve state if a proposed change:
 - implies legal validity, safety, compliance, fairness, or production readiness;
 - presents simple condition checks as complete real-world reasoning;
 - lets an adapter redefine kernel semantics;
-- adds an operational protocol implementation without considering maintained SDKs;
-- hides pack age, ownership, review validity, compatibility, or applicability uncertainty;
-- changes an existing reason code meaning without a major-version migration;
-- treats Lean or a checker pass as runtime or deployment proof;
+- hides pack age, ownership, review validity, compatibility, binding, or applicability uncertainty;
+- changes an existing reason-code meaning without a compatible migration;
+- treats file loading or schema validity as source trust;
+- treats evaluation evidence as verified external effect;
+- turns repair readiness into repair authority;
+- resumes execution without a separate authority-bearing transition;
 - executes an external action without a separate authority boundary;
 - transfers final responsibility to AI.
 
 ## Detailed sources
 
+- [`docs/m2-governed-integration-current.md`](docs/m2-governed-integration-current.md)
+- [`docs/m2-governed-pack-integration-entry-plan.md`](docs/m2-governed-pack-integration-entry-plan.md)
 - [`docs/contract-compatibility-policy.md`](docs/contract-compatibility-policy.md)
 - [`docs/requirement-pack-governance.md`](docs/requirement-pack-governance.md)
-- [`docs/critical-review-response.md`](docs/critical-review-response.md)
-- [`docs/internal-critical-review.md`](docs/internal-critical-review.md)
+- [`docs/claim-boundary-promotion.md`](docs/claim-boundary-promotion.md)
 - [`docs/external-kernel-roadmap.md`](docs/external-kernel-roadmap.md)
 - [`docs/architecture/external-responsibility-kernel.md`](docs/architecture/external-responsibility-kernel.md)
 - [`docs/single-source-kernel.md`](docs/single-source-kernel.md)
