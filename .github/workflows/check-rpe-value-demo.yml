@@ -1,0 +1,32 @@
+name: Check RPE value demo
+
+on:
+  pull_request:
+    paths:
+      - "scripts/value_demo.py"
+      - "docs/why-rpe.md"
+      - "examples/external-kernel/minimal-governed-evaluation-request.json"
+      - "rpe_kernel/**"
+      - ".github/workflows/check-rpe-value-demo.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/value_demo.py"
+      - "docs/why-rpe.md"
+      - "examples/external-kernel/minimal-governed-evaluation-request.json"
+      - "rpe_kernel/**"
+      - ".github/workflows/check-rpe-value-demo.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  value-demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: python -m pip install .
+      - run: python scripts/value_demo.py
