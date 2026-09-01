@@ -155,6 +155,18 @@ python -m pip install .
 
 Adapterは提案行為を評価するだけです。行為のexecution、deployment approval、release publication、merge、external effect verification、責任移転は行いません。
 
+## 実行Walkthrough / Artifact Catalog
+
+boundedなsynthetic walkthroughは次のcanonical demo commandで実行できます。
+
+```bash
+python scripts/demo.py
+```
+
+公開static artifact catalogは [`site/index.html`](site/index.html) です。
+
+Demo PASSやcatalog掲載はrepository evidenceにすぎず、certification、production approval、legal review、external-effect proofを意味しません。
+
 ## Claim boundary / Promotion
 
 RPEは、**evidenceが揃えば前進できるmilestone boundary**と、**engineering kernel単体では越えるべきでないpermanent responsibility boundary**を分離します。
@@ -200,6 +212,7 @@ RPEはMIT Licenseで公開し、open specification、interoperability、independ
 - OpenAPI: [`spec/openapi/rpe-kernel.openapi.json`](spec/openapi/rpe-kernel.openapi.json)
 - Claim boundary: [`docs/claim-boundary-promotion.ja.md`](docs/claim-boundary-promotion.ja.md)
 - Roadmap: [`ROADMAP.md`](ROADMAP.md)
+- Static artifact catalog: [`site/index.html`](site/index.html)
 - AI/Search Reader: [`READMEforAI.md`](READMEforAI.md)
 
 ## 残るM2 work
