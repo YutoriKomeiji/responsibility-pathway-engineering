@@ -240,7 +240,7 @@ See [`docs/verification-assurance-and-open-governance.md`](docs/verification-ass
 | Applicability resolver | [`rpe_kernel/applicability.py`](rpe_kernel/applicability.py) |
 | Pack evaluator | [`rpe_kernel/evaluation.py`](rpe_kernel/evaluation.py) |
 | Governance | [`rpe_kernel/governance.py`](rpe_kernel/governance.py) |
-| Compatibility | [`docs/contract-compatibility-policy.md`](docs/contract-compatibility-policy.md) |
+| Compatibility | [`rpe_kernel/compatibility.py`](rpe_kernel/compatibility.py) |
 | REST adapter | [`rpe_kernel/http_api.py`](rpe_kernel/http_api.py) |
 | MCP adapter | [`rpe_kernel/mcp_server.py`](rpe_kernel/mcp_server.py) |
 | OpenAPI contract | [`spec/openapi/rpe-kernel.openapi.json`](spec/openapi/rpe-kernel.openapi.json) |
