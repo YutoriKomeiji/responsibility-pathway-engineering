@@ -1,6 +1,6 @@
 # MCP stdio adapter
 
-RPE includes a bounded reference adapter that exposes the kernel as one Model Context Protocol tool over standard input and output.
+RPE includes a bounded reference adapter that exposes the kernel as Model Context Protocol tools over standard input and output.
 
 ## Start
 
@@ -22,19 +22,25 @@ Example client configuration:
 }
 ```
 
-## Tool
+## Tools
 
-`rpe_evaluate_action` accepts:
+### `rpe_evaluate_action`
 
-- `request`: an RPE Action Request object
-- `packs`: an array of RPE Requirement Pack objects
+Legacy/M1-compatible evaluation. Accepts:
 
-It returns the same structured decision produced by `rpe_kernel.evaluate_action()`:
+- `request`: an RPE Action Request object;
+- `packs`: an array of RPE Requirement Pack objects.
 
-- `allow`
-- `hold`
-- `human_gate`
-- `deny`
+It delegates to `rpe_kernel.evaluate_action()`.
+
+### `rpe_evaluate_governed_action`
+
+Strict governed M2 evaluation. Accepts a governed evaluation envelope and delegates to `rpe_kernel.evaluate_governed_action()`.
+
+Governed responses preserve the strict admission/compatibility/governance/applicability/evaluation stages plus the responsibility handoff with:
+
+- `authority_effect = none`;
+- `decision_scope = evaluation_only`.
 
 The textual MCP content mirrors the structured result for clients that do not consume `structuredContent`.
 
@@ -42,16 +48,16 @@ The textual MCP content mirrors the structured result for clients that do not co
 
 The reference adapter handles:
 
-- `initialize`
-- `notifications/*` without a response
-- `ping`
-- `tools/list`
-- `tools/call`
+- `initialize`;
+- `notifications/*` without a response;
+- `ping`;
+- `tools/list`;
+- `tools/call`.
 
-It exposes no resources, prompts, sampling, roots, or autonomous execution capability.
+It exposes no autonomous execution capability.
 
 ## Boundary
 
-This adapter evaluates proposed actions only. It does not execute the requested action, merge code, publish releases, approve policy or legal applicability, or transfer responsibility to an AI system.
+This adapter evaluates proposed actions only. It does not execute the requested action, merge code, publish releases, approve policy or legal applicability, verify external effects, grant repair/resume authority, or transfer responsibility to an AI system.
 
-The stdio launcher is a local reference integration. Production hosts must separately review executable-path trust, environment isolation, client permissions, logging, dependency provenance, and transport security.
+The stdio launcher is a local reference integration. Production hosts must separately review executable-path trust, environment isolation, client permissions, logging, dependency provenance, transport security, authentication/authorization, and operational ownership.

@@ -1,8 +1,8 @@
 # Requirement Pack Governance
 
-This document defines the maintenance and lifecycle boundary for RPE requirement packs.
+This document defines the maintenance and lifecycle boundary for RPE Requirement Packs.
 
-A requirement pack is not self-validating policy truth. It is a bounded operational mapping maintained by identified human or institutional owners.
+A Requirement Pack is not self-validating policy truth. It is a bounded operational mapping maintained by identified human or institutional owners.
 
 ## Lifecycle
 
@@ -15,18 +15,19 @@ draft → reviewed → approved → active
 
 Allowed lifecycle states:
 
-- `draft`: incomplete and not eligible for operational evaluation;
+- `draft`: incomplete and not eligible for strict governed evaluation;
 - `reviewed`: reviewed, but not yet approved for active use;
 - `approved`: approved but not necessarily effective yet;
-- `active`: eligible for bounded operational evaluation;
+- `active`: candidate for bounded governed evaluation when all other eligibility conditions pass;
 - `suspended`: temporarily ineligible pending review or correction;
 - `superseded`: replaced by another identified pack version;
 - `retired`: permanently withdrawn from use.
 
 ## Required governance record
 
-Each governed pack must identify:
+Each governed pack identifies, at minimum:
 
+- governance contract version;
 - pack identifier and pack version;
 - lifecycle state;
 - maintenance owner;
@@ -35,45 +36,62 @@ Each governed pack must identify:
 - interpretation status and unresolved ambiguity;
 - effective date, last-review date, and next-review due date;
 - supersession relationship when applicable;
-- human-return role for governance failures.
+- Human Return role for governance failures.
 
-## Eligibility rule
+## Strict governed eligibility
 
-A pack is governance-eligible only when all of the following hold:
+`rpe_kernel.evaluate_governed_action()` applies governance eligibility after contract compatibility and pack/governance binding, and before applicability/requirement evaluation.
 
-1. lifecycle state is `active`;
-2. maintenance owner is present;
-3. reviewer and approver are present;
-4. last-review date and next-review due date are present;
-5. next-review due date has not passed;
-6. interpretation status is not `unreviewed`;
-7. unresolved ambiguity is explicitly recorded;
-8. a superseded, suspended, or retired pack is not selected.
+The strict governed path rejects visible failure states including:
 
-A governance failure must not silently produce `allow`. The bounded default is `human_gate` with visible reason codes and a configured human-return role.
+- non-active lifecycle state;
+- missing maintenance owner, reviewer, or approver;
+- malformed or missing review dates;
+- future `last_reviewed` dates;
+- invalid review-date ordering;
+- expired review;
+- not-yet-effective records;
+- non-eligible interpretation state;
+- non-empty unresolved ambiguity;
+- suspended, superseded, or retired records;
+- missing or mismatched pack/governance identity/version/source binding;
+- missing required Human Return information.
 
-## Reason-code namespace
+A governance failure must not silently produce `allow`. The bounded default is a visible non-allow result, normally `human_gate`, with stable reason information and a Human Return route.
 
-Governance checks use the `RPE-PACK-GOV-*` namespace. Initial codes include:
+## Separation from compatibility and source trust
 
-- `RPE-PACK-GOV-NOT-ACTIVE`
-- `RPE-PACK-GOV-MISSING-MAINTENANCE-OWNER`
-- `RPE-PACK-GOV-MISSING-REVIEWER`
-- `RPE-PACK-GOV-MISSING-APPROVER`
-- `RPE-PACK-GOV-MISSING-REVIEW-DATE`
-- `RPE-PACK-GOV-MISSING-NEXT-REVIEW-DUE`
-- `RPE-PACK-GOV-REVIEW-EXPIRED`
-- `RPE-PACK-GOV-INTERPRETATION-UNREVIEWED`
-- `RPE-PACK-GOV-SUPERSEDED`
+Governance eligibility is distinct from:
 
-## Separation from runtime semantics
+- contract compatibility;
+- pack/governance binding;
+- schema validity;
+- local file readability;
+- source authenticity/trust;
+- legal or normative interpretation correctness;
+- real-world applicability.
 
-The governance record determines whether a pack may enter evaluation. It does not determine whether the mapped requirements are legally correct, complete, current, fair, safe, or appropriate for a real-world case.
+Passing one layer must not silently promote another.
 
-The current governance checker is a bounded repository and integration aid. It is not legal review, regulatory monitoring, certification, or proof that a pack should be used.
+The first bounded loader accepts caller-provided content and explicit local files only. Loading bytes does not establish governance eligibility or source authority; strict governed evaluation remains responsible for the runtime governance decision.
+
+## Runtime authority boundary
+
+Governance eligibility determines whether a pack may participate in RPE evaluation. It does not grant execution authority.
+
+Even a fully eligible pack that contributes to an `allow` result leaves:
+
+- `authority_effect = none`;
+- `decision_scope = evaluation_only`.
+
+Execution, external-effect verification, repair authority, resume authority, and final responsibility remain outside Requirement Pack governance.
+
+## Reason-code boundary
+
+Governance failures use the `RPE-PACK-GOV-*` namespace and related governed-admission/binding reason codes. Reason-code meanings are compatibility-sensitive and should not be silently repurposed.
 
 ## Change control
 
 Changes to an active pack should produce a reviewable version change. Silent replacement is prohibited. Breaking interpretation changes require a new pack version and explicit supersession metadata.
 
-External pack loading remains blocked until governance and compatibility behavior are connected to the canonical kernel entry path and covered by deterministic tests.
+A schema-valid, governance-eligible, or loadable Requirement Pack still does not prove that its source interpretation is legally correct, complete, current, fair, safe, or suitable for a deployment. Those remain separate human/institutional review responsibilities.

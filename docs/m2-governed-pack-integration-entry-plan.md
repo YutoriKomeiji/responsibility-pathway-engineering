@@ -1,194 +1,89 @@
 # RPE M2 Governed Pack Integration — Entry Plan
 
-Status: Entry planning approved for repository work. Runtime integration and external loading remain bounded implementation work and do not authorize production deployment.
+Status: **Historical entry baseline.**
 
-## Purpose
+This document records the original M2 entry plan. It is retained as design history, not as the current implementation-status source.
 
-Define when and how RPE should move from the M1 Governed Reference Kernel into M2 Governed Pack Integration without collapsing governance eligibility, compatibility, applicability, requirement evaluation, execution authority, or final responsibility.
+Current public status: [`m2-governed-integration-current.md`](m2-governed-integration-current.md).
 
-## M2 objective
+## Original purpose
 
-M2 connects governed, versioned Requirement Packs to the canonical runtime decision path so that stale, ownerless, ambiguous, suspended, superseded, incompatible, or otherwise ineligible packs fail visibly and cannot silently produce `allow`.
+Define how RPE should move from the M1 Governed Reference Kernel into governed pack integration without collapsing governance eligibility, compatibility, applicability, requirement evaluation, execution authority, or final responsibility.
 
-M2 does not create:
+## What changed after implementation experience
+
+The original plan assumed that M2 would largely be a linear E1–E7 implementation sequence. Subsequent RPE implementation and downstream runtime work showed that the boundary needed revision.
+
+The current design now separates:
+
+- the legacy/M1-compatible `evaluate_action()` entry;
+- the explicit strict `evaluate_governed_action()` entry;
+- evaluation authority from execution authority;
+- evaluation evidence from external-effect evidence;
+- repair readiness from repair authority;
+- responsibility-preserving handoff from downstream execution-state ownership.
+
+RPE therefore does **not** import an entire post-execution state machine into M2.
+
+## Original objective retained
+
+Governed, versioned Requirement Packs must fail visibly when incompatible, incorrectly bound, stale, ambiguous, suspended, superseded, ownerless, or otherwise ineligible. Such failures must not silently produce `allow`.
+
+M2 still does not create:
 
 - automatic legal or policy interpretation;
 - self-updating regulation;
 - production authorization;
 - action execution authority;
 - certification or compliance proof;
-- transfer of final responsibility from the named human or institution.
+- transfer of final responsibility from the responsible human or institution.
 
-## Entry assessment
+## Original E1–E7 mapping to the current implementation
 
-### Already present from M1
+| Original slice | Current status |
+|---|---|
+| E1 runtime contract versioning | Implemented through explicit governed contract families and packaged version coherence |
+| E2 canonical governance eligibility | Implemented for the strict governed path with normalized fail-closed checks |
+| E3 compatibility gate | Implemented before governed evaluation |
+| E4 governed evaluation pipeline | Implemented as `evaluate_governed_action()` |
+| E5 deterministic negative fixtures | Implemented for major admission/governance/binding/version failure classes and retained as ongoing adversarial work |
+| E6 bounded external loading | Implemented for caller content and explicit local files only; network/registry trust remains out of scope |
+| E7 trace/repair/resume references | Revised: RPE preserves responsibility handoff requirements but does not own the complete post-execution repair/resume state machine |
 
-- deterministic `evaluate_action()` entry point;
-- applicability resolution;
-- multi-pack evaluation;
-- ordered outcomes: `allow < hold < human_gate < deny`;
-- governance lifecycle model;
-- governance checker and reason-code namespace;
-- contract-family schemas and version manifest;
-- Python, REST, OpenAPI, and MCP reference interfaces;
-- synthetic fixtures and repository checks.
-
-### Missing runtime links
-
-- explicit contract-version fields in runtime request and decision payloads;
-- governance eligibility enforcement inside the canonical kernel path;
-- compatibility checks before pack evaluation;
-- one canonical pack-selection and rejection trace;
-- deterministic fixtures for stale, unsupported, suspended, superseded, ownerless, ambiguous, or expired packs;
-- bounded external pack loader;
-- trace, repair, resume, and evidence references.
-
-## Start decision
-
-RPE may begin **M2 Entry Phase** now.
-
-RPE should not yet claim M2 completion, operational deployment readiness, or external governed-pack support.
-
-The first implementation boundary is internal and fixture-driven. External file or network loading is blocked until governance and compatibility failures are connected to the canonical kernel and tested deterministically.
-
-## Required implementation order
-
-### M2-E1 — Runtime contract versioning
-
-Add explicit version identifiers to:
-
-- action request;
-- requirement pack;
-- governance record;
-- gate decision;
-- reason-code policy where carried by runtime metadata.
-
-Unknown or unsupported versions must produce a visible non-allow outcome.
-
-### M2-E2 — Canonical governance eligibility function
-
-Move bounded governance eligibility logic from repository-only script use into an importable kernel module.
-
-Requirements:
-
-- one semantic source for governance eligibility;
-- deterministic reason codes;
-- explicit evaluation date or clock input;
-- no silent fallback to eligible;
-- configured human-return route;
-- repository checker delegates to the same function.
-
-### M2-E3 — Compatibility gate
-
-Before applicability evaluation, verify:
-
-- supported contract family and version;
-- required migration state;
-- deprecated-but-supported behavior;
-- breaking incompatibility behavior.
-
-Compatibility failure must not produce `allow`.
-
-### M2-E4 — Governed evaluation pipeline
-
-Canonical order:
+## Current governed pipeline
 
 ```text
-action request version check
-→ pack version and compatibility check
+governed envelope admission
+→ compatibility
+→ pack/governance binding
 → governance eligibility
-→ applicability resolution
+→ applicability
 → requirement evaluation
-→ strongest decision combination
-→ trace and human return
+→ decision combination
+→ responsibility-preserving handoff
 ```
 
-Adapters must continue delegating to this single path.
+Every governed result remains evaluation-only. `allow` is not an execution authorization token.
 
-### M2-E5 — Deterministic negative fixtures
+## Loader boundary
 
-Add fixtures and tests for:
+The first loader accepts:
 
-- inactive lifecycle state;
-- missing owner, reviewer, or approver;
-- missing or expired review date;
-- unreviewed interpretation;
-- malformed ambiguity record;
-- missing human return;
-- superseded pack without valid replacement;
-- unsupported contract version;
-- ambiguous applicability;
-- no applicable packs.
+- caller-provided UTF-8 JSON content;
+- explicitly supplied local files.
 
-Each case must preserve visible reason codes and a non-allow result.
+It intentionally rejects network/remote registry loading. Loading bytes is not trust establishment. Source interpretation and governance correctness remain separately reviewable human/institutional responsibilities.
 
-### M2-E6 — Bounded external pack loading
+## Current completion decision
 
-Only after E1–E5 pass:
+The original entry phase has been surpassed, but **full M2 closure is not yet claimed**.
 
-- load local JSON by explicit path or supplied content;
-- validate schema, version, compatibility, and governance before evaluation;
-- reject stale or invalid records visibly;
-- preserve source identity and content digest;
-- do not add network fetching, remote registry trust, or automatic updates in the first loader.
+The remaining M2 work is defined by the current roadmap and current-status document, with emphasis on:
 
-### M2-E7 — Trace, repair, and resume references
+1. uncertainty/effect/evidence handoff semantics;
+2. repair/resume responsibility boundaries;
+3. residual-owner and Human Return continuity;
+4. adversarial validation;
+5. claim-boundary and closure evidence.
 
-Extend the decision envelope with:
-
-- evaluation trace ID;
-- selected and rejected pack references;
-- evidence references;
-- repair or missing-input route;
-- resume condition;
-- residual human owner;
-- reopening triggers.
-
-## Entry gates
-
-### Gate A — repository implementation gate
-
-Permits bounded code, schema, fixture, documentation, and test changes in the RPE repository.
-
-Does not permit production deployment or connection to consequential live actions.
-
-### Gate B — reviewed real-world mapping gate
-
-Required before a non-synthetic public-guidance, law, standard, or organizational mapping is marked usable.
-
-Requires named interpretation owner, reviewer, approver, source version, scope, ambiguity, maintenance schedule, expiry, and supersession route.
-
-### Gate C — operational adapter gate
-
-Required before connecting RPE to a live system that may produce externally observable or consequential effects.
-
-Requires separate authentication, authorization, transport, persistence, incident response, observability, deployment binding, rollback, and operational ownership review.
-
-## Completion criteria for M2
-
-M2 may be described as reached only when:
-
-1. runtime payload versions are explicit;
-2. governance and compatibility checks run in the canonical kernel path;
-3. all supported adapters delegate to that path;
-4. invalid or stale packs fail visibly and deterministically;
-5. a bounded external loader preserves source, version, governance, and digest;
-6. positive and negative fixtures cover the main failure classes;
-7. trace and human-return information is preserved;
-8. documentation states the remaining non-production boundary;
-9. no production, compliance, certification, or legal-validity claim is implied.
-
-## Relationship to LuminaliaOS and LCA
-
-- LCA supplies authority, effect, trust, replay, evidence, recovery, and Human Gate architecture.
-- RPD supplies reviewed transformation from findings and authorized normative inputs into testable requirements.
-- RPE M2 supplies governed runtime evaluation of approved machine-readable Requirement Packs.
-- LuminaliaOS may later consume RPE as a bounded decision-support component, but RPE does not become the OS authority owner and does not execute actions by itself.
-
-## Current decision
-
-- M2 Entry Phase: ready to begin.
-- M2 runtime integration: permitted as bounded repository implementation under current delegation.
-- External pack loading: deferred until E1–E5 are complete and read back.
-- Real-world mapping activation: separate Human Gate.
-- Production or consequential live integration: separate Human Gate.
+Production or consequential live integration remains a separate Human Gate outside this document.

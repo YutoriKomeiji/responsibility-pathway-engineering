@@ -2,12 +2,12 @@
 
 **Executable Responsible AI controls for AI systems.**
 
-Responsibility Pathway Engineering (RPE) is a portable external responsibility kernel and component toolkit for turning explicitly scoped Responsible AI requirement mappings into runtime controls.
+Responsibility Pathway Engineering (RPE) is a portable external responsibility kernel and component toolkit for evaluating explicitly scoped machine-readable Responsible AI controls.
 
 ```text
 Responsible AI requirements
         ↓
-human-scoped machine-readable requirement packs
+human-scoped machine-readable Requirement Packs
         ↓
 AI action request
         ↓
@@ -15,16 +15,14 @@ RPE external kernel
         ↓
 allow / hold / human_gate / deny
         ↓
-reason codes, applicability, missing evidence, and human return
+reason codes, governance state, applicability, evidence needs, and Human Return
 ```
 
-RPE helps an AI application determine which stated requirements apply, whether a proposed action may continue, what is missing, and when responsibility must return to a human or institution.
+RPE helps an AI application determine which stated requirements apply, whether a proposed action may continue under those stated controls, what is missing, and when responsibility must return to a human or institution.
 
 ## Long-term direction: human-reviewed normative controls
 
 RPE aims to provide an open, inspectable engineering substrate through which human-reviewed interpretations of laws, public guidelines, standards, organizational policies, professional duties, and affected-party commitments can be translated into bounded machine-readable controls.
-
-The intended direction is:
 
 ```text
 official or otherwise authorized normative source
@@ -33,53 +31,43 @@ human or institutional scoping, interpretation, review, and approval
         ↓
 versioned Requirement Pack with source metadata and governance state
         ↓
-RPE applicability resolution and bounded decision control
+RPE governed evaluation
         ↓
-allow / hold / human_gate / deny, with reasons and a human return path
+allow / hold / human_gate / deny, with reasons and a Human Return path
         ↓
-separate assurance, legal review, and operational authorization
+separate assurance, legal review, execution authority, and operational responsibility
 ```
 
-RPE does not transfer legal interpretation, approval authority, or final responsibility to the kernel. It is not an automated compliance engine, legal-reasoning authority, self-updating regulatory database, certification body, or substitute for qualified legal, policy, safety, assurance, or operational governance review.
+RPE does not transfer legal interpretation, approval authority, execution authority, or final responsibility to the kernel. It is not an automated compliance engine, legal-reasoning authority, self-updating regulatory database, certification body, or substitute for qualified legal, policy, safety, assurance, or operational governance review.
 
-Future real-world mapping work may include sources such as the EU AI regulatory framework, Japanese public AI governance guidance, international or sector standards, and organization-specific requirements. Such mappings require identified human owners, source and version control, applicable-scope decisions, interpretation records, conflict handling, review status, maintenance rules, expiry and supersession controls, and explicit Human Gates.
+## Current position — M2 implementation in progress
 
-## M1 current position — Governed Reference Kernel
+RPE has moved beyond the M1-only implementation boundary. It is currently in **M2 implementation with the governed-integration baseline reached**.
 
-RPE has reached the **M1 Governed Reference Kernel** checkpoint.
+Full M2 closure is **not yet claimed**.
 
-Implemented at this checkpoint:
+Current public implementation status: [`docs/m2-governed-integration-current.md`](docs/m2-governed-integration-current.md).
 
-- one deterministic Python decision kernel;
-- applicability resolution and multi-pack evaluation;
-- Python, local REST, OpenAPI 3.1, and MCP stdio reference interfaces;
-- requirement-pack lifecycle and maintenance governance;
-- expiry, ambiguity, ownership, review, suspension, supersession, and retirement boundaries;
-- independent semantic-version baselines for action requests, gate decisions, requirement packs, governance records, and reason-code policy;
-- compatibility, unknown-version, deprecation, and migration rules;
-- schemas, synthetic fixtures, checkers, and CI guards.
+Implemented now:
 
-M1 does **not** include external pack loading, governance enforcement inside `evaluate_action()`, production authentication or deployment, automatic legal interpretation, reviewed real-world guideline mappings, or formal verification of the Python runtime.
+- deterministic applicability resolution and multi-pack evaluation;
+- retained legacy/M1-compatible Python entry `evaluate_action()`;
+- explicit strict governed Python entry `evaluate_governed_action()`;
+- explicit governed contract families and runtime version handling;
+- exact Requirement Pack/governance identity and version binding;
+- strict governance eligibility and visible fail-closed outcomes;
+- legacy and governed REST reference routes;
+- legacy and governed MCP stdio tools;
+- OpenAPI 3.1 governed admission/compatibility/governance/applicability/evaluation stages;
+- packaged OpenAPI with repository/package/runtime drift checks;
+- bounded caller-content and local-file governed-envelope loading;
+- explicit rejection of network/registry loading in the first loader;
+- responsibility-preserving governed handoff with `authority_effect = none` and `decision_scope = evaluation_only`;
+- schemas, synthetic fixtures, deterministic regression checks, and CI guards.
 
-## Claim boundary and promotion path
+## Two runtime entry modes
 
-RPE does not treat every current non-claim as a permanent disclaimer. It separates **evidence-limited milestone boundaries that can move** from **permanent responsibility boundaries that an engineering kernel should not cross by itself**. See [`docs/claim-boundary-promotion.md`](docs/claim-boundary-promotion.md).
-
-Current evidence-limited boundaries include M1-only governed-pack integration, production deployment evidence, reviewed real-world normative mappings, implementation-wide formal conformance, and broader interoperability. Each has an explicit route forward: M2 implementation and tests; deployment/security/operational evidence; source/version/owner/interpretation/review records; model-to-runtime refinement evidence; and independent client/implementation evidence against declared interfaces.
-
-Promotion is explicit. Completing M2 or another engineering milestone does **not** automatically promote legal, compliance, certification, production, or operational-authority claims.
-
-Permanent responsibility boundaries remain even as RPE matures: RPE does not automatically interpret law/policy/ethics/standards; does not create deployment approval, execution authority, certification, or legal compliance; does not make a schema-valid Requirement Pack prove its interpretation; does not make an external action/system/business decision correct; and does not transfer final legal, policy, assurance, deployment, or operational responsibility to the kernel.
-
-Where practical, evidence-limited boundaries are tracked as `evidence_collecting`, `review_ready`, or `promoted`; permanent boundaries are `permanently_out_of_scope`.
-
-## Install and call the kernel
-
-The current reference implementation is dependency-free Python 3.11+.
-
-```bash
-python -m pip install .
-```
+### Legacy / M1-compatible
 
 ```python
 from rpe_kernel import evaluate_action
@@ -87,140 +75,179 @@ from rpe_kernel import evaluate_action
 result = evaluate_action(action_request, requirement_packs)
 ```
 
-All supported runtime interfaces delegate to this same package API.
+This entry remains available for compatibility.
 
-| Interface | Entry point | Documentation |
-|---|---|---|
-| Python package | `from rpe_kernel import evaluate_action` | [`docs/python-package-api.md`](docs/python-package-api.md) |
-| Local REST reference adapter | `rpe-rest` | [`docs/integrations/rest-api.md`](docs/integrations/rest-api.md) |
-| OpenAPI 3.1 contract | `GET /openapi.json` | [`docs/integrations/openapi.md`](docs/integrations/openapi.md) |
-| MCP stdio reference adapter | `rpe-mcp` | [`docs/integrations/mcp-stdio.md`](docs/integrations/mcp-stdio.md) |
+### Strict governed M2
 
-The adapters evaluate proposed actions only. They do not execute actions, approve deployment, publish releases, merge code, or transfer responsibility.
+```python
+from rpe_kernel import evaluate_governed_action
 
-## Run the decision walkthrough
+result = evaluate_governed_action(governed_envelope)
+```
 
-The one-command demo now exercises the canonical kernel with three synthetic paths:
+The strict governed path is:
 
-- missing approval returns `human_gate`;
-- complete stated evidence returns `allow`;
-- missing applicability context returns visibly to a human reviewer instead of silently continuing.
+```text
+governed envelope admission
+        ↓
+contract compatibility
+        ↓
+pack ↔ governance binding
+        ↓
+governance eligibility
+        ↓
+applicability resolution
+        ↓
+requirement evaluation
+        ↓
+decision combination
+        ↓
+responsibility-preserving handoff
+```
+
+Governed evaluation is explicit rather than an optional gate that callers can accidentally omit.
+
+## Critical authority boundary
+
+An RPE `allow` result is an **evaluation result**, not an execution authorization token.
+
+RPE does not by itself:
+
+- dispatch or execute an external action;
+- approve deployment;
+- verify that an external effect occurred;
+- turn a receipt into verified effect evidence;
+- grant repair authority because repair is possible;
+- grant resume authority because a blocked path is ready to continue;
+- transfer final responsibility to AI.
+
+Evaluation evidence is not effect evidence. Repair readiness is not repair authority. Resume authority belongs to the runtime or institution that owns execution and requires a separate authority-bearing transition.
+
+This boundary reflects implementation experience from downstream responsibility-path runtime work without turning RPE into an operating system or execution controller.
+
+## Bounded loading
+
+RPE currently accepts governed evaluation envelopes from:
+
+- caller-provided UTF-8 JSON content; or
+- explicitly supplied local files.
+
+```python
+from rpe_kernel import load_governed_envelope_content, load_governed_envelope_file
+```
+
+The first loader intentionally does not fetch URLs, discover remote registries, install packages, or establish source trust.
+
+A readable file proves only that bytes were available. It does not prove source authority, semantic correctness, governance eligibility, legal validity, or current applicability.
+
+## Install and reference interfaces
+
+The current reference implementation is dependency-free Python 3.11+.
+
+```bash
+python -m pip install .
+```
+
+| Interface | Legacy entry | Strict governed entry | Documentation |
+|---|---|---|---|
+| Python package | `evaluate_action()` | `evaluate_governed_action()` | [`docs/python-package-api.md`](docs/python-package-api.md) |
+| Local REST | `POST /v1/evaluate` | `POST /v1/evaluate/governed` | [`docs/integrations/rest-api.md`](docs/integrations/rest-api.md) |
+| MCP stdio | `rpe_evaluate_action` | `rpe_evaluate_governed_action` | [`docs/integrations/mcp-stdio.md`](docs/integrations/mcp-stdio.md) |
+| OpenAPI 3.1 | documents both | documents both | [`docs/integrations/openapi.md`](docs/integrations/openapi.md) |
+
+The adapters evaluate proposed actions only. They do not execute actions, approve deployment, publish releases, merge code, verify external effects, or transfer responsibility.
+
+## Executable walkthrough and artifact catalog
+
+The bounded synthetic walkthrough remains available through the canonical demo command:
 
 ```bash
 python scripts/demo.py
 ```
 
-Select one path or emit machine-readable output:
+The public static artifact catalog remains available at [`site/index.html`](site/index.html).
 
-```bash
-python scripts/demo.py --scenario human_gate
-python scripts/demo.py --scenario allow
-python scripts/demo.py --scenario unknown
-python scripts/demo.py --json
-```
+A demo pass or catalog entry is repository evidence only; it is not certification, production approval, legal review, or proof of external effect.
 
-For direct file-driven examples:
+## Claim boundary and promotion path
 
-```bash
-python scripts/run_external_kernel.py \
-  examples/external-kernel/minimal-requirement-pack.json \
-  examples/external-kernel/minimal-action-request.json
-```
+RPE separates **evidence-limited milestone boundaries that can move** from **permanent responsibility boundaries that an engineering kernel should not cross by itself**. See [`docs/claim-boundary-promotion.md`](docs/claim-boundary-promotion.md).
 
-```bash
-python scripts/run_external_kernel_multi.py \
-  examples/external-kernel/minimal-action-request.json \
-  examples/external-kernel/minimal-requirement-pack.json \
-  examples/external-kernel/minimal-data-handling-pack.json
-```
+The M1-only governed-integration boundary has moved: strict runtime governance, compatibility, binding, adapter parity, and bounded local/caller-content loading now have implementation and CI evidence.
 
-These are synthetic demonstrations. A passing result is not certification, legal review, safety approval, compliance determination, fairness assessment, or production authorization.
+That does **not** promote claims of:
 
-## Canonical runtime path
+- production readiness;
+- legal or compliance correctness;
+- certification or conformity;
+- reviewed real-world normative mappings;
+- execution authority;
+- verified external effect;
+- implementation-wide formal conformance;
+- official-standard status.
 
-```text
-Python / REST / MCP
-        ↓
-rpe_kernel.evaluate_action()
-        ↓
-applicability resolution
-        ↓
-pack evaluation and decision combination
-```
-
-Reference adapters must not independently redefine kernel semantics. See [`docs/single-source-kernel.md`](docs/single-source-kernel.md).
+Promotion is explicit and evidence-specific.
 
 ## Verification, assurance, and open governance
 
 RPE connects to Verifiable AI and AI assurance through bounded, inspectable claims rather than a blanket safety declaration.
 
-Planned Lean 4 work may prove properties of explicitly formalized responsibility-path models, such as deterministic decisions, preservation of stronger stop outcomes, required human-return routes, and stated invariants. Such proofs would apply to the formal model and assumptions; they would not automatically prove the complete Python runtime, source interpretation, legal validity, operational behavior, or production safety.
+Formalization may prove properties of explicitly modeled responsibility pathways under stated assumptions. Such proofs do not automatically prove the complete Python runtime, source interpretation, legal validity, operational behavior, or production safety.
 
-Public guidance can inform future human-reviewed Requirement Packs, but RPE does not automatically interpret law or guidance and does not currently claim conformity with the Japanese MIC/METI **AI Guidelines for Business Ver. 1.2**.
+Public guidance can inform future human-reviewed Requirement Packs, but RPE does not automatically interpret law or guidance and does not claim that a schema-valid or loadable pack contains a correct legal or normative interpretation.
 
-RPE is MIT-licensed and aims for open specifications, interoperability, independent verification, and multiple-implementation potential. It is not currently an official standard. Responsibility evidence infrastructure should not become an exclusive mechanism for controlling who may demonstrate responsibility.
+RPE is MIT-licensed and aims for open specifications, interoperability, independent verification, and multiple-implementation potential. It is not currently an official standard.
 
 See [`docs/verification-assurance-and-open-governance.md`](docs/verification-assurance-and-open-governance.md).
 
-## Governance and compatibility artifacts
+## Main implementation artifacts
 
 | Component | Start here |
 |---|---|
-| Requirement-pack governance | [`docs/requirement-pack-governance.md`](docs/requirement-pack-governance.md) |
-| Claim boundary promotion | [`docs/claim-boundary-promotion.md`](docs/claim-boundary-promotion.md) |
-| Governance schema | [`schemas/external-kernel/requirement-pack-governance.schema.json`](schemas/external-kernel/requirement-pack-governance.schema.json) |
-| Compatibility policy | [`docs/contract-compatibility-policy.md`](docs/contract-compatibility-policy.md) |
-| Version manifest | [`schemas/external-kernel/contract-versions.json`](schemas/external-kernel/contract-versions.json) |
-| Requirement-pack schema | [`schemas/external-kernel/requirement-pack.schema.json`](schemas/external-kernel/requirement-pack.schema.json) |
-| Action-request schema | [`schemas/external-kernel/action-request.schema.json`](schemas/external-kernel/action-request.schema.json) |
-| Gate-decision schema | [`schemas/external-kernel/gate-decision.schema.json`](schemas/external-kernel/gate-decision.schema.json) |
-
-A pack is an operational mapping maintained by identified humans. Schema validity does not establish that its source interpretation is correct, current, complete, or suitable for a deployment.
-
-## Core implementation artifacts
-
-| Component | Start here |
-|---|---|
+| Current M2 status | [`docs/m2-governed-integration-current.md`](docs/m2-governed-integration-current.md) |
 | Kernel package | [`rpe_kernel/pipeline.py`](rpe_kernel/pipeline.py) |
+| Bounded loader | [`rpe_kernel/loader.py`](rpe_kernel/loader.py) |
 | Applicability resolver | [`rpe_kernel/applicability.py`](rpe_kernel/applicability.py) |
 | Pack evaluator | [`rpe_kernel/evaluation.py`](rpe_kernel/evaluation.py) |
+| Governance | [`rpe_kernel/governance.py`](rpe_kernel/governance.py) |
+| Compatibility | [`rpe_kernel/compatibility.py`](rpe_kernel/compatibility.py) |
 | REST adapter | [`rpe_kernel/http_api.py`](rpe_kernel/http_api.py) |
 | MCP adapter | [`rpe_kernel/mcp_server.py`](rpe_kernel/mcp_server.py) |
 | OpenAPI contract | [`spec/openapi/rpe-kernel.openapi.json`](spec/openapi/rpe-kernel.openapi.json) |
-| Static artifact catalog | [`site/index.html`](site/index.html) |
-| Architecture | [`docs/architecture/external-responsibility-kernel.md`](docs/architecture/external-responsibility-kernel.md) |
-| Verification and open-governance scope | [`docs/verification-assurance-and-open-governance.md`](docs/verification-assurance-and-open-governance.md) |
-| Product roadmap | [`docs/external-kernel-roadmap.md`](docs/external-kernel-roadmap.md) |
+| Requirement-pack governance | [`docs/requirement-pack-governance.md`](docs/requirement-pack-governance.md) |
+| Compatibility policy | [`docs/contract-compatibility-policy.md`](docs/contract-compatibility-policy.md) |
+| Claim boundary | [`docs/claim-boundary-promotion.md`](docs/claim-boundary-promotion.md) |
 | Project roadmap | [`ROADMAP.md`](ROADMAP.md) |
+| Static artifact catalog | [`site/index.html`](site/index.html) |
 | AI/search-reader entrance | [`READMEforAI.md`](READMEforAI.md) |
 | Japanese entrance | [`README.ja.md`](README.ja.md) |
 
-## Next milestone
+## Remaining M2 work
 
-M2 is **Governed Pack Integration**. The next bounded work is:
+The next M2 work is not “add more execution machinery to RPE.” It is to make the evaluation-to-runtime responsibility handoff harder to misuse.
 
-1. make runtime payload version handling explicit;
-2. define and implement governance eligibility at the runtime boundary;
-3. add bounded external requirement-pack loading;
-4. preserve visible failure for stale, ownerless, ambiguous, suspended, or incompatible packs;
-5. continue toward trace, evidence, repair, and resume structures.
+Priority areas:
 
-Parallel research includes bounded Lean 4 formalization, model-to-runtime correspondence, AI-assurance evidence structures, and human-reviewed public-guidance mapping procedures.
+1. uncertainty/effect/evidence handoff semantics;
+2. repair/resume **requirements** without repair/resume authority inflation;
+3. residual-owner and Human Return continuity;
+4. adversarial validation of authority confusion, evidence confusion, stale/binding/governance failures, adapter drift, and loader-boundary violations;
+5. synchronized claim review and M2 closure evidence.
+
+See [`ROADMAP.md`](ROADMAP.md).
 
 ## Scope boundary
 
-RPE is an enforcement and orchestration reference kernel for approved machine-readable controls. It is not a general legal reasoning engine, self-maintaining regulatory knowledge base, certification system, production governance service, official standard, or proof that an AI system is lawful, safe, compliant, fair, or socially adequate.
+RPE is an evaluation and orchestration reference kernel for approved machine-readable controls. It is not a general legal reasoning engine, self-maintaining regulatory knowledge base, certification system, production governance service, official standard, execution controller, or proof that an AI system is lawful, safe, compliant, fair, or socially adequate.
 
-A schema-valid or passing result means only that the stated machine-readable checks passed. Source interpretation, real-world applicability, evidence sufficiency, deployment approval, execution authority, and final responsibility remain with the relevant human or institution.
-
-The distinction between temporary evidence gaps and permanent responsibility boundaries is maintained in [`docs/claim-boundary-promotion.md`](docs/claim-boundary-promotion.md).
+A schema/checker/CI pass or loader success means only that the stated machine-readable checks passed. Source interpretation, real-world applicability, evidence sufficiency, deployment approval, execution authority, external-effect verification, and final responsibility remain with the relevant human or institution.
 
 ## Author and construction
 
 Author: **Akihisa Ono (小野昭久)**  
 Repository affiliation: Independent
 
-RPE is developed through Open Construction with assistance from [Luminalia AI](docs/ai-assisted-construction-note.md). Human maintainer judgment remains responsible for direction, merge, publication, external claims, and final decisions.
+RPE is developed through Open Construction with assistance from [Luminalia AI](docs/ai-assisted-construction-note.md). Human maintainer judgment remains responsible for direction, merge, publication, external claims, deployment decisions, and final responsibility.
 
 - [Provenance](docs/provenance.md)
 - [Authorship](AUTHORSHIP.md)

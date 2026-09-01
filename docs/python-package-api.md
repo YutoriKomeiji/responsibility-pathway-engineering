@@ -8,7 +8,7 @@ The RPE external kernel can be imported as a dependency-free Python package.
 python -m pip install .
 ```
 
-## Evaluate an action
+## Legacy / M1-compatible evaluation
 
 ```python
 from rpe_kernel import evaluate_action
@@ -16,20 +16,39 @@ from rpe_kernel import evaluate_action
 result = evaluate_action(action_request, requirement_packs)
 ```
 
-`action_request` is a dictionary matching the Action Request schema. `requirement_packs` is a sequence of dictionaries matching the Requirement Pack schema.
+`evaluate_action()` remains the compatibility entry for the historical M1-style request + pack interface.
 
-The result contains:
+## Strict governed evaluation
 
-- `decision`: `allow`, `hold`, `human_gate`, or `deny`
-- `stage`: `applicability` or `evaluation`
-- per-pack applicability records
-- per-pack evaluation decisions
-- reason codes
-- human-return information
-- the next operational step
+```python
+from rpe_kernel import evaluate_governed_action
 
-Unknown applicability and an empty applicable-pack set return `human_gate` rather than silently continuing.
+result = evaluate_governed_action(governed_envelope)
+```
+
+The strict governed path performs bounded admission, contract compatibility, pack/governance binding, governance eligibility, applicability, requirement evaluation, and responsibility-preserving handoff.
+
+Governed results preserve:
+
+- `authority_effect = none`;
+- `decision_scope = evaluation_only`.
+
+An `allow` result is not an execution authorization token.
+
+## Bounded loading
+
+```python
+from rpe_kernel import load_governed_envelope_content, load_governed_envelope_file
+```
+
+The first loader accepts caller-provided UTF-8 JSON content or an explicitly supplied local file. It does not fetch URLs, discover registries, install packages, or establish source trust.
+
+Loader success means only that bounded bytes were decoded as a JSON object. It does not establish interpretation correctness, governance eligibility, legal validity, or source authority.
 
 ## Integration role
 
-This API is the framework-neutral boundary intended for future REST, MCP, LangGraph, LangChain, CI, and enterprise adapters. Adapters should call this API instead of reimplementing decision precedence or applicability behavior.
+Adapters should delegate to the appropriate package entry rather than reimplementing compatibility, governance, applicability, requirement evaluation, decision precedence, or Human Return behavior.
+
+Legacy adapter surfaces delegate to `evaluate_action()`. Strict governed adapter surfaces delegate to `evaluate_governed_action()`.
+
+The package evaluates proposals only. Dispatch, execution, effect verification, repair/resume authority, deployment approval, and final responsibility remain outside the package boundary.
