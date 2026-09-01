@@ -11,7 +11,8 @@ from datetime import date
 from typing import Any
 
 ACTIVE_STATE = "active"
-ELIGIBLE_INTERPRETATION_STATES = {"reviewed_mapping", "not_applicable"}
+STRICT_ELIGIBLE_INTERPRETATION_STATES = {"reviewed_mapping", "not_applicable"}
+LEGACY_ELIGIBLE_INTERPRETATION_STATES = STRICT_ELIGIBLE_INTERPRETATION_STATES | {"reviewed"}
 REQUIRED_TEXT_FIELDS = (
     "pack_id",
     "pack_version",
@@ -34,8 +35,17 @@ def _parse_date(value: Any) -> date | None:
         return None
 
 
-def check_governance(record: dict[str, Any], *, today: date | None = None) -> list[str]:
-    """Return stable reason codes for governance ineligibility."""
+def check_governance(
+    record: dict[str, Any],
+    *,
+    today: date | None = None,
+    strict: bool = False,
+) -> list[str]:
+    """Return stable reason codes for governance ineligibility.
+
+    ``strict=True`` is reserved for the explicit governed M2 entry. The legacy
+    checker keeps bounded migration compatibility for historical records.
+    """
     effective_today = today or date.today()
     reasons: list[str] = []
 
@@ -54,13 +64,14 @@ def check_governance(record: dict[str, Any], *, today: date | None = None) -> li
             reasons.append(field_codes.get(field, f"RPE-PACK-GOV-MISSING-{field.replace('_', '-').upper()}"))
 
     interpretation_status = record.get("interpretation_status")
-    if interpretation_status not in ELIGIBLE_INTERPRETATION_STATES:
+    eligible_states = STRICT_ELIGIBLE_INTERPRETATION_STATES if strict else LEGACY_ELIGIBLE_INTERPRETATION_STATES
+    if interpretation_status not in eligible_states:
         reasons.append("RPE-PACK-GOV-INTERPRETATION-NOT-ELIGIBLE")
 
     ambiguity = record.get("unresolved_ambiguity")
     if not isinstance(ambiguity, list) or not all(isinstance(item, str) for item in ambiguity):
         reasons.append("RPE-PACK-GOV-INVALID-AMBIGUITY-RECORD")
-    elif ambiguity:
+    elif strict and ambiguity:
         reasons.append("RPE-PACK-GOV-UNRESOLVED-AMBIGUITY")
 
     last_reviewed_raw = record.get("last_reviewed")
@@ -69,7 +80,7 @@ def check_governance(record: dict[str, Any], *, today: date | None = None) -> li
         reasons.append("RPE-PACK-GOV-MISSING-REVIEW-DATE")
     elif last_reviewed is None:
         reasons.append("RPE-PACK-GOV-INVALID-REVIEW-DATE")
-    elif last_reviewed > effective_today:
+    elif strict and last_reviewed > effective_today:
         reasons.append("RPE-PACK-GOV-REVIEW-DATE-IN-FUTURE")
 
     next_review_due_raw = record.get("next_review_due")
@@ -81,11 +92,11 @@ def check_governance(record: dict[str, Any], *, today: date | None = None) -> li
     else:
         if next_review_due < effective_today:
             reasons.append("RPE-PACK-GOV-REVIEW-EXPIRED")
-        if last_reviewed is not None and next_review_due < last_reviewed:
+        if strict and last_reviewed is not None and next_review_due < last_reviewed:
             reasons.append("RPE-PACK-GOV-INVALID-REVIEW-DATE-ORDER")
 
     effective_date_raw = record.get("effective_date")
-    if effective_date_raw is not None:
+    if strict and effective_date_raw is not None:
         effective_date = _parse_date(effective_date_raw)
         if effective_date is None:
             reasons.append("RPE-PACK-GOV-INVALID-EFFECTIVE-DATE")
@@ -103,9 +114,14 @@ def check_governance(record: dict[str, Any], *, today: date | None = None) -> li
     return sorted(set(reasons))
 
 
-def governance_decision(record: dict[str, Any], *, today: date | None = None) -> dict[str, Any]:
+def governance_decision(
+    record: dict[str, Any],
+    *,
+    today: date | None = None,
+    strict: bool = False,
+) -> dict[str, Any]:
     """Return the bounded runtime decision for a governance record."""
-    reasons = check_governance(record, today=today)
+    reasons = check_governance(record, today=today, strict=strict)
     return {
         "pack_id": record.get("pack_id", "unknown-pack"),
         "pack_version": record.get("pack_version"),
