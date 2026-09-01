@@ -17,11 +17,12 @@ def _parse_semver(version: Any) -> tuple[int, int, int] | None:
 
 
 def check_contract_version(contract: str, supplied_version: Any) -> list[str]:
-    """Return stable reason codes when a governed runtime contract is unsupported.
+    """Return stable reason codes when a runtime contract version is unsupported.
 
-    Current M2 support is intentionally conservative: exact supported versions are
-    accepted; older/newer MINOR versions require an explicit future compatibility
-    declaration rather than being accepted by major-version coincidence.
+    Older MINOR/PATCH revisions within the supported MAJOR remain migration-
+    compatible. A newer MINOR requires an explicit future forward-compatibility
+    declaration; a newer PATCH within the current MINOR is also rejected until
+    the declared schema policy admits it.
     """
     entry = CONTRACTS.get(contract)
     if entry is None:
@@ -37,9 +38,9 @@ def check_contract_version(contract: str, supplied_version: Any) -> list[str]:
     assert supported is not None
     if supplied[0] != supported[0]:
         return [f"RPE-CONTRACT-UNSUPPORTED-{contract.replace('_', '-').upper()}-MAJOR"]
-    if supplied[1] != supported[1]:
+    if supplied[1] > supported[1]:
         return [f"RPE-CONTRACT-UNSUPPORTED-{contract.replace('_', '-').upper()}-MINOR"]
-    if supplied[2] > supported[2]:
+    if supplied[1] == supported[1] and supplied[2] > supported[2]:
         return [f"RPE-CONTRACT-UNSUPPORTED-{contract.replace('_', '-').upper()}-PATCH"]
     return []
 
