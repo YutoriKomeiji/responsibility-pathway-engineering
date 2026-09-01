@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/YutoriKomeiji/responsibility-pathway-engineering/blob/main/schemas/external-kernel/governed-evaluation-result.schema.json",
+  "title": "RPE Governed Evaluation Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version", "request_id", "decision", "stage", "reason_codes",
+    "applicability", "pack_decisions", "governance", "human_return",
+    "next_step", "responsibility_handoff"
+  ],
+  "properties": {
+    "contract_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "request_id": {"type": ["string", "null"]},
+    "decision": {"type": "string", "enum": ["allow", "hold", "human_gate", "deny"]},
+    "stage": {"type": "string", "enum": ["admission", "compatibility", "governance", "applicability", "evaluation"]},
+    "reason_codes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "applicability": {"type": "array", "items": {"type": "object"}},
+    "pack_decisions": {"type": "array", "items": {"type": "object"}},
+    "governance": {"type": "array", "items": {"type": "object"}},
+    "human_return": {
+      "anyOf": [
+        {"type": "null"},
+        {"type": "object", "required": ["role"], "properties": {"role": {"type": "string", "minLength": 1}}}
+      ]
+    },
+    "next_step": {"type": "string", "minLength": 1},
+    "responsibility_handoff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority_effect", "decision_scope", "selected_pack_refs", "rejected_pack_refs", "evaluation_evidence_scope", "human_return"],
+      "properties": {
+        "authority_effect": {"const": "none"},
+        "decision_scope": {"const": "evaluation_only"},
+        "selected_pack_refs": {"type": "array", "items": {"$ref": "#/$defs/pack_ref"}},
+        "rejected_pack_refs": {"type": "array", "items": {"$ref": "#/$defs/pack_ref"}},
+        "evaluation_evidence_scope": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["available", "missing"],
+          "properties": {
+            "available": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+            "missing": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+          }
+        },
+        "human_return": {
+          "anyOf": [
+            {"type": "null"},
+            {"type": "object", "required": ["role"], "properties": {"role": {"type": "string", "minLength": 1}}}
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "pack_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["binding_id", "pack_id", "pack_version", "governance_contract_version"],
+      "properties": {
+        "binding_id": {"type": "string", "minLength": 1},
+        "pack_id": {"type": "string", "minLength": 1},
+        "pack_version": {"type": "string", "minLength": 1},
+        "governance_contract_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"}
+      }
+    }
+  }
+}

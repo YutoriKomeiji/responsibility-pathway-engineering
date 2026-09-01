@@ -11,18 +11,19 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "action_request",
-        "gate_decision",
-        "runtime_evaluation_result",
-        "requirement_pack",
-        "requirement_pack_governance"
+        "action_request", "gate_decision", "runtime_evaluation_result", "requirement_pack",
+        "requirement_pack_governance", "governed_pack_binding", "governed_evaluation_request",
+        "governed_evaluation_result"
       ],
       "properties": {
         "action_request": {"$ref": "#/$defs/contract"},
         "gate_decision": {"$ref": "#/$defs/contract"},
         "runtime_evaluation_result": {"$ref": "#/$defs/contract"},
         "requirement_pack": {"$ref": "#/$defs/contract"},
-        "requirement_pack_governance": {"$ref": "#/$defs/contract"}
+        "requirement_pack_governance": {"$ref": "#/$defs/contract"},
+        "governed_pack_binding": {"$ref": "#/$defs/contract"},
+        "governed_evaluation_request": {"$ref": "#/$defs/contract"},
+        "governed_evaluation_result": {"$ref": "#/$defs/contract"}
       }
     },
     "reason_code_policy": {

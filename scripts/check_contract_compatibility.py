@@ -9,6 +9,14 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+from rpe_kernel.contract_versions import (  # noqa: E402
+    CONTRACTS as RUNTIME_CONTRACTS,
+    MANIFEST_VERSION as RUNTIME_MANIFEST_VERSION,
+    REASON_CODE_POLICY as RUNTIME_REASON_CODE_POLICY,
+)
+
 MANIFEST = ROOT / "schemas/external-kernel/contract-versions.json"
 POLICY = ROOT / "docs/contract-compatibility-policy.md"
 SEMVER = re.compile(r"^[0-9]+\.[0-9]+\.[0-9]+$")
@@ -18,6 +26,9 @@ REQUIRED_CONTRACTS = {
     "runtime_evaluation_result",
     "requirement_pack",
     "requirement_pack_governance",
+    "governed_pack_binding",
+    "governed_evaluation_request",
+    "governed_evaluation_result",
 }
 
 
@@ -62,6 +73,20 @@ def main() -> None:
     if reason_policy.get("reuse_forbidden") is not True:
         fail("reason-code reuse must be forbidden")
 
+    runtime_contracts = {
+        name: {
+            "version": entry["version"],
+            "unknown_major_behavior": entry["unknown_major_behavior"],
+        }
+        for name, entry in contracts.items()
+    }
+    if RUNTIME_MANIFEST_VERSION != manifest_version:
+        fail(f"installed runtime manifest version drift: {RUNTIME_MANIFEST_VERSION!r} != {manifest_version!r}")
+    if RUNTIME_CONTRACTS != runtime_contracts:
+        fail("installed runtime contract snapshot drifted from contract-versions.json")
+    if RUNTIME_REASON_CODE_POLICY != reason_policy:
+        fail("installed runtime reason-code policy drifted from contract-versions.json")
+
     policy_text = POLICY.read_text(encoding="utf-8")
     required_phrases = [
         "Unknown MAJOR version",
@@ -73,7 +98,7 @@ def main() -> None:
         if phrase not in policy_text:
             fail(f"compatibility policy is missing required phrase: {phrase}")
 
-    print("contract compatibility manifest: OK")
+    print("contract compatibility manifest and runtime snapshot: OK")
 
 
 if __name__ == "__main__":

@@ -1,11 +1,11 @@
 {
-  "manifest_version": "1.1.0",
+  "manifest_version": "1.2.0",
   "contracts": {
     "action_request": {
       "version": "1.1.0",
       "schema_path": "schemas/external-kernel/action-request.schema.json",
       "unknown_major_behavior": "reject",
-      "notes": "Runtime payloads may carry contract_version. M2 governed calls require it through explicit compatibility enforcement."
+      "notes": "Runtime payloads may carry contract_version. Strict governed calls require explicit version carriage."
     },
     "gate_decision": {
       "version": "1.0.0",
@@ -17,19 +17,37 @@
       "version": "1.0.0",
       "schema_path": "schemas/external-kernel/runtime-evaluation-result.schema.json",
       "unknown_major_behavior": "human_gate",
-      "notes": "Canonical multi-pack kernel result with compatibility, governance, applicability, evaluation, and human-return stages."
+      "notes": "Legacy/common multi-pack result family retained for M1-compatible evaluation."
     },
     "requirement_pack": {
       "version": "1.1.0",
       "schema_path": "schemas/external-kernel/requirement-pack.schema.json",
       "unknown_major_behavior": "human_gate",
-      "notes": "Runtime payloads may carry contract_version. Compatibility does not establish governance eligibility."
+      "notes": "Runtime payloads may carry contract_version. Governance eligibility remains a separate gate."
     },
     "requirement_pack_governance": {
-      "version": "1.0.0",
+      "version": "1.1.0",
       "schema_path": "schemas/external-kernel/requirement-pack-governance.schema.json",
       "unknown_major_behavior": "human_gate",
-      "notes": "Governance records can now be bound into evaluate_action() for M2 entry calls."
+      "notes": "1.1.0 adds optional contract_version carriage; strict governed bindings require it."
+    },
+    "governed_pack_binding": {
+      "version": "1.0.0",
+      "schema_path": "schemas/external-kernel/governed-pack-binding.schema.json",
+      "unknown_major_behavior": "human_gate",
+      "notes": "Binds one versioned Requirement Pack to one versioned governance record for governed admission."
+    },
+    "governed_evaluation_request": {
+      "version": "1.0.0",
+      "schema_path": "schemas/external-kernel/governed-evaluation-request.schema.json",
+      "unknown_major_behavior": "human_gate",
+      "notes": "Strict M2 request envelope; version carriage is mandatory and governance cannot be disabled by a flag."
+    },
+    "governed_evaluation_result": {
+      "version": "1.0.0",
+      "schema_path": "schemas/external-kernel/governed-evaluation-result.schema.json",
+      "unknown_major_behavior": "human_gate",
+      "notes": "Strict M2 result envelope with admission stage and no-authority responsibility handoff semantics."
     }
   },
   "reason_code_policy": {
