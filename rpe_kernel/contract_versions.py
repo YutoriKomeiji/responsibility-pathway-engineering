@@ -5,7 +5,7 @@ schemas/external-kernel/contract-versions.json. CI must fail if the two drift.
 Runtime code may import this module without depending on repository-root data.
 """
 
-MANIFEST_VERSION = "1.3.0"
+MANIFEST_VERSION = "1.4.0"
 
 CONTRACTS = {
     "action_request": {"version": "1.1.0", "unknown_major_behavior": "reject"},
@@ -14,8 +14,8 @@ CONTRACTS = {
     "requirement_pack": {"version": "1.1.0", "unknown_major_behavior": "human_gate"},
     "requirement_pack_governance": {"version": "1.1.0", "unknown_major_behavior": "human_gate"},
     "governed_pack_binding": {"version": "1.0.0", "unknown_major_behavior": "human_gate"},
-    "governed_evaluation_request": {"version": "1.0.0", "unknown_major_behavior": "human_gate"},
-    "governed_evaluation_result": {"version": "1.1.0", "unknown_major_behavior": "human_gate"},
+    "governed_evaluation_request": {"version": "1.1.0", "unknown_major_behavior": "human_gate"},
+    "governed_evaluation_result": {"version": "1.2.0", "unknown_major_behavior": "human_gate"},
 }
 
 REASON_CODE_POLICY = {
