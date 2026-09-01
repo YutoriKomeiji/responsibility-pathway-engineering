@@ -1,73 +1,70 @@
 # Responsibility Pathway Engineering
 
-**AIシステムのための、実行可能なResponsible AI制御。**
+[![Value Demo](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/workflows/check-rpe-value-demo.yml/badge.svg?branch=main)](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/workflows/check-rpe-value-demo.yml)
+[![Security Hygiene](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/workflows/check-repository-security.yml/badge.svg?branch=main)](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/workflows/check-repository-security.yml)
+[![Demo](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/workflows/check-demo.yml/badge.svg?branch=main)](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/workflows/check-demo.yml)
 
-責任経路工学（Responsibility Pathway Engineering / RPE）は、明示的に範囲を定めた機械可読Responsible AI controlを評価するための、portableな外部責任kernelです。
+**AIエージェントの「提案」と「実行してよい」を分ける、責任判断のためのOSSです。**
+
+Responsibility Pathway Engineering（責任経路工学 / RPE）は、AIや自動化システムが外部操作へ進む前に、適用する要件、承認・証拠の不足、判断理由、次の責任担当を機械可読な形で確認するためのPythonベースの責任評価レイヤーです。
+
+## 何を解決するのか
+
+AIエージェントでは、モデルが「この操作を行う」と提案したことが、そのまま「システムが実行してよい」という扱いにつながることがあります。
+
+RPEは、その間に小さな判断ポイントを追加します。
+
+- 必要な承認や証拠がなければ、黙って続行せず`human_gate`などの判断を返す
+- 続行・保留・人間判断・拒否の理由を、安定した理由コードで返す
+- 評価時の証拠と、外部システムで実際に処理が完了した証拠を混同しない
+- 既存のエージェントや実行基盤の前段に追加でき、RPE自身は実行主体にならない
+
+最短の比較デモは次で確認できます。
+
+```bash
+python scripts/value_demo.py
+```
+
+詳しくは [`docs/why-rpe.md`](docs/why-rpe.md) を参照してください。
 
 ```text
-Responsible AI要件
-        ↓
-人間がscope/interpretationを定めたRequirement Pack
-        ↓
-AI Action Request
-        ↓
-RPE external kernel
-        ↓
+AIが操作を提案
+      ↓
+RPEが要件・承認・証拠・ガバナンス状態を評価
+      ↓
 allow / hold / human_gate / deny
-        ↓
-reason code・governance・applicability・必要evidence・Human Return
+      ↓
+理由コード・不足情報・責任の引き渡し先
+      ↓
+既存の実行基盤、人間、制度、後段ランタイム
 ```
 
-RPEは、どの要件が適用されるか、明示されたcontrolの下で提案行為を継続できるか、何が不足しているか、どこで責任を人間・制度へ返すべきかを評価します。
+## 今すぐ使える範囲
 
-## 長期方向：人間review済みの規範要求をbounded controlへ
+現在の公開実装では、次を利用できます。
 
-RPEは、法令、公的ガイドライン、標準、組織規程、専門職上の義務、影響当事者とのcommitmentに対する**人間・制度によるreview済み解釈**を、限定された機械可読controlへ変換するための公開的・検査可能な工学基盤を目指します。
+- 複数のRequirement Packに対する適用判定と評価
+- 互換性を維持したPython API `evaluate_action()`
+- ガバナンスを必須にしたPython API `evaluate_governed_action()`
+- Requirement Packとガバナンス情報のID・バージョン固定
+- RESTリファレンスAPI
+- MCP stdioツール
+- OpenAPI 3.1定義
+- 呼び出し元のJSON文字列または明示指定したローカルファイルからの読み込み
+- `authority_effect = none`、`decision_scope = evaluation_only`を保持する責任引き渡し情報
+- スキーマ、テスト用フィクスチャ、回帰テスト、CIチェック
 
-```text
-公式または正当に承認された規範source
-        ↓
-人間・制度によるscope / interpretation / review / approval
-        ↓
-source metadataとgovernance stateを持つversioned Requirement Pack
-        ↓
-RPE governed evaluation
-        ↓
-allow / hold / human_gate / deny + reason + Human Return
-        ↓
-別系統のassurance / legal review / execution authority / operational responsibility
+現在の詳細な実装状態は [`docs/m2-governed-integration-current.md`](docs/m2-governed-integration-current.md) に記録しています。
+
+## 導入
+
+現在のリファレンス実装はPython 3.11+で動作し、追加の外部依存はありません。
+
+```bash
+python -m pip install .
 ```
 
-RPEはlegal interpretation、approval authority、execution authority、final responsibilityをkernelへ移しません。自動compliance engine、法的助言主体、自動更新regulatory database、認証機関、法務・政策・安全・assurance・運用統治の代替ではありません。
-
-## 現在地 — M2実装中
-
-RPEはM1-onlyの実装境界を越え、現在は **M2実装中 / governed-integration baseline到達** の状態です。
-
-**M2全体のclosureはまだ主張しません。**
-
-現在の公開実装状態: [`docs/m2-governed-integration-current.md`](docs/m2-governed-integration-current.md)
-
-実装済み:
-
-- deterministic applicability resolution / multi-pack evaluation
-- legacy/M1-compatible Python entry `evaluate_action()`
-- explicit strict governed Python entry `evaluate_governed_action()`
-- governed contract familyとruntime version handling
-- Requirement Pack / governance recordのidentity・version binding
-- strict governance eligibilityとvisible fail-closed outcome
-- legacy / governed REST reference route
-- legacy / governed MCP stdio tool
-- admission / compatibility / governance / applicability / evaluationを表現するOpenAPI 3.1
-- repository / package / runtime OpenAPI drift check
-- caller-content / local-fileに限定したbounded governed-envelope loader
-- first loaderでのnetwork / registry loading明示拒否
-- `authority_effect = none` / `decision_scope = evaluation_only` を保持するresponsibility handoff
-- schema / synthetic fixture / deterministic regression / CI guard
-
-## 二つのruntime entry
-
-### Legacy / M1-compatible
+### 互換API
 
 ```python
 from rpe_kernel import evaluate_action
@@ -75,9 +72,7 @@ from rpe_kernel import evaluate_action
 result = evaluate_action(action_request, requirement_packs)
 ```
 
-互換性のため保持している入口です。
-
-### Strict governed M2
+### ガバナンス必須API
 
 ```python
 from rpe_kernel import evaluate_governed_action
@@ -85,164 +80,135 @@ from rpe_kernel import evaluate_governed_action
 result = evaluate_governed_action(governed_envelope)
 ```
 
-Strict governed path:
+ガバナンス必須の経路では、次の順で評価します。
 
 ```text
-governed envelope admission
-        ↓
-contract compatibility
-        ↓
-Pack ↔ governance binding
-        ↓
-governance eligibility
-        ↓
-applicability resolution
-        ↓
-requirement evaluation
-        ↓
-decision combination
-        ↓
-responsibility-preserving handoff
+入力受付
+  ↓
+契約バージョンの互換性
+  ↓
+Requirement Packとガバナンス情報の結び付け
+  ↓
+ガバナンス状態の確認
+  ↓
+適用条件の判定
+  ↓
+要件評価
+  ↓
+総合判断
+  ↓
+責任の引き渡し情報
 ```
 
-M2 gateをoptional flagとして「付け忘れられる」形ではなく、strict governed entryとして明示的に分離しています。
+## 対応インターフェース
 
-## 重要なAuthority境界
+| インターフェース | 互換API | ガバナンス必須API | ドキュメント |
+|---|---|---|---|
+| Python | `evaluate_action()` | `evaluate_governed_action()` | [`docs/python-package-api.md`](docs/python-package-api.md) |
+| REST | `POST /v1/evaluate` | `POST /v1/evaluate/governed` | [`docs/integrations/rest-api.md`](docs/integrations/rest-api.md) |
+| MCP stdio | `rpe_evaluate_action` | `rpe_evaluate_governed_action` | [`docs/integrations/mcp-stdio.md`](docs/integrations/mcp-stdio.md) |
+| OpenAPI 3.1 | 両方を定義 | 両方を定義 | [`docs/integrations/openapi.md`](docs/integrations/openapi.md) |
 
-RPEの`allow`は **evaluation result** であり、execution authorization tokenではありません。
+これらのアダプターは提案された操作を評価します。外部操作の実行、デプロイ承認、リリース公開、外部作用の確認、最終責任の移転は行いません。
 
-RPE単体は次を行いません。
+## 重要な権限境界
 
-- external actionのdispatch / execution
-- production deployment approval
-- external effectが起きたことのverification
-- receiptをverified effect evidenceへ昇格
-- repair可能性からrepair authorityを生成
-- blocked pathが再開可能になっただけでresume authorityを生成
-- final responsibilityをAIへ移転
+RPEの`allow`は**評価結果**であり、実行許可トークンではありません。
 
-Evaluation evidenceはeffect evidenceではありません。Repair readinessはrepair authorityではありません。Resume authorityはexecutionを所有するruntime / institution側にあり、別のauthority-bearing transitionを必要とします。
+RPE単体では次を行いません。
 
-この境界は後段runtimeで得られたimplementation experienceをRPEへ必要最小限反映したものであり、RPEをOSやexecution controllerへ変えるものではありません。
+- 外部操作を実行する
+- デプロイを承認する
+- 外部システムで処理が完了したことを検証する
+- APIレスポンスやレシートだけを外部作用の証明として扱う
+- 修復可能という理由だけで修復権限を付与する
+- 再開可能という理由だけで再開権限を付与する
+- 最終責任をAIへ移す
 
-## Bounded loading
+**評価時の証拠と、外部作用の証拠は別です。** 修復準備と修復権限、再開準備と再開権限も分けて扱います。
 
-現在のloaderが受け入れるのは次だけです。
+## ローカル読み込みの範囲
 
-- caller-provided UTF-8 JSON content
-- 明示指定されたlocal file
+現在のローダーが受け入れるのは、次の2種類です。
+
+- 呼び出し元から渡されたUTF-8 JSON
+- 明示指定されたローカルファイル
 
 ```python
 from rpe_kernel import load_governed_envelope_content, load_governed_envelope_file
 ```
 
-first loaderはURL fetch、remote registry discovery、package install、source trust establishmentを行いません。
+現在のローダーはURL取得、外部レジストリ探索、パッケージの自動インストール、取得元の信頼判定を行いません。
 
-fileが読めたことは、そのpathにbytesが存在したというtransport observationにすぎません。source authority、semantic correctness、governance eligibility、legal validity、current applicabilityは証明しません。
+ファイルを読めたことは、そのデータが正しい、承認済み、法的に有効、現在の状況に適用できることを意味しません。
 
-## Install / Reference Interface
+## デモと公開サイト
+
+価値を最短で確認するデモ:
 
 ```bash
-python -m pip install .
+python scripts/value_demo.py
 ```
 
-| Interface | Legacy entry | Strict governed entry | 文書 |
-|---|---|---|---|
-| Python package | `evaluate_action()` | `evaluate_governed_action()` | [`docs/python-package-api.md`](docs/python-package-api.md) |
-| Local REST | `POST /v1/evaluate` | `POST /v1/evaluate/governed` | [`docs/integrations/rest-api.md`](docs/integrations/rest-api.md) |
-| MCP stdio | `rpe_evaluate_action` | `rpe_evaluate_governed_action` | [`docs/integrations/mcp-stdio.md`](docs/integrations/mcp-stdio.md) |
-| OpenAPI 3.1 | 両方を記述 | 両方を記述 | [`docs/integrations/openapi.md`](docs/integrations/openapi.md) |
-
-Adapterは提案行為を評価するだけです。行為のexecution、deployment approval、release publication、merge、external effect verification、責任移転は行いません。
-
-## 実行Walkthrough / Artifact Catalog
-
-boundedなsynthetic walkthroughは次のcanonical demo commandで実行できます。
+より広い評価フローを確認するデモ:
 
 ```bash
 python scripts/demo.py
 ```
 
-公開static artifact catalogは [`site/index.html`](site/index.html) です。
+ブラウザ向けの公開カタログ: [`site/index.html`](site/index.html)
 
-Demo PASSやcatalog掲載はrepository evidenceにすぎず、certification、production approval、legal review、external-effect proofを意味しません。
+デモやCIの成功は、そのテスト条件でチェックが通ったことを示します。セキュリティ認証、法令適合、本番承認、実環境でのリスク削減効果、外部作用の完了証明ではありません。
 
-## Claim boundary / Promotion
+## 開発中の範囲と既知の制約
 
-RPEは、**evidenceが揃えば前進できるmilestone boundary**と、**engineering kernel単体では越えるべきでないpermanent responsibility boundary**を分離します。
+RPEは継続開発中ですが、明示された範囲では実際に試して統合できます。リポジトリ全体を一律に「利用不可」とは扱いません。
 
-詳細: [`docs/claim-boundary-promotion.ja.md`](docs/claim-boundary-promotion.ja.md)
+現在、RPE自身が提供していない主な領域は次のとおりです。
 
-M1-onlyのgoverned-integration境界は前進しました。strict runtime governance、compatibility、binding、adapter parity、bounded local/caller-content loadingにはimplementation/CI evidenceがあります。
+- 本番環境向けの認証・認可基盤
+- リモート取得元の信頼判定
+- 外部操作の実行・リトライ・照合・修復・再開
+- 任意の環境に対するセキュリティ保証
+- 自動的な法令解釈・適合判定・認証
 
-ただし次は自動昇格しません。
+利用時は、対象インターフェースの対応範囲と既知の制約を確認してください。バグ、攻撃事例、統合上の問題、反例、改善提案を歓迎します。
 
-- production readiness
-- legal / compliance correctness
-- certification / conformity
-- reviewed real-world normative mapping
-- execution authority
-- verified external effect
-- implementation-wide formal conformance
-- official-standard status
+- [サポート](SUPPORT.md)
+- [セキュリティ報告](SECURITY.md)
+- [コントリビューション](CONTRIBUTING.md)
 
-Promotionはevidenceごとに明示的に行います。
+## 長期方向
 
-## 検証可能性・AI Assurance・公開Governance
+RPEは、法令、公的ガイドライン、標準、組織ポリシー、専門職上の義務などについて、人間や制度が確認した解釈を、限定された機械可読コントロールとして扱える公開基盤を目指しています。
 
-RPEは、blanketな「安全」宣言ではなく、boundedでinspectableなclaimからVerifiable AI / AI Assuranceへ接続します。
+RPE自身が法令やガイドラインを自動解釈したり、法的・組織的な権限を生成したりすることは設計目標ではありません。
 
-Formalizationは、明示したmodelとassumptionの範囲でresponsibility pathwayのpropertyを証明対象にできます。ただし、そのproofだけでPython runtime全体、source interpretation、legal validity、operational behavior、production safetyを証明済みとは扱いません。
+## 検証・保証・公開ガバナンス
 
-Public guidanceは将来のhuman-reviewed Requirement Packのsourceになり得ますが、RPEはlaw/guidanceを自動解釈せず、schema-validまたはload可能なPackが正しいlegal/normative interpretationを含むとは主張しません。
+RPEは「安全です」という一括した主張ではなく、対象と条件を限定した検証可能な主張を積み上げます。
 
-RPEはMIT Licenseで公開し、open specification、interoperability、independent verification、multiple implementation potentialを重視します。現時点でofficial standardではありません。
+形式化されたモデルで証明できる性質があっても、それだけでPython実装全体、入力データの正当性、法的有効性、本番環境の安全性まで証明されたとは扱いません。
 
-## 主要な入口
+詳しくは [`docs/verification-assurance-and-open-governance.md`](docs/verification-assurance-and-open-governance.md) と [`docs/claim-boundary-promotion.ja.md`](docs/claim-boundary-promotion.ja.md) を参照してください。
 
-- Current M2 status: [`docs/m2-governed-integration-current.md`](docs/m2-governed-integration-current.md)
-- Kernel: [`rpe_kernel/pipeline.py`](rpe_kernel/pipeline.py)
-- Loader: [`rpe_kernel/loader.py`](rpe_kernel/loader.py)
-- Applicability: [`rpe_kernel/applicability.py`](rpe_kernel/applicability.py)
-- Evaluation: [`rpe_kernel/evaluation.py`](rpe_kernel/evaluation.py)
-- Governance: [`rpe_kernel/governance.py`](rpe_kernel/governance.py)
-- Compatibility: [`rpe_kernel/compatibility.py`](rpe_kernel/compatibility.py)
-- REST: [`rpe_kernel/http_api.py`](rpe_kernel/http_api.py)
-- MCP: [`rpe_kernel/mcp_server.py`](rpe_kernel/mcp_server.py)
-- OpenAPI: [`spec/openapi/rpe-kernel.openapi.json`](spec/openapi/rpe-kernel.openapi.json)
-- Claim boundary: [`docs/claim-boundary-promotion.ja.md`](docs/claim-boundary-promotion.ja.md)
-- Roadmap: [`ROADMAP.md`](ROADMAP.md)
-- Static artifact catalog: [`site/index.html`](site/index.html)
-- AI/Search Reader: [`READMEforAI.md`](READMEforAI.md)
+## 主要リンク
 
-## 残るM2 work
+- [RPEを使う理由](docs/why-rpe.md)
+- [現在のM2実装状態](docs/m2-governed-integration-current.md)
+- [Python API](docs/python-package-api.md)
+- [Requirement Packガバナンス](docs/requirement-pack-governance.md)
+- [互換性ポリシー](docs/contract-compatibility-policy.md)
+- [ロードマップ](ROADMAP.md)
+- [公開カタログ](site/index.html)
+- [AI/Search Reader](READMEforAI.md)
 
-次のM2は「RPEへexecution machineryを増やす」工程ではありません。evaluationからdownstream runtimeへ渡すresponsibility handoffを、誤用しにくくする工程です。
-
-優先:
-
-1. uncertainty / effect / evidence handoff semantics
-2. repair / resume **requirement** を明示しつつrepair/resume authorityをRPEへ持ち込まない
-3. residual owner / Human Return continuity
-4. authority confusion、evidence confusion、stale/binding/governance failure、adapter drift、loader boundary violationのadversarial validation
-5. public claim syncとM2 closure evidence
-
-詳細: [`ROADMAP.md`](ROADMAP.md)
-
-## 責任境界
-
-RPEは承認済みmachine-readable controlを評価・調停するreference kernelです。general legal reasoning engine、自動更新knowledge base、certification system、production governance service、official standard、execution controllerではありません。
-
-Schema/checker/CI PASSやloader successが意味するのは、宣言されたmachine-readable checkが通ったことだけです。Source interpretation、real-world applicability、evidence sufficiency、deployment approval、execution authority、external-effect verification、final responsibilityは関係する人間・制度に残ります。
-
-## Open Construction
-
-RPEはOpen Constructionとして [Luminalia AI](docs/ai-assisted-construction-note.md) の支援を受けて開発されています。Direction、review、merge、publication claim、deployment decision、final responsibilityはhuman maintainerに残ります。
+## 開発とライセンス
 
 著作者: **Akihisa Ono（小野昭久）**  
 Repository affiliation: Independent
 
-## License
+RPEはOpen Constructionとして [Luminalia AI](docs/ai-assisted-construction-note.md) の支援を受けて開発されています。方向性、レビュー、マージ、公開上の主張、デプロイ判断、最終責任は人間のメンテナーが担います。
 
 [MIT License](LICENSE) の下で公開されています。
 
