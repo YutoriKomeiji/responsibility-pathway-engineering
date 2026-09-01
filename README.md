@@ -1,5 +1,9 @@
 # Responsibility Pathway Engineering
 
+[![Value Demo](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/workflows/check-rpe-value-demo.yml/badge.svg?branch=main)](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/workflows/check-rpe-value-demo.yml)
+[![Security Hygiene](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/workflows/check-repository-security.yml/badge.svg?branch=main)](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/workflows/check-repository-security.yml)
+[![Demo](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/workflows/check-demo.yml/badge.svg?branch=main)](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/actions/workflows/check-demo.yml)
+
 **Executable Responsible AI controls for AI systems.**
 
 Responsibility Pathway Engineering (RPE) is a portable external responsibility kernel and component toolkit for evaluating explicitly scoped machine-readable Responsible AI controls.
@@ -236,7 +240,7 @@ See [`docs/verification-assurance-and-open-governance.md`](docs/verification-ass
 | Applicability resolver | [`rpe_kernel/applicability.py`](rpe_kernel/applicability.py) |
 | Pack evaluator | [`rpe_kernel/evaluation.py`](rpe_kernel/evaluation.py) |
 | Governance | [`rpe_kernel/governance.py`](rpe_kernel/governance.py) |
-| Compatibility | [`rpe_kernel/compatibility.py`](rpe_kernel/compatibility.py) |
+| Compatibility | [`docs/contract-compatibility-policy.md`](docs/contract-compatibility-policy.md) |
 | REST adapter | [`rpe_kernel/http_api.py`](rpe_kernel/http_api.py) |
 | MCP adapter | [`rpe_kernel/mcp_server.py`](rpe_kernel/mcp_server.py) |
 | OpenAPI contract | [`spec/openapi/rpe-kernel.openapi.json`](spec/openapi/rpe-kernel.openapi.json) |
