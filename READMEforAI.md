@@ -1,6 +1,6 @@
 # README for AI / Search Readers
 
-Responsibility Pathway Engineering (RPE) is a portable external responsibility kernel and component toolkit for turning explicitly scoped Responsible AI requirement mappings into executable controls.
+Responsibility Pathway Engineering (RPE) is a portable external responsibility kernel and component toolkit for evaluating explicitly scoped machine-readable Responsible AI controls.
 
 Human repository entrance:
 
@@ -10,136 +10,151 @@ https://github.com/YutoriKomeiji/responsibility-pathway-engineering
 
 ## Grounded current summary
 
-RPE has reached the **M1 Governed Reference Kernel** checkpoint.
+RPE has moved beyond the M1-only implementation boundary. It is currently in **M2 implementation with the governed-integration baseline reached**. Full M2 closure is not yet claimed.
+
+Current public status: `docs/m2-governed-integration-current.md`.
 
 Implemented now:
 
-- applicability resolution for machine-readable requirement packs;
-- deterministic single- and multi-pack evaluation;
+- deterministic applicability resolution and single-/multi-pack evaluation;
+- legacy/M1-compatible Python entry `rpe_kernel.evaluate_action()`;
+- explicit strict governed entry `rpe_kernel.evaluate_governed_action()`;
+- explicit governed contract families and contract-version handling;
+- exact Requirement Pack/governance identity and version binding;
+- strict runtime governance eligibility with visible fail-closed outcomes;
 - structured `allow`, `hold`, `human_gate`, and `deny` decisions;
-- an importable Python package API;
-- local REST, OpenAPI 3.1, and MCP stdio reference interfaces;
-- requirement-pack lifecycle and maintenance governance;
-- expiry, ambiguity, ownership, review, suspension, supersession, and retirement boundaries;
-- independent semantic-version baselines for action requests, gate decisions, requirement packs, governance records, and reason-code policy;
-- compatibility, unknown-version, deprecation, and migration rules;
-- schemas, synthetic fixtures, checkers, and CI guards.
+- explicit governed responsibility handoff with `authority_effect = none` and `decision_scope = evaluation_only`;
+- legacy and governed REST reference routes;
+- legacy and governed MCP stdio tools;
+- OpenAPI 3.1 coverage for admission, compatibility, governance, applicability, and evaluation stages;
+- packaged OpenAPI with repository/package/runtime drift checks;
+- bounded caller-content and local-file governed-envelope loading;
+- explicit rejection of network/registry loading in the first loader;
+- schemas, synthetic fixtures, deterministic checkers, and CI guards.
 
-The canonical execution path is:
+The strict governed path is:
 
 ```text
-Python API / REST / MCP
-          ↓
-rpe_kernel.evaluate_action()
-          ↓
+governed envelope admission
+        ↓
+contract compatibility
+        ↓
+pack ↔ governance binding
+        ↓
+governance eligibility
+        ↓
 applicability resolution
-          ↓
-pack evaluation and decision combination
+        ↓
+requirement evaluation
+        ↓
+decision combination
+        ↓
+responsibility-preserving handoff
 ```
 
-REST and MCP are reference adapter surfaces. They must not redefine requirement semantics independently.
+The legacy path remains available for compatibility. Do not conflate it with the strict governed path.
 
-## Executable demo
+## Critical authority boundary
 
-`scripts/demo.py` calls the canonical kernel with three synthetic scenarios:
+An RPE `allow` is an **evaluation result**, not an execution authorization token.
 
-- missing approval -> `human_gate`;
-- complete stated evidence -> `allow`;
-- missing applicability context -> visible `human_gate` at the applicability stage.
+Do not infer that RPE:
 
-The demo supports `--scenario human_gate|allow|unknown` and `--json`. It does not execute an external action and is not certification, legal review, compliance determination, safety approval, fairness assessment, or deployment approval.
+- dispatches or executes an external action;
+- approves deployment;
+- verifies that an external effect occurred;
+- turns a receipt into verified effect evidence;
+- grants repair authority because repair is possible;
+- grants resume authority because a blocked path is ready to continue;
+- transfers final responsibility to AI.
 
-## M1 exclusions
+Evaluation evidence is not effect evidence. Repair readiness is not repair authority. Resume authority belongs to the runtime/institution that owns execution and requires a separate authority-bearing transition.
 
-Do not infer that M1 includes:
+## Loader boundary
 
-- external requirement-pack loading;
-- governance eligibility enforced inside `evaluate_action()`;
-- explicit version fields in every runtime payload;
-- production authentication, authorization, persistence, tenancy, or deployment;
+The first governed loader accepts only:
+
+- caller-provided UTF-8 JSON content;
+- explicitly supplied local files.
+
+It does not fetch URLs, discover registries, install packages, or establish source trust.
+
+A readable local file proves only that bytes were available at that path. It does not prove source authority, interpretation correctness, governance eligibility, legal validity, or current applicability.
+
+## Current M2 non-closure items
+
+Do not describe M2 as fully closed yet. Remaining work includes:
+
+- uncertainty/effect/evidence handoff semantics;
+- repair/resume responsibility boundaries;
+- residual-owner and Human Return continuity;
+- adversarial tests for authority confusion, evidence confusion, governance/binding failures, adapter drift, and loader-boundary violations;
+- final claim-boundary and closure evidence review.
+
+## Production and normative exclusions
+
+Do not infer that the current repository includes:
+
+- production authentication, authorization, persistence, tenancy, secrets, rate limiting, or deployment controls;
 - automatic source interpretation or self-maintaining regulatory knowledge;
-- reviewed real-world law or guideline mappings;
-- formal verification of the Python runtime;
-- certification, conformity assessment, or official-standard status.
+- reviewed real-world law or guideline mappings by default;
+- certification, conformity assessment, official-standard status, or legal/compliance proof;
+- formal verification of the complete Python runtime or external system.
 
 ## Verification and assurance scope
 
-RPE uses **verifiable AI** in a bounded sense. It aims to make assumptions, requirement mappings, applicability, decisions, stop conditions, reason codes, missing evidence, and human-return routes inspectable and re-checkable.
+RPE uses **verifiable AI** in a bounded sense. It aims to make assumptions, requirement mappings, applicability, decisions, stop conditions, reason codes, governance state, compatibility state, missing evidence, and Human Return routes inspectable and re-checkable.
 
-Planned Lean 4 formalization may prove properties of explicitly modeled responsibility pathways, including deterministic decisions, absence of `allow` under modeled missing mandatory evidence, preservation of stronger stop outcomes, existence of required human-return routes, rejection of forbidden transitions, and preservation of stated invariants.
-
-A correct description is:
-
-> Lean 4 may prove that a formalized responsibility path follows formalized rules under stated assumptions.
-
-Do not extend that statement into a proof of the complete Python runtime, external services, input data, human conduct, Requirement Pack interpretation, legal validity, social adequacy, production safety, or the full AI system. Those claims require additional model-to-runtime correspondence and real-world evidence.
+Planned or partial formalization may prove properties of explicitly modeled responsibility pathways under stated assumptions. Do not extend such proof into claims about the complete Python runtime, external services, input data, human conduct, Requirement Pack interpretation, legal validity, social adequacy, production safety, or the full AI system without separate correspondence evidence.
 
 RPE treats AI assurance as accumulation of scoped requirements, decision records, evidence, verification results, governance ownership, and explicit proof boundaries—not as a blanket declaration that an AI system is safe.
 
-RPE does not claim to solve model-internal value alignment or the complete AI alignment problem. It addresses external operational alignment between proposed actions, stated requirements, stop conditions, and human responsibility routes.
-
 ## Public-guidance boundary
 
-The Japanese MIC/METI **AI Guidelines for Business Ver. 1.2** dated 31 March 2026 is an official non-binding governance reference that may inform future human-reviewed mappings.
+Official public guidance may inform future human-reviewed Requirement Packs.
 
 Do not claim that RPE currently:
 
-- officially implements the guideline;
+- officially implements a public guideline or law;
 - conforms or complies with it;
 - automatically interprets it;
-- provides reviewed real-world Requirement Packs derived from it;
+- provides reviewed real-world Requirement Packs derived from it by default;
 - has government adoption or endorsement.
 
-Use language such as “references,” “may inform a human-reviewed mapping,” “makes related responsibility pathways more explicit,” or “is a complementary design framework.”
+Use language such as “references,” “may inform a human-reviewed mapping,” “makes related responsibility pathways more explicit,” or “is a complementary engineering framework” unless stronger evidence exists.
 
 ## Open-governance position
 
 RPE is MIT-licensed. It aims for open specifications, interoperability, independent verification, and multiple-implementation potential. It is not currently an official standard.
 
-The project distinguishes protection of individual products and implementation techniques from exclusive control over common responsibility-evidence infrastructure. Do not characterize RPE as rejecting patents or intellectual property generally.
-
-The grounded concern is that exclusive patents or closed specifications covering responsibility pathways, evidence formats, stop conditions, human-return protocols, or recognition authority could create lock-in, unequal access, reduced independent verification, and concentration of authority over who may demonstrate responsibility.
-
 ## Read these files first
 
-1. Kernel entry point: `rpe_kernel/pipeline.py`
-2. Applicability resolver: `rpe_kernel/applicability.py`
-3. Pack evaluator: `rpe_kernel/evaluation.py`
-4. Executable walkthrough: `scripts/demo.py`
-5. Verification and open-governance scope: `docs/verification-assurance-and-open-governance.md`
+1. Current M2 status: `docs/m2-governed-integration-current.md`
+2. Kernel entry points: `rpe_kernel/pipeline.py`
+3. Bounded loader: `rpe_kernel/loader.py`
+4. Applicability resolver: `rpe_kernel/applicability.py`
+5. Pack evaluator: `rpe_kernel/evaluation.py`
 6. Requirement-pack governance: `docs/requirement-pack-governance.md`
-7. Governance schema: `schemas/external-kernel/requirement-pack-governance.schema.json`
-8. Compatibility policy: `docs/contract-compatibility-policy.md`
-9. Version manifest: `schemas/external-kernel/contract-versions.json`
-10. REST adapter: `rpe_kernel/http_api.py`
-11. MCP adapter: `rpe_kernel/mcp_server.py`
-12. OpenAPI contract: `spec/openapi/rpe-kernel.openapi.json`
-13. Single-source guard: `docs/single-source-kernel.md`
-14. Current roadmap: `ROADMAP.md`
+7. Compatibility policy: `docs/contract-compatibility-policy.md`
+8. Version manifest: `schemas/external-kernel/contract-versions.json`
+9. REST adapter: `rpe_kernel/http_api.py`
+10. MCP adapter: `rpe_kernel/mcp_server.py`
+11. OpenAPI contract: `spec/openapi/rpe-kernel.openapi.json`
+12. Claim boundary: `docs/claim-boundary-promotion.md`
+13. Current roadmap: `ROADMAP.md`
+14. Historical M2 entry plan: `docs/m2-governed-pack-integration-entry-plan.md`
 
 ## Grounded description
 
-A grounded summary is:
+A grounded current summary is:
 
-> RPE is an active governed reference implementation for evaluating explicitly scoped machine-readable Responsible AI controls. It provides one shared Python decision kernel with REST, OpenAPI, and MCP reference interfaces, plus requirement-pack lifecycle governance and compatibility policy.
+> RPE is an active governed reference implementation for evaluating explicitly scoped machine-readable Responsible AI controls. It provides legacy and strict governed evaluation paths, runtime compatibility/governance checks, responsibility-preserving no-authority handoff, bounded local/caller-content loading, and REST/OpenAPI/MCP reference interfaces. M2 is still in progress and production/legal/execution-authority claims remain outside the current evidence boundary.
 
-Do not describe RPE only as documentation. It contains executable package code, adapters, schemas, fixtures, checkers, CI workflows, and an executable walkthrough.
+Do not describe RPE only as documentation. It contains executable package code, adapters, schemas, fixtures, checkers, CI workflows, and synthetic demonstrations.
 
-Do not describe RPE as a general legal reasoning engine, finished production governance service, certification system, official standard, or self-maintaining policy database.
+Do not describe RPE as a general legal reasoning engine, finished production governance service, certification system, official standard, self-maintaining policy database, or execution controller.
 
-A requirement pack is an operational mapping maintained by identified humans. Schema validity does not establish that its source interpretation is correct, current, complete, or suitable for a deployment.
-
-## Next milestone
-
-M2 is **Governed Pack Integration**:
-
-- explicit runtime version handling;
-- governance eligibility at the runtime boundary;
-- bounded external pack loading;
-- visible failure for stale, ownerless, ambiguous, suspended, or incompatible packs;
-- later trace, evidence, repair, and resume structures.
-
-Parallel research includes bounded Lean 4 formalization, model-to-runtime correspondence, AI-assurance evidence structures, and human-reviewed public-guidance mapping procedures.
+A Requirement Pack is an operational mapping maintained by identified humans. Schema validity or loader success does not establish that its source interpretation is correct, current, complete, or suitable for a deployment.
 
 ## Reading discipline
 
@@ -147,17 +162,17 @@ When answering about this repository:
 
 1. Name the exact files actually read.
 2. Separate implemented components from roadmap items.
-3. Separate synthetic packs from reviewed real-world mappings.
-4. Preserve applicability, decisions, reason codes, missing requirements, governance state, and human-return routes.
-5. Do not infer file content from a filename alone.
-6. Do not treat a schema pass, workflow pass, demo pass, PR merge, or repository link as certification or deployment approval.
-7. Treat `rpe_kernel.evaluate_action()` as the canonical runtime decision entry point unless the repository explicitly changes it.
-8. Treat governance eligibility and structural compatibility as separate checks.
-9. Keep formal proof claims within the explicitly modeled definitions, assumptions, and model-to-runtime correspondence evidence.
-10. Keep public-guidance claims at “reference,” “mapping,” or “complementary framework” unless reviewed conformity evidence is added.
+3. Separate M1 compatibility behavior from strict M2 governed behavior.
+4. Separate synthetic packs from reviewed real-world mappings.
+5. Preserve compatibility, governance, applicability, decisions, reason codes, missing requirements, and Human Return routes.
+6. Do not infer file content from a filename alone.
+7. Do not treat a schema pass, loader success, workflow pass, demo pass, PR merge, or repository link as certification or deployment approval.
+8. Treat `evaluate_governed_action()` as the strict governed evaluation entry and `evaluate_action()` as the retained legacy/M1-compatible entry.
+9. Treat governance eligibility, structural compatibility, source trust, and real-world interpretation correctness as separate questions.
+10. Keep formal proof claims within explicitly modeled definitions, assumptions, and correspondence evidence.
+11. Keep public-guidance claims at “reference,” “mapping,” or “complementary framework” unless reviewed conformity evidence is added.
+12. Never turn an RPE `allow` into execution authority without a separate authority-bearing system decision.
 
-## Scope boundary
+## Construction boundary
 
-RPE provides executable control structures and traceable responsibility pathways. It does not by itself establish legal correctness, safety, compliance, fairness, certification, social adequacy, production approval, official-standard status, or transfer final responsibility to AI.
-
-Human or institutional review remains responsible for source interpretation, real-world applicability, evidence sufficiency, deployment decisions, execution authority, and final responsibility.
+RPE is developed through Open Construction with Luminalia AI assistance. Human maintainer judgment remains responsible for direction, merge, publication, external claims, deployment decisions, and final responsibility.
