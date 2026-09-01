@@ -157,6 +157,18 @@ python -m pip install .
 
 The adapters evaluate proposed actions only. They do not execute actions, approve deployment, publish releases, merge code, verify external effects, or transfer responsibility.
 
+## Executable walkthrough and artifact catalog
+
+The bounded synthetic walkthrough remains available through the canonical demo command:
+
+```bash
+python scripts/demo.py
+```
+
+The public static artifact catalog remains available at [`site/index.html`](site/index.html).
+
+A demo pass or catalog entry is repository evidence only; it is not certification, production approval, legal review, or proof of external effect.
+
 ## Claim boundary and promotion path
 
 RPE separates **evidence-limited milestone boundaries that can move** from **permanent responsibility boundaries that an engineering kernel should not cross by itself**. See [`docs/claim-boundary-promotion.md`](docs/claim-boundary-promotion.md).
@@ -206,6 +218,7 @@ See [`docs/verification-assurance-and-open-governance.md`](docs/verification-ass
 | Compatibility policy | [`docs/contract-compatibility-policy.md`](docs/contract-compatibility-policy.md) |
 | Claim boundary | [`docs/claim-boundary-promotion.md`](docs/claim-boundary-promotion.md) |
 | Project roadmap | [`ROADMAP.md`](ROADMAP.md) |
+| Static artifact catalog | [`site/index.html`](site/index.html) |
 | AI/search-reader entrance | [`READMEforAI.md`](READMEforAI.md) |
 | Japanese entrance | [`README.ja.md`](README.ja.md) |
 
