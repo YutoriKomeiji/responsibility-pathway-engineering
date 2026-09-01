@@ -23,11 +23,14 @@ FORBIDDEN_OPERATIONAL_KEYS = {
     "execution_authority",
     "repair_authority",
     "resume_authority",
+    "local_path",
+    "source_path",
+    "file_path",
 }
 
 
 def assert_handoff(result: dict) -> None:
-    assert result["contract_version"] == "1.1.0", result
+    assert result["contract_version"] == "1.2.0", result
     handoff = result["responsibility_handoff"]
     assert handoff["authority_effect"] == "none", handoff
     assert handoff["decision_scope"] == "evaluation_only", handoff
@@ -47,6 +50,10 @@ def assert_handoff(result: dict) -> None:
 
     assert not (FORBIDDEN_OPERATIONAL_KEYS & set(handoff)), handoff
     assert not (FORBIDDEN_OPERATIONAL_KEYS & set(result)), result
+    provenance = handoff["transport_provenance"]
+    if provenance is not None:
+        assert provenance["observation_scope"] == "transport_bytes_only", provenance
+        assert set(provenance) == {"source_kind", "content_sha256", "byte_length", "observation_scope"}, provenance
 
 
 def main() -> int:
@@ -59,6 +66,7 @@ def main() -> int:
         "available": ["approval-record"],
         "missing": [],
     }, allowed
+    assert allowed["responsibility_handoff"]["transport_provenance"] is None, allowed
     assert allowed["responsibility_handoff"]["downstream_obligations"]["residual_owner_role"] == "downstream_execution_owner", allowed
     assert_handoff(allowed)
 
