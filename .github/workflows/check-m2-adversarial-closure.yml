@@ -1,0 +1,75 @@
+name: Check M2 adversarial closure
+
+on:
+  pull_request:
+    paths:
+      - "rpe_kernel/**"
+      - "schemas/external-kernel/**"
+      - "spec/openapi/**"
+      - "examples/external-kernel/minimal-governed-evaluation-request.json"
+      - "scripts/check_m2_adversarial_closure.py"
+      - "scripts/check_m2_entry_pipeline.py"
+      - "scripts/check_m2_governed_admission.py"
+      - "scripts/check_m2_bounded_loader.py"
+      - "scripts/check_m2_responsibility_handoff.py"
+      - "scripts/check_contract_compatibility.py"
+      - "scripts/check_governed_contract_schemas.py"
+      - "scripts/check_rest_api.py"
+      - "scripts/check_mcp_stdio.py"
+      - "scripts/check_openapi_contract.py"
+      - "scripts/value_demo.py"
+      - ".github/workflows/check-m2-adversarial-closure.yml"
+  push:
+    branches: [main]
+    paths:
+      - "rpe_kernel/**"
+      - "schemas/external-kernel/**"
+      - "spec/openapi/**"
+      - "examples/external-kernel/minimal-governed-evaluation-request.json"
+      - "scripts/check_m2_adversarial_closure.py"
+      - "scripts/check_m2_entry_pipeline.py"
+      - "scripts/check_m2_governed_admission.py"
+      - "scripts/check_m2_bounded_loader.py"
+      - "scripts/check_m2_responsibility_handoff.py"
+      - "scripts/check_contract_compatibility.py"
+      - "scripts/check_governed_contract_schemas.py"
+      - "scripts/check_rest_api.py"
+      - "scripts/check_mcp_stdio.py"
+      - "scripts/check_openapi_contract.py"
+      - "scripts/value_demo.py"
+      - ".github/workflows/check-m2-adversarial-closure.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - run: python -m pip install . jsonschema referencing
+      - name: Contract manifest and runtime snapshot
+        run: python scripts/check_contract_compatibility.py
+      - name: Governed JSON contract schemas
+        run: python scripts/check_governed_contract_schemas.py
+      - name: Legacy optional M2 migration path
+        run: python scripts/check_m2_entry_pipeline.py
+      - name: Strict governed admission
+        run: python scripts/check_m2_governed_admission.py
+      - name: Bounded loader and provenance
+        run: python scripts/check_m2_bounded_loader.py
+      - name: Responsibility handoff
+        run: python scripts/check_m2_responsibility_handoff.py
+      - name: REST legacy and governed parity
+        run: python scripts/check_rest_api.py
+      - name: MCP legacy and governed parity
+        run: python scripts/check_mcp_stdio.py
+      - name: OpenAPI repository package runtime parity
+        run: python scripts/check_openapi_contract.py
+      - name: Bounded value demonstration
+        run: python scripts/value_demo.py
+      - name: Cross-cutting adversarial closure matrix
+        run: python scripts/check_m2_adversarial_closure.py
