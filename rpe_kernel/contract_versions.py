@@ -14,7 +14,7 @@ CONTRACTS = {
     "requirement_pack": {"version": "1.1.0", "unknown_major_behavior": "human_gate"},
     "requirement_pack_governance": {"version": "1.1.0", "unknown_major_behavior": "human_gate"},
     "governed_pack_binding": {"version": "1.0.0", "unknown_major_behavior": "human_gate"},
-    "governed_evaluation_request": {"version": "1.1.0", "unknown_major_behavior": "human_gate"},
+    "governed_evaluation_request": {"version": "1.0.0", "unknown_major_behavior": "human_gate"},
     "governed_evaluation_result": {"version": "1.2.0", "unknown_major_behavior": "human_gate"},
 }
 
