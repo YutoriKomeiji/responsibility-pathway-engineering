@@ -3,7 +3,13 @@
 
 from __future__ import annotations
 
-from rpe_kernel.mcp_server import TOOL_NAME, handle_message
+import json
+from pathlib import Path
+
+from rpe_kernel.mcp_server import GOVERNED_TOOL_NAME, TOOL_NAME, handle_message
+
+ROOT = Path(__file__).resolve().parents[1]
+GOVERNED_FIXTURE = ROOT / "examples/external-kernel/minimal-governed-evaluation-request.json"
 
 
 def require(condition: bool, message: str) -> None:
@@ -23,7 +29,8 @@ def main() -> int:
 
     listed = handle_message({"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}})
     require(listed is not None, "tools/list returned no response")
-    require(listed["result"]["tools"][0]["name"] == TOOL_NAME, "tool name mismatch")
+    names = [tool["name"] for tool in listed["result"]["tools"]]
+    require(names == [TOOL_NAME, GOVERNED_TOOL_NAME], "tool list mismatch")
 
     request = {
         "request_id": "mcp-check-001",
@@ -53,9 +60,22 @@ def main() -> int:
         "reason code mismatch",
     )
 
-    invalid = handle_message({
+    governed_payload = json.loads(GOVERNED_FIXTURE.read_text(encoding="utf-8"))
+    governed_called = handle_message({
         "jsonrpc": "2.0",
         "id": 4,
+        "method": "tools/call",
+        "params": {"name": GOVERNED_TOOL_NAME, "arguments": governed_payload},
+    })
+    require(governed_called is not None, "governed tools/call returned no response")
+    governed = governed_called["result"]["structuredContent"]
+    require(governed["decision"] == "allow", "unexpected governed decision")
+    require(governed["responsibility_handoff"]["authority_effect"] == "none", "authority effect mismatch")
+    require(governed["responsibility_handoff"]["decision_scope"] == "evaluation_only", "decision scope mismatch")
+
+    invalid = handle_message({
+        "jsonrpc": "2.0",
+        "id": 5,
         "method": "tools/call",
         "params": {"name": TOOL_NAME, "arguments": {"request": {}, "packs": "bad"}},
     })
