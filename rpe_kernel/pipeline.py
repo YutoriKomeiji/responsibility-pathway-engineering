@@ -338,10 +338,9 @@ def evaluate_governed_action(
 ) -> dict[str, Any]:
     """Strict fail-closed governed M2 evaluation entry.
 
-    The envelope structurally binds each Requirement Pack to its governance
-    record. Version, identity/source binding, strict governance eligibility, and
-    optional transport provenance shape are enforced before applicability or
-    requirement evaluation.
+    The JSON envelope structurally binds each Requirement Pack to its governance
+    record. Loader-observed transport provenance, when present as non-JSON Python
+    metadata, is preserved into the result without changing the request payload.
     """
     if not isinstance(envelope, dict):
         return _governed_result(
@@ -352,7 +351,21 @@ def evaluate_governed_action(
             selected_pack_refs=[], rejected_pack_refs=[],
         )
 
-    transport_provenance, provenance_reasons = _normalize_transport_provenance(envelope.get("transport_provenance"))
+    unknown_top_level = sorted(set(envelope) - {"contract_version", "request", "governed_packs"})
+    if unknown_top_level:
+        request_value = envelope.get("request")
+        return _governed_result(
+            request_value if isinstance(request_value, dict) else {},
+            decision="human_gate", stage="admission",
+            reason_codes=["RPE-GOVERNED-ADMISSION-UNKNOWN-TOP-LEVEL-FIELD"],
+            human_return={"role": "contract_compatibility_owner"},
+            next_step="repair_governed_evaluation_request",
+            selected_pack_refs=[], rejected_pack_refs=[],
+        )
+
+    transport_provenance, provenance_reasons = _normalize_transport_provenance(
+        getattr(envelope, "transport_provenance", None)
+    )
     request = envelope.get("request")
     bindings = envelope.get("governed_packs")
     if provenance_reasons:
