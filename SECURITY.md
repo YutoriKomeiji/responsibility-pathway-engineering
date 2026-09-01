@@ -2,6 +2,8 @@
 
 RPE is actively developed and usable within documented boundaries. Security limitations are treated as engineering work, not as a reason to discourage all use.
 
+This policy is **not a security certification**. It is a reporting, triage, threat-model, and repair path for an evolving open-source project.
+
 ## Supported security posture
 
 The maintainer accepts security reports for the current `main` line and the latest intentionally published release/tag when one exists.
