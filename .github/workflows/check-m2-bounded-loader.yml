@@ -4,7 +4,12 @@ on:
   pull_request:
     paths:
       - "rpe_kernel/loader.py"
+      - "rpe_kernel/pipeline.py"
+      - "rpe_kernel/contract_versions.py"
       - "rpe_kernel/__init__.py"
+      - "schemas/external-kernel/contract-versions.json"
+      - "schemas/external-kernel/governed-evaluation-request.schema.json"
+      - "schemas/external-kernel/governed-evaluation-result.schema.json"
       - "scripts/check_m2_bounded_loader.py"
       - "examples/external-kernel/minimal-governed-evaluation-request.json"
       - ".github/workflows/check-m2-bounded-loader.yml"
@@ -12,7 +17,12 @@ on:
     branches: [main]
     paths:
       - "rpe_kernel/loader.py"
+      - "rpe_kernel/pipeline.py"
+      - "rpe_kernel/contract_versions.py"
       - "rpe_kernel/__init__.py"
+      - "schemas/external-kernel/contract-versions.json"
+      - "schemas/external-kernel/governed-evaluation-request.schema.json"
+      - "schemas/external-kernel/governed-evaluation-result.schema.json"
       - "scripts/check_m2_bounded_loader.py"
       - "examples/external-kernel/minimal-governed-evaluation-request.json"
       - ".github/workflows/check-m2-bounded-loader.yml"
