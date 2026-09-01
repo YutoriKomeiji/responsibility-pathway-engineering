@@ -16,7 +16,7 @@ from .evaluation import combine_decisions, evaluate_pack
 from .governance import governance_decision
 
 GATE_DECISION_CONTRACT_VERSION = "1.0.0"
-GOVERNED_RESULT_CONTRACT_VERSION = "1.1.0"
+GOVERNED_RESULT_CONTRACT_VERSION = "1.2.0"
 
 
 def _human_gate(
@@ -53,6 +53,38 @@ def _pack_ref(binding_id: str, pack: dict[str, Any], governance: dict[str, Any])
     }
 
 
+def _normalize_transport_provenance(value: Any) -> tuple[dict[str, Any] | None, list[str]]:
+    if value is None:
+        return None, []
+    if not isinstance(value, dict):
+        return None, ["RPE-GOVERNED-ADMISSION-INVALID-TRANSPORT-PROVENANCE"]
+
+    source_kind = value.get("source_kind")
+    content_sha256 = value.get("content_sha256")
+    byte_length = value.get("byte_length")
+    observation_scope = value.get("observation_scope")
+    valid_digest = (
+        isinstance(content_sha256, str)
+        and len(content_sha256) == 64
+        and all(character in "0123456789abcdef" for character in content_sha256)
+    )
+    valid_length = isinstance(byte_length, int) and not isinstance(byte_length, bool) and byte_length >= 0
+    if (
+        source_kind not in {"caller_content", "local_file"}
+        or not valid_digest
+        or not valid_length
+        or observation_scope != "transport_bytes_only"
+    ):
+        return None, ["RPE-GOVERNED-ADMISSION-INVALID-TRANSPORT-PROVENANCE"]
+
+    return {
+        "source_kind": source_kind,
+        "content_sha256": content_sha256,
+        "byte_length": byte_length,
+        "observation_scope": "transport_bytes_only",
+    }, []
+
+
 def _responsibility_handoff(
     request: dict[str, Any],
     *,
@@ -61,6 +93,7 @@ def _responsibility_handoff(
     selected_pack_refs: list[dict[str, Any]],
     rejected_pack_refs: list[dict[str, Any]],
     human_return: dict[str, Any] | None,
+    transport_provenance: dict[str, Any] | None,
 ) -> dict[str, Any]:
     evidence_scope = request.get("evidence_scope")
     if not isinstance(evidence_scope, dict):
@@ -81,6 +114,7 @@ def _responsibility_handoff(
             "available": list(evidence_scope.get("available", [])) if isinstance(evidence_scope.get("available", []), list) else [],
             "missing": list(evidence_scope.get("missing", [])) if isinstance(evidence_scope.get("missing", []), list) else [],
         },
+        "transport_provenance": dict(transport_provenance) if transport_provenance is not None else None,
         "human_return": human_return,
         "downstream_obligations": {
             "dispatch_authority_required": True,
@@ -106,6 +140,7 @@ def _governed_result(
     applicability: list[dict[str, Any]] | None = None,
     pack_decisions: list[dict[str, Any]] | None = None,
     governance: list[dict[str, Any]] | None = None,
+    transport_provenance: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     normalized_reason_codes = sorted(set(reason_codes))
     return {
@@ -126,6 +161,7 @@ def _governed_result(
             selected_pack_refs=selected_pack_refs,
             rejected_pack_refs=rejected_pack_refs,
             human_return=human_return,
+            transport_provenance=transport_provenance,
         ),
     }
 
@@ -136,6 +172,7 @@ def _evaluate_core(
     *,
     governance_results: list[dict[str, Any]] | None = None,
     governed_refs: list[dict[str, Any]] | None = None,
+    transport_provenance: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     governance_results = governance_results or []
     resolutions = [resolve_pack(pack, request, str(pack.get("pack_id", index))) for index, pack in enumerate(packs)]
@@ -155,6 +192,7 @@ def _evaluate_core(
                 next_step="review_unknown_applicability",
                 selected_pack_refs=[],
                 rejected_pack_refs=governed_refs,
+                transport_provenance=transport_provenance,
             )
         if not applicable_indexes:
             return _governed_result(
@@ -168,6 +206,7 @@ def _evaluate_core(
                 next_step="select_or_review_requirement_packs",
                 selected_pack_refs=[],
                 rejected_pack_refs=governed_refs,
+                transport_provenance=transport_provenance,
             )
     else:
         if unknown_ids:
@@ -211,6 +250,7 @@ def _evaluate_core(
             next_step="continue_action" if combined == "allow" else "return_to_human",
             selected_pack_refs=selected,
             rejected_pack_refs=rejected,
+            transport_provenance=transport_provenance,
         )
 
     return {
@@ -299,8 +339,9 @@ def evaluate_governed_action(
     """Strict fail-closed governed M2 evaluation entry.
 
     The envelope structurally binds each Requirement Pack to its governance
-    record. Version, identity/source binding, and strict governance eligibility
-    are enforced before applicability or requirement evaluation.
+    record. Version, identity/source binding, strict governance eligibility, and
+    optional transport provenance shape are enforced before applicability or
+    requirement evaluation.
     """
     if not isinstance(envelope, dict):
         return _governed_result(
@@ -311,8 +352,18 @@ def evaluate_governed_action(
             selected_pack_refs=[], rejected_pack_refs=[],
         )
 
+    transport_provenance, provenance_reasons = _normalize_transport_provenance(envelope.get("transport_provenance"))
     request = envelope.get("request")
     bindings = envelope.get("governed_packs")
+    if provenance_reasons:
+        return _governed_result(
+            request if isinstance(request, dict) else {},
+            decision="human_gate", stage="admission",
+            reason_codes=provenance_reasons,
+            human_return={"role": "contract_compatibility_owner"},
+            next_step="repair_transport_provenance",
+            selected_pack_refs=[], rejected_pack_refs=[],
+        )
     if not isinstance(request, dict) or not isinstance(bindings, list) or not bindings:
         return _governed_result(
             request if isinstance(request, dict) else {},
@@ -321,6 +372,7 @@ def evaluate_governed_action(
             human_return={"role": "contract_compatibility_owner"},
             next_step="repair_governed_evaluation_request",
             selected_pack_refs=[], rejected_pack_refs=[],
+            transport_provenance=transport_provenance,
         )
 
     compatibility_reasons = check_contract_version("governed_evaluation_request", envelope.get("contract_version"))
@@ -332,6 +384,7 @@ def evaluate_governed_action(
             human_return={"role": "contract_compatibility_owner"},
             next_step="migrate_or_review_governed_contracts",
             selected_pack_refs=[], rejected_pack_refs=[],
+            transport_provenance=transport_provenance,
         )
 
     packs: list[dict[str, Any]] = []
@@ -396,6 +449,7 @@ def evaluate_governed_action(
             next_step="migrate_or_review_governed_contracts",
             selected_pack_refs=[], rejected_pack_refs=refs,
             governance=governance_results,
+            transport_provenance=transport_provenance,
         )
 
     if admission_reasons or len(packs) != len(bindings):
@@ -406,6 +460,7 @@ def evaluate_governed_action(
             next_step="repair_governed_pack_binding",
             selected_pack_refs=[], rejected_pack_refs=refs,
             governance=governance_results,
+            transport_provenance=transport_provenance,
         )
 
     governance_failures = [item for item in governance_results if not item["eligible"]]
@@ -417,6 +472,7 @@ def evaluate_governed_action(
             next_step="review_requirement_pack_governance",
             selected_pack_refs=[], rejected_pack_refs=refs,
             governance=governance_results,
+            transport_provenance=transport_provenance,
         )
 
     return _evaluate_core(
@@ -424,4 +480,5 @@ def evaluate_governed_action(
         packs,
         governance_results=governance_results,
         governed_refs=refs,
+        transport_provenance=transport_provenance,
     )
