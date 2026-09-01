@@ -1,0 +1,42 @@
+name: Check M2 governed admission
+
+on:
+  pull_request:
+    paths:
+      - "rpe_kernel/compatibility.py"
+      - "rpe_kernel/governance.py"
+      - "rpe_kernel/pipeline.py"
+      - "rpe_kernel/__init__.py"
+      - "rpe_kernel/contract_versions.py"
+      - "examples/external-kernel/minimal-governed-evaluation-request.json"
+      - "scripts/check_m2_entry_pipeline.py"
+      - "scripts/check_m2_governed_admission.py"
+      - ".github/workflows/check-m2-governed-admission.yml"
+  push:
+    branches: [main]
+    paths:
+      - "rpe_kernel/compatibility.py"
+      - "rpe_kernel/governance.py"
+      - "rpe_kernel/pipeline.py"
+      - "rpe_kernel/__init__.py"
+      - "rpe_kernel/contract_versions.py"
+      - "examples/external-kernel/minimal-governed-evaluation-request.json"
+      - "scripts/check_m2_entry_pipeline.py"
+      - "scripts/check_m2_governed_admission.py"
+      - ".github/workflows/check-m2-governed-admission.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Check legacy optional M2 migration path
+        run: python scripts/check_m2_entry_pipeline.py
+      - name: Check explicit governed M2 admission path
+        run: python scripts/check_m2_governed_admission.py
