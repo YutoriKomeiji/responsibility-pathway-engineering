@@ -1,0 +1,60 @@
+{
+  "contract_version": "1.0.0",
+  "request": {
+    "contract_version": "1.1.0",
+    "request_id": "m2-governed-fixture",
+    "actor": {"type": "ai_agent", "id": "demo-agent"},
+    "action": "external_send",
+    "target": "synthetic-target",
+    "applicability_context": {"organization": "demo"},
+    "context": {"human_approval_present": true},
+    "evidence_scope": {"available": ["approval-record"], "missing": []}
+  },
+  "governed_packs": [
+    {
+      "contract_version": "1.0.0",
+      "binding_id": "demo-pack@1.0.0",
+      "pack": {
+        "contract_version": "1.1.0",
+        "pack_id": "demo-pack",
+        "title": "Synthetic Governed Pack",
+        "version": "1.0.0",
+        "source_type": "synthetic_demo",
+        "source_metadata": {
+          "authority_name": "Synthetic",
+          "source_url": null,
+          "jurisdiction": "synthetic",
+          "source_version": "1",
+          "effective_date": null,
+          "review_owner": "demo-owner",
+          "review_status": "synthetic",
+          "interpretation_status": "not_applicable"
+        },
+        "applies_when": {"action": "external_send", "organization": "demo"},
+        "requirements": ["human_approval_present"],
+        "decision_on_missing_requirement": "human_gate",
+        "human_return": {"role": "demo-owner"},
+        "reason_code_prefix": "RPE-DEMO"
+      },
+      "governance": {
+        "contract_version": "1.1.0",
+        "pack_id": "demo-pack",
+        "pack_version": "1.0.0",
+        "lifecycle_state": "active",
+        "maintenance_owner": "demo-owner",
+        "reviewer": "demo-reviewer",
+        "approver": "demo-approver",
+        "source_authority": "Synthetic",
+        "source_version": "1",
+        "jurisdiction": "synthetic",
+        "effective_scope": "demo only",
+        "interpretation_status": "not_applicable",
+        "unresolved_ambiguity": [],
+        "effective_date": null,
+        "last_reviewed": "2026-07-01",
+        "next_review_due": "2026-12-31",
+        "human_return": {"role": "demo-owner"}
+      }
+    }
+  ]
+}
