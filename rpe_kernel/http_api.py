@@ -13,11 +13,11 @@ from .pipeline import evaluate_action, evaluate_governed_action
 JsonObject = dict[str, Any]
 Evaluator = Callable[[JsonObject, list[JsonObject]], JsonObject]
 GovernedEvaluator = Callable[[JsonObject], JsonObject]
-OPENAPI_PATH = Path(__file__).resolve().parents[1] / "spec" / "openapi" / "rpe-kernel.openapi.json"
+OPENAPI_PATH = Path(__file__).with_name("rpe-kernel.openapi.json")
 
 
 def load_openapi_document() -> JsonObject:
-    """Load the repository-owned OpenAPI contract."""
+    """Load the packaged OpenAPI contract snapshot."""
     return json.loads(OPENAPI_PATH.read_text(encoding="utf-8"))
 
 
