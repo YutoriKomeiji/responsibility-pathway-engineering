@@ -1,5 +1,6 @@
 """Public Python API for the RPE external responsibility kernel."""
 
+from .cumulative_exposure import cumulative_exposure_to_risk_condition, evaluate_cumulative_exposure
 from .gateway import evaluate_gateway_request, evaluate_integrity_guarded_gateway_request, evaluate_transition
 from .guarded_adapter import evaluate_guarded_adapter_request
 from .guarded_gateway import evaluate_responsibility_guarded_gateway_request
@@ -12,7 +13,9 @@ from .risk_conditions import evaluate_risk_conditions
 __all__ = [
     "LoaderError",
     "compare_integrity_binding",
+    "cumulative_exposure_to_risk_condition",
     "evaluate_action",
+    "evaluate_cumulative_exposure",
     "evaluate_gateway_request",
     "evaluate_governed_action",
     "evaluate_guarded_adapter_request",
