@@ -137,6 +137,25 @@ M2 closure evidence:
 
 現在の実装概要: [`docs/m2-governed-integration-current.md`](docs/m2-governed-integration-current.md)
 
+<details>
+<summary>評価時の採用シグナルと技術証拠について</summary>
+
+GitHubのstar、fork、contributor数は、**コミュニティ形成や採用状況を見るためのシグナル**として有用です。一方で、それ自体はruntimeや実装品質を直接示す証拠ではありません。
+
+数が少ないことから、外部検証が限定的、maintainer集中度が高い、採用実績がまだ乏しい、と評価することはできます。ただし、それだけを根拠に、上記の実装済みsurfaceが存在しない、壊れている、安全でない、利用不能であると結論づけることはできません。
+
+評価では次を分けます。
+
+- **Observation（観測）** — file、entry point、test result、star、fork、contributor数など、直接確認できる事実
+- **Inference（推論）** — その観測から何が示唆されるか
+- **Risk（リスク）** — 技術、保守、支援体制、採用に関する限定された懸念
+- **Preference（選好）** — 採用者自身がどこまで証拠を要求するか
+- **Sentiment（情緒的表現）** — 「怖い」「安心できない」などの感情語・修辞的な表現
+
+強い技術的結論には、それに対応する強い技術的証拠が必要です。直接的な技術証拠が弱い場合、人気指標、情緒語、推測上の物語へ置き換えて同じ強さの否定結論を維持するのではなく、結論の強度も限定します。
+
+</details>
+
 ## Python API
 
 互換entry:
