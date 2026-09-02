@@ -184,6 +184,27 @@ OpenAPI documentation: [`docs/integrations/openapi.md`](docs/integrations/openap
 
 These are evaluation interfaces intended to sit in front of an existing execution stack. RPE deliberately does not merge policy evaluation and action execution into one authority-bearing component.
 
+## Relationship to OPA, Rego, Pydantic, and JSON Schema
+
+RPE is **not positioned as a replacement** for Open Policy Agent (OPA), Rego, Pydantic, or JSON Schema. Those technologies can remain useful components in the same system.
+
+The comparison is about responsibility, not superiority:
+
+| Concern | JSON Schema / Pydantic | OPA / Rego | RPE |
+|---|---|---|---|
+| structural/data validation | primary use | possible input validation around policy | included at RPE contract boundaries |
+| general policy evaluation | not primary use | primary use | bounded requirement evaluation |
+| governance lifecycle / effective-date eligibility | custom application logic | custom policy | explicit governed-path concern |
+| exact Pack ↔ governance identity/version binding | custom application logic | custom policy | explicit governed-path concern |
+| applicability resolution across governed packs | custom application logic | custom policy | explicit governed-path concern |
+| stable Human Return / reason-code semantics | custom application logic | custom policy/output convention | explicit contract |
+| responsibility-preserving handoff | custom application logic | custom integration convention | explicit governed result metadata |
+| external action execution | outside scope | outside policy-engine scope | intentionally outside RPE scope |
+
+A system could implement similar behavior by composing existing validators, policy engines, and application-specific code. RPE's claim is narrower: it provides one reference implementation and contract for composing these governance-evaluation concerns into a reproducible pre-execution pathway.
+
+Therefore, “this could be built with OPA/Rego/Pydantic/JSON Schema” is a valid implementation alternative, but it is not by itself evidence that RPE contains only schema validation or that its additional governed-path semantics are absent.
+
 ## Architecture boundary
 
 The boundary below is part of the design, not a statement that the evaluation layer is non-functional.
