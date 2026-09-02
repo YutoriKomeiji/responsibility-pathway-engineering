@@ -8,7 +8,12 @@ import json
 from datetime import date
 from pathlib import Path
 
-from rpe_kernel import evaluate_governed_action, evaluate_risk_conditions, evaluate_transition
+from rpe_kernel import (
+    evaluate_gateway_request,
+    evaluate_governed_action,
+    evaluate_risk_conditions,
+    evaluate_transition,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
 FIXTURE = ROOT / "examples/external-kernel/minimal-governed-evaluation-request.json"
@@ -40,6 +45,13 @@ def assert_bounded(result: dict) -> None:
     assert transition["authority"]["effect"] == "none", transition
     assert transition["authority"]["downstream_authority_required"] is True, transition
     assert transition["dispatch_effect"] == "none", transition
+
+
+def assert_gateway_bounded(result: dict) -> None:
+    assert result["contract_version"] == "0.1.0-exp", result
+    assert result["authority_effect"] == "none", result
+    assert result["execution_effect"] == "none", result
+    assert_bounded(result["transition_result"])
 
 
 def _graph(*conditions: dict) -> dict:
@@ -92,16 +104,15 @@ def main() -> int:
     assert clear["control_action"] == "allow", clear
     assert_bounded(clear)
 
-    authority_risk = evaluate_risk_conditions(
-        _graph(
-            {
-                "condition_id": "authority_scope_mismatch",
-                "status": "triggered",
-                "required_controls": ["require_authority"],
-                "evidence_refs": ["authority-binding"],
-            }
-        )
+    authority_graph = _graph(
+        {
+            "condition_id": "authority_scope_mismatch",
+            "status": "triggered",
+            "required_controls": ["require_authority"],
+            "evidence_refs": ["authority-binding"],
+        }
     )
+    authority_risk = evaluate_risk_conditions(authority_graph)
     assert authority_risk["graph_status"] == "triggered", authority_risk
     require_authority = evaluate_transition(allowed_evaluation, risk_result=authority_risk)
     assert require_authority["control_action"] == "require_authority", require_authority
@@ -232,6 +243,44 @@ def main() -> int:
     assert unsupported["control_action"] == "hold", unsupported
     assert "RPE-M3-GATEWAY-UNSUPPORTED-EVALUATION-DECISION" in unsupported["reason_codes"], unsupported
     assert_bounded(unsupported)
+
+    thin = evaluate_gateway_request(
+        {
+            "contract_version": "0.1.0-exp",
+            "governed_evaluation": base,
+            "risk_graph": authority_graph,
+            "constraints": ["no_delegation"],
+        },
+        today=date(2026, 9, 1),
+    )
+    assert thin["evaluation_result"]["decision"] == "allow", thin
+    assert thin["risk_condition_result"]["required_controls"] == ["require_authority"], thin
+    assert thin["transition_result"]["control_action"] == "require_authority", thin
+    assert_gateway_bounded(thin)
+
+    thin_invalid_version = evaluate_gateway_request(
+        {
+            "contract_version": "9.9.9",
+            "governed_evaluation": base,
+        },
+        today=date(2026, 9, 1),
+    )
+    assert thin_invalid_version["evaluation_result"] is None, thin_invalid_version
+    assert thin_invalid_version["transition_result"]["control_action"] == "hold", thin_invalid_version
+    assert "RPE-M3-GATEWAY-REQUEST-INCOMPATIBLE-VERSION" in thin_invalid_version["transition_result"]["reason_codes"], thin_invalid_version
+    assert_gateway_bounded(thin_invalid_version)
+
+    thin_unknown_field = evaluate_gateway_request(
+        {
+            "contract_version": "0.1.0-exp",
+            "governed_evaluation": base,
+            "dispatch_now": True,
+        },
+        today=date(2026, 9, 1),
+    )
+    assert thin_unknown_field["transition_result"]["control_action"] == "hold", thin_unknown_field
+    assert "RPE-M3-GATEWAY-REQUEST-UNKNOWN-FIELD" in thin_unknown_field["transition_result"]["reason_codes"], thin_unknown_field
+    assert_gateway_bounded(thin_unknown_field)
 
     print("M3 experimental responsibility gateway checks passed")
     return 0
