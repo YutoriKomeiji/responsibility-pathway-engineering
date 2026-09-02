@@ -9,6 +9,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from .gateway import evaluate_gateway_request
+from .guarded_adapter import evaluate_guarded_adapter_request
 from .pipeline import evaluate_action, evaluate_governed_action
 
 JsonObject = dict[str, Any]
@@ -16,20 +17,23 @@ Evaluator = Callable[[JsonObject, list[JsonObject]], JsonObject]
 GovernedEvaluator = Callable[[JsonObject], JsonObject]
 GatewayEvaluator = Callable[[JsonObject], JsonObject]
 OPENAPI_PATH = Path(__file__).with_name("rpe-kernel.openapi.json")
+GUARDED_OPENAPI_PATH = Path(__file__).with_name("rpe-kernel-guarded.openapi.json")
 
 
 def load_openapi_document() -> JsonObject:
-    """Load the packaged OpenAPI contract snapshot."""
     return json.loads(OPENAPI_PATH.read_text(encoding="utf-8"))
+
+
+def load_guarded_openapi_document() -> JsonObject:
+    return json.loads(GUARDED_OPENAPI_PATH.read_text(encoding="utf-8"))
 
 
 def create_handler(
     evaluator: Evaluator = evaluate_action,
     governed_evaluator: GovernedEvaluator = evaluate_governed_action,
     gateway_evaluator: GatewayEvaluator = evaluate_gateway_request,
+    guarded_evaluator: GatewayEvaluator = evaluate_guarded_adapter_request,
 ) -> type[BaseHTTPRequestHandler]:
-    """Create an HTTP handler bound to evaluator implementations."""
-
     class RPERequestHandler(BaseHTTPRequestHandler):
         server_version = "rpe-kernel/0.1"
 
@@ -41,66 +45,60 @@ def create_handler(
             self.end_headers()
             self.wfile.write(body)
 
-        def do_GET(self) -> None:  # noqa: N802 - stdlib handler contract
+        def do_GET(self) -> None:  # noqa: N802
             if self.path == "/health":
                 self._write_json(200, {"status": "ok", "service": "rpe-kernel"})
                 return
             if self.path == "/openapi.json":
                 self._write_json(200, load_openapi_document())
                 return
+            if self.path == "/openapi-guarded.json":
+                self._write_json(200, load_guarded_openapi_document())
+                return
             self._write_json(404, {"error": "not_found"})
 
-        def do_POST(self) -> None:  # noqa: N802 - stdlib handler contract
-            if self.path not in {"/v1/evaluate", "/v1/evaluate/governed", "/v1/evaluate/transition"}:
+        def do_POST(self) -> None:  # noqa: N802
+            supported = {
+                "/v1/evaluate",
+                "/v1/evaluate/governed",
+                "/v1/evaluate/transition",
+                "/v1/evaluate/transition/guarded",
+            }
+            if self.path not in supported:
                 self._write_json(404, {"error": "not_found"})
                 return
-
             try:
                 length = int(self.headers.get("Content-Length", "0"))
                 payload = json.loads(self.rfile.read(length).decode("utf-8"))
             except (ValueError, UnicodeDecodeError, json.JSONDecodeError):
                 self._write_json(400, {"error": "invalid_json"})
                 return
-
             if not isinstance(payload, dict):
                 self._write_json(400, {"error": "invalid_request", "detail": "body must be an object"})
                 return
-
             if self.path == "/v1/evaluate/governed":
-                result = governed_evaluator(payload)
-                self._write_json(200, result)
+                self._write_json(200, governed_evaluator(payload))
                 return
-
             if self.path == "/v1/evaluate/transition":
-                result = gateway_evaluator(payload)
-                self._write_json(200, result)
+                self._write_json(200, gateway_evaluator(payload))
                 return
-
+            if self.path == "/v1/evaluate/transition/guarded":
+                self._write_json(200, guarded_evaluator(payload))
+                return
             request = payload.get("request")
             packs = payload.get("packs")
-            if not isinstance(request, dict) or not isinstance(packs, list) or not all(
-                isinstance(pack, dict) for pack in packs
-            ):
-                self._write_json(
-                    400,
-                    {
-                        "error": "invalid_request",
-                        "detail": "request must be an object and packs must be an array of objects",
-                    },
-                )
+            if not isinstance(request, dict) or not isinstance(packs, list) or not all(isinstance(pack, dict) for pack in packs):
+                self._write_json(400, {"error": "invalid_request", "detail": "request must be an object and packs must be an array of objects"})
                 return
-
-            result = evaluator(request, packs)
-            self._write_json(200, result)
+            self._write_json(200, evaluator(request, packs))
 
         def log_message(self, format: str, *args: Any) -> None:
-            """Keep the reference server quiet by default."""
+            pass
 
     return RPERequestHandler
 
 
 def serve(host: str = "127.0.0.1", port: int = 8080) -> None:
-    """Run the reference HTTP server until interrupted."""
     server = ThreadingHTTPServer((host, port), create_handler())
     print(f"RPE kernel REST API listening on http://{host}:{port}")
     server.serve_forever()
