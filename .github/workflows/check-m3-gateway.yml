@@ -24,6 +24,7 @@ on:
       - "scripts/check_m3_contract_schemas.py"
       - "scripts/check_m3_guarded_adapter.py"
       - "scripts/check_m3_guarded_adapters.py"
+      - "scripts/check_m3_guarded_contract_doc.py"
       - "scripts/check_m3_cumulative_exposure.py"
       - "scripts/check_m3_cumulative_guarded.py"
       - "scripts/check_m3_openapi_runtime_schema.py"
@@ -60,6 +61,7 @@ on:
       - "scripts/check_m3_contract_schemas.py"
       - "scripts/check_m3_guarded_adapter.py"
       - "scripts/check_m3_guarded_adapters.py"
+      - "scripts/check_m3_guarded_contract_doc.py"
       - "scripts/check_m3_cumulative_exposure.py"
       - "scripts/check_m3_cumulative_guarded.py"
       - "scripts/check_m3_openapi_runtime_schema.py"
@@ -97,6 +99,8 @@ jobs:
         run: python scripts/check_m3_guarded_adapter.py
       - name: Check M3 guarded REST and OpenAPI parity
         run: python scripts/check_m3_guarded_adapters.py
+      - name: Check M3 guarded contract documentation drift
+        run: python scripts/check_m3_guarded_contract_doc.py
       - name: Check M3 cumulative exposure
         run: python scripts/check_m3_cumulative_exposure.py
       - name: Check M3 cumulative exposure through guarded adapter
