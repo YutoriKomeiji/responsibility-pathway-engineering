@@ -1,8 +1,8 @@
 """Versioned experimental M3 guarded adapter core.
 
-This module defines the 0.2.0-exp request/response behavior for bounded guard
-observations. It does not expose a network surface by itself. REST/MCP/OpenAPI
-may adopt this core only when their contracts are revised together.
+The 0.2.0-exp adapter composes caller-observed guard classes into a bounded
+responsibility evaluation. It never persists trajectory state, invents policy,
+creates authority, or executes an external action.
 """
 
 from __future__ import annotations
@@ -11,6 +11,7 @@ from collections.abc import Mapping, Sequence
 from datetime import date
 from typing import Any
 
+from .cumulative_exposure import cumulative_exposure_to_risk_condition, evaluate_cumulative_exposure
 from .guarded_gateway import evaluate_responsibility_guarded_gateway_request
 from .human_return import evaluate_human_return_readiness
 from .integrity import compare_integrity_binding
@@ -30,18 +31,8 @@ def _invalid(reason_code: str) -> dict[str, Any]:
     return {
         "contract_version": GUARDED_ADAPTER_CONTRACT_VERSION,
         "evaluation_result": None,
-        "guard_observations": {
-            "integrity_results": [],
-            "human_return_results": [],
-        },
-        "risk_condition_result": {
-            "graph_status": "unresolved",
-            "triggered_conditions": [],
-            "unknown_conditions": ["guarded-adapter-validation"],
-            "required_controls": ["hold"],
-            "reason_codes": [reason_code],
-            "scalar_score": None,
-        },
+        "guard_observations": {"integrity_results": [], "human_return_results": [], "cumulative_exposure_results": []},
+        "risk_condition_result": {"graph_status": "unresolved", "triggered_conditions": [], "unknown_conditions": ["guarded-adapter-validation"], "required_controls": ["hold"], "reason_codes": [reason_code], "scalar_score": None},
         "transition_result": {
             "contract_version": _BASE_GATEWAY_VERSION,
             "control_action": "hold",
@@ -58,28 +49,18 @@ def _invalid(reason_code: str) -> dict[str, Any]:
                 "residual_owner_role": "downstream_execution_owner",
                 "dispatch_effect": "none",
             },
-            "constraints": [],
-            "unmet_conditions": [],
-            "risk_condition_result": None,
-            "candidate_controls": ["hold"],
-            "reason_codes": [reason_code],
-            "downstream_executor_required": True,
+            "constraints": [], "unmet_conditions": [], "risk_condition_result": None,
+            "candidate_controls": ["hold"], "reason_codes": [reason_code], "downstream_executor_required": True,
         },
-        "authority_effect": "none",
-        "execution_effect": "none",
+        "authority_effect": "none", "execution_effect": "none",
     }
 
 
-def _validate_entries(
-    value: Any,
-    *,
-    kind: str,
-) -> tuple[list[Mapping[str, Any]], list[dict[str, Any]], str | None]:
+def _validate_entries(value: Any, *, kind: str) -> tuple[list[Mapping[str, Any]], list[dict[str, Any]], str | None]:
     if value is None:
         return [], [], None
     if not isinstance(value, Sequence) or isinstance(value, (str, bytes, bytearray)):
         return [], [], f"RPE-M3-{kind}-CHECKS-INVALID"
-
     normalized: list[Mapping[str, Any]] = []
     observations: list[dict[str, Any]] = []
     for entry in value:
@@ -93,40 +74,38 @@ def _validate_entries(
             return [], [], f"RPE-M3-{kind}-CHECK-CONTROL-REQUIRED"
         if any(control not in CONTROL_ACTIONS for control in controls):
             return [], [], f"RPE-M3-{kind}-CHECK-UNSUPPORTED-CONTROL"
-
         if kind == "INTEGRITY":
             observation = compare_integrity_binding(check)
             normalized.append({"check": dict(check), "required_controls": controls})
-        else:
+        elif kind == "HUMAN-RETURN":
             observation = evaluate_human_return_readiness(check)
             normalized.append({"return": dict(check), "required_controls": controls})
+        else:
+            observation = evaluate_cumulative_exposure(check)
+            normalized.append({"check": dict(check), "required_controls": controls})
         observations.append(observation)
     return normalized, observations, None
 
 
-def evaluate_guarded_adapter_request(
-    payload: Mapping[str, Any],
-    *,
-    today: date | None = None,
-) -> dict[str, Any]:
-    """Evaluate the experimental 0.2.0-exp guarded adapter contract.
+def _merge_cumulative_conditions(risk_graph: Any, entries: Sequence[Mapping[str, Any]], observations: Sequence[Mapping[str, Any]]) -> tuple[Any, str | None]:
+    conditions = [cumulative_exposure_to_risk_condition(obs, required_controls=entry.get("required_controls", [])) for entry, obs in zip(entries, observations)]
+    if not conditions:
+        return risk_graph, None
+    if risk_graph is None:
+        return {"conditions": conditions}, None
+    if not isinstance(risk_graph, Mapping):
+        return None, "RPE-M3-CUMULATIVE-RISK-GRAPH-INVALID"
+    existing = risk_graph.get("conditions")
+    if not isinstance(existing, Sequence) or isinstance(existing, (str, bytes, bytearray)):
+        return None, "RPE-M3-CUMULATIVE-RISK-GRAPH-INVALID"
+    return {"conditions": list(existing) + conditions}, None
 
-    Guard observations remain descriptive. Policy consequences are accepted only
-    through explicit caller-supplied required_controls. The result creates no
-    authority or execution effect.
-    """
+
+def evaluate_guarded_adapter_request(payload: Mapping[str, Any], *, today: date | None = None) -> dict[str, Any]:
+    """Evaluate the experimental 0.2.0-exp guarded adapter contract."""
     if not isinstance(payload, Mapping):
         return _invalid("RPE-M3-GUARDED-ADAPTER-REQUEST-INVALID")
-
-    allowed = {
-        "contract_version",
-        "governed_evaluation",
-        "risk_graph",
-        "integrity_checks",
-        "human_return_checks",
-        "requested_route",
-        "constraints",
-    }
+    allowed = {"contract_version", "governed_evaluation", "risk_graph", "integrity_checks", "human_return_checks", "cumulative_exposure_checks", "requested_route", "constraints"}
     if set(payload) - allowed:
         return _invalid("RPE-M3-GUARDED-ADAPTER-REQUEST-UNKNOWN-FIELD")
     if payload.get("contract_version") != GUARDED_ADAPTER_CONTRACT_VERSION:
@@ -135,41 +114,33 @@ def evaluate_guarded_adapter_request(
     if not isinstance(governed, Mapping):
         return _invalid("RPE-M3-GUARDED-ADAPTER-REQUEST-MISSING-EVALUATION")
 
-    integrity_entries, integrity_results, error = _validate_entries(
-        payload.get("integrity_checks"), kind="INTEGRITY"
-    )
+    integrity_entries, integrity_results, error = _validate_entries(payload.get("integrity_checks"), kind="INTEGRITY")
     if error is not None:
         return _invalid(error)
-    return_entries, return_results, error = _validate_entries(
-        payload.get("human_return_checks"), kind="HUMAN-RETURN"
-    )
+    return_entries, return_results, error = _validate_entries(payload.get("human_return_checks"), kind="HUMAN-RETURN")
+    if error is not None:
+        return _invalid(error)
+    cumulative_entries, cumulative_results, error = _validate_entries(payload.get("cumulative_exposure_checks"), kind="CUMULATIVE")
     if error is not None:
         return _invalid(error)
 
-    base_payload: dict[str, Any] = {
-        "contract_version": _BASE_GATEWAY_VERSION,
-        "governed_evaluation": dict(governed),
-    }
-    for key in ("risk_graph", "requested_route", "constraints"):
+    merged_risk_graph, error = _merge_cumulative_conditions(payload.get("risk_graph"), cumulative_entries, cumulative_results)
+    if error is not None:
+        return _invalid(error)
+
+    base_payload: dict[str, Any] = {"contract_version": _BASE_GATEWAY_VERSION, "governed_evaluation": dict(governed)}
+    if merged_risk_graph is not None:
+        base_payload["risk_graph"] = merged_risk_graph
+    for key in ("requested_route", "constraints"):
         if key in payload:
             base_payload[key] = payload.get(key)
 
-    result = evaluate_responsibility_guarded_gateway_request(
-        base_payload,
-        integrity_checks=integrity_entries,
-        human_return_checks=return_entries,
-        today=today,
-    )
-
+    result = evaluate_responsibility_guarded_gateway_request(base_payload, integrity_checks=integrity_entries, human_return_checks=return_entries, today=today)
     return {
         "contract_version": GUARDED_ADAPTER_CONTRACT_VERSION,
         "evaluation_result": result.get("evaluation_result"),
-        "guard_observations": {
-            "integrity_results": integrity_results,
-            "human_return_results": return_results,
-        },
+        "guard_observations": {"integrity_results": integrity_results, "human_return_results": return_results, "cumulative_exposure_results": cumulative_results},
         "risk_condition_result": result.get("risk_condition_result"),
         "transition_result": result.get("transition_result"),
-        "authority_effect": "none",
-        "execution_effect": "none",
+        "authority_effect": "none", "execution_effect": "none",
     }
