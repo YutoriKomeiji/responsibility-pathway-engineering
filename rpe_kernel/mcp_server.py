@@ -6,11 +6,13 @@ import json
 import sys
 from typing import Any, TextIO
 
+from .gateway import evaluate_gateway_request
 from .pipeline import evaluate_action, evaluate_governed_action
 
 JsonObject = dict[str, Any]
 TOOL_NAME = "rpe_evaluate_action"
 GOVERNED_TOOL_NAME = "rpe_evaluate_governed_action"
+TRANSITION_TOOL_NAME = "rpe_evaluate_responsibility_transition"
 PROTOCOL_VERSION = "2025-11-25"
 
 TOOL: JsonObject = {
@@ -37,6 +39,27 @@ GOVERNED_TOOL: JsonObject = {
             "contract_version": {"type": "string"},
             "request": {"type": "object"},
             "governed_packs": {"type": "array", "items": {"type": "object"}},
+        },
+        "additionalProperties": False,
+    },
+}
+
+TRANSITION_TOOL: JsonObject = {
+    "name": TRANSITION_TOOL_NAME,
+    "description": (
+        "Evaluate an experimental M3 responsibility transition through the strict governed M2 baseline. "
+        "Returns evaluation and transition metadata only; it does not dispatch, execute an external action, "
+        "grant authority, verify external effects, or own retry/repair/resume runtime state."
+    ),
+    "inputSchema": {
+        "type": "object",
+        "required": ["contract_version", "governed_evaluation"],
+        "properties": {
+            "contract_version": {"const": "0.1.0-exp"},
+            "governed_evaluation": {"type": "object"},
+            "risk_graph": {"type": ["object", "null"]},
+            "requested_route": {"type": ["object", "null"]},
+            "constraints": {"type": "array", "items": {"type": "string"}},
         },
         "additionalProperties": False,
     },
@@ -75,10 +98,13 @@ def handle_message(message: JsonObject) -> JsonObject | None:
             "protocolVersion": requested or PROTOCOL_VERSION,
             "capabilities": {"tools": {"listChanged": False}},
             "serverInfo": {"name": "rpe-kernel", "version": "0.1.0"},
-            "instructions": "This server evaluates proposals only; callers retain approval and execution responsibility.",
+            "instructions": (
+                "This server evaluates proposals and responsibility transitions only; callers retain approval, "
+                "routing, execution, external-effect verification, repair, resume, and final responsibility."
+            ),
         })
     if method == "tools/list":
-        return rpc_result(request_id, {"tools": [TOOL, GOVERNED_TOOL]})
+        return rpc_result(request_id, {"tools": [TOOL, GOVERNED_TOOL, TRANSITION_TOOL]})
     if method == "tools/call":
         if not isinstance(params, dict):
             return rpc_error(request_id, -32602, "Unknown tool or invalid params")
@@ -89,6 +115,10 @@ def handle_message(message: JsonObject) -> JsonObject | None:
 
         if tool_name == GOVERNED_TOOL_NAME:
             decision = evaluate_governed_action(arguments)
+            return rpc_result(request_id, _tool_result(decision))
+
+        if tool_name == TRANSITION_TOOL_NAME:
+            decision = evaluate_gateway_request(arguments)
             return rpc_result(request_id, _tool_result(decision))
 
         if tool_name != TOOL_NAME:
