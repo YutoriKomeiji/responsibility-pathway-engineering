@@ -10,6 +10,8 @@ from __future__ import annotations
 
 from typing import Any, Mapping, Sequence
 
+from .risk_conditions import CONTROL_ACTIONS
+
 M3_GATEWAY_CONTRACT_VERSION = "0.1.0-exp"
 
 ROUTE_TARGET_KINDS = frozenset(
@@ -159,16 +161,41 @@ def _transition_descriptor(
     }
 
 
+def _risk_controls(risk_result: Mapping[str, Any] | None) -> tuple[str | None, list[str], list[str]]:
+    """Return one explicit control only when selection is unambiguous."""
+    if risk_result is None:
+        return None, [], []
+    if not isinstance(risk_result, Mapping):
+        return "hold", ["RPE-M3-RISK-RESULT-INVALID"], []
+
+    status = risk_result.get("graph_status")
+    reasons = _normalized_strings(risk_result.get("reason_codes"))
+    controls = sorted(set(_normalized_strings(risk_result.get("required_controls"))))
+
+    if status in {"invalid", "unresolved"}:
+        return "hold", reasons or ["RPE-M3-RISK-GRAPH-UNRESOLVED"], controls
+    if any(control not in CONTROL_ACTIONS for control in controls):
+        return "hold", reasons + ["RPE-M3-RISK-RESULT-UNSUPPORTED-CONTROL"], controls
+    if len(controls) > 1:
+        return "hold", reasons + ["RPE-M3-CONTROL-SELECTION-REQUIRED"], controls
+    if len(controls) == 1:
+        return controls[0], reasons, controls
+    return None, reasons, []
+
+
 def evaluate_transition(
     evaluation_result: Mapping[str, Any],
     *,
     requested_route: Mapping[str, Any] | None = None,
     constraints: Sequence[str] | None = None,
+    risk_result: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Derive an experimental bounded continuation from an RPE evaluation result.
 
-    The returned object is evaluation metadata only. It cannot grant authority
-    or execute the requested route.
+    The M2 evaluation decision remains the baseline.  A risk-condition result may
+    only narrow an M2 ``allow`` result; it cannot override an M2 Human Gate,
+    deny, or hold.  The returned object is evaluation metadata only and cannot
+    grant authority or execute the requested route.
     """
     if not isinstance(evaluation_result, Mapping):
         evaluation_result = {}
@@ -178,6 +205,8 @@ def evaluate_transition(
     normalized_constraints = _normalized_strings(constraints)
     missing = _missing_evidence(evaluation_result)
     decision = evaluation_result.get("decision")
+    risk_control, risk_reasons, risk_candidates = _risk_controls(risk_result)
+    reason_codes.extend(risk_reasons)
     control_action: str
     route_target = normalized_route
 
@@ -186,7 +215,15 @@ def evaluate_transition(
         reason_codes.extend(route_reasons)
         route_target = None
     elif decision == "allow":
-        if normalized_route is not None:
+        if risk_control == "hold":
+            control_action = "hold"
+            route_target = None
+        elif risk_control is not None:
+            control_action = risk_control
+            if control_action in {"route", "handoff"} and route_target is None:
+                control_action = "hold"
+                reason_codes.append("RPE-M3-ROUTE-TARGET-REQUIRED")
+        elif normalized_route is not None:
             control_action = "route"
         elif normalized_constraints:
             control_action = "allow_with_constraints"
@@ -223,6 +260,8 @@ def evaluate_transition(
         ),
         "constraints": normalized_constraints,
         "unmet_conditions": missing,
+        "risk_condition_result": dict(risk_result) if isinstance(risk_result, Mapping) else None,
+        "candidate_controls": risk_candidates,
         "reason_codes": sorted(set(reason_codes)),
         "downstream_executor_required": True,
     }
