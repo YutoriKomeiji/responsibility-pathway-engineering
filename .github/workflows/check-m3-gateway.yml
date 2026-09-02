@@ -14,6 +14,7 @@ on:
       - "schemas/m3/**"
       - "scripts/check_m3_gateway.py"
       - "scripts/check_m3_contract_schemas.py"
+      - "scripts/check_m3_openapi_runtime_schema.py"
       - "scripts/check_rest_api.py"
       - "scripts/check_openapi_contract.py"
       - "scripts/benchmark_m3_gateway.py"
@@ -31,6 +32,7 @@ on:
       - "schemas/m3/**"
       - "scripts/check_m3_gateway.py"
       - "scripts/check_m3_contract_schemas.py"
+      - "scripts/check_m3_openapi_runtime_schema.py"
       - "scripts/check_rest_api.py"
       - "scripts/check_openapi_contract.py"
       - "scripts/benchmark_m3_gateway.py"
@@ -55,6 +57,8 @@ jobs:
         run: python scripts/check_m3_gateway.py
       - name: Check M3 contract schemas
         run: python scripts/check_m3_contract_schemas.py
+      - name: Check M3 runtime output against OpenAPI
+        run: python scripts/check_m3_openapi_runtime_schema.py
       - name: Check REST integration
         run: python scripts/check_rest_api.py
       - name: Check OpenAPI parity and boundaries
