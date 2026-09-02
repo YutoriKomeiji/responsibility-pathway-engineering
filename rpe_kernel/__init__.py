@@ -1,6 +1,7 @@
 """Public Python API for the RPE external responsibility kernel."""
 
 from .gateway import evaluate_gateway_request, evaluate_integrity_guarded_gateway_request, evaluate_transition
+from .guarded_adapter import evaluate_guarded_adapter_request
 from .guarded_gateway import evaluate_responsibility_guarded_gateway_request
 from .human_return import evaluate_human_return_readiness, human_return_result_to_risk_condition
 from .integrity import compare_integrity_binding, integrity_result_to_risk_condition
@@ -14,6 +15,7 @@ __all__ = [
     "evaluate_action",
     "evaluate_gateway_request",
     "evaluate_governed_action",
+    "evaluate_guarded_adapter_request",
     "evaluate_human_return_readiness",
     "evaluate_integrity_guarded_gateway_request",
     "evaluate_responsibility_guarded_gateway_request",
