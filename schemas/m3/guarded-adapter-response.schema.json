@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/rpe/m3/guarded-adapter-response.schema.json",
+  "title": "RPE M3 Guarded Adapter Response",
+  "type": "object",
+  "required": ["contract_version", "evaluation_result", "guard_observations", "risk_condition_result", "transition_result", "authority_effect", "execution_effect"],
+  "properties": {
+    "contract_version": {"const": "0.2.0-exp"},
+    "evaluation_result": {"type": ["object", "null"]},
+    "guard_observations": {
+      "type": "object",
+      "required": ["integrity_results", "human_return_results"],
+      "properties": {
+        "integrity_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["contract_version", "status", "comparison_scope", "authority_effect"],
+            "properties": {
+              "contract_version": {"const": "0.1.0-exp"},
+              "status": {"enum": ["clear", "triggered", "unknown", "invalid"]},
+              "comparison_scope": {"const": "caller_supplied_identity_comparison_only"},
+              "independent_authentication_claim": {"const": false},
+              "authority_effect": {"const": "none"}
+            },
+            "additionalProperties": true
+          }
+        },
+        "human_return_results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["contract_version", "readiness", "authority_effect", "human_decision_effect", "authority_validity_claim", "capability_validity_claim", "evidence_truth_claim", "assessment_scope"],
+            "properties": {
+              "contract_version": {"const": "0.1.0-exp"},
+              "readiness": {"enum": ["ready_for_review", "conditional", "unresolved", "invalid"]},
+              "authority_effect": {"const": "none"},
+              "human_decision_effect": {"const": "none"},
+              "authority_validity_claim": {"const": false},
+              "capability_validity_claim": {"const": false},
+              "evidence_truth_claim": {"const": false},
+              "assessment_scope": {"const": "caller_supplied_return_readiness_only"}
+            },
+            "additionalProperties": true
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "risk_condition_result": {"type": ["object", "null"]},
+    "transition_result": {"type": "object"},
+    "authority_effect": {"const": "none"},
+    "execution_effect": {"const": "none"}
+  },
+  "additionalProperties": false
+}
