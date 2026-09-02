@@ -8,6 +8,7 @@ on:
       - "rpe_kernel/__init__.py"
       - "rpe_kernel/gateway.py"
       - "rpe_kernel/risk_conditions.py"
+      - "rpe_kernel/integrity.py"
       - "rpe_kernel/http_api.py"
       - "rpe_kernel/rpe-kernel.openapi.json"
       - "spec/openapi/rpe-kernel.openapi.json"
@@ -15,6 +16,7 @@ on:
       - "scripts/check_m3_gateway.py"
       - "scripts/check_m3_contract_schemas.py"
       - "scripts/check_m3_openapi_runtime_schema.py"
+      - "scripts/check_m3_integrity.py"
       - "scripts/check_rest_api.py"
       - "scripts/check_openapi_contract.py"
       - "scripts/benchmark_m3_gateway.py"
@@ -26,6 +28,7 @@ on:
       - "rpe_kernel/__init__.py"
       - "rpe_kernel/gateway.py"
       - "rpe_kernel/risk_conditions.py"
+      - "rpe_kernel/integrity.py"
       - "rpe_kernel/http_api.py"
       - "rpe_kernel/rpe-kernel.openapi.json"
       - "spec/openapi/rpe-kernel.openapi.json"
@@ -33,6 +36,7 @@ on:
       - "scripts/check_m3_gateway.py"
       - "scripts/check_m3_contract_schemas.py"
       - "scripts/check_m3_openapi_runtime_schema.py"
+      - "scripts/check_m3_integrity.py"
       - "scripts/check_rest_api.py"
       - "scripts/check_openapi_contract.py"
       - "scripts/benchmark_m3_gateway.py"
@@ -59,6 +63,8 @@ jobs:
         run: python scripts/check_m3_contract_schemas.py
       - name: Check M3 runtime output against OpenAPI
         run: python scripts/check_m3_openapi_runtime_schema.py
+      - name: Check M3 configuration and relationship integrity
+        run: python scripts/check_m3_integrity.py
       - name: Check REST integration
         run: python scripts/check_rest_api.py
       - name: Check OpenAPI parity and boundaries
