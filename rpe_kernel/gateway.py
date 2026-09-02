@@ -1,6 +1,6 @@
 """Experimental M3 responsibility-gateway transformation.
 
-This module is additive to the M2 evaluation pipeline.  It transforms an
+This module is additive to the M2 evaluation pipeline. It transforms an
 existing evaluation result into bounded continuation metadata; it does not
 perform routing, dispatch, external-effect verification, retry, repair, or
 resume operations.
@@ -72,6 +72,7 @@ def normalize_route_target(value: Mapping[str, Any] | None) -> tuple[dict[str, A
         "kind": kind,
         "target_id": target_id,
         "purpose": purpose,
+        "authority_effect": "none",
         "dispatch_effect": "none",
     }, []
 
@@ -89,6 +90,32 @@ def _missing_evidence(evaluation_result: Mapping[str, Any]) -> list[str]:
     return []
 
 
+def _available_evidence(evaluation_result: Mapping[str, Any]) -> list[str]:
+    handoff = evaluation_result.get("responsibility_handoff")
+    if isinstance(handoff, Mapping):
+        evidence = handoff.get("evaluation_evidence_scope")
+        if isinstance(evidence, Mapping):
+            return _normalized_strings(evidence.get("available"))
+    return []
+
+
+def _residual_owner_role(evaluation_result: Mapping[str, Any]) -> str:
+    handoff = evaluation_result.get("responsibility_handoff")
+    if isinstance(handoff, Mapping):
+        obligations = handoff.get("downstream_obligations")
+        if isinstance(obligations, Mapping):
+            role = obligations.get("residual_owner_role")
+            if isinstance(role, str) and role:
+                return role
+
+    human_return = evaluation_result.get("human_return")
+    if isinstance(human_return, Mapping):
+        role = human_return.get("role")
+        if isinstance(role, str) and role:
+            return role
+    return "downstream_execution_owner"
+
+
 def _human_route(evaluation_result: Mapping[str, Any]) -> dict[str, Any]:
     human_return = evaluation_result.get("human_return")
     if not isinstance(human_return, Mapping):
@@ -101,6 +128,33 @@ def _human_route(evaluation_result: Mapping[str, Any]) -> dict[str, Any]:
         "kind": "human",
         "target_id": role if isinstance(role, str) and role else None,
         "purpose": "responsibility_return",
+        "authority_effect": "none",
+        "dispatch_effect": "none",
+    }
+
+
+def _transition_descriptor(
+    evaluation_result: Mapping[str, Any],
+    *,
+    route_target: dict[str, Any] | None,
+    missing: list[str],
+) -> dict[str, Any]:
+    return {
+        "source": {
+            "kind": "rpe_evaluation",
+            "request_id": evaluation_result.get("request_id"),
+        },
+        "destination": route_target,
+        "purpose": route_target.get("purpose") if isinstance(route_target, dict) else None,
+        "authority": {
+            "effect": "none",
+            "downstream_authority_required": True,
+        },
+        "evidence": {
+            "available": _available_evidence(evaluation_result),
+            "missing": missing,
+        },
+        "residual_owner_role": _residual_owner_role(evaluation_result),
         "dispatch_effect": "none",
     }
 
@@ -113,7 +167,7 @@ def evaluate_transition(
 ) -> dict[str, Any]:
     """Derive an experimental bounded continuation from an RPE evaluation result.
 
-    The returned object is evaluation metadata only.  It cannot grant authority
+    The returned object is evaluation metadata only. It cannot grant authority
     or execute the requested route.
     """
     if not isinstance(evaluation_result, Mapping):
@@ -121,6 +175,7 @@ def evaluate_transition(
 
     reason_codes = _normalized_strings(evaluation_result.get("reason_codes"))
     normalized_route, route_reasons = normalize_route_target(requested_route)
+    normalized_constraints = _normalized_strings(constraints)
     missing = _missing_evidence(evaluation_result)
     decision = evaluation_result.get("decision")
     control_action: str
@@ -131,7 +186,12 @@ def evaluate_transition(
         reason_codes.extend(route_reasons)
         route_target = None
     elif decision == "allow":
-        control_action = "route" if normalized_route is not None else "allow"
+        if normalized_route is not None:
+            control_action = "route"
+        elif normalized_constraints:
+            control_action = "allow_with_constraints"
+        else:
+            control_action = "allow"
     elif decision == "human_gate":
         if missing:
             control_action = "require_evidence"
@@ -156,7 +216,12 @@ def evaluate_transition(
         "authority_effect": "none",
         "execution_effect": "none",
         "route_target": route_target,
-        "constraints": _normalized_strings(constraints),
+        "responsibility_transition": _transition_descriptor(
+            evaluation_result,
+            route_target=route_target,
+            missing=missing,
+        ),
+        "constraints": normalized_constraints,
         "unmet_conditions": missing,
         "reason_codes": sorted(set(reason_codes)),
         "downstream_executor_required": True,
