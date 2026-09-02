@@ -36,6 +36,7 @@ def main() -> int:
         "/openapi.json": "get",
         "/v1/evaluate": "post",
         "/v1/evaluate/governed": "post",
+        "/v1/evaluate/transition": "post",
     }
     for path, method in required_operations.items():
         if not isinstance(paths.get(path), dict) or method not in paths[path]:
@@ -51,6 +52,15 @@ def main() -> int:
         "ResponsibilityHandoff",
         "GovernedEvaluateRequest",
         "GovernedEvaluateResponse",
+        "GatewayControlAction",
+        "GatewayRouteTarget",
+        "GatewayNormalizedRouteTarget",
+        "GatewayRiskCondition",
+        "GatewayRiskGraph",
+        "GatewayEvaluateRequest",
+        "GatewayResponsibilityTransition",
+        "GatewayTransitionResult",
+        "GatewayEvaluateResponse",
         "ErrorResponse",
     ):
         if name not in schemas:
@@ -111,6 +121,37 @@ def main() -> int:
     if "source_path" in provenance_props or "file_path" in provenance_props or "local_path" in provenance_props:
         fail("OpenAPI transport provenance must not expose local paths")
 
+    gateway_request = schemas["GatewayEvaluateRequest"]
+    if gateway_request.get("properties", {}).get("contract_version", {}).get("const") != "0.1.0-exp":
+        fail("M3 gateway request contract version must remain explicitly experimental")
+    if gateway_request.get("properties", {}).get("governed_evaluation", {}).get("$ref") != "#/components/schemas/GovernedEvaluateRequest":
+        fail("M3 gateway must preserve the governed M2 evaluation envelope as its baseline")
+
+    gateway_response = schemas["GatewayEvaluateResponse"]
+    gateway_response_props = gateway_response.get("properties", {})
+    if gateway_response_props.get("authority_effect", {}).get("const") != "none":
+        fail("M3 gateway response must not create authority")
+    if gateway_response_props.get("execution_effect", {}).get("const") != "none":
+        fail("M3 gateway response must not claim execution")
+
+    transition_result = schemas["GatewayTransitionResult"]
+    transition_props = transition_result.get("properties", {})
+    if transition_props.get("authority_effect", {}).get("const") != "none":
+        fail("M3 transition must preserve authority_effect=none")
+    if transition_props.get("execution_effect", {}).get("const") != "none":
+        fail("M3 transition must preserve execution_effect=none")
+    if transition_props.get("downstream_executor_required", {}).get("const") is not True:
+        fail("M3 transition must keep downstream executor ownership explicit")
+
+    transition_descriptor = schemas["GatewayResponsibilityTransition"].get("properties", {})
+    if transition_descriptor.get("dispatch_effect", {}).get("const") != "none":
+        fail("M3 transition descriptor must not dispatch")
+    authority_props = transition_descriptor.get("authority", {}).get("properties", {})
+    if authority_props.get("effect", {}).get("const") != "none":
+        fail("M3 transition descriptor must not generate authority")
+    if authority_props.get("downstream_authority_required", {}).get("const") is not True:
+        fail("M3 transition descriptor must require downstream authority")
+
     description = document.get("info", {}).get("description", "").lower()
     if "does not imply production readiness" not in description:
         fail("OpenAPI description must preserve the production boundary")
@@ -118,6 +159,11 @@ def main() -> int:
     governed_description = paths["/v1/evaluate/governed"]["post"].get("description", "").lower()
     if "does not accept caller-asserted transport provenance" not in governed_description:
         fail("governed HTTP description must preserve loader-observed provenance boundary")
+
+    gateway_description = paths["/v1/evaluate/transition"]["post"].get("description", "").lower()
+    for phrase in ("does not dispatch", "execute an external action", "create authority", "retry/repair/resume"):
+        if phrase not in gateway_description:
+            fail(f"M3 gateway HTTP description missing boundary phrase: {phrase}")
 
     sys.path.insert(0, str(ROOT))
     from rpe_kernel.http_api import load_openapi_document
