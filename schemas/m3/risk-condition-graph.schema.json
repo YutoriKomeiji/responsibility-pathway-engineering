@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://responsibility-pathway.dev/schemas/m3/risk-condition-graph.schema.json",
+  "title": "RPE M3 Experimental Risk Condition Graph",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["conditions"],
+  "properties": {
+    "conditions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/condition"}
+    }
+  },
+  "$defs": {
+    "nonEmptyString": {"type": "string", "minLength": 1},
+    "controlAction": {
+      "enum": [
+        "allow_with_constraints",
+        "route",
+        "require_evidence",
+        "require_authority",
+        "downgrade_autonomy",
+        "sandbox",
+        "observe_only",
+        "budget_limit",
+        "isolate",
+        "handoff",
+        "hold",
+        "deny",
+        "emergency_stop"
+      ]
+    },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["condition_id", "status", "required_controls"],
+      "properties": {
+        "condition_id": {"$ref": "#/$defs/nonEmptyString"},
+        "status": {"enum": ["clear", "triggered", "unknown"]},
+        "required_controls": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/controlAction"}
+        },
+        "depends_on": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/nonEmptyString"}
+        },
+        "evidence_refs": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/nonEmptyString"}
+        }
+      }
+    }
+  }
+}
