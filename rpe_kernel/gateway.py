@@ -11,6 +11,7 @@ from __future__ import annotations
 from datetime import date
 from typing import Any, Mapping, Sequence
 
+from .integrity import compare_integrity_binding, integrity_result_to_risk_condition
 from .pipeline import evaluate_governed_action
 from .risk_conditions import CONTROL_ACTIONS, evaluate_risk_conditions
 
@@ -283,11 +284,72 @@ def _invalid_gateway_request(reason_code: str) -> dict[str, Any]:
     return {
         "contract_version": M3_GATEWAY_CONTRACT_VERSION,
         "evaluation_result": None,
+        "integrity_results": [],
         "risk_condition_result": None,
         "transition_result": transition,
         "authority_effect": "none",
         "execution_effect": "none",
     }
+
+
+def _evaluate_integrity_checks(value: Any) -> tuple[list[dict[str, Any]], list[dict[str, Any]], str | None]:
+    """Evaluate caller-supplied integrity bindings and return declarative risk nodes.
+
+    Every integrity check must carry an explicit non-empty control set supplied by
+    the caller/policy layer. The gateway never invents the policy consequence of
+    an identity mismatch or unknown observation.
+    """
+    if value is None:
+        return [], [], None
+    if not isinstance(value, Sequence) or isinstance(value, (str, bytes, bytearray)):
+        return [], [], "RPE-M3-INTEGRITY-CHECKS-INVALID"
+
+    results: list[dict[str, Any]] = []
+    conditions: list[dict[str, Any]] = []
+    for item in value:
+        if not isinstance(item, Mapping) or set(item) - {"check", "required_controls"}:
+            return [], [], "RPE-M3-INTEGRITY-CHECK-ENTRY-INVALID"
+        check = item.get("check")
+        controls_raw = item.get("required_controls")
+        controls = sorted(set(_normalized_strings(controls_raw)))
+        if not isinstance(check, Mapping):
+            return [], [], "RPE-M3-INTEGRITY-CHECK-ENTRY-INVALID"
+        if not controls:
+            return [], [], "RPE-M3-INTEGRITY-CHECK-CONTROL-REQUIRED"
+        if any(control not in CONTROL_ACTIONS for control in controls):
+            return [], [], "RPE-M3-INTEGRITY-CHECK-UNSUPPORTED-CONTROL"
+
+        result = compare_integrity_binding(check)
+        results.append(result)
+        conditions.append(
+            integrity_result_to_risk_condition(
+                result,
+                required_controls=controls,
+            )
+        )
+    return results, conditions, None
+
+
+def _combined_risk_result(
+    risk_graph: Any,
+    integrity_conditions: Sequence[Mapping[str, Any]],
+) -> dict[str, Any] | None:
+    """Combine caller risk nodes with integrity-derived nodes without scoring."""
+    if risk_graph is None:
+        if not integrity_conditions:
+            return None
+        return evaluate_risk_conditions({"conditions": list(integrity_conditions)})
+
+    if not isinstance(risk_graph, Mapping):
+        return evaluate_risk_conditions(risk_graph)
+    nodes = risk_graph.get("conditions")
+    if not isinstance(nodes, Sequence) or isinstance(nodes, (str, bytes, bytearray)):
+        return evaluate_risk_conditions(risk_graph)
+    return evaluate_risk_conditions(
+        {
+            "conditions": list(nodes) + [dict(condition) for condition in integrity_conditions],
+        }
+    )
 
 
 def evaluate_gateway_request(
@@ -298,8 +360,9 @@ def evaluate_gateway_request(
     """Evaluate one experimental M3 gateway request through the M2 governed path.
 
     This is the thin-adoption entry point. A caller supplies one governed M2
-    evaluation envelope plus optional risk graph, requested route, and bounded
-    constraints. RPE returns evaluation and transition metadata only.
+    evaluation envelope plus optional risk graph, integrity comparisons,
+    requested route, and bounded constraints. RPE returns evaluation and
+    transition metadata only.
     """
     if not isinstance(payload, Mapping):
         return _invalid_gateway_request("RPE-M3-GATEWAY-REQUEST-INVALID")
@@ -308,6 +371,7 @@ def evaluate_gateway_request(
         "contract_version",
         "governed_evaluation",
         "risk_graph",
+        "integrity_checks",
         "requested_route",
         "constraints",
     }
@@ -320,8 +384,13 @@ def evaluate_gateway_request(
     if not isinstance(governed_evaluation, Mapping):
         return _invalid_gateway_request("RPE-M3-GATEWAY-REQUEST-MISSING-EVALUATION")
 
-    risk_graph = payload.get("risk_graph")
-    risk_result = evaluate_risk_conditions(risk_graph) if risk_graph is not None else None
+    integrity_results, integrity_conditions, integrity_error = _evaluate_integrity_checks(
+        payload.get("integrity_checks")
+    )
+    if integrity_error is not None:
+        return _invalid_gateway_request(integrity_error)
+
+    risk_result = _combined_risk_result(payload.get("risk_graph"), integrity_conditions)
     evaluation_result = evaluate_governed_action(dict(governed_evaluation), today=today)
     transition_result = evaluate_transition(
         evaluation_result,
@@ -333,6 +402,7 @@ def evaluate_gateway_request(
     return {
         "contract_version": M3_GATEWAY_CONTRACT_VERSION,
         "evaluation_result": evaluation_result,
+        "integrity_results": integrity_results,
         "risk_condition_result": risk_result,
         "transition_result": transition_result,
         "authority_effect": "none",
