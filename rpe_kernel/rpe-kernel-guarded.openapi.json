@@ -3,7 +3,7 @@
   "info": {
     "title": "RPE Kernel Guarded Transition API",
     "version": "0.2.0-exp",
-    "description": "Experimental evaluation-only guarded responsibility-transition contract. Guard observations are caller-supplied bounded evidence. This API does not authenticate identities, validate organizational authority, certify human capability, establish evidence truth, dispatch actions, verify external effects, or own retry/repair/resume state."
+    "description": "Experimental evaluation-only guarded responsibility-transition contract. Guard observations are caller-supplied bounded evidence. This API does not authenticate identities, validate organizational authority, certify human capability, establish evidence truth, persist trajectory history, dispatch actions, verify external effects, or own retry/repair/resume state."
   },
   "servers": [{"url": "http://127.0.0.1:8080", "description": "Local reference server"}],
   "paths": {
@@ -11,151 +11,64 @@
       "post": {
         "operationId": "evaluateGuardedResponsibilityTransition",
         "summary": "Evaluate a guarded M3 responsibility transition",
-        "description": "Runs the strict governed M2 baseline, caller-declared risk conditions, configuration/relationship comparisons, and Human Return destination-readiness observations. Policy consequences must be explicitly supplied through required_controls. No authority or execution effect is created.",
-        "requestBody": {
-          "required": true,
-          "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GuardedEvaluateRequest"}}}
-        },
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GuardedEvaluateRequest"}}}},
         "responses": {
-          "200": {
-            "description": "Bounded guarded evaluation and responsibility-transition metadata",
-            "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GuardedEvaluateResponse"}}}
-          },
-          "400": {
-            "description": "Malformed JSON or non-object request body",
-            "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}
-          }
+          "200": {"description": "Bounded guarded evaluation metadata", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GuardedEvaluateResponse"}}}},
+          "400": {"description": "Malformed JSON or non-object request", "content": {"application/json": {"schema": {"type": "object", "additionalProperties": true}}}}
         }
       }
     }
   },
   "components": {
     "schemas": {
-      "ControlAction": {
-        "type": "string",
-        "enum": ["allow_with_constraints", "route", "require_evidence", "require_authority", "downgrade_autonomy", "sandbox", "observe_only", "budget_limit", "isolate", "handoff", "hold", "deny", "emergency_stop"]
-      },
-      "IdentityMap": {
-        "type": "object",
-        "minProperties": 1,
-        "additionalProperties": {"type": "string", "minLength": 1}
-      },
-      "IntegrityCheck": {
-        "type": "object",
-        "required": ["check_id", "kind", "expected"],
+      "ControlAction": {"type": "string", "enum": ["allow_with_constraints", "route", "require_evidence", "require_authority", "downgrade_autonomy", "sandbox", "observe_only", "budget_limit", "isolate", "handoff", "hold", "deny", "emergency_stop"]},
+      "IntegrityEntry": {
+        "type": "object", "required": ["check", "required_controls"],
         "properties": {
-          "check_id": {"type": "string", "minLength": 1},
-          "kind": {"type": "string", "enum": ["configuration", "relationship"]},
-          "expected": {"$ref": "#/components/schemas/IdentityMap"},
-          "observed": {"oneOf": [{"$ref": "#/components/schemas/IdentityMap"}, {"type": "null"}]},
-          "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
-        },
-        "additionalProperties": false
-      },
-      "EvidenceScope": {
-        "type": "object",
-        "required": ["available", "missing"],
-        "properties": {
-          "available": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
-          "missing": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true}
-        },
-        "additionalProperties": false
-      },
-      "HumanReturnCheck": {
-        "type": "object",
-        "required": ["return_id", "owner_role", "capability_status", "response_window_status", "next_decision_scope", "evidence_scope"],
-        "properties": {
-          "return_id": {"type": "string", "minLength": 1},
-          "owner_role": {"type": "string", "minLength": 1},
-          "authority_reference": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
-          "capability_status": {"type": "string", "enum": ["available", "limited", "unknown"]},
-          "response_window_status": {"type": "string", "enum": ["available", "limited", "expired", "unknown"]},
-          "next_decision_scope": {"type": "string", "minLength": 1},
-          "evidence_scope": {"$ref": "#/components/schemas/EvidenceScope"}
-        },
-        "additionalProperties": false
-      },
-      "GuardEntryIntegrity": {
-        "type": "object",
-        "required": ["check", "required_controls"],
-        "properties": {
-          "check": {"$ref": "#/components/schemas/IntegrityCheck"},
+          "check": {"type": "object", "required": ["check_id", "kind", "expected"], "properties": {"check_id": {"type": "string", "minLength": 1}, "kind": {"enum": ["configuration", "relationship"]}, "expected": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "minLength": 1}}, "observed": {"oneOf": [{"type": "object", "additionalProperties": {"type": "string", "minLength": 1}}, {"type": "null"}]}, "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}}}, "additionalProperties": false},
           "required_controls": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/components/schemas/ControlAction"}}
-        },
-        "additionalProperties": false
+        }, "additionalProperties": false
       },
-      "GuardEntryHumanReturn": {
-        "type": "object",
-        "required": ["check", "required_controls"],
+      "HumanReturnEntry": {
+        "type": "object", "required": ["check", "required_controls"],
         "properties": {
-          "check": {"$ref": "#/components/schemas/HumanReturnCheck"},
+          "check": {"type": "object", "required": ["return_id", "owner_role", "capability_status", "response_window_status", "next_decision_scope", "evidence_scope"], "properties": {"return_id": {"type": "string", "minLength": 1}, "owner_role": {"type": "string", "minLength": 1}, "authority_reference": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]}, "capability_status": {"enum": ["available", "limited", "unknown"]}, "response_window_status": {"enum": ["available", "limited", "expired", "unknown"]}, "next_decision_scope": {"type": "string", "minLength": 1}, "evidence_scope": {"type": "object", "required": ["available", "missing"], "properties": {"available": {"type": "array", "items": {"type": "string", "minLength": 1}}, "missing": {"type": "array", "items": {"type": "string", "minLength": 1}}}, "additionalProperties": false}}, "additionalProperties": false},
           "required_controls": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/components/schemas/ControlAction"}}
-        },
-        "additionalProperties": false
+        }, "additionalProperties": false
+      },
+      "CumulativeExposureEntry": {
+        "type": "object", "required": ["check", "required_controls"],
+        "properties": {
+          "check": {"type": "object", "required": ["exposure_id", "dimensions"], "properties": {"exposure_id": {"type": "string", "minLength": 1}, "dimensions": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["name", "current", "proposed_increment", "budget", "unit"], "properties": {"name": {"type": "string", "minLength": 1}, "current": {"oneOf": [{"type": "integer", "minimum": 0}, {"type": "null"}]}, "proposed_increment": {"oneOf": [{"type": "integer", "minimum": 0}, {"type": "null"}]}, "budget": {"oneOf": [{"type": "integer", "minimum": 0}, {"type": "null"}]}, "unit": {"type": "string", "minLength": 1}}, "additionalProperties": false}}, "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}}}, "additionalProperties": false},
+          "required_controls": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/components/schemas/ControlAction"}}
+        }, "additionalProperties": false
       },
       "GuardedEvaluateRequest": {
-        "type": "object",
-        "required": ["contract_version", "governed_evaluation"],
+        "type": "object", "required": ["contract_version", "governed_evaluation"],
         "properties": {
           "contract_version": {"const": "0.2.0-exp"},
           "governed_evaluation": {"type": "object", "additionalProperties": true},
           "risk_graph": {"oneOf": [{"type": "object", "additionalProperties": true}, {"type": "null"}]},
-          "integrity_checks": {"type": "array", "items": {"$ref": "#/components/schemas/GuardEntryIntegrity"}},
-          "human_return_checks": {"type": "array", "items": {"$ref": "#/components/schemas/GuardEntryHumanReturn"}},
+          "integrity_checks": {"type": "array", "items": {"$ref": "#/components/schemas/IntegrityEntry"}},
+          "human_return_checks": {"type": "array", "items": {"$ref": "#/components/schemas/HumanReturnEntry"}},
+          "cumulative_exposure_checks": {"type": "array", "items": {"$ref": "#/components/schemas/CumulativeExposureEntry"}},
           "requested_route": {"oneOf": [{"type": "object", "additionalProperties": true}, {"type": "null"}]},
           "constraints": {"type": "array", "items": {"type": "string", "minLength": 1}}
-        },
-        "additionalProperties": false
+        }, "additionalProperties": false
       },
-      "IntegrityObservation": {
-        "type": "object",
-        "required": ["contract_version", "status", "comparison_scope", "independent_authentication_claim", "authority_effect"],
-        "properties": {
-          "contract_version": {"const": "0.1.0-exp"},
-          "status": {"type": "string", "enum": ["clear", "triggered", "unknown", "invalid"]},
-          "comparison_scope": {"const": "caller_supplied_identity_comparison_only"},
-          "independent_authentication_claim": {"const": false},
-          "authority_effect": {"const": "none"}
-        },
-        "additionalProperties": true
-      },
-      "HumanReturnObservation": {
-        "type": "object",
-        "required": ["contract_version", "readiness", "authority_effect", "human_decision_effect", "authority_validity_claim", "capability_validity_claim", "evidence_truth_claim", "assessment_scope"],
-        "properties": {
-          "contract_version": {"const": "0.1.0-exp"},
-          "readiness": {"type": "string", "enum": ["ready_for_review", "conditional", "unresolved", "invalid"]},
-          "authority_effect": {"const": "none"},
-          "human_decision_effect": {"const": "none"},
-          "authority_validity_claim": {"const": false},
-          "capability_validity_claim": {"const": false},
-          "evidence_truth_claim": {"const": false},
-          "assessment_scope": {"const": "caller_supplied_return_readiness_only"}
-        },
-        "additionalProperties": true
-      },
-      "GuardObservations": {
-        "type": "object",
-        "required": ["integrity_results", "human_return_results"],
-        "properties": {
-          "integrity_results": {"type": "array", "items": {"$ref": "#/components/schemas/IntegrityObservation"}},
-          "human_return_results": {"type": "array", "items": {"$ref": "#/components/schemas/HumanReturnObservation"}}
-        },
-        "additionalProperties": false
-      },
+      "IntegrityObservation": {"type": "object", "required": ["contract_version", "status", "comparison_scope", "independent_authentication_claim", "authority_effect"], "properties": {"contract_version": {"const": "0.1.0-exp"}, "status": {"enum": ["clear", "triggered", "unknown", "invalid"]}, "comparison_scope": {"const": "caller_supplied_identity_comparison_only"}, "independent_authentication_claim": {"const": false}, "authority_effect": {"const": "none"}}, "additionalProperties": true},
+      "HumanReturnObservation": {"type": "object", "required": ["contract_version", "readiness", "authority_effect", "human_decision_effect", "authority_validity_claim", "capability_validity_claim", "evidence_truth_claim", "assessment_scope"], "properties": {"contract_version": {"const": "0.1.0-exp"}, "readiness": {"enum": ["ready_for_review", "conditional", "unresolved", "invalid"]}, "authority_effect": {"const": "none"}, "human_decision_effect": {"const": "none"}, "authority_validity_claim": {"const": false}, "capability_validity_claim": {"const": false}, "evidence_truth_claim": {"const": false}, "assessment_scope": {"const": "caller_supplied_return_readiness_only"}}, "additionalProperties": true},
+      "CumulativeExposureObservation": {"type": "object", "required": ["contract_version", "status", "threshold_origin", "persistent_state_effect", "authority_effect", "execution_effect", "universal_safety_claim", "trajectory_safety_claim"], "properties": {"contract_version": {"const": "0.1.0-exp"}, "status": {"enum": ["clear", "triggered", "unknown", "invalid"]}, "threshold_origin": {"const": "caller_or_policy_supplied"}, "persistent_state_effect": {"const": "none"}, "authority_effect": {"const": "none"}, "execution_effect": {"const": "none"}, "universal_safety_claim": {"const": false}, "trajectory_safety_claim": {"const": false}}, "additionalProperties": true},
       "GuardedEvaluateResponse": {
-        "type": "object",
-        "required": ["contract_version", "evaluation_result", "guard_observations", "risk_condition_result", "transition_result", "authority_effect", "execution_effect"],
+        "type": "object", "required": ["contract_version", "evaluation_result", "guard_observations", "risk_condition_result", "transition_result", "authority_effect", "execution_effect"],
         "properties": {
           "contract_version": {"const": "0.2.0-exp"},
           "evaluation_result": {"oneOf": [{"type": "object", "additionalProperties": true}, {"type": "null"}]},
-          "guard_observations": {"$ref": "#/components/schemas/GuardObservations"},
+          "guard_observations": {"type": "object", "required": ["integrity_results", "human_return_results", "cumulative_exposure_results"], "properties": {"integrity_results": {"type": "array", "items": {"$ref": "#/components/schemas/IntegrityObservation"}}, "human_return_results": {"type": "array", "items": {"$ref": "#/components/schemas/HumanReturnObservation"}}, "cumulative_exposure_results": {"type": "array", "items": {"$ref": "#/components/schemas/CumulativeExposureObservation"}}}, "additionalProperties": false},
           "risk_condition_result": {"oneOf": [{"type": "object", "additionalProperties": true}, {"type": "null"}]},
           "transition_result": {"type": "object", "additionalProperties": true},
-          "authority_effect": {"const": "none"},
-          "execution_effect": {"const": "none"}
-        },
-        "additionalProperties": false
+          "authority_effect": {"const": "none"}, "execution_effect": {"const": "none"}
+        }, "additionalProperties": false
       }
     }
   }
