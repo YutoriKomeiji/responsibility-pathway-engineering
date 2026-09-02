@@ -8,6 +8,7 @@ on:
       - "rpe_kernel/__init__.py"
       - "rpe_kernel/gateway.py"
       - "rpe_kernel/guarded_gateway.py"
+      - "rpe_kernel/guarded_adapter.py"
       - "rpe_kernel/risk_conditions.py"
       - "rpe_kernel/integrity.py"
       - "rpe_kernel/human_return.py"
@@ -17,6 +18,7 @@ on:
       - "schemas/m3/**"
       - "scripts/check_m3_gateway.py"
       - "scripts/check_m3_contract_schemas.py"
+      - "scripts/check_m3_guarded_adapter.py"
       - "scripts/check_m3_openapi_runtime_schema.py"
       - "scripts/check_m3_integrity.py"
       - "scripts/check_m3_human_return.py"
@@ -26,12 +28,14 @@ on:
       - "scripts/benchmark_m3_gateway.py"
       - "docs/m3-classification-and-first-slice.md"
       - "docs/m3-adoption-profiles.md"
+      - "docs/m3-versioned-guarded-adapter-contract-v0.1.md"
       - ".github/workflows/check-m3-gateway.yml"
   pull_request:
     paths:
       - "rpe_kernel/__init__.py"
       - "rpe_kernel/gateway.py"
       - "rpe_kernel/guarded_gateway.py"
+      - "rpe_kernel/guarded_adapter.py"
       - "rpe_kernel/risk_conditions.py"
       - "rpe_kernel/integrity.py"
       - "rpe_kernel/human_return.py"
@@ -41,6 +45,7 @@ on:
       - "schemas/m3/**"
       - "scripts/check_m3_gateway.py"
       - "scripts/check_m3_contract_schemas.py"
+      - "scripts/check_m3_guarded_adapter.py"
       - "scripts/check_m3_openapi_runtime_schema.py"
       - "scripts/check_m3_integrity.py"
       - "scripts/check_m3_human_return.py"
@@ -50,6 +55,7 @@ on:
       - "scripts/benchmark_m3_gateway.py"
       - "docs/m3-classification-and-first-slice.md"
       - "docs/m3-adoption-profiles.md"
+      - "docs/m3-versioned-guarded-adapter-contract-v0.1.md"
       - ".github/workflows/check-m3-gateway.yml"
 
 permissions:
@@ -69,6 +75,8 @@ jobs:
         run: python scripts/check_m3_gateway.py
       - name: Check M3 contract schemas
         run: python scripts/check_m3_contract_schemas.py
+      - name: Check M3 guarded adapter 0.2 core schemas
+        run: python scripts/check_m3_guarded_adapter.py
       - name: Check M3 runtime output against OpenAPI
         run: python scripts/check_m3_openapi_runtime_schema.py
       - name: Check M3 configuration and relationship integrity
