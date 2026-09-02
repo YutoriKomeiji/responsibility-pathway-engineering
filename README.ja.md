@@ -184,6 +184,27 @@ result = evaluate_governed_action(governed_envelope)
 
 これらは既存の実行stackの前段に置くための評価interfaceです。RPEはpolicy evaluationとaction executionを同じAuthorityへ潰さない設計になっています。
 
+## OPA / Rego / Pydantic / JSON Schemaとの関係
+
+RPEは、Open Policy Agent（OPA）、Rego、Pydantic、JSON Schemaの**代替製品として位置づけていません**。これらは同じシステム内で併用できます。
+
+比較したいのは優劣ではなく、どの責務をどこで持つかです。
+
+| 関心事 | JSON Schema / Pydantic | OPA / Rego | RPE |
+|---|---|---|---|
+| 構造・データvalidation | 主用途 | policy周辺で別途実装可能 | RPE contract境界に含む |
+| 一般的なpolicy evaluation | 主用途ではない | 主用途 | bounded requirement evaluation |
+| governance lifecycle / effective-date eligibility | application側のcustom logic | custom policy | governed pathの明示的関心事 |
+| Pack ↔ governanceのidentity/version厳密binding | application側のcustom logic | custom policy | governed pathの明示的関心事 |
+| 複数governed packのapplicability resolution | application側のcustom logic | custom policy | governed pathの明示的関心事 |
+| stableなHuman Return / reason-code semantics | application側のcustom logic | policy output規約としてcustom設計 | 明示的contract |
+| responsibility-preserving handoff | application側のcustom logic | integration規約としてcustom設計 | governed result metadataとして明示 |
+| 外部action execution | scope外 | policy engineのscope外 | RPEでは意図的にscope外 |
+
+既存validator、policy engine、application-specific codeを組み合わせて、類似した挙動を構築することは可能です。RPEの主張はそれより限定的で、これらのgovernance-evaluation concernを、実行前の一つの再現可能な責任経路として合成するreference implementationとcontractを提供することです。
+
+したがって「OPA/Rego/Pydantic/JSON Schemaでも構築できる」は有効な実装代替案です。ただし、それだけでは「RPEは単なるschema validationである」「追加のgoverned-path semanticsは存在しない」という証拠にはなりません。
+
 ## Architecture boundary
 
 ここから下は「何も実装されていない」という意味の免責ではなく、実装済み評価層と後段実行層を分離するためのarchitecture boundaryです。
