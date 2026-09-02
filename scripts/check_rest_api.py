@@ -42,6 +42,7 @@ def main() -> None:
         assert status == 200
         assert "/v1/evaluate" in openapi["paths"]
         assert "/v1/evaluate/governed" in openapi["paths"]
+        assert "/v1/evaluate/transition" in openapi["paths"]
 
         payload = {
             "request": {"request_id": "rest-check-1", "action": "publish"},
@@ -66,6 +67,39 @@ def main() -> None:
         assert governed["stage"] == "evaluation"
         assert governed["responsibility_handoff"]["authority_effect"] == "none"
         assert governed["responsibility_handoff"]["decision_scope"] == "evaluation_only"
+
+        gateway_payload = {
+            "contract_version": "0.1.0-exp",
+            "governed_evaluation": governed_payload,
+            "risk_graph": {
+                "conditions": [
+                    {
+                        "condition_id": "authority_scope_mismatch",
+                        "status": "triggered",
+                        "required_controls": ["require_authority"],
+                        "evidence_refs": ["authority-binding"],
+                    }
+                ]
+            },
+            "constraints": ["no_delegation"],
+        }
+        status, transition = request_json(f"{base_url}/v1/evaluate/transition", "POST", gateway_payload)
+        assert status == 200
+        assert transition["evaluation_result"]["decision"] == "allow"
+        assert transition["transition_result"]["control_action"] == "require_authority"
+        assert transition["transition_result"]["authority_effect"] == "none"
+        assert transition["transition_result"]["execution_effect"] == "none"
+        assert transition["transition_result"]["downstream_executor_required"] is True
+
+        status, invalid_transition = request_json(
+            f"{base_url}/v1/evaluate/transition",
+            "POST",
+            {"contract_version": "9.9.9", "governed_evaluation": governed_payload},
+        )
+        assert status == 200
+        assert invalid_transition["evaluation_result"] is None
+        assert invalid_transition["transition_result"]["control_action"] == "hold"
+        assert "RPE-M3-GATEWAY-REQUEST-INCOMPATIBLE-VERSION" in invalid_transition["transition_result"]["reason_codes"]
 
         status, held = request_json(f"{base_url}/v1/evaluate/governed", "POST", {"request": {}})
         assert status == 200
