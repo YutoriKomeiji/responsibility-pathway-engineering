@@ -8,9 +8,14 @@ on:
       - "rpe_kernel/__init__.py"
       - "rpe_kernel/gateway.py"
       - "rpe_kernel/risk_conditions.py"
+      - "rpe_kernel/http_api.py"
+      - "rpe_kernel/rpe-kernel.openapi.json"
+      - "spec/openapi/rpe-kernel.openapi.json"
       - "schemas/m3/**"
       - "scripts/check_m3_gateway.py"
       - "scripts/check_m3_contract_schemas.py"
+      - "scripts/check_rest_api.py"
+      - "scripts/check_openapi_contract.py"
       - "docs/m3-classification-and-first-slice.md"
       - ".github/workflows/check-m3-gateway.yml"
   pull_request:
@@ -18,9 +23,14 @@ on:
       - "rpe_kernel/__init__.py"
       - "rpe_kernel/gateway.py"
       - "rpe_kernel/risk_conditions.py"
+      - "rpe_kernel/http_api.py"
+      - "rpe_kernel/rpe-kernel.openapi.json"
+      - "spec/openapi/rpe-kernel.openapi.json"
       - "schemas/m3/**"
       - "scripts/check_m3_gateway.py"
       - "scripts/check_m3_contract_schemas.py"
+      - "scripts/check_rest_api.py"
+      - "scripts/check_openapi_contract.py"
       - "docs/m3-classification-and-first-slice.md"
       - ".github/workflows/check-m3-gateway.yml"
 
@@ -41,3 +51,7 @@ jobs:
         run: python scripts/check_m3_gateway.py
       - name: Check M3 contract schemas
         run: python scripts/check_m3_contract_schemas.py
+      - name: Check REST integration
+        run: python scripts/check_rest_api.py
+      - name: Check OpenAPI parity and boundaries
+        run: python scripts/check_openapi_contract.py
