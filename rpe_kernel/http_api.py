@@ -8,11 +8,13 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any, Callable
 
+from .gateway import evaluate_gateway_request
 from .pipeline import evaluate_action, evaluate_governed_action
 
 JsonObject = dict[str, Any]
 Evaluator = Callable[[JsonObject, list[JsonObject]], JsonObject]
 GovernedEvaluator = Callable[[JsonObject], JsonObject]
+GatewayEvaluator = Callable[[JsonObject], JsonObject]
 OPENAPI_PATH = Path(__file__).with_name("rpe-kernel.openapi.json")
 
 
@@ -24,6 +26,7 @@ def load_openapi_document() -> JsonObject:
 def create_handler(
     evaluator: Evaluator = evaluate_action,
     governed_evaluator: GovernedEvaluator = evaluate_governed_action,
+    gateway_evaluator: GatewayEvaluator = evaluate_gateway_request,
 ) -> type[BaseHTTPRequestHandler]:
     """Create an HTTP handler bound to evaluator implementations."""
 
@@ -48,7 +51,7 @@ def create_handler(
             self._write_json(404, {"error": "not_found"})
 
         def do_POST(self) -> None:  # noqa: N802 - stdlib handler contract
-            if self.path not in {"/v1/evaluate", "/v1/evaluate/governed"}:
+            if self.path not in {"/v1/evaluate", "/v1/evaluate/governed", "/v1/evaluate/transition"}:
                 self._write_json(404, {"error": "not_found"})
                 return
 
@@ -65,6 +68,11 @@ def create_handler(
 
             if self.path == "/v1/evaluate/governed":
                 result = governed_evaluator(payload)
+                self._write_json(200, result)
+                return
+
+            if self.path == "/v1/evaluate/transition":
+                result = gateway_evaluator(payload)
                 self._write_json(200, result)
                 return
 
