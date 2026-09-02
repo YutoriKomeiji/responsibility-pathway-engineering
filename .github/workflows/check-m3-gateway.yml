@@ -16,7 +16,9 @@ on:
       - "scripts/check_m3_contract_schemas.py"
       - "scripts/check_rest_api.py"
       - "scripts/check_openapi_contract.py"
+      - "scripts/benchmark_m3_gateway.py"
       - "docs/m3-classification-and-first-slice.md"
+      - "docs/m3-adoption-profiles.md"
       - ".github/workflows/check-m3-gateway.yml"
   pull_request:
     paths:
@@ -31,7 +33,9 @@ on:
       - "scripts/check_m3_contract_schemas.py"
       - "scripts/check_rest_api.py"
       - "scripts/check_openapi_contract.py"
+      - "scripts/benchmark_m3_gateway.py"
       - "docs/m3-classification-and-first-slice.md"
+      - "docs/m3-adoption-profiles.md"
       - ".github/workflows/check-m3-gateway.yml"
 
 permissions:
@@ -55,3 +59,5 @@ jobs:
         run: python scripts/check_rest_api.py
       - name: Check OpenAPI parity and boundaries
         run: python scripts/check_openapi_contract.py
+      - name: Benchmark smoke without latency threshold
+        run: python scripts/benchmark_m3_gateway.py --iterations 25 --warmup 5
