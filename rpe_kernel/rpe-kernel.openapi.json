@@ -7,17 +7,89 @@
   },
   "servers": [{"url": "http://127.0.0.1:8080", "description": "Local reference server"}],
   "paths": {
-    "/health": {"get": {"operationId": "getHealth", "summary": "Check reference service health", "responses": {"200": {"description": "Service is running", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/HealthResponse"}}}}}}},
-    "/openapi.json": {"get": {"operationId": "getOpenApiDocument", "summary": "Return this OpenAPI document", "responses": {"200": {"description": "OpenAPI 3.1 document", "content": {"application/json": {"schema": {"type": "object"}}}}}}},
-    "/v1/evaluate": {"post": {"operationId": "evaluateAction", "summary": "Evaluate through the legacy/M1-compatible RPE path", "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/EvaluateRequest"}}}}, "responses": {"200": {"description": "Structured legacy-compatible RPE decision", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/EvaluateResponse"}}}}, "400": {"description": "Malformed JSON or invalid request shape", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ErrorResponse"}}}}}}},
-    "/v1/evaluate/governed": {"post": {"operationId": "evaluateGovernedAction", "summary": "Evaluate through the strict governed RPE path", "description": "Fail-closed governed evaluation. A successful allow remains evaluation-only and carries authority_effect=none. The shared governed result can carry loader-observed transport provenance, but this HTTP request surface does not accept caller-asserted transport provenance.", "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GovernedEvaluateRequest"}}}}, "responses": {"200": {"description": "Structured governed RPE decision, including fail-closed admission/compatibility/governance outcomes and responsibility handoff obligations", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GovernedEvaluateResponse"}}}}, "400": {"description": "Malformed JSON or a non-object request body", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ErrorResponse"}}}}}}},
-    "/v1/evaluate/transition": {"post": {"operationId": "evaluateResponsibilityTransition", "summary": "Evaluate an experimental M3 responsibility transition through the governed M2 baseline", "description": "Experimental evaluation-only gateway. The endpoint first evaluates the supplied governed M2 envelope, then derives bounded transition metadata from optional risk conditions, route metadata, and constraints. It does not dispatch the route, execute an external action, create authority, verify an external effect, or own retry/repair/resume runtime state.", "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GatewayEvaluateRequest"}}}}, "responses": {"200": {"description": "Governed evaluation plus bounded responsibility-transition metadata", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GatewayEvaluateResponse"}}}}, "400": {"description": "Malformed JSON or a non-object request body", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ErrorResponse"}}}}}}}
+    "/health": {
+      "get": {
+        "operationId": "getHealth",
+        "summary": "Check reference service health",
+        "responses": {"200": {"description": "Service is running", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/HealthResponse"}}}}}
+      }
+    },
+    "/openapi.json": {
+      "get": {
+        "operationId": "getOpenApiDocument",
+        "summary": "Return this OpenAPI document",
+        "responses": {"200": {"description": "OpenAPI 3.1 document", "content": {"application/json": {"schema": {"type": "object"}}}}}
+      }
+    },
+    "/v1/evaluate": {
+      "post": {
+        "operationId": "evaluateAction",
+        "summary": "Evaluate through the legacy/M1-compatible RPE path",
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/EvaluateRequest"}}}},
+        "responses": {
+          "200": {"description": "Structured legacy-compatible RPE decision", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/EvaluateResponse"}}}},
+          "400": {"description": "Malformed JSON or invalid request shape", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ErrorResponse"}}}}
+        }
+      }
+    },
+    "/v1/evaluate/governed": {
+      "post": {
+        "operationId": "evaluateGovernedAction",
+        "summary": "Evaluate through the strict governed RPE path",
+        "description": "Fail-closed governed evaluation. A successful allow remains evaluation-only and carries authority_effect=none. The shared governed result can carry loader-observed transport provenance, but this HTTP request surface does not accept caller-asserted transport provenance.",
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GovernedEvaluateRequest"}}}},
+        "responses": {
+          "200": {"description": "Structured governed RPE decision, including fail-closed admission/compatibility/governance outcomes and responsibility handoff obligations", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GovernedEvaluateResponse"}}}},
+          "400": {"description": "Malformed JSON or a non-object request body", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ErrorResponse"}}}}
+        }
+      }
+    },
+    "/v1/evaluate/transition": {
+      "post": {
+        "operationId": "evaluateResponsibilityTransition",
+        "summary": "Evaluate an experimental M3 responsibility transition through the governed M2 baseline",
+        "description": "Experimental evaluation-only gateway. The endpoint first evaluates the supplied governed M2 envelope, then derives bounded transition metadata from optional risk conditions, route metadata, and constraints. It does not dispatch the route, execute an external action, create authority, verify an external effect, or own retry/repair/resume runtime state.",
+        "requestBody": {"required": true, "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GatewayEvaluateRequest"}}}},
+        "responses": {
+          "200": {"description": "Governed evaluation plus bounded responsibility-transition metadata", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/GatewayEvaluateResponse"}}}},
+          "400": {"description": "Malformed JSON or a non-object request body", "content": {"application/json": {"schema": {"$ref": "#/components/schemas/ErrorResponse"}}}}
+        }
+      }
+    }
   },
   "components": {
     "schemas": {
-      "HealthResponse": {"type": "object", "required": ["status", "service"], "properties": {"status": {"const": "ok"}, "service": {"const": "rpe-kernel"}}, "additionalProperties": false},
-      "EvaluateRequest": {"type": "object", "required": ["request", "packs"], "properties": {"request": {"type": "object", "additionalProperties": true}, "packs": {"type": "array", "items": {"type": "object", "additionalProperties": true}}}, "additionalProperties": false},
-      "EvaluateResponse": {"type": "object", "required": ["decision", "stage", "reason_codes", "applicability", "pack_decisions", "next_step"], "properties": {"request_id": {}, "decision": {"type": "string", "enum": ["allow", "hold", "human_gate", "deny"]}, "stage": {"type": "string", "enum": ["compatibility", "governance", "applicability", "evaluation"]}, "reason_codes": {"type": "array", "items": {"type": "string"}}, "applicability": {"type": "array", "items": {"type": "object", "additionalProperties": true}}, "pack_decisions": {"type": "array", "items": {"type": "object", "additionalProperties": true}}, "governance": {"type": "array", "items": {"type": "object", "additionalProperties": true}}, "human_return": {"oneOf": [{"type": "object", "additionalProperties": true}, {"type": "null"}]}, "next_step": {"type": "string"}}, "additionalProperties": true},
+      "HealthResponse": {
+        "type": "object",
+        "required": ["status", "service"],
+        "properties": {"status": {"const": "ok"}, "service": {"const": "rpe-kernel"}},
+        "additionalProperties": false
+      },
+      "EvaluateRequest": {
+        "type": "object",
+        "required": ["request", "packs"],
+        "properties": {
+          "request": {"type": "object", "additionalProperties": true},
+          "packs": {"type": "array", "items": {"type": "object", "additionalProperties": true}}
+        },
+        "additionalProperties": false
+      },
+      "EvaluateResponse": {
+        "type": "object",
+        "required": ["decision", "stage", "reason_codes", "applicability", "pack_decisions", "next_step"],
+        "properties": {
+          "request_id": {},
+          "decision": {"type": "string", "enum": ["allow", "hold", "human_gate", "deny"]},
+          "stage": {"type": "string", "enum": ["compatibility", "governance", "applicability", "evaluation"]},
+          "reason_codes": {"type": "array", "items": {"type": "string"}},
+          "applicability": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+          "pack_decisions": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+          "governance": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+          "human_return": {"oneOf": [{"type": "object", "additionalProperties": true}, {"type": "null"}]},
+          "next_step": {"type": "string"}
+        },
+        "additionalProperties": true
+      },
       "TransportProvenance": {
         "type": "object",
         "required": ["source_kind", "content_sha256", "byte_length", "observation_scope"],
@@ -87,7 +159,10 @@
         },
         "additionalProperties": false
       },
-      "GatewayControlAction": {"type": "string", "enum": ["allow", "allow_with_constraints", "route", "require_evidence", "require_authority", "downgrade_autonomy", "sandbox", "observe_only", "budget_limit", "isolate", "handoff", "hold", "deny", "emergency_stop"]},
+      "GatewayControlAction": {
+        "type": "string",
+        "enum": ["allow", "allow_with_constraints", "route", "require_evidence", "require_authority", "downgrade_autonomy", "sandbox", "observe_only", "budget_limit", "isolate", "handoff", "hold", "deny", "emergency_stop"]
+      },
       "GatewayRouteTarget": {
         "type": "object",
         "required": ["kind"],
@@ -99,10 +174,16 @@
         "additionalProperties": false
       },
       "GatewayNormalizedRouteTarget": {
-        "allOf": [
-          {"$ref": "#/components/schemas/GatewayRouteTarget"},
-          {"type": "object", "required": ["target_id", "purpose", "authority_effect", "dispatch_effect"], "properties": {"authority_effect": {"const": "none"}, "dispatch_effect": {"const": "none"}}}
-        ]
+        "type": "object",
+        "required": ["kind", "target_id", "purpose", "authority_effect", "dispatch_effect"],
+        "properties": {
+          "kind": {"type": "string", "enum": ["human", "agent", "verifier", "saas", "legacy_system", "institution", "workflow", "queue", "sandbox", "simulator", "hold", "stop"]},
+          "target_id": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+          "purpose": {"oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]},
+          "authority_effect": {"const": "none"},
+          "dispatch_effect": {"const": "none"}
+        },
+        "additionalProperties": false
       },
       "GatewayRiskCondition": {
         "type": "object",
@@ -116,7 +197,12 @@
         },
         "additionalProperties": false
       },
-      "GatewayRiskGraph": {"type": "object", "required": ["conditions"], "properties": {"conditions": {"type": "array", "items": {"$ref": "#/components/schemas/GatewayRiskCondition"}}}, "additionalProperties": false},
+      "GatewayRiskGraph": {
+        "type": "object",
+        "required": ["conditions"],
+        "properties": {"conditions": {"type": "array", "items": {"$ref": "#/components/schemas/GatewayRiskCondition"}}},
+        "additionalProperties": false
+      },
       "GatewayEvaluateRequest": {
         "type": "object",
         "required": ["contract_version", "governed_evaluation"],
@@ -133,11 +219,26 @@
         "type": "object",
         "required": ["source", "destination", "purpose", "authority", "evidence", "residual_owner_role", "dispatch_effect"],
         "properties": {
-          "source": {"type": "object", "required": ["kind", "request_id"], "properties": {"kind": {"const": "rpe_evaluation"}, "request_id": {"oneOf": [{"type": "string"}, {"type": "null"}]}}, "additionalProperties": false},
+          "source": {
+            "type": "object",
+            "required": ["kind", "request_id"],
+            "properties": {"kind": {"const": "rpe_evaluation"}, "request_id": {"oneOf": [{"type": "string"}, {"type": "null"}]}},
+            "additionalProperties": false
+          },
           "destination": {"oneOf": [{"$ref": "#/components/schemas/GatewayNormalizedRouteTarget"}, {"type": "null"}]},
           "purpose": {"oneOf": [{"type": "string"}, {"type": "null"}]},
-          "authority": {"type": "object", "required": ["effect", "downstream_authority_required"], "properties": {"effect": {"const": "none"}, "downstream_authority_required": {"const": true}}, "additionalProperties": false},
-          "evidence": {"type": "object", "required": ["available", "missing"], "properties": {"available": {"type": "array", "items": {"type": "string"}}, "missing": {"type": "array", "items": {"type": "string"}}}, "additionalProperties": false},
+          "authority": {
+            "type": "object",
+            "required": ["effect", "downstream_authority_required"],
+            "properties": {"effect": {"const": "none"}, "downstream_authority_required": {"const": true}},
+            "additionalProperties": false
+          },
+          "evidence": {
+            "type": "object",
+            "required": ["available", "missing"],
+            "properties": {"available": {"type": "array", "items": {"type": "string"}}, "missing": {"type": "array", "items": {"type": "string"}}},
+            "additionalProperties": false
+          },
           "residual_owner_role": {"type": "string", "minLength": 1},
           "dispatch_effect": {"const": "none"}
         },
@@ -176,7 +277,12 @@
         },
         "additionalProperties": false
       },
-      "ErrorResponse": {"type": "object", "required": ["error"], "properties": {"error": {"type": "string"}, "detail": {"type": "string"}}, "additionalProperties": false}
+      "ErrorResponse": {
+        "type": "object",
+        "required": ["error"],
+        "properties": {"error": {"type": "string"}, "detail": {"type": "string"}},
+        "additionalProperties": false
+      }
     }
   }
 }
