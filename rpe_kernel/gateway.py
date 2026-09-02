@@ -8,9 +8,11 @@ resume operations.
 
 from __future__ import annotations
 
+from datetime import date
 from typing import Any, Mapping, Sequence
 
-from .risk_conditions import CONTROL_ACTIONS
+from .pipeline import evaluate_governed_action
+from .risk_conditions import CONTROL_ACTIONS, evaluate_risk_conditions
 
 M3_GATEWAY_CONTRACT_VERSION = "0.1.0-exp"
 
@@ -192,9 +194,9 @@ def evaluate_transition(
 ) -> dict[str, Any]:
     """Derive an experimental bounded continuation from an RPE evaluation result.
 
-    The M2 evaluation decision remains the baseline.  A risk-condition result may
+    The M2 evaluation decision remains the baseline. A risk-condition result may
     only narrow an M2 ``allow`` result; it cannot override an M2 Human Gate,
-    deny, or hold.  The returned object is evaluation metadata only and cannot
+    deny, or hold. The returned object is evaluation metadata only and cannot
     grant authority or execute the requested route.
     """
     if not isinstance(evaluation_result, Mapping):
@@ -268,3 +270,71 @@ def evaluate_transition(
 
     assert not (FORBIDDEN_OPERATIONAL_KEYS & set(result))
     return result
+
+
+def _invalid_gateway_request(reason_code: str) -> dict[str, Any]:
+    transition = evaluate_transition(
+        {
+            "decision": "hold",
+            "reason_codes": [reason_code],
+            "request_id": None,
+        }
+    )
+    return {
+        "contract_version": M3_GATEWAY_CONTRACT_VERSION,
+        "evaluation_result": None,
+        "risk_condition_result": None,
+        "transition_result": transition,
+        "authority_effect": "none",
+        "execution_effect": "none",
+    }
+
+
+def evaluate_gateway_request(
+    payload: Mapping[str, Any],
+    *,
+    today: date | None = None,
+) -> dict[str, Any]:
+    """Evaluate one experimental M3 gateway request through the M2 governed path.
+
+    This is the thin-adoption entry point. A caller supplies one governed M2
+    evaluation envelope plus optional risk graph, requested route, and bounded
+    constraints. RPE returns evaluation and transition metadata only.
+    """
+    if not isinstance(payload, Mapping):
+        return _invalid_gateway_request("RPE-M3-GATEWAY-REQUEST-INVALID")
+
+    allowed_keys = {
+        "contract_version",
+        "governed_evaluation",
+        "risk_graph",
+        "requested_route",
+        "constraints",
+    }
+    if set(payload) - allowed_keys:
+        return _invalid_gateway_request("RPE-M3-GATEWAY-REQUEST-UNKNOWN-FIELD")
+    if payload.get("contract_version") != M3_GATEWAY_CONTRACT_VERSION:
+        return _invalid_gateway_request("RPE-M3-GATEWAY-REQUEST-INCOMPATIBLE-VERSION")
+
+    governed_evaluation = payload.get("governed_evaluation")
+    if not isinstance(governed_evaluation, Mapping):
+        return _invalid_gateway_request("RPE-M3-GATEWAY-REQUEST-MISSING-EVALUATION")
+
+    risk_graph = payload.get("risk_graph")
+    risk_result = evaluate_risk_conditions(risk_graph) if risk_graph is not None else None
+    evaluation_result = evaluate_governed_action(dict(governed_evaluation), today=today)
+    transition_result = evaluate_transition(
+        evaluation_result,
+        requested_route=payload.get("requested_route") if isinstance(payload.get("requested_route"), Mapping) else payload.get("requested_route"),
+        constraints=payload.get("constraints") if isinstance(payload.get("constraints"), Sequence) else None,
+        risk_result=risk_result,
+    )
+
+    return {
+        "contract_version": M3_GATEWAY_CONTRACT_VERSION,
+        "evaluation_result": evaluation_result,
+        "risk_condition_result": risk_result,
+        "transition_result": transition_result,
+        "authority_effect": "none",
+        "execution_effect": "none",
+    }
