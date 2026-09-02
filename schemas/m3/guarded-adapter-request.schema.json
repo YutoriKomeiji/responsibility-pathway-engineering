@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/rpe/m3/guarded-adapter-request.schema.json",
+  "title": "RPE M3 Guarded Adapter Request",
+  "type": "object",
+  "required": ["contract_version", "governed_evaluation"],
+  "properties": {
+    "contract_version": {"const": "0.2.0-exp"},
+    "governed_evaluation": {"type": "object"},
+    "risk_graph": {"type": ["object", "null"]},
+    "requested_route": {"type": ["object", "null"]},
+    "constraints": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "integrity_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["check", "required_controls"],
+        "properties": {
+          "check": {
+            "type": "object",
+            "required": ["check_id", "kind", "expected"],
+            "properties": {
+              "check_id": {"type": "string", "minLength": 1},
+              "kind": {"enum": ["configuration", "relationship"]},
+              "expected": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "minLength": 1}},
+              "observed": {"type": ["object", "null"], "additionalProperties": {"type": "string", "minLength": 1}},
+              "evidence_refs": {"type": "array", "items": {"type": "string", "minLength": 1}}
+            },
+            "additionalProperties": false
+          },
+          "required_controls": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+        },
+        "additionalProperties": false
+      }
+    },
+    "human_return_checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["check", "required_controls"],
+        "properties": {
+          "check": {
+            "type": "object",
+            "required": ["return_id", "owner_role", "capability_status", "response_window_status", "next_decision_scope", "evidence_scope"],
+            "properties": {
+              "return_id": {"type": "string", "minLength": 1},
+              "owner_role": {"type": "string", "minLength": 1},
+              "authority_reference": {"type": ["string", "null"]},
+              "capability_status": {"enum": ["available", "limited", "unknown"]},
+              "response_window_status": {"enum": ["available", "limited", "expired", "unknown"]},
+              "next_decision_scope": {"type": "string", "minLength": 1},
+              "evidence_scope": {
+                "type": "object",
+                "required": ["available", "missing"],
+                "properties": {
+                  "available": {"type": "array", "items": {"type": "string", "minLength": 1}},
+                  "missing": {"type": "array", "items": {"type": "string", "minLength": 1}}
+                },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          },
+          "required_controls": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
