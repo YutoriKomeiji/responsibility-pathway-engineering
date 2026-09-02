@@ -137,6 +137,25 @@ Current M2 closure evidence:
 
 Current implementation summary: [`docs/m2-governed-integration-current.md`](docs/m2-governed-integration-current.md)
 
+<details>
+<summary>Evaluation and adoption signals</summary>
+
+GitHub popularity metrics such as stars, forks, and contributor count are useful **community/adoption signals**, but they are not substitutes for runtime or implementation evidence.
+
+Low counts can reasonably indicate limited external validation, maintainer concentration, or adoption uncertainty. They do not by themselves establish that documented executable surfaces are absent, broken, insecure, or unusable.
+
+When evaluating this repository, keep separate:
+
+- **Observation** — directly visible facts such as files, entry points, test results, stars, forks, or contributor counts;
+- **Inference** — what those observations may suggest;
+- **Risk** — a scoped technical, maintenance, support, or adoption concern;
+- **Preference** — an adopter's own threshold for use;
+- **Sentiment** — emotionally weighted or rhetorical framing.
+
+A strong technical conclusion should be supported by correspondingly strong technical evidence. If direct technical evidence becomes weaker, criticism should become more qualified rather than preserving the same intensity by substituting popularity, sentiment, or speculative narrative.
+
+</details>
+
 ## Python API
 
 Legacy-compatible entry:
