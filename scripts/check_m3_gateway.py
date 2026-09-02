@@ -33,9 +33,20 @@ def assert_bounded(result: dict) -> None:
     assert result["execution_effect"] == "none", result
     assert result["downstream_executor_required"] is True, result
     assert not (FORBIDDEN_OPERATIONAL_KEYS & set(result)), result
+
+    transition = result["responsibility_transition"]
+    assert transition["authority"] == {
+        "effect": "none",
+        "downstream_authority_required": True,
+    }, transition
+    assert transition["dispatch_effect"] == "none", transition
+    assert transition["residual_owner_role"], transition
+
     route = result.get("route_target")
     if route is not None:
+        assert route["authority_effect"] == "none", route
         assert route["dispatch_effect"] == "none", route
+        assert transition["destination"] == route, transition
 
 
 def main() -> int:
@@ -45,6 +56,11 @@ def main() -> int:
     allowed = evaluate_transition(allowed_evaluation)
     assert allowed["control_action"] == "allow", allowed
     assert allowed["route_target"] is None, allowed
+    assert allowed["responsibility_transition"]["evidence"] == {
+        "available": ["approval-record"],
+        "missing": [],
+    }, allowed
+    assert allowed["responsibility_transition"]["residual_owner_role"] == "downstream_execution_owner", allowed
     assert_bounded(allowed)
 
     routed = evaluate_transition(
@@ -57,6 +73,7 @@ def main() -> int:
     )
     assert routed["control_action"] == "route", routed
     assert routed["route_target"]["kind"] == "verifier", routed
+    assert routed["responsibility_transition"]["purpose"] == "second_check", routed
     assert_bounded(routed)
 
     missing_evidence_input = copy.deepcopy(base)
@@ -69,21 +86,26 @@ def main() -> int:
     need_evidence = evaluate_transition(missing_evaluation)
     assert need_evidence["control_action"] == "require_evidence", need_evidence
     assert need_evidence["unmet_conditions"] == ["approval-record"], need_evidence
+    assert need_evidence["responsibility_transition"]["evidence"]["missing"] == ["approval-record"], need_evidence
     assert_bounded(need_evidence)
 
     human_gate_without_missing = {
+        "request_id": "review-request",
         "decision": "human_gate",
         "reason_codes": ["RPE-M3-DEMO-HUMAN-REVIEW"],
         "human_return": {"role": "review_owner"},
         "responsibility_handoff": {
             "evaluation_evidence_scope": {"available": [], "missing": []},
             "human_return": {"role": "review_owner"},
+            "downstream_obligations": {"residual_owner_role": "review_owner"},
         },
     }
     handoff = evaluate_transition(human_gate_without_missing)
     assert handoff["control_action"] == "handoff", handoff
     assert handoff["route_target"]["kind"] == "human", handoff
     assert handoff["route_target"]["target_id"] == "review_owner", handoff
+    assert handoff["responsibility_transition"]["source"]["request_id"] == "review-request", handoff
+    assert handoff["responsibility_transition"]["residual_owner_role"] == "review_owner", handoff
     assert_bounded(handoff)
 
     denied = evaluate_transition({"decision": "deny", "reason_codes": ["RPE-M3-DEMO-DENY"]})
@@ -108,6 +130,7 @@ def main() -> int:
         allowed_evaluation,
         constraints=["max_targets=1", "no_delegation"],
     )
+    assert constrained["control_action"] == "allow_with_constraints", constrained
     assert constrained["constraints"] == ["max_targets=1", "no_delegation"], constrained
     assert_bounded(constrained)
 
