@@ -9,6 +9,7 @@ on:
       - "rpe_kernel/gateway.py"
       - "rpe_kernel/guarded_gateway.py"
       - "rpe_kernel/guarded_adapter.py"
+      - "rpe_kernel/cumulative_exposure.py"
       - "rpe_kernel/risk_conditions.py"
       - "rpe_kernel/integrity.py"
       - "rpe_kernel/human_return.py"
@@ -23,6 +24,7 @@ on:
       - "scripts/check_m3_contract_schemas.py"
       - "scripts/check_m3_guarded_adapter.py"
       - "scripts/check_m3_guarded_adapters.py"
+      - "scripts/check_m3_cumulative_exposure.py"
       - "scripts/check_m3_openapi_runtime_schema.py"
       - "scripts/check_m3_integrity.py"
       - "scripts/check_m3_human_return.py"
@@ -42,6 +44,7 @@ on:
       - "rpe_kernel/gateway.py"
       - "rpe_kernel/guarded_gateway.py"
       - "rpe_kernel/guarded_adapter.py"
+      - "rpe_kernel/cumulative_exposure.py"
       - "rpe_kernel/risk_conditions.py"
       - "rpe_kernel/integrity.py"
       - "rpe_kernel/human_return.py"
@@ -56,6 +59,7 @@ on:
       - "scripts/check_m3_contract_schemas.py"
       - "scripts/check_m3_guarded_adapter.py"
       - "scripts/check_m3_guarded_adapters.py"
+      - "scripts/check_m3_cumulative_exposure.py"
       - "scripts/check_m3_openapi_runtime_schema.py"
       - "scripts/check_m3_integrity.py"
       - "scripts/check_m3_human_return.py"
@@ -91,6 +95,8 @@ jobs:
         run: python scripts/check_m3_guarded_adapter.py
       - name: Check M3 guarded REST and OpenAPI parity
         run: python scripts/check_m3_guarded_adapters.py
+      - name: Check M3 cumulative exposure
+        run: python scripts/check_m3_cumulative_exposure.py
       - name: Check M3 runtime output against OpenAPI
         run: python scripts/check_m3_openapi_runtime_schema.py
       - name: Check M3 configuration and relationship integrity
