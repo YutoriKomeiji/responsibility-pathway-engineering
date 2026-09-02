@@ -284,7 +284,6 @@ def _invalid_gateway_request(reason_code: str) -> dict[str, Any]:
     return {
         "contract_version": M3_GATEWAY_CONTRACT_VERSION,
         "evaluation_result": None,
-        "integrity_results": [],
         "risk_condition_result": None,
         "transition_result": transition,
         "authority_effect": "none",
@@ -310,8 +309,7 @@ def _evaluate_integrity_checks(value: Any) -> tuple[list[dict[str, Any]], list[d
         if not isinstance(item, Mapping) or set(item) - {"check", "required_controls"}:
             return [], [], "RPE-M3-INTEGRITY-CHECK-ENTRY-INVALID"
         check = item.get("check")
-        controls_raw = item.get("required_controls")
-        controls = sorted(set(_normalized_strings(controls_raw)))
+        controls = sorted(set(_normalized_strings(item.get("required_controls"))))
         if not isinstance(check, Mapping):
             return [], [], "RPE-M3-INTEGRITY-CHECK-ENTRY-INVALID"
         if not controls:
@@ -359,10 +357,8 @@ def evaluate_gateway_request(
 ) -> dict[str, Any]:
     """Evaluate one experimental M3 gateway request through the M2 governed path.
 
-    This is the thin-adoption entry point. A caller supplies one governed M2
-    evaluation envelope plus optional risk graph, integrity comparisons,
-    requested route, and bounded constraints. RPE returns evaluation and
-    transition metadata only.
+    This is the adapter-facing Thin entry point. Its request/response shape is
+    kept synchronized with the branch OpenAPI contract.
     """
     if not isinstance(payload, Mapping):
         return _invalid_gateway_request("RPE-M3-GATEWAY-REQUEST-INVALID")
@@ -371,7 +367,6 @@ def evaluate_gateway_request(
         "contract_version",
         "governed_evaluation",
         "risk_graph",
-        "integrity_checks",
         "requested_route",
         "constraints",
     }
@@ -384,9 +379,58 @@ def evaluate_gateway_request(
     if not isinstance(governed_evaluation, Mapping):
         return _invalid_gateway_request("RPE-M3-GATEWAY-REQUEST-MISSING-EVALUATION")
 
-    integrity_results, integrity_conditions, integrity_error = _evaluate_integrity_checks(
-        payload.get("integrity_checks")
+    risk_graph = payload.get("risk_graph")
+    risk_result = evaluate_risk_conditions(risk_graph) if risk_graph is not None else None
+    evaluation_result = evaluate_governed_action(dict(governed_evaluation), today=today)
+    transition_result = evaluate_transition(
+        evaluation_result,
+        requested_route=payload.get("requested_route") if isinstance(payload.get("requested_route"), Mapping) else payload.get("requested_route"),
+        constraints=payload.get("constraints") if isinstance(payload.get("constraints"), Sequence) else None,
+        risk_result=risk_result,
     )
+
+    return {
+        "contract_version": M3_GATEWAY_CONTRACT_VERSION,
+        "evaluation_result": evaluation_result,
+        "risk_condition_result": risk_result,
+        "transition_result": transition_result,
+        "authority_effect": "none",
+        "execution_effect": "none",
+    }
+
+
+def evaluate_integrity_guarded_gateway_request(
+    payload: Mapping[str, Any],
+    *,
+    integrity_checks: Sequence[Mapping[str, Any]],
+    today: date | None = None,
+) -> dict[str, Any]:
+    """Python-only additive composition of integrity comparison and M3 gateway.
+
+    The adapter-facing gateway contract remains unchanged until REST/MCP/OpenAPI
+    schemas are intentionally revised together. Integrity checks are translated
+    into ordinary risk-condition nodes using caller/policy-supplied controls.
+    The returned shape is the same GatewayEvaluateResponse used by the ordinary
+    gateway and therefore creates no execution or authority effect.
+    """
+    if not isinstance(payload, Mapping):
+        return _invalid_gateway_request("RPE-M3-GATEWAY-REQUEST-INVALID")
+    if set(payload) - {
+        "contract_version",
+        "governed_evaluation",
+        "risk_graph",
+        "requested_route",
+        "constraints",
+    }:
+        return _invalid_gateway_request("RPE-M3-GATEWAY-REQUEST-UNKNOWN-FIELD")
+    if payload.get("contract_version") != M3_GATEWAY_CONTRACT_VERSION:
+        return _invalid_gateway_request("RPE-M3-GATEWAY-REQUEST-INCOMPATIBLE-VERSION")
+
+    governed_evaluation = payload.get("governed_evaluation")
+    if not isinstance(governed_evaluation, Mapping):
+        return _invalid_gateway_request("RPE-M3-GATEWAY-REQUEST-MISSING-EVALUATION")
+
+    _integrity_results, integrity_conditions, integrity_error = _evaluate_integrity_checks(integrity_checks)
     if integrity_error is not None:
         return _invalid_gateway_request(integrity_error)
 
@@ -402,7 +446,6 @@ def evaluate_gateway_request(
     return {
         "contract_version": M3_GATEWAY_CONTRACT_VERSION,
         "evaluation_result": evaluation_result,
-        "integrity_results": integrity_results,
         "risk_condition_result": risk_result,
         "transition_result": transition_result,
         "authority_effect": "none",
