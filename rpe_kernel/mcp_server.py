@@ -34,7 +34,7 @@ TRANSITION_TOOL: JsonObject = {
 }
 GUARDED_TRANSITION_TOOL: JsonObject = {
     "name": GUARDED_TRANSITION_TOOL_NAME,
-    "description": "Evaluate the experimental 0.2 guarded responsibility transition with caller-observed integrity and Human Return readiness evidence. It does not authenticate identities, certify humans, create authority, or execute actions.",
+    "description": "Evaluate the experimental 0.2 guarded responsibility transition with caller-observed integrity, Human Return readiness, and cumulative exposure evidence. It does not persist trajectory history, authenticate identities, certify humans, create authority, or execute actions.",
     "inputSchema": {
         "type": "object",
         "required": ["contract_version", "governed_evaluation"],
@@ -44,6 +44,7 @@ GUARDED_TRANSITION_TOOL: JsonObject = {
             "risk_graph": {"type": ["object", "null"]},
             "integrity_checks": {"type": "array", "items": {"type": "object"}},
             "human_return_checks": {"type": "array", "items": {"type": "object"}},
+            "cumulative_exposure_checks": {"type": "array", "items": {"type": "object"}},
             "requested_route": {"type": ["object", "null"]},
             "constraints": {"type": "array", "items": {"type": "string"}},
         },
