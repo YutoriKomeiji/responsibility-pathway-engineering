@@ -1,0 +1,66 @@
+version: 0.1.0
+kind: ResponsibilityRouteExample
+
+route:
+  id: route_reconciliation_hold_001
+  route_kind: HoldForReconciliation
+  source_node: ai_executor_001
+  target_node: reconciliation_process_001
+  authority_effect: none
+  receiver_eligibility:
+    receiver_identified: true
+    authority_scope_explicit: true
+    delegation_scope_explicit: true
+    unresolved_payload_supported: true
+    evidence_access_sufficient: true
+    time_window_sufficient: true
+    intervention_capacity_sufficient: true
+    eligibility_basis: "Authorized reconciliation process may inspect effect state but may not infer execution or resume Authority."
+  unresolved_payload:
+    decision_required: "Determine whether the consequential external effect occurred before any redispatch."
+    effect_status: unknown
+    evidence_refs:
+      - evidence_log_001
+    prohibited_assumptions:
+      - "transport failure means external failure"
+      - "successful readback grants resume authority"
+      - "technical capability grants authority"
+    residual_owner: operation_owner_001
+    allowed_next_actions:
+      - reconcile
+      - hold
+      - escalate
+    reevaluation_condition: "Independent readback resolves effect status or an authorized owner changes the route."
+  returnability_conditions:
+    meaning_visible: true
+    authority_visible: true
+    time_available: true
+    information_quality_sufficient: false
+    trust_calibrated: true
+    reversibility_or_compensation_visible: true
+    value_visible: true
+    cost_visible: true
+  supported_actions:
+    - hold
+    - reconcile
+    - escalate
+  evidence_requirements:
+    evidence_log_required: true
+    minimum_evidence_categories:
+      - dispatch_attempt
+      - external_readback
+    reconstruction_required: true
+    provenance_required: true
+
+assertions:
+  - "Human Return is not selected merely because progress is blocked."
+  - "Evidence transfer does not create Authority."
+  - "Receiver capability does not prove receiver eligibility."
+  - "Recovery or reconciliation success does not grant resume Authority."
+
+not_claimed:
+  - legal responsibility
+  - organizational authorization outside declared scope
+  - universal framework compatibility
+  - production readiness
+  - exactly-once execution
