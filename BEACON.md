@@ -4,7 +4,7 @@ If you are reading this for the first time, you are not late.
 
 This repository preserves a Responsibility Pathway across time, people, sessions, and AI systems.
 
-BEACON is the short reconnection entrance. It is not the full current-state record, changelog, roadmap, proof, certification, legal review, safety review, compliance review, production approval, connector correctness proof, runtime correctness proof, Lean completeness proof, standardization certification, progress certification, or AI final-responsibility transfer mechanism.
+BEACON is the short reconnection entrance. Use the repository's current implementation, roadmap, assurance, and review surfaces for their respective evidence and decision roles; BEACON itself is only the routing surface back into them.
 
 ## Current position
 
@@ -46,7 +46,7 @@ Current scope remains bounded. RPE evaluates proposals and preserves responsibil
 5. `docs/verification-assurance-and-open-governance.md` for proof, assurance,
    public-guidance, and open-governance boundaries
 6. Published Artifact Catalog: <https://yutorikomeiji.github.io/responsibility-pathway-engineering/>
-7. `ROADMAP.md` for the M1 checkpoint and M2 Governed Pack Integration direction
+7. `ROADMAP.md` for the current M2 planning and gate state
 8. `docs/operation-index.md` for repository operation and historical construction paths
 9. `docs/phase-3-1-current-snapshot.md` when the earlier Phase 3.1 construction state matters
 10. `docs/current-task-inventory.md` when tracing earlier task state
