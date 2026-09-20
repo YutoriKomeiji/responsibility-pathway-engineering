@@ -1,8 +1,8 @@
 # RPE M2 Governed Integration — Current Status
 
-Status: **implementation in progress; governed-integration and responsibility-handoff baselines reached**.
+Status: **bounded M2 governed-integration closure complete at repository level**.
 
-This document records the current public implementation boundary after the R3 governed-integration sequence and the R4 responsibility-handoff work. It supersedes the implementation-status assumptions in the older M2 entry plan. It does not declare M2 fully closed, production-ready, compliant, certified, or authorized for consequential execution.
+This document records the current public implementation boundary after the governed-integration, responsibility-handoff, value-validation, and adversarial-closure work. The bounded M2 closure was read back on merged `main` with exact closure evidence in `docs/m2-r5-adversarial-closure-evidence.md`. Closure does not mean production-ready, compliant, certified, authorized for consequential execution, or complete with respect to post-M2 adaptive-routing/security/trajectory work.
 
 ## What is implemented now
 
@@ -133,7 +133,7 @@ The governed result therefore preserves information needed by downstream runtime
 - resume requires a separate authority-bearing transition in the system that owns execution;
 - Human Return and residual responsibility must remain visible across failures.
 
-These constraints guide the remaining M2 work without turning RPE into an operating system or execution controller.
+These constraints remain permanent architecture boundaries after M2 closure and prevent RPE from turning into an operating system or execution controller.
 
 ## Not implemented / not claimed
 
@@ -151,17 +151,18 @@ The current governed-integration and responsibility-handoff baselines do not pro
 - proof that a schema-valid pack contains a correct interpretation;
 - proof that a Python decision caused or verified a real-world effect.
 
-## Remaining M2 work
+## M2 closure state
 
-The next M2 slice is primarily adversarial closure rather than expansion of RPE execution behavior.
+The declared M2 governed-integration scope is closed at repository level.
 
-Priority areas:
+Closure evidence includes:
 
-1. adversarially test authority confusion and evidence confusion;
-2. test stale-governance, binding, adapter, result-contract, and loader-boundary failures;
-3. verify that malformed or misleading provenance cannot become source trust or effect evidence;
-4. verify that repair/resume obligations cannot become repair/resume authority;
-5. synchronize public claims and close M2 only when the declared engineering evidence is complete.
+1. exact PR-head and merged-main readback;
+2. focused governed-admission, compatibility, loader, handoff, REST, MCP, OpenAPI, value-demo, and adversarial checks;
+3. explicit no-authority / evaluation-only handoff semantics;
+4. selected negative checks for authority/evidence confusion, governance/binding failures, schema/runtime drift, and loader/provenance boundaries.
+
+Post-M2 work is not “remaining M2” by default. Adaptive Responsibility Routing, conditional/trajectory risk, broader security architecture, NFR/adoption redesign, production deployment controls, and generalized runtime concerns require separately scoped owners and evidence.
 
 ## Provenance boundary
 
