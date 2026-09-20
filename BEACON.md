@@ -8,69 +8,34 @@ BEACON is the short reconnection entrance. It is not the full current-state reco
 
 ## Current position
 
-The repository has reached the **M1 Governed Reference Kernel** checkpoint.
+RPE's current public engineering surface is the **M2 governed-integration line**.
 
-The current implementation entrance is the shared Python kernel:
+The strict governed path is exposed through Python, REST, MCP stdio, and OpenAPI and includes:
 
-```text
-Python API / REST / MCP
-          ↓
-rpe_kernel.evaluate_action()
-          ↓
-applicability resolution
-          ↓
-pack evaluation and decision combination
-```
+- governed-envelope admission;
+- contract compatibility;
+- exact Requirement Pack / governance binding;
+- governance eligibility;
+- applicability and requirement evaluation;
+- explicit `allow`, `hold`, `human_gate`, and `deny` outcomes;
+- stable reason codes and Human Return;
+- responsibility-preserving handoff with `authority_effect = none` and `decision_scope = evaluation_only`;
+- bounded caller-content / local-file loading;
+- repository/package/runtime parity checks and adversarial failure checks.
 
-M1 includes deterministic applicability and decision evaluation, Python, local
-REST, OpenAPI 3.1, and MCP stdio reference interfaces, requirement-pack
-governance, contract-version baselines, synthetic fixtures, bounded checkers,
-and CI guards.
+The legacy `evaluate_action()` path remains available for compatibility. The explicit strict path is `evaluate_governed_action()`.
 
-M1 does not include external pack loading, governance enforcement inside
-`evaluate_action()`, production authentication or deployment, automatic source
-interpretation, reviewed real-world guideline mappings, or formal verification
-of the Python runtime.
+For current implementation state, use:
 
-The earlier Phase 3.1 adapter-boundary and runtime-event materials remain useful
-specialized and historical construction records. They are not the current
-top-level maturity label or the shortest implementation entrance.
+- `README.md` — compact public engineering entrance;
+- `READMEforAI.md` — grounded AI/search-reader entrance;
+- `docs/m2-governed-integration-current.md` — current M2 implementation boundary;
+- `docs/m2-r5-adversarial-closure-evidence.md` — bounded closure evidence;
+- `ROADMAP.md` — current planning/gate state.
 
-The current stable construction path includes:
+Do not use the earlier M1 or Phase 3.1 construction records as the current maturity label. They remain historical or specialized evidence.
 
-- a specification-first core
-- source-aligned Action Class Matrix examples
-- bounded structural example checks
-- bounded review-result checks
-- Lean formalization with assumption-scoped invariants
-- enterprise and record-review guidance
-- repair model and recovery-pathway reading notes
-- reference implementation boundaries
-- adapter-boundary and runtime-event bridge notes
-- a minimal synthetic runtime fixture for reading and review only
-- a bounded runtime-event checker for selected synthetic JSON fixtures
-- observed minimal runtime-event workflow successes
-- runtime-event schema/fixture alignment documentation
-- event-to-pathway relation checker planning before any relation-checker implementation
-- support-call and missed-support concept notes
-- a boundary-only missed-support example
-- explicit repository operation documents
-- AI Judgment Node task-control boundary documentation
-- a grounded standardization strategy for future open-specification review
-- a progress map for rough planning estimates and gate tracking
-- public-entry synchronization for external readers and review navigation
-- English and Japanese README entry alignment
-- API future-shape documentation as design preview only
-- external product connection-surface survey notes for future connector planning
-- connector target matrix planning for future synthetic-first connector categories
-- Zenn Level 2 repository walkthrough readiness planning before public-facing article expansion
-- published GitHub Pages reader paths for catalog, Japanese catalog, reader path maps, boundary glossary pages, and reviewer checklist pages
-
-Recent synchronization restored and recorded the reader path after a README mobile-rendering issue. The root `README.md` was shortened and strengthened, the Japanese `README.ja.md` was aligned to the short public-entry shape, and the previous expanded README content was preserved at `docs/readme-expanded.md`.
-
-The GitHub Pages reader path starts at <https://yutorikomeiji.github.io/responsibility-pathway-engineering/> and also includes the Japanese catalog, reader path maps, boundary glossary pages, and reviewer checklist pages. These are browsing and inspection aids only; they are not certification, validation, legal review, safety review, compliance review, fairness review, production approval, or AI final-responsibility transfer.
-
-The support-call / missed-support path is currently concept-level and boundary-example-level only. It does not yet unlock schema fields, semantic checking, runtime-event support-call fields, Lean expansion, service-specific connectors, production conversion code, production runtime integration, or Class E positive examples.
+Current scope remains bounded. RPE evaluates proposals and preserves responsibility handoff; it does not become the downstream execution authority, external-effect verifier, production deployment, legal/compliance determination, or universal safety proof.
 
 ## Read first
 
