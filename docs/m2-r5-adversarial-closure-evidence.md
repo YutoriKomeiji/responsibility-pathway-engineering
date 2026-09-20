@@ -71,7 +71,7 @@ No real external action is executed and no real-world risk reduction is claimed.
 
 ## Claim boundary at closure
 
-If the closure checker and existing focused checks pass at the exact PR head and merge/main readback, the supported M2 claim is bounded to the implemented repository surface:
+The closure checker and focused checks passed at the validated PR head and again on merged `main`. The supported M2 claim is bounded to the implemented repository surface:
 
 > RPE provides a strict governed evaluation path with bounded admission, compatibility, pack/governance binding, governance eligibility, applicability resolution, requirement evaluation, responsibility-preserving handoff, bounded local/caller-content loading, and reference Python/REST/MCP/OpenAPI surfaces, with deterministic negative checks for selected failure and drift classes.
 
@@ -88,11 +88,14 @@ The following remain outside that closure claim:
 - generalized adaptive responsibility routing planned for later work;
 - implementation-wide formal verification.
 
-## Closure procedure
+## Closure record
 
-1. run the new adversarial closure workflow at exact PR head;
-2. require existing relevant CI to remain green;
-3. inspect any failure with verifier/environment alternatives before classifying it as a code defect;
-4. merge only after closure evidence is coherent;
-5. read back exact merge commit, main CI, and public documentation;
-6. return exact RPE M2 closure evidence to RPM v0.8 without inflating the claim class.
+The closure procedure was completed with:
+
+- validated PR head: `ae2581ef3c68643687775e111fa8561b974fb2b8`;
+- merged-main anchor: `6edf1a0b501b7b25663ddc7fb942aa087c0db0f2`;
+- focused closure checks observed passing on the PR head and merged main;
+- merged-main readback of this closure evidence and the adversarial checker;
+- the bounded M2 claim returned to the RPM publication path without promoting production/legal/compliance/external-effect claims.
+
+Future changes to the closed M2 surface should preserve or deliberately revise the relevant closure checks and public claim boundary.
