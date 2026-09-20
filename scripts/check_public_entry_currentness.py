@@ -19,6 +19,7 @@ def main() -> int:
     readme = read("README.md")
     ai = read("READMEforAI.md")
     current = read("docs/m2-governed-integration-current.md")
+    roadmap = read("ROADMAP.md")
 
     required = {
         "BEACON.md": (
@@ -41,6 +42,11 @@ def main() -> int:
             "bounded M2 governed-integration closure complete",
             "evaluate_governed_action()",
         ),
+        "ROADMAP.md": (
+            "bounded M2 governed-integration closure",
+            "Closed within the declared bounded repository scope",
+            "DAN-65 / post-M2 architecture work",
+        ),
     }
 
     texts = {
@@ -48,6 +54,7 @@ def main() -> int:
         "README.md": readme,
         "READMEforAI.md": ai,
         "docs/m2-governed-integration-current.md": current,
+        "ROADMAP.md": roadmap,
     }
 
     failures: list[str] = []
@@ -84,9 +91,10 @@ def main() -> int:
         "Full M2 closure not yet claimed",
         "The next M2 slice is primarily adversarial closure",
     )
-    for marker in stale_current_markers:
-        if marker in beacon:
-            failures.append(f"BEACON.md retains stale current-position marker: {marker}")
+    for path in ("BEACON.md", "ROADMAP.md", "docs/m2-governed-integration-current.md"):
+        for marker in stale_current_markers:
+            if marker in texts[path]:
+                failures.append(f"{path} retains stale current-position marker: {marker}")
 
     if failures:
         for failure in failures:
