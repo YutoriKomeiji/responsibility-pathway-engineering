@@ -1,6 +1,6 @@
 # M2 R5 Adversarial Closure Evidence
 
-Status: Draft closure evidence for DAN-60. This document does not claim production, legal, compliance, deployment-security, external-effect, exactly-once, or implementation-wide formal guarantees.
+Status: Bounded M2 closure evidence, validated at exact PR head and read back on merged main for DAN-60. This document does not claim production, legal, compliance, deployment-security, external-effect, exactly-once, or implementation-wide formal guarantees.
 
 ## Purpose
 
