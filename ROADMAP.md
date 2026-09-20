@@ -6,7 +6,7 @@ It is a planning aid only. It is not certification, conformance evidence, legal 
 
 ## Current position
 
-RPE is in **M2 implementation**. The governed-integration baseline has been reached, but M2 is not yet declared closed.
+RPE has completed the **bounded M2 governed-integration closure**. The closed M2 scope is the strict governed-evaluation and responsibility-preserving handoff surface described below; broader adaptive routing, security, trajectory, adoption, and production concerns remain post-M2 work rather than unfinished M2 implementation.
 
 Public current-status detail: [`docs/m2-governed-integration-current.md`](docs/m2-governed-integration-current.md).
 
@@ -61,18 +61,21 @@ M1 established the shared deterministic kernel, bounded reference interfaces, pa
 
 ### M2 — Governed Pack Integration
 
-**In progress. Governed-integration baseline reached. Full M2 closure not yet claimed.**
+**Closed within the declared bounded repository scope.**
 
-The R3A–R3D sequence has added:
+M2 closure includes:
 
 1. strict governed contracts and version coherence;
 2. explicit governed admission, compatibility, binding, and normalized governance checks;
 3. REST/MCP/OpenAPI governed adapter parity;
-4. bounded caller-content/local-file loading with no network trust expansion.
+4. bounded caller-content/local-file loading with no network trust expansion;
+5. responsibility-preserving handoff semantics;
+6. adversarial checks for selected authority/evidence/governance/adapter/loader drift classes;
+7. a bounded public value demonstration and exact closure evidence.
 
-Remaining M2 work focuses on uncertainty/effect/evidence handoff semantics, repair/resume responsibility boundaries, adversarial validation, claim-boundary review, and closure evidence.
+Closure evidence: [`docs/m2-r5-adversarial-closure-evidence.md`](docs/m2-r5-adversarial-closure-evidence.md).
 
-Importantly, RPE does not absorb the full post-execution state machine. Evaluation evidence is not effect evidence; repair readiness is not repair authority; resume authority belongs to the runtime/institution that owns execution.
+This bounded closure does not absorb the post-execution state machine. Evaluation evidence is not effect evidence; repair readiness is not repair authority; resume authority belongs to the runtime/institution that owns execution. Broader adaptive routing and architecture reform are post-M2 concerns.
 
 ## Active gates
 
@@ -123,15 +126,15 @@ File existence is transport evidence only. It does not establish source authorit
 
 ### Gate 6: preserve evaluation/execution separation
 
-Active and central to remaining M2 work.
+Active as a permanent post-M2 architecture boundary.
 
 RPE may state requirements for downstream effect evidence, repair, resume, and Human Return, but must not silently become the authority owner for dispatch, effect verification, retry/reconciliation, repair execution, or resume authorization.
 
-### Gate 7: adversarially validate M2 before closure
+### Gate 7: preserve M2 closure evidence
 
-Next.
+Completed for bounded M2 closure.
 
-Test authority confusion, evidence confusion, stale/binding/governance failures, adapter drift, loader boundary violations, and failure-path Human Return/residual-owner continuity.
+The closure matrix covers selected authority/evidence confusion, stale/binding/governance failures, adapter drift, loader boundary violations, runtime/schema alignment, and Human Return/residual-owner continuity. Future changes touching the closed surface must preserve or deliberately revise those checks.
 
 ### Gate 8: research production boundaries before production claims
 
@@ -141,14 +144,11 @@ Production adoption requires separate design and review for authentication, auth
 
 ## Recommended next sequence
 
-1. Merge/read back the M2 documentation synchronization slice.
-2. Specify uncertainty/effect/evidence handoff semantics without importing execution authority.
-3. Specify repair/resume requirement semantics and residual-owner continuity.
-4. Add adversarial tests for authority, evidence, governance, adapter, and loader failure classes.
-5. Review public claim boundaries against the resulting evidence.
-6. Declare M2 closed only if the declared engineering closure criteria are satisfied.
-7. Add reviewed real-world mappings only with named human interpretation and maintenance ownership.
-8. Scope production work separately, if ever authorized.
+1. Preserve the bounded M2 closure and its public/currentness checks.
+2. Use DAN-65 / post-M2 architecture work for adaptive Responsibility Routing, conditional/trajectory risk, security, NFR, and adoption-profile redesign.
+3. Keep production deployment concerns separately scoped and evidence-gated.
+4. Feed material post-M2 findings upstream to RPD/RPM only through their own review/claim boundaries.
+5. Add reviewed real-world mappings only with named human interpretation and maintenance ownership.
 
 ## Deferred work
 
