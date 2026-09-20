@@ -5,8 +5,8 @@ The comparison is intentionally small: a naive agent-style workflow treats a
 model-produced proposal as ready to continue, while the same proposal is passed
 through RPE's strict governed evaluation path before continuation.
 
-This demo measures repository-observable behavior only. It does not prove real-
-world safety, compliance, effect prevention, or production risk reduction.
+This demo measures repository-observable behavior only. Real-world risk
+reduction, deployment safety, and domain compliance require separate evidence.
 """
 
 from __future__ import annotations
@@ -111,7 +111,7 @@ def main() -> int:
     print("  3. The authorized return/residual-owner role remains explicit.")
     print("  4. RPE still grants no execution authority; it only evaluates the proposal.")
     print()
-    print("Boundary: this is a synthetic repository-level comparison, not proof of real-world risk reduction.")
+    print("Scope: this synthetic comparison shows repository-level behavior; real-world risk reduction requires separate evidence.")
     return 0
 
 
