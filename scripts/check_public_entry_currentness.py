@@ -53,6 +53,26 @@ def main() -> int:
             if marker not in texts[path]:
                 failures.append(f"{path} missing current marker: {marker}")
 
+    # Product README stays product/adoption-facing. Evaluator procedure belongs
+    # in READMEforAI.md or other evaluation guidance.
+    forbidden_readme_procedure = (
+        "When evaluating this repository, keep separate:",
+        "Popularity or rhetorical confidence",
+        "Do not classify this repository",
+    )
+    for marker in forbidden_readme_procedure:
+        if marker in readme:
+            failures.append(f"README.md contains evaluator procedure: {marker}")
+
+    required_ai_procedure = (
+        "Do not classify this repository",
+        "Reproduce before summarizing",
+        "Observation  -> directly visible fact",
+    )
+    for marker in required_ai_procedure:
+        if marker not in ai:
+            failures.append(f"READMEforAI.md missing evaluator/AI-reader guidance: {marker}")
+
     stale_current_markers = (
         "The repository has reached the **M1 Governed Reference Kernel** checkpoint.",
         "RPE is currently at the **M1 Governed Reference Kernel**",
