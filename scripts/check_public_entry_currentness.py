@@ -29,13 +29,16 @@ def main() -> int:
         "README.md": (
             "evaluate_governed_action()",
             "docs/m2-governed-integration-current.md",
+            "closed M2 governed-integration baseline",
         ),
         "READMEforAI.md": (
             "M2 governed-integration",
+            "baseline is closed at repository level",
             "docs/m2-governed-integration-current.md",
         ),
         "docs/m2-governed-integration-current.md": (
             "RPE M2 Governed Integration",
+            "bounded M2 governed-integration closure complete",
             "evaluate_governed_action()",
         ),
     }
@@ -76,6 +79,10 @@ def main() -> int:
     stale_current_markers = (
         "The repository has reached the **M1 Governed Reference Kernel** checkpoint.",
         "RPE is currently at the **M1 Governed Reference Kernel**",
+        "RPE is in **M2 implementation**",
+        "M2 is not yet declared closed",
+        "Full M2 closure not yet claimed",
+        "The next M2 slice is primarily adversarial closure",
     )
     for marker in stale_current_markers:
         if marker in beacon:
