@@ -71,6 +71,8 @@ Assured is **not yet a completed M3 implementation profile**. It is the target p
 Candidate additional obligations include:
 
 - independently reviewable provenance and evidence bindings;
+- an explicit pre-action evidence fragment that downstream runtime layers can bind into a broader Responsibility Pathway Evidence Package;
+- Security Context inputs with clear evidence ownership and no implicit authentication/Authority claim;
 - contract/schema readback across every exposed adapter;
 - deterministic negative/adversarial fixtures;
 - stronger configuration identity and change detection;
@@ -78,7 +80,7 @@ Candidate additional obligations include:
 - environment-specific performance/reliability evidence;
 - explicit reopening conditions when evidence, configuration, authority, or dependencies change.
 
-Assured must not be interpreted as certification, production authorization, legal compliance, or proof of arbitrary external effects.
+Assured must not be interpreted as certification, production authorization, legal compliance, or proof of arbitrary external effects. RPE's Assured profile remains pre-action/evaluation scoped: downstream dispatch, effect verification, reconciliation, repair, resume, durable trajectory state, and final assurance-artifact assembly remain outside this layer.
 
 ## Profile promotion rule
 
