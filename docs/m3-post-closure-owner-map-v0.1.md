@@ -62,6 +62,35 @@ Owner: DAN-21 and the external-mechanism assimilation queue where applicable.
 
 Provenance, memory verification, and lifecycle findings may feed future RPE requirements, but provenance must not be collapsed into truth, Evidence Sufficiency, or Authority.
 
+## 2026-09-24 assurance-direction handoff
+
+The cross-stack program direction now treats RPE as the **pre-action evaluation / route-eligibility contributor** to a wider responsibility-preserving runtime and assurance chain.
+
+The bounded M3 slice is **not reopened** by this direction.
+
+RPE may contribute a pre-action fragment containing:
+
+- evaluation decision and reason codes;
+- requested/selected bounded route metadata;
+- unmet evidence / authority conditions;
+- source/pack/configuration identity available to the gateway;
+- declared constraints;
+- explicit `authority_effect = none` and `execution_effect = none`.
+
+RPE does **not** own the full Responsibility Pathway Evidence Package because that package must also cover dispatch, external-effect state, verification/readback, reconciliation, repair, resume/reauthorization, unresolved residue, and final/next ownership.
+
+Those post-dispatch fields remain downstream runtime/operating-layer responsibilities.
+
+Security context is likewise split by evidence ownership:
+
+- RPE may evaluate supplied integrity/security observations and derive bounded controls;
+- identity authentication, credential truth, durable security state, memory/provenance lifecycle, tool/dependency integrity, and post-dispatch security observations require their named owners;
+- a security observation or successful integrity check must not create Authority.
+
+Trajectory aggregation remains DAN-28 / downstream state ownership. Per-action or caller-supplied cumulative data in RPE must not be promoted into a claim that RPE owns durable trajectory assurance.
+
+Future external requirements mapping (for example Japan-first or international governance/assurance matrices) should consume typed evidence only after its semantics and provenance are defined. Requirement mapping does not establish compliance or certification.
+
 ## Reopen rule
 
 The bounded M3 slice should reopen only when at least one of the following is true:
