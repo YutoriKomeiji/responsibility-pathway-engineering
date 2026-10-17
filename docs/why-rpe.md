@@ -44,7 +44,7 @@ python scripts/value_demo.py
 python scripts/value_demo.py --json
 ```
 
-The JSON form reuses the exact same asserted synthetic evaluation as the text demo. It emits `without_rpe`, `with_rpe`, `external_action_executed: false`, and `evidence_scope`; it does not contact any external system. It can support automated comparison without claiming measured deployment benefits.
+The JSON form reuses the same asserted synthetic evaluation as the text demo. It emits `without_rpe`, `with_rpe` (missing approval), `approved_with_rpe` (approval evidence present), `external_action_executed: false`, and `evidence_scope`; it does not contact any external system. This demonstrates both a missing-approval hold and a legitimate approved continuation, while neither result dispatches an action. It can support automated comparison without claiming measured deployment benefits.
 
 The demo uses a synthetic external-send proposal with missing human approval. It does not send anything.
 
@@ -106,7 +106,8 @@ The current value demo proves only repository-observable behavior for one synthe
 1. the naive comparison path would continue when a proposal exists;
 2. the governed RPE path returns `human_gate` when required approval is missing;
 3. the stop contains a stable reason and explicit return owner;
-4. RPE grants no execution authority.
+4. the same governed evaluator returns `allow` for a synthetic request with approval evidence present;
+5. RPE grants no execution authority.
 
 It does **not** prove production safety, legal compliance, general risk reduction, correct domain interpretation, successful action prevention in an external system, or economic ROI.
 
