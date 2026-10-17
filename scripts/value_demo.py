@@ -11,6 +11,7 @@ reduction, deployment safety, and domain compliance require separate evidence.
 
 from __future__ import annotations
 
+import argparse
 import copy
 import json
 import sys
@@ -60,6 +61,9 @@ def _guarded_agent(envelope: dict[str, Any]) -> dict[str, Any]:
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--json", action="store_true", help="emit a single machine-readable, inert comparison")
+    args = parser.parse_args()
     envelope = _load_fixture()
     envelope = copy.deepcopy(envelope)
     envelope["request"]["request_id"] = "value-demo-missing-approval"
@@ -86,6 +90,16 @@ def main() -> int:
     assert guarded["authority_effect"] == "none", guarded
     assert guarded["decision_scope"] == "evaluation_only", guarded
     assert naive["executed"] is False and guarded["executed"] is False
+
+    if args.json:
+        print(json.dumps({
+            "scenario": "synthetic_missing_approval",
+            "without_rpe": naive,
+            "with_rpe": guarded,
+            "external_action_executed": False,
+            "evidence_scope": "repository_synthetic_demo",
+        }, sort_keys=True))
+        return 0
 
     print("RPE VALUE DEMO — SAME PROPOSAL, DIFFERENT CONTINUATION")
     print("Synthetic scenario: an AI agent proposes an external send, but required human approval is missing.")
