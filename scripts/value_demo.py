@@ -73,6 +73,10 @@ def main() -> int:
         "missing": ["approval-record"],
     }
 
+    approved_envelope = _load_fixture()
+    approved_envelope["request"]["request_id"] = "value-demo-approved"
+    approved = _guarded_agent(approved_envelope)
+
     proposal = {
         "action": envelope["request"]["action"],
         "target": envelope["request"]["target"],
@@ -90,12 +94,18 @@ def main() -> int:
     assert guarded["authority_effect"] == "none", guarded
     assert guarded["decision_scope"] == "evaluation_only", guarded
     assert naive["executed"] is False and guarded["executed"] is False
+    assert approved["decision"] == "allow", approved
+    assert approved["stage"] == "evaluation", approved
+    assert approved["authority_effect"] == "none", approved
+    assert approved["decision_scope"] == "evaluation_only", approved
+    assert approved["executed"] is False, approved
 
     if args.json:
         print(json.dumps({
             "scenario": "synthetic_missing_approval",
             "without_rpe": naive,
             "with_rpe": guarded,
+            "approved_with_rpe": approved,
             "external_action_executed": False,
             "evidence_scope": "repository_synthetic_demo",
         }, sort_keys=True))
@@ -119,11 +129,17 @@ def main() -> int:
     print(f"  authority    : {guarded['authority_effect']} ({guarded['decision_scope']})")
     print()
 
+    print("WITH RPE WHEN APPROVAL EVIDENCE IS PRESENT")
+    print(f"  decision     : {approved['decision'].upper()}")
+    print(f"  authority    : {approved['authority_effect']} ({approved['decision_scope']})")
+    print()
+
     print("OBSERVED VALUE IN THIS TEST")
     print("  1. A missing approval changes continuation from implicit CONTINUE to HUMAN_GATE.")
     print("  2. The stop has a stable machine-readable reason code.")
     print("  3. The authorized return/residual-owner role remains explicit.")
-    print("  4. RPE still grants no execution authority; it only evaluates the proposal.")
+    print("  4. With approval evidence, the same bounded check returns ALLOW (not automatic execution).")
+    print("  5. RPE still grants no execution authority; it only evaluates the proposal.")
     print()
     print("Scope: this synthetic comparison shows repository-level behavior; real-world risk reduction requires separate evidence.")
     return 0
