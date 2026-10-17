@@ -30,3 +30,7 @@ jobs:
           python-version: "3.12"
       - run: python -m pip install .
       - run: python scripts/value_demo.py
+      - name: Check machine-readable value demo
+        run: |
+          python scripts/value_demo.py --json > /tmp/rpe-value-demo.json
+          python -c 'import json; r=json.load(open("/tmp/rpe-value-demo.json")); assert r["with_rpe"]["decision"] == "human_gate"; assert r["with_rpe"]["authority_effect"] == "none"; assert r["external_action_executed"] is False; assert r["without_rpe"]["decision"] == "continue"'
