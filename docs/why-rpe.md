@@ -40,7 +40,11 @@ The repository demonstrates this with:
 
 ```bash
 python scripts/value_demo.py
+# Machine-readable output for evaluation scripts and CI:
+python scripts/value_demo.py --json
 ```
+
+The JSON form reuses the exact same asserted synthetic evaluation as the text demo. It emits `without_rpe`, `with_rpe`, `external_action_executed: false`, and `evidence_scope`; it does not contact any external system. It can support automated comparison without claiming measured deployment benefits.
 
 The demo uses a synthetic external-send proposal with missing human approval. It does not send anything.
 
