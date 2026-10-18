@@ -322,6 +322,22 @@ def main() -> int:
     assert denied["route_target"] is None, denied
     assert_bounded(denied)
 
+    # Upstream M2 deny stays deny even when a later caller supplies malformed
+    # M3 route/constraint data. Retain diagnostic codes without downgrading.
+    for options, expected_reason in (
+        ({"requested_route": {"kind": ["agent"]}}, "RPE-M3-ROUTE-UNSUPPORTED-KIND"),
+        ({"requested_route": {"kind": "agent", "dispatch_now": True}}, "RPE-M3-ROUTE-UNKNOWN-FIELD"),
+        ({"constraints": ["no_delegation", None]}, "RPE-M3-CONSTRAINTS-INVALID"),
+    ):
+        denied_with_invalid_options = evaluate_transition(
+            {"decision": "deny", "reason_codes": ["RPE-M3-DEMO-DENY"]}, **options
+        )
+        assert denied_with_invalid_options["control_action"] == "deny", denied_with_invalid_options
+        assert "RPE-M3-DEMO-DENY" in denied_with_invalid_options["reason_codes"], denied_with_invalid_options
+        assert expected_reason in denied_with_invalid_options["reason_codes"], denied_with_invalid_options
+        assert denied_with_invalid_options["route_target"] is None, denied_with_invalid_options
+        assert_bounded(denied_with_invalid_options)
+
     invalid_route = evaluate_transition(
         allowed_evaluation,
         requested_route={"kind": "unbounded_magic_router", "target_id": "x"},
