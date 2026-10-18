@@ -297,6 +297,40 @@ def main() -> int:
     assert "RPE-M3-ROUTE-UNSUPPORTED-KIND" in invalid_route["reason_codes"], invalid_route
     assert_bounded(invalid_route)
 
+    # Route and constraints are decision-bearing inputs. Unsupported shape
+    # cannot be silently ignored by a direct Python caller or a Thin adapter.
+    for malformed_route, expected_reason in (
+        ({"kind": ["agent"]}, "RPE-M3-ROUTE-UNSUPPORTED-KIND"),
+        ({"kind": "agent", "execution_authority": True}, "RPE-M3-ROUTE-UNKNOWN-FIELD"),
+    ):
+        direct = evaluate_transition(allowed_evaluation, requested_route=malformed_route)
+        assert direct["control_action"] == "hold", direct
+        assert expected_reason in direct["reason_codes"], direct
+        assert direct["route_target"] is None, direct
+        assert_bounded(direct)
+        through_gateway = evaluate_gateway_request(
+            {"contract_version": "0.1.0-exp", "governed_evaluation": base,
+             "requested_route": malformed_route},
+            today=date(2026, 9, 1),
+        )
+        assert through_gateway["transition_result"]["control_action"] == "hold", through_gateway
+        assert expected_reason in through_gateway["transition_result"]["reason_codes"], through_gateway
+        assert_gateway_bounded(through_gateway)
+
+    for invalid_constraints in ("no_delegation", [None], [42], ["max_targets=1", ""], {"stop": True}):
+        direct = evaluate_transition(allowed_evaluation, constraints=invalid_constraints)
+        assert direct["control_action"] == "hold", direct
+        assert "RPE-M3-CONSTRAINTS-INVALID" in direct["reason_codes"], direct
+        assert_bounded(direct)
+        through_gateway = evaluate_gateway_request(
+            {"contract_version": "0.1.0-exp", "governed_evaluation": base,
+             "constraints": invalid_constraints},
+            today=date(2026, 9, 1),
+        )
+        assert through_gateway["transition_result"]["control_action"] == "hold", through_gateway
+        assert "RPE-M3-CONSTRAINTS-INVALID" in through_gateway["transition_result"]["reason_codes"], through_gateway
+        assert_gateway_bounded(through_gateway)
+
     unsupported = evaluate_transition({"decision": "maybe", "reason_codes": []})
     assert unsupported["control_action"] == "hold", unsupported
     assert "RPE-M3-GATEWAY-UNSUPPORTED-EVALUATION-DECISION" in unsupported["reason_codes"], unsupported
