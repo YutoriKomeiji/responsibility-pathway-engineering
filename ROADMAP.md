@@ -77,6 +77,30 @@ Closure evidence: [`docs/m2-r5-adversarial-closure-evidence.md`](docs/m2-r5-adve
 
 This bounded closure does not absorb the post-execution state machine. Evaluation evidence is not effect evidence; repair readiness is not repair authority; resume authority belongs to the runtime/institution that owns execution. Broader adaptive routing and architecture reform are post-M2 concerns.
 
+## M3 experimental branch and current responsibility
+
+The public `main` remains the boundedly closed **M2** reference baseline. The adaptive Responsibility Gateway and guarded `0.2.0-exp` adapter are under review in [M3 draft PR #127](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/pull/127). The optional machine-readable adoption-value demonstration is separately under review in [draft PR #130](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/pull/130). These draft implementations and their branch-local tests are **not merged, released, production-proven, or part of the current M2 public contract**.
+
+M3's branch-local bounded engineering closure is not equivalent to complete M3 research closure. The current experimental owner map in PR #127 separates gateway evaluation from durable trajectory history, policy authority, operational effect verification, wider security, deployment performance, and independent adoption evidence. Read the actual branch and exact-head CI before updating any M3 claim; do not silently copy branch results into current-main documentation.
+
+## Top-down quality development order
+
+Use existing owner documents rather than constructing another governance system. This order determines **what evidence is needed before a claim advances**, not a requirement to rewrite every document before touching code.
+
+| Layer | Existing owner / artifact | Output needed before advancing |
+|---|---|---|
+| 1. Purpose, public boundary, and scope | `README.md`, `docs/repository-principles.md`, `docs/repository-governance.md` | defined user problem, authority/effect boundary, public disclosure scope |
+| 2. Current state, priority, and accountable work | this roadmap, current issue/PR owner, `docs/m2-governed-integration-current.md` | named current implementation baseline and unresolved issue; M3 work classified against its bounded owner map |
+| 3. Architectural contract | `docs/responsibility-routing-contract-v0.1.md`, governed contracts and M3 PR-local specifications | explicit decision semantics, receiver eligibility, version/compatibility, allowed/prohibited effects |
+| 4. Executable contract and examples | `schemas/`, `spec/openapi/`, `examples/`, `fixtures/` | positive and negative instances for the specific behavior, including ambiguous and unauthorized routes |
+| 5. Minimal implementation | `rpe_kernel/`, reference REST/MCP adapters | one semantic evaluator; no implicit execution, persistence, authority creation, or new trust source |
+| 6. Adversarial checks and evidence | `scripts/check_*.py`, `.github/workflows/` | exact-head regression and counterexample evidence, result scope and observed failures |
+| 7. Human/AI usability and public claim | `READMEforAI.md`, quickstarts, demonstration, review | a reproducible first-use path; credible comparison with simpler alternatives; claim no broader than evidence |
+
+At every boundary: record observed input, proposed change, existing Authority and owner, rejected alternatives where consequential, verification method, and remaining uncertainty. If existing host controls already deliver equivalent behavior, **no additional RPE mechanism** may be the best design.
+
+**Promotion rule:** A documentation change, green CI, synthetic demonstration, or an AI-produced argument is not automatically evidence of integration usability, operational effectiveness, legal adequacy, safety, or standard status. Only promote the claim for which actual versioned evidence and proper review exist. Preserve the `main` M2 truth until separately authorized M3 integration, and refresh public documentation together with any changed contract.
+
 ## Active gates
 
 ### Gate 1: keep documentation aligned with implementation
