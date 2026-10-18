@@ -20,6 +20,7 @@ def main() -> int:
     ai = read("READMEforAI.md")
     current = read("docs/m2-governed-integration-current.md")
     roadmap = read("ROADMAP.md")
+    kernel_roadmap = read("docs/external-kernel-roadmap.md")
 
     required = {
         "BEACON.md": (
@@ -47,6 +48,11 @@ def main() -> int:
             "Closed within the declared bounded repository scope",
             "DAN-65 / post-M2 architecture work",
         ),
+        "docs/external-kernel-roadmap.md": (
+            "bounded M2 governed-integration closure completed",
+            "M3 draft PR #127",
+            "Near-term sequence",
+        ),
     }
 
     texts = {
@@ -55,6 +61,7 @@ def main() -> int:
         "READMEforAI.md": ai,
         "docs/m2-governed-integration-current.md": current,
         "ROADMAP.md": roadmap,
+        "docs/external-kernel-roadmap.md": kernel_roadmap,
     }
 
     failures: list[str] = []
@@ -91,10 +98,20 @@ def main() -> int:
         "Full M2 closure not yet claimed",
         "The next M2 slice is primarily adversarial closure",
     )
-    for path in ("BEACON.md", "ROADMAP.md", "docs/m2-governed-integration-current.md"):
+    for path in ("BEACON.md", "ROADMAP.md", "docs/m2-governed-integration-current.md", "docs/external-kernel-roadmap.md"):
         for marker in stale_current_markers:
             if marker in texts[path]:
                 failures.append(f"{path} retains stale current-position marker: {marker}")
+
+    stale_kernel_roadmap_markers = (
+        "implementation in progress; governed-integration baseline reached",
+        "Status: next M2 focus",
+        "Remaining M2 work is not to make this package",
+        "Merge/read back the M2 documentation synchronization slice.",
+    )
+    for marker in stale_kernel_roadmap_markers:
+        if marker in kernel_roadmap:
+            failures.append(f"docs/external-kernel-roadmap.md retains obsolete plan: {marker}")
 
     if failures:
         for failure in failures:

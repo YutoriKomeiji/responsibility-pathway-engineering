@@ -18,7 +18,7 @@ M1 established the shared deterministic kernel, Python/REST/OpenAPI/MCP referenc
 
 ### M2 — Governed Pack Integration
 
-**Status: implementation in progress; governed-integration baseline reached. Full M2 closure not yet claimed.**
+**Status: bounded M2 governed-integration closure completed, with exact-head adversarial and post-merge evidence.** This does not certify production operation, legal mapping, external effect, or real-world safety. See [`m2-r5-adversarial-closure-evidence.md`](m2-r5-adversarial-closure-evidence.md).
 
 Current public implementation status: [`m2-governed-integration-current.md`](m2-governed-integration-current.md).
 
@@ -95,7 +95,7 @@ Implemented:
 - responsibility handoff with `authority_effect = none` and `decision_scope = evaluation_only`;
 - deterministic regression and CI coverage.
 
-Remaining M2 work is not to make this package an execution controller. It is to strengthen uncertainty/effect/evidence handoff semantics and responsibility continuity.
+The completed bounded M2 contract preserves evaluation/effect distinctions and downstream responsibility obligations. Further route generalization, cumulative exposure, and integrity observations are M3 experiments, not unfinished M2 or execution authority.
 
 ## Stage K5 — Reference adapters and SDK integrations
 
@@ -146,7 +146,7 @@ Each claimed reviewed mapping needs named interpretation and maintenance ownersh
 
 ## Stage K8 — Responsibility handoff, uncertainty, repair, and resume boundary
 
-**Status: next M2 focus.**
+**Status: bounded M2 responsibility-handoff obligations implemented and adversarially checked; downstream runtime semantics remain separately owned.**
 
 RPE should preserve the information downstream runtimes need without taking ownership of the entire post-execution state machine.
 
@@ -158,7 +158,7 @@ Key constraints:
 - resume authority requires a separate authority-bearing transition in the execution-owning system;
 - Human Return and residual responsibility must remain visible across failure paths.
 
-Next implementation/testing should make these boundaries explicit and adversarially testable.
+M2 closure includes selected negative checks for these boundaries. Post-M2 generalized routing and conditional risk are pursued as non-released experimental M3 work in [draft PR #127](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/pull/127), without claiming dispatch, readback, durable retry, or resume authority.
 
 ## Stage K9 — Production architecture research
 
@@ -176,14 +176,14 @@ Broader interoperability or conformance language requires independent client/imp
 
 ## Near-term sequence
 
-1. Merge/read back the M2 documentation synchronization slice.
-2. Specify uncertainty/effect/evidence handoff semantics.
-3. Specify repair/resume requirement semantics without authority inflation.
-4. Preserve residual-owner and Human Return continuity.
-5. Add adversarial tests for authority/evidence confusion, governance/binding failures, adapter drift, and loader-boundary violations.
-6. Review claim boundaries and M2 closure evidence.
-7. Add reviewed real-world mappings only with named interpretation/maintenance ownership.
-8. Scope production work separately if deliberately authorized.
+1. Preserve closed M2 runtime and exact-head evidence on current `main`. Verify new work does not silently reclassify its public capabilities.
+2. Assess the existing M3 draft PR #127 against the [current top-down quality order](../ROADMAP.md): route eligibility, explicit control semantics, input trust, versioned adapters, and existing adversarial checks. A branch-local bounded slice is not a release.
+3. Reuse current schemas, fixture families, Python/REST/MCP adapters and negative tests. Add a narrowly scoped implementation change only after a concrete missing obligation or counterexample is confirmed.
+4. Independently assess first-use and adoption value against a credible no-RPE alternative. Existing synthetic demos and green CI do not show integration cost, field effectiveness, or external adoption.
+5. Keep durable trajectory state, policy truth, execution/effect reconciliation, production NFRs, and independent human-return effectiveness with their current owners.
+6. Introduce real-world Requirement Pack mappings only with named human interpretation and maintenance ownership. Any production/release/standards claim requires separate applicable review and evidence.
+
+**Historical note:** the former near-term sequence referred to unclosed M2 R3–R5 work. That sequence was completed within its declared bounded scope and must not be reused as the current plan.
 
 ## Success measure
 

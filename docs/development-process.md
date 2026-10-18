@@ -30,6 +30,19 @@ Record the improvement.
 11. Use roadmap notes when `ROADMAP.md` would require a large or risky update.
 12. Update BEACON, ROADMAP, or CHANGELOG only at meaningful milestones.
 
+## Macro → meso → micro quality pass
+
+Before editing implementation, review only the relevant current sources in this order. This is a **bounded reading sequence**, not a mandate to create additional planning files.
+
+- **Macro (product and responsibility):** current public purpose, existing owner/priority, M2 released/merged boundary versus M3 draft/experimental state, allowed Authority and public claim limits. See [ROADMAP](../ROADMAP.md).
+- **Meso (architecture and interface):** source-of-truth contracts, route eligibility, input/admission, compatibility, evidence scope, source trust and the caller/executor handoff. Record whether the problem is already handled by RPE or by another RP*/host owner.
+- **Micro (one runnable change):** find the exact kernel function or adapter, add a positive fixture, a denied/unknown/misbinding counterexample, and a check that evaluation cannot be mistaken for effect or permission.
+- **Return upward:** read back exact changed artifacts, compare generated/package/API forms, inspect applicable CI to terminal status, then update only the public entrances whose claims actually changed. Record unresolved differences without converting them into closure.
+
+**Advance/stop decision:** proceed to the next layer only if the existing layer is sufficiently unambiguous for a bounded implementation. Otherwise preserve the identified uncertainty and route it to the existing owner. Avoid an unconditional Human Gate: a current delegated route, neutral hold, effect reconciliation or stop may be the correct result.
+
+Public issue/PR text and repository content may describe assistance from **Luminalia AI**. Do not include non-public identities, internal role configurations, private conversation material, or non-product operating details in public records. Use product functions and source-backed evidence rather than private AI role labels.
+
 ## Commit Discipline
 
 - Prefer small commits.

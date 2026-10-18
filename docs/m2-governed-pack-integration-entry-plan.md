@@ -74,16 +74,10 @@ The first loader accepts:
 
 It intentionally rejects network/remote registry loading. Loading bytes is not trust establishment. Source interpretation and governance correctness remain separately reviewable human/institutional responsibilities.
 
-## Current completion decision
+## Historical completion boundary and present status
 
-The original entry phase has been surpassed, but **full M2 closure is not yet claimed**.
+At the time of this original entry-plan phase, M2 completion had not been claimed and uncertainty/effect/evidence handoff, repair/resume boundaries, residual ownership, adversarial checks, and closure evidence were still planned. That statement is historical and **must not be used as the current M2 state**.
 
-The remaining M2 work is defined by the current roadmap and current-status document, with emphasis on:
+The declared **bounded M2 governed-integration closure was subsequently completed**. See the current [M2 implementation status](m2-governed-integration-current.md), [bounded closure evidence](m2-r5-adversarial-closure-evidence.md), and [current development roadmap](../ROADMAP.md).
 
-1. uncertainty/effect/evidence handoff semantics;
-2. repair/resume responsibility boundaries;
-3. residual-owner and Human Return continuity;
-4. adversarial validation;
-5. claim-boundary and closure evidence.
-
-Production or consequential live integration remains a separate Human Gate outside this document.
+The closed scope does not include downstream execution/effect verification, generalized M3 adaptive routing, production operational validation, or automatic authorization. Production or consequential live integration remains a separate Human Gate outside this historical plan.
