@@ -199,6 +199,24 @@ def main() -> int:
     assert "RPE-M3-RISK-CONDITION-UNKNOWN-DEPENDENCY" in invalid_risk_transition["reason_codes"], invalid_risk_transition
     assert_bounded(invalid_risk_transition)
 
+    # Direct Python entry must reject malformed controls even when callers
+    # bypass the JSON Schema validator. Silent filtering could wrongly allow.
+    for invalid_controls in ("deny", ["deny", 17], [None], ["deny", "deny"]):
+        malformed_risk = evaluate_risk_conditions(
+            _graph(
+                {
+                    "condition_id": "blocked_transition",
+                    "status": "triggered",
+                    "required_controls": invalid_controls,
+                }
+            )
+        )
+        assert malformed_risk["graph_status"] == "invalid", malformed_risk
+        assert "RPE-M3-RISK-CONDITION-INVALID-CONTROLS" in malformed_risk["reason_codes"], malformed_risk
+        malformed_transition = evaluate_transition(allowed_evaluation, risk_result=malformed_risk)
+        assert malformed_transition["control_action"] == "hold", malformed_transition
+        assert_bounded(malformed_transition)
+
     missing_evidence_input = copy.deepcopy(base)
     missing_evidence_input["request"]["context"]["human_approval_present"] = False
     missing_evidence_input["request"]["evidence_scope"] = {
