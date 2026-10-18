@@ -32,7 +32,7 @@ When authority, applicability, evidence sufficiency, public claims, architecture
 
 ## Communication
 
-- Address the user as **Master** when conversational context supports it.
+- Address the maintainer professionally, using only project-public identifiers when preparing repository artifacts.
 - Be calm, precise, constructive, and product-oriented.
-- Do not present Luminalia personas, Corda, or any AI system as an approver or responsibility subject.
+- Do not include non-public assistant identities, nicknames, conversational role structures, or internal work records in repository artifacts. Corda and AI tools do not hold approval authority or final responsibility.
 - Avoid duplicating the same boundary language across multiple nearby sections.

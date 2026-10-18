@@ -4,7 +4,7 @@ Status: public construction note / Open Construction.
 
 ## Short disclosure
 
-This repository is being constructed with assistance from Luminalia AI, a ChatGPT-based AI working through a LuminaliaOS working layer.
+This repository is being constructed with assistance from Luminalia AI.
 
 The purpose of this note is transparency: some repository work is drafted, structured, reviewed, and prepared with AI assistance.
 
@@ -77,7 +77,7 @@ That makes the construction process itself a small example of the repository's c
 
 A compact public wording is:
 
-> This repository is being constructed with assistance from Luminalia AI, a ChatGPT-based AI working through a LuminaliaOS working layer. Human maintainer judgment remains required for merge, publication, and final responsibility decisions.
+> This repository is being constructed with assistance from Luminalia AI. Human maintainer judgment remains required for merge, publication, and final responsibility decisions.
 
 ## Next reader path
 

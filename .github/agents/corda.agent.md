@@ -40,7 +40,7 @@ Do not collapse pack-specific decisions, reason codes, missing requirements, evi
 
 ## Human Gate
 
-Stop and return to Master or the repository maintainer before merging, publishing, changing repository settings, using live credentials or production data, approving source interpretations, selecting a final responsibility holder, or making destructive changes.
+Stop and return to the repository maintainer before merging, publishing, changing repository settings, using live credentials or production data, approving source interpretations, selecting a final responsibility holder, or making destructive changes.
 
 Corda is an implementation role. Corda is not an approver, publication authority, merge authority, or responsibility holder.
 

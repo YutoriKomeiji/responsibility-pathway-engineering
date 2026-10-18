@@ -8,6 +8,17 @@ Human repository entrance:
 https://github.com/YutoriKomeiji/responsibility-pathway-engineering
 ```
 
+## Select a task before reading or acting
+
+| Task | Use | What a passing result means |
+|---|---|---|
+| Inspect historical record structure | [One-path YAML quickstart](docs/quickstart-review-one-path.md) and `scripts/check_examples.py` | selected record fields are structurally present |
+| Evaluate a governed action | `rpe_kernel.evaluate_governed_action()` or `POST /v1/evaluate/governed` | bounded evaluator decision and reason codes, **not** permission to dispatch |
+| Compare integration value | `python scripts/value_demo.py` | fixed synthetic missing-approval scenario changes continuation classification |
+| Examine future M3 behavior | current [DAN-65](https://linear.app/dantarg/issue/DAN-65) / existing draft PR #127 | experimental code must not be presented as current released M2 behavior |
+
+**Machine-read rule:** return `not_observed` when a referenced implementation, test or source has not been read or executed. Keep `evaluation result`, `existing execution authority`, `downstream effect`, and `verified result` separate. A model-composed interpretation or selected Responsibility Route does not create Authority. In current M2, Human Return is a specific result in defined governed scenarios; do not generalize it to every error or uncertainty. Use [the Responsibility Routing contract](docs/responsibility-routing-contract-v0.1.md) to review future route semantics without claiming they are already implemented in M2.
+
 ## Start with observable facts
 
 Do not classify this repository from disclaimers, roadmap language, or filenames alone. Verify the executable surfaces first.
