@@ -72,6 +72,31 @@ def main() -> int:
     assert competing["transition_result"]["control_action"] == "hold", competing
     assert "RPE-M3-CONTROL-SELECTION-REQUIRED" in competing["risk_condition_result"]["reason_codes"], competing
 
+
+    # Cumulative observation composition must preserve the risk-graph
+    # envelope for validation, not silently drop a forbidden caller field.
+    malformed_combination = evaluate_guarded_adapter_request({
+        "contract_version": "0.2.0-exp",
+        "governed_evaluation": governed,
+        "risk_graph": {"conditions": [], "dispatch_now": True},
+        "cumulative_exposure_checks": [{
+            "check": {
+                "exposure_id": "graph-preservation",
+                "dimensions": [{
+                    "name": "external_actions",
+                    "current": 0,
+                    "proposed_increment": 1,
+                    "budget": 2,
+                    "unit": "actions",
+                }],
+            },
+            "required_controls": ["require_authority"],
+        }],
+    }, today=date(2026, 9, 1))
+    assert malformed_combination["risk_condition_result"]["graph_status"] == "invalid", malformed_combination
+    assert "RPE-M3-RISK-GRAPH-UNKNOWN-FIELD" in malformed_combination["risk_condition_result"]["reason_codes"], malformed_combination
+    assert malformed_combination["transition_result"]["control_action"] == "hold", malformed_combination
+
     print("M3 cumulative exposure guarded-adapter checks passed")
     return 0
 

@@ -96,9 +96,12 @@ def _merge_cumulative_conditions(risk_graph: Any, entries: Sequence[Mapping[str,
     if not isinstance(risk_graph, Mapping):
         return None, "RPE-M3-CUMULATIVE-RISK-GRAPH-INVALID"
     existing = risk_graph.get("conditions")
-    if not isinstance(existing, Sequence) or isinstance(existing, (str, bytes, bytearray)):
+    if not isinstance(existing, list):
         return None, "RPE-M3-CUMULATIVE-RISK-GRAPH-INVALID"
-    return {"conditions": list(existing) + conditions}, None
+    # Pass through unknown envelope fields so the risk evaluator can reject them.
+    merged_graph = dict(risk_graph)
+    merged_graph["conditions"] = list(existing) + conditions
+    return merged_graph, None
 
 
 def evaluate_guarded_adapter_request(payload: Mapping[str, Any], *, today: date | None = None) -> dict[str, Any]:

@@ -363,13 +363,14 @@ def _combined_risk_result(
     if not isinstance(risk_graph, Mapping):
         return evaluate_risk_conditions(risk_graph)
     nodes = risk_graph.get("conditions")
-    if not isinstance(nodes, Sequence) or isinstance(nodes, (str, bytes, bytearray)):
+    # Preserve the original graph envelope: unknown fields must remain
+    # visible to the validator instead of vanishing during guard composition.
+    # A non-list condition container is invalid even for direct Python callers.
+    if not isinstance(nodes, list):
         return evaluate_risk_conditions(risk_graph)
-    return evaluate_risk_conditions(
-        {
-            "conditions": list(nodes) + [dict(condition) for condition in integrity_conditions],
-        }
-    )
+    merged_graph = dict(risk_graph)
+    merged_graph["conditions"] = list(nodes) + [dict(condition) for condition in integrity_conditions]
+    return evaluate_risk_conditions(merged_graph)
 
 
 def evaluate_gateway_request(

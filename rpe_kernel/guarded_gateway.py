@@ -89,11 +89,12 @@ def _payload_with_extra_conditions(
     if not isinstance(risk_graph, Mapping):
         return None
     nodes = risk_graph.get("conditions")
-    if not isinstance(nodes, Sequence) or isinstance(nodes, (str, bytes, bytearray)):
+    if not isinstance(nodes, list):
         return None
-    merged["risk_graph"] = {
-        "conditions": list(nodes) + [dict(item) for item in extra_conditions],
-    }
+    # Do not discard unknown caller fields before risk-graph validation.
+    combined_graph = dict(risk_graph)
+    combined_graph["conditions"] = list(nodes) + [dict(item) for item in extra_conditions]
+    merged["risk_graph"] = combined_graph
     return merged
 
 

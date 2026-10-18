@@ -205,6 +205,8 @@ The guarded adapter fails closed for cases including:
 - missing evidence for the returned decision;
 - unknown/invalid cumulative values;
 - malformed cumulative/caller risk-graph combination;
+- unknown caller risk-graph fields preserved through Integrity, Human Return, and Cumulative Exposure composition and rejected by the existing graph evaluator;
+- non-list risk-graph `conditions` from direct Python callers;
 - conflicting triggered controls;
 - attempted authority/execution fields where prohibited.
 

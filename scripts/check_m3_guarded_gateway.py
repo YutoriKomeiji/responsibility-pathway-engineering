@@ -136,6 +136,51 @@ def main() -> int:
         "execution_effect",
     }, clear
 
+
+    # Composing a guard must not erase invalid fields from the caller's graph:
+    # doing so could turn an invalid request into a clear/allowed transition.
+    clear_integrity_check = {
+        "check": {
+            "check_id": "graph-preservation",
+            "kind": "configuration",
+            "expected": {"configuration_id": "same"},
+            "observed": {"configuration_id": "same"},
+        },
+        "required_controls": ["require_authority"],
+    }
+    clear_return_check = {
+        "return": {
+            "return_id": "graph-preservation-review",
+            "owner_role": "review_owner",
+            "authority_reference": "auth-1",
+            "capability_status": "available",
+            "response_window_status": "available",
+            "next_decision_scope": "review",
+            "evidence_scope": {"available": ["request"], "missing": []},
+        },
+        "required_controls": ["require_authority"],
+    }
+    for guards in (
+        {"integrity_checks": [clear_integrity_check]},
+        {"human_return_checks": [clear_return_check]},
+    ):
+        malformed_envelope = evaluate_responsibility_guarded_gateway_request(
+            {**base, "risk_graph": {"conditions": [], "dispatch_now": True}},
+            today=date(2026, 9, 1),
+            **guards,
+        )
+        assert malformed_envelope["risk_condition_result"]["graph_status"] == "invalid", malformed_envelope
+        assert "RPE-M3-RISK-GRAPH-UNKNOWN-FIELD" in malformed_envelope["risk_condition_result"]["reason_codes"], malformed_envelope
+        assert malformed_envelope["transition_result"]["control_action"] == "hold", malformed_envelope
+
+    malformed_list = evaluate_responsibility_guarded_gateway_request(
+        {**base, "risk_graph": {"conditions": ()}},
+        integrity_checks=[clear_integrity_check],
+        today=date(2026, 9, 1),
+    )
+    assert malformed_list["risk_condition_result"]["graph_status"] == "invalid", malformed_list
+    assert malformed_list["transition_result"]["control_action"] == "hold", malformed_list
+
     print("M3 combined responsibility guard checks passed")
     return 0
 
