@@ -109,6 +109,11 @@ def main() -> int:
                 ast.parse(text, filename=path)
             except SyntaxError as exc:
                 problems.append(f"INVALID_PYTHON_SYNTAX: {path}:{exc.lineno}: {exc.msg}")
+        if path.endswith(".js"):
+            found["javascript"] += 1
+            check = subprocess.run(["node", "--check", str(p)], cwd=ROOT, capture_output=True, text=True)
+            if check.returncode != 0:
+                problems.append(f"INVALID_JS_SYNTAX: {path}: {check.stderr.strip()[:250]}")
         if path.endswith(".json"):
             found["json"] += 1
             try:
@@ -170,6 +175,7 @@ def main() -> int:
         "markdown_files": found["markdown"],
         "python_files_parsed": found["python"],
         "json_files_checked": found["json"],
+        "javascript_files_checked": found["javascript"],
         "workflow_files_checked": found["workflow"],
         "workflow_python_references": found["workflow-python-ref"],
         "noncontract_invalid_json": malformed_negative_json[:18],
