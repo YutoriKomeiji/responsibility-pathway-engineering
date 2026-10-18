@@ -78,7 +78,17 @@ def evaluate_risk_conditions(graph: Mapping[str, Any]) -> dict[str, Any]:
             continue
         condition_id = raw.get("condition_id")
         status = raw.get("status")
-        controls = _strings(raw.get("required_controls"))
+        raw_controls = raw.get("required_controls")
+        # The schema requires a string array. Do not silently discard malformed
+        # controls: doing so could turn a triggered condition into an allow.
+        if (
+            not isinstance(raw_controls, list)
+            or any(not isinstance(item, str) or not item for item in raw_controls)
+            or len(set(raw_controls)) != len(raw_controls)
+        ):
+            reasons.append("RPE-M3-RISK-CONDITION-INVALID-CONTROLS")
+            continue
+        controls = raw_controls
         depends_on = _strings(raw.get("depends_on"))
         evidence_refs = _strings(raw.get("evidence_refs"))
         if not isinstance(condition_id, str) or not condition_id:
