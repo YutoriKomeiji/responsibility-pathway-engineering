@@ -21,12 +21,6 @@ GUARDED_ADAPTER_CONTRACT_VERSION = "0.2.0-exp"
 _BASE_GATEWAY_VERSION = "0.1.0-exp"
 
 
-def _strings(value: Any) -> list[str]:
-    if not isinstance(value, Sequence) or isinstance(value, (str, bytes, bytearray)):
-        return []
-    return sorted({item for item in value if isinstance(item, str) and item})
-
-
 def _invalid(reason_code: str) -> dict[str, Any]:
     return {
         "contract_version": GUARDED_ADAPTER_CONTRACT_VERSION,
@@ -67,7 +61,14 @@ def _validate_entries(value: Any, *, kind: str) -> tuple[list[Mapping[str, Any]]
         if not isinstance(entry, Mapping) or set(entry) - {"check", "required_controls"}:
             return [], [], f"RPE-M3-{kind}-CHECK-ENTRY-INVALID"
         check = entry.get("check")
-        controls = _strings(entry.get("required_controls"))
+        raw_controls = entry.get("required_controls")
+        if (
+            not isinstance(raw_controls, list)
+            or any(not isinstance(control, str) or not control for control in raw_controls)
+            or len(raw_controls) != len(set(raw_controls))
+        ):
+            return [], [], f"RPE-M3-{kind}-CHECK-INVALID-CONTROLS"
+        controls = sorted(raw_controls)
         if not isinstance(check, Mapping):
             return [], [], f"RPE-M3-{kind}-CHECK-ENTRY-INVALID"
         if not controls:

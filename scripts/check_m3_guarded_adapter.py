@@ -159,6 +159,37 @@ def main() -> int:
     assert blocked_human_gate["authority_effect"] == "none", blocked_human_gate
     assert blocked_human_gate["execution_effect"] == "none", blocked_human_gate
 
+
+    # JSON Schema already rejects malformed policy control lists; the direct
+    # Python guarded adapter must reject them with the same fail-closed effect.
+    cumulative_guard = {
+        "check": {
+            "exposure_id": "control-shape",
+            "dimensions": [{
+                "name": "external_actions", "current": 0,
+                "proposed_increment": 1, "budget": 2, "unit": "actions",
+            }],
+        },
+        "required_controls": ["require_authority"],
+    }
+    for field, valid_guard, reason in (
+        ("integrity_checks", payload["integrity_checks"][0], "RPE-M3-INTEGRITY-CHECK-INVALID-CONTROLS"),
+        ("human_return_checks", payload["human_return_checks"][0], "RPE-M3-HUMAN-RETURN-CHECK-INVALID-CONTROLS"),
+        ("cumulative_exposure_checks", cumulative_guard, "RPE-M3-CUMULATIVE-CHECK-INVALID-CONTROLS"),
+    ):
+        for bad_controls in (["require_authority", None], ["require_authority", "require_authority"], "require_authority"):
+            invalid_entry = {**valid_guard, "required_controls": bad_controls}
+            invalid_payload = {
+                "contract_version": "0.2.0-exp",
+                "governed_evaluation": governed,
+                field: [invalid_entry],
+            }
+            assert not request_validator.is_valid(invalid_payload), invalid_payload
+            rejected = evaluate_guarded_adapter_request(invalid_payload, today=date(2026, 9, 1))
+            response_validator.validate(rejected)
+            assert rejected["transition_result"]["control_action"] == "hold", rejected
+            assert reason in rejected["transition_result"]["reason_codes"], rejected
+
     print("M3 guarded adapter 0.2.0-exp core/schema checks passed")
     return 0
 

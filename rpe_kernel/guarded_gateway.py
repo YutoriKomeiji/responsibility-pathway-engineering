@@ -17,12 +17,6 @@ from .human_return import evaluate_human_return_readiness, human_return_result_t
 from .risk_conditions import CONTROL_ACTIONS
 
 
-def _strings(value: Any) -> list[str]:
-    if not isinstance(value, Sequence) or isinstance(value, (str, bytes, bytearray)):
-        return []
-    return sorted({item for item in value if isinstance(item, str) and item})
-
-
 def _fail_closed(payload: Mapping[str, Any], reason_code: str, *, today: date | None) -> dict[str, Any]:
     """Return the ordinary gateway response shape with a fail-closed transition."""
     baseline = evaluate_gateway_request(payload, today=today)
@@ -56,7 +50,14 @@ def _human_return_conditions(
         if not isinstance(entry, Mapping) or set(entry) - {"return", "required_controls"}:
             return [], "RPE-M3-HUMAN-RETURN-CHECK-ENTRY-INVALID"
         return_payload = entry.get("return")
-        controls = _strings(entry.get("required_controls"))
+        raw_controls = entry.get("required_controls")
+        if (
+            not isinstance(raw_controls, list)
+            or any(not isinstance(control, str) or not control for control in raw_controls)
+            or len(raw_controls) != len(set(raw_controls))
+        ):
+            return [], "RPE-M3-HUMAN-RETURN-CHECK-INVALID-CONTROLS"
+        controls = sorted(raw_controls)
         if not isinstance(return_payload, Mapping):
             return [], "RPE-M3-HUMAN-RETURN-CHECK-ENTRY-INVALID"
         if not controls:

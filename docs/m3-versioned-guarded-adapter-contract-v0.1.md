@@ -129,7 +129,7 @@ Required claim ceilings include:
 
 ## Policy non-invention
 
-Every guard entry that can trigger a consequence must carry an explicit non-empty `required_controls` set supplied by the caller/policy layer.
+Every guard entry that can trigger a consequence must carry an explicit non-empty `required_controls` set supplied by the caller/policy layer. Direct Python calls reject non-array, mixed-type, and duplicate controls rather than silently discarding malformed elements; this matches the guarded request schema.
 
 The adapter must not derive normative policy from labels such as `configuration`, `relationship`, `human`, `institution`, `ready`, `budget`, or `exceeded`.
 

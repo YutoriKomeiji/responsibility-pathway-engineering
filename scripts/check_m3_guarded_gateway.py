@@ -181,6 +181,21 @@ def main() -> int:
     assert malformed_list["risk_condition_result"]["graph_status"] == "invalid", malformed_list
     assert malformed_list["transition_result"]["control_action"] == "hold", malformed_list
 
+
+    # Direct Python guard paths must reject mixed-type, non-array, or
+    # duplicate policy controls instead of silently filtering values.
+    for field, valid_guard, reason in (
+        ("integrity_checks", clear_integrity_check, "RPE-M3-INTEGRITY-CHECK-INVALID-CONTROLS"),
+        ("human_return_checks", clear_return_check, "RPE-M3-HUMAN-RETURN-CHECK-INVALID-CONTROLS"),
+    ):
+        for bad_controls in (["require_authority", None], ["require_authority", "require_authority"], "require_authority"):
+            invalid_entry = {**valid_guard, "required_controls": bad_controls}
+            rejected = evaluate_responsibility_guarded_gateway_request(
+                base, today=date(2026, 9, 1), **{field: [invalid_entry]}
+            )
+            assert rejected["transition_result"]["control_action"] == "hold", rejected
+            assert reason in rejected["transition_result"]["reason_codes"], rejected
+
     print("M3 combined responsibility guard checks passed")
     return 0
 

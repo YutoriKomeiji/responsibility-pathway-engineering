@@ -331,7 +331,14 @@ def _evaluate_integrity_checks(value: Any) -> tuple[list[dict[str, Any]], list[d
         if not isinstance(item, Mapping) or set(item) - {"check", "required_controls"}:
             return [], [], "RPE-M3-INTEGRITY-CHECK-ENTRY-INVALID"
         check = item.get("check")
-        controls = sorted(set(_normalized_strings(item.get("required_controls"))))
+        raw_controls = item.get("required_controls")
+        if (
+            not isinstance(raw_controls, list)
+            or any(not isinstance(control, str) or not control for control in raw_controls)
+            or len(raw_controls) != len(set(raw_controls))
+        ):
+            return [], [], "RPE-M3-INTEGRITY-CHECK-INVALID-CONTROLS"
+        controls = sorted(raw_controls)
         if not isinstance(check, Mapping):
             return [], [], "RPE-M3-INTEGRITY-CHECK-ENTRY-INVALID"
         if not controls:
