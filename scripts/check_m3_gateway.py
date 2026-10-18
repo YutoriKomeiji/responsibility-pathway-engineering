@@ -284,6 +284,39 @@ def main() -> int:
     assert handoff["route_target"]["target_id"] == "review_owner", handoff
     assert_bounded(handoff)
 
+    # An explicit M2 Human Gate may not be laundered into a handoff to an
+    # AI agent, verifier, queue or sandbox through caller-supplied routing.
+    for forbidden_kind in ("agent", "verifier", "queue", "sandbox", "stop"):
+        forbidden_route = {"kind": forbidden_kind, "target_id": "alternate-destination"}
+        blocked_human_gate = evaluate_transition(
+            human_gate_without_missing, requested_route=forbidden_route
+        )
+        assert blocked_human_gate["control_action"] == "hold", blocked_human_gate
+        assert "RPE-M3-HUMAN-GATE-INVALID-ROUTE-KIND" in blocked_human_gate["reason_codes"], blocked_human_gate
+        assert blocked_human_gate["route_target"] is None, blocked_human_gate
+        assert_bounded(blocked_human_gate)
+
+    # Human/institution is necessary for such a handoff but does NOT
+    # authenticate the destination or grant any approval.
+    institutional = evaluate_transition(
+        human_gate_without_missing,
+        requested_route={"kind": "institution", "target_id": "review-office"},
+    )
+    assert institutional["control_action"] == "handoff", institutional
+    assert institutional["route_target"]["kind"] == "institution", institutional
+    assert_bounded(institutional)
+
+    # The Thin adapter must retain the Human Gate boundary as well.
+    misrouted_thin = evaluate_gateway_request(
+        {"contract_version": "0.1.0-exp", "governed_evaluation": missing_evidence_input,
+         "requested_route": {"kind": "agent", "target_id": "unauthorized-agent"}},
+        today=date(2026, 9, 1),
+    )
+    assert misrouted_thin["evaluation_result"]["decision"] == "human_gate", misrouted_thin
+    assert misrouted_thin["transition_result"]["control_action"] == "hold", misrouted_thin
+    assert "RPE-M3-HUMAN-GATE-INVALID-ROUTE-KIND" in misrouted_thin["transition_result"]["reason_codes"], misrouted_thin
+    assert_gateway_bounded(misrouted_thin)
+
     denied = evaluate_transition({"decision": "deny", "reason_codes": ["RPE-M3-DEMO-DENY"]}, risk_result=clear_risk)
     assert denied["control_action"] == "deny", denied
     assert denied["route_target"] is None, denied
