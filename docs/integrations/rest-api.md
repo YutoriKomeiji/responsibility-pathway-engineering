@@ -62,6 +62,26 @@ The governed path can return stages including:
 
 Governed results preserve `authority_effect = none` and `decision_scope = evaluation_only`.
 
+## Input boundary and safe exposure
+
+The built-in reference server binds to `127.0.0.1` by default. All POST
+evaluation routes now require exactly one decimal `Content-Length`, a
+`Content-Type: application/json` media type, and a request body of at most
+**1,048,576 bytes (1 MiB)**. The server rejects chunked/transfer-encoded
+requests, duplicate JSON object members (including nested policy/authority
+fields), and non-finite JSON values rather than accepting ambiguous inputs.
+It bounds request-body reads with a 10-second socket timeout. Invalid framing,
+unsupported media types, and over-limit bodies return HTTP 400, 415, and 413
+respectively; an incomplete body returns 400 and a read timeout returns 408.
+
+These are **minimum reference-adapter controls**, not a complete hostile-network
+perimeter: the built-in threaded server has no authentication, connection-count
+or per-source rate limits, TLS, request-context attestation, or trusted reverse
+proxy configuration. Do **not** bind it to a public interface without an
+independently managed enterprise security boundary. MCP stdio has a separate
+transport boundary. The 1 MiB cap is an initial compatibility limit, not a
+performance/SLO claim.
+
 ## Boundary
 
 This is a local reference server, not a production deployment. It does not provide authentication, authorization, TLS termination, rate limiting, persistent storage, tenancy isolation, remote Requirement Pack trust, action execution, external-effect verification, repair/resume authority, or legal/compliance validation.

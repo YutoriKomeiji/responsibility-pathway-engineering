@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import socket
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any, Callable
@@ -18,6 +19,25 @@ GovernedEvaluator = Callable[[JsonObject], JsonObject]
 GatewayEvaluator = Callable[[JsonObject], JsonObject]
 OPENAPI_PATH = Path(__file__).with_name("rpe-kernel.openapi.json")
 GUARDED_OPENAPI_PATH = Path(__file__).with_name("rpe-kernel-guarded.openapi.json")
+# This reference server is local-only by default. A reverse proxy must enforce
+# authentication, transport security, and request limits in production.
+MAX_REQUEST_BYTES = 1_048_576
+REQUEST_READ_TIMEOUT_SECONDS = 10.0
+
+
+def _unique_json_fields(pairs: list[tuple[str, Any]]) -> JsonObject:
+    """Reject ambiguous objects before policy/authority fields are evaluated."""
+    result: JsonObject = {}
+    for name, value in pairs:
+        if name in result:
+            raise ValueError("duplicate JSON object field")
+        result[name] = value
+    return result
+
+
+def _finite_json_constant(value: str) -> Any:
+    raise ValueError(f"non-finite JSON constant: {value}")
+
 
 
 def load_openapi_document() -> JsonObject:
@@ -67,11 +87,36 @@ def create_handler(
             if self.path not in supported:
                 self._write_json(404, {"error": "not_found"})
                 return
+            if self.headers.get("Transfer-Encoding") is not None:
+                self._write_json(400, {"error": "unsupported_transfer_encoding"})
+                return
+            lengths = self.headers.get_all("Content-Length", [])
+            if len(lengths) != 1 or not lengths[0].isascii() or not lengths[0].isdecimal():
+                self._write_json(400, {"error": "invalid_content_length"})
+                return
+            length = int(lengths[0])
+            if length > MAX_REQUEST_BYTES:
+                self._write_json(413, {"error": "request_too_large"})
+                return
+            if self.headers.get("Content-Type", "").split(";", 1)[0].strip().lower() != "application/json":
+                self._write_json(415, {"error": "unsupported_media_type"})
+                return
             try:
-                length = int(self.headers.get("Content-Length", "0"))
-                payload = json.loads(self.rfile.read(length).decode("utf-8"))
+                self.connection.settimeout(REQUEST_READ_TIMEOUT_SECONDS)
+                body = self.rfile.read(length)
+                if len(body) != length:
+                    self._write_json(400, {"error": "incomplete_body"})
+                    return
+                payload = json.loads(
+                    body.decode("utf-8"),
+                    object_pairs_hook=_unique_json_fields,
+                    parse_constant=_finite_json_constant,
+                )
             except (ValueError, UnicodeDecodeError, json.JSONDecodeError):
                 self._write_json(400, {"error": "invalid_json"})
+                return
+            except (socket.timeout, TimeoutError):
+                self._write_json(408, {"error": "request_timeout"})
                 return
             if not isinstance(payload, dict):
                 self._write_json(400, {"error": "invalid_request", "detail": "body must be an object"})
