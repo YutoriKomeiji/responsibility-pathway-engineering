@@ -4,6 +4,14 @@ Status: Open Construction / reviewer-facing quickstart.
 
 This guide helps a first-time reviewer inspect one Responsibility Pathway record without reading the full repository first.
 
+## Choose the entry that matches your task
+
+**Try the current executable M2 kernel:** install the package using `python -m pip install .` and run `python scripts/value_demo.py` from the repository root. The demo compares a naive continuation with strict `evaluate_governed_action()` on the same synthetic, missing-approval request. It **never executes the proposed external send**. For integration, read [the value explanation](why-rpe.md), [current M2 implementation](m2-governed-integration-current.md), and [Python API](python-package-api.md). The REST and MCP service surfaces are described in the repository README.
+
+**Review the historical record-format example:** follow the YAML example below. `scripts/check_examples.py` checks bounded document structure; it does **not** exercise the M2 governed evaluator. Do not treat a passing YAML checker as evidence that M2 governance, REST/MCP behavior, approval rules, or external effects have been validated.
+
+**AI reader:** choose one task explicitly: `structure_review` or `governed_evaluation`. Do not silently substitute the structural example checker for the executable evaluation kernel. Record the observed entry point, input provenance, exact result and whether the action was only evaluated or actually executed (this guide never executes it). `allow` means an evaluation outcome, not newly granted dispatch Authority.
+
 Start with:
 
 - `examples/ai-assisted-work-minimal.yaml`
@@ -74,7 +82,7 @@ It should make missing context and uncertainty visible enough for a human or ins
 
 Look for `return_points`.
 
-The record should show where the pathway returns if the output is disputed, incomplete, unclear, unsupported, or outside scope.
+In this deliberately human-owned example, the record shows a human return point for an eligible human-held decision. This is an example-specific route, **not a universal rule** for every incomplete or blocked action. Current route-first design may instead require bounded continuation, reconciliation hold, neutral hold or stop, depending on existing Authority, receiver eligibility and effect uncertainty. See [Responsibility Routing contract](responsibility-routing-contract-v0.1.md).
 
 ## 6. Run the bounded checker
 
