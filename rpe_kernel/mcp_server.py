@@ -16,6 +16,24 @@ GOVERNED_TOOL_NAME = "rpe_evaluate_governed_action"
 TRANSITION_TOOL_NAME = "rpe_evaluate_responsibility_transition"
 GUARDED_TRANSITION_TOOL_NAME = "rpe_evaluate_guarded_responsibility_transition"
 PROTOCOL_VERSION = "2025-11-25"
+# Each JSON-RPC message is a single newline-delimited record; the limit
+# bounds per-message buffering, not the parent process or its privileges.
+MAX_MCP_MESSAGE_BYTES = 1_048_576
+
+
+def _unique_json_fields(pairs: list[tuple[str, Any]]) -> JsonObject:
+    """Reject duplicate fields at every depth (especially authority/policy)."""
+    result: JsonObject = {}
+    for field, value in pairs:
+        if field in result:
+            raise ValueError("duplicate JSON member")
+        result[field] = value
+    return result
+
+
+def _finite_json_constant(value: str) -> Any:
+    raise ValueError("non-finite JSON constant")
+
 
 TOOL: JsonObject = {
     "name": TOOL_NAME,
@@ -87,31 +105,57 @@ def handle_message(message: JsonObject) -> JsonObject | None:
         arguments = params.get("arguments")
         if not isinstance(arguments, dict):
             return rpc_error(request_id, -32602, "Tool arguments must be an object")
-        if tool_name == GOVERNED_TOOL_NAME:
-            return rpc_result(request_id, _tool_result(evaluate_governed_action(arguments)))
-        if tool_name == TRANSITION_TOOL_NAME:
-            return rpc_result(request_id, _tool_result(evaluate_gateway_request(arguments)))
-        if tool_name == GUARDED_TRANSITION_TOOL_NAME:
-            return rpc_result(request_id, _tool_result(evaluate_guarded_adapter_request(arguments)))
-        if tool_name != TOOL_NAME:
+        if tool_name not in {TOOL_NAME, GOVERNED_TOOL_NAME, TRANSITION_TOOL_NAME, GUARDED_TRANSITION_TOOL_NAME}:
             return rpc_error(request_id, -32602, "Unknown tool or invalid params")
-        request = arguments.get("request")
-        packs = arguments.get("packs")
-        if not isinstance(request, dict) or not isinstance(packs, list) or not all(isinstance(pack, dict) for pack in packs):
-            return rpc_error(request_id, -32602, "request must be an object and packs must be an array of objects")
-        return rpc_result(request_id, _tool_result(evaluate_action(request, packs)))
+        if tool_name == TOOL_NAME:
+            request = arguments.get("request")
+            packs = arguments.get("packs")
+            if not isinstance(request, dict) or not isinstance(packs, list) or not all(isinstance(pack, dict) for pack in packs):
+                return rpc_error(request_id, -32602, "request must be an object and packs must be an array of objects")
+        try:
+            if tool_name == GOVERNED_TOOL_NAME:
+                decision = evaluate_governed_action(arguments)
+            elif tool_name == TRANSITION_TOOL_NAME:
+                decision = evaluate_gateway_request(arguments)
+            elif tool_name == GUARDED_TRANSITION_TOOL_NAME:
+                decision = evaluate_guarded_adapter_request(arguments)
+            else:
+                decision = evaluate_action(request, packs)
+            return rpc_result(request_id, _tool_result(decision))
+        except (ValueError, TypeError, KeyError, AttributeError, IndexError, RecursionError, OverflowError):
+            return rpc_error(request_id, -32602, "Invalid tool arguments")
+        except Exception:
+            # Do not disclose evidence, secrets, internal errors or stack traces.
+            return rpc_error(request_id, -32603, "Tool evaluation failed")
     return rpc_error(request_id, -32601, "Method not found")
 
 
 def serve(stdin: TextIO = sys.stdin, stdout: TextIO = sys.stdout) -> None:
-    for line in stdin:
-        if not line.strip():
+    while True:
+        # readline(limit) prevents a single untrusted line from being buffered
+        # without bound. Drain its remainder before parsing the next record.
+        line = stdin.readline(MAX_MCP_MESSAGE_BYTES + 1)
+        if not line:
+            break
+        if len(line.encode("utf-8")) > MAX_MCP_MESSAGE_BYTES:
+            while line and not line.endswith("\n"):
+                line = stdin.readline(MAX_MCP_MESSAGE_BYTES + 1)
+            response = rpc_error(None, -32600, "Message too large")
+        elif not line.strip():
             continue
-        try:
-            payload = json.loads(line)
-            response = handle_message(payload) if isinstance(payload, dict) else rpc_error(None, -32600, "Invalid Request")
-        except json.JSONDecodeError:
-            response = rpc_error(None, -32700, "Parse error")
+        else:
+            try:
+                payload = json.loads(
+                    line, object_pairs_hook=_unique_json_fields,
+                    parse_constant=_finite_json_constant,
+                )
+                response = handle_message(payload) if isinstance(payload, dict) else rpc_error(None, -32600, "Invalid Request")
+            except (json.JSONDecodeError, ValueError, UnicodeError):
+                response = rpc_error(None, -32700, "Parse error")
+            except (RecursionError, TypeError, OverflowError):
+                response = rpc_error(None, -32600, "Invalid Request")
+            except Exception:
+                response = rpc_error(None, -32603, "Internal error")
         if response is not None:
             stdout.write(json.dumps(response, ensure_ascii=False, sort_keys=True) + "\n")
             stdout.flush()

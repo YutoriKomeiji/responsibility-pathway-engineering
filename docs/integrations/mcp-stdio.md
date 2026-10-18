@@ -56,6 +56,23 @@ The reference adapter handles:
 
 It exposes no autonomous execution capability.
 
+## Transport/input security boundary
+
+Each newline-delimited JSON-RPC message is limited to **1,048,576 bytes
+(1 MiB)**, including framing whitespace. An oversized line is discarded
+through its terminating newline; a subsequent valid request is processed.
+Ambiguous duplicate JSON keys at any nesting level and non-finite JSON
+constants are rejected. Invalid tool arguments and evaluator exceptions
+produce bounded JSON-RPC errors rather than terminating the stdio server or
+printing exception details to a model client.
+
+The reference server is not a hardened sandbox: size limits are per message,
+not a global concurrency or CPU quota; the caller remains responsible for
+process isolation, request rate and tool-call budgets, trusted launch path,
+secret separation, and verifying that its downstream executor enforces RPE's
+machine-readable decisions. No authentication or identity proof is created by
+the stdio transport.
+
 ## Boundary
 
 This adapter evaluates proposed actions only. It does not execute the requested action, merge code, publish releases, approve policy or legal applicability, verify external effects, grant repair/resume authority, or transfer responsibility to an AI system.

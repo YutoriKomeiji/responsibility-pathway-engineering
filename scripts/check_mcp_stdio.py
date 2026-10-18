@@ -3,15 +3,19 @@
 
 from __future__ import annotations
 
+import io
 import json
 from pathlib import Path
+from unittest.mock import patch
 
 from rpe_kernel.mcp_server import (
     GOVERNED_TOOL_NAME,
     GUARDED_TRANSITION_TOOL_NAME,
     TOOL_NAME,
     TRANSITION_TOOL_NAME,
+    MAX_MCP_MESSAGE_BYTES,
     handle_message,
+    serve,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -80,6 +84,27 @@ def main() -> int:
 
     invalid = handle_message({"jsonrpc": "2.0", "id": 8, "method": "tools/call", "params": {"name": TOOL_NAME, "arguments": {"request": {}, "packs": "bad"}}})
     require(invalid is not None and invalid["error"]["code"] == -32602, "invalid params were not rejected")
+    # Malformed nested policy fields, non-finite JSON, oversized records, and
+    # tool exceptions must not crash the stdio process or taint the next call.
+    normal = {"jsonrpc": "2.0", "id": 99, "method": "ping"}
+    oversized = "x" * (MAX_MCP_MESSAGE_BYTES + 8) + "\n"
+    injected_duplicate = '{"jsonrpc":"2.0","id":9,"method":"tools/call","params":{"name":"rpe_evaluate_action","name":"unsafe","arguments":{}}}\n'
+    invalid_finite = '{"jsonrpc":"2.0","id":10,"method":"ping","params":{"limit":NaN}}\n'
+    out = io.StringIO()
+    serve(io.StringIO(injected_duplicate + invalid_finite + oversized + json.dumps(normal) + "\n"), out)
+    parsed = [json.loads(line) for line in out.getvalue().splitlines()]
+    require(len(parsed) == 4, "MCP server did not recover after malformed messages")
+    require([item["error"]["code"] for item in parsed[:3]] == [-32700, -32700, -32600], "MCP input parser accepted ambiguous/oversized JSON")
+    require(parsed[3] == {"jsonrpc": "2.0", "id": 99, "result": {}}, "MCP process failed to process a valid follow-up")
+    # The kernel may raise on malformed nested content: no exception detail
+    # should be emitted through JSON-RPC or used to terminate the server.
+    with patch("rpe_kernel.mcp_server.evaluate_governed_action", side_effect=ValueError("private-payload-should-not-leak")):
+        failed = handle_message({
+            "jsonrpc": "2.0", "id": 101, "method": "tools/call",
+            "params": {"name": GOVERNED_TOOL_NAME, "arguments": governed_payload},
+        })
+    require(failed is not None and failed["error"]["code"] == -32602, "kernel input exception was not contained")
+    require("private-payload" not in json.dumps(failed), "tool error leaked exception contents")
     print("PASS: MCP stdio adapter checks completed")
     return 0
 
