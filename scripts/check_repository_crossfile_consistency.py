@@ -39,8 +39,7 @@ HISTORY_TERMS = (
 LINK_RE = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
 POTENTIAL_STALE_RE = re.compile(
     r"(?:M2[^\n]{0,90}(?:in progress|not yet closed|next focus|remaining work|implementation pending))"
-    r"|(?:(?:next|remaining) M2 (?:slice|task|work))"
-    r"|(?:(?:M3|adaptive gateway)[^\n]{0,80}(?:production.ready|released|deployed))",
+    r"|(?:(?:next|remaining) M2 (?:slice|task|work))",
     re.IGNORECASE,
 )
 STALE = (
