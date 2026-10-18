@@ -119,6 +119,22 @@ def main() -> int:
     assert no_policy["transition_result"]["control_action"] == "hold", no_policy
     assert "RPE-M3-INTEGRITY-CHECK-CONTROL-REQUIRED" in no_policy["transition_result"]["reason_codes"], no_policy
 
+    # Guarded 0.2.0-exp uses the same M3 transition evaluator. Invalid
+    # restrictions must not disappear at this adapter boundary.
+    for field, invalid_value, reason in (
+        ("constraints", ["no_delegation", None], "RPE-M3-CONSTRAINTS-INVALID"),
+        ("requested_route", {"kind": ["agent"]}, "RPE-M3-ROUTE-UNSUPPORTED-KIND"),
+        ("requested_route", {"kind": "agent", "dispatch_now": True}, "RPE-M3-ROUTE-UNKNOWN-FIELD"),
+    ):
+        malformed = {"contract_version": "0.2.0-exp", "governed_evaluation": governed, field: invalid_value}
+        assert not request_validator.is_valid(malformed), malformed
+        result = evaluate_guarded_adapter_request(malformed, today=date(2026, 9, 1))
+        response_validator.validate(result)
+        assert result["transition_result"]["control_action"] == "hold", result
+        assert reason in result["transition_result"]["reason_codes"], result
+        assert result["authority_effect"] == "none", result
+        assert result["execution_effect"] == "none", result
+
     print("M3 guarded adapter 0.2.0-exp core/schema checks passed")
     return 0
 
