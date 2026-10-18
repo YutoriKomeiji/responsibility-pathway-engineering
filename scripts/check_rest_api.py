@@ -80,7 +80,8 @@ def check_rest_security_boundaries(server_port: int) -> None:
         headers=[("Content-Length", str(len(valid))), ("Content-Type", "application/json; charset=utf-8")],
     )
     assert status == 200, (status, response)
-    assert response["transition_result"]["control_action"] == "hold", response
+    assert response["transition_result"]["control_action"] == "allow", response
+    assert response["authority_effect"] == "none" and response["execution_effect"] == "none", response
 
 def main() -> None:
     server = ThreadingHTTPServer(("127.0.0.1", 0), create_handler())
