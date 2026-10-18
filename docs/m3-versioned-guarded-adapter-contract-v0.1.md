@@ -156,6 +156,10 @@ A named destination is not enough. Structural readiness can preserve:
 
 These fields do not prove that the human or institution is competent, legitimate, actually available, legally responsible, or capable of making a correct decision.
 
+An explicit M2 `human_gate` evaluation **must not** be transformed into a machine/queue/sandbox handoff solely because the caller supplies a different `requested_route`. A non-human target produces a bounded `hold` with `RPE-M3-HUMAN-GATE-INVALID-ROUTE-KIND`. A `human` or `institution` kind is only a structural prerequisite; it does not certify receiver eligibility or grant the requested Authority.
+
+For the guarded `0.2.0-exp` request, `requested_route` must follow the same typed target-kind and no-extra-fields contract used by the M3 gateway, and `constraints` must be an array of nonempty strings. Malformed fields fail closed instead of being silently ignored by a direct Python caller, REST, or MCP adapter.
+
 ## Cumulative exposure boundary
 
 The cumulative evaluator is intentionally stateless. It receives a caller-observed current value and proposed increment and compares the projected value with an explicit caller/policy budget.
