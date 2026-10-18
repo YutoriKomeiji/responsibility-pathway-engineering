@@ -121,3 +121,58 @@ A framework adapter is justified only when it reduces measured integration burde
 | Assured | schema checks and adversarial continuity exist, but the full profile obligations are not closed | research / incremental implementation |
 
 The table reports repository-level implementation state only. It does not establish production suitability or real-world risk reduction.
+
+
+## Problem-first implementation example: vendor bank-detail changes
+
+A concrete enterprise risk is business-email compromise causing fraudulent
+supplier-payment-detail changes. FBI recommends independently verifying account
+changes; OWASP calls out excessive authority/autonomy for AI tools.
+
+- FBI: https://www.fbi.gov/how-we-can-help-you/common-frauds-and-scams/business-email-compromise
+- OWASP LLM06: https://genai.owasp.org/llmrisk/llm062025-excessive-agency/
+
+A runnable **synthetic integration preflight** uses the existing M3 guarded
+adapter without creating a separate workflow engine:
+
+```bash
+python examples/business-controls/vendor_bank_change_preflight.py
+python examples/business-controls/vendor_bank_change_preflight.py --self-test
+```
+
+To evaluate an external JSON case, use `--input path/to/case.json` with
+exactly five fields:
+
+```json
+{
+  "case_id": "illustrative-request-01",
+  "vendor_ref": "non-sensitive-reference",
+  "out_of_band_verified": false,
+  "dual_control_approved": false,
+  "account_mismatch": false
+}
+```
+
+The application-facing outcomes distinguish:
+
+- missing independent callback verification / dual-control evidence:
+  M2 `human_gate` → M3 `require_evidence`;
+- both signals present, no mismatch observed:
+  M2 `allow` → M3 `allow` (still **no** execution authorization);
+- signals present, upstream account mismatch observed:
+  M2 `allow` → M3 `require_authority`.
+
+**Implementation boundary:** These are synthetic, caller-supplied boolean
+observations, not authenticated certificates. Do not populate them from the
+vendor's email or an agent's assertion. A real implementation must source
+them from independently controlled verification and approval workflows, enforce
+the returned decision in its downstream ERP/payment executor, authenticate
+users/tools, maintain auditable evidence, and verify the actual downstream
+effect. RPE neither authenticates the upstream signals nor prevents a
+privileged executor from ignoring its result. The embedded Requirement Pack is
+a replaceable example, **not** an organization-approved payment policy or SAP
+integration. No banking data, live SAP connection, payments, or external writes
+are used.
+
+This example supplies a problem/mitigation/integration starting point, not an
+independent fraud-reduction, deployment, compliance, or commercial claim.
