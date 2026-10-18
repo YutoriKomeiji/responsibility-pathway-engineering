@@ -220,7 +220,15 @@ def evaluate_transition(
     control_action: str
     route_target = normalized_route
 
-    if route_reasons or invalid_constraints:
+    if decision == "deny":
+        # A malformed M3 request cannot weaken an existing M2 terminal deny
+        # into a potentially revisitable hold; retain rejection and evidence.
+        control_action = "deny"
+        reason_codes.extend(route_reasons)
+        if invalid_constraints:
+            reason_codes.append("RPE-M3-CONSTRAINTS-INVALID")
+        route_target = None
+    elif route_reasons or invalid_constraints:
         control_action = "hold"
         reason_codes.extend(route_reasons)
         if invalid_constraints:
@@ -256,9 +264,6 @@ def evaluate_transition(
             control_action = "handoff"
             if route_target is None:
                 route_target = _human_route(evaluation_result)
-    elif decision == "deny":
-        control_action = "deny"
-        route_target = None
     elif decision == "hold":
         control_action = "hold"
     else:
