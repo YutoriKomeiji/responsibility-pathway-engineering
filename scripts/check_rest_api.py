@@ -51,7 +51,10 @@ def request_raw(
 
 
 def check_rest_security_boundaries(server_port: int) -> None:
-    valid = b'{"contract_version":"0.2.0-exp","governed_evaluation":{}}'
+    valid = json.dumps({
+        "contract_version": "0.2.0-exp",
+        "governed_evaluation": json.loads(GOVERNED_FIXTURE.read_text(encoding="utf-8")),
+    }).encode("utf-8")
     for body, headers, expected_status, expected_error in (
         (b"{}", [("Content-Type", "application/json")], 400, "invalid_content_length"),
         (b"{}", [("Content-Length", "-1"), ("Content-Type", "application/json")], 400, "invalid_content_length"),
