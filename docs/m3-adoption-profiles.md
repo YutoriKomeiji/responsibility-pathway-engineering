@@ -123,6 +123,47 @@ A framework adapter is justified only when it reduces measured integration burde
 The table reports repository-level implementation state only. It does not establish production suitability or real-world risk reduction.
 
 
+## Reproduce the exact I/O across Python, REST and MCP
+
+M3 guarded contract version: `0.2.0-exp`. The same evaluation request
+can travel through any of the three installed reference surfaces:
+
+```text
+Caller policy + governed envelope + optional risk/guard conditions
+  ├─ Python: evaluate_guarded_adapter_request(request)
+  ├─ REST: POST /v1/evaluate/transition/guarded (application/json)
+  └─ MCP stdio: tools/call rpe_evaluate_guarded_responsibility_transition
+      → evaluation_result + guard_observations + risk_condition_result
+        + transition_result + authority_effect:none + execution_effect:none
+```
+
+The following script **actually exercises all three I/O paths**, starting
+a temporary loopback REST server and sending JSON-RPC through the MCP stdio
+message handler. It asserts complete JSON-result equality for four inputs:
+
+```bash
+python scripts/demo_m3_cross_surface.py
+python scripts/demo_m3_cross_surface.py --json
+```
+
+| Caller-supplied condition | Expected M3 action | Separate host obligation |
+|---|---|---|
+| Required approval present, no risk flag | `allow` | independently authorize and, if permitted, invoke an executor |
+| Approval evidence absent | not `allow` | obtain/review missing evidence; no dispatch |
+| Upstream mismatch observation triggered | `require_authority` | perform independent authority verification |
+| Caller risk graph contains unknown field | `hold` | repair input; do not silently strip the field |
+
+Machine-readable output includes the exact input, M2 decision, M3 control,
+reason codes, unmet conditions and responsibility/effect boundary for each
+case. The accepted evaluation response is **never itself authority** to run
+an external tool. Authenticating evidence, enforcing decisions before
+execution, retry controls, operational reliability, effect verification and
+data residency remain responsibilities of the integrating host.
+
+This demonstration uses a synthetic Requirement Pack and loopback transport
+only; it measures adapter parity, **not** enterprise deployment security,
+measured incident reduction or production-grade readiness.
+
 ## Problem-first implementation example: vendor bank-detail changes
 
 A concrete enterprise risk is business-email compromise causing fraudulent
