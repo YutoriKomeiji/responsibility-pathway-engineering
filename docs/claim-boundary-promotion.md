@@ -9,7 +9,7 @@ RPE distinguishes:
 
 ## Current evidence boundary
 
-RPE has moved beyond the M1-only implementation boundary and is now in **M2 implementation with the governed-integration baseline reached**.
+RPE has completed **bounded M2 governed-integration closure at repository level**. The executable M2 baseline is on current `main`; experimental M3 work in draft PR #127 is not a released or production-validated part of that baseline.
 
 Current engineering evidence supports:
 
@@ -24,7 +24,7 @@ Current engineering evidence supports:
 - explicit evaluation-only/no-authority handoff semantics;
 - deterministic regression and CI checks for these repository surfaces.
 
-Full M2 closure is **not yet claimed**. Remaining engineering evidence includes uncertainty/effect/evidence handoff semantics, repair/resume responsibility boundaries, residual-owner/Human Return continuity, adversarial validation, and closure review.
+The declared bounded M2 engineering closure is supported by [its adversarial evidence record](m2-r5-adversarial-closure-evidence.md), including handoff responsibility and selected negative checks. This does **not** establish general production safety, correctness of legal/policy interpretation, external-effect verification, or fully reviewed third-party adoption. M3 adaptive routing, expanded security and trajectory obligations retain their separate scope and owner.
 
 The current public implementation detail is recorded in [`m2-governed-integration-current.md`](m2-governed-integration-current.md).
 
@@ -32,7 +32,7 @@ The current public implementation detail is recorded in [`m2-governed-integratio
 
 | Current boundary | Evidence that can move it |
 |---|---|
-| M2 governed-integration baseline / full M2 not yet closed | adversarial evidence for authority/effect/evidence confusion, repair/resume boundary behavior, residual-owner/Human Return continuity, declared closure criteria, and synchronized public claim review |
+| Bounded M2 closure achieved / broader M3 and external effectiveness not established | separate M3 exact-head compatibility and negative evidence, independent integration, deployment/operational evidence, and explicit claim review |
 | No production deployment claim | deployment architecture, authentication/authorization boundaries, operational monitoring, fault-injection, upgrade/rollback and supported-environment evidence |
 | No reviewed real-world normative mapping claim | source/version control, named human owners, applicability/interpretation records, conflict handling, review/approval state, expiry/supersession controls, and qualified independent review for each claimed mapping |
 | No implementation-wide formal conformance | explicit formalization target, model-to-runtime correspondence/refinement relation, and reproducible evidence for the claimed implementation surface |
