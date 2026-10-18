@@ -73,6 +73,33 @@ def main() -> int:
     assert held["control_action"] == "hold", held
     transition_validator.validate(held)
 
+    # Inputs rejected by the 2020-12 JSON Schema must not be accepted by
+    # direct Python evaluation as a clear or triggered-but-uncontrolled graph.
+    invalid_graphs = (
+        {"conditions": [], "dispatch_now": True},
+        {"conditions": [{"condition_id": "risk", "status": "triggered",
+                         "required_controls": ["deny"], "dispatch_now": True}]},
+        {"conditions": [{"condition_id": "risk", "status": "triggered",
+                         "required_controls": ["deny"], "depends_on": [None]}]},
+        {"conditions": [{"condition_id": "risk", "status": "triggered",
+                         "required_controls": ["deny"], "depends_on": ["risk", "risk"]}]},
+        {"conditions": [{"condition_id": "risk", "status": "triggered",
+                         "required_controls": ["deny"], "evidence_refs": ["source", 42]}]},
+        {"conditions": [{"condition_id": "risk", "status": "triggered",
+                         "required_controls": ["deny"], "evidence_refs": ["source", "source"]}]},
+        {"conditions": [{"condition_id": "risk", "status": ["triggered"],
+                         "required_controls": ["deny"]}]},
+    )
+    for invalid_graph in invalid_graphs:
+        assert not risk_input_validator.is_valid(invalid_graph), invalid_graph
+        invalid_result = evaluate_risk_conditions(invalid_graph)
+        assert invalid_result["graph_status"] == "invalid", invalid_result
+        rejected = evaluate_transition(evaluation, risk_result=invalid_result)
+        assert rejected["control_action"] == "hold", rejected
+        assert rejected["authority_effect"] == "none", rejected
+        assert rejected["execution_effect"] == "none", rejected
+        transition_validator.validate(rejected)
+
     print("M3 contract schema checks passed")
     return 0
 
