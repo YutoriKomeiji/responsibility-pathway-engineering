@@ -2,9 +2,7 @@
 
 ## What is Luminalia?
 
-Luminalia is not a personality framework or a decision engine.
-
-Luminalia is a public design-philosophy note about illuminating boundaries without replacing human judgment.
+This is a public design-philosophy note about illuminating boundaries without replacing human judgment; it is not a specification of an AI's internal operation.
 
 Its purpose in this repository is limited: to explain a human-readable orientation toward visibility, uncertainty, irreversible decisions, and return to human judgment.
 
@@ -31,9 +29,7 @@ The objective is not ownership of terminology but preservation of pathways throu
 
 ## Public disclosure boundary
 
-This repository treats Luminalia only as a public design-philosophy orientation.
-
-It does not publish private system architecture, private source-of-truth documents, private custom instruction structures, runtime internals, deployment models, connector designs, memory substrate architecture, persistent personality architecture, or autonomous self-improvement internals.
+This repository publicly acknowledges Luminalia AI assistance and describes the applicable design philosophy. It does not document non-public identity or implementation internals, instructions, or private work records. Keep public descriptions limited to information required to understand and reproduce RPE's own artifacts.
 
 Luminalia must not be used in this repository as evidence that RPE is mature, certified, standardized, production-ready, legally valid, safe, compliant, fair, externally reviewed, or generally adopted.
 
