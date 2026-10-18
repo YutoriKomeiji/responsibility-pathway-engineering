@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import copy
 import json
 from datetime import date
 from pathlib import Path
@@ -134,6 +135,29 @@ def main() -> int:
         assert reason in result["transition_result"]["reason_codes"], result
         assert result["authority_effect"] == "none", result
         assert result["execution_effect"] == "none", result
+
+    # An M2 decision requiring a human cannot be redirected to a machine
+    # by the guarded adapter's caller-supplied route target.
+    missing_approval = copy.deepcopy(governed)
+    missing_approval["request"]["context"]["human_approval_present"] = False
+    missing_approval["request"]["evidence_scope"] = {
+        "available": [], "missing": ["approval-record"],
+    }
+    misrouted_human_gate = {
+        "contract_version": "0.2.0-exp",
+        "governed_evaluation": missing_approval,
+        "requested_route": {"kind": "agent", "target_id": "unapproved-agent"},
+    }
+    request_validator.validate(misrouted_human_gate)
+    blocked_human_gate = evaluate_guarded_adapter_request(
+        misrouted_human_gate, today=date(2026, 9, 1),
+    )
+    response_validator.validate(blocked_human_gate)
+    assert blocked_human_gate["evaluation_result"]["decision"] == "human_gate", blocked_human_gate
+    assert blocked_human_gate["transition_result"]["control_action"] == "hold", blocked_human_gate
+    assert "RPE-M3-HUMAN-GATE-INVALID-ROUTE-KIND" in blocked_human_gate["transition_result"]["reason_codes"], blocked_human_gate
+    assert blocked_human_gate["authority_effect"] == "none", blocked_human_gate
+    assert blocked_human_gate["execution_effect"] == "none", blocked_human_gate
 
     print("M3 guarded adapter 0.2.0-exp core/schema checks passed")
     return 0
