@@ -21,6 +21,7 @@ ACTIVE = {
     "ROADMAP.md", "AGENTS.md", "LUMINALIA.md",
     "docs/external-kernel-roadmap.md",
     "docs/m2-governed-integration-current.md",
+    "docs/claim-boundary-promotion.md",
     "docs/repository-principles.md",
     "docs/repository-governance.md",
     "docs/development-process.md",
@@ -138,6 +139,7 @@ def main() -> int:
              "bounded M2 governed-integration closure completed", "M3 draft PR #127")
     requires("docs/m2-governed-integration-current.md",
              "bounded M2 governed-integration closure complete")
+    requires("docs/claim-boundary-promotion.md", "bounded M2 governed-integration closure at repository level")
     requires("docs/repository-principles.md", "From principle to executable evidence")
     report = {
         "tracked_files": len(paths),
