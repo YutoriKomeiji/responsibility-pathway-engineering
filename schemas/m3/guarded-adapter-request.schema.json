@@ -8,7 +8,21 @@
     "contract_version": {"const": "0.2.0-exp"},
     "governed_evaluation": {"type": "object"},
     "risk_graph": {"type": ["object", "null"]},
-    "requested_route": {"type": ["object", "null"]},
+    "requested_route": {
+      "oneOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "required": ["kind"],
+          "properties": {
+            "kind": {"enum": ["human", "agent", "verifier", "saas", "legacy_system", "institution", "workflow", "queue", "sandbox", "simulator", "hold", "stop"]},
+            "target_id": {"type": ["string", "null"], "minLength": 1},
+            "purpose": {"type": ["string", "null"], "minLength": 1}
+          },
+          "additionalProperties": false
+        }
+      ]
+    },
     "constraints": {"type": "array", "items": {"type": "string", "minLength": 1}},
     "integrity_checks": {
       "type": "array",
