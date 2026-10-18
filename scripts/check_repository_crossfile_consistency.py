@@ -120,7 +120,7 @@ def main() -> int:
                     malformed_negative_json.append(f"{path}:{exc.lineno}: {exc.msg}")
         if path.startswith(".github/workflows/") and path.endswith((".yaml", ".yml")):
             found["workflow"] += 1
-            for reference in re.findall(r"\\bpython(?:3)?\\s+(scripts/[a-zA-Z0-9_./-]+\\.py)\\b", text):
+            for reference in re.findall(r"\bpython(?:3)?\s+(scripts/[a-zA-Z0-9_./-]+\.py)\b", text):
                 found["workflow-python-ref"] += 1
                 if reference not in present:
                     problems.append(f"WORKFLOW_MISSING_SCRIPT: {path} -> {reference}")
