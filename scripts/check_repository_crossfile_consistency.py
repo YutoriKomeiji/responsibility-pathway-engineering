@@ -36,8 +36,7 @@ HISTORY_TERMS = (
     "migration", "historical", "log", "connection",
 )
 LINK_RE = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
-STALE = (
-    "Status: implementation in progress; governed-integration baseline reached.",
+POTENTIAL_STALE_RE = re.compile(\n    r"(?:M2[^\\n]{0,90}(?:in progress|not yet closed|next focus|remaining work|implementation pending))"\n    r"|(?:(?:next|remaining) M2 (?:slice|task|work))"\n    r"|(?:(?:M3|adaptive gateway)[^\\n]{0,80}(?:production.ready|released|deployed))",\n    re.IGNORECASE,\n)\nSTALE = (\n    "Status: implementation in progress; governed-integration baseline reached.",
     "Full M2 closure not yet claimed.",
     "Status: next M2 focus.",
     "Merge/read back the M2 documentation synchronization slice.",
@@ -85,6 +84,7 @@ def main() -> int:
     problems: list[str] = []
     broken_links: list[str] = []
     historical_stale: list[str] = []
+    semantic_review_candidates: list[str] = []
     for path in paths:
         counts[kind(path)] += 1
         p = ROOT / path
@@ -96,6 +96,9 @@ def main() -> int:
         found["readable"] += 1
         if path.endswith(".md"):
             found["markdown"] += 1
+            for n, line in enumerate(text.splitlines(), 1):
+                if POTENTIAL_STALE_RE.search(line):
+                    semantic_review_candidates.append(f"{path}:{n}: {line.strip()[:160]}")
             for match in LINK_RE.finditer(text):
                 dest = link_target(path, match.group(1))
                 if dest is None:
@@ -137,6 +140,8 @@ def main() -> int:
         "local_markdown_links": found["local-link"],
         "broken_links_all": len(broken_links),
         "broken_link_samples": broken_links[:25],
+        "semantic_status_review_candidates": len(semantic_review_candidates),
+        "semantic_status_samples": semantic_review_candidates[:65],
         "historical_status_matches": len(set(historical_stale)),
         "historical_status_samples": sorted(set(historical_stale))[:12],
         "current_failures": problems[:40],
