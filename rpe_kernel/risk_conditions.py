@@ -7,7 +7,7 @@ an action, or choose between conflicting policy controls.
 
 from __future__ import annotations
 
-from collections.abc import Mapping, Sequence
+from collections.abc import Mapping
 from typing import Any
 
 RISK_GRAPH_CONTRACT_VERSION = "0.1.0-exp"
@@ -32,12 +32,6 @@ CONTROL_ACTIONS = frozenset(
 )
 
 
-def _strings(value: Any) -> list[str]:
-    if not isinstance(value, Sequence) or isinstance(value, (str, bytes, bytearray)):
-        return []
-    return [item for item in value if isinstance(item, str) and item]
-
-
 def evaluate_risk_conditions(graph: Mapping[str, Any]) -> dict[str, Any]:
     """Evaluate a declarative condition graph without inventing policy.
 
@@ -58,8 +52,19 @@ def evaluate_risk_conditions(graph: Mapping[str, Any]) -> dict[str, Any]:
             "scalar_score": None,
         }
 
+    if set(graph) - {"conditions"}:
+        return {
+            "contract_version": RISK_GRAPH_CONTRACT_VERSION,
+            "graph_status": "invalid",
+            "triggered_conditions": [],
+            "unknown_conditions": [],
+            "required_controls": ["hold"],
+            "reason_codes": ["RPE-M3-RISK-GRAPH-UNKNOWN-FIELD"],
+            "scalar_score": None,
+        }
+
     nodes = graph.get("conditions")
-    if not isinstance(nodes, Sequence) or isinstance(nodes, (str, bytes, bytearray)):
+    if not isinstance(nodes, list):
         return {
             "contract_version": RISK_GRAPH_CONTRACT_VERSION,
             "graph_status": "invalid",
@@ -76,6 +81,9 @@ def evaluate_risk_conditions(graph: Mapping[str, Any]) -> dict[str, Any]:
         if not isinstance(raw, Mapping):
             reasons.append("RPE-M3-RISK-CONDITION-INVALID")
             continue
+        if set(raw) - {"condition_id", "status", "required_controls", "depends_on", "evidence_refs"}:
+            reasons.append("RPE-M3-RISK-CONDITION-UNKNOWN-FIELD")
+            continue
         condition_id = raw.get("condition_id")
         status = raw.get("status")
         raw_controls = raw.get("required_controls")
@@ -89,15 +97,35 @@ def evaluate_risk_conditions(graph: Mapping[str, Any]) -> dict[str, Any]:
             reasons.append("RPE-M3-RISK-CONDITION-INVALID-CONTROLS")
             continue
         controls = raw_controls
-        depends_on = _strings(raw.get("depends_on"))
-        evidence_refs = _strings(raw.get("evidence_refs"))
+        # Optional relationship/evidence fields still have strict array shapes.
+        # Dropping an invalid dependency can conceal an unresolved risk.
+        related: dict[str, list[str]] = {}
+        invalid_optional = False
+        for key, reason in (
+            ("depends_on", "RPE-M3-RISK-CONDITION-INVALID-DEPENDENCIES"),
+            ("evidence_refs", "RPE-M3-RISK-CONDITION-INVALID-EVIDENCE-REFS"),
+        ):
+            raw_values = raw.get(key, [])
+            if (
+                not isinstance(raw_values, list)
+                or any(not isinstance(item, str) or not item for item in raw_values)
+                or len(set(raw_values)) != len(raw_values)
+            ):
+                reasons.append(reason)
+                invalid_optional = True
+            else:
+                related[key] = raw_values
+        if invalid_optional:
+            continue
+        depends_on = related["depends_on"]
+        evidence_refs = related["evidence_refs"]
         if not isinstance(condition_id, str) or not condition_id:
             reasons.append("RPE-M3-RISK-CONDITION-MISSING-ID")
             continue
         if condition_id in normalized:
             reasons.append("RPE-M3-RISK-CONDITION-DUPLICATE-ID")
             continue
-        if status not in CONDITION_STATUSES:
+        if not isinstance(status, str) or status not in CONDITION_STATUSES:
             reasons.append("RPE-M3-RISK-CONDITION-INVALID-STATUS")
             continue
         unsupported = sorted(set(controls) - CONTROL_ACTIONS)
