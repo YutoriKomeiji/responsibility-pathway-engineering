@@ -62,11 +62,14 @@ def normalize_route_target(value: Mapping[str, Any] | None) -> tuple[dict[str, A
     if not isinstance(value, Mapping):
         return None, ["RPE-M3-ROUTE-INVALID-TARGET"]
 
+    if set(value) - {"kind", "target_id", "purpose"}:
+        return None, ["RPE-M3-ROUTE-UNKNOWN-FIELD"]
+
     kind = value.get("kind")
     target_id = value.get("target_id")
     purpose = value.get("purpose")
 
-    if kind not in ROUTE_TARGET_KINDS:
+    if not isinstance(kind, str) or kind not in ROUTE_TARGET_KINDS:
         return None, ["RPE-M3-ROUTE-UNSUPPORTED-KIND"]
     if target_id is not None and (not isinstance(target_id, str) or not target_id):
         return None, ["RPE-M3-ROUTE-INVALID-TARGET-ID"]
@@ -205,7 +208,11 @@ def evaluate_transition(
 
     reason_codes = _normalized_strings(evaluation_result.get("reason_codes"))
     normalized_route, route_reasons = normalize_route_target(requested_route)
-    normalized_constraints = _normalized_strings(constraints)
+    invalid_constraints = constraints is not None and (
+        not isinstance(constraints, list)
+        or any(not isinstance(item, str) or not item for item in constraints)
+    )
+    normalized_constraints = list(constraints) if not invalid_constraints and constraints is not None else []
     missing = _missing_evidence(evaluation_result)
     decision = evaluation_result.get("decision")
     risk_control, risk_reasons, risk_candidates = _risk_controls(risk_result)
@@ -213,9 +220,11 @@ def evaluate_transition(
     control_action: str
     route_target = normalized_route
 
-    if route_reasons:
+    if route_reasons or invalid_constraints:
         control_action = "hold"
         reason_codes.extend(route_reasons)
+        if invalid_constraints:
+            reason_codes.append("RPE-M3-CONSTRAINTS-INVALID")
         route_target = None
     elif decision == "allow":
         if risk_control == "hold":
@@ -385,7 +394,7 @@ def evaluate_gateway_request(
     transition_result = evaluate_transition(
         evaluation_result,
         requested_route=payload.get("requested_route") if isinstance(payload.get("requested_route"), Mapping) else payload.get("requested_route"),
-        constraints=payload.get("constraints") if isinstance(payload.get("constraints"), Sequence) else None,
+        constraints=payload.get("constraints"),
         risk_result=risk_result,
     )
 
@@ -439,7 +448,7 @@ def evaluate_integrity_guarded_gateway_request(
     transition_result = evaluate_transition(
         evaluation_result,
         requested_route=payload.get("requested_route") if isinstance(payload.get("requested_route"), Mapping) else payload.get("requested_route"),
-        constraints=payload.get("constraints") if isinstance(payload.get("constraints"), Sequence) else None,
+        constraints=payload.get("constraints"),
         risk_result=risk_result,
     )
 
