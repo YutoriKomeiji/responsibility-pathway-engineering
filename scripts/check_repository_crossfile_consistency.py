@@ -36,7 +36,14 @@ HISTORY_TERMS = (
     "migration", "historical", "log", "connection",
 )
 LINK_RE = re.compile(r"(?<!!)\[[^\]]+\]\(([^)]+)\)")
-POTENTIAL_STALE_RE = re.compile(\n    r"(?:M2[^\\n]{0,90}(?:in progress|not yet closed|next focus|remaining work|implementation pending))"\n    r"|(?:(?:next|remaining) M2 (?:slice|task|work))"\n    r"|(?:(?:M3|adaptive gateway)[^\\n]{0,80}(?:production.ready|released|deployed))",\n    re.IGNORECASE,\n)\nSTALE = (\n    "Status: implementation in progress; governed-integration baseline reached.",
+POTENTIAL_STALE_RE = re.compile(
+    r"(?:M2[^\n]{0,90}(?:in progress|not yet closed|next focus|remaining work|implementation pending))"
+    r"|(?:(?:next|remaining) M2 (?:slice|task|work))"
+    r"|(?:(?:M3|adaptive gateway)[^\n]{0,80}(?:production.ready|released|deployed))",
+    re.IGNORECASE,
+)
+STALE = (
+    "Status: implementation in progress; governed-integration baseline reached.",
     "Full M2 closure not yet claimed.",
     "Status: next M2 focus.",
     "Merge/read back the M2 documentation synchronization slice.",
