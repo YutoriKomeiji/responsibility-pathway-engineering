@@ -217,6 +217,46 @@ def main() -> int:
         assert malformed_transition["control_action"] == "hold", malformed_transition
         assert_bounded(malformed_transition)
 
+    # Schema and direct Python ingestion must agree: a malformed relationship
+    # or unexpected field cannot be normalized away and lead to continuation.
+    invalid_graphs = (
+        ({"conditions": [], "dispatch_now": True}, "RPE-M3-RISK-GRAPH-UNKNOWN-FIELD"),
+        ({"conditions": ()}, "RPE-M3-RISK-GRAPH-MISSING-CONDITIONS"),
+        (_graph({"condition_id": "c", "status": "triggered", "required_controls": ["deny"], "dispatch_now": True}),
+         "RPE-M3-RISK-CONDITION-UNKNOWN-FIELD"),
+        (_graph({"condition_id": "c", "status": "triggered", "required_controls": ["deny"], "depends_on": [None]}),
+         "RPE-M3-RISK-CONDITION-INVALID-DEPENDENCIES"),
+        (_graph({"condition_id": "c", "status": "triggered", "required_controls": ["deny"], "depends_on": "missing"}),
+         "RPE-M3-RISK-CONDITION-INVALID-DEPENDENCIES"),
+        (_graph({"condition_id": "c", "status": "triggered", "required_controls": ["deny"], "depends_on": ["c", "c"]}),
+         "RPE-M3-RISK-CONDITION-INVALID-DEPENDENCIES"),
+        (_graph({"condition_id": "c", "status": "triggered", "required_controls": ["deny"], "evidence_refs": ["evidence", 42]}),
+         "RPE-M3-RISK-CONDITION-INVALID-EVIDENCE-REFS"),
+        (_graph({"condition_id": "c", "status": "triggered", "required_controls": ["deny"], "evidence_refs": ["same", "same"]}),
+         "RPE-M3-RISK-CONDITION-INVALID-EVIDENCE-REFS"),
+        (_graph({"condition_id": "c", "status": ["triggered"], "required_controls": ["deny"]}),
+         "RPE-M3-RISK-CONDITION-INVALID-STATUS"),
+    )
+    for invalid_graph, expected_reason in invalid_graphs:
+        invalid_risk = evaluate_risk_conditions(invalid_graph)
+        assert invalid_risk["graph_status"] == "invalid", invalid_risk
+        assert expected_reason in invalid_risk["reason_codes"], invalid_risk
+        blocked = evaluate_transition(allowed_evaluation, risk_result=invalid_risk)
+        assert blocked["control_action"] == "hold", blocked
+        assert_bounded(blocked)
+
+    # A well-formed relation must still retain its evidence and block no
+    # otherwise valid evaluation when all its conditions are clear.
+    valid_related = evaluate_risk_conditions(_graph(
+        {"condition_id": "source", "status": "clear", "required_controls": [],
+         "evidence_refs": ["source-readback"]},
+        {"condition_id": "dependent", "status": "clear", "required_controls": [],
+         "depends_on": ["source"], "evidence_refs": ["dependent-readback"]},
+    ))
+    assert valid_related["graph_status"] == "clear", valid_related
+    assert valid_related["conditions"][1]["depends_on"] == ["source"], valid_related
+    assert evaluate_transition(allowed_evaluation, risk_result=valid_related)["control_action"] == "allow"
+
     missing_evidence_input = copy.deepcopy(base)
     missing_evidence_input["request"]["context"]["human_approval_present"] = False
     missing_evidence_input["request"]["evidence_scope"] = {
