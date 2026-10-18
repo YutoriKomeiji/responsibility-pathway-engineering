@@ -242,7 +242,15 @@ def evaluate_transition(
         else:
             control_action = "allow"
     elif decision == "human_gate":
-        if missing:
+        # A specific M2 Human Gate cannot become a handoff to an arbitrary
+        # AI/tool destination merely because the caller requested that route.
+        # A human/institution kind is only a structural prerequisite, not
+        # evidence of actual receiver eligibility or authorization.
+        if route_target is not None and route_target["kind"] not in {"human", "institution"}:
+            control_action = "hold"
+            reason_codes.append("RPE-M3-HUMAN-GATE-INVALID-ROUTE-KIND")
+            route_target = None
+        elif missing:
             control_action = "require_evidence"
         else:
             control_action = "handoff"
