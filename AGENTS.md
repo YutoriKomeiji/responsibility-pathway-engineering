@@ -65,6 +65,12 @@ Stop and return to the maintainer before:
 - selecting a final responsibility holder
 - making destructive or irreversible changes
 
+## Public artifact boundary
+
+Public repository content may acknowledge **Luminalia AI** as an AI-assisted development source. It must not disclose unrelated private AI role identities, internal conversation conventions, non-public architecture or operating instructions, or private work records. Use neutral functional roles in code, examples, comments, agent profiles, issues, and reviews.
+
+Check staged changes and proposed PR text for accidental non-product content before publication. Public AI assistance disclosure is not permission to publish private details. Once a detail has appeared in Git history, editing the current file cannot erase the historical disclosure.
+
 ## Evidence discipline
 
 Separate:
