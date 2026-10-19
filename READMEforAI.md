@@ -52,6 +52,8 @@ Current implementation summary:
 docs/m2-governed-integration-current.md
 ```
 
+Branch-only M3 input/output, adverse cases, and host responsibility: [M3 integration/operator guide](docs/m3-integration-operator-guide.md). This describes the unmerged Draft; it is not yet functionality shipped on the closed M2 `main` baseline.
+
 ## Reproduce before summarizing
 
 A grounded reader should be able to distinguish executable behavior from documentation by following these entry points.
