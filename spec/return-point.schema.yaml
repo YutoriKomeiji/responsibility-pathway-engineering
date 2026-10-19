@@ -1,9 +1,11 @@
-version: 0.1.0
+version: 0.2.0
 kind: ReturnPointSchema
 
 purpose: >
-  Defines the minimum machine-readable structure for a Return Point,
-  including Human Return Point conditions.
+  Defines the minimum machine-readable structure for a Return Point and its
+  responsibility-route context, including bounded Human Return Point conditions.
+  A Return Point is one possible Responsibility Route destination; fail-closed
+  behavior does not by itself imply Human Return.
 
 return_point:
   required_fields:
@@ -29,11 +31,61 @@ return_point:
 
     source_node:
       type: string
-      description: Node from which responsibility-related state returns.
+      description: Node from which responsibility-related state returns or routes.
 
     target_node:
       type: string
-      description: Node to which responsibility-related state returns.
+      description: Node to which responsibility-related state returns or routes.
+
+    route_kind:
+      type: enum
+      description: >
+        Optional route semantics. HumanReturn is bounded; HoldForReconciliation
+        and NeutralHold preserve unresolved state when no eligible receiver should act yet.
+      allowed_values:
+        - ContinueWithinDelegation
+        - AIResolveWithinDelegation
+        - HumanReturn
+        - OrganizationalReturn
+        - InstitutionalReturn
+        - AuthorizedProcess
+        - HoldForReconciliation
+        - NeutralHold
+        - StopAndPreserveResidue
+
+    receiver_eligibility:
+      type: object
+      suggested_fields:
+        - receiver_identified
+        - authority_scope_explicit
+        - delegation_scope_explicit
+        - unresolved_payload_supported
+        - evidence_access_sufficient
+        - time_window_sufficient
+        - intervention_capacity_sufficient
+        - eligibility_basis
+        - eligibility_checked_at
+
+    authority_effect:
+      type: enum
+      description: >
+        Whether selecting or reaching this route grants Authority. Route selection,
+        evidence transfer, capability, and recovered state must not silently create Authority.
+      allowed_values:
+        - none
+        - explicit_external_grant
+      default: none
+
+    unresolved_payload:
+      type: object
+      suggested_fields:
+        - decision_required
+        - effect_status
+        - evidence_refs
+        - prohibited_assumptions
+        - residual_owner
+        - allowed_next_actions
+        - reevaluation_condition
 
     returnability_conditions:
       type: object
@@ -54,6 +106,8 @@ return_point:
         - reject
         - escalate
         - suspend
+        - hold
+        - reconcile
         - rollback
         - repair
         - compensate
@@ -67,6 +121,7 @@ return_point:
         - minimum_evidence_categories
         - reconstruction_required
         - access_boundary
+        - provenance_required
 
     human_conditions:
       type: object
@@ -83,11 +138,23 @@ return_point:
 validation_rules:
   - id: human_return_requires_human_conditions
     rule: >
-      If type is HumanReturnPoint, human_conditions should be present.
+      If type is HumanReturnPoint or route_kind is HumanReturn, human_conditions should be present.
 
   - id: return_requires_authority_visibility
     rule: >
       returnability_conditions.authority_visible should be true or explicitly justified.
+
+  - id: route_selection_does_not_grant_authority
+    rule: >
+      authority_effect should remain none unless a separately evidenced explicit external
+      Authority grant exists. Evidence transfer, receiver capability, route selection,
+      or recovered state are insufficient.
+
+  - id: receiver_route_requires_eligibility
+    rule: >
+      A route to an acting receiver should record receiver_eligibility or explicitly state
+      why eligibility is not yet established. If eligibility is unresolved, hold or
+      reconciliation routes remain valid outcomes.
 
   - id: repair_action_requires_repair_path
     rule: >
@@ -97,7 +164,17 @@ validation_rules:
     rule: >
       If supported_actions includes rollback, returnability_conditions.reversibility_or_compensation_visible should be true.
 
+  - id: recovery_does_not_imply_resume_authority
+    rule: >
+      Successful repair, restart, readback, or reconciliation must not by itself establish
+      approval or resume Authority; any required authorization must be represented separately.
+
 boundary:
   - A return point does not prove legal responsibility.
   - A human being present is not sufficient for Human Return Point validity.
+  - Human Return is one bounded Responsibility Route, not the generic meaning of fail-closed behavior.
+  - Evidence transfer is not Authority transfer.
+  - Receiver capability is not receiver eligibility.
+  - Route selection is not an Authority grant.
+  - State recovery is not approval or resume Authority recovery.
   - Returnability depends on information, authority, time, and repair capacity.

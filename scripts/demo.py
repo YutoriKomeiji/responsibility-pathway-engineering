@@ -2,8 +2,9 @@
 """One-command RPE decision walkthrough.
 
 The demo exercises the canonical ``rpe_kernel.evaluate_action()`` path with
-synthetic data. It remains dependency-free and does not certify safety,
-compliance, legal correctness, or production readiness.
+synthetic data. Its evidence scope is repository-level decision behavior;
+deployment, legal/compliance, and broader safety conclusions require separate
+evaluation.
 """
 
 from __future__ import annotations
@@ -180,8 +181,8 @@ def main() -> int:
     print("- Missing applicability context remained visible and returned to a human reviewer.")
     print(f"- Strongest stop observed in this run: {strongest.upper()}.")
     print()
-    print("Boundary: passing this demo is not certification, legal review, compliance review,")
-    print("safety approval, fairness assessment, deployment approval, or transfer of final responsibility.")
+    print("Scope: this demo verifies repository-level decision behavior only.")
+    print("Deployment, legal/compliance, broader safety, and final-responsibility decisions remain separate review domains.")
     return 0
 
 
