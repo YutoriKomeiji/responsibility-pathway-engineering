@@ -123,6 +123,8 @@ A framework adapter is justified only when it reduces measured integration burde
 The table reports repository-level implementation state only. It does not establish production suitability or real-world risk reduction.
 
 
+The [M3 integration/operator guide](m3-integration-operator-guide.md) offers a single first-use path from install through Python/REST/MCP I/O, host-side enforcement, failure semantics and evidence-limited expectations. This document retains ownership of the Thin/Governed/Assured profiles.
+
 ## Reproduce the exact I/O across Python, REST and MCP
 
 M3 guarded contract version: `0.2.0-exp`. The same evaluation request
