@@ -186,6 +186,8 @@ Deferred until deliberately scoped.
 
 Production adoption requires separate design and review for authentication, authorization, TLS, rate limiting, persistence, retention, tenancy, secrets, observability, deployment, rollback, operational ownership, and incident response.
 
+For installable experimental inputs/outputs, host enforcement, negative cases and expected measurable effects, see the [M3 integration/operator guide](docs/m3-integration-operator-guide.md). This is Draft-only guidance, not release promotion.
+
 ## Front-loaded execution order
 
 1. Preserve M2 as **closed** and fix mismatched current-state documentation.
