@@ -251,6 +251,7 @@ See:
 
 ## Main links
 
+- [Experimental M3 integration/operator guide](docs/m3-integration-operator-guide.md) — I/O, enforcement and measurable expectations
 - [Why use RPE?](docs/why-rpe.md)
 - [M2 closure evidence](docs/m2-r5-adversarial-closure-evidence.md)
 - [Current M2 status](docs/m2-governed-integration-current.md)
