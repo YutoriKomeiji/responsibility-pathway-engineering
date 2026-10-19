@@ -82,6 +82,10 @@ independently managed enterprise security boundary. MCP stdio has a separate
 transport boundary. The 1 MiB cap is an initial compatibility limit, not a
 performance/SLO claim.
 
+## M3 guarded REST route (experimental Draft only)
+
+Draft PR #127 adds `POST /v1/evaluate/transition/guarded` with contract `0.2.0-exp`, and `GET /openapi-guarded.json`. The `governed_evaluation` field must contain a complete governed M2 envelope, not `{}` as a production request. For a runnable same-payload Python/REST/MCP comparison and host-side enforcement/failure semantics, see [M3 integration/operator guide](../m3-integration-operator-guide.md). A valid HTTP 200 can still contain `hold`; it never grants dispatch Authority. This route is not yet part of the merged M2 baseline.
+
 ## Boundary
 
 This is a local reference server, not a production deployment. It does not provide authentication, authorization, TLS termination, rate limiting, persistent storage, tenancy isolation, remote Requirement Pack trust, action execution, external-effect verification, repair/resume authority, or legal/compliance validation.
