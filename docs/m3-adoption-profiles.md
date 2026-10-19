@@ -164,6 +164,30 @@ This demonstration uses a synthetic Requirement Pack and loopback transport
 only; it measures adapter parity, **not** enterprise deployment security,
 measured incident reduction or production-grade readiness.
 
+## Host-side enforcement before any action
+
+To illustrate how an integrating application **consumes** (but does not treat
+as authority) an RPE M3 result, run:
+
+```bash
+python scripts/demo_m3_host_enforcement.py
+```
+
+This is a **synthetic in-process executor** that records a single effect to
+an in-memory list; it does not call a bank, ERP, tool, network service or
+release API. Six test cases show that host-level actor/target authorization
+and RPE `allow` are both necessary to reach the simulated executor; missing
+approval evidence, an upstream mismatch, wrong target, missing host grant and
+untrusted actor do not dispatch. A seventh case rejects a forged
+`authority_effect` result. This demonstrates one fail-closed integration
+pattern, **not** independent authentication, authorization correctness,
+remote enforcement, or guaranteed risk reduction.
+
+A real deployment must bind an authenticated user/service to exact permitted
+operations and target, prevent parallel bypass paths, acquire independent
+approval evidence, verify effect in the external destination, and implement
+durable retry/reconciliation/incident handling downstream.
+
 ## Problem-first implementation example: vendor bank-detail changes
 
 A concrete enterprise risk is business-email compromise causing fraudulent

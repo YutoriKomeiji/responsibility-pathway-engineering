@@ -84,7 +84,7 @@ current merged implementation baseline.
 
 The M3 working branch includes generalized responsibility-route descriptors,
 adaptive controls, conditional risk graphs, caller-observed integrity, Human
-Return readiness and cumulative-exposure guards; \`0.2.0-exp\` guarded Python,
+Return readiness and cumulative-exposure guards; `0.2.0-exp` guarded Python,
 REST/OpenAPI and MCP stdio interfaces; bounded malformed-input/error handling;
 a reproducible cross-surface I/O parity demo; and a synthetic bank-detail change
 preflight. All of these are **branch-scoped** until reviewed and promoted.

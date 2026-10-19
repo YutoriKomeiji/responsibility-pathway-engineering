@@ -7,7 +7,7 @@ K4 ≠ M4. For actual milestone gates, see [ROADMAP.md](../ROADMAP.md).
 ## Current position and authority boundaries
 
 **M1:** compatibility reference kernel complete. **M2:** bounded
-governed-integration baseline closed on merged \`main\`; consult
+governed-integration baseline closed on merged `main`; consult
 [the M2 closure evidence](m2-r5-adversarial-closure-evidence.md) and
 [the current M2 contract](m2-governed-integration-current.md).
 **M3:** adaptive responsibility gateway implementation in **unmerged Draft
@@ -42,7 +42,7 @@ explicit **downstream responsibility**, not silently incomplete M2.
 
 ## Integration I/O to provide before widening claims
 
-\`\`\`text
+```text
 Agent / host proposal + scoped governance + caller-observed evidence
        ↓
 M2 governed entry + optional experimental M3 risk/guard input
@@ -54,15 +54,15 @@ RPE evaluation → control + reason codes + unmet conditions
 Host's separately authenticated, authorized PRE-DISPATCH decision
        ↓
 Host executor / RPR / RPOS handles effect, audit, reconciliation, recovery
-\`\`\`
+```
 
 M3 experimental complete-response parity is executable via
-\`python scripts/demo_m3_cross_surface.py\` or
-\`python scripts/demo_m3_cross_surface.py --json\`.
+`python scripts/demo_m3_cross_surface.py` or
+`python scripts/demo_m3_cross_surface.py --json`.
 See [M3 adoption profiles](m3-adoption-profiles.md) for precise I/O,
 positive/missing-evidence/conflict examples and trust limitations. All three
 surfaces must preserve the **same kernel semantics**; an adapter is not a new
-authority provider. An RPE \`allow\` does not bypass the host's own checks.
+authority provider. An RPE `allow` does not bypass the host's own checks.
 
 ## Front-load the dependency graph
 
