@@ -18,7 +18,16 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from examples.business_controls.vendor_bank_change_preflight import evaluate_preflight  # noqa: E402
+# Load this repository-owned standalone example by file path; an unrelated
+# installed package named "examples" must not shadow it.
+from importlib.util import module_from_spec, spec_from_file_location  # noqa: E402
+
+PREVIEW_SOURCE = ROOT / "examples/business-controls/vendor_bank_change_preflight.py"
+spec = spec_from_file_location("rpe_demo_vendor_preflight", PREVIEW_SOURCE)
+assert spec is not None and spec.loader is not None
+_demo = module_from_spec(spec)
+spec.loader.exec_module(_demo)
+evaluate_preflight = _demo.evaluate_preflight
 
 
 class SyntheticExecutor:
