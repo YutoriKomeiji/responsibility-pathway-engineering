@@ -85,6 +85,8 @@ examples, clear host-side enforcement obligations and truthful release
 maturity. Claims of measured safety, operational SLO or ROI require their
 own observations; do not invent them.
 
+The [M3 integration/operator guide](m3-integration-operator-guide.md) supplies a reproducible first-use path and explains the connection/host trust boundary, error handling, outcome I/O, adoption metrics and unproven claims. It does not create a numbered milestone beyond M3.
+
 ## Review/promotion conditions
 
 Preserve closed M2 regressions; test M3 edge cases at exact PR head; measure
