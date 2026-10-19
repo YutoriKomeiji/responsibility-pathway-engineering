@@ -38,6 +38,22 @@ def main() -> int:
     ):
         for phrase in stale:
             assert phrase not in content, (name, phrase)
+    guide = read("docs/m3-integration-operator-guide.md")
+    for reference in (
+        "README.md", "README.ja.md", "READMEforAI.md",
+        "ROADMAP.md", "docs/external-kernel-roadmap.md",
+        "docs/m3-adoption-profiles.md", "docs/integrations/rest-api.md",
+        "docs/integrations/mcp-stdio.md", "docs/integrations/openapi.md",
+    ):
+        assert "m3-integration-operator-guide.md" in read(reference), reference
+    for marker in (
+        "0.2.0-exp", "rpe_evaluate_guarded_responsibility_transition",
+        "POST /v1/evaluate/transition/guarded",
+        "authority_effect", "execution_effect",
+        "scripts/demo_m3_cross_surface.py", "scripts/demo_m3_host_enforcement.py",
+        "RPR/RPOS",
+    ):
+        assert marker in guide, marker
     print("PASS: M2 closure / M3 Draft / K0-K10 roadmap currentness")
     return 0
 
