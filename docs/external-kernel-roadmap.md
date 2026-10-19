@@ -1,190 +1,94 @@
-# External Kernel Roadmap
-
-This roadmap tracks RPE's portable external responsibility kernel and its interfaces.
-
-## Target
-
-Build reusable components that evaluate explicitly scoped Responsible AI requirement mappings while preserving applicability, governance state, compatibility, evidence scope, reason codes, maintenance ownership, and Human Return routes.
-
-RPE does not directly interpret the full complexity of law or policy. Real-world mappings require named human interpretation and maintenance ownership.
-
-## Current milestone position
-
-### M1 — Governed Reference Kernel
-
-**Status: reached and retained as the compatibility baseline.**
-
-M1 established the shared deterministic kernel, Python/REST/OpenAPI/MCP reference interfaces, requirement-pack governance model, contract-family version baselines, compatibility policy, and explicit scope boundaries.
-
-### M2 — Governed Pack Integration
-
-**Status: implementation in progress; governed-integration baseline reached. Full M2 closure not yet claimed.**
-
-Current public implementation status: [`m2-governed-integration-current.md`](m2-governed-integration-current.md).
-
-## Stage K0 — Foundation
-
-**Status: implemented for the current synthetic reference scope.**
-
-- external responsibility-kernel architecture;
-- bounded Requirement Pack and Action Request shapes;
-- structured `allow`, `hold`, `human_gate`, and `deny` decisions;
-- reason codes and Human Return routes.
-
-## Stage K1 — Interchange schemas and compatibility
-
-**Status: governed baseline implemented.**
-
-Implemented:
-
-- JSON Schemas for legacy and governed contract families;
-- positive and negative fixtures;
-- source metadata and governance fields;
-- independent contract-family semantic versions;
-- additive versus breaking change rules;
-- unknown-version behavior;
-- reason-code stability;
-- deprecation/migration rules;
-- packaged contract-version snapshot consumed by runtime compatibility;
-- CI checks for repository/package version drift.
-
-Open:
-
-- migration fixtures for future real breaking changes;
-- release support-window policy beyond the current reference distribution.
-
-## Stage K2 — Applicability and mapping boundary
-
-**Status: minimal applicability resolution implemented.**
-
-The resolver uses bounded deterministic checks. It is an operational gate, not a general legal or policy reasoning engine.
-
-Next:
-
-- keep unknown applicability visible and Human Returning;
-- define conflict/exception/timing/ambiguity boundaries before increasing condition complexity;
-- require human-scoped and human-approved mappings for real-world use;
-- preserve review diffs rather than silently replacing interpretation.
-
-## Stage K3 — Requirement Pack governance
-
-**Status: strict governed runtime integration implemented.**
-
-The explicit governed path checks:
-
-- lifecycle and ownership;
-- reviewer/approver presence;
-- source authority/version/jurisdiction binding;
-- interpretation status and unresolved ambiguity;
-- effective/review/expiry dates;
-- suspension/supersession/retirement;
-- exact pack/governance identity/version binding;
-- Human Return information.
-
-Governance eligibility is distinct from legal correctness, source trust, schema validity, and execution authority.
-
-## Stage K4 — Runtime kernel package
-
-**Status: legacy and strict governed entries implemented.**
-
-Implemented:
-
-- `rpe_kernel.evaluate_action()` for legacy/M1-compatible use;
-- `rpe_kernel.evaluate_governed_action()` for strict governed evaluation;
-- explicit admission → compatibility → binding → governance → applicability → evaluation order;
-- responsibility handoff with `authority_effect = none` and `decision_scope = evaluation_only`;
-- deterministic regression and CI coverage.
-
-Remaining M2 work is not to make this package an execution controller. It is to strengthen uncertainty/effect/evidence handoff semantics and responsibility continuity.
-
-## Stage K5 — Reference adapters and SDK integrations
-
-**Status: bounded legacy and governed reference adapters implemented.**
-
-Implemented:
-
-- local REST reference adapter;
-- legacy `POST /v1/evaluate`;
-- governed `POST /v1/evaluate/governed`;
-- OpenAPI 3.1 served at `/openapi.json`;
-- packaged OpenAPI snapshot with repository/package/runtime parity checks;
-- MCP stdio reference adapter;
-- legacy MCP tool `rpe_evaluate_action`;
-- governed MCP tool `rpe_evaluate_governed_action`.
-
-Current boundary:
-
-- reference interfaces only, not production protocol stacks;
-- no action execution, production authentication/authorization, transport security, persistence, tenancy, deployment approval, effect verification, or operational ownership.
-
-Future operational integrations must remain thin over the same semantic kernel and require separate dependency/security/maintenance review.
-
-## Stage K6 — Bounded loading
-
-**Status: first bounded loader implemented.**
-
-Implemented:
-
-- caller-provided UTF-8 JSON content;
-- explicitly supplied local files;
-- bounded payload size;
-- stable loader failure codes;
-- rejection of network/remote-registry source forms;
-- downstream use of strict governed evaluation.
-
-Loading bytes is not trust establishment. Local file existence does not prove source authority, interpretation correctness, governance eligibility, or current applicability.
-
-Network fetching, remote registry trust, source discovery, and automatic updates remain out of scope unless deliberately reopened.
-
-## Stage K7 — Reviewed requirement mappings
-
-**Status: synthetic/reference mappings only by default.**
-
-Candidate areas include organizational AI policies, data handling, external-send controls, human oversight, transparency, evidence scope, incident handling, and selected public-framework mappings.
-
-Each claimed reviewed mapping needs named interpretation and maintenance ownership, source/version control, review/approval state, ambiguity handling, expiry/supersession rules, and appropriate independent review.
-
-## Stage K8 — Responsibility handoff, uncertainty, repair, and resume boundary
-
-**Status: next M2 focus.**
-
-RPE should preserve the information downstream runtimes need without taking ownership of the entire post-execution state machine.
-
-Key constraints:
-
-- evaluation evidence is not external-effect evidence;
-- a receipt is not automatically verified effect;
-- repair readiness is not repair authority;
-- resume authority requires a separate authority-bearing transition in the execution-owning system;
-- Human Return and residual responsibility must remain visible across failure paths.
-
-Next implementation/testing should make these boundaries explicit and adversarially testable.
-
-## Stage K9 — Production architecture research
-
-**Status: deferred.**
-
-Research authentication, authorization, transport security, persistence, retention, tenancy, secrets, rate limiting, observability, deployment, rollback, operational ownership, and incident response before making production claims.
-
-## Stage K10 — Formalization and interoperability research
-
-**Status: experimental and future-facing.**
-
-Formal models may express selected responsibility-path invariants under stated assumptions. They do not automatically verify the Python runtime, source interpretation, organizational operation, or real-world outcome.
-
-Broader interoperability or conformance language requires independent client/implementation evidence against declared interfaces and failure semantics.
-
-## Near-term sequence
-
-1. Merge/read back the M2 documentation synchronization slice.
-2. Specify uncertainty/effect/evidence handoff semantics.
-3. Specify repair/resume requirement semantics without authority inflation.
-4. Preserve residual-owner and Human Return continuity.
-5. Add adversarial tests for authority/evidence confusion, governance/binding failures, adapter drift, and loader-boundary violations.
-6. Review claim boundaries and M2 closure evidence.
-7. Add reviewed real-world mappings only with named interpretation/maintenance ownership.
-8. Scope production work separately if deliberately authorized.
-
-## Success measure
-
-RPE progresses when an explicitly scoped Requirement Pack can be versioned, governed, checked for compatibility and applicability, evaluated, stopped, escalated, and handed off with responsibility information intact—without turning an evaluation result into execution authority or turning repository evidence into claims it cannot support.
+# External Kernel Roadmap — technical stages K0–K10
+
+This tracks RPE's portable, responsibility-preserving **evaluation** kernel.
+K0–K10 are *technical scope stages*, **not** numbered product milestones:
+K4 ≠ M4. For actual milestone gates, see [ROADMAP.md](../ROADMAP.md).
+
+## Current position and authority boundaries
+
+**M1:** compatibility reference kernel complete. **M2:** bounded
+governed-integration baseline closed on merged \`main\`; consult
+[the M2 closure evidence](m2-r5-adversarial-closure-evidence.md) and
+[the current M2 contract](m2-governed-integration-current.md).
+**M3:** adaptive responsibility gateway implementation in **unmerged Draft
+PR #127**; no public-release/production-effect claim. **M4+:** not yet
+formally defined, and no stage automatically grants milestone authority.
+
+RPE evaluates proposals, scoped Requirement Packs, evidence declarations,
+risk observations and responsibility transitions. It returns machine-readable
+decisions and obligations, **not** execution Authority or proof of an external
+effect. Authority and real-world verification belong to separately secured
+downstream systems/institutions.
+
+## Stage inventory and accurate maturity labels
+
+| Stage | Scope | Current state |
+| --- | --- | --- |
+| **K0** Foundation | bounded actions, packs, results, reasons and Human Return | Implemented synthetic/reference baseline |
+| **K1** Contracts and compatibility | versioned JSON Schemas, snapshots and drift checks | Implemented M1/M2; migration cases when an actual breaking change is proposed |
+| **K2** Applicability/mapping | explicit scoped requirements; uncertainty/exception boundary | Bounded deterministic resolver; no automatic full legal reasoning |
+| **K3** Pack governance | ownership/review/expiry, binding and eligibility | Strict M2 implemented; independent source trust still external |
+| **K4** Runtime kernel package | legacy and strict governed evaluation; no-authority handoff | Bounded M2 closed; kernel remains separate from execution |
+| **K5** Reference adapters and SDKs | Python, REST/OpenAPI, MCP stdio, experimental guarded routes | M2 merged; M3 enhanced interfaces and three-surface parity on Draft branch |
+| **K6** Bounded loading | local/caller UTF-8 bytes and digest observation | M2 implemented; remote registry and author trust not established |
+| **K7** Reviewed mappings | owner-reviewed real-world requirement sets | Synthetic by default; human maintenance/review needed before real claims |
+| **K8** Handoff/uncertainty/recovery boundary | preserved residual owner, effect-vs-evaluation, retry/repair obligations | M2 handoff contract closed; durable effect/recovery owned by RPR/RPOS |
+| **K9** Production architecture research | authentication, authorization, TLS, tenancy, quotas, observability, incident response | Threat work and bounded reference-adapter hardening; **not** production deployment |
+| **K10** Formalization/interoperability | bounded invariants, other frameworks and client conformance | Experimental; formal acceptance alone does not verify runtime or live outcome |
+
+The historical plan's “remaining M2” language for K8 is superseded by the
+actual bounded M2 closure. The remaining durable post-execution work is an
+explicit **downstream responsibility**, not silently incomplete M2.
+
+## Integration I/O to provide before widening claims
+
+\`\`\`text
+Agent / host proposal + scoped governance + caller-observed evidence
+       ↓
+M2 governed entry + optional experimental M3 risk/guard input
+       ↓
+RPE evaluation → control + reason codes + unmet conditions
+                 + route metadata + residual owner
+                 + authority_effect:none + execution_effect:none
+       ↓
+Host's separately authenticated, authorized PRE-DISPATCH decision
+       ↓
+Host executor / RPR / RPOS handles effect, audit, reconciliation, recovery
+\`\`\`
+
+M3 experimental complete-response parity is executable via
+\`python scripts/demo_m3_cross_surface.py\` or
+\`python scripts/demo_m3_cross_surface.py --json\`.
+See [M3 adoption profiles](m3-adoption-profiles.md) for precise I/O,
+positive/missing-evidence/conflict examples and trust limitations. All three
+surfaces must preserve the **same kernel semantics**; an adapter is not a new
+authority provider. An RPE \`allow\` does not bypass the host's own checks.
+
+## Front-load the dependency graph
+
+1. **Now / K1, K5:** test request/framing/schema failures and exact
+   Python/REST/MCP parity; preserve currently valid M2 success cases.
+2. **Now / K5:** runnable starter paths, clear successful and adverse I/O,
+   integration diagram, host responsibility and error handling.
+3. **Now / K9 research:** bounded negative security/timeout/resource and
+   performance tests; log assumptions, observed metrics and regressions.
+4. **Now / K7 example:** synthetic business-specific policies with labelled
+   caller-supplied signals, not invented domain-approved Authority.
+5. **Separately / K8:** effect execution, retries, reconciliation,
+   reauthorization and durability to RPR/RPOS owners.
+6. **Later with evidence / K7/K9/K10:** real domain governance, production
+   authentication/tenancy/operations, broad interop and formal assurance.
+
+Integration-ready OSS does not require proof of third-party production use.
+It *does* require precise API I/O, reproducible bounded tests, installable
+examples, clear host-side enforcement obligations and truthful release
+maturity. Claims of measured safety, operational SLO or ROI require their
+own observations; do not invent them.
+
+## Review/promotion conditions
+
+Preserve closed M2 regressions; test M3 edge cases at exact PR head; measure
+integration/latency where feasible; reconcile overlapping M3 Draft PRs;
+decide M3 merge/release by existing maintainer/Human Gates. Do not create
+M4+, production-security certification, legal compliance or real-world
+impact claims merely by completing a roadmap entry.

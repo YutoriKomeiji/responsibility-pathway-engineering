@@ -6,7 +6,7 @@ It is a planning aid only. It is not certification, conformance evidence, legal 
 
 ## Current position
 
-RPE is in **M2 implementation**. The governed-integration baseline has been reached, but M2 is not yet declared closed.
+RPE has completed the **bounded M2 governed-integration closure**. M3's adaptive responsibility gateway is being developed in an **unmerged Draft PR**; M3-only results are not yet the released public baseline. The closed M2 scope is the strict governed-evaluation and responsibility-preserving handoff surface described below; broader adaptive routing, security, trajectory, adoption, and production concerns remain post-M2 work rather than unfinished M2 implementation.
 
 Public current-status detail: [`docs/m2-governed-integration-current.md`](docs/m2-governed-integration-current.md).
 
@@ -61,18 +61,65 @@ M1 established the shared deterministic kernel, bounded reference interfaces, pa
 
 ### M2 — Governed Pack Integration
 
-**In progress. Governed-integration baseline reached. Full M2 closure not yet claimed.**
+**Closed within the declared bounded repository scope.**
 
-The R3A–R3D sequence has added:
+M2 closure includes:
 
 1. strict governed contracts and version coherence;
 2. explicit governed admission, compatibility, binding, and normalized governance checks;
 3. REST/MCP/OpenAPI governed adapter parity;
-4. bounded caller-content/local-file loading with no network trust expansion.
+4. bounded caller-content/local-file loading with no network trust expansion;
+5. responsibility-preserving handoff semantics;
+6. adversarial checks for selected authority/evidence/governance/adapter/loader drift classes;
+7. a bounded public value demonstration and exact closure evidence.
 
-Remaining M2 work focuses on uncertainty/effect/evidence handoff semantics, repair/resume responsibility boundaries, adversarial validation, claim-boundary review, and closure evidence.
+Closure evidence: [`docs/m2-r5-adversarial-closure-evidence.md`](docs/m2-r5-adversarial-closure-evidence.md).
 
-Importantly, RPE does not absorb the full post-execution state machine. Evaluation evidence is not effect evidence; repair readiness is not repair authority; resume authority belongs to the runtime/institution that owns execution.
+This bounded closure does not absorb the post-execution state machine. Evaluation evidence is not effect evidence; repair readiness is not repair authority; resume authority belongs to the runtime/institution that owns execution. Broader adaptive routing and architecture reform are post-M2 concerns.
+
+### M3 — Adaptive Responsibility Gateway
+
+**Status: active experimental Draft PR #127, unmerged.** M1/M2 remain the
+current merged implementation baseline.
+
+The M3 working branch includes generalized responsibility-route descriptors,
+adaptive controls, conditional risk graphs, caller-observed integrity, Human
+Return readiness and cumulative-exposure guards; \`0.2.0-exp\` guarded Python,
+REST/OpenAPI and MCP stdio interfaces; bounded malformed-input/error handling;
+a reproducible cross-surface I/O parity demo; and a synthetic bank-detail change
+preflight. All of these are **branch-scoped** until reviewed and promoted.
+
+Remaining M3 acceptance work includes:
+- independently review the end-to-end versioned I/O and current source/schema
+  coherence, including unknown/ambiguous/hostile caller inputs;
+- verify explicit downstream **pre-dispatch enforcement**, trust sources for
+  Authority/Evidence and no bypass or effect/authority inflation;
+- measure reproducible latency/resource/error behavior and onboarding burden;
+- document realistic success, missing-evidence, conflict/hold and failure
+  cases, with the exact host integration responsibilities;
+- reconcile concurrent Draft documentation/value/quality PRs and run
+  exact-final-head tests before considering merge/promotion.
+
+External pilot/third-party production deployment is **not** a universal OSS
+release requirement. It can support a later verified-effectiveness claim.
+This planning status alone is not permission to merge, publish or deploy.
+
+## Beyond M3 — candidate outcomes, not numbered milestones
+
+**There is no formally defined M4 or later milestone yet.** The K0–K10
+technical stages below and in the detailed technical roadmap are **not**
+M4–M10 milestones. Candidates for future promotion are:
+
+| Outcome lane | What can start before M3 closure | Evidence / owner boundary |
+| --- | --- | --- |
+| Integration-ready | machine-readable I/O, minimal starters, adapter parity, clear executor handoff | separate host enforcement, normal/error examples and measured integration effort |
+| Secure-by-design | attack fixtures, payload and trust checks, configuration/authority preservation | identity, perimeter, secrets and network tenancy provided by host |
+| Operational quality | bounded latency p50/p95/p99, failure modes, diagnostics, migration planning | production SLA, deployment, durability and recovery separately owned |
+| Assured interoperability | frozen contracts, adversarial cases, formal assumptions, version consistency | third-party certification and real-effect claims require separate evidence |
+
+Do not create new M numbers, adapters or governance sources merely because a
+candidate lane is listed. Prioritize small, independently testable owner-local
+slices; assign durable action execution and recovery to RPR/RPOS.
 
 ## Active gates
 
@@ -123,15 +170,15 @@ File existence is transport evidence only. It does not establish source authorit
 
 ### Gate 6: preserve evaluation/execution separation
 
-Active and central to remaining M2 work.
+Active as a permanent post-M2 architecture boundary.
 
 RPE may state requirements for downstream effect evidence, repair, resume, and Human Return, but must not silently become the authority owner for dispatch, effect verification, retry/reconciliation, repair execution, or resume authorization.
 
-### Gate 7: adversarially validate M2 before closure
+### Gate 7: preserve M2 closure evidence
 
-Next.
+Completed for bounded M2 closure.
 
-Test authority confusion, evidence confusion, stale/binding/governance failures, adapter drift, loader boundary violations, and failure-path Human Return/residual-owner continuity.
+The closure matrix covers selected authority/evidence confusion, stale/binding/governance failures, adapter drift, loader boundary violations, runtime/schema alignment, and Human Return/residual-owner continuity. Future changes touching the closed surface must preserve or deliberately revise those checks.
 
 ### Gate 8: research production boundaries before production claims
 
@@ -139,16 +186,28 @@ Deferred until deliberately scoped.
 
 Production adoption requires separate design and review for authentication, authorization, TLS, rate limiting, persistence, retention, tenancy, secrets, observability, deployment, rollback, operational ownership, and incident response.
 
+## Front-loaded execution order
+
+1. Preserve M2 as **closed** and fix mismatched current-state documentation.
+2. Keep M3 work on its Draft branch; maintain Python/REST/MCP complete-result
+   parity, malformed input cases, and explicit Authority/Evidence limits.
+3. Test a minimal host-side pre-dispatch enforcement example that *consumes*
+   RPE decisions but does not silently make RPE a runtime executor.
+4. Measure bounded performance, integration cost and error handling with
+   declared environment/inputs; present expected benefits as hypotheses until
+   measured.
+5. Consolidate overlapping M3 Draft PRs before exact-head integration review.
+6. Review promotion/merge/release only under existing human maintainer gates.
+7. Feed downstream execution/recovery and trajectory/legal-Authority research
+   to their existing RP* owners.
+
 ## Recommended next sequence
 
-1. Merge/read back the M2 documentation synchronization slice.
-2. Specify uncertainty/effect/evidence handoff semantics without importing execution authority.
-3. Specify repair/resume requirement semantics and residual-owner continuity.
-4. Add adversarial tests for authority, evidence, governance, adapter, and loader failure classes.
-5. Review public claim boundaries against the resulting evidence.
-6. Declare M2 closed only if the declared engineering closure criteria are satisfied.
-7. Add reviewed real-world mappings only with named human interpretation and maintenance ownership.
-8. Scope production work separately, if ever authorized.
+1. Preserve the bounded M2 closure and its public/currentness checks.
+2. Use DAN-65 / post-M2 architecture work for adaptive Responsibility Routing, conditional/trajectory risk, security, NFR, and adoption-profile redesign.
+3. Keep production deployment concerns separately scoped and evidence-gated.
+4. Feed material post-M2 findings upstream to RPD/RPM only through their own review/claim boundaries.
+5. Add reviewed real-world mappings only with named human interpretation and maintenance ownership.
 
 ## Deferred work
 
