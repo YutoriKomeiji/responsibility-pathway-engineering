@@ -44,6 +44,10 @@ Governed responses preserve the strict admission/compatibility/governance/applic
 
 The textual MCP content mirrors the structured result for clients that do not consume `structuredContent`.
 
+## M3 guarded tool (experimental Draft only)
+
+Draft PR #127 adds `rpe_evaluate_guarded_responsibility_transition` with `0.2.0-exp` guarded input in `tools/call.arguments`. It returns `structuredContent` and equivalent JSON text; the response is evaluation metadata, never an authorization token. For valid requests, adverse cases and host enforcement requirements see [M3 integration/operator guide](../m3-integration-operator-guide.md). This additional tool is not yet part of the merged M2 baseline.
+
 ## Implemented protocol surface
 
 The reference adapter handles:
