@@ -29,6 +29,15 @@ Current public `main` includes:
 
 The current M2 governed-integration baseline is closed at repository level. The closure does not depend on a future M2 implementation.
 
+An **experimental M3 Adaptive Responsibility Gateway** is being developed in
+[unmerged Draft PR #127](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/pull/127).
+The M3 Draft implements versioned guarded routing/evaluation and
+Python/REST/MCP reference I/O parity, but it must **not** be described as
+already merged to `main` or production verified. Source-specific M3 notes:
+`ROADMAP.md`, `docs/external-kernel-roadmap.md`,
+`docs/m3-adoption-profiles.md`. M4+ milestones have not been formally
+set. A successful evaluation does not authorize downstream tool execution.
+
 M2 closure evidence:
 
 ```text

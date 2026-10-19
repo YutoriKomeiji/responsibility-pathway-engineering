@@ -234,6 +234,21 @@ RPEの`allow`は、
 
 この分離によって、RPEはexecutorへ変質せず、executorの前段へ挿入できます。
 
+## 開発中のM3：接続性と悪用耐性
+
+M1および限定スコープのM2は、統合済みの`main`で完了しています。
+次のAdaptive Responsibility Gateway（M3）は
+[Draft PR #127](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/pull/127)
+で開発中であり、Draftにある機能を現行の公開パッケージに含まれるものとして扱いません。
+
+M3ブランチでは、適応型の責任経路評価、`0.2.0-exp`のPython/REST/MCP
+インターフェース、敵対的入力検証、3経路でのI/O一致テストなどを進めています。
+[技術ロードマップ](docs/external-kernel-roadmap.md)と
+[M3導入プロファイル](docs/m3-adoption-profiles.md)には、外部からの接続方法、
+入出力、後段ホストによる認証・認可・実行直前の制御義務を明記しています。
+第三者の本番導入実績は、初期OSSリリースの普遍的な必須条件ではありません。
+一方、実環境の効果やコンプライアンスについては別の証拠が必要です。
+
 ## 現在のscope
 
 RPEが提供するのは上記のgoverned evaluation layerです。application authentication、TLS termination、tenancy、persistent operational state、external dispatch、retry orchestration、reconciliation、effect verificationなど、後段runtimeや組織が持つべき機能はRPEの評価kernelには統合していません。
