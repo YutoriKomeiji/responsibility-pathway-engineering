@@ -269,6 +269,7 @@ CI PASSはそのnamed checkがtested conditionで通った証拠です。形式�
 
 ## 主要リンク
 
+- [M3接続・運用ガイド（Draft）](docs/m3-integration-operator-guide.md) — I/O、実行側の責任、検証可能な期待値
 - [RPEを使う理由](docs/why-rpe.md)
 - [M2 closure evidence](docs/m2-r5-adversarial-closure-evidence.md)
 - [現在のM2実装状態](docs/m2-governed-integration-current.md)
