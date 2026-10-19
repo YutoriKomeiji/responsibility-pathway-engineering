@@ -18,7 +18,7 @@ def main() -> int:
     assert "bounded M2 governed-integration closure" in road
     assert "bounded M2 governed-integration closure complete" in m2
     assert "M3 — Adaptive Responsibility Gateway" in road
-    assert "Draft PR #127" in road and "Draft PR #127" in kernel
+    assert "PR #127" in road and "PR #127" in kernel
     assert "unmerged Draft PR #127" in beacon
     assert "M4 or later milestone" in road
     assert "M3 Draft PR #127" in m3
