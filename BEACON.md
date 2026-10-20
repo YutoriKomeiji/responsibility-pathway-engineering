@@ -8,7 +8,7 @@ BEACON is the short reconnection entrance. Use the repository's current implemen
 
 ## Current position
 
-RPE's current public engineering surface is the **M2 governed-integration line**.
+RPE's merged public baseline is the **closed bounded M2 governed-integration line**. The experimental M3 adaptive gateway exists in **unmerged Draft PR #127**; see `ROADMAP.md` and `docs/m3-classification-and-first-slice.md` for forward status, not as already shipped functionality.
 
 The strict governed path is exposed through Python, REST, MCP stdio, and OpenAPI and includes:
 
@@ -46,7 +46,7 @@ Current scope remains bounded. RPE evaluates proposals and preserves responsibil
 5. `docs/verification-assurance-and-open-governance.md` for proof, assurance,
    public-guidance, and open-governance boundaries
 6. Published Artifact Catalog: <https://yutorikomeiji.github.io/responsibility-pathway-engineering/>
-7. `ROADMAP.md` for the current M2 planning and gate state
+7. `ROADMAP.md` for current M2 closure, Draft M3 work and promotion gates
 8. `docs/operation-index.md` for repository operation and historical construction paths
 9. `docs/phase-3-1-current-snapshot.md` when the earlier Phase 3.1 construction state matters
 10. `docs/current-task-inventory.md` when tracing earlier task state

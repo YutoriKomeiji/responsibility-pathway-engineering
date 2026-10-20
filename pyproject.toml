@@ -20,4 +20,4 @@ rpe-mcp = "rpe_kernel.mcp_server:main"
 packages = ["rpe_kernel"]
 
 [tool.setuptools.package-data]
-rpe_kernel = ["rpe-kernel.openapi.json"]
+rpe_kernel = ["rpe-kernel.openapi.json", "rpe-kernel-guarded.openapi.json"]

@@ -212,6 +212,25 @@ and return downstream obligations such as separate dispatch authority and effect
 
 This separation is what allows RPE to be inserted before an executor without silently becoming the executor.
 
+## Experimental M3: integration and security work in Draft
+
+**First try (M3 Draft only):** after checkout and `python -m pip install .`, run `python scripts/try_m3.py` for a one-command synthetic check of Python/REST/MCP decisions and host-side enforcement. It performs no real external action. See [M3 integration/operator guide](docs/m3-integration-operator-guide.md) for exact I/O and remaining trust obligations.
+
+M1 and bounded M2 are closed on merged `main`. The next Adaptive
+Responsibility Gateway (M3) is currently developed in
+[Draft PR #127](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/pull/127);
+do not confuse Draft features with the installed package's merged baseline.
+
+M3 work-in-progress includes contextual/adaptive responsibility control,
+guarded `0.2.0-exp` Python/REST/MCP interfaces, bounded negative security
+checks and a runnable three-surface I/O parity demonstration. The
+[technical roadmap](docs/external-kernel-roadmap.md) and
+[M3 adoption guide](docs/m3-adoption-profiles.md) explain how a host would
+connect, what it receives, and what the host must still authenticate, authorize
+and enforce before a real action. Real-world effect and compliance claims
+require distinct evidence; external production deployments are not a
+universal prerequisite for an honest integration-ready experimental release.
+
 ## Current scope
 
 RPE currently provides the governed evaluation layer described above. Production deployment concerns that belong to another layer—such as application authentication, TLS termination, tenancy, persistent operational state, external dispatch, retry orchestration, reconciliation, and effect verification—are expected to be supplied by the integrating runtime or institution.
@@ -234,6 +253,7 @@ See:
 
 ## Main links
 
+- [Experimental M3 integration/operator guide](docs/m3-integration-operator-guide.md) — I/O, enforcement and measurable expectations
 - [Why use RPE?](docs/why-rpe.md)
 - [M2 closure evidence](docs/m2-r5-adversarial-closure-evidence.md)
 - [Current M2 status](docs/m2-governed-integration-current.md)

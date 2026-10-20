@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://responsibility-pathway.dev/schemas/m3/responsibility-transition-result.schema.json",
+  "title": "RPE M3 Experimental Responsibility Transition Result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contract_version",
+    "control_action",
+    "source_evaluation_decision",
+    "authority_effect",
+    "execution_effect",
+    "route_target",
+    "responsibility_transition",
+    "constraints",
+    "unmet_conditions",
+    "risk_condition_result",
+    "candidate_controls",
+    "reason_codes",
+    "downstream_executor_required"
+  ],
+  "properties": {
+    "contract_version": {"const": "0.1.0-exp"},
+    "control_action": {
+      "enum": [
+        "allow",
+        "allow_with_constraints",
+        "route",
+        "require_evidence",
+        "require_authority",
+        "downgrade_autonomy",
+        "sandbox",
+        "observe_only",
+        "budget_limit",
+        "isolate",
+        "handoff",
+        "hold",
+        "deny",
+        "emergency_stop"
+      ]
+    },
+    "source_evaluation_decision": {"type": ["string", "null"]},
+    "authority_effect": {"const": "none"},
+    "execution_effect": {"const": "none"},
+    "route_target": {
+      "anyOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/routeTarget"}
+      ]
+    },
+    "responsibility_transition": {"$ref": "#/$defs/transition"},
+    "constraints": {"$ref": "#/$defs/stringArray"},
+    "unmet_conditions": {"$ref": "#/$defs/stringArray"},
+    "risk_condition_result": {"type": ["object", "null"]},
+    "candidate_controls": {"$ref": "#/$defs/stringArray"},
+    "reason_codes": {"$ref": "#/$defs/stringArray"},
+    "downstream_executor_required": {"const": true}
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "routeTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "target_id", "purpose", "authority_effect", "dispatch_effect"],
+      "properties": {
+        "kind": {
+          "enum": [
+            "human",
+            "agent",
+            "verifier",
+            "saas",
+            "legacy_system",
+            "institution",
+            "workflow",
+            "queue",
+            "sandbox",
+            "simulator",
+            "hold",
+            "stop"
+          ]
+        },
+        "target_id": {"type": ["string", "null"]},
+        "purpose": {"type": ["string", "null"]},
+        "authority_effect": {"const": "none"},
+        "dispatch_effect": {"const": "none"}
+      }
+    },
+    "transition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source", "destination", "purpose", "authority", "evidence", "residual_owner_role", "dispatch_effect"],
+      "properties": {
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "request_id"],
+          "properties": {
+            "kind": {"const": "rpe_evaluation"},
+            "request_id": {"type": ["string", "null"]}
+          }
+        },
+        "destination": {
+          "anyOf": [
+            {"type": "null"},
+            {"$ref": "#/$defs/routeTarget"}
+          ]
+        },
+        "purpose": {"type": ["string", "null"]},
+        "authority": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["effect", "downstream_authority_required"],
+          "properties": {
+            "effect": {"const": "none"},
+            "downstream_authority_required": {"const": true}
+          }
+        },
+        "evidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["available", "missing"],
+          "properties": {
+            "available": {"$ref": "#/$defs/stringArray"},
+            "missing": {"$ref": "#/$defs/stringArray"}
+          }
+        },
+        "residual_owner_role": {"type": "string", "minLength": 1},
+        "dispatch_effect": {"const": "none"}
+      }
+    }
+  }
+}

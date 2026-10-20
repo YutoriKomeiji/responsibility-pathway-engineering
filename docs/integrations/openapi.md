@@ -31,6 +31,10 @@ The HTTP governed request does **not** accept caller-asserted transport provenan
 
 Transport provenance is limited to source kind, SHA-256, byte length, and `observation_scope = transport_bytes_only`. It does not expose local filesystem paths and does not establish trust, source authority, semantic correctness, or effect verification.
 
+## M3 guarded contract (experimental Draft only)
+
+Draft PR #127 adds a separate `GET /openapi-guarded.json` and `POST /v1/evaluate/transition/guarded` (contract `0.2.0-exp`). For exact request/response schema and reproducible Python/REST/MCP output, see the [M3 guarded adapter contract](../m3-versioned-guarded-adapter-contract-v0.1.md) and [integration/operator guide](../m3-integration-operator-guide.md). Neither route should be misrepresented as shipped on merged M2 `main`.
+
 ## Local use
 
 ```bash

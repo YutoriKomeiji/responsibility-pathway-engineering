@@ -234,6 +234,23 @@ RPEの`allow`は、
 
 この分離によって、RPEはexecutorへ変質せず、executorの前段へ挿入できます。
 
+## 開発中のM3：接続性と悪用耐性
+
+**まず1コマンド（M3 Draft限定）：** このブランチで `python -m pip install .` の後、`python scripts/try_m3.py` を実行。Python/REST/MCPの評価結果の一致と実行前の模擬制御を検査します。外部サービスへの実行はしません。詳細は[M3接続・運用ガイド](docs/m3-integration-operator-guide.md)。
+
+M1および限定スコープのM2は、統合済みの`main`で完了しています。
+次のAdaptive Responsibility Gateway（M3）は
+[Draft PR #127](https://github.com/YutoriKomeiji/responsibility-pathway-engineering/pull/127)
+で開発中であり、Draftにある機能を現行の公開パッケージに含まれるものとして扱いません。
+
+M3ブランチでは、適応型の責任経路評価、`0.2.0-exp`のPython/REST/MCP
+インターフェース、敵対的入力検証、3経路でのI/O一致テストなどを進めています。
+[技術ロードマップ](docs/external-kernel-roadmap.md)と
+[M3導入プロファイル](docs/m3-adoption-profiles.md)には、外部からの接続方法、
+入出力、後段ホストによる認証・認可・実行直前の制御義務を明記しています。
+第三者の本番導入実績は、初期OSSリリースの普遍的な必須条件ではありません。
+一方、実環境の効果やコンプライアンスについては別の証拠が必要です。
+
 ## 現在のscope
 
 RPEが提供するのは上記のgoverned evaluation layerです。application authentication、TLS termination、tenancy、persistent operational state、external dispatch、retry orchestration、reconciliation、effect verificationなど、後段runtimeや組織が持つべき機能はRPEの評価kernelには統合していません。
@@ -254,6 +271,7 @@ CI PASSはそのnamed checkがtested conditionで通った証拠です。形式�
 
 ## 主要リンク
 
+- [M3接続・運用ガイド（Draft）](docs/m3-integration-operator-guide.md) — I/O、実行側の責任、検証可能な期待値
 - [RPEを使う理由](docs/why-rpe.md)
 - [M2 closure evidence](docs/m2-r5-adversarial-closure-evidence.md)
 - [現在のM2実装状態](docs/m2-governed-integration-current.md)
