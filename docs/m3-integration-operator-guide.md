@@ -37,7 +37,9 @@ The cross-surface demo starts a **loopback** REST server and exercises the MCP J
 
 ## First five minutes: one command, then details
 
-After installing the M3 Draft as above, run `python scripts/try_m3.py` (or `python scripts/try_m3.py --json`). It calls the existing **real** cross-surface parity demo and **synthetic** host-enforcement demo; it does not invent expected outputs. The summary shows which inputs receive `allow`, `hold`, `require_authority`, or non-allow, confirms six bad/unauthorized paths did not reach the simulated executor, and reports **zero real external effects**. A green local check establishes only that the selected reference scenarios pass, not a secure deployment. If a check fails, the script exits nonzero and does not claim success.
+After installing the M3 Draft as above, run `python scripts/try_m3.py` (or `python scripts/try_m3.py --json`). It calls the existing **real** cross-surface parity demo and **synthetic** host-enforcement demo; it does not invent expected outputs. It also incorporates the existing **synthetic naive-vs-governed before/after value demo** (PR #130) in machine-readable form: a generated proposal would continue in the intentionally naive baseline; missing approval instead produces `human_gate` through governed evaluation. This does **not** measure real-world fraud reduction or assert that all agents behave naively. 
+
+The summary shows which inputs receive `allow`, `hold`, `require_authority`, or non-allow, confirms six bad/unauthorized paths did not reach the simulated executor, and reports **zero real external effects**. A green local check establishes only that the selected reference scenarios pass, not a secure deployment. If a check fails, the script exits nonzero and does not claim success.
 
 A first-time adopter can then examine `--json` and the two underlying scripts for full I/O and the trusted-host responsibility boundary. Reusable copy-and-paste starter packaging for other systems remains with DAN-83 rather than this reference command.
 
