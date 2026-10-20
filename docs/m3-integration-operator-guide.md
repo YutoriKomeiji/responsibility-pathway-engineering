@@ -35,6 +35,12 @@ python examples/business-controls/vendor_bank_change_preflight.py --self-test
 
 The cross-surface demo starts a **loopback** REST server and exercises the MCP JSON-RPC stdio handler; it compares **complete JSON results** against direct Python results for four synthetic requests. The host demo records a **simulated** effect in an in-memory list, not an ERP/bank/network write. They are reproducibility evidence under declared conditions, not an end-to-end deployment trial.
 
+## First five minutes: one command, then details
+
+After installing the M3 Draft as above, run `python scripts/try_m3.py` (or `python scripts/try_m3.py --json`). It calls the existing **real** cross-surface parity demo and **synthetic** host-enforcement demo; it does not invent expected outputs. The summary shows which inputs receive `allow`, `hold`, `require_authority`, or non-allow, confirms six bad/unauthorized paths did not reach the simulated executor, and reports **zero real external effects**. A green local check establishes only that the selected reference scenarios pass, not a secure deployment. If a check fails, the script exits nonzero and does not claim success.
+
+A first-time adopter can then examine `--json` and the two underlying scripts for full I/O and the trusted-host responsibility boundary. Reusable copy-and-paste starter packaging for other systems remains with DAN-83 rather than this reference command.
+
 ## Exact input and output contracts
 
 All three guarded surfaces accept the same JSON-compatible payload with `contract_version: "0.2.0-exp"` and a **complete governed M2 envelope** in `governed_evaluation`. Optional `risk_graph`, `integrity_checks`, `human_return_checks`, `cumulative_exposure_checks`, `requested_route` and `constraints` have strict schemas. The caller/policy layer supplies the control requirements; the adapter cannot invent normative policy.
