@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def run_json_demo(path: str) -> dict[str, Any]:
     command = [sys.executable, str(ROOT / path)]
-    if path.endswith("demo_m3_cross_surface.py"):
+    if path.endswith(("demo_m3_cross_surface.py", "value_demo.py")):
         command.append("--json")
     proc = subprocess.run(
         command, cwd=ROOT, capture_output=True, text=True, timeout=40,
@@ -82,8 +82,25 @@ def inspect() -> dict[str, Any]:
         or any(decisions.get(name, {}).get("status") != "not_dispatched" for name in required_blocked)
     ):
         raise RuntimeError("M3 synthetic host enforcement deviates from its contract")
+    # A separate, intentionally naive baseline makes the added decision
+    # boundary visible; it is not a general population model of all agents.
+    comparison = run_json_demo("scripts/value_demo.py")
+    if (
+        comparison.get("external_action_executed") is not False
+        or comparison.get("without_rpe", {}).get("decision") != "continue"
+        or comparison.get("with_rpe", {}).get("decision") != "human_gate"
+        or comparison.get("with_rpe", {}).get("authority_effect") != "none"
+        or comparison.get("approved_with_rpe", {}).get("decision") != "allow"
+        or comparison.get("approved_with_rpe", {}).get("authority_effect") != "none"
+    ):
+        raise RuntimeError("governed-vs-naive synthetic comparison differs")
     return {
         "test": "m3_first_use_reference",
+        "synthetic_before_after": {
+            "naive_generated_proposal": comparison["without_rpe"]["decision"],
+            "missing_approval_with_rpe": comparison["with_rpe"]["decision"],
+            "approved_with_rpe": comparison["approved_with_rpe"]["decision"],
+        },
         "contract_version": "0.2.0-exp",
         "adapter_surfaces_checked": parity["surfaces"],
         "observed_control_actions": actions,
@@ -109,6 +126,7 @@ def main() -> int:
         print(json.dumps(record, sort_keys=True))
     else:
         print("RPE M3 first-use reference: PASS (synthetic only)")
+        print("Naive generated proposal: continue -> RPE missing approval: human_gate")
         print("Python / loopback REST / MCP stdio: same full result")
         for name, value in record["observed_control_actions"].items():
             print(f"  {name}: {value}")
