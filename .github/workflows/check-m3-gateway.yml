@@ -25,6 +25,7 @@ on:
       - "examples/business-controls/vendor_bank_change_preflight.py"
       - "scripts/demo_m3_cross_surface.py"
       - "scripts/demo_m3_host_enforcement.py"
+      - "scripts/try_m3.py"
       - "scripts/check_m3_contract_schemas.py"
       - "scripts/check_m3_guarded_adapter.py"
       - "scripts/check_m3_guarded_adapters.py"
@@ -74,6 +75,7 @@ on:
       - "examples/business-controls/vendor_bank_change_preflight.py"
       - "scripts/demo_m3_cross_surface.py"
       - "scripts/demo_m3_host_enforcement.py"
+      - "scripts/try_m3.py"
       - "scripts/check_m3_contract_schemas.py"
       - "scripts/check_m3_guarded_adapter.py"
       - "scripts/check_m3_guarded_adapters.py"
@@ -125,6 +127,8 @@ jobs:
         run: python scripts/demo_m3_cross_surface.py
       - name: Verify synthetic host-side pre-dispatch enforcement
         run: python scripts/demo_m3_host_enforcement.py
+      - name: Verify one-command first-use contract
+        run: python scripts/try_m3.py --json
       - name: Check M3 contract schemas
         run: python scripts/check_m3_contract_schemas.py
       - name: Check M3 guarded adapter 0.2 core schemas
