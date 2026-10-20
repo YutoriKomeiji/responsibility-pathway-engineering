@@ -212,9 +212,9 @@ and return downstream obligations such as separate dispatch authority and effect
 
 This separation is what allows RPE to be inserted before an executor without silently becoming the executor.
 
-**First try (M3 Draft only):** after checkout and `python -m pip install .`, run `python scripts/try_m3.py` for a one-command synthetic check of Python/REST/MCP decisions and host-side enforcement. It performs no real external action. See [M3 integration/operator guide](docs/m3-integration-operator-guide.md) for exact I/O and remaining trust obligations.
-
 ## Experimental M3: integration and security work in Draft
+
+**First try (M3 Draft only):** after checkout and `python -m pip install .`, run `python scripts/try_m3.py` for a one-command synthetic check of Python/REST/MCP decisions and host-side enforcement. It performs no real external action. See [M3 integration/operator guide](docs/m3-integration-operator-guide.md) for exact I/O and remaining trust obligations.
 
 M1 and bounded M2 are closed on merged `main`. The next Adaptive
 Responsibility Gateway (M3) is currently developed in
