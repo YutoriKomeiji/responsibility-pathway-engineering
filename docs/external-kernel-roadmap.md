@@ -64,6 +64,8 @@ positive/missing-evidence/conflict examples and trust limitations. All three
 surfaces must preserve the **same kernel semantics**; an adapter is not a new
 authority provider. An RPE `allow` does not bypass the host's own checks.
 
+The experimental branch now has a single local first-use command, `python scripts/try_m3.py`, to exercise the already implemented parity and host-enforcement examples. This is reference verification, **not** a separately packaged starter SDK or production assurance.
+
 ## Front-load the dependency graph
 
 1. **Now / K1, K5:** test request/framing/schema failures and exact
