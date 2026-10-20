@@ -125,6 +125,8 @@ The table reports repository-level implementation state only. It does not establ
 
 The [M3 integration/operator guide](m3-integration-operator-guide.md) offers a single first-use path from install through Python/REST/MCP I/O, host-side enforcement, failure semantics and evidence-limited expectations. This document retains ownership of the Thin/Governed/Assured profiles.
 
+Quick first run on the experimental M3 Draft: `python scripts/try_m3.py` (or `--json` for a compact machine-readable outcome). This reuses the cross-surface and host-enforcement tests without granting execution authority or producing a real external effect.
+
 ## Reproduce the exact I/O across Python, REST and MCP
 
 M3 guarded contract version: `0.2.0-exp`. The same evaluation request
