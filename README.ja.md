@@ -234,9 +234,9 @@ RPEの`allow`は、
 
 この分離によって、RPEはexecutorへ変質せず、executorの前段へ挿入できます。
 
-**まず1コマンド（M3 Draft限定）：** このブランチで `python -m pip install .` の後、`python scripts/try_m3.py` を実行。Python/REST/MCPの評価結果の一致と実行前の模擬制御を検査します。外部サービスへの実行はしません。詳細は[M3接続・運用ガイド](docs/m3-integration-operator-guide.md)。
-
 ## 開発中のM3：接続性と悪用耐性
+
+**まず1コマンド（M3 Draft限定）：** このブランチで `python -m pip install .` の後、`python scripts/try_m3.py` を実行。Python/REST/MCPの評価結果の一致と実行前の模擬制御を検査します。外部サービスへの実行はしません。詳細は[M3接続・運用ガイド](docs/m3-integration-operator-guide.md)。
 
 M1および限定スコープのM2は、統合済みの`main`で完了しています。
 次のAdaptive Responsibility Gateway（M3）は
