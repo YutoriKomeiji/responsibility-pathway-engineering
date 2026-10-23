@@ -10,6 +10,10 @@ Responsibility Pathway Engineering (RPE) is an installable Python package with P
 
 It is not a documentation-only repository and it is not a collection of isolated sample functions. The current `main` contains executable package code, command-line service entry points, schemas, adapters, tests, adversarial checkers, CI workflows, and a closed M2 governed-integration baseline.
 
+## New here? Start with your problem
+
+Not sure which RP* component you need? [Choose a problem and see the first working result](docs/first-working-result.md). You can try RPE without installing the entire RP* stack, then add only the components your use case needs. Forks, integration reports, counterexamples, and improvements are welcome.
+
 ## Run it
 
 Python 3.11+ is required. The runtime package has no external runtime dependencies.
