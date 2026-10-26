@@ -32,8 +32,10 @@ theorem transfer_sound (f : TransferFacts) (h : transferPermitted f = true) :
     f.evidenceAccessible = true ∧
     f.evidenceCurrent = true ∧
     f.effectUnknown = false := by
-  simp only [transferPermitted, Bool.and_eq_true, Bool.not_eq_true'] at h
-  exact h
+  cases f with
+  | mk a d r e c u =>
+    cases a <;> cases d <;> cases r <;> cases e <;> cases c <;> cases u <;>
+      simp_all [transferPermitted]
 
 /-- Unknown external effects cannot be promoted to transfer permission. -/
 theorem unknown_effect_blocks_transfer (f : TransferFacts)
