@@ -12,3 +12,5 @@ import ResponsibilityPathway.Basic
 import ResponsibilityPathway.Lifecycle
 import ResponsibilityPathway.Examples
 import ResponsibilityPathway.Invariants
+
+import ResponsibilityPathway.TransferGuards
