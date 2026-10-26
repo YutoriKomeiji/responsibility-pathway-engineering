@@ -1,0 +1,24 @@
+name: RPE Transfer Guard Conformance
+
+on:
+  pull_request:
+    paths:
+      - "formal/lean/conformance/**"
+      - "formal/lean/ResponsibilityPathway/TransferGuards.lean"
+      - ".github/workflows/check-transfer-conformance.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-python-reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Verify exhaustive 64-case reference and invalid inputs
+        run: python -m unittest discover -s formal/lean/conformance -p 'test_*.py' -v
